@@ -46,17 +46,17 @@ These are inherited from or adjacent to the original design; they are **not** a 
    docker compose up --build -d
    ```
 
-4. Check health:
+4. Check health (Compose maps **host 8001 → container 8000** by default):
 
    ```bash
-   curl http://localhost:8000/health
+   curl http://localhost:8001/health
    ```
 
-5. Dashboard and API (default port `8000`):
+5. Dashboard and API (default host port **8001**):
 
-   - `GET http://localhost:8000/metrics`
-   - `GET http://localhost:8000/replay`
-   - `POST http://localhost:8000/set_mode?mode=practice` or JSON body `{"mode":"live"}`
+   - `GET http://localhost:8001/metrics`
+   - `GET http://localhost:8001/replay`
+   - `POST http://localhost:8001/set_mode?mode=practice` or JSON body `{"mode":"live"}`
 
 6. Logs:
 
@@ -72,21 +72,15 @@ These are inherited from or adjacent to the original design; they are **not** a 
 
    Add `-v` to remove the Postgres volume (`pgdata`) and wipe stored trades.
 
-### Port 8000 already in use
+### Use host port 8000 instead
 
-Set another host port before `docker compose up`, for example:
+If nothing else is bound to 8000, set in `.env`:
 
-```bash
-# PowerShell
-$env:BOT_PORT="8001"; docker compose up -d
+```env
+BOT_PORT=8000
 ```
 
-```bash
-# bash
-export BOT_PORT=8001 && docker compose up -d
-```
-
-Then open `http://localhost:8001/health` (or whatever port you chose).
+Then `docker compose up -d` again.
 
 ## Image-only (no Compose)
 

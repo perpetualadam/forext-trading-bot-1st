@@ -16,7 +16,8 @@ services:
   bot:
     build: .
     ports:
-      - "${BOT_PORT:-8000}:8000"
+      # Default 8001 avoids clashing with other stacks on 8000; override with BOT_PORT in .env
+      - "${BOT_PORT:-8001}:8000"
     environment:
       POSTGRES_HOST: db
       POSTGRES_PORT: "5432"
