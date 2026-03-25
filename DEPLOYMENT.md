@@ -72,6 +72,22 @@ These are inherited from or adjacent to the original design; they are **not** a 
 
    Add `-v` to remove the Postgres volume (`pgdata`) and wipe stored trades.
 
+### Port 8000 already in use
+
+Set another host port before `docker compose up`, for example:
+
+```bash
+# PowerShell
+$env:BOT_PORT="8001"; docker compose up -d
+```
+
+```bash
+# bash
+export BOT_PORT=8001 && docker compose up -d
+```
+
+Then open `http://localhost:8001/health` (or whatever port you chose).
+
 ## Image-only (no Compose)
 
 ```bash
