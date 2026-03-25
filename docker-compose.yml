@@ -25,14 +25,72 @@ services:
       POSTGRES_PASS: ${POSTGRES_PASSWORD:-password}
       POSTGRES_DB: ${POSTGRES_DB:-trading}
       TRADING_MODE: ${TRADING_MODE:-practice}
+      PAPER_TRADING: ${PAPER_TRADING:-}
       OANDA_ACCESS_TOKEN: ${OANDA_ACCESS_TOKEN:-}
       OANDA_ACCOUNT_ID: ${OANDA_ACCOUNT_ID:-}
       TELEGRAM_TOKEN: ${TELEGRAM_TOKEN:-}
       TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID:-}
       DISCORD_WEBHOOK_URL: ${DISCORD_WEBHOOK_URL:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      OPENAI_JSON_MODE: ${OPENAI_JSON_MODE:-}
+      OPENAI_TIMEOUT: ${OPENAI_TIMEOUT:-}
+      OPENAI_TEMPERATURE: ${OPENAI_TEMPERATURE:-}
+      AI_DISABLE_STUB: ${AI_DISABLE_STUB:-}
+      STUB_ALLOW_THRESHOLD: ${STUB_ALLOW_THRESHOLD:-}
+      STUB_CONFIDENCE_MIN: ${STUB_CONFIDENCE_MIN:-}
+      STUB_CONFIDENCE_MAX: ${STUB_CONFIDENCE_MAX:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-}
+      ANTHROPIC_BASE_URL: ${ANTHROPIC_BASE_URL:-}
+      ANTHROPIC_MAX_TOKENS: ${ANTHROPIC_MAX_TOKENS:-}
+      ANTHROPIC_TIMEOUT: ${ANTHROPIC_TIMEOUT:-}
+      ANTHROPIC_VERSION: ${ANTHROPIC_VERSION:-}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      DEEPSEEK_MODEL: ${DEEPSEEK_MODEL:-}
+      MISTRAL_API_KEY: ${MISTRAL_API_KEY:-}
+      MISTRAL_MODEL: ${MISTRAL_MODEL:-}
+      XAI_API_KEY: ${XAI_API_KEY:-}
+      GROK_API_KEY: ${GROK_API_KEY:-}
+      XAI_BASE_URL: ${XAI_BASE_URL:-}
+      GROK_MODEL: ${GROK_MODEL:-}
+      XAI_MODEL: ${XAI_MODEL:-}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GROQ_MODEL: ${GROQ_MODEL:-}
+      VENICE_API_KEY: ${VENICE_API_KEY:-}
+      VENICE_BASE_URL: ${VENICE_BASE_URL:-}
+      VENICE_MODEL: ${VENICE_MODEL:-}
+      VENICE_JSON_MODE: ${VENICE_JSON_MODE:-}
+      QROK_API_KEY: ${QROK_API_KEY:-}
+      QROK_BASE_URL: ${QROK_BASE_URL:-}
+      QROK_MODEL: ${QROK_MODEL:-}
+      QROK_JSON_MODE: ${QROK_JSON_MODE:-}
     depends_on:
       db:
         condition: service_healthy
 
+  # Optional local LLM — not started unless you use profile "ollama":
+  #   docker compose --profile ollama up -d
+  # Then in .env point the bot at the in-network URL (see .env.example).
+  ollama:
+    profiles:
+      - ollama
+    image: ollama/ollama:latest
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "${OLLAMA_HOST_PORT:-11434}:11434"
+    environment:
+      OLLAMA_KEEP_ALIVE: ${OLLAMA_KEEP_ALIVE:-24h}
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list >/dev/null 2>&1 || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    restart: unless-stopped
+
 volumes:
   pgdata:
+  ollama_data:

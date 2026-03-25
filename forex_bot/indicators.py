@@ -42,4 +42,7 @@ def compute_indicators(df: pd.DataFrame) -> pd.DataFrame:
     out["boll_down"] = mid - 2 * std20
     out["atr"] = _true_range(out["high"], out["low"], out["close"]).rolling(14).mean()
     out["trend_strength"] = out["ma_fast"] - out["ma_slow"]
+    # Aliases for Final Boss++ / RL state strings
+    out["trend"] = out["trend_strength"]
+    out["volatility"] = out["atr"]
     return out

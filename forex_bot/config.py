@@ -31,6 +31,9 @@ class Config:
     OANDA_ACCOUNT_ID: str = os.getenv("OANDA_ACCOUNT_ID", "")
     OANDA_ACCESS_TOKEN: str = os.getenv("OANDA_ACCESS_TOKEN", "")
 
+    # Paper / simulation path (spread+slippage sim). false → legacy random PnL until real OANDA fills exist.
+    PAPER_TRADING: bool = (os.getenv("PAPER_TRADING") or "true").strip().lower() in ("1", "true", "yes", "on")
+
     @classmethod
     def set_trading_mode(cls, mode: str) -> None:
         m = mode.lower().strip()

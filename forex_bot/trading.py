@@ -1,4 +1,4 @@
-"""Position sizing and simulated execution (matches original paper PnL flow)."""
+"""Position sizing, spread/slippage simulation, and execution logging."""
 
 from __future__ import annotations
 
@@ -19,6 +19,20 @@ def position_sizing(symbol: str, decision: dict[str, Any]) -> float:
     return float(min(equity * 0.02, 10000.0))
 
 
+def simulate_execution(direction: str, price: float, size: float) -> float:
+    """Paper path: spread + slippage + random exit noise; returns signed PnL (not per-pip perfect)."""
+    spread = 0.0001
+    slippage = 0.00005
+    if direction == "BUY":
+        entry = price + spread + slippage
+    else:
+        entry = price - spread - slippage
+    exit_price = entry + random.uniform(-0.0003, 0.0003)
+    if direction == "BUY":
+        return float((exit_price - entry) * size)
+    return float((entry - exit_price) * size)
+
+
 async def execute_trade(
     symbol: str,
     strategy_name: str,
@@ -27,9 +41,19 @@ async def execute_trade(
     price: float,
     sl: float,
     tp: float,
-) -> None:
+    *,
+    realized_pnl: float | None = None,
+) -> float:
+    """
+    Log and record a trade. If ``realized_pnl`` is None, uses legacy random PnL (non-paper path).
+    Returns realized PnL for RL / callers.
+    """
     _ = sl, tp
-    pnl = random.uniform(-size * 0.0005, size * 0.001)
+    if realized_pnl is None:
+        pnl = random.uniform(-size * 0.0005, size * 0.001)
+    else:
+        pnl = float(realized_pnl)
+
     analytics.log_trade(pnl)
     strategies[strategy_name].update_pnl(pnl)
     meta.update(strategy_name, pnl)
@@ -37,3 +61,4 @@ async def execute_trade(
     exit_price = price + pnl
     log_trade_pg(symbol, strategy_name, direction, pnl, size, price, exit_price)
     alert(f"[{Config.TRADING_MODE.upper()}] {direction} {symbol} size {size} PnL {pnl:.2f}")
+    return pnl

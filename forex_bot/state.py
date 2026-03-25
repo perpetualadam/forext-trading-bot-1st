@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, datetime, timezone
 from typing import Any
 
 from forex_bot.config import Config
@@ -11,7 +11,27 @@ state: dict[str, Any] = {
     "equity_curve": [],
     "positions": {},
     "last_report_day": None,
+    "bot_status": "stopped",
+    "bot_started_at": None,
+    "bot_stopped_at": None,
+    "last_lifecycle_message": "",
 }
+
+
+def mark_bot_started() -> None:
+    now = datetime.now(timezone.utc).isoformat()
+    state["bot_status"] = "running"
+    state["bot_started_at"] = now
+    state["bot_stopped_at"] = None
+
+
+def mark_bot_stopped() -> None:
+    state["bot_status"] = "stopped"
+    state["bot_stopped_at"] = datetime.now(timezone.utc).isoformat()
+
+
+def set_lifecycle_message(text: str) -> None:
+    state["last_lifecycle_message"] = text
 
 
 def current_equity() -> float:

@@ -82,6 +82,38 @@ BOT_PORT=8000
 
 Then `docker compose up -d` again.
 
+### Optional: Ollama in Docker (local LLM)
+
+The repo includes an **`ollama` service** that is **off by default** (Compose **profile** `ollama`).
+
+1. In **`.env`**, aim the bot at the in-network Ollama API and disable the random stub if you want:
+
+   ```env
+   OPENAI_BASE_URL=http://ollama:11434/v1
+   OPENAI_MODEL=llama3.2
+   OPENAI_API_KEY=ollama
+   OPENAI_JSON_MODE=false
+   AI_DISABLE_STUB=true
+   ```
+
+2. Start **db**, **bot**, and **ollama**:
+
+   ```bash
+   docker compose --profile ollama up -d --build
+   ```
+
+3. **Pull a model** inside the Ollama container (once per model):
+
+   ```bash
+   docker compose exec ollama ollama pull llama3.2
+   ```
+
+4. Ollama is also published on the host at **`OLLAMA_HOST_PORT`** (default **11434**) so you can use `ollama` from the host or open its API at `http://localhost:11434`.
+
+The **bot** does not `depends_on` **ollama** (so the default stack works without the profile). If the bot starts before Ollama is healthy, the first LLM calls may fail until Ollama is ready; later cycles will succeed.
+
+**GPU:** On Linux with NVIDIA, you can add a `deploy.resources.reservations.devices` block to the `ollama` service per [Ollama Docker docs](https://github.com/ollama/ollama/blob/main/docs/docker.md). On Windows, GPU setup depends on Docker Desktop / WSL2; CPU mode still works, slower.
+
 ## Image-only (no Compose)
 
 ```bash

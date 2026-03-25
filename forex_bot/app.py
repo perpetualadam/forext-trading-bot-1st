@@ -16,9 +16,37 @@ from forex_bot.bot_loop import run_bot
 from forex_bot.config import Config
 from forex_bot.database import fetch_all_trades_ordered, fetch_strategy_analysis, get_connection
 from forex_bot.oanda_client import build_api
-from forex_bot.state import current_equity
+from forex_bot.state import (
+    current_equity,
+    mark_bot_started,
+    mark_bot_stopped,
+    set_lifecycle_message,
+    state as bot_state,
+)
 
 logger = logging.getLogger(__name__)
+
+
+def _health_snapshot() -> dict[str, Any]:
+    return {
+        "equity": current_equity(),
+        "sharpe": analytics.sharpe(),
+        "winrate": analytics.winrate(),
+        "drawdown": analytics.drawdown(),
+        "trading_mode": Config.TRADING_MODE,
+        "paper_trading": Config.PAPER_TRADING,
+        "symbols": list(Config.SYMBOLS),
+    }
+
+
+def _health_alert_text(prefix: str) -> str:
+    h = _health_snapshot()
+    return (
+        f"{prefix} | mode={h['trading_mode']} paper={h['paper_trading']} | "
+        f"equity={h['equity']:.2f} sharpe={h['sharpe']:.2f} "
+        f"winrate={h['winrate']:.2%} drawdown={h['drawdown']:.2f} | "
+        f"symbols={h['symbols']}"
+    )
 
 
 def _serialize_trades(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -37,9 +65,11 @@ async def lifespan(app: FastAPI):
     _ = app
     get_connection()
     build_api()
-    mode = Config.TRADING_MODE.upper()
-    alert(f" TRADING MODE: {'LIVE' if Config.TRADING_MODE == 'live' else 'PRACTICE (PAPER TRADING)'}")
-    logger.info("Starting bot task; API mode label: %s", mode)
+    mark_bot_started()
+    started_msg = _health_alert_text("BOT STARTED")
+    set_lifecycle_message(started_msg)
+    alert(started_msg)
+    logger.info("Bot started; trading_mode=%s", Config.TRADING_MODE)
     task = asyncio.create_task(run_bot())
     try:
         yield
@@ -49,6 +79,11 @@ async def lifespan(app: FastAPI):
             await task
         except asyncio.CancelledError:
             pass
+        mark_bot_stopped()
+        stopped_msg = _health_alert_text("BOT STOPPED")
+        set_lifecycle_message(stopped_msg)
+        alert(stopped_msg)
+        logger.info("Bot stopped (lifespan shutdown)")
 
 
 app = FastAPI(
@@ -59,9 +94,28 @@ app = FastAPI(
 
 
 @app.get("/health")
-async def health() -> dict[str, str]:
-    """Liveness probe for Docker/Kubernetes (does not verify OANDA or DB)."""
-    return {"status": "ok"}
+async def health() -> dict[str, Any]:
+    """Liveness probe; includes bot run state for dashboards (OANDA/DB not verified)."""
+    return {
+        "status": "ok",
+        "bot": bot_state.get("bot_status", "unknown"),
+        "started_at": bot_state.get("bot_started_at"),
+        "paper_trading": Config.PAPER_TRADING,
+        "trading_mode": Config.TRADING_MODE,
+    }
+
+
+@app.get("/status")
+async def status() -> dict[str, Any]:
+    """Full system status for dashboard / monitoring."""
+    snap = _health_snapshot()
+    return {
+        "bot": bot_state.get("bot_status", "unknown"),
+        "started_at": bot_state.get("bot_started_at"),
+        "stopped_at": bot_state.get("bot_stopped_at"),
+        "last_lifecycle_message": bot_state.get("last_lifecycle_message", ""),
+        "health": snap,
+    }
 
 
 @app.get("/metrics")
