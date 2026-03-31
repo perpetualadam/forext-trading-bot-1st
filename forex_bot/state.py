@@ -15,6 +15,9 @@ state: dict[str, Any] = {
     "bot_started_at": None,
     "bot_stopped_at": None,
     "last_lifecycle_message": "",
+    "last_bot_cycle_utc": None,
+    # FastAPI lifespan: offline | starting | running | stopping (for operational_state)
+    "lifespan_phase": "offline",
 }
 
 
@@ -32,6 +35,11 @@ def mark_bot_stopped() -> None:
 
 def set_lifecycle_message(text: str) -> None:
     state["last_lifecycle_message"] = text
+
+
+def set_lifespan_phase(phase: str) -> None:
+    """Lifecycle phase for :mod:`forex_bot.operational_state` (single-process)."""
+    state["lifespan_phase"] = phase
 
 
 def current_equity() -> float:

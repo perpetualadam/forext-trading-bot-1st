@@ -6,12 +6,13 @@ import asyncio
 import logging
 import math
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 
 from forex_bot.ai_ensemble import ai
 from forex_bot.alerts import alert
 from forex_bot.analytics import analytics
 from forex_bot.config import Config
+from forex_bot.execution import effective_paper_trading, pre_trade_entry_blocked_reason
 from forex_bot.indicators import compute_indicators
 from forex_bot.nn_pred import compute_nn_pred
 from forex_bot.oanda_client import fetch_ohlcv
@@ -25,7 +26,8 @@ from forex_bot.session_rules import (
     simulation_layers_enabled,
     volatility_ok,
 )
-from forex_bot.state import current_equity, last_report_day, set_last_report_day
+from forex_bot.operational_events import record_operational_transition_if_changed
+from forex_bot.state import current_equity, last_report_day, set_last_report_day, state as state_dict
 from forex_bot.strategy_meta import select_strategy, seq_model, strategies
 from forex_bot.trading import (
     apply_execution_costs,
@@ -77,7 +79,7 @@ async def evaluate(symbol: str) -> None:
         if close_hit:
             # LIVE WINDOW CHECK START
             live_allowed = is_live_trading(symbol)
-            use_sim_layers = simulation_layers_enabled(symbol, Config.PAPER_TRADING)
+            use_sim_layers = simulation_layers_enabled(symbol, effective_paper_trading())
             # QUOTA overrides: per-symbol daily caps (when implemented) should only apply when
             # use_sim_layers is True; broker-live path skips quotas.
             _ = live_allowed
@@ -150,6 +152,11 @@ async def evaluate(symbol: str) -> None:
                 exit_price_exec,
                 pos.rl_state,
             )
+        return
+
+    blocked = pre_trade_entry_blocked_reason()
+    if blocked:
+        logger.warning("%s: new entry blocked — %s", symbol, blocked)
         return
 
     route_lookback = _env_int("HYBRID_ROUTE_LOOKBACK", 60)
@@ -255,17 +262,18 @@ async def evaluate(symbol: str) -> None:
     # live_allowed = is_live_trading(symbol, use_scalp_window=True)
     # LIVE WINDOW CHECK START
     live_allowed = is_live_trading(symbol)
-    use_live_fill = (not Config.PAPER_TRADING) and live_allowed
+    paper = effective_paper_trading()
+    use_live_fill = (not paper) and live_allowed
     if use_live_fill:
         exec_kind = "live"
     else:
-        exec_kind = "simulated" if Config.PAPER_TRADING else "window_paper"
+        exec_kind = "simulated" if paper else "window_paper"
 
-    use_sim_layers = simulation_layers_enabled(symbol, Config.PAPER_TRADING)
+    use_sim_layers = simulation_layers_enabled(symbol, paper)
     # QUOTA: future per-symbol daily caps should run only when use_sim_layers is True
     # LIVE WINDOW CHECK END
 
-    if not use_live_fill and not Config.PAPER_TRADING:
+    if not use_live_fill and not paper:
         alert(
             f"{symbol}: Outside live trading window (UTC) — position will use paper-style "
             f"fills until closed (hybrid/AI/RL unchanged)"
@@ -369,6 +377,8 @@ async def run_bot() -> None:
     while True:
         try:
             await asyncio.gather(*(evaluate(s) for s in Config.SYMBOLS))
+            state_dict["last_bot_cycle_utc"] = datetime.now(timezone.utc).isoformat()
+            record_operational_transition_if_changed()
             portfolio.update(
                 {
                     "equity": current_equity(),

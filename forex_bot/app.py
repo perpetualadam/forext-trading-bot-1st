@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import os
 from contextlib import asynccontextmanager
 from enum import Enum
 from typing import Any
@@ -17,18 +18,51 @@ from forex_bot.analytics import analytics
 from forex_bot.bot_loop import run_bot
 from forex_bot.config import Config
 from forex_bot.experiment import experiment_snapshot_with_voters
+from forex_bot.execution import (
+    execution_mode_explicit,
+    get_execution_mode,
+    halt_trading,
+    is_trading_halted_runtime,
+    kill_switch_env_active,
+    pre_trade_entry_allowed,
+    pre_trade_entry_blocked_reason,
+    resume_trading,
+    trading_allowed,
+)
 from forex_bot.trading import configured_max_portfolio_risk_pct, portfolio_risk_fraction
 from forex_bot.database import fetch_all_trades_ordered, fetch_strategy_analysis, get_connection
 from forex_bot.oanda_client import build_api
+from forex_bot.operational_events import (
+    load_operational_events_cache_from_db,
+    operational_events_payload,
+    record_operational_transition_if_changed,
+)
+from forex_bot.operational_state import operational_state_payload
 from forex_bot.state import (
     current_equity,
     mark_bot_started,
     mark_bot_stopped,
     set_lifecycle_message,
+    set_lifespan_phase,
     state as bot_state,
 )
 
 logger = logging.getLogger(__name__)
+
+
+async def reconciliation_loop() -> None:
+    """Periodic broker vs in-memory position comparison (log-only)."""
+    from forex_bot.reconciliation import run_reconciliation_once
+
+    while True:
+        try:
+            await asyncio.to_thread(run_reconciliation_once)
+        except asyncio.CancelledError:
+            raise
+        except Exception as exc:
+            logger.exception("reconciliation loop: %s", exc)
+        interval = int((os.getenv("RECONCILE_INTERVAL_SEC") or "60").strip() or "60")
+        await asyncio.sleep(max(10, interval))
 
 
 def _profit_factor_json(pf: float | None) -> float | str | None:
@@ -70,6 +104,37 @@ def _health_snapshot() -> dict[str, Any]:
     return {**_trading_metrics_payload(), "symbols": list(Config.SYMBOLS)}
 
 
+def _system_snapshot() -> dict[str, Any]:
+    """Single operational visibility payload (execution, broker, reconcile, loop)."""
+    from forex_bot import positions as posmod
+    from forex_bot.reconciliation import (
+        get_reconciliation_snapshot,
+        new_entries_allowed_by_reconcile,
+        reconcile_gate_enforced,
+    )
+
+    return {
+        "execution_mode": get_execution_mode().value,
+        "execution_mode_explicit": execution_mode_explicit(),
+        "trading_mode_oanda": Config.TRADING_MODE,
+        "paper_trading_legacy": Config.PAPER_TRADING,
+        "lifespan_phase": bot_state.get("lifespan_phase"),
+        "trading_allowed": trading_allowed(),
+        "new_entries_allowed_by_reconcile": new_entries_allowed_by_reconcile(),
+        "effective_reconcile_gate": reconcile_gate_enforced(),
+        "pre_trade_entry_allowed": pre_trade_entry_allowed(),
+        "pre_trade_entry_blocked_reason": pre_trade_entry_blocked_reason(),
+        "kill_switch_env": kill_switch_env_active(),
+        "halted_runtime": is_trading_halted_runtime(),
+        "reconciliation": get_reconciliation_snapshot(),
+        "open_positions_count": len(posmod.positions),
+        "last_bot_cycle_utc": bot_state.get("last_bot_cycle_utc"),
+        "symbols": list(Config.SYMBOLS),
+        **operational_state_payload(),
+        **operational_events_payload(),
+    }
+
+
 def _health_alert_text(prefix: str) -> str:
     h = _health_snapshot()
     return (
@@ -94,23 +159,53 @@ def _serialize_trades(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     _ = app
+    set_lifespan_phase("starting")
     get_connection()
+    from forex_bot.reconciliation import load_reconcile_state_from_db, run_reconciliation_once
+
+    load_reconcile_state_from_db()
     build_api()
+
+    try:
+        await asyncio.to_thread(run_reconciliation_once)
+    except Exception as exc:
+        logger.warning("startup reconciliation: %s", exc)
+
+    from forex_bot.execution import ExecutionMode, get_execution_mode, pre_trade_entry_blocked_reason
+
+    if get_execution_mode() != ExecutionMode.PAPER:
+        br = pre_trade_entry_blocked_reason()
+        if br:
+            logger.warning(
+                "startup: new entries blocked by policy until conditions clear (%s) — see GET /system",
+                br,
+            )
+
     mark_bot_started()
+    set_lifespan_phase("running")
+    load_operational_events_cache_from_db()
     started_msg = _health_alert_text("BOT STARTED")
     set_lifecycle_message(started_msg)
     alert(started_msg)
     logger.info("Bot started; trading_mode=%s", Config.TRADING_MODE)
+    reco_task = asyncio.create_task(reconciliation_loop())
     task = asyncio.create_task(run_bot())
     try:
         yield
     finally:
+        set_lifespan_phase("stopping")
+        reco_task.cancel()
+        try:
+            await reco_task
+        except asyncio.CancelledError:
+            pass
         task.cancel()
         try:
             await task
         except asyncio.CancelledError:
             pass
         mark_bot_stopped()
+        set_lifespan_phase("offline")
         stopped_msg = _health_alert_text("BOT STOPPED")
         set_lifecycle_message(stopped_msg)
         alert(stopped_msg)
@@ -138,6 +233,8 @@ async def health() -> dict[str, Any]:
         "started_at": bot_state.get("bot_started_at"),
         "paper_trading": Config.PAPER_TRADING,
         "trading_mode": Config.TRADING_MODE,
+        "execution_mode": get_execution_mode().value,
+        "trading_allowed": trading_allowed(),
         "experiment": experiment_snapshot_with_voters(ai_ensemble),
     }
 
@@ -158,7 +255,18 @@ async def status() -> dict[str, Any]:
         "last_lifecycle_message": bot_state.get("last_lifecycle_message", ""),
         "health": snap,
         "experiment": experiment_snapshot_with_voters(ai_ensemble),
+        "system": _system_snapshot(),
     }
+
+
+@app.get(
+    "/system",
+    tags=["Status"],
+    operation_id="get_system_snapshot",
+    summary="Operational snapshot (execution, OANDA mode, reconcile, positions, last cycle)",
+)
+async def system_endpoint() -> dict[str, Any]:
+    return _system_snapshot()
 
 
 @app.get(
@@ -251,6 +359,37 @@ async def set_mode_post(
     mode: OandaEnvMode = Query(..., description="OANDA API environment"),
 ) -> dict[str, str]:
     return _apply_trading_mode(mode.value)
+
+
+@app.post(
+    "/halt",
+    tags=["Configuration"],
+    operation_id="post_halt_trading",
+    summary="Halt new entries (in-process; does not set KILL_SWITCH env)",
+)
+async def halt_endpoint() -> dict[str, str]:
+    halt_trading()
+    alert("TRADING HALTED via POST /halt (new opens blocked; closes still run)")
+    return {"status": "halted"}
+
+
+@app.post(
+    "/resume",
+    tags=["Configuration"],
+    operation_id="post_resume_trading",
+    summary="Clear in-process halt from POST /halt",
+)
+async def resume_endpoint() -> dict[str, str]:
+    if (os.getenv("RECONCILE_ON_RESUME") or "").strip().lower() in ("1", "true", "yes", "on"):
+        from forex_bot.reconciliation import run_reconciliation_once
+
+        try:
+            await asyncio.to_thread(run_reconciliation_once)
+        except Exception as exc:
+            logger.warning("reconcile on resume failed: %s", exc)
+    resume_trading()
+    alert("TRADING RESUMED via POST /resume")
+    return {"status": "resumed"}
 
 
 def custom_openapi() -> dict[str, Any]:

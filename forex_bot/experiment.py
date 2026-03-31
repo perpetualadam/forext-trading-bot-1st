@@ -34,11 +34,24 @@ def nn_pred_mode_display() -> str:
 
 
 def experiment_snapshot() -> dict[str, Any]:
+    from forex_bot.execution import (
+        execution_mode_explicit,
+        get_execution_mode,
+        is_trading_halted_runtime,
+        kill_switch_env_active,
+        trading_allowed,
+    )
+
     return {
         "ensemble_mode": normalize_ensemble_mode(),
         "nn_pred_mode": nn_pred_mode_display(),
         "forex_backtest": (os.getenv("FOREX_BACKTEST") or "").strip(),
         "ai_disable_stub": (os.getenv("AI_DISABLE_STUB") or "").strip(),
+        "execution_mode": get_execution_mode().value,
+        "execution_mode_explicit": execution_mode_explicit(),
+        "trading_allowed": trading_allowed(),
+        "kill_switch_env": kill_switch_env_active(),
+        "halted_runtime": is_trading_halted_runtime(),
     }
 
 

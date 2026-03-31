@@ -17,7 +17,16 @@ logger = logging.getLogger(__name__)
 
 
 def use_oanda_live() -> bool:
-    """True when ``USE_OANDA_LIVE`` is set (real order placement; still uses practice/live API host from ``TRADING_MODE``)."""
+    """
+    True when broker orders are allowed.
+
+    - If ``EXECUTION_MODE`` is set to ``paper_broker`` or ``live_broker``, orders are enabled.
+    - If unset, legacy ``USE_OANDA_LIVE`` gates order placement (``paper`` mode never sends orders).
+    """
+    from forex_bot.execution import ExecutionMode, get_execution_mode
+
+    if (os.getenv("EXECUTION_MODE") or "").strip():
+        return get_execution_mode() != ExecutionMode.PAPER
     raw = (os.getenv("USE_OANDA_LIVE") or "").strip().lower()
     return raw in ("1", "true", "yes", "on")
 

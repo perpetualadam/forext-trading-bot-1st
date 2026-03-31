@@ -6,10 +6,10 @@ import asyncio
 import logging
 import math
 import os
-import random
 from typing import Any
 
 from forex_bot.alerts import alert
+from forex_bot.execution import ExecutionMode, get_execution_mode, strict_execution
 import forex_bot.oanda_exec as oanda_exec
 from forex_bot.analytics import analytics
 from forex_bot.config import Config
@@ -192,7 +192,9 @@ def apply_execution_costs(
     vol = float(volatility)
     if math.isnan(vol) or vol <= 0:
         vol = 0.0001
-    slippage = vol * random.uniform(0.1, 0.5)
+    # Deterministic ATR-scaled slippage (no randomness; tune via SLIPPAGE_ATR_FRACTION default 0.3).
+    atr_frac = _env_float("SLIPPAGE_ATR_FRACTION", 0.3)
+    slippage = vol * atr_frac
     slippage *= _env_float("SLIPPAGE_MULTIPLIER", 1.0)
 
     d = (direction or "").upper().strip()
@@ -250,14 +252,19 @@ def calculate_pnl(position: Position, current_price: float) -> float:
 
 
 def simulate_execution(direction: str, price: float, size: float) -> float:
-    """Paper path: spread + slippage + random exit noise; returns signed PnL (not per-pip perfect)."""
+    """Deterministic paper PnL from spread + slippage only (no random exit noise)."""
+    return simulate_execution_deterministic(direction, price, size)
+
+
+def simulate_execution_deterministic(direction: str, price: float, size: float) -> float:
+    """Spread + slippage model; exit at synthetic mid (no randomness)."""
     spread = 0.0001
     slippage = 0.00005
     if direction == "BUY":
         entry = price + spread + slippage
     else:
         entry = price - spread - slippage
-    exit_price = entry + random.uniform(-0.0003, 0.0003)
+    exit_price = entry
     if direction == "BUY":
         return float((exit_price - entry) * size)
     return float((entry - exit_price) * size)
@@ -284,16 +291,28 @@ async def execute_trade(
     ``execution_kind``: ``"live"`` (inside ``LIVE_*`` with ``PAPER_TRADING`` false), ``"simulated"``
     (paper mode), or ``"window_paper"`` (live account, outside window). Drives Postgres and alert tags.
 
-    If ``realized_pnl`` is None, uses legacy random PnL (non-position path).
+    If ``realized_pnl`` is None: **paper** mode uses deterministic simulation; **broker** modes
+    require ``realized_pnl`` (raises when missing if ``STRICT_EXECUTION``).
 
-    When ``execution_kind`` is ``live`` and ``USE_OANDA_LIVE`` is true, attempts a real OANDA market
+    When ``execution_kind`` is ``live`` and broker orders are enabled, attempts a real OANDA market
     close and uses broker ``pl`` / fill price; on failure, falls back to modelled ``realized_pnl``.
     """
     _ = sl, tp
     oanda_broker = False
     exit_px_model = float("nan")
     if realized_pnl is None:
-        pnl = random.uniform(-size * 0.0005, size * 0.001)
+        mode = get_execution_mode()
+        if mode == ExecutionMode.PAPER:
+            pnl = simulate_execution_deterministic(direction, price, size)
+        else:
+            msg = (
+                "realized_pnl is required when EXECUTION_MODE is paper_broker or live_broker "
+                "(legacy: set PAPER_TRADING=true for paper-only simulation)"
+            )
+            if strict_execution():
+                raise ValueError(msg)
+            logger.error("%s; using deterministic sim as non-strict fallback", msg)
+            pnl = simulate_execution_deterministic(direction, price, size)
     else:
         pnl = float(realized_pnl)
         exit_px_model = float(exit_price) if exit_price is not None else float("nan")
