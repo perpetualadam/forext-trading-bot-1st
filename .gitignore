@@ -6,3 +6,7 @@ __pycache__/
 *.egg-info/
 .pytest_cache/
 .cursor/
+
+# Local secrets / scratch (do not commit)
+oanda sep deets.txt
+main .env example for trading bot.txt

@@ -28,12 +28,14 @@ CREATE TABLE IF NOT EXISTS trades (
     size DOUBLE PRECISION,
     entry_price DOUBLE PRECISION,
     exit_price DOUBLE PRECISION,
-    trading_mode TEXT DEFAULT 'practice'
+    trading_mode TEXT DEFAULT 'practice',
+    execution_kind TEXT DEFAULT 'simulated'
 );
 """
 
 # Existing deployments created before trading_mode existed
 ALTER_TRADING_MODE_SQL = "ALTER TABLE trades ADD COLUMN IF NOT EXISTS trading_mode TEXT;"
+ALTER_EXECUTION_KIND_SQL = "ALTER TABLE trades ADD COLUMN IF NOT EXISTS execution_kind TEXT;"
 
 
 def get_connection() -> PGConnection | None:
@@ -51,6 +53,7 @@ def get_connection() -> PGConnection | None:
         _pg_cursor = _pg_conn.cursor()
         _pg_cursor.execute(CREATE_TRADES_SQL)
         _pg_cursor.execute(ALTER_TRADING_MODE_SQL)
+        _pg_cursor.execute(ALTER_EXECUTION_KIND_SQL)
         _pg_conn.commit()
         return _pg_conn
     except Exception as exc:
@@ -68,20 +71,34 @@ def log_trade_pg(
     size: float,
     entry: float,
     exit_price: float,
+    *,
+    execution_kind: str = "simulated",
 ) -> None:
     conn = get_connection()
     if conn is None or _pg_cursor is None:
         return
     try:
         mode = (Config.TRADING_MODE or "practice").strip().lower()
+        kind = (execution_kind or "simulated").strip().lower()
         _pg_cursor.execute(
             """
             INSERT INTO trades (
-                time, symbol, strategy, direction, pnl, size, entry_price, exit_price, trading_mode
+                time, symbol, strategy, direction, pnl, size, entry_price, exit_price, trading_mode, execution_kind
             )
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """,
-            (datetime.now(), symbol, strategy, direction, pnl, size, entry, exit_price, mode),
+            (
+                datetime.now(),
+                symbol,
+                strategy,
+                direction,
+                pnl,
+                size,
+                entry,
+                exit_price,
+                mode,
+                kind,
+            ),
         )
         conn.commit()
     except Exception as exc:
@@ -95,7 +112,7 @@ def fetch_all_trades_ordered() -> list[dict[str, Any]]:
         return []
     _pg_cursor.execute(
         """
-        SELECT id, time, symbol, strategy, direction, pnl, size, entry_price, exit_price, trading_mode
+        SELECT id, time, symbol, strategy, direction, pnl, size, entry_price, exit_price, trading_mode, execution_kind
         FROM trades ORDER BY time ASC
         """
     )
@@ -111,6 +128,7 @@ def fetch_all_trades_ordered() -> list[dict[str, Any]]:
         "entry_price",
         "exit_price",
         "trading_mode",
+        "execution_kind",
     ]
     return [dict(zip(cols, r)) for r in rows]
 

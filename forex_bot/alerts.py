@@ -11,18 +11,45 @@ from forex_bot.config import Config
 
 logger = logging.getLogger(__name__)
 
+_telegram_missing_logged = False
+
 
 def telegram_alert(msg: str) -> None:
-    if not Config.TELEGRAM_TOKEN or not Config.TELEGRAM_CHAT_ID:
+    global _telegram_missing_logged
+    token = (Config.TELEGRAM_TOKEN or "").strip()
+    chat_id = (Config.TELEGRAM_CHAT_ID or "").strip()
+    if not token or not chat_id:
+        if not _telegram_missing_logged:
+            logger.info(
+                "Telegram not configured: set TELEGRAM_TOKEN (or TELEGRAM_BOT_TOKEN) and "
+                "TELEGRAM_CHAT_ID in .env to receive alerts."
+            )
+            _telegram_missing_logged = True
         return
+    # Telegram hard limit 4096; keep margin for safety.
+    if len(msg) > 4000:
+        msg = msg[:3997] + "..."
     try:
-        requests.post(
-            f"https://api.telegram.org/bot{Config.TELEGRAM_TOKEN}/sendMessage",
-            data={"chat_id": Config.TELEGRAM_CHAT_ID, "text": msg},
-            timeout=10,
+        resp = requests.post(
+            f"https://api.telegram.org/bot{token}/sendMessage",
+            data={"chat_id": chat_id, "text": msg},
+            timeout=15,
         )
+        try:
+            body = resp.json()
+        except ValueError:
+            body = None
+        if resp.status_code != 200:
+            logger.warning(
+                "Telegram HTTP %s: %s",
+                resp.status_code,
+                (resp.text or "")[:400],
+            )
+            return
+        if isinstance(body, dict) and body.get("ok") is False:
+            logger.warning("Telegram API error: %s", body)
     except Exception as exc:
-        logger.debug("telegram_alert: %s", exc)
+        logger.warning("Telegram request failed: %s", exc)
 
 
 def discord_alert(msg: str) -> None:

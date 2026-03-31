@@ -5,9 +5,9 @@
 | Feature | Included? | Notes |
 |--------|-----------|--------|
 | Live / practice OANDA toggle | Yes | `TRADING_MODE` + `POST /set_mode`. Affects **which OANDA API host** is used for **candles**. |
-| AI ensemble (local / external) | Yes | Same **stub** behavior as the original (random votes). `ExternalLLMAPI` exists but is not registered by default. |
+| AI ensemble (local / external) | Yes | Default **LocalLLM** is a deterministic **quant stub** (MA trend + momentum + ATR); real providers use API keys. `ExternalLLMAPI` exists but is not registered by default. |
 | Indicators (MA, RSI, MACD, BB, ATR) | Yes | ATR uses true range + rolling mean (more standard than the original shortcut). |
-| BUY / SELL | Yes | Direction comes from the ensemble stub, not from indicator rules. |
+| BUY / SELL | Yes | Ensemble returns a direction (quant stub uses `ma_fast` vs `ma_slow`); RL can override with SKIP. |
 | Session windows, pre-close sizing, volatility filter | Yes | Session times are interpreted in **UTC** (see limitations below). |
 | Telegram + Discord alerts | Yes | Only sends if env vars are set. |
 | PostgreSQL trade log | Yes | Lazy connect; bot still runs if DB is down (logs only). |
@@ -86,7 +86,7 @@ Then `docker compose up -d` again.
 
 The repo includes an **`ollama` service** that is **off by default** (Compose **profile** `ollama`).
 
-1. In **`.env`**, aim the bot at the in-network Ollama API and disable the random stub if you want:
+1. In **`.env`**, aim the bot at the in-network Ollama API and disable the local quant stub if you want:
 
    ```env
    OPENAI_BASE_URL=http://ollama:11434/v1

@@ -3,6 +3,14 @@
 from __future__ import annotations
 
 import os
+
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+except ImportError:
+    pass
+
 from dataclasses import dataclass, field
 
 
@@ -24,12 +32,12 @@ class Config:
 
     POSTGRES = PostgresConfig()
 
-    TELEGRAM_TOKEN: str = os.getenv("TELEGRAM_TOKEN", "")
+    TELEGRAM_TOKEN: str = os.getenv("TELEGRAM_TOKEN") or os.getenv("TELEGRAM_BOT_TOKEN") or ""
     TELEGRAM_CHAT_ID: str = os.getenv("TELEGRAM_CHAT_ID", "")
     DISCORD_WEBHOOK_URL: str = os.getenv("DISCORD_WEBHOOK_URL", "")
 
     OANDA_ACCOUNT_ID: str = os.getenv("OANDA_ACCOUNT_ID", "")
-    OANDA_ACCESS_TOKEN: str = os.getenv("OANDA_ACCESS_TOKEN", "")
+    OANDA_ACCESS_TOKEN: str = os.getenv("OANDA_ACCESS_TOKEN") or os.getenv("OANDA_API_KEY") or ""
 
     # Paper / simulation path (spread+slippage sim). false → legacy random PnL until real OANDA fills exist.
     PAPER_TRADING: bool = (os.getenv("PAPER_TRADING") or "true").strip().lower() in ("1", "true", "yes", "on")

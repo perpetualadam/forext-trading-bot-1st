@@ -1,13 +1,11 @@
-"""Pluggable local / external LLM-style voters (stubs match original behavior)."""
+"""Pluggable local / external LLM-style voters (deterministic quant stub by default)."""
 
 from __future__ import annotations
 
 import logging
+import math
 import os
-import random
 from typing import Any, Protocol
-
-import numpy as np
 
 logger = logging.getLogger(__name__)
 
@@ -32,37 +30,81 @@ def _env_float(name: str, default: float) -> float:
     return float(raw) if raw else default
 
 
-def _random_stub_vote() -> dict[str, Any]:
-    """Tunable random voter (original: ~70% allow, confidence 0.5–1.0)."""
-    threshold = max(0.0, min(1.0, _env_float("STUB_ALLOW_THRESHOLD", 0.3)))
-    lo = _env_float("STUB_CONFIDENCE_MIN", 0.5)
-    hi = _env_float("STUB_CONFIDENCE_MAX", 1.0)
-    if hi < lo:
-        lo, hi = hi, lo
-    lo = max(0.0, min(1.0, lo))
-    hi = max(0.0, min(1.0, hi))
-    allow = random.random() > threshold
-    confidence = random.uniform(lo, hi) if lo <= hi else lo
-    return {"allow": allow, "confidence": confidence}
+def _quant_stub_vote(payload: dict[str, Any]) -> dict[str, Any]:
+    """
+    Deterministic filter from trend (MA cross) + momentum + ATR presence.
+    Expects ``ma_fast`` / ``ma_slow`` (or ``sma_*``) and ``returns`` / ``atr`` when possible.
+    """
+    price = float(payload.get("price") or 0.0)
+    sma_fast = payload.get("sma_fast")
+    if sma_fast is None:
+        sma_fast = payload.get("ma_fast")
+    sma_slow = payload.get("sma_slow")
+    if sma_slow is None:
+        sma_slow = payload.get("ma_slow")
+    try:
+        sma_fast = float(sma_fast if sma_fast is not None else price)
+        sma_slow = float(sma_slow if sma_slow is not None else price)
+    except (TypeError, ValueError):
+        return {"allow": False, "confidence": 0.0, "direction": None}
+
+    returns = float(payload.get("returns") or 0.0)
+    try:
+        atr = float(payload.get("atr") or 0.0)
+    except (TypeError, ValueError):
+        atr = 0.0
+
+    if math.isnan(sma_fast) or math.isnan(sma_slow):
+        return {"allow": False, "confidence": 0.0, "direction": None}
+
+    eps = max(0.0, _env_float("STUB_SMA_EPSILON", 1e-6))
+    mom_thr = max(0.0, _env_float("STUB_MOMENTUM_THRESHOLD", 0.0001))
+    conf_scale = max(1e-12, _env_float("STUB_CONFIDENCE_SCALE", 1000.0))
+
+    if sma_fast > sma_slow + eps:
+        direction = "BUY"
+    elif sma_fast < sma_slow - eps:
+        direction = "SELL"
+    else:
+        return {"allow": False, "confidence": 0.0, "direction": None}
+
+    momentum_strength = abs(returns)
+    vol_ok = atr > 0 and not math.isnan(atr)
+    allow = momentum_strength > mom_thr and vol_ok
+
+    confidence = min(1.0, max(0.0, momentum_strength * conf_scale))
+
+    return {"allow": allow, "confidence": confidence, "direction": direction}
 
 
 def _aggregate_direction(votes: list[dict[str, Any]]) -> str:
     buy_w = 0.0
     sell_w = 0.0
     for v in votes:
-        d = str(v.get("direction", "")).upper()
+        d = str(v.get("direction") or "").upper()
         w = float(v.get("confidence", 0.5))
         if d == "BUY":
             buy_w += w
         elif d == "SELL":
             sell_w += w
-    if buy_w > 0 or sell_w > 0:
-        return "BUY" if buy_w >= sell_w else "SELL"
-    return (
-        "BUY"
-        if np.mean([random.choice([1, -1]) * float(v["confidence"]) for v in votes]) > 0
-        else "SELL"
-    )
+    if buy_w > sell_w:
+        return "BUY"
+    if sell_w > buy_w:
+        return "SELL"
+    # Tie-break: highest-confidence vote with a side (no randomness).
+    best_d = "BUY"
+    best_c = -1.0
+    for v in votes:
+        d = str(v.get("direction") or "").upper()
+        if d not in ("BUY", "SELL"):
+            continue
+        c = float(v.get("confidence", 0.0))
+        if c > best_c:
+            best_c = c
+            best_d = d
+    if best_c >= 0:
+        return best_d
+    return "BUY"
 
 
 class LLMVoter(Protocol):
@@ -71,14 +113,12 @@ class LLMVoter(Protocol):
 
 class LocalLLM:
     async def predict(self, payload: dict[str, Any]) -> dict[str, Any]:
-        _ = payload
-        return _random_stub_vote()
+        return _quant_stub_vote(payload)
 
 
 class ExternalLLMAPI:
     async def predict(self, payload: dict[str, Any]) -> dict[str, Any]:
-        _ = payload
-        return _random_stub_vote()
+        return _quant_stub_vote(payload)
 
 
 class AIEnsemble:
@@ -104,6 +144,9 @@ class AIEnsemble:
             except Exception as exc:
                 logger.debug("external llm vote failed: %s", exc)
         if not votes:
+            logger.warning(
+                "AI ensemble: no voter outputs; defaulting allow=True (configure LLM keys or disable AI_DISABLE_STUB)."
+            )
             return {"allow": True, "confidence": 1.0, "direction": "BUY"}
         total_conf = sum(float(v["confidence"]) for v in votes)
         allow_score = sum(float(v["confidence"]) if v.get("allow") else 0.0 for v in votes) / (total_conf + 1e-6)
@@ -124,11 +167,9 @@ def _openai_compat_enabled() -> bool:
     return bool(base) and "api.openai.com" not in base
 
 
-def _build_default_ensemble() -> AIEnsemble:
+def _fill_external_voters(external: list[LLMVoter]) -> None:
+    """Append all configured API voters (OpenAI-compatible, Anthropic, etc.)."""
     from forex_bot.openai_voter import OpenAIVoter
-
-    local: list[LLMVoter] = [] if _stub_disabled() else [LocalLLM()]
-    external: list[LLMVoter] = []
 
     if (os.getenv("ANTHROPIC_API_KEY") or "").strip():
         from forex_bot.anthropic_voter import AnthropicVoter
@@ -200,9 +241,41 @@ def _build_default_ensemble() -> AIEnsemble:
     elif qrok_key and not qrok_base:
         logger.warning("QROK_API_KEY is set but QROK_BASE_URL is missing; skipping Qrok voter.")
 
-    if not local and not external:
-        logger.warning("No LLM voters configured; using stub LocalLLM only.")
+
+def _build_default_ensemble() -> AIEnsemble:
+    from forex_bot.experiment import normalize_ensemble_mode
+
+    mode = normalize_ensemble_mode()
+    local: list[LLMVoter] = []
+    external: list[LLMVoter] = []
+
+    if mode == "quant":
         local = [LocalLLM()]
+        if _stub_disabled():
+            logger.info("ENSEMBLE_MODE=quant: LocalLLM enabled (AI_DISABLE_STUB ignored for quant baseline).")
+    elif mode == "api":
+        _fill_external_voters(external)
+        if not external:
+            logger.warning("ENSEMBLE_MODE=api but no API keys configured; falling back to quant LocalLLM.")
+            local = [LocalLLM()]
+    else:
+        if not _stub_disabled():
+            local = [LocalLLM()]
+        _fill_external_voters(external)
+        if not local and not external:
+            in_bt = os.getenv("FOREX_BACKTEST", "").strip().lower() in ("1", "true", "yes", "on")
+            logger.warning(
+                "Hybrid ensemble: no API keys and stub disabled — using quant LocalLLM only.%s",
+                " (FOREX_BACKTEST=1)" if in_bt else "",
+            )
+            local = [LocalLLM()]
+
+    logger.info(
+        "AI ensemble: mode=%s local_voters=%s external_voters=%s",
+        mode,
+        len(local),
+        len(external),
+    )
     return AIEnsemble(local_llms=local, external_llms=external)
 
 
