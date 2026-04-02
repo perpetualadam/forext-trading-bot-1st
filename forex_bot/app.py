@@ -107,6 +107,9 @@ def _health_snapshot() -> dict[str, Any]:
 def _system_snapshot() -> dict[str, Any]:
     """Single operational visibility payload (execution, broker, reconcile, loop)."""
     from forex_bot import positions as posmod
+    from forex_bot.execution_metrics import snapshot as execution_metrics_snapshot
+    from forex_bot.orders import orders_summary
+    from forex_bot.portfolio_exposure import exposure_snapshot
     from forex_bot.reconciliation import (
         get_reconciliation_snapshot,
         new_entries_allowed_by_reconcile,
@@ -127,6 +130,9 @@ def _system_snapshot() -> dict[str, Any]:
         "kill_switch_env": kill_switch_env_active(),
         "halted_runtime": is_trading_halted_runtime(),
         "reconciliation": get_reconciliation_snapshot(),
+        "order_state_summary": orders_summary(),
+        "execution_metrics": execution_metrics_snapshot(),
+        "portfolio_exposure": exposure_snapshot(),
         "open_positions_count": len(posmod.positions),
         "last_bot_cycle_utc": bot_state.get("last_bot_cycle_utc"),
         "symbols": list(Config.SYMBOLS),
@@ -161,8 +167,10 @@ async def lifespan(app: FastAPI):
     _ = app
     set_lifespan_phase("starting")
     get_connection()
+    from forex_bot.orders import load_open_orders_from_db_into_memory
     from forex_bot.reconciliation import load_reconcile_state_from_db, run_reconciliation_once
 
+    load_open_orders_from_db_into_memory()
     load_reconcile_state_from_db()
     build_api()
 

@@ -6,6 +6,7 @@ import asyncio
 import logging
 import math
 import os
+import time
 from datetime import datetime, timezone
 
 from forex_bot.ai_ensemble import ai
@@ -15,7 +16,18 @@ from forex_bot.config import Config
 from forex_bot.execution import effective_paper_trading, pre_trade_entry_blocked_reason
 from forex_bot.indicators import compute_indicators
 from forex_bot.nn_pred import compute_nn_pred
+import forex_bot.oanda_exec as oanda_exec
 from forex_bot.oanda_client import fetch_ohlcv
+from forex_bot.execution_metrics import record_fill_failure, record_fill_quality
+from forex_bot.orders import (
+    OrderStatus,
+    finalize_order_fill,
+    generate_client_order_id,
+    mark_order_failed_or_cancelled,
+    try_begin_order_submission,
+)
+from forex_bot.portfolio_exposure import would_exceed_cap_if_opening
+from forex_bot.reconciliation import run_reconciliation_once
 from forex_bot.portfolio import PortfolioEngine
 from forex_bot.positions import Position, close_position, get_position, open_position
 from forex_bot.rl_agent import RLAgent
@@ -279,12 +291,83 @@ async def evaluate(symbol: str) -> None:
             f"fills until closed (hybrid/AI/RL unchanged)"
         )
 
+    approx_add = abs(float(units)) * float(price)
+    if would_exceed_cap_if_opening(approx_add):
+        alert(f"{symbol}: Skip open — MAX_GROSS_USD_NOTIONAL cap (approx add≈{approx_add:.2f})")
+        logger.warning("%s: exposure cap blocks open (approx USD notional add)", symbol)
+        return
+
+    # Stop distance is sl_d from entry; portfolio risk = sl_d * units (same before/after fill for full fills).
+    new_risk_at_stop = float(sl_d) * float(units)
+    if portfolio_risk_cap_exceeded(current_equity(), new_risk_at_stop):
+        alert(
+            f"{symbol}: Skip open — portfolio stop risk would exceed MAX_PORTFOLIO_RISK_PCT "
+            f"(open≈{portfolio_risk_amount():.2f} + new≈{new_risk_at_stop:.2f} vs cap)."
+        )
+        return
+
     entry_price: float
     spread_amt: float
     slip_amt: float
     impact_amt: float
+    position_units: float = float(units)
 
-    if use_sim_layers:
+    if use_live_fill and oanda_exec.use_oanda_live():
+        client_order_id = generate_client_order_id()
+        t_reserve = time.perf_counter()
+        if not try_begin_order_submission(
+            client_order_id=client_order_id,
+            symbol=symbol,
+            direction=direction,
+            units=float(units),
+            metadata={"mid": float(price), "strategy": strategy_name},
+        ):
+            logger.warning("%s: idempotent skip — duplicate client_order_id or DB conflict", symbol)
+            return
+        t_sent = time.perf_counter()
+        try:
+            fill_price, filled_u, oid, _pl = await oanda_exec.execute_oanda_market_open(
+                symbol, units, direction, client_order_id
+            )
+        except Exception as exc:
+            record_fill_failure()
+            mark_order_failed_or_cancelled(client_order_id)
+            logger.warning("[ORDER FAILED] %s open: %s", symbol, exc)
+            return
+        t_fill = time.perf_counter()
+        entry_price = float(fill_price)
+        spread_amt = 0.0
+        slip_amt = 0.0
+        impact_amt = 0.0
+        st = OrderStatus.FILLED
+        if float(filled_u) + 1e-6 < float(units):
+            st = OrderStatus.PARTIAL
+            logger.info("[ORDER PARTIAL] %s filled=%.4f requested=%.4f", symbol, filled_u, units)
+        position_units = float(filled_u)
+        finalize_order_fill(
+            client_order_id,
+            broker_order_id=str(oid) if oid else "",
+            fill_price=entry_price,
+            units_filled=float(filled_u),
+            status=st,
+            metadata={
+                "expected_mid": float(price),
+                "slippage_signed": (entry_price - float(price))
+                if direction == "BUY"
+                else (float(price) - entry_price),
+            },
+        )
+        record_fill_quality(
+            expected_price=float(price),
+            fill_price=entry_price,
+            direction=direction,
+            latency_signal_to_send_ms=(t_sent - t_reserve) * 1000.0,
+            latency_send_to_fill_ms=(t_fill - t_sent) * 1000.0,
+        )
+        alert(
+            f"[EXECUTION] BROKER_FILL {symbol} open fill={entry_price:.5f} units≈{filled_u:.4f} id={oid} cid={client_order_id}"
+        )
+    elif use_sim_layers:
         # SIMULATION CONTROL START
         lat_ms = await apply_latency()
         mid_impact, impact_amt = apply_market_impact(units, price, direction)
@@ -313,19 +396,11 @@ async def evaluate(symbol: str) -> None:
         stop_loss = entry_price + sl_d
         take_profit = entry_price - tp_d
 
-    new_risk = abs(float(entry_price) - float(stop_loss)) * float(units)
-    if portfolio_risk_cap_exceeded(current_equity(), new_risk):
-        alert(
-            f"{symbol}: Skip open — portfolio stop risk would exceed "
-            f"MAX_PORTFOLIO_RISK_PCT (open≈{portfolio_risk_amount():.2f} + new≈{new_risk:.2f} vs cap)."
-        )
-        return
-
     open_position(
         Position(
             symbol=symbol,
             direction=direction,
-            units=float(units),
+            units=float(position_units),
             entry_price=entry_price,
             stop_loss=stop_loss,
             take_profit=take_profit,
@@ -336,14 +411,14 @@ async def evaluate(symbol: str) -> None:
         )
     )
     alert(
-        f"[OPEN] {symbol} {direction} units={units:.2f} entry={entry_price:.5f} mid={price:.5f} "
+        f"[OPEN] {symbol} {direction} units={position_units:.2f} entry={entry_price:.5f} mid={price:.5f} "
         f"SL={stop_loss:.5f} TP={take_profit:.5f} kind={exec_kind}"
     )
     logger.info(
         "[AI+RL] %s | OPEN Dir=%s | Units=%.4f | Conf=%.2f | RL_Action=%s | State=%s | %s lb=%s",
         symbol,
         direction,
-        units,
+        position_units,
         confidence,
         rl_action,
         state,
@@ -376,7 +451,9 @@ def daily_report() -> None:
 async def run_bot() -> None:
     while True:
         try:
-            await asyncio.gather(*(evaluate(s) for s in Config.SYMBOLS))
+            await asyncio.to_thread(run_reconciliation_once)
+            for s in Config.SYMBOLS:
+                await evaluate(s)
             state_dict["last_bot_cycle_utc"] = datetime.now(timezone.utc).isoformat()
             record_operational_transition_if_changed()
             portfolio.update(

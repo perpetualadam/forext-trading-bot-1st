@@ -1,7 +1,7 @@
 """
-Compare in-memory positions to OANDA open positions (log-only; state for operations API).
+Broker-truth reconciliation: compare and converge local positions/orders to OANDA.
 
-Future: optionally reconcile pending orders / partial fills against broker order state.
+Never places broker orders here — local registry mutations only.
 """
 
 from __future__ import annotations
@@ -17,8 +17,20 @@ from forex_bot.alerts import alert
 from forex_bot.config import Config
 from forex_bot.oanda_client import get_api
 from forex_bot import positions as posmod
+from forex_bot import orders as ordmod
 
 logger = logging.getLogger(__name__)
+
+_reconcile_runs_total = 0
+_reconcile_fixes_total = 0
+
+
+def _max_fixes_per_cycle() -> int:
+    try:
+        return max(0, int((os.getenv("RECONCILE_MAX_FIXES_PER_CYCLE") or "50").strip() or "50"))
+    except ValueError:
+        return 50
+
 
 # Last run metadata (single-process; for /system and gating)
 _snapshot: dict[str, Any] = {
@@ -31,6 +43,11 @@ _snapshot: dict[str, Any] = {
     "mismatches": [],
     "severities": [],
     "broker_positions_fetched": None,
+    "broker_pending_orders": None,
+    "reconcile_fixes_applied": 0,
+    "reconcile_runs_total": 0,
+    "reconcile_fixes_total": 0,
+    "reconcile_max_fixes_per_cycle": 50,
 }
 
 
@@ -42,12 +59,22 @@ def get_reconciliation_snapshot() -> dict[str, Any]:
     out["reconcile_stale"] = reconcile_is_stale()
     out["effective_reconcile_gate"] = reconcile_gate_enforced()
     out["reconcile_persistence_enabled"] = _persist_reconcile_state_enabled()
+    out["orders_local_summary"] = ordmod.orders_summary()
+    out["reconcile_action"] = _reconcile_action_raw()
+    out["reconcile_runs_total"] = _reconcile_runs_total
+    out["reconcile_fixes_total"] = _reconcile_fixes_total
+    out["reconcile_max_fixes_per_cycle"] = _max_fixes_per_cycle()
     return out
 
 
 def _truthy_env(name: str, default: str = "false") -> bool:
     raw = (os.getenv(name) or default).strip().lower()
     return raw in ("1", "true", "yes", "on")
+
+
+def _reconcile_action_raw() -> str:
+    raw = (os.getenv("RECONCILE_ACTION") or "log_only").strip().lower()
+    return raw if raw in ("log_only", "auto_fix") else "log_only"
 
 
 def _age_seconds_since_last_reconcile() -> float | None:
@@ -64,10 +91,6 @@ def _age_seconds_since_last_reconcile() -> float | None:
 
 
 def reconcile_gate_enforced() -> bool:
-    """
-    True when broker-mode reconcile policy is active (same conditions that can block entries).
-    Exposed for /system so operators need not mentally combine env flags.
-    """
     from forex_bot.execution import ExecutionMode, get_execution_mode
 
     m = get_execution_mode()
@@ -85,10 +108,6 @@ def reconcile_gate_enforced() -> bool:
 
 
 def reconcile_is_stale() -> bool:
-    """
-    True when last reconcile is missing or older than ``RECONCILE_MAX_AGE_SEC`` (default 300).
-    Set ``RECONCILE_MAX_AGE_SEC=0`` to disable staleness checks (not recommended for broker gating).
-    """
     raw = (os.getenv("RECONCILE_MAX_AGE_SEC") or "300").strip()
     try:
         max_age = int(raw or "300")
@@ -103,23 +122,8 @@ def reconcile_is_stale() -> bool:
 
 
 def new_entries_allowed_by_reconcile() -> bool:
-    """
-    Optional gate for **new** entries (broker modes only).
-
-    - If ``EXECUTION_MODE`` is ``paper``, always allowed.
-    - ``SKIP_RECONCILE_GATE_FOR_BROKER=true`` disables this gate (explicit opt-out).
-    - When ``REQUIRE_CLEAN_RECONCILE_FOR_BROKER`` is **unset**, it defaults **on** for
-      ``paper_broker`` / ``live_broker`` (set to ``false`` explicitly to turn off).
-    - ``BLOCK_NEW_ENTRIES_ON_RECONCILE_MISMATCH=true`` adds the same enforcement when
-      ``REQUIRE_CLEAN_RECONCILE_FOR_BROKER`` is explicitly ``false``.
-    - When enforcement applies: require ``last_success``, and reconcile must not be stale
-      (see ``RECONCILE_MAX_AGE_SEC``).
-
-    Pending / partial orders are not yet compared; see module TODO for future extension.
-    """
     if not reconcile_gate_enforced():
         return True
-
     if _snapshot.get("last_success") is not True:
         return False
     if reconcile_is_stale():
@@ -128,10 +132,6 @@ def new_entries_allowed_by_reconcile() -> bool:
 
 
 def reconcile_entry_blocked_reason() -> str | None:
-    """
-    When :func:`reconcile_gate_enforced` is active and entries are blocked, a specific reason
-    for dashboards and logs (None if entries are allowed by reconcile policy).
-    """
     if not reconcile_gate_enforced():
         return None
     if _snapshot.get("last_run_utc") is None:
@@ -155,7 +155,6 @@ def _persist_reconcile_state_enabled() -> bool:
 
 
 def load_reconcile_state_from_db() -> None:
-    """Merge last persisted reconcile row into memory (startup / after DB reconnect)."""
     global _snapshot
     if not _persist_reconcile_state_enabled():
         return
@@ -177,6 +176,8 @@ def load_reconcile_state_from_db() -> None:
             "mismatches": [],
             "severities": [],
             "broker_positions_fetched": None,
+            "broker_pending_orders": None,
+            "reconcile_fixes_applied": 0,
         }
     )
     logger.info(
@@ -201,10 +202,10 @@ def _save_reconcile_state_to_db() -> None:
     )
 
 
-def fetch_broker_open_positions() -> dict[str, float]:
+def fetch_broker_positions_detail() -> dict[str, tuple[float, float]]:
     """
-    Net long units per instrument from OANDA (positive = net long, negative = net short).
-    Empty dict if API unavailable.
+    Net signed units and average price per instrument from OANDA OpenPositions.
+    Positive net = long. Empty if API unavailable.
     """
     api = get_api()
     aid = (Config.OANDA_ACCOUNT_ID or "").strip()
@@ -219,7 +220,7 @@ def fetch_broker_open_positions() -> dict[str, float]:
         logger.warning("reconciliation: OpenPositions failed: %s", exc)
         raise
 
-    out: dict[str, float] = {}
+    out: dict[str, tuple[float, float]] = {}
     for p in resp.get("positions") or []:
         inst = str(p.get("instrument") or "").strip()
         if not inst:
@@ -234,14 +235,35 @@ def fetch_broker_open_positions() -> dict[str, float]:
             su = float(str(short_u.get("units") or "0").replace(",", "") or 0.0)
         except (TypeError, ValueError):
             su = 0.0
+        try:
+            lp = float(str(long_u.get("averagePrice") or "0").replace(",", "") or 0.0)
+        except (TypeError, ValueError):
+            lp = 0.0
+        try:
+            sp = float(str(short_u.get("averagePrice") or "0").replace(",", "") or 0.0)
+        except (TypeError, ValueError):
+            sp = 0.0
         net = lu + su
-        if abs(net) > 1e-9:
-            out[inst] = net
+        if abs(net) < 1e-9:
+            continue
+        if abs(lu) > 1e-9 and abs(su) < 1e-9:
+            ap = lp
+        elif abs(su) > 1e-9 and abs(lu) < 1e-9:
+            ap = sp
+        else:
+            denom = abs(lu) + abs(su)
+            ap = (abs(lu) * lp + abs(su) * sp) / denom if denom > 1e-12 else lp
+        out[inst] = (net, ap)
     return out
 
 
+def fetch_broker_open_positions() -> dict[str, float]:
+    """Net long units per instrument (compat)."""
+    d = fetch_broker_positions_detail()
+    return {k: v[0] for k, v in d.items()}
+
+
 def _classify(sym: str, msg: str) -> str:
-    """warning = local-only drift; critical = broker-only or unit mismatch."""
     if "no local position" in msg or "broker open net" in msg:
         return "critical"
     if "unit mismatch" in msg:
@@ -249,22 +271,180 @@ def _classify(sym: str, msg: str) -> str:
     return "warning"
 
 
+def _may_auto_fix_local() -> bool:
+    """Never auto-fix in full paper simulation; only broker execution modes."""
+    from forex_bot.execution import ExecutionMode, get_execution_mode
+
+    if _reconcile_action_raw() != "auto_fix":
+        return False
+    return get_execution_mode() in (ExecutionMode.PAPER_BROKER, ExecutionMode.LIVE_BROKER)
+
+
+def _apply_position_convergence(
+    broker_detail: dict[str, tuple[float, float]],
+) -> int:
+    """CASE A/B/C. Returns count of fix actions (capped per cycle)."""
+    from forex_bot.trading import sl_tp_distance_for_entry
+
+    fixes = 0
+    cap = _max_fixes_per_cycle()
+    import_ok = _truthy_env("RECONCILE_IMPORT_BROKER_POSITIONS", "false")
+    adjust_ok = _truthy_env("RECONCILE_ADJUST_UNITS", "false")
+
+    broker_nets = {k: v[0] for k, v in broker_detail.items()}
+
+    def _room() -> bool:
+        return cap <= 0 or fixes < cap
+
+    if _may_auto_fix_local():
+        for sym, pos in list(posmod.positions.items()):
+            if not _room():
+                logger.warning("[RECONCILE FIX] cap reached (%s); defer remaining fixes", cap)
+                break
+            b = broker_nets.get(sym)
+            local_u = float(pos.units) if pos.direction == "BUY" else -float(pos.units)
+            if b is None or abs(float(b)) < 1e-9:
+                posmod.close_local_position(sym, reason="reconcile_fix_broker_flat")
+                fixes += 1
+                logger.warning(
+                    "[RECONCILE FIX] Closed local position (broker net=0) | %s | fix=%s/%s",
+                    sym,
+                    fixes,
+                    cap or "inf",
+                )
+                continue
+            if (
+                adjust_ok
+                and _room()
+                and abs(b - local_u) > max(1.0, 0.01 * max(abs(local_u), 1.0))
+            ):
+                posmod.adjust_position_units_to_broker(sym, b)
+                fixes += 1
+                logger.info("[RECONCILE FIX] adjusted units | %s | fix=%s/%s", sym, fixes, cap or "inf")
+
+        if import_ok:
+            for sym, (bnet, bavg) in broker_detail.items():
+                if not _room():
+                    break
+                if sym in posmod.positions:
+                    continue
+                if abs(bnet) < 1e-9:
+                    continue
+                sl_d, tp_d = sl_tp_distance_for_entry(sym, None)
+                entry = float(bavg)
+                if bnet > 0:
+                    sl = entry - sl_d
+                    tp = entry + tp_d
+                else:
+                    sl = entry + sl_d
+                    tp = entry - tp_d
+                posmod.import_position_from_broker(
+                    sym,
+                    bnet,
+                    bavg,
+                    sl,
+                    tp,
+                )
+                fixes += 1
+                logger.info("[RECONCILE IMPORT] imported broker-only | %s | fix=%s/%s", sym, fixes, cap or "inf")
+
+    return fixes
+
+
+def _reconcile_pending_orders(broker_pending: list[dict[str, Any]]) -> None:
+    """CASE D/E: local pending vs broker pending (no broker order placement)."""
+    broker_ids = {str(o.get("id") or "") for o in broker_pending if o.get("id")}
+    broker_ids.discard("")
+
+    for _cid, lo in list(ordmod.orders_by_client_id.items()):
+        if lo.status != ordmod.OrderStatus.PENDING:
+            continue
+        bid = (lo.broker_order_id or "").strip()
+        if not bid:
+            continue
+        if bid not in broker_ids:
+            ordmod.update_order(lo.client_order_id, status=ordmod.OrderStatus.CANCELLED, detail="absent_on_broker")
+            logger.info(
+                "[ORDER CANCELLED] local pending client=%s broker=%s not on broker pending list",
+                lo.client_order_id,
+                bid,
+            )
+
+    seen: set[str] = set()
+    for bo in broker_pending:
+        raw = bo.get("order") if isinstance(bo.get("order"), dict) else bo
+        oid = str(raw.get("id") or bo.get("id") or "")
+        if not oid or oid in seen:
+            continue
+        seen.add(oid)
+        if ordmod.get_order_by_broker_id(oid):
+            continue
+        inst = str(raw.get("instrument") or bo.get("instrument") or "").strip()
+        try:
+            units_raw = raw.get("units") or raw.get("remainingUnits") or bo.get("units") or "0"
+            u = float(str(units_raw).replace(",", ""))
+        except (TypeError, ValueError):
+            u = 0.0
+        state = str(raw.get("state") or raw.get("status") or bo.get("state") or "").upper()
+        st = ordmod.OrderStatus.PENDING
+        if "CANCEL" in state:
+            st = ordmod.OrderStatus.CANCELLED
+        elif "PARTIAL" in state or "PARTIALLY" in state:
+            st = ordmod.OrderStatus.PARTIAL
+        cid = f"import-{oid}"
+        lo = ordmod.LocalOrder(
+            client_order_id=cid,
+            symbol=inst or "?",
+            direction="BUY" if u > 0 else "SELL",
+            units_requested=abs(u),
+            units_filled=0.0,
+            status=st,
+            avg_fill_price=None,
+            created_ts=datetime.now(timezone.utc).timestamp(),
+            broker_order_id=oid,
+            source="reconcile_import",
+            detail="imported from broker pending",
+        )
+        ordmod.register_order(lo)
+        logger.info("[ORDER IMPORT] broker pending id=%s %s units=%s", oid, inst, u)
+
+
 def reconcile_positions_log_only() -> list[tuple[str, str, str]]:
     """
-    Compare broker vs local registry. Does **not** mutate local state.
-
-    Returns list of (symbol, severity, message).
+    Full broker reconciliation: optional local convergence, order sync, mismatch report.
+    Does not send broker orders.
     """
-    global _snapshot
+    global _snapshot, _reconcile_runs_total, _reconcile_fixes_total
     now = datetime.now(timezone.utc).isoformat()
-    broker: dict[str, float] = {}
+    _reconcile_runs_total += 1
     err: str | None = None
+    broker_detail: dict[str, tuple[float, float]] = {}
+    broker_pending: list[dict[str, Any]] = []
+    fixes = 0
+
     try:
-        broker = fetch_broker_open_positions()
+        broker_detail = fetch_broker_positions_detail()
     except Exception as exc:
         err = str(exc)
         logger.warning("reconciliation: fetch failed: %s", exc)
 
+    if err is None:
+        try:
+            from forex_bot import oanda_exec
+
+            broker_pending = oanda_exec.fetch_pending_orders_sync()
+        except Exception as exc:
+            logger.warning("reconciliation: pending orders fetch failed: %s", exc)
+
+    if err is None:
+        fixes = _apply_position_convergence(broker_detail)
+        _reconcile_fixes_total += fixes
+        try:
+            _reconcile_pending_orders(broker_pending)
+        except Exception as exc:
+            logger.warning("reconciliation: order reconcile failed: %s", exc)
+
+    broker = {k: v[0] for k, v in broker_detail.items()}
     mismatches: list[tuple[str, str, str]] = []
 
     if err is None:
@@ -298,6 +478,11 @@ def reconcile_positions_log_only() -> list[tuple[str, str, str]]:
         "mismatches": [(m[0], m[2]) for m in mismatches],
         "severities": [m[1] for m in mismatches],
         "broker_positions_fetched": len(broker) if err is None else None,
+        "broker_pending_orders": len(broker_pending) if err is None else None,
+        "reconcile_fixes_applied": fixes,
+        "reconcile_runs_total": _reconcile_runs_total,
+        "reconcile_fixes_total": _reconcile_fixes_total,
+        "reconcile_max_fixes_per_cycle": _max_fixes_per_cycle(),
     }
 
     if err:

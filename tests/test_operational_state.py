@@ -19,6 +19,9 @@ from forex_bot.operational_state import OperationalState, derive_operational_sta
 def _reset_state(monkeypatch):
     monkeypatch.delenv("PERSIST_OPERATIONAL_EVENTS", raising=False)
     monkeypatch.delenv("LOAD_OPERATIONAL_EVENTS_FROM_DB", raising=False)
+    from forex_bot.execution_metrics import reset_for_tests
+
+    reset_for_tests()
     from forex_bot.state import state
 
     state["lifespan_phase"] = "offline"

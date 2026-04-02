@@ -4,6 +4,9 @@ Historical backtest across preset macro regimes (stress + calm years).
 Uses OANDA ``from``/``to`` candles **or** a local OHLCV CSV (``--csv`` / ``BACKTEST_CSV``).
 Same signal path as :func:`forex_bot.bot_loop.evaluate` with historical bar times.
 Run: ``python -m forex_bot.backtest --help``
+
+TODO (execution parity): optional broker-style order lifecycle + slippage/latency simulation;
+current path remains bar-close fills unless extended here.
 """
 
 from __future__ import annotations
