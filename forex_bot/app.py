@@ -65,6 +65,32 @@ async def reconciliation_loop() -> None:
         await asyncio.sleep(max(10, interval))
 
 
+async def health_snapshot_loop() -> None:
+    """
+    Same metrics as BOT STARTED (equity, sharpe, winrate, drawdown, symbols).
+
+    HEALTH_SNAPSHOT_INTERVAL_SEC: seconds between snapshots; default 21600 (6h). Set 0 to disable.
+    """
+    while True:
+        try:
+            raw = (os.getenv("HEALTH_SNAPSHOT_INTERVAL_SEC") or "21600").strip() or "21600"
+            interval = int(raw)
+        except ValueError:
+            interval = 21600
+        if interval <= 0:
+            return
+        await asyncio.sleep(interval)
+        try:
+            msg = _health_alert_text("BOT STATUS")
+            set_lifecycle_message(msg)
+            alert(msg)
+            logger.info(msg)
+        except asyncio.CancelledError:
+            raise
+        except Exception as exc:
+            logger.exception("health snapshot loop: %s", exc)
+
+
 def _profit_factor_json(pf: float | None) -> float | str | None:
     if pf is None:
         return None
@@ -197,11 +223,17 @@ async def lifespan(app: FastAPI):
     alert(started_msg)
     logger.info("Bot started; trading_mode=%s", Config.TRADING_MODE)
     reco_task = asyncio.create_task(reconciliation_loop())
+    health_task = asyncio.create_task(health_snapshot_loop())
     task = asyncio.create_task(run_bot())
     try:
         yield
     finally:
         set_lifespan_phase("stopping")
+        health_task.cancel()
+        try:
+            await health_task
+        except asyncio.CancelledError:
+            pass
         reco_task.cancel()
         try:
             await reco_task

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import date, datetime, timezone
+from datetime import datetime, timezone
 from typing import Any
 
 from forex_bot.config import Config
@@ -10,7 +10,7 @@ from forex_bot.config import Config
 state: dict[str, Any] = {
     "equity_curve": [],
     "positions": {},
-    "last_report_day": None,
+    "last_report_ts": None,  # time.time() when we last emitted DAILY REPORT
     "bot_status": "stopped",
     "bot_started_at": None,
     "bot_stopped_at": None,
@@ -52,9 +52,9 @@ def update_equity(pnl: float) -> None:
     state["equity_curve"].append(last + pnl)
 
 
-def last_report_day() -> date | None:
-    return state["last_report_day"]
+def last_report_ts() -> float | None:
+    return state["last_report_ts"]
 
 
-def set_last_report_day(d: date) -> None:
-    state["last_report_day"] = d
+def set_last_report_ts(ts: float) -> None:
+    state["last_report_ts"] = ts

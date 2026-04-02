@@ -86,6 +86,13 @@ def _env_bool(name: str, default: bool) -> bool:
     return v in ("1", "true", "yes", "on")
 
 
+def _min_position_hold_sec() -> float:
+    try:
+        return max(0.0, float((os.getenv("MIN_POSITION_HOLD_SEC") or "0").strip() or "0"))
+    except ValueError:
+        return 0.0
+
+
 def _parse_ts(val: Any) -> datetime:
     p = pd.Timestamp(val)
     if p.tzinfo is not None:
@@ -224,6 +231,9 @@ async def _backtest_bar(
             close_hit = price >= pos.stop_loss or price <= pos.take_profit
 
         if close_hit:
+            mh = _min_position_hold_sec()
+            if mh > 0 and (now_utc.timestamp() - float(pos.open_time)) < mh:
+                return
             live_allowed = False  # paper backtest
             use_sim_layers = simulation_layers_enabled(symbol, True)
 

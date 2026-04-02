@@ -39,7 +39,7 @@ from forex_bot.session_rules import (
     volatility_ok,
 )
 from forex_bot.operational_events import record_operational_transition_if_changed
-from forex_bot.state import current_equity, last_report_day, set_last_report_day, state as state_dict
+from forex_bot.state import current_equity, last_report_ts, set_last_report_ts, state as state_dict
 from forex_bot.strategy_meta import select_strategy, seq_model, strategies
 from forex_bot.trading import (
     apply_execution_costs,
@@ -66,6 +66,14 @@ def _env_int(name: str, default: int) -> int:
     return int(v) if v else default
 
 
+def _min_position_hold_sec() -> float:
+    """Seconds to hold before SL/TP exits apply; 0 = disabled (immediate exit on touch)."""
+    try:
+        return max(0.0, float((os.getenv("MIN_POSITION_HOLD_SEC") or "0").strip() or "0"))
+    except ValueError:
+        return 0.0
+
+
 async def evaluate(symbol: str) -> None:
     """Evaluate: manage open positions (TP/SL) or open new risk-based positions (hybrid + AI + RL)."""
     if not in_active_session(symbol):
@@ -89,6 +97,15 @@ async def evaluate(symbol: str) -> None:
             close_hit = price >= pos.stop_loss or price <= pos.take_profit
 
         if close_hit:
+            mh = _min_position_hold_sec()
+            if mh > 0 and (time.time() - float(pos.open_time)) < mh:
+                logger.debug(
+                    "%s: SL/TP touched but min hold %.0fs not met (age=%.1fs)",
+                    symbol,
+                    mh,
+                    time.time() - float(pos.open_time),
+                )
+                return
             # LIVE WINDOW CHECK START
             live_allowed = is_live_trading(symbol)
             use_sim_layers = simulation_layers_enabled(symbol, effective_paper_trading())
@@ -437,10 +454,18 @@ def evolve() -> None:
 
 
 def daily_report() -> None:
-    today = datetime.now().date()
-    if last_report_day() == today:
+    """Emit DAILY REPORT alert at most once per ``DAILY_REPORT_INTERVAL_SEC`` (default 86400 = 24h). Set 0 to disable."""
+    try:
+        interval = float((os.getenv("DAILY_REPORT_INTERVAL_SEC") or "86400").strip() or "86400")
+    except ValueError:
+        interval = 86400.0
+    if interval <= 0:
         return
-    set_last_report_day(today)
+    now = time.time()
+    last = last_report_ts()
+    if last is not None and (now - last) < interval:
+        return
+    set_last_report_ts(now)
     eq = current_equity()
     alert(
         f" DAILY REPORT: Equity={eq:.2f} Sharpe={analytics.sharpe():.2f} "

@@ -263,6 +263,11 @@ def fetch_broker_open_positions() -> dict[str, float]:
     return {k: v[0] for k, v in d.items()}
 
 
+def _norm_inst(s: str) -> str:
+    """OANDA uses underscores; normalize hyphens and case for comparisons."""
+    return (s or "").strip().upper().replace("-", "_")
+
+
 def _classify(sym: str, msg: str) -> str:
     if "no local position" in msg or "broker open net" in msg:
         return "critical"
@@ -272,12 +277,24 @@ def _classify(sym: str, msg: str) -> str:
 
 
 def _may_auto_fix_local() -> bool:
-    """Never auto-fix in full paper simulation; only broker execution modes."""
+    """
+    Auto-fix (close/adjust/import local registry) when RECONCILE_ACTION=auto_fix.
+
+    Default: only paper_broker / live_broker so full PAPER mode is not wiped when broker snapshot is empty.
+
+    Set RECONCILE_AUTO_FIX_IN_PAPER=true to apply the same broker-truth fixes in EXECUTION_MODE=paper
+    (ghost local positions are removed when broker is flat — use only if you accept that risk).
+    """
     from forex_bot.execution import ExecutionMode, get_execution_mode
 
     if _reconcile_action_raw() != "auto_fix":
         return False
-    return get_execution_mode() in (ExecutionMode.PAPER_BROKER, ExecutionMode.LIVE_BROKER)
+    m = get_execution_mode()
+    if m in (ExecutionMode.PAPER_BROKER, ExecutionMode.LIVE_BROKER):
+        return True
+    if m == ExecutionMode.PAPER and _truthy_env("RECONCILE_AUTO_FIX_IN_PAPER", "false"):
+        return True
+    return False
 
 
 def _apply_position_convergence(
@@ -291,7 +308,7 @@ def _apply_position_convergence(
     import_ok = _truthy_env("RECONCILE_IMPORT_BROKER_POSITIONS", "false")
     adjust_ok = _truthy_env("RECONCILE_ADJUST_UNITS", "false")
 
-    broker_nets = {k: v[0] for k, v in broker_detail.items()}
+    broker_nets = {_norm_inst(k): v[0] for k, v in broker_detail.items()}
 
     def _room() -> bool:
         return cap <= 0 or fixes < cap
@@ -301,7 +318,7 @@ def _apply_position_convergence(
             if not _room():
                 logger.warning("[RECONCILE FIX] cap reached (%s); defer remaining fixes", cap)
                 break
-            b = broker_nets.get(sym)
+            b = broker_nets.get(_norm_inst(sym))
             local_u = float(pos.units) if pos.direction == "BUY" else -float(pos.units)
             if b is None or abs(float(b)) < 1e-9:
                 posmod.close_local_position(sym, reason="reconcile_fix_broker_flat")
@@ -323,7 +340,8 @@ def _apply_position_convergence(
                 logger.info("[RECONCILE FIX] adjusted units | %s | fix=%s/%s", sym, fixes, cap or "inf")
 
         if import_ok:
-            for sym, (bnet, bavg) in broker_detail.items():
+            for sym_raw, (bnet, bavg) in broker_detail.items():
+                sym = _norm_inst(sym_raw)
                 if not _room():
                     break
                 if sym in posmod.positions:
@@ -444,12 +462,14 @@ def reconcile_positions_log_only() -> list[tuple[str, str, str]]:
         except Exception as exc:
             logger.warning("reconciliation: order reconcile failed: %s", exc)
 
-    broker = {k: v[0] for k, v in broker_detail.items()}
+    broker = {_norm_inst(k): v[0] for k, v in broker_detail.items()}
     mismatches: list[tuple[str, str, str]] = []
 
     if err is None:
+        local_norm = {_norm_inst(s) for s in posmod.positions}
         for sym, pos in posmod.positions.items():
-            b = broker.get(sym)
+            nk = _norm_inst(sym)
+            b = broker.get(nk)
             local_u = float(pos.units) if pos.direction == "BUY" else -float(pos.units)
             if b is None:
                 msg = f"local open position but broker net=0 (local net units≈{local_u:.4f})"
@@ -460,10 +480,12 @@ def reconcile_positions_log_only() -> list[tuple[str, str, str]]:
                 msg = f"unit mismatch broker_net={b:.4f} vs local_net≈{local_u:.4f}"
                 mismatches.append((sym, "critical", msg))
 
-        for sym in broker:
-            if sym not in posmod.positions:
-                msg = f"broker open net={broker[sym]:.4f} but no local position"
-                mismatches.append((sym, "critical", msg))
+        for nk, bnet in broker.items():
+            if abs(bnet) < 1e-9:
+                continue
+            if nk not in local_norm:
+                msg = f"broker open net={bnet:.4f} but no local position"
+                mismatches.append((nk, "critical", msg))
 
     crit = sum(1 for m in mismatches if m[1] == "critical")
     warn = len(mismatches) - crit
@@ -494,6 +516,14 @@ def reconcile_positions_log_only() -> list[tuple[str, str, str]]:
         for sym, sev, msg in mismatches:
             logfn = logger.critical if sev == "critical" else logger.warning
             logfn("reconciliation [%s] | %s: %s", sev, sym, msg)
+        if err is None and fixes == 0 and not _may_auto_fix_local():
+            logger.warning(
+                "reconciliation: %s mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix "
+                "and EXECUTION_MODE=paper_broker or live_broker (recommended), or set "
+                "RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. "
+                "That drops ghost local positions when the broker is flat (no broker orders).",
+                len(mismatches),
+            )
         try:
             alert(
                 f"RECONCILE: {len(mismatches)} mismatch(es) "
