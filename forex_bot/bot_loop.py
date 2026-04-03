@@ -122,6 +122,57 @@ def _min_position_hold_sec() -> float:
         return 0.0
 
 
+def _position_log_enabled() -> bool:
+    return (os.getenv("POSITION_LOG") or "1").strip().lower() not in ("0", "false", "no", "off")
+
+
+def _pip_size(symbol: str) -> float:
+    s = symbol.upper().replace("-", "_")
+    return 0.01 if "JPY" in s else 0.0001
+
+
+def _log_open_position_line(symbol: str, pos: Position, price: float) -> None:
+    """Lightweight snapshot: no extra API/DB; uses current bar mid from evaluate()."""
+    mtm = calculate_pnl(pos, price)
+    if mtm > 1e-12:
+        side = "winning"
+    elif mtm < -1e-12:
+        side = "losing"
+    else:
+        side = "flat"
+    age_sec = time.time() - float(pos.open_time)
+    pip = _pip_size(symbol)
+    if pos.direction == "BUY":
+        d_sl = float(price) - float(pos.stop_loss)
+        d_tp = float(pos.take_profit) - float(price)
+    else:
+        d_sl = float(pos.stop_loss) - float(price)
+        d_tp = float(price) - float(pos.take_profit)
+    p_sl = d_sl / pip if pip else 0.0
+    p_tp = d_tp / pip if pip else 0.0
+    mh = _min_position_hold_sec()
+    if mh > 0:
+        hold_part = f"min_hold_remain_sec={max(0.0, mh - age_sec):.0f}"
+    else:
+        hold_part = "min_hold_remain_sec=n/a"
+    logger.info(
+        "[POSITION] %s dir=%s age_sec=%.0f mtm_pnl=%.5f side=%s mid=%.5f entry=%.5f "
+        "dist_to_sl_price=%.5f dist_to_tp_price=%.5f dist_to_sl_pips=%.1f dist_to_tp_pips=%.1f %s",
+        symbol,
+        pos.direction,
+        age_sec,
+        mtm,
+        side,
+        price,
+        pos.entry_price,
+        d_sl,
+        d_tp,
+        p_sl,
+        p_tp,
+        hold_part,
+    )
+
+
 async def evaluate(symbol: str) -> None:
     """Evaluate: manage open positions (TP/SL) or open new risk-based positions (hybrid + AI + RL)."""
     if not in_active_session(symbol):
@@ -138,6 +189,8 @@ async def evaluate(symbol: str) -> None:
 
     pos = get_position(symbol)
     if pos:
+        if _position_log_enabled():
+            _log_open_position_line(symbol, pos, price)
         close_hit = False
         if pos.direction == "BUY":
             close_hit = price <= pos.stop_loss or price >= pos.take_profit
