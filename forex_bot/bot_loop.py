@@ -60,6 +60,54 @@ logger = logging.getLogger(__name__)
 rl_agent = RLAgent()
 portfolio = PortfolioEngine()
 
+_last_performance_log_ts: float = 0.0
+
+
+def _performance_log_enabled() -> bool:
+    return (os.getenv("PERFORMANCE_LOG") or "1").strip().lower() not in ("0", "false", "no", "off")
+
+
+def _performance_log_interval_sec() -> float:
+    try:
+        return max(0.0, float((os.getenv("PERFORMANCE_LOG_INTERVAL_SEC") or "0").strip() or "0"))
+    except ValueError:
+        return 0.0
+
+
+def _maybe_log_performance_metrics() -> None:
+    """One identifiable [PERFORMANCE] line per bot cycle, or throttled by PERFORMANCE_LOG_INTERVAL_SEC."""
+    global _last_performance_log_ts
+    if not _performance_log_enabled():
+        return
+    now = time.time()
+    interval = _performance_log_interval_sec()
+    if interval > 0 and (now - _last_performance_log_ts) < interval:
+        return
+    _last_performance_log_ts = now
+    import forex_bot.positions as posmod
+
+    eq = current_equity()
+    pf = analytics.profit_factor()
+    if pf is None:
+        pf_s = "n/a"
+    elif pf == float("inf"):
+        pf_s = "inf"
+    else:
+        pf_s = f"{float(pf):.4f}"
+    logger.info(
+        "[PERFORMANCE] equity=%.2f sharpe=%.4f win_rate_pct=%.2f winrate=%.4f drawdown=%.2f "
+        "closed_trades=%s profit_factor=%s open_positions=%s open_symbols=%s",
+        eq,
+        analytics.sharpe(),
+        analytics.win_rate_pct(),
+        analytics.winrate(),
+        analytics.drawdown(),
+        len(analytics.trades),
+        pf_s,
+        len(posmod.positions),
+        sorted(posmod.positions.keys()),
+    )
+
 
 def _env_int(name: str, default: int) -> int:
     v = (os.getenv(name) or "").strip()
@@ -490,6 +538,7 @@ async def run_bot() -> None:
                     "win_rate_pct": analytics.win_rate_pct(),
                 }
             )
+            _maybe_log_performance_metrics()
             evolve()
             daily_report()
         except Exception as exc:
