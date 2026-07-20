@@ -205,11 +205,22 @@ def _save_reconcile_state_to_db() -> None:
 def fetch_broker_positions_detail() -> dict[str, tuple[float, float]]:
     """
     Net signed units and average price per instrument from OANDA OpenPositions.
-    Positive net = long. Empty if API unavailable.
+    Positive net = long.
+
+    Raises when the API client or account id is missing in broker execution modes so
+    reconciliation does not treat "unavailable" as a clean empty book.
     """
+    from forex_bot.execution import ExecutionMode, get_execution_mode
+
     api = get_api()
     aid = (Config.OANDA_ACCOUNT_ID or "").strip()
     if api is None or not aid:
+        mode = get_execution_mode()
+        if mode in (ExecutionMode.PAPER_BROKER, ExecutionMode.LIVE_BROKER):
+            raise RuntimeError(
+                "reconciliation: OANDA API/account unavailable in broker mode "
+                "(refusing to treat as empty broker book)"
+            )
         logger.debug("reconciliation: skip fetch (no API or OANDA_ACCOUNT_ID)")
         return {}
 
@@ -318,6 +329,9 @@ def _apply_position_convergence(
             if not _room():
                 logger.warning("[RECONCILE FIX] cap reached (%s); defer remaining fixes", cap)
                 break
+            # Intentionally non-broker-backed local positions must not be "fixed" away.
+            if (pos.execution_kind or "").strip().lower() in {"simulated", "window_paper"}:
+                continue
             b = broker_nets.get(_norm_inst(sym))
             local_u = float(pos.units) if pos.direction == "BUY" else -float(pos.units)
             if b is None or abs(float(b)) < 1e-9:
@@ -367,6 +381,11 @@ def _apply_position_convergence(
                 logger.info("[RECONCILE IMPORT] imported broker-only | %s | fix=%s/%s", sym, fixes, cap or "inf")
 
     return fixes
+
+
+def _is_broker_backed_local(pos: Any) -> bool:
+    kind = (getattr(pos, "execution_kind", None) or "").strip().lower()
+    return kind not in {"simulated", "window_paper"}
 
 
 def _reconcile_pending_orders(broker_pending: list[dict[str, Any]]) -> None:
@@ -468,6 +487,8 @@ def reconcile_positions_log_only() -> list[tuple[str, str, str]]:
     if err is None:
         local_norm = {_norm_inst(s) for s in posmod.positions}
         for sym, pos in posmod.positions.items():
+            if not _is_broker_backed_local(pos):
+                continue
             nk = _norm_inst(sym)
             b = broker.get(nk)
             local_u = float(pos.units) if pos.direction == "BUY" else -float(pos.units)
@@ -486,6 +507,18 @@ def reconcile_positions_log_only() -> list[tuple[str, str, str]]:
             if nk not in local_norm:
                 msg = f"broker open net={bnet:.4f} but no local position"
                 mismatches.append((nk, "critical", msg))
+            else:
+                # Broker open but only a non-broker-backed local exists → still critical.
+                local_pos = posmod.positions.get(nk) or next(
+                    (p for s, p in posmod.positions.items() if _norm_inst(s) == nk),
+                    None,
+                )
+                if local_pos is not None and not _is_broker_backed_local(local_pos):
+                    msg = (
+                        f"broker open net={bnet:.4f} but local is non-broker "
+                        f"(execution_kind={local_pos.execution_kind})"
+                    )
+                    mismatches.append((nk, "critical", msg))
 
     crit = sum(1 for m in mismatches if m[1] == "critical")
     warn = len(mismatches) - crit

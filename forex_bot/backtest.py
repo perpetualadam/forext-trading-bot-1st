@@ -68,6 +68,7 @@ from forex_bot.trading import (
     portfolio_risk_cap_exceeded,
     position_sizing,
     sl_tp_distance_for_entry,
+    stop_risk_account_ccy,
     strategy_execution_style,
 )
 
@@ -209,9 +210,6 @@ async def _backtest_bar(
     random.seed(bar_seed)
     np.random.seed(bar_seed % (2**32))
 
-    if not in_active_session_at(symbol, now_utc):
-        return
-
     ohlcv_count = _env_int("HYBRID_OHLCV_COUNT", 200)
     if len(raw) < max(30, ohlcv_count // 4):
         return
@@ -222,6 +220,10 @@ async def _backtest_bar(
 
     price = float(raw["close"].iloc[-1])
     pos = get_position(symbol)
+
+    # Session gate blocks new entries only — still manage open SL/TP.
+    if pos is None and not in_active_session_at(symbol, now_utc):
+        return
 
     if pos:
         close_hit = False
@@ -343,7 +345,11 @@ async def _backtest_bar(
     if rl_action == "SKIP":
         return
 
-    direction = rl_action if rl_action in ("BUY", "SELL") else str(ai_decision["direction"])
+    direction = str(ai_decision.get("direction", "BUY")).upper().strip()
+    if direction not in ("BUY", "SELL"):
+        direction = "BUY"
+    if rl_action in ("BUY", "SELL") and rl_action != direction:
+        return
     confidence = float(ai_decision.get("confidence", 0.6))
 
     weight = portfolio.get_weight(symbol)
@@ -394,7 +400,7 @@ async def _backtest_bar(
         stop_loss = entry_price + sl_d
         take_profit = entry_price - tp_d
 
-    new_risk = abs(float(entry_price) - float(stop_loss)) * float(units)
+    new_risk = stop_risk_account_ccy(symbol, float(entry_price), float(sl_d), float(units))
     if portfolio_risk_cap_exceeded(st.current_equity(), new_risk):
         logger.info(
             "Backtest skip open %s: portfolio cap (open≈%.2f + new≈%.2f)",
@@ -576,6 +582,31 @@ async def run_regime_backtest(
                     st.current_equity(),
                 )
                 sys.stdout.flush()
+
+        # Mark-to-market any leftover open positions at last bar close so final equity is complete.
+        if len(df) > 0:
+            last_px = float(df["close"].iloc[-1])
+            for sym, pos in list(posmod.positions.items()):
+                mtm = calculate_pnl(pos, last_px)
+                try:
+                    await execute_trade(
+                        pos.symbol,
+                        pos.strategy_name,
+                        pos.direction,
+                        pos.units,
+                        pos.entry_price,
+                        pos.stop_loss,
+                        pos.take_profit,
+                        realized_pnl=mtm,
+                        execution_kind=pos.execution_kind,
+                        exit_price=last_px,
+                    )
+                except Exception as exc:
+                    logger.warning("backtest EOD close failed for %s: %s", sym, exc)
+                    continue
+                close_position(sym)
+                rl.update(pos.rl_state, pos.direction, mtm)
+            equity_snapshots.append(st.current_equity())
 
         trades_closed = len(analytics_mod.analytics.trades)
         total_pnl = float(sum(analytics_mod.analytics.trades)) if analytics_mod.analytics.trades else 0.0

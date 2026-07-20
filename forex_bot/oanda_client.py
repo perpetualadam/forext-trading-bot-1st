@@ -269,6 +269,8 @@ def fetch_ohlcv(
         return None
     ohlcv: list[dict[str, float | str]] = []
     for c in data.get("candles", []):
+        if not c.get("complete", True):
+            continue
         mid = c.get("mid") or {}
         ohlcv.append(
             {

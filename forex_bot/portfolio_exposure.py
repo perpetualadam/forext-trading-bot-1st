@@ -16,37 +16,49 @@ def _env_float(name: str, default: float) -> float:
     return float(v) if v else default
 
 
-def approx_gross_usd_notional() -> float:
-    """
-    Rough gross notional in USD terms for risk caps.
+def _norm_symbol(symbol: str) -> str:
+    return (symbol or "").upper().replace("-", "_")
 
-    - *USD as quote* (e.g. EUR_USD): ``abs(units) * entry_price`` ≈ notional in quote (USD).
+
+def approx_gross_usd_notional_for(symbol: str, units: float, price: float) -> float:
+    """
+    Rough gross notional in USD for a proposed or open position.
+
+    - *USD as quote* (e.g. EUR_USD): ``abs(units) * price`` ≈ notional in quote (USD).
     - *USD as base* (e.g. USD_JPY): ``abs(units)`` treated as USD notional (OANDA convention).
     - Other crosses: same as EUR_USD-style (approximation).
     """
+    s = _norm_symbol(symbol)
+    u = abs(float(units))
+    ep = abs(float(price))
+    if s.startswith("USD_") and len(s) > 4:
+        return u
+    return u * ep
+
+
+def approx_gross_usd_notional() -> float:
+    """Sum of :func:`approx_gross_usd_notional_for` across open positions."""
     total = 0.0
     for sym, p in posmap.items():
-        s = sym.upper().replace("-", "_")
-        u = abs(float(p.units))
-        ep = abs(float(p.entry_price))
-        if s.startswith("USD_") and len(s) > 4:
-            total += u
-        elif s.endswith("_USD"):
-            total += u * ep
-        else:
-            total += u * ep
+        total += approx_gross_usd_notional_for(sym, float(p.units), float(p.entry_price))
     return float(total)
 
 
 def approx_signed_usd_exposure() -> float:
-    """Very rough net USD delta (signed by long/short on USD-quoted pairs)."""
+    """
+    Rough net USD delta (signed).
+
+    Buying EUR_USD is long EUR / short USD → negative USD exposure.
+    Buying USD_JPY is long USD → positive USD exposure.
+    """
     net = 0.0
     for sym, p in posmap.items():
-        s = sym.upper().replace("-", "_")
+        s = _norm_symbol(sym)
         u = float(p.units) if p.direction == "BUY" else -float(p.units)
         ep = float(p.entry_price)
         if s.endswith("_USD") and not s.startswith("USD_"):
-            net += u * ep
+            # Long base / short USD
+            net -= u * ep
         elif s.startswith("USD_"):
             net += u
     return float(net)

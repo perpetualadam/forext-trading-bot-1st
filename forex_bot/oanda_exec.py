@@ -55,6 +55,14 @@ def _order_units_for_open(position_units: float, direction: str) -> int:
     return -u
 
 
+def _format_oanda_price(symbol: str, price: float) -> str:
+    """OANDA price precision: JPY pairs use 3 decimals, most majors use 5."""
+    s = (symbol or "").upper().replace("-", "_")
+    if "JPY" in s:
+        return f"{float(price):.3f}"
+    return f"{float(price):.5f}"
+
+
 def _parse_fill(response: dict[str, Any]) -> tuple[float, float]:
     """Return (realized_pl_account_ccy, fill_price) from OrderCreate response."""
     oft = response.get("orderFillTransaction")
@@ -104,13 +112,14 @@ def _place_market_order_sync(symbol: str, position_units: float, position_direct
     instrument = symbol.upper().strip()
     units_int = _order_units_for_close(position_units, position_direction)
 
+    # REDUCE_ONLY: never open/reverse if local state is stale or broker is already flat.
     body: dict[str, Any] = {
         "order": {
             "type": "MARKET",
             "instrument": instrument,
             "units": str(units_int),
             "timeInForce": "FOK",
-            "positionFill": "DEFAULT",
+            "positionFill": "REDUCE_ONLY",
         }
     }
 
@@ -132,6 +141,8 @@ def _place_market_order_open_sync(
     position_units: float,
     direction: str,
     client_order_id: str,
+    stop_loss: float | None = None,
+    take_profit: float | None = None,
 ) -> tuple[float, float, str, float]:
     """Place MARKET order to open; returns (fill_price, abs_units, fill_tx_id, pl)."""
     api = get_api()
@@ -143,20 +154,29 @@ def _place_market_order_open_sync(
     instrument = symbol.upper().strip()
     units_int = _order_units_for_open(position_units, direction)
     cid = (client_order_id or "").strip()[:128] or f"cid-{instrument}"
-    body: dict[str, Any] = {
-        "order": {
-            "type": "MARKET",
-            "instrument": instrument,
-            "units": str(units_int),
-            "timeInForce": "FOK",
-            "positionFill": "DEFAULT",
-            "clientExtensions": {
-                "id": cid,
-                "tag": "forex_bot",
-                "comment": "idempotent client order",
-            },
-        }
+    order: dict[str, Any] = {
+        "type": "MARKET",
+        "instrument": instrument,
+        "units": str(units_int),
+        "timeInForce": "FOK",
+        "positionFill": "DEFAULT",
+        "clientExtensions": {
+            "id": cid,
+            "tag": "forex_bot",
+            "comment": "idempotent client order",
+        },
     }
+    if stop_loss is not None and math.isfinite(float(stop_loss)):
+        order["stopLossOnFill"] = {
+            "price": _format_oanda_price(instrument, float(stop_loss)),
+            "timeInForce": "GTC",
+        }
+    if take_profit is not None and math.isfinite(float(take_profit)):
+        order["takeProfitOnFill"] = {
+            "price": _format_oanda_price(instrument, float(take_profit)),
+            "timeInForce": "GTC",
+        }
+    body: dict[str, Any] = {"order": order}
     r = oanda_orders.OrderCreate(accountID=account_id, data=body)
     logger.info("[ORDER SENT] MARKET open %s units=%s", instrument, units_int)
     try:
@@ -176,6 +196,9 @@ async def execute_oanda_market_open(
     position_units: float,
     direction: str,
     client_order_id: str,
+    *,
+    stop_loss: float | None = None,
+    take_profit: float | None = None,
 ) -> tuple[float, float, str, float]:
     """Broker-confirmed open: (fill_price, abs_filled_units, fill_transaction_id, pl_account_ccy)."""
     if not use_oanda_live():
@@ -183,7 +206,13 @@ async def execute_oanda_market_open(
     if not _access_token():
         raise RuntimeError("OANDA_ACCESS_TOKEN or OANDA_API_KEY missing")
     return await asyncio.to_thread(
-        _place_market_order_open_sync, symbol, position_units, direction, client_order_id
+        _place_market_order_open_sync,
+        symbol,
+        position_units,
+        direction,
+        client_order_id,
+        stop_loss,
+        take_profit,
     )
 
 
@@ -225,10 +254,9 @@ async def execute_oanda_market_close(
         _place_market_order_sync, symbol, position_units, position_direction
     )
     if math.isnan(pl):
+        from forex_bot.trading import pnl_account_ccy
+
         u = abs(float(position_units))
         d = (position_direction or "").upper().strip()
-        if d == "BUY":
-            pl = (fill_price - float(entry_price)) * u
-        else:
-            pl = (float(entry_price) - fill_price) * u
+        pl = pnl_account_ccy(symbol, d, float(entry_price), float(fill_price), u)
     return float(pl), float(fill_price)

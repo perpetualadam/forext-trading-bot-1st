@@ -25,6 +25,8 @@ def _as_naive_utc(dt: datetime) -> datetime:
 def in_active_session_at(symbol: str, at_utc: datetime) -> bool:
     """Like :func:`in_active_session` but for a historical UTC timestamp (backtests)."""
     now_utc = _as_naive_utc(at_utc)
+    if not fx_market_open_at(now_utc):
+        return False
     sessions = SESSION_WINDOWS.get(symbol, [("00:00", "23:59")])
     for start, end in sessions:
         s = datetime.strptime(start, "%H:%M").replace(
@@ -36,6 +38,30 @@ def in_active_session_at(symbol: str, at_utc: datetime) -> bool:
         if s <= now_utc <= e:
             return True
     return False
+
+
+def fx_market_open_at(at_utc: datetime) -> bool:
+    """
+    Approximate FX week: closed from Friday 21:00 UTC through Sunday 21:00 UTC.
+
+    Tunable via ``FX_WEEK_CLOSE_UTC`` / ``FX_WEEK_OPEN_UTC`` (``%H:%M``, defaults 21:00).
+    """
+    now_utc = _as_naive_utc(at_utc)
+    close_t = _parse_hhmm_utc(os.getenv("FX_WEEK_CLOSE_UTC", "21:00"), "21:00")
+    open_t = _parse_hhmm_utc(os.getenv("FX_WEEK_OPEN_UTC", "21:00"), "21:00")
+    wd = now_utc.weekday()  # Mon=0 ... Sun=6
+    t = now_utc.time()
+    if wd == 5:  # Saturday
+        return False
+    if wd == 6:  # Sunday
+        return t >= open_t
+    if wd == 4:  # Friday
+        return t < close_t
+    return True
+
+
+def fx_market_open() -> bool:
+    return fx_market_open_at(datetime.utcnow())
 
 
 def in_active_session(symbol: str) -> bool:
