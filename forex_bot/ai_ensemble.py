@@ -145,9 +145,10 @@ class AIEnsemble:
                 logger.debug("external llm vote failed: %s", exc)
         if not votes:
             logger.warning(
-                "AI ensemble: no voter outputs; defaulting allow=True (configure LLM keys or disable AI_DISABLE_STUB)."
+                "AI ensemble: no voter outputs; failing closed (allow=False). "
+                "Configure LLM keys or ensure LocalLLM stub is enabled."
             )
-            return {"allow": True, "confidence": 1.0, "direction": "BUY"}
+            return {"allow": False, "confidence": 0.0, "direction": "BUY"}
         total_conf = sum(float(v["confidence"]) for v in votes)
         allow_score = sum(float(v["confidence"]) if v.get("allow") else 0.0 for v in votes) / (total_conf + 1e-6)
         direction = _aggregate_direction(votes)

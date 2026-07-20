@@ -1,7 +1,7 @@
 """
 Strategy stack (signal path): optional hybrid ATR routing (scalp vs swing families)
 → meta-learner allocation → named strategies → sequence price model + AI ensemble vote
-→ RL tabular gate (BUY / SELL / SKIP) → :func:`forex_bot.trading.position_sizing` / execution.
+→ RL tabular gate (SKIP blocks; BUY/SELL must agree with AI direction) → sizing / execution.
 Not a separate risk engine; risk is ``POSITION_RISK_PCT`` vs stop distance only.
 """
 

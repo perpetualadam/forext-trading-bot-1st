@@ -26,8 +26,7 @@ from forex_bot.orders import (
     mark_order_failed_or_cancelled,
     try_begin_order_submission,
 )
-from forex_bot.portfolio_exposure import would_exceed_cap_if_opening
-from forex_bot.reconciliation import run_reconciliation_once
+from forex_bot.portfolio_exposure import approx_gross_usd_notional_for, would_exceed_cap_if_opening
 from forex_bot.portfolio import PortfolioEngine
 from forex_bot.positions import Position, close_position, get_position, open_position
 from forex_bot.rl_agent import RLAgent
@@ -52,6 +51,7 @@ from forex_bot.trading import (
     portfolio_risk_cap_exceeded,
     position_sizing,
     sl_tp_distance_for_entry,
+    stop_risk_account_ccy,
     strategy_execution_style,
 )
 
@@ -175,10 +175,6 @@ def _log_open_position_line(symbol: str, pos: Position, price: float) -> None:
 
 async def evaluate(symbol: str) -> None:
     """Evaluate: manage open positions (TP/SL) or open new risk-based positions (hybrid + AI + RL)."""
-    if not in_active_session(symbol):
-        alert(f"{symbol}: Market closed, skipping trade")
-        return
-
     ohlcv_count = _env_int("HYBRID_OHLCV_COUNT", 200)
     raw = fetch_ohlcv(symbol, count=ohlcv_count)
     if raw is None or raw.empty:
@@ -188,6 +184,11 @@ async def evaluate(symbol: str) -> None:
     price = float(raw["close"].iloc[-1])
 
     pos = get_position(symbol)
+    # Session gate blocks *new entries* only — always manage open risk (SL/TP) first.
+    if pos is None and not in_active_session(symbol):
+        alert(f"{symbol}: Market closed, skipping trade")
+        return
+
     if pos:
         if _position_log_enabled():
             _log_open_position_line(symbol, pos, price)
@@ -344,12 +345,23 @@ async def evaluate(symbol: str) -> None:
         vol_v = 0.0
     state = f"{round(trend_v, 4)}_{round(vol_v, 6)}"
 
+    # RL is a gate: SKIP blocks; BUY/SELL must agree with AI (never override AI side).
+    direction = str(ai_decision.get("direction", "BUY")).upper().strip()
+    if direction not in ("BUY", "SELL"):
+        direction = "BUY"
     rl_action = rl_agent.decide(state)
     if rl_action == "SKIP":
         logger.info("%s: RL decided to skip trade (state=%s)", symbol, state)
         return
-
-    direction = rl_action if rl_action in ("BUY", "SELL") else str(ai_decision["direction"])
+    if rl_action in ("BUY", "SELL") and rl_action != direction:
+        logger.info(
+            "%s: RL gate blocked (rl=%s ai=%s state=%s)",
+            symbol,
+            rl_action,
+            direction,
+            state,
+        )
+        return
     confidence = float(ai_decision.get("confidence", 0.6))
 
     weight = portfolio.get_weight(symbol)
@@ -409,14 +421,14 @@ async def evaluate(symbol: str) -> None:
             f"fills until closed (hybrid/AI/RL unchanged)"
         )
 
-    approx_add = abs(float(units)) * float(price)
+    approx_add = approx_gross_usd_notional_for(symbol, float(units), float(price))
     if would_exceed_cap_if_opening(approx_add):
         alert(f"{symbol}: Skip open — MAX_GROSS_USD_NOTIONAL cap (approx add≈{approx_add:.2f})")
         logger.warning("%s: exposure cap blocks open (approx USD notional add)", symbol)
         return
 
-    # Stop distance is sl_d from entry; portfolio risk = sl_d * units (same before/after fill for full fills).
-    new_risk_at_stop = float(sl_d) * float(units)
+    # Stop risk in account currency (handles USD_* quote conversion).
+    new_risk_at_stop = stop_risk_account_ccy(symbol, float(price), float(sl_d), float(units))
     if portfolio_risk_cap_exceeded(current_equity(), new_risk_at_stop):
         alert(
             f"{symbol}: Skip open — portfolio stop risk would exceed MAX_PORTFOLIO_RISK_PCT "
@@ -443,9 +455,21 @@ async def evaluate(symbol: str) -> None:
             logger.warning("%s: idempotent skip — duplicate client_order_id or DB conflict", symbol)
             return
         t_sent = time.perf_counter()
+        # Pre-compute SL/TP from mid so broker can attach protective orders on fill.
+        if direction == "BUY":
+            broker_sl = float(price) - float(sl_d)
+            broker_tp = float(price) + float(tp_d)
+        else:
+            broker_sl = float(price) + float(sl_d)
+            broker_tp = float(price) - float(tp_d)
         try:
             fill_price, filled_u, oid, _pl = await oanda_exec.execute_oanda_market_open(
-                symbol, units, direction, client_order_id
+                symbol,
+                units,
+                direction,
+                client_order_id,
+                stop_loss=broker_sl,
+                take_profit=broker_tp,
             )
         except Exception as exc:
             record_fill_failure()
@@ -577,7 +601,7 @@ def daily_report() -> None:
 async def run_bot() -> None:
     while True:
         try:
-            await asyncio.to_thread(run_reconciliation_once)
+            # Reconciliation runs in app.reconciliation_loop only (avoid concurrent mutation).
             for s in Config.SYMBOLS:
                 await evaluate(s)
             state_dict["last_bot_cycle_utc"] = datetime.now(timezone.utc).isoformat()

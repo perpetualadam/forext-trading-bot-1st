@@ -55,9 +55,10 @@ def apply_market_impact(units: float, base_price: float, direction: str) -> tupl
     """
     Simple depth / liquidity model: larger size moves the effective mid against you.
 
-    Returns ``(adjusted_price, impact_magnitude)``. Tunable via ``MARKET_IMPACT_FACTOR`` (default 5e-7).
+    Returns ``(adjusted_price, impact_magnitude)``. Tunable via ``MARKET_IMPACT_FACTOR``
+    (default ``1e-9``: ~0.03 pip on 30k EUR_USD units — previous 5e-7 was unrealistically large).
     """
-    impact_factor = _env_float("MARKET_IMPACT_FACTOR", 0.0000005)
+    impact_factor = _env_float("MARKET_IMPACT_FACTOR", 0.000000001)
     impact = abs(float(units)) * impact_factor
     d = (direction or "").upper().strip()
     if d == "BUY":
@@ -120,9 +121,64 @@ def sl_tp_distance_for_entry(symbol: str, atr: float | None) -> tuple[float, flo
     return sl_tp_price_distances(symbol)
 
 
+def _norm_symbol(symbol: str) -> str:
+    return (symbol or "").upper().strip().replace("-", "_")
+
+
+def is_usd_base_pair(symbol: str) -> bool:
+    """True for USD_JPY-style pairs (USD is base; P&L in quote needs / mid for USD account)."""
+    s = _norm_symbol(symbol)
+    return s.startswith("USD_") and len(s) > 4
+
+
+def quote_pnl_to_account_ccy(symbol: str, quote_pnl: float, mid_price: float) -> float:
+    """
+    Convert instrument quote-currency P&L to approximate account USD.
+
+    - EUR_USD / GBP_USD: quote is already USD.
+    - USD_JPY: quote is JPY → divide by mid (JPY per USD).
+    """
+    px = abs(float(mid_price))
+    if px < 1e-15:
+        return 0.0
+    if is_usd_base_pair(symbol):
+        return float(quote_pnl) / px
+    return float(quote_pnl)
+
+
+def stop_risk_account_ccy(symbol: str, mid_price: float, stop_distance: float, units: float) -> float:
+    """Approximate account-currency loss if stop is hit for ``units``."""
+    d = abs(float(stop_distance))
+    u = abs(float(units))
+    if is_usd_base_pair(symbol):
+        px = abs(float(mid_price))
+        if px < 1e-15:
+            return 0.0
+        return (d / px) * u
+    return d * u
+
+
+def pnl_account_ccy(
+    symbol: str,
+    direction: str,
+    entry_price: float,
+    exit_price: float,
+    units: float,
+) -> float:
+    """Realized / mark-to-market PnL in approximate account USD."""
+    u = abs(float(units))
+    d = (direction or "").upper().strip()
+    if d == "BUY":
+        quote_pnl = (float(exit_price) - float(entry_price)) * u
+    else:
+        quote_pnl = (float(entry_price) - float(exit_price)) * u
+    return quote_pnl_to_account_ccy(symbol, quote_pnl, float(exit_price))
+
+
 def position_risk_dollars(pos: Position) -> float:
     """Approximate account-currency loss if stop is hit (unsigned)."""
-    return abs(float(pos.entry_price) - float(pos.stop_loss)) * abs(float(pos.units))
+    stop_d = abs(float(pos.entry_price) - float(pos.stop_loss))
+    return stop_risk_account_ccy(pos.symbol, float(pos.entry_price), stop_d, float(pos.units))
 
 
 def portfolio_risk_amount() -> float:
@@ -214,7 +270,7 @@ def position_sizing(
     risk_pct: float | None = None,
 ) -> float:
     """
-    Risk-based position size: ``units ≈ (equity * risk_pct) / stop_distance``.
+    Risk-based position size: ``units ≈ (equity * risk_pct) / account_risk_per_unit``.
 
     - **Not** affected by ``TRADING_MODE`` (practice vs live); that only selects OANDA API host.
       Broker margin / max position is **not** modeled here (OANDA may reject oversized orders).
@@ -223,8 +279,8 @@ def position_sizing(
     - Sizing uses ``max(balance, 0)`` so negative equity does not flip sign.
     - Optional ``MIN_STOP_DISTANCE_PRICE``: floor the stop distance (price units) so tiny
       structural stops cannot explode ``units`` when volatility or symbol scale changes.
+    - For ``USD_*`` pairs, stop distance in quote is converted to USD via ``/ mid``.
     """
-    _ = symbol
     rp = risk_pct if risk_pct is not None else _env_float("POSITION_RISK_PCT", 0.01)
     max_rp = _env_float("POSITION_RISK_PCT_MAX", 0.01)
     rp = min(max(0.0, rp), max_rp)
@@ -240,15 +296,22 @@ def position_sizing(
         stop_distance = max(stop_distance, min_stop)
     if stop_distance < 1e-15:
         return 0.0
-    units = risk_amount / stop_distance
+    risk_per_unit = stop_risk_account_ccy(symbol, float(price), stop_distance, 1.0)
+    if risk_per_unit < 1e-15:
+        return 0.0
+    units = risk_amount / risk_per_unit
     return max(units, 1.0)
 
 
 def calculate_pnl(position: Position, current_price: float) -> float:
-    """Mark-to-market PnL in account currency for an open FX position."""
-    if position.direction == "BUY":
-        return float((current_price - position.entry_price) * position.units)
-    return float((position.entry_price - current_price) * position.units)
+    """Mark-to-market PnL in approximate account USD for an open FX position."""
+    return pnl_account_ccy(
+        position.symbol,
+        position.direction,
+        float(position.entry_price),
+        float(current_price),
+        float(position.units),
+    )
 
 
 def simulate_execution(direction: str, price: float, size: float) -> float:
@@ -295,7 +358,8 @@ async def execute_trade(
     require ``realized_pnl`` (raises when missing if ``STRICT_EXECUTION``).
 
     When ``execution_kind`` is ``live`` and broker orders are enabled, attempts a real OANDA market
-    close and uses broker ``pl`` / fill price; on failure, falls back to modelled ``realized_pnl``.
+    close and uses broker ``pl`` / fill price. On broker close failure, **raises** so callers do not
+    drop local state while the broker position may still be open.
     """
     _ = sl, tp
     oanda_broker = False
@@ -321,23 +385,25 @@ async def execute_trade(
             and oanda_exec.use_oanda_live()
             and exit_price is not None
         ):
-            try:
-                pnl, exit_px_model = await oanda_exec.execute_oanda_market_close(
-                    symbol, size, direction, price
-                )
-                oanda_broker = True
-                alert(
-                    f"[OANDA LIVE] {symbol} {direction} {size:.2f} units PnL={pnl:.2f}"
-                )
-            except Exception as exc:
-                logger.warning("OANDA live execution failed, using model PnL: %s", exc)
-                alert(f"[OANDA ERROR] {exc}")
-                pnl = float(realized_pnl)
-                exit_px_model = float(exit_price)
+            # Live broker close must succeed; do not fall back to model and clear local state.
+            pnl, exit_px_model = await oanda_exec.execute_oanda_market_close(
+                symbol, size, direction, price
+            )
+            oanda_broker = True
+            alert(
+                f"[OANDA LIVE] {symbol} {direction} {size:.2f} units PnL={pnl:.2f}"
+            )
 
     analytics.log_trade(pnl)
-    strategies[strategy_name].update_pnl(pnl)
-    meta.update(strategy_name, pnl)
+    strat = strategies.get(strategy_name)
+    if strat is not None:
+        strat.update_pnl(pnl)
+        meta.update(strategy_name, pnl)
+    else:
+        logger.warning(
+            "execute_trade: unknown strategy %r — skipping strategy/meta PnL update",
+            strategy_name,
+        )
     update_equity(pnl)
     if exit_price is not None:
         if not math.isnan(exit_px_model):
