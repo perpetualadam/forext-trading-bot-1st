@@ -17,7 +17,7 @@ from forex_bot.execution import effective_paper_trading, pre_trade_entry_blocked
 from forex_bot.indicators import compute_indicators
 from forex_bot.nn_pred import compute_nn_pred
 import forex_bot.oanda_exec as oanda_exec
-from forex_bot.oanda_client import fetch_ohlcv
+from forex_bot.oanda_client import fetch_account_summary, fetch_ohlcv, last_account_summary
 from forex_bot.execution_metrics import record_fill_failure, record_fill_quality
 from forex_bot.orders import (
     OrderStatus,
@@ -26,19 +26,33 @@ from forex_bot.orders import (
     mark_order_failed_or_cancelled,
     try_begin_order_submission,
 )
-from forex_bot.portfolio_exposure import approx_gross_usd_notional_for, would_exceed_cap_if_opening
+from forex_bot.portfolio_exposure import (
+    approx_gross_usd_notional_for,
+    configured_max_gross_usd,
+    notional_pct_of_nav,
+    would_exceed_cap_if_opening,
+)
 from forex_bot.portfolio import PortfolioEngine
 from forex_bot.positions import Position, close_position, get_position, open_position
 from forex_bot.rl_agent import RLAgent
 from forex_bot.session_rules import (
     in_active_session,
     is_live_trading,
+    live_window_log_enabled,
+    log_live_windows,
     pre_close_adjustment,
     simulation_layers_enabled,
+    symbol_live_window_status,
     volatility_ok,
 )
 from forex_bot.operational_events import record_operational_transition_if_changed
-from forex_bot.state import current_equity, last_report_ts, set_last_report_ts, state as state_dict
+from forex_bot.state import (
+    current_equity,
+    last_report_ts,
+    record_mid,
+    set_last_report_ts,
+    state as state_dict,
+)
 from forex_bot.strategy_meta import select_strategy, seq_model, strategies
 from forex_bot.trading import (
     apply_execution_costs,
@@ -182,6 +196,7 @@ async def evaluate(symbol: str) -> None:
         return
 
     price = float(raw["close"].iloc[-1])
+    record_mid(symbol, price)
 
     pos = get_position(symbol)
     # Session gate blocks *new entries* only — always manage open risk (SL/TP) first.
@@ -374,8 +389,27 @@ async def evaluate(symbol: str) -> None:
 
     balance = current_equity()
     units = position_sizing(symbol, price, stop_mid, balance)
-    units *= weight * confidence
+    if notional_pct_of_nav() <= 0:
+        units *= weight * confidence
     units = cap_position_units(units)
+    if notional_pct_of_nav() > 0:
+        units = math.floor(float(units) + 1e-9)
+        if units < 1:
+            logger.info(
+                "%s: skip — 2%% NAV size rounds below 1 OANDA unit (NAV=%.2f)",
+                symbol,
+                balance,
+            )
+            return
+        logger.info(
+            "[SIZE] %s units=%.0f notional≈%.2f USD (%.2f%% of NAV %.2f) cap≈%.2f USD",
+            symbol,
+            units,
+            abs(units) * float(price),
+            notional_pct_of_nav() * 100.0,
+            balance,
+            configured_max_gross_usd(),
+        )
 
     # MICRO_STRATEGY / LOT_SIZE HOOK START (optional — uncomment and implement)
     # sym_u = symbol.upper().replace("-", "_")
@@ -412,18 +446,46 @@ async def evaluate(symbol: str) -> None:
         exec_kind = "simulated" if paper else "window_paper"
 
     use_sim_layers = simulation_layers_enabled(symbol, paper)
+    if live_window_log_enabled():
+        win = symbol_live_window_status(symbol)
+        logger.info(
+            "[LIVE WINDOW] %s %s → exec=%s | local=%s %s | utc=%s | now_local=%s | now_utc=%s | "
+            "tz=%s offset=%s | paper=%s",
+            symbol,
+            "IN" if live_allowed else "OUT",
+            exec_kind,
+            win["local_window"],
+            win["dst_label"],
+            win["utc_window"],
+            win["now_local"],
+            win["now_utc"],
+            win["timezone"],
+            win["utc_offset"],
+            paper,
+        )
     # QUOTA: future per-symbol daily caps should run only when use_sim_layers is True
     # LIVE WINDOW CHECK END
 
     if not use_live_fill and not paper:
+        win = symbol_live_window_status(symbol)
         alert(
-            f"{symbol}: Outside live trading window (UTC) — position will use paper-style "
-            f"fills until closed (hybrid/AI/RL unchanged)"
+            f"{symbol}: Outside live window — local {win['local_window']} {win['dst_label']} "
+            f"(UTC {win['utc_window']}); now {win['now_local']} {win['dst_label']} / "
+            f"{win['now_utc']} UTC — paper-style fills until the window opens "
+            f"(hybrid/AI/RL unchanged)"
         )
 
     approx_add = approx_gross_usd_notional_for(symbol, float(units), float(price))
     if would_exceed_cap_if_opening(approx_add):
-        alert(f"{symbol}: Skip open — MAX_GROSS_USD_NOTIONAL cap (approx add≈{approx_add:.2f})")
+        acct = last_account_summary()
+        ccy = acct.get("currency") or ""
+        nav = acct.get("NAV")
+        nav_bit = f"; account NAV={nav:.2f} {ccy}" if nav is not None and ccy else ""
+        cap = configured_max_gross_usd()
+        alert(
+            f"{symbol}: Skip open — notional cap "
+            f"(add ≈ {approx_add:.2f} USD vs cap {cap:.2f} USD, not cash{nav_bit})"
+        )
         logger.warning("%s: exposure cap blocks open (approx USD notional add)", symbol)
         return
 
@@ -602,6 +664,7 @@ async def run_bot() -> None:
     while True:
         try:
             # Reconciliation runs in app.reconciliation_loop only (avoid concurrent mutation).
+            await asyncio.to_thread(fetch_account_summary)
             for s in Config.SYMBOLS:
                 await evaluate(s)
             state_dict["last_bot_cycle_utc"] = datetime.now(timezone.utc).isoformat()
@@ -615,6 +678,8 @@ async def run_bot() -> None:
                     "win_rate_pct": analytics.win_rate_pct(),
                 }
             )
+            if live_window_log_enabled():
+                log_live_windows(reason="cycle")
             _maybe_log_performance_metrics()
             evolve()
             daily_report()

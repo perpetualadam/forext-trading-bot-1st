@@ -134,7 +134,8 @@ def test_oanda_close_uses_reduce_only():
         pl, px = oanda_exec._place_market_order_sync("EUR_USD", 10.0, "BUY")
     assert pl == 1.5
     assert px == 1.1
-    assert captured["data"]["order"]["positionFill"] == "REDUCE_ONLY"
+    # Official v20 close: PUT .../positions/{instrument}/close with positive longUnits.
+    assert captured["data"] == {"longUnits": "10"}
 
 
 def test_oanda_open_attaches_sl_tp():

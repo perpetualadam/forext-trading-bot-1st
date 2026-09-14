@@ -31,13 +31,14 @@ from forex_bot.execution import (
 )
 from forex_bot.trading import configured_max_portfolio_risk_pct, portfolio_risk_fraction
 from forex_bot.database import fetch_all_trades_ordered, fetch_strategy_analysis, get_connection
-from forex_bot.oanda_client import build_api
+from forex_bot.oanda_client import build_api, fetch_account_summary, last_account_summary
 from forex_bot.operational_events import (
     load_operational_events_cache_from_db,
     operational_events_payload,
     record_operational_transition_if_changed,
 )
 from forex_bot.operational_state import operational_state_payload
+from forex_bot.session_rules import format_live_window_log, live_windows_status, log_live_windows
 from forex_bot.state import (
     current_equity,
     mark_bot_started,
@@ -85,6 +86,8 @@ async def health_snapshot_loop() -> None:
             set_lifecycle_message(msg)
             alert(msg)
             logger.info(msg)
+            if (os.getenv("LIVE_WINDOW_LOG") or "1").strip().lower() not in ("0", "false", "no", "off"):
+                logger.info(format_live_window_log())
         except asyncio.CancelledError:
             raise
         except Exception as exc:
@@ -127,7 +130,11 @@ def _trading_metrics_payload() -> dict[str, Any]:
 
 
 def _health_snapshot() -> dict[str, Any]:
-    return {**_trading_metrics_payload(), "symbols": list(Config.SYMBOLS)}
+    return {
+        **_trading_metrics_payload(),
+        "symbols": list(Config.SYMBOLS),
+        "live_windows": live_windows_status(),
+    }
 
 
 def _system_snapshot() -> dict[str, Any]:
@@ -162,6 +169,8 @@ def _system_snapshot() -> dict[str, Any]:
         "open_positions_count": len(posmod.positions),
         "last_bot_cycle_utc": bot_state.get("last_bot_cycle_utc"),
         "symbols": list(Config.SYMBOLS),
+        "live_windows": live_windows_status(),
+        "oanda_account": last_account_summary() or None,
         **operational_state_payload(),
         **operational_events_payload(),
     }
@@ -169,11 +178,21 @@ def _system_snapshot() -> dict[str, Any]:
 
 def _health_alert_text(prefix: str) -> str:
     h = _health_snapshot()
+    lw = h.get("live_windows") or {}
+    insides = []
+    for p in lw.get("symbols") or []:
+        insides.append(f"{p['symbol']}={'IN' if p['inside'] else 'OUT'}")
+    live_bit = (
+        f" | live_tz={lw.get('timezone')} {lw.get('dst_label')} "
+        f"offset={lw.get('utc_offset')} now_local={lw.get('now_local')} "
+        f"{' '.join(insides)}"
+    )
     return (
         f"{prefix} | mode={h['trading_mode']} paper={h['paper_trading']} | "
         f"equity={h['equity']:.2f} sharpe={h['sharpe']:.2f} "
         f"winrate={h['winrate']:.2%} drawdown={h['drawdown']:.2f} | "
         f"symbols={h['symbols']}"
+        f"{live_bit}"
     )
 
 
@@ -199,6 +218,10 @@ async def lifespan(app: FastAPI):
     load_open_orders_from_db_into_memory()
     load_reconcile_state_from_db()
     build_api()
+    try:
+        await asyncio.to_thread(fetch_account_summary)
+    except Exception as exc:
+        logger.warning("startup AccountSummary: %s", exc)
 
     try:
         await asyncio.to_thread(run_reconciliation_once)
@@ -222,6 +245,7 @@ async def lifespan(app: FastAPI):
     set_lifecycle_message(started_msg)
     alert(started_msg)
     logger.info("Bot started; trading_mode=%s", Config.TRADING_MODE)
+    log_live_windows(reason="startup")
     reco_task = asyncio.create_task(reconciliation_loop())
     health_task = asyncio.create_task(health_snapshot_loop())
     task = asyncio.create_task(run_bot())
@@ -275,6 +299,8 @@ async def health() -> dict[str, Any]:
         "trading_mode": Config.TRADING_MODE,
         "execution_mode": get_execution_mode().value,
         "trading_allowed": trading_allowed(),
+        "live_windows": live_windows_status(),
+        "oanda_account": last_account_summary() or None,
         "experiment": experiment_snapshot_with_voters(ai_ensemble),
     }
 

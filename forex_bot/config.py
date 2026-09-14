@@ -23,9 +23,20 @@ class PostgresConfig:
     port: int = field(default_factory=lambda: int(os.getenv("POSTGRES_PORT", "5432")))
 
 
+def _env_float(name: str, default: float) -> float:
+    raw = (os.getenv(name) or "").strip()
+    if not raw:
+        return default
+    try:
+        return float(raw)
+    except ValueError:
+        return default
+
+
 class Config:
     SYMBOLS: list[str] = ["EUR_USD", "GBP_USD", "USD_JPY"]
-    BASE_BALANCE: float = 10000.0
+    # Starting equity for sizing (account currency). Override with BASE_BALANCE in .env.
+    BASE_BALANCE: float = _env_float("BASE_BALANCE", 10000.0)
     TRADE_INTERVAL: int = 60
 
     TRADING_MODE: str = os.getenv("TRADING_MODE", "practice").lower()

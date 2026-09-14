@@ -1,0 +1,13 @@
+"""Default test env: do not inherit local .env live/notional overrides."""
+
+from __future__ import annotations
+
+import pytest
+
+
+@pytest.fixture(autouse=True)
+def _isolate_sizing_env(monkeypatch):
+    monkeypatch.delenv("POSITION_NOTIONAL_PCT_OF_NAV", raising=False)
+    monkeypatch.delenv("POSITION_RISK_PCT", raising=False)
+    monkeypatch.delenv("POSITION_RISK_PCT_MAX", raising=False)
+    monkeypatch.delenv("MIN_STOP_DISTANCE_PRICE", raising=False)

@@ -18,6 +18,9 @@ state: dict[str, Any] = {
     "last_bot_cycle_utc": None,
     # FastAPI lifespan: offline | starting | running | stopping (for operational_state)
     "lifespan_phase": "offline",
+    "broker_nav": None,
+    "broker_currency": "",
+    "last_mids": {},
 }
 
 
@@ -42,7 +45,39 @@ def set_lifespan_phase(phase: str) -> None:
     state["lifespan_phase"] = phase
 
 
+def set_broker_account(nav: float, currency: str = "") -> None:
+    """Broker-truth equity from OANDA AccountSummary.NAV (account currency)."""
+    state["broker_nav"] = float(nav)
+    state["broker_currency"] = (currency or "").strip().upper()
+    curve = state["equity_curve"]
+    if curve:
+        curve[-1] = float(nav)
+    else:
+        curve.append(float(nav))
+
+
+def broker_currency() -> str:
+    return str(state.get("broker_currency") or "")
+
+
+def record_mid(symbol: str, price: float) -> None:
+    s = (symbol or "").strip().upper().replace("-", "_").replace("/", "_")
+    if s and price and float(price) > 0:
+        mids = state.setdefault("last_mids", {})
+        mids[s] = float(price)
+
+
+def last_mid(symbol: str) -> float | None:
+    s = (symbol or "").strip().upper().replace("-", "_").replace("/", "_")
+    mids = state.get("last_mids") or {}
+    px = mids.get(s)
+    return float(px) if px else None
+
+
 def current_equity() -> float:
+    nav = state.get("broker_nav")
+    if nav is not None:
+        return float(nav)
     curve = state["equity_curve"]
     return float(curve[-1]) if curve else float(Config.BASE_BALANCE)
 

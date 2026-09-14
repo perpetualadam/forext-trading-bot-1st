@@ -281,13 +281,20 @@ def position_sizing(
       structural stops cannot explode ``units`` when volatility or symbol scale changes.
     - For ``USD_*`` pairs, stop distance in quote is converted to USD via ``/ mid``.
     """
-    rp = risk_pct if risk_pct is not None else _env_float("POSITION_RISK_PCT", 0.01)
-    max_rp = _env_float("POSITION_RISK_PCT_MAX", 0.01)
-    rp = min(max(0.0, rp), max_rp)
-
     balance_eff = max(0.0, float(balance))
     if balance_eff < 1e-12:
         return 0.0
+
+    notional_pct = _env_float("POSITION_NOTIONAL_PCT_OF_NAV", 0.0)
+    if notional_pct > 0:
+        from forex_bot.portfolio_exposure import units_for_account_notional
+
+        units = units_for_account_notional(symbol, price, balance_eff * notional_pct)
+        return max(0.0, float(units))
+
+    rp = risk_pct if risk_pct is not None else _env_float("POSITION_RISK_PCT", 0.01)
+    max_rp = _env_float("POSITION_RISK_PCT_MAX", 0.01)
+    rp = min(max(0.0, rp), max_rp)
 
     risk_amount = balance_eff * rp
     stop_distance = abs(float(price) - float(stop_loss_price))

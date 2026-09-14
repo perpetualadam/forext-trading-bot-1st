@@ -45,9 +45,29 @@ def _format_oanda_error(exc: BaseException) -> str:
 
 _api: API | None = None
 
+# Last GET /v3/accounts/{id}/summary (OANDA AccountSummary).
+_account_summary: dict[str, Any] = {}
+
 
 def _environment() -> str:
+    """oandapyV20 env key; maps to official hosts in TRADING_ENVIRONMENTS."""
     return "live" if Config.TRADING_MODE == "live" else "practice"
+
+
+def official_rest_host() -> str:
+    """Development Guide REST hosts: fxTrade vs fxTrade Practice."""
+    if _environment() == "live":
+        return "https://api-fxtrade.oanda.com"
+    return "https://api-fxpractice.oanda.com"
+
+
+def official_env_label() -> str:
+    return "fxTrade" if _environment() == "live" else "fxTrade Practice"
+
+
+def oanda_instrument(symbol: str) -> str:
+    """InstrumentName: BASE_QUOTE with an underscore (EUR_USD), not hyphen or slash."""
+    return (symbol or "").strip().upper().replace("-", "_").replace("/", "_")
 
 
 def build_api() -> API | None:
@@ -58,7 +78,17 @@ def build_api() -> API | None:
         logger.warning("OANDA_ACCESS_TOKEN missing; market data calls will fail.")
         _api = None
         return None
-    _api = API(access_token=token, environment=_environment())
+    # Official: Authorization Bearer (library) + Accept-Datetime-Format RFC3339.
+    _api = API(
+        access_token=token,
+        environment=_environment(),
+        headers={"Accept-Datetime-Format": "RFC3339"},
+    )
+    logger.info(
+        "OANDA REST client %s %s (token matches this host only)",
+        official_env_label(),
+        official_rest_host(),
+    )
     return _api
 
 
@@ -66,6 +96,72 @@ def get_api() -> API | None:
     if _api is None:
         return build_api()
     return _api
+
+
+def last_account_summary() -> dict[str, Any]:
+    """Cached AccountSummary fields (NAV, balance, currency, marginAvailable, host)."""
+    return dict(_account_summary)
+
+
+def fetch_account_summary() -> dict[str, Any] | None:
+    """
+    GET /v3/accounts/{accountID}/summary — official AccountSummary.
+
+    NAV and currency are the broker-truth equity for sizing (account CCY, e.g. GBP).
+    """
+    import oandapyV20.endpoints.accounts as accounts
+
+    from forex_bot.state import set_broker_account
+
+    api = get_api()
+    aid = (Config.OANDA_ACCOUNT_ID or os.getenv("OANDA_ACCOUNT_ID") or "").strip()
+    if api is None or not aid:
+        return None
+    r = accounts.AccountSummary(accountID=aid)
+    try:
+        data = _oanda_request(api, r, context="account summary")
+    except Exception as exc:
+        logger.error("OANDA AccountSummary failed: %s", _format_oanda_error(exc))
+        return None
+    acct = data.get("account") if isinstance(data, dict) else None
+    if not isinstance(acct, dict):
+        return None
+    try:
+        nav = float(str(acct.get("NAV") or acct.get("balance") or "0").replace(",", ""))
+    except (TypeError, ValueError):
+        nav = 0.0
+    try:
+        balance = float(str(acct.get("balance") or "0").replace(",", ""))
+    except (TypeError, ValueError):
+        balance = nav
+    try:
+        margin_av = float(str(acct.get("marginAvailable") or "0").replace(",", ""))
+    except (TypeError, ValueError):
+        margin_av = 0.0
+    currency = str(acct.get("currency") or "").strip().upper()
+    snap = {
+        "id": str(acct.get("id") or aid),
+        "NAV": nav,
+        "balance": balance,
+        "currency": currency,
+        "marginAvailable": margin_av,
+        "alias": str(acct.get("alias") or ""),
+        "host": official_rest_host(),
+        "environment": official_env_label(),
+    }
+    _account_summary.clear()
+    _account_summary.update(snap)
+    set_broker_account(nav, currency)
+    logger.info(
+        "[OANDA ACCOUNT] %s NAV=%.2f %s balance=%.2f marginAvailable=%.2f host=%s",
+        official_env_label(),
+        nav,
+        currency or "?",
+        balance,
+        margin_av,
+        official_rest_host(),
+    )
+    return snap
 
 
 _GRANULARITY_MINUTES: dict[str, int] = {
@@ -205,7 +301,7 @@ def fetch_ohlcv_range(
             "to": _to_oanda_rfc3339(chunk_to),
             "price": "M",
         }
-        r = instruments.InstrumentsCandles(instrument=symbol, params=params)
+        r = instruments.InstrumentsCandles(instrument=oanda_instrument(symbol), params=params)
         try:
             data = _oanda_request(api, r, context=f"range {symbol}")
         except Exception as exc:
@@ -260,18 +356,21 @@ def fetch_ohlcv(
     api = get_api()
     if api is None:
         return None
+    inst = oanda_instrument(symbol)
     params = {"granularity": granularity, "count": count, "price": "M"}
-    r = instruments.InstrumentsCandles(instrument=symbol, params=params)
+    r = instruments.InstrumentsCandles(instrument=inst, params=params)
     try:
-        data = _oanda_request(api, r, context=f"latest {symbol}")
+        data = _oanda_request(api, r, context=f"latest {inst}")
     except Exception as exc:
-        logger.error("OANDA candles failed for %s: %s", symbol, _format_oanda_error(exc))
+        logger.error("OANDA candles failed for %s: %s", inst, _format_oanda_error(exc))
         return None
     ohlcv: list[dict[str, float | str]] = []
     for c in data.get("candles", []):
         if not c.get("complete", True):
             continue
         mid = c.get("mid") or {}
+        if not mid:
+            continue
         ohlcv.append(
             {
                 "time": c["time"],

@@ -15,7 +15,7 @@ import oandapyV20.endpoints.positions as pos_ep
 
 from forex_bot.alerts import alert
 from forex_bot.config import Config
-from forex_bot.oanda_client import get_api
+from forex_bot.oanda_client import get_api, oanda_instrument
 from forex_bot import positions as posmod
 from forex_bot import orders as ordmod
 
@@ -233,7 +233,7 @@ def fetch_broker_positions_detail() -> dict[str, tuple[float, float]]:
 
     out: dict[str, tuple[float, float]] = {}
     for p in resp.get("positions") or []:
-        inst = str(p.get("instrument") or "").strip()
+        inst = oanda_instrument(str(p.get("instrument") or ""))
         if not inst:
             continue
         long_u = p.get("long") or {}

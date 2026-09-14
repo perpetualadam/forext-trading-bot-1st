@@ -9,9 +9,12 @@ import os
 from typing import Any
 
 import oandapyV20.endpoints.orders as oanda_orders
+import oandapyV20.endpoints.positions as oanda_positions
+from oandapyV20.contrib.requests import MarketOrderRequest, PositionCloseRequest
+from oandapyV20.definitions.orders import OrderPositionFill, TimeInForce
 
 from forex_bot.config import Config
-from forex_bot.oanda_client import get_api
+from forex_bot.oanda_client import get_api, oanda_instrument
 
 logger = logging.getLogger(__name__)
 
@@ -39,16 +42,14 @@ def _account_id() -> str:
     return (Config.OANDA_ACCOUNT_ID or os.getenv("OANDA_ACCOUNT_ID") or "").strip()
 
 
-def _order_units_for_close(position_units: float, position_direction: str) -> int:
-    """OANDA: positive = long, negative = short. Closing long → negative units."""
+def _abs_units_decimal(position_units: float) -> str:
+    """OANDA DecimalNumber: always a string; position-close units must be positive."""
     u = max(1, int(round(abs(float(position_units)))))
-    if (position_direction or "").upper().strip() == "BUY":
-        return -u
-    return u
+    return str(u)
 
 
 def _order_units_for_open(position_units: float, direction: str) -> int:
-    """Opening: BUY → positive units, SELL → negative."""
+    """Opening: BUY → positive units, SELL → negative (v20 MarketOrder.units)."""
     u = max(1, int(round(abs(float(position_units)))))
     if (direction or "").upper().strip() == "BUY":
         return u
@@ -101,6 +102,7 @@ def _parse_open_fill(response: dict[str, Any]) -> tuple[float, float, str, float
 
 
 def _place_market_order_sync(symbol: str, position_units: float, position_direction: str) -> tuple[float, float]:
+    """PUT /v3/accounts/{id}/positions/{instrument}/close (official closeout)."""
     api = get_api()
     if api is None:
         raise RuntimeError("OANDA API client unavailable (token / build_api)")
@@ -109,30 +111,38 @@ def _place_market_order_sync(symbol: str, position_units: float, position_direct
     if not account_id:
         raise RuntimeError("OANDA_ACCOUNT_ID missing")
 
-    instrument = symbol.upper().strip()
-    units_int = _order_units_for_close(position_units, position_direction)
+    instrument = oanda_instrument(symbol)
+    units_s = _abs_units_decimal(position_units)
+    d = (position_direction or "").upper().strip()
+    if d == "BUY":
+        close_req = PositionCloseRequest(longUnits=units_s)
+    else:
+        close_req = PositionCloseRequest(shortUnits=units_s)
 
-    # REDUCE_ONLY: never open/reverse if local state is stale or broker is already flat.
-    body: dict[str, Any] = {
-        "order": {
-            "type": "MARKET",
-            "instrument": instrument,
-            "units": str(units_int),
-            "timeInForce": "FOK",
-            "positionFill": "REDUCE_ONLY",
-        }
-    }
-
-    r = oanda_orders.OrderCreate(accountID=account_id, data=body)
+    r = oanda_positions.PositionClose(
+        accountID=account_id, instrument=instrument, data=close_req.data
+    )
     try:
         response = api.request(r)
     except Exception as exc:
-        logger.error("OANDA OrderCreate failed: %s", exc)
+        logger.error("OANDA PositionClose failed: %s", exc)
         raise RuntimeError(str(exc)) from exc
 
-    pl, fill_price = _parse_fill(response if isinstance(response, dict) else {})
+    if not isinstance(response, dict):
+        raise ValueError("invalid OANDA PositionClose response")
+    if d == "BUY":
+        oft = response.get("longOrderFillTransaction") or {}
+    else:
+        oft = response.get("shortOrderFillTransaction") or {}
+    if not oft:
+        oft = response.get("orderFillTransaction") or {}
+    cancel = response.get("longOrderCancelTransaction") or response.get("shortOrderCancelTransaction")
+    if cancel and not oft:
+        raise RuntimeError(f"OANDA PositionClose cancelled: {cancel.get('reason') or cancel}")
+    pl, fill_price = _parse_fill({"orderFillTransaction": oft} if oft else {})
     if math.isnan(pl):
-        logger.warning("OANDA fill missing pl; fill_price=%s", fill_price)
+        logger.warning("OANDA close fill missing pl; fill_price=%s", fill_price)
+    logger.info("[ORDER CLOSE] PositionClose %s %s units=%s fill=%.5f", instrument, d, units_s, fill_price)
     return pl, fill_price
 
 
@@ -151,33 +161,36 @@ def _place_market_order_open_sync(
     account_id = _account_id()
     if not account_id:
         raise RuntimeError("OANDA_ACCOUNT_ID missing")
-    instrument = symbol.upper().strip()
+    instrument = oanda_instrument(symbol)
     units_int = _order_units_for_open(position_units, direction)
     cid = (client_order_id or "").strip()[:128] or f"cid-{instrument}"
-    order: dict[str, Any] = {
-        "type": "MARKET",
-        "instrument": instrument,
-        "units": str(units_int),
-        "timeInForce": "FOK",
-        "positionFill": "DEFAULT",
-        "clientExtensions": {
-            "id": cid,
-            "tag": "forex_bot",
-            "comment": "idempotent client order",
-        },
-    }
+    sl_on_fill = None
+    tp_on_fill = None
     if stop_loss is not None and math.isfinite(float(stop_loss)):
-        order["stopLossOnFill"] = {
+        sl_on_fill = {
             "price": _format_oanda_price(instrument, float(stop_loss)),
             "timeInForce": "GTC",
         }
     if take_profit is not None and math.isfinite(float(take_profit)):
-        order["takeProfitOnFill"] = {
+        tp_on_fill = {
             "price": _format_oanda_price(instrument, float(take_profit)),
             "timeInForce": "GTC",
         }
-    body: dict[str, Any] = {"order": order}
-    r = oanda_orders.OrderCreate(accountID=account_id, data=body)
+    # Official MarketOrder: units DecimalNumber, timeInForce FOK|IOC, OPEN_ONLY for entries.
+    mo = MarketOrderRequest(
+        instrument=instrument,
+        units=units_int,
+        timeInForce=TimeInForce.FOK,
+        positionFill=OrderPositionFill.OPEN_ONLY,
+        clientExtensions={
+            "id": cid,
+            "tag": "forex_bot",
+            "comment": "idempotent client order",
+        },
+        stopLossOnFill=sl_on_fill,
+        takeProfitOnFill=tp_on_fill,
+    )
+    r = oanda_orders.OrderCreate(accountID=account_id, data=mo.data)
     logger.info("[ORDER SENT] MARKET open %s units=%s", instrument, units_int)
     try:
         response = api.request(r)
