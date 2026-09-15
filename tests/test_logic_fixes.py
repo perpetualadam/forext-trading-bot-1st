@@ -101,6 +101,16 @@ def test_fx_weekend_closed():
     assert in_active_session_at("EUR_USD", sat) is False
 
 
+def test_fx_session_always_opens_weekday_gap(monkeypatch):
+    mon_gap = datetime(2026, 9, 14, 11, 0, 0)  # Monday 11:00 UTC — USD_JPY session hole
+    monkeypatch.delenv("FX_SESSION_ALWAYS", raising=False)
+    assert in_active_session_at("USD_JPY", mon_gap) is False
+    monkeypatch.setenv("FX_SESSION_ALWAYS", "true")
+    assert in_active_session_at("USD_JPY", mon_gap) is True
+    sat = datetime(2026, 7, 18, 12, 0, 0)
+    assert in_active_session_at("EUR_USD", sat) is False
+
+
 def test_weekend_flatten_only_friday_lead(monkeypatch):
     monkeypatch.delenv("WEEKEND_FLATTEN_MINUTES", raising=False)
     monkeypatch.delenv("FX_WEEK_CLOSE_UTC", raising=False)

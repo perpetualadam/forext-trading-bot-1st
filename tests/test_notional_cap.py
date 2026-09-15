@@ -227,7 +227,11 @@ def test_skip_and_pass_reports(monkeypatch):
     positions["EUR_USD"] = _pos("EUR_USD", 1.0, 1.17)
     positions["USD_JPY"] = _pos("USD_JPY", 1.0, 150.0)
     skip_d = notional_cap_decision(1.35)
-    skip = format_notional_cap_skip_alert("GBP_USD", skip_d, nav=97.37, currency="GBP")
+    skip = format_notional_cap_skip_alert(
+        "GBP_USD", skip_d, nav=97.37, currency="GBP", direction="BUY"
+    )
+    assert "Candidate symbol: GBP_USD" in skip
+    assert "Candidate side: BUY" in skip
     assert "Existing counted gross exposure: 2.17 USD" in skip
     assert "Per-symbol existing exposure: [EUR_USD 1.17, USD_JPY 1.00]" in skip
     assert "Proposed additional exposure: 1.35 USD" in skip

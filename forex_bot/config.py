@@ -13,6 +13,15 @@ except ImportError:
 
 from dataclasses import dataclass, field
 
+from forex_bot.symbols import configured_symbols
+
+
+class _SymbolsDescriptor:
+    """``Config.SYMBOLS`` always reads FOREX_SYMBOLS (or the default six-pair universe)."""
+
+    def __get__(self, obj, owner) -> list[str]:
+        return configured_symbols()
+
 
 @dataclass(frozen=True)
 class PostgresConfig:
@@ -34,7 +43,7 @@ def _env_float(name: str, default: float) -> float:
 
 
 class Config:
-    SYMBOLS: list[str] = ["EUR_USD", "GBP_USD", "USD_JPY"]
+    SYMBOLS = _SymbolsDescriptor()
     # Starting equity for sizing (account currency). Override with BASE_BALANCE in .env.
     BASE_BALANCE: float = _env_float("BASE_BALANCE", 10000.0)
     TRADE_INTERVAL: int = 60

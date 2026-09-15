@@ -49,6 +49,8 @@ def test_open_fill_path_abort_if_live_window_but_legacy_orders_off(monkeypatch):
 def test_open_fill_path_window_paper_outside_hours(monkeypatch):
     monkeypatch.setenv("EXECUTION_MODE", "live_broker")
     monkeypatch.setenv("LIVE_TIMEZONE", "Europe/London")
+    monkeypatch.setenv("LIVE_EUR_USD_START", "13:00")
+    monkeypatch.setenv("LIVE_EUR_USD_END", "17:00")
     assert open_fill_path("EUR_USD", at_utc=_london_outside_window()) == "simulate"
 
 

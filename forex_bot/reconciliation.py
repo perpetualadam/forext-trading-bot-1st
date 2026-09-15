@@ -277,8 +277,10 @@ def fetch_broker_open_positions() -> dict[str, float]:
 
 
 def _norm_inst(s: str) -> str:
-    """OANDA uses underscores; normalize hyphens and case for comparisons."""
-    return (s or "").strip().upper().replace("-", "_")
+    """OANDA uses underscores; normalize hyphens/slashes and case for comparisons."""
+    from forex_bot.symbols import normalize_oanda_symbol
+
+    return normalize_oanda_symbol(s)
 
 
 def _classify(sym: str, msg: str) -> str:

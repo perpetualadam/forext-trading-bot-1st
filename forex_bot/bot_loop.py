@@ -75,6 +75,7 @@ from forex_bot.trading import (
     apply_market_impact,
     calculate_pnl,
     cap_position_units,
+    configured_max_portfolio_risk_pct,
     execute_trade,
     portfolio_risk_amount,
     portfolio_risk_cap_exceeded,
@@ -552,21 +553,35 @@ async def evaluate(symbol: str) -> None:
     ccy = str(acct.get("currency") or "")
     nav = acct.get("NAV")
     if cap_decision["exceeds"]:
-        msg = format_notional_cap_skip_alert(symbol, cap_decision, nav=nav, currency=ccy)
+        msg = format_notional_cap_skip_alert(
+            symbol, cap_decision, nav=nav, currency=ccy, direction=direction
+        )
         alert(msg)
         logger.warning("%s", msg)
         return
     logger.info(
         "%s",
-        format_notional_cap_report(symbol, cap_decision, nav=nav, currency=ccy, allowed=True),
+        format_notional_cap_report(
+            symbol, cap_decision, nav=nav, currency=ccy, allowed=True, direction=direction
+        ),
     )
 
     # Stop risk in account currency (handles USD_* quote conversion).
     new_risk_at_stop = stop_risk_account_ccy(symbol, float(price), float(sl_d), float(units))
     if portfolio_risk_cap_exceeded(current_equity(), new_risk_at_stop):
+        eq = current_equity()
+        open_risk = portfolio_risk_amount()
+        projected = open_risk + float(new_risk_at_stop)
+        cap_pct = configured_max_portfolio_risk_pct()
+        cap_amt = max(0.0, float(eq)) * cap_pct
         alert(
-            f"{symbol}: Skip open — portfolio stop risk would exceed MAX_PORTFOLIO_RISK_PCT "
-            f"(open≈{portfolio_risk_amount():.2f} + new≈{new_risk_at_stop:.2f} vs cap)."
+            f"{symbol}: Skip open — portfolio stop risk cap\n"
+            f"Candidate symbol: {symbol}\n"
+            f"Candidate side: {direction}\n"
+            f"Current stop-risk exposure: {open_risk:.2f}\n"
+            f"Projected stop-risk exposure: {projected:.2f}\n"
+            f"Configured cap: {cap_amt:.2f} ({cap_pct * 100:.2f}% of equity {eq:.2f})\n"
+            f"Rejection reason: projected stop risk exceeds MAX_PORTFOLIO_RISK_PCT"
         )
         return
 

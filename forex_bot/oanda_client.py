@@ -67,7 +67,9 @@ def official_env_label() -> str:
 
 def oanda_instrument(symbol: str) -> str:
     """InstrumentName: BASE_QUOTE with an underscore (EUR_USD), not hyphen or slash."""
-    return (symbol or "").strip().upper().replace("-", "_").replace("/", "_")
+    from forex_bot.symbols import normalize_oanda_symbol
+
+    return normalize_oanda_symbol(symbol)
 
 
 def build_api() -> API | None:

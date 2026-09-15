@@ -28,11 +28,28 @@ _TZ_ALIASES = {
     "england": "Europe/London",
 }
 
+# Historical London/NY/Tokyo filters used only when FX_SESSION_ALWAYS is off.
+# Symbols not listed (AUD_USD, USD_CAD, USD_CHF, …) default to 00:00–23:59 UTC.
 SESSION_WINDOWS: dict[str, list[tuple[str, str]]] = {
     "EUR_USD": [("08:00", "22:00")],
     "GBP_USD": [("08:00", "22:00")],
     "USD_JPY": [("00:00", "09:00"), ("13:00", "22:00")],
 }
+
+# LIVE_* fallback when a pair has no LIVE_<SYM>_START/END (24/5 local; weekend flatten still applies).
+_DEFAULT_LIVE_START = "00:00"
+_DEFAULT_LIVE_END = "23:59"
+
+
+def fx_session_always() -> bool:
+    """When true, skip London/NY/Tokyo session hour filters; FX week (Mon–Fri) still applies."""
+    return (os.getenv("FX_SESSION_ALWAYS") or "").strip().lower() in ("1", "true", "yes", "on")
+
+
+def _session_windows(symbol: str) -> list[tuple[str, str]]:
+    if fx_session_always():
+        return [("00:00", "23:59")]
+    return SESSION_WINDOWS.get(symbol, [("00:00", "23:59")])
 
 
 def _as_naive_utc(dt: datetime) -> datetime:
@@ -47,7 +64,7 @@ def in_active_session_at(symbol: str, at_utc: datetime) -> bool:
     now_utc = _as_naive_utc(at_utc)
     if not fx_market_open_at(now_utc):
         return False
-    sessions = SESSION_WINDOWS.get(symbol, [("00:00", "23:59")])
+    sessions = _session_windows(symbol)
     for start, end in sessions:
         s = datetime.strptime(start, "%H:%M").replace(
             year=now_utc.year, month=now_utc.month, day=now_utc.day
@@ -125,7 +142,7 @@ def in_active_session(symbol: str) -> bool:
 def pre_close_adjustment_at(symbol: str, at_utc: datetime) -> bool:
     """Like :func:`pre_close_adjustment` for a historical UTC timestamp."""
     now_utc = _as_naive_utc(at_utc)
-    sessions = SESSION_WINDOWS.get(symbol, [])
+    sessions = _session_windows(symbol)
     for start, end in sessions:
         _ = start
         e = datetime.strptime(end, "%H:%M").replace(
@@ -265,8 +282,10 @@ def _scalp_bounds_from_env(symbol: str) -> tuple[time, time] | None:
 
 def read_scalp_windows() -> dict[str, tuple[time, time]]:
     """Snapshot of optional scalp windows from env (same zone as LIVE_*). Re-read after restart."""
+    from forex_bot.config import Config
+
     out: dict[str, tuple[time, time]] = {}
-    for sym in ("EUR_USD", "GBP_USD", "USD_JPY"):
+    for sym in Config.SYMBOLS:
         b = _scalp_bounds_from_env(sym)
         if b:
             out[sym] = b
@@ -286,8 +305,8 @@ def symbol_live_window_status(
     """One-symbol live-window snapshot (local clock, UTC equivalent, in/out)."""
     now_utc, now_local, tz, tz_name, source = _local_clock(at_utc)
     sym = symbol.upper().strip()
-    live_start = _parse_hhmm(os.getenv(f"LIVE_{sym}_START", "13:00"), "13:00")
-    live_end = _parse_hhmm(os.getenv(f"LIVE_{sym}_END", "17:00"), "17:00")
+    live_start = _parse_hhmm(os.getenv(f"LIVE_{sym}_START", _DEFAULT_LIVE_START), _DEFAULT_LIVE_START)
+    live_end = _parse_hhmm(os.getenv(f"LIVE_{sym}_END", _DEFAULT_LIVE_END), _DEFAULT_LIVE_END)
     inside_live = _in_hhmm_window(live_start, live_end, now_local.time())
     scalp = _scalp_bounds_from_env(sym) if use_scalp_window else None
     inside_scalp = True
@@ -336,7 +355,7 @@ def live_windows_status(
     )
 
     now_utc, now_local, _tz, tz_name, source = _local_clock(at_utc)
-    syms = list(symbols or getattr(Config, "SYMBOLS", ["EUR_USD", "GBP_USD", "USD_JPY"]))
+    syms = list(symbols or list(Config.SYMBOLS))
     per = [symbol_live_window_status(s, use_scalp_window=use_scalp_window, at_utc=at_utc) for s in syms]
 
     paper = effective_paper_trading()
@@ -404,9 +423,8 @@ def is_live_trading(
     True if *local* clock (see :func:`resolve_live_timezone`) is inside the live *order* window.
 
     Env: ``LIVE_<SYMBOL>_START`` / ``LIVE_<SYMBOL>_END`` (``%H:%M`` in ``LIVE_TIMEZONE``).
-    Missing or invalid times fall back to ``13:00``–``17:00`` local.
-    ``Europe/London`` in September (BST, UTC+1) makes that ``12:00``–``16:00`` UTC; in winter GMT
-    it is ``13:00``–``17:00`` UTC — no manual edit.
+    Missing or invalid times fall back to ``00:00``–``23:59`` local (24/5; weekend flatten still applies).
+    Explicit overlap windows (e.g. ``13:00``–``17:00``) are opt-in per symbol.
 
     When ``use_scalp_window`` is True and both ``SCALP_<SYMBOL>_START`` / ``_END`` are set, the caller
     must also be inside that scalp sub-window (same timezone). If SCALP vars are unset,

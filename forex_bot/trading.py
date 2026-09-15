@@ -68,30 +68,45 @@ def apply_market_impact(units: float, base_price: float, direction: str) -> tupl
     return adjusted, float(impact)
 
 
-# Typical half-spread–style costs in price space (instrument-dependent; JPY quotes are larger).
+# Paper / window_paper half-spread in price (not used for live OANDA fills).
+# Explicit 1-pip majors except GBP_USD (1.5 pip, existing). Unknown → 1 pip via pip_size.
 SPREADS: dict[str, float] = {
     "EUR_USD": 0.0001,
     "GBP_USD": 0.00015,
     "USD_JPY": 0.01,
+    "AUD_USD": 0.0001,
+    "USD_CAD": 0.0001,
+    "USD_CHF": 0.0001,
 }
 
-# Stop / take-profit distances in *price units* (not pips). Must match instrument scale:
-# majors 1 pip = 0.0001; JPY pairs 1 pip = 0.01 (OANDA convention).
-# Defaults ≈ 20-pip stop, 40-pip TP (2:1 RR) per pair.
-SL_PRICE_DISTANCE: dict[str, float] = {
-    "EUR_USD": 0.0020,
-    "GBP_USD": 0.0020,
-    "USD_JPY": 0.20,
-}
+# Fallback SL when USE_ATR_STOPS is off or ATR is invalid. 20 pips → price via pip_size.
+# Preserves prior EUR/GBP 0.0020 and USD_JPY 0.20.
+SL_FALLBACK_PIPS = 20.0
 TP_RISK_REWARD = 2.0
+
+
+def sl_fallback_pips() -> float:
+    return max(0.0, _env_float("SL_FALLBACK_PIPS", SL_FALLBACK_PIPS))
 
 
 def sl_tp_price_distances(symbol: str) -> tuple[float, float]:
     """Return ``(stop_distance, take_profit_distance)`` in price for ``symbol``."""
-    sym = symbol.upper().strip()
-    sl = SL_PRICE_DISTANCE.get(sym, 0.0020)
+    from forex_bot.profit_protection import pip_size
+
+    sl = sl_fallback_pips() * pip_size(symbol)
     tp = sl * TP_RISK_REWARD
     return float(sl), float(tp)
+
+
+def simulated_half_spread(symbol: str) -> float:
+    """Half-spread in price for paper/window_paper only. Live broker uses the fill."""
+    from forex_bot.profit_protection import pip_size
+    from forex_bot.symbols import normalize_oanda_symbol
+
+    s = normalize_oanda_symbol(symbol)
+    if s in SPREADS:
+        return float(SPREADS[s])
+    return float(pip_size(s))
 
 
 def _env_bool(name: str, default: bool) -> bool:
@@ -106,8 +121,7 @@ def sl_tp_distance_for_entry(symbol: str, atr: float | None) -> tuple[float, flo
     Stop and take-profit **distance** in price units for a new entry.
 
     If ``USE_ATR_STOPS`` is true and ``atr`` is valid, uses ``SL_ATR_MULT * ATR`` (with
-    ``MIN_STOP_DISTANCE_PRICE`` as a floor when set). Otherwise uses fixed per-symbol
-    distances from :func:`sl_tp_price_distances` (normalizes across symbols only at a coarse level).
+    ``MIN_STOP_DISTANCE_PRICE`` as a floor when set).     Otherwise uses :func:`sl_tp_price_distances` (``SL_FALLBACK_PIPS`` × pip size).
     """
     use_atr = _env_bool("USE_ATR_STOPS", False)
     if use_atr and atr is not None and float(atr) > 0 and not math.isnan(float(atr)):
@@ -238,7 +252,7 @@ def apply_execution_costs(
 
     ``volatility`` is typically ATR in price terms. ``direction`` is the trade side (BUY pays offer, SELL hits bid).
     """
-    spread = SPREADS.get(symbol.upper().strip(), 0.0001)
+    spread = simulated_half_spread(symbol)
     spread *= _env_float("SPREAD_MULTIPLIER", 1.0)
     if strategy_type == "scalp":
         spread *= 1.2

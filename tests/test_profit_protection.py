@@ -76,6 +76,10 @@ def test_pip_size_majors_and_jpy():
     assert pip_size("EUR_USD") == 0.0001
     assert pip_size("GBP_USD") == 0.0001
     assert pip_size("USD_JPY") == 0.01
+    assert pip_size("AUD_USD") == 0.0001
+    assert pip_size("USD_CAD") == 0.0001
+    assert pip_size("USD_CHF") == 0.0001
+    assert pip_size("EUR_JPY") == 0.01
 
 
 def test_only_reaches_plus_10_no_protection():

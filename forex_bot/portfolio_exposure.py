@@ -202,6 +202,7 @@ def format_notional_cap_report(
     nav: float | None = None,
     currency: str = "",
     allowed: bool,
+    direction: str = "",
 ) -> str:
     """Full existing + proposed vs portfolio cap (skip alert or pass debug)."""
     by = decision.get("existing_by_symbol") or {}
@@ -223,15 +224,25 @@ def format_notional_cap_report(
         if nav is not None and currency
         else "Account NAV: (unknown)"
     )
+    side = (direction or "").upper().strip()
+    candidate = f"{symbol} {side}".strip()
     verb = "ALLOW because" if allowed else "SKIP because"
     cmp = "<=" if allowed else ">"
     headline = (
-        f"{symbol}: notional cap check passed"
+        f"{candidate}: notional cap check passed"
         if allowed
-        else f"{symbol}: Skip open — notional cap"
+        else f"{candidate}: Skip open — notional cap"
     )
+    reason = (
+        "resulting gross is within configured portfolio cap"
+        if allowed
+        else "resulting gross exposure exceeds configured portfolio cap"
+    )
+    extra = "" if allowed else f"Rejection reason: {reason}\n"
     return (
         f"{headline}\n"
+        f"Candidate symbol: {symbol}\n"
+        f"Candidate side: {side or '(unspecified)'}\n"
         f"Existing counted gross exposure: {existing:.2f} USD\n"
         f"Per-symbol existing exposure: {per_symbol}\n"
         f"Proposed additional exposure: {proposed:.2f} USD\n"
@@ -239,6 +250,7 @@ def format_notional_cap_report(
         f"Maximum portfolio gross exposure: {cap:.2f} USD\n"
         f"Portfolio limit: {pct * 100:.2f}% of NAV{inherit}\n"
         f"{nav_line}\n"
+        f"{extra}"
         f"Decision: {verb} {resulting:.2f} {cmp} {cap:.2f} "
         f"(open-position face value, not cash/margin; pending orders not counted)"
     )
@@ -250,9 +262,10 @@ def format_notional_cap_skip_alert(
     *,
     nav: float | None = None,
     currency: str = "",
+    direction: str = "",
 ) -> str:
     return format_notional_cap_report(
-        symbol, decision, nav=nav, currency=currency, allowed=False
+        symbol, decision, nav=nav, currency=currency, allowed=False, direction=direction
     )
 
 

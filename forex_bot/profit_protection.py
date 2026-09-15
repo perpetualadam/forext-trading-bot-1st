@@ -71,9 +71,13 @@ def profit_protection_log_ratchet_pips() -> float:
 
 
 def pip_size(symbol: str) -> float:
-    """OANDA-style pip: 0.01 for JPY quotes, 0.0001 otherwise."""
-    s = (symbol or "").upper().replace("-", "_").replace("/", "_")
-    return 0.01 if "JPY" in s else 0.0001
+    """OANDA-style pip from the quote currency: 0.01 if quote is JPY, else 0.0001."""
+    from forex_bot.symbols import quote_currency
+
+    quote = quote_currency(symbol)
+    if quote == "JPY":
+        return 0.01
+    return 0.0001
 
 
 def unrealized_profit_pips(
