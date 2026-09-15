@@ -364,14 +364,25 @@ async def execute_trade(
     If ``realized_pnl`` is None: **paper** mode uses deterministic simulation; **broker** modes
     require ``realized_pnl`` (raises when missing if ``STRICT_EXECUTION``).
 
-    When ``execution_kind`` is ``live`` and broker orders are enabled, attempts a real OANDA market
-    close and uses broker ``pl`` / fill price. On broker close failure, **raises** so callers do not
+    When ``execution_kind`` is ``live``, **always** issues an OANDA PositionClose and uses broker
+    ``pl`` / fill price. Missing broker enablement or close failure **raises** so callers do not
     drop local state while the broker position may still be open.
     """
     _ = sl, tp
     oanda_broker = False
     exit_px_model = float("nan")
-    if realized_pnl is None:
+    kind = (execution_kind or "simulated").strip().lower()
+    if kind == "live":
+        if not oanda_exec.use_oanda_live():
+            raise RuntimeError(
+                "live close requires broker orders (EXECUTION_MODE=live_broker or paper_broker)"
+            )
+        pnl, exit_px_model = await oanda_exec.execute_oanda_market_close(
+            symbol, size, direction, price
+        )
+        oanda_broker = True
+        alert(f"[OANDA LIVE] {symbol} {direction} {size:.2f} units PnL={pnl:.2f}")
+    elif realized_pnl is None:
         mode = get_execution_mode()
         if mode == ExecutionMode.PAPER:
             pnl = simulate_execution_deterministic(direction, price, size)
@@ -387,19 +398,6 @@ async def execute_trade(
     else:
         pnl = float(realized_pnl)
         exit_px_model = float(exit_price) if exit_price is not None else float("nan")
-        if (
-            execution_kind == "live"
-            and oanda_exec.use_oanda_live()
-            and exit_price is not None
-        ):
-            # Live broker close must succeed; do not fall back to model and clear local state.
-            pnl, exit_px_model = await oanda_exec.execute_oanda_market_close(
-                symbol, size, direction, price
-            )
-            oanda_broker = True
-            alert(
-                f"[OANDA LIVE] {symbol} {direction} {size:.2f} units PnL={pnl:.2f}"
-            )
 
     analytics.log_trade(pnl)
     strat = strategies.get(strategy_name)

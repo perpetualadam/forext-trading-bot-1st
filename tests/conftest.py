@@ -11,3 +11,6 @@ def _isolate_sizing_env(monkeypatch):
     monkeypatch.delenv("POSITION_RISK_PCT", raising=False)
     monkeypatch.delenv("POSITION_RISK_PCT_MAX", raising=False)
     monkeypatch.delenv("MIN_STOP_DISTANCE_PRICE", raising=False)
+    monkeypatch.setenv("EXECUTION_MODE", "paper")
+    monkeypatch.setenv("PAPER_TRADING", "true")
+    monkeypatch.setenv("USE_OANDA_LIVE", "false")

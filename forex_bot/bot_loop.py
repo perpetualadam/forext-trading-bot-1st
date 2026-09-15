@@ -13,7 +13,12 @@ from forex_bot.ai_ensemble import ai
 from forex_bot.alerts import alert
 from forex_bot.analytics import analytics
 from forex_bot.config import Config
-from forex_bot.execution import effective_paper_trading, pre_trade_entry_blocked_reason
+from forex_bot.execution import (
+    close_fill_path,
+    effective_paper_trading,
+    open_fill_path,
+    pre_trade_entry_blocked_reason,
+)
 from forex_bot.indicators import compute_indicators
 from forex_bot.nn_pred import compute_nn_pred
 import forex_bot.oanda_exec as oanda_exec
@@ -41,7 +46,6 @@ from forex_bot.session_rules import (
     live_window_log_enabled,
     log_live_windows,
     pre_close_adjustment,
-    simulation_layers_enabled,
     symbol_live_window_status,
     volatility_ok,
 )
@@ -223,13 +227,14 @@ async def evaluate(symbol: str) -> None:
                     time.time() - float(pos.open_time),
                 )
                 return
-            # LIVE WINDOW CHECK START
-            live_allowed = is_live_trading(symbol)
-            use_sim_layers = simulation_layers_enabled(symbol, effective_paper_trading())
-            # QUOTA overrides: per-symbol daily caps (when implemented) should only apply when
-            # use_sim_layers is True; broker-live path skips quotas.
-            _ = live_allowed
-            # LIVE WINDOW CHECK END
+            fill_path = close_fill_path(symbol, pos.execution_kind)
+            if fill_path == "abort_broker_disabled":
+                alert(
+                    f"{symbol}: Skip close — live position requires a broker fill but "
+                    f"EXECUTION_MODE/USE_OANDA_LIVE is not sending orders (fail closed)"
+                )
+                logger.error("%s: live close aborted — broker orders disabled", symbol)
+                return
 
             spr_c: float | None
             slp_c: float | None
@@ -237,7 +242,7 @@ async def evaluate(symbol: str) -> None:
             exit_price_exec: float
             lat_ms: int
 
-            if use_sim_layers:
+            if fill_path == "simulate":
                 # SIMULATION CONTROL START
                 lat_ms = await apply_latency()
                 route_lb = _env_int("HYBRID_ROUTE_LOOKBACK", 60)
@@ -263,10 +268,16 @@ async def evaluate(symbol: str) -> None:
                 impact_amt = 0.0
                 exit_price_exec = float(price)
                 pnl = calculate_pnl(pos, exit_price_exec)
-                alert(
-                    f"[EXECUTION] LIVE_RAW {symbol} close mid={price:.5f} "
-                    f"(no latency/impact/spread sim; live_allowed={live_allowed})"
-                )
+                if fill_path == "broker":
+                    alert(
+                        f"[EXECUTION] BROKER_CLOSE {symbol} mid={price:.5f} "
+                        f"(PositionClose; local mid is pre-fill only)"
+                    )
+                else:
+                    alert(
+                        f"[EXECUTION] MID {symbol} close mid={price:.5f} "
+                        f"(paper/window_paper; no broker order)"
+                    )
 
             try:
                 pnl = await execute_trade(
@@ -439,13 +450,21 @@ async def evaluate(symbol: str) -> None:
     # LIVE WINDOW CHECK START
     live_allowed = is_live_trading(symbol)
     paper = effective_paper_trading()
-    use_live_fill = (not paper) and live_allowed
+    fill_path = open_fill_path(symbol)
+    if fill_path == "abort_broker_disabled":
+        alert(
+            f"{symbol}: Skip open — inside live window but broker orders are disabled "
+            f"(set EXECUTION_MODE=live_broker or paper_broker; fail closed, no local live fill)"
+        )
+        logger.error("%s: live open aborted — broker orders disabled", symbol)
+        return
+    use_live_fill = fill_path == "broker"
     if use_live_fill:
         exec_kind = "live"
     else:
         exec_kind = "simulated" if paper else "window_paper"
 
-    use_sim_layers = simulation_layers_enabled(symbol, paper)
+    use_sim_layers = fill_path == "simulate"
     if live_window_log_enabled():
         win = symbol_live_window_status(symbol)
         logger.info(
@@ -504,7 +523,7 @@ async def evaluate(symbol: str) -> None:
     impact_amt: float
     position_units: float = float(units)
 
-    if use_live_fill and oanda_exec.use_oanda_live():
+    if fill_path == "broker":
         client_order_id = generate_client_order_id()
         t_reserve = time.perf_counter()
         if not try_begin_order_submission(
@@ -589,8 +608,8 @@ async def evaluate(symbol: str) -> None:
         slip_amt = 0.0
         impact_amt = 0.0
         alert(
-            f"[EXECUTION] LIVE_RAW {symbol} open mid={price:.5f} "
-            f"(no latency/impact/spread sim; live_allowed={live_allowed} exec_kind={exec_kind})"
+            f"[EXECUTION] MID {symbol} open mid={price:.5f} "
+            f"(paper/window_paper; no broker order; live_allowed={live_allowed} exec_kind={exec_kind})"
         )
 
     if direction == "BUY":

@@ -295,17 +295,25 @@ def live_windows_status(
 ) -> dict[str, Any]:
     """Full live-window status for logs and ``/health`` / ``/system``."""
     from forex_bot.config import Config
-    from forex_bot.execution import effective_paper_trading, get_execution_mode
+    from forex_bot.execution import (
+        broker_orders_enabled,
+        effective_paper_trading,
+        get_execution_mode,
+    )
 
     now_utc, now_local, _tz, tz_name, source = _local_clock(at_utc)
     syms = list(symbols or getattr(Config, "SYMBOLS", ["EUR_USD", "GBP_USD", "USD_JPY"]))
     per = [symbol_live_window_status(s, use_scalp_window=use_scalp_window, at_utc=at_utc) for s in syms]
+
     paper = effective_paper_trading()
     any_inside = any(p["inside"] for p in per)
+    broker_on = broker_orders_enabled()
     if paper:
-        fills = "paper (EXECUTION_MODE=paper / PAPER_TRADING) — window does not send broker orders"
-    elif any_inside:
-        fills = "live broker path for symbols inside the window"
+        fills = "paper (EXECUTION_MODE=paper / PAPER_TRADING) — never sends broker orders"
+    elif any_inside and broker_on:
+        fills = "live broker — symbols inside the window send OANDA market orders"
+    elif any_inside and not broker_on:
+        fills = "blocked — inside live window but broker orders disabled (fail closed, no local live fill)"
     else:
         fills = "window_paper — outside local live hours; simulated fills until the window opens"
     return {
@@ -317,6 +325,7 @@ def live_windows_status(
         "now_utc": now_utc.strftime("%Y-%m-%d %H:%M"),
         "execution_mode": get_execution_mode().value,
         "paper_trading": paper,
+        "broker_orders_enabled": broker_on,
         "any_symbol_inside": any_inside,
         "fills": fills,
         "symbols": per,
@@ -374,7 +383,9 @@ def is_live_trading(
     )
 
 
-def execution_simulations_enabled(symbol: str, paper_trading: bool) -> bool:
+def execution_simulations_enabled(
+    symbol: str, paper_trading: bool, at_utc: datetime | None = None
+) -> bool:
     """
     Returns ``False`` **only** when ``not paper_trading`` and ``is_live_trading(symbol)`` (broker-live path).
     Otherwise ``True`` so latency / impact / spread / slippage run for paper or off-window learning.
@@ -384,10 +395,12 @@ def execution_simulations_enabled(symbol: str, paper_trading: bool) -> bool:
     """
     if paper_trading:
         return True
-    return not is_live_trading(symbol)
+    return not is_live_trading(symbol, at_utc=at_utc)
 
 
-def simulation_layers_enabled(symbol: str, paper_trading: bool) -> bool:
+def simulation_layers_enabled(
+    symbol: str, paper_trading: bool, at_utc: datetime | None = None
+) -> bool:
     """
     Same as :func:`execution_simulations_enabled` unless ``SIMULATION_<SYMBOL>=false`` (or 0/off),
     which forces **off** even for paper / off-window (raw mid only).
@@ -397,4 +410,4 @@ def simulation_layers_enabled(symbol: str, paper_trading: bool) -> bool:
     raw = (os.getenv(f"SIMULATION_{sym}") or "").strip().lower()
     if raw in ("0", "false", "no", "off"):
         return False
-    return execution_simulations_enabled(symbol, paper_trading)
+    return execution_simulations_enabled(symbol, paper_trading, at_utc=at_utc)

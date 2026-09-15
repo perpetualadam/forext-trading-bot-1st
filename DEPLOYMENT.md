@@ -4,7 +4,7 @@
 
 | Feature | Included? | Notes |
 |--------|-----------|--------|
-| Live / practice OANDA toggle | Yes | `TRADING_MODE` + `POST /set_mode`. Affects **which OANDA API host** is used for **candles**. |
+| Live / practice OANDA toggle | Yes | `TRADING_MODE` + `POST /set_mode` selects the **OANDA REST host** (practice vs live). **Orders** are gated by `EXECUTION_MODE` (`paper` / `paper_broker` / `live_broker`) and the `LIVE_*` window. |
 | AI ensemble (local / external) | Yes | Default **LocalLLM** is a deterministic **quant stub** (MA trend + momentum + ATR); real providers use API keys. `ExternalLLMAPI` exists but is not registered by default. |
 | Indicators (MA, RSI, MACD, BB, ATR) | Yes | ATR uses true range + rolling mean (more standard than the original shortcut). |
 | BUY / SELL | Yes | Ensemble returns a direction (quant stub uses `ma_fast` vs `ma_slow`); RL can override with SKIP. |
@@ -17,9 +17,9 @@
 
 These are inherited from or adjacent to the original design; they are **not** a production-ready trading system.
 
-1. **No real broker execution** — `execute_trade` simulates PnL with `random.uniform`. Switching to **live** does **not** place OANDA orders. `OANDA_ACCOUNT_ID` is currently **unused**.
+1. **Broker execution is real when `EXECUTION_MODE` is `paper_broker` or `live_broker`.** Inside the `LIVE_*` window the bot sends official v20 market opens (`MarketOrderRequest`, FOK, OPEN_ONLY, optional SL/TP on fill) and closes (`PUT .../positions/{instrument}/close`). `OANDA_ACCOUNT_ID` is required. `TRADING_MODE=live` alone only selects `api-fxtrade.oanda.com`; it does **not** place orders if `EXECUTION_MODE=paper`. AccountSummary NAV is fetched every cycle for **capital-first sizing / caps** even when no order is sent.
 2. **Strategy names are labels** — `scalp` / `trend` / `mean_reversion` do not change signal logic; only the meta-learner weights and random selection differ.
-3. **Session clock** — `in_active_session` and `pre_close_adjustment` compare **UTC** wall time to the configured `HH:MM` strings. If you meant London or New York session, convert those windows to UTC or use a timezone-aware helper.
+3. **Session clock** — FX session hours (`in_active_session`) are still UTC. **Live order windows** (`LIVE_*_START` / `END`) are local to `LIVE_TIMEZONE` (e.g. `Europe/London` applies BST vs GMT).
 4. **Daily report timezone** — `daily_report` uses **local** `datetime.now().date()` while sessions use **UTC**, so “one report per calendar day” may not align with FX session boundaries.
 5. **`evolve()` can silence the bot** — After enough trades, strategies with Sharpe &lt; 0 are disabled. If **all** are disabled, `select_strategy()` returns `None` and **no trades** run until restart or code changes.
 6. **`exit_price` in logs** — `price + pnl` is a placeholder, not a realistic exit quote for FX.
@@ -130,5 +130,5 @@ Without Postgres, trade rows are not persisted; the API still serves in-memory m
 
 - Secrets: inject via orchestrator secrets, not committed `.env`.
 - Do not scale the `bot` service horizontally without redesigning state and the trading loop.
-- Add real order placement behind a feature flag, idempotency, and risk checks if you intend **live** execution.
+- Live execution is already behind `EXECUTION_MODE`, the live window, kill switch, reconcile gate, and notional/NAV caps. Do not set `live_broker` unless you intend real orders.
 - Use HTTPS in front of the API (reverse proxy) and protect `POST /set_mode`.

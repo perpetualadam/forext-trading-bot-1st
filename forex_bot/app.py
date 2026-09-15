@@ -19,6 +19,8 @@ from forex_bot.bot_loop import run_bot
 from forex_bot.config import Config
 from forex_bot.experiment import experiment_snapshot_with_voters
 from forex_bot.execution import (
+    broker_orders_enabled,
+    effective_paper_trading,
     execution_mode_explicit,
     get_execution_mode,
     halt_trading,
@@ -121,10 +123,14 @@ def _trading_metrics_payload() -> dict[str, Any]:
         "max_portfolio_risk_pct_cap": round(cap * 100.0, 2) if cap > 0 else 0.0,
         "trading_mode": Config.TRADING_MODE,
         "paper_trading": Config.PAPER_TRADING,
+        "execution_mode": get_execution_mode().value,
+        "effective_paper_trading": effective_paper_trading(),
+        "broker_orders_enabled": broker_orders_enabled(),
         "sizing_note": (
-            "Per-trade: POSITION_RISK_PCT (capped by POSITION_RISK_PCT_MAX); portfolio: "
-            "sum of stop risks vs MAX_PORTFOLIO_RISK_PCT; optional USE_ATR_STOPS + SL_ATR_MULT; "
-            "MAX_POSITION_UNITS hard cap. TRADING_MODE does not change sizing."
+            "If POSITION_NOTIONAL_PCT_OF_NAV>0, each open is that fraction of broker NAV "
+            "(face value), floored to whole OANDA units; else POSITION_RISK_PCT vs stop. "
+            "Portfolio: stop-risk vs MAX_PORTFOLIO_RISK_PCT plus optional gross USD notional cap. "
+            "TRADING_MODE only selects the OANDA host; EXECUTION_MODE selects fills."
         ),
     }
 
@@ -152,6 +158,8 @@ def _system_snapshot() -> dict[str, Any]:
     return {
         "execution_mode": get_execution_mode().value,
         "execution_mode_explicit": execution_mode_explicit(),
+        "effective_paper_trading": effective_paper_trading(),
+        "broker_orders_enabled": broker_orders_enabled(),
         "trading_mode_oanda": Config.TRADING_MODE,
         "paper_trading_legacy": Config.PAPER_TRADING,
         "lifespan_phase": bot_state.get("lifespan_phase"),
@@ -188,7 +196,8 @@ def _health_alert_text(prefix: str) -> str:
         f"{' '.join(insides)}"
     )
     return (
-        f"{prefix} | mode={h['trading_mode']} paper={h['paper_trading']} | "
+        f"{prefix} | host={h['trading_mode']} exec={h['execution_mode']} "
+        f"broker_orders={h['broker_orders_enabled']} paper={h['effective_paper_trading']} | "
         f"equity={h['equity']:.2f} sharpe={h['sharpe']:.2f} "
         f"winrate={h['winrate']:.2%} drawdown={h['drawdown']:.2f} | "
         f"symbols={h['symbols']}"

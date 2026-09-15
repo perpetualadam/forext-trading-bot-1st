@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from datetime import datetime
 from enum import Enum
 
 
@@ -123,3 +124,47 @@ def pre_trade_entry_blocked_reason() -> str | None:
     from forex_bot.reconciliation import reconcile_entry_blocked_reason
 
     return reconcile_entry_blocked_reason()
+
+
+def broker_orders_enabled() -> bool:
+    """True when the execution profile allows OANDA OrderCreate / PositionClose."""
+    from forex_bot.oanda_exec import use_oanda_live
+
+    return bool(use_oanda_live())
+
+
+def open_fill_path(symbol: str, at_utc: datetime | None = None) -> str:
+    """
+    How a **new open** is filled.
+
+    - ``broker`` — market order to OANDA (inside live window, not paper).
+    - ``simulate`` — latency / impact / spread model (paper or off-window learning).
+    - ``mid`` — local mid only (simulation layers forced off).
+    - ``abort_broker_disabled`` — live window requires a broker fill but orders are off.
+      Fail closed: never invent a local "live" fill.
+    """
+    from forex_bot.session_rules import is_live_trading, simulation_layers_enabled
+
+    paper = effective_paper_trading()
+    if (not paper) and is_live_trading(symbol, at_utc=at_utc):
+        return "broker" if broker_orders_enabled() else "abort_broker_disabled"
+    if simulation_layers_enabled(symbol, paper, at_utc=at_utc):
+        return "simulate"
+    return "mid"
+
+
+def close_fill_path(symbol: str, execution_kind: str | None = None) -> str:
+    """
+    How a **close** is filled.
+
+    Live-tagged positions always require a broker close (fail closed if orders are off),
+    even after the live window ends. Paper / window_paper stay local.
+    """
+    kind = (execution_kind or "").strip().lower()
+    if kind == "live":
+        return "broker" if broker_orders_enabled() else "abort_broker_disabled"
+    from forex_bot.session_rules import simulation_layers_enabled
+
+    if simulation_layers_enabled(symbol, effective_paper_trading()):
+        return "simulate"
+    return "mid"
