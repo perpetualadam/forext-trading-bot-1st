@@ -34,13 +34,24 @@ from forex_bot.orders import (
 from forex_bot.portfolio_exposure import (
     approx_gross_usd_notional_for,
     configured_max_gross_usd,
+    format_notional_cap_report,
+    format_notional_cap_skip_alert,
+    notional_cap_decision,
     notional_pct_of_nav,
-    would_exceed_cap_if_opening,
+    portfolio_gross_notional_pct_of_nav,
 )
 from forex_bot.portfolio import PortfolioEngine
 from forex_bot.positions import Position, close_position, get_position, open_position
+from forex_bot.profit_protection import (
+    apply_profit_protection,
+    mark_protection_close_attempt,
+    pip_size as _pip_size,
+    protection_close_allowed,
+    seed_position_mfe,
+)
 from forex_bot.rl_agent import RLAgent
 from forex_bot.session_rules import (
+    flatten_for_weekend,
     in_active_session,
     is_live_trading,
     live_window_log_enabled,
@@ -144,11 +155,6 @@ def _position_log_enabled() -> bool:
     return (os.getenv("POSITION_LOG") or "1").strip().lower() not in ("0", "false", "no", "off")
 
 
-def _pip_size(symbol: str) -> float:
-    s = symbol.upper().replace("-", "_")
-    return 0.01 if "JPY" in s else 0.0001
-
-
 def _log_open_position_line(symbol: str, pos: Position, price: float) -> None:
     """Lightweight snapshot: no extra API/DB; uses current bar mid from evaluate()."""
     mtm = calculate_pnl(pos, price)
@@ -203,23 +209,46 @@ async def evaluate(symbol: str) -> None:
     record_mid(symbol, price)
 
     pos = get_position(symbol)
-    # Session gate blocks *new entries* only — always manage open risk (SL/TP) first.
-    if pos is None and not in_active_session(symbol):
-        alert(f"{symbol}: Market closed, skipping trade")
+    weekend_flat = flatten_for_weekend()
+    # Session / weekend-flatten gates block *new entries* only — always manage open risk first.
+    if pos is None and (not in_active_session(symbol) or weekend_flat):
+        if weekend_flat:
+            logger.info("%s: skip new open — weekend flatten window (before Friday FX close)", symbol)
+        else:
+            alert(f"{symbol}: Market closed, skipping trade")
         return
 
     if pos:
         if _position_log_enabled():
             _log_open_position_line(symbol, pos, price)
-        close_hit = False
+        seed_position_mfe(pos, price, raw)
+        pp = apply_profit_protection(pos, price, ohlcv=raw)
+        sl_tp_hit = False
         if pos.direction == "BUY":
-            close_hit = price <= pos.stop_loss or price >= pos.take_profit
+            sl_tp_hit = price <= pos.stop_loss or price >= pos.take_profit
         else:
-            close_hit = price >= pos.stop_loss or price <= pos.take_profit
+            sl_tp_hit = price >= pos.stop_loss or price <= pos.take_profit
+        protect_hit = bool(pp.should_close)
+        if protect_hit and not protection_close_allowed(pos):
+            logger.warning(
+                "%s: profit-protection close deferred — previous close attempt still cooling down",
+                symbol,
+            )
+            protect_hit = False
+        close_hit = sl_tp_hit
 
-        if close_hit:
+        if weekend_flat and not close_hit and not protect_hit:
+            alert(f"{symbol}: Weekend flatten — closing before Friday FX close (avoid weekend gap)")
+
+        if close_hit or weekend_flat or protect_hit:
             mh = _min_position_hold_sec()
-            if mh > 0 and (time.time() - float(pos.open_time)) < mh:
+            if (
+                close_hit
+                and not weekend_flat
+                and not protect_hit
+                and mh > 0
+                and (time.time() - float(pos.open_time)) < mh
+            ):
                 logger.debug(
                     "%s: SL/TP touched but min hold %.0fs not met (age=%.1fs)",
                     symbol,
@@ -229,6 +258,8 @@ async def evaluate(symbol: str) -> None:
                 return
             fill_path = close_fill_path(symbol, pos.execution_kind)
             if fill_path == "abort_broker_disabled":
+                if protect_hit:
+                    mark_protection_close_attempt(pos)
                 alert(
                     f"{symbol}: Skip close — live position requires a broker fill but "
                     f"EXECUTION_MODE/USE_OANDA_LIVE is not sending orders (fail closed)"
@@ -279,6 +310,22 @@ async def evaluate(symbol: str) -> None:
                         f"(paper/window_paper; no broker order)"
                     )
 
+            if protect_hit:
+                mark_protection_close_attempt(pos)
+            close_reason = "sl_tp" if sl_tp_hit else (
+                "weekend_flatten" if weekend_flat and not protect_hit else (
+                    "profit_protection" if protect_hit else "close"
+                )
+            )
+            diagnostics = None
+            try:
+                from forex_bot.trade_diagnostics import snapshot_from_position
+
+                diagnostics = snapshot_from_position(
+                    pos, exit_reason=close_reason, exit_price=exit_price_exec
+                )
+            except Exception:
+                logger.exception("%s: trade diagnostics snapshot failed (ignored)", symbol)
             try:
                 pnl = await execute_trade(
                     pos.symbol,
@@ -293,6 +340,7 @@ async def evaluate(symbol: str) -> None:
                     exit_price=exit_price_exec,
                     spread_component=spr_c,
                     slippage_component=slp_c,
+                    diagnostics=diagnostics,
                 )
             except Exception as exc:
                 logger.exception("%s: close execution/logging failed: %s", symbol, exc)
@@ -300,7 +348,8 @@ async def evaluate(symbol: str) -> None:
             close_position(symbol)
             rl_agent.update(pos.rl_state, pos.direction, pnl)
             logger.info(
-                "[CLOSE] %s | Dir=%s | Units=%.4f | PnL=%.5f | entry=%.5f exit=%.5f | state=%s",
+                "[CLOSE] %s | Dir=%s | Units=%.4f | PnL=%.5f | entry=%.5f exit=%.5f | "
+                "state=%s | reason=%s",
                 symbol,
                 pos.direction,
                 pos.units,
@@ -308,6 +357,7 @@ async def evaluate(symbol: str) -> None:
                 pos.entry_price,
                 exit_price_exec,
                 pos.rl_state,
+                close_reason,
             )
         return
 
@@ -407,18 +457,20 @@ async def evaluate(symbol: str) -> None:
         units = math.floor(float(units) + 1e-9)
         if units < 1:
             logger.info(
-                "%s: skip — 2%% NAV size rounds below 1 OANDA unit (NAV=%.2f)",
+                "%s: skip — per-trade notional size rounds below 1 OANDA unit (NAV=%.2f)",
                 symbol,
                 balance,
             )
             return
         logger.info(
-            "[SIZE] %s units=%.0f notional≈%.2f USD (%.2f%% of NAV %.2f) cap≈%.2f USD",
+            "[SIZE] %s units=%.0f notional≈%.2f USD (per-trade %.2f%% of NAV %.2f; "
+            "portfolio cap %.2f%% ≈ %.2f USD)",
             symbol,
             units,
-            abs(units) * float(price),
+            approx_gross_usd_notional_for(symbol, float(units), float(price)),
             notional_pct_of_nav() * 100.0,
             balance,
+            portfolio_gross_notional_pct_of_nav() * 100.0,
             configured_max_gross_usd(),
         )
 
@@ -495,18 +547,19 @@ async def evaluate(symbol: str) -> None:
         )
 
     approx_add = approx_gross_usd_notional_for(symbol, float(units), float(price))
-    if would_exceed_cap_if_opening(approx_add):
-        acct = last_account_summary()
-        ccy = acct.get("currency") or ""
-        nav = acct.get("NAV")
-        nav_bit = f"; account NAV={nav:.2f} {ccy}" if nav is not None and ccy else ""
-        cap = configured_max_gross_usd()
-        alert(
-            f"{symbol}: Skip open — notional cap "
-            f"(add ≈ {approx_add:.2f} USD vs cap {cap:.2f} USD, not cash{nav_bit})"
-        )
-        logger.warning("%s: exposure cap blocks open (approx USD notional add)", symbol)
+    cap_decision = notional_cap_decision(approx_add)
+    acct = last_account_summary()
+    ccy = str(acct.get("currency") or "")
+    nav = acct.get("NAV")
+    if cap_decision["exceeds"]:
+        msg = format_notional_cap_skip_alert(symbol, cap_decision, nav=nav, currency=ccy)
+        alert(msg)
+        logger.warning("%s", msg)
         return
+    logger.info(
+        "%s",
+        format_notional_cap_report(symbol, cap_decision, nav=nav, currency=ccy, allowed=True),
+    )
 
     # Stop risk in account currency (handles USD_* quote conversion).
     new_risk_at_stop = stop_risk_account_ccy(symbol, float(price), float(sl_d), float(units))
@@ -619,6 +672,16 @@ async def evaluate(symbol: str) -> None:
         stop_loss = entry_price + sl_d
         take_profit = entry_price - tp_d
 
+    atr_entry = None
+    try:
+        from forex_bot.indicators import latest_atr_price
+        from forex_bot.profit_protection import atr_to_pips, profit_protection_atr_period
+
+        atr_px = latest_atr_price(raw, profit_protection_atr_period())
+        if atr_px is not None:
+            atr_entry = atr_to_pips(symbol, atr_px)
+    except Exception:
+        logger.exception("%s: ATR-at-entry snapshot failed (ignored)", symbol)
     open_position(
         Position(
             symbol=symbol,
@@ -631,6 +694,7 @@ async def evaluate(symbol: str) -> None:
             strategy_name=strategy_name,
             rl_state=state,
             execution_kind=exec_kind,
+            atr_at_entry_pips=atr_entry,
         )
     )
     alert(

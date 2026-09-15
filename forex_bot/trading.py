@@ -285,6 +285,7 @@ def position_sizing(
     if balance_eff < 1e-12:
         return 0.0
 
+    # Per-trade face-value only. Portfolio book cap is MAX_PORTFOLIO_GROSS_NOTIONAL_PCT_OF_NAV.
     notional_pct = _env_float("POSITION_NOTIONAL_PCT_OF_NAV", 0.0)
     if notional_pct > 0:
         from forex_bot.portfolio_exposure import units_for_account_notional
@@ -354,6 +355,7 @@ async def execute_trade(
     exit_price: float | None = None,
     spread_component: float | None = None,
     slippage_component: float | None = None,
+    diagnostics: dict | None = None,
 ) -> float:
     """
     Log and record a trade. ``price`` is entry for a close; ``exit_price`` if given is the modelled exit.
@@ -422,6 +424,20 @@ async def execute_trade(
             exit_px = price - pnl / size
     else:
         exit_px = price + pnl
+    if diagnostics:
+        try:
+            from forex_bot.trade_diagnostics import emit_trade_result, finalize_diagnostics
+
+            diagnostics = finalize_diagnostics(
+                diagnostics,
+                symbol=symbol,
+                direction=direction,
+                entry_price=price,
+                exit_price=exit_px,
+            )
+            emit_trade_result(diagnostics)
+        except Exception:
+            logger.exception("trade diagnostics emit failed (ignored)")
     log_trade_pg(
         symbol,
         strategy_name,
@@ -431,6 +447,7 @@ async def execute_trade(
         price,
         exit_px,
         execution_kind=execution_kind,
+        diagnostics=diagnostics,
     )
     tag = _alert_prefix_for_execution(execution_kind, oanda_broker=oanda_broker)
     if exit_price is not None:

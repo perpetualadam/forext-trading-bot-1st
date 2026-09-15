@@ -5,7 +5,13 @@ from __future__ import annotations
 from oandapyV20.contrib.requests import MarketOrderRequest, PositionCloseRequest
 from oandapyV20.definitions.orders import OrderPositionFill, TimeInForce
 
-from forex_bot.oanda_client import official_env_label, official_rest_host, oanda_instrument
+from forex_bot.oanda_client import (
+    _is_transient_transport,
+    _oanda_request,
+    official_env_label,
+    official_rest_host,
+    oanda_instrument,
+)
 from forex_bot.oanda_exec import _abs_units_decimal, _order_units_for_open
 
 
@@ -52,3 +58,35 @@ def test_position_close_units_are_positive_strings():
 def test_open_units_signed():
     assert _order_units_for_open(10, "BUY") == 10
     assert _order_units_for_open(10, "SELL") == -10
+
+
+def test_ssl_eof_is_transient_transport():
+    exc = ConnectionError(
+        "HTTPSConnectionPool(host='api-fxtrade.oanda.com', port=443): "
+        "Max retries exceeded with url: /v3/accounts/x/openPositions "
+        "(Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] "
+        "EOF occurred in violation of protocol (_ssl.c:1010)')))"
+    )
+    assert _is_transient_transport(exc) is True
+    assert _is_transient_transport(ValueError("bad units")) is False
+
+
+def test_oanda_request_retries_ssl_then_succeeds(monkeypatch):
+    monkeypatch.setattr("forex_bot.oanda_client.time.sleep", lambda _s: None)
+
+    class FakeAPI:
+        def __init__(self):
+            self.n = 0
+
+        def request(self, _r):
+            self.n += 1
+            if self.n == 1:
+                raise ConnectionError(
+                    "Max retries exceeded (Caused by SSLError UNEXPECTED_EOF_WHILE_READING)"
+                )
+            return {"positions": []}
+
+    api = FakeAPI()
+    out = _oanda_request(api, object(), context="open positions")
+    assert out == {"positions": []}
+    assert api.n == 2

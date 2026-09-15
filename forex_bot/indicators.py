@@ -79,3 +79,27 @@ def compute_indicators(
     out["trend"] = out["trend_strength"]
     out["volatility"] = out["atr"]
     return out
+
+
+def latest_atr_price(df: pd.DataFrame, period: int = 14) -> float | None:
+    """Last ATR in **price** units (same as high/low). None if invalid or too few bars."""
+    if df is None:
+        return None
+    try:
+        if df.empty or period < 2:
+            return None
+    except AttributeError:
+        return None
+    if not {"high", "low", "close"}.issubset(set(df.columns)):
+        return None
+    if len(df) < int(period) + 1:
+        return None
+    series = _true_range(df["high"], df["low"], df["close"]).rolling(int(period)).mean()
+    val = series.iloc[-1]
+    try:
+        atr = float(val)
+    except (TypeError, ValueError):
+        return None
+    if atr != atr or atr <= 0:
+        return None
+    return atr

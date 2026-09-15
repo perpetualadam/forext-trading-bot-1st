@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS trades (
 # Existing deployments created before trading_mode existed
 ALTER_TRADING_MODE_SQL = "ALTER TABLE trades ADD COLUMN IF NOT EXISTS trading_mode TEXT;"
 ALTER_EXECUTION_KIND_SQL = "ALTER TABLE trades ADD COLUMN IF NOT EXISTS execution_kind TEXT;"
+ALTER_TRADES_DIAGNOSTICS_SQL = "ALTER TABLE trades ADD COLUMN IF NOT EXISTS diagnostics JSONB;"
 
 CREATE_RECONCILE_METADATA_SQL = """
 CREATE TABLE IF NOT EXISTS reconcile_metadata (
@@ -107,6 +108,7 @@ def get_connection() -> PGConnection | None:
         _pg_cursor.execute(CREATE_TRADES_SQL)
         _pg_cursor.execute(ALTER_TRADING_MODE_SQL)
         _pg_cursor.execute(ALTER_EXECUTION_KIND_SQL)
+        _pg_cursor.execute(ALTER_TRADES_DIAGNOSTICS_SQL)
         _pg_cursor.execute(CREATE_RECONCILE_METADATA_SQL)
         _pg_cursor.execute(CREATE_OPERATIONAL_EVENT_LOG_TABLE_SQL)
         _pg_cursor.execute(CREATE_OPERATIONAL_EVENT_LOG_INDEX_SQL)
@@ -131,6 +133,7 @@ def log_trade_pg(
     exit_price: float,
     *,
     execution_kind: str = "simulated",
+    diagnostics: dict[str, Any] | None = None,
 ) -> None:
     with _pg_lock:
         conn = get_connection()
@@ -142,9 +145,10 @@ def log_trade_pg(
             _pg_cursor.execute(
                 """
                 INSERT INTO trades (
-                    time, symbol, strategy, direction, pnl, size, entry_price, exit_price, trading_mode, execution_kind
+                    time, symbol, strategy, direction, pnl, size, entry_price, exit_price,
+                    trading_mode, execution_kind, diagnostics
                 )
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 """,
                 (
                     datetime.now(),
@@ -157,6 +161,7 @@ def log_trade_pg(
                     exit_price,
                     mode,
                     kind,
+                    Json(diagnostics) if diagnostics else None,
                 ),
             )
             conn.commit()
@@ -172,7 +177,8 @@ def fetch_all_trades_ordered() -> list[dict[str, Any]]:
             return []
         _pg_cursor.execute(
             """
-            SELECT id, time, symbol, strategy, direction, pnl, size, entry_price, exit_price, trading_mode, execution_kind
+            SELECT id, time, symbol, strategy, direction, pnl, size, entry_price, exit_price,
+                   trading_mode, execution_kind, diagnostics
             FROM trades ORDER BY time DESC
             """
         )
@@ -189,6 +195,7 @@ def fetch_all_trades_ordered() -> list[dict[str, Any]]:
             "exit_price",
             "trading_mode",
             "execution_kind",
+            "diagnostics",
         ]
         return [dict(zip(cols, r)) for r in rows]
 

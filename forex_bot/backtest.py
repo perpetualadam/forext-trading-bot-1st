@@ -42,6 +42,7 @@ from forex_bot.positions import Position, close_position, get_position, open_pos
 import forex_bot.positions as posmod
 from forex_bot.rl_agent import RLAgent
 from forex_bot.session_rules import (
+    flatten_for_weekend_at,
     in_active_session_at,
     pre_close_adjustment_at,
     simulation_layers_enabled,
@@ -222,7 +223,8 @@ async def _backtest_bar(
     pos = get_position(symbol)
 
     # Session gate blocks new entries only — still manage open SL/TP.
-    if pos is None and not in_active_session_at(symbol, now_utc):
+    weekend_flat = flatten_for_weekend_at(now_utc)
+    if pos is None and (not in_active_session_at(symbol, now_utc) or weekend_flat):
         return
 
     if pos:
@@ -232,9 +234,11 @@ async def _backtest_bar(
         else:
             close_hit = price >= pos.stop_loss or price <= pos.take_profit
 
-        if close_hit:
+        if close_hit or weekend_flat:
             mh = _min_position_hold_sec()
-            if mh > 0 and (now_utc.timestamp() - float(pos.open_time)) < mh:
+            if close_hit and not weekend_flat and mh > 0 and (
+                now_utc.timestamp() - float(pos.open_time)
+            ) < mh:
                 return
             live_allowed = False  # paper backtest
             use_sim_layers = simulation_layers_enabled(symbol, True)

@@ -21,6 +21,20 @@ class Position:
     strategy_name: str
     rl_state: str
     execution_kind: str  # carried to close for Postgres / alerts
+    max_profit_pips: float = 0.0
+    profit_protection_active: bool = False
+    profit_protection_seeded: bool = False
+    profit_protection_last_logged_mfe: float = -1.0
+    profit_protection_close_attempt_ts: float = 0.0
+    profit_protection_exit_pips: float | None = None
+    min_profit_pips: float = 0.0
+    max_adverse_pips: float = 0.0
+    atr_at_entry_pips: float | None = None
+    protect_activated_mfe_pips: float | None = None
+    protect_activated_atr_pips: float | None = None
+    protect_activated_giveback_pips: float | None = None
+    protect_activated_exit_pips: float | None = None
+    atr_fallback_used: bool = False
 
 
 def open_position(pos: Position) -> None:

@@ -127,9 +127,11 @@ def _trading_metrics_payload() -> dict[str, Any]:
         "effective_paper_trading": effective_paper_trading(),
         "broker_orders_enabled": broker_orders_enabled(),
         "sizing_note": (
-            "If POSITION_NOTIONAL_PCT_OF_NAV>0, each open is that fraction of broker NAV "
+            "If POSITION_NOTIONAL_PCT_OF_NAV>0, each new open is that fraction of broker NAV "
             "(face value), floored to whole OANDA units; else POSITION_RISK_PCT vs stop. "
-            "Portfolio: stop-risk vs MAX_PORTFOLIO_RISK_PCT plus optional gross USD notional cap. "
+            "Book cap: MAX_PORTFOLIO_GROSS_NOTIONAL_PCT_OF_NAV of NAV in USD "
+            "(inherits POSITION_NOTIONAL_PCT_OF_NAV if unset). "
+            "Stop-risk book cap is separate (MAX_PORTFOLIO_RISK_PCT). "
             "TRADING_MODE only selects the OANDA host; EXECUTION_MODE selects fills."
         ),
     }

@@ -84,6 +84,40 @@ def fx_market_open() -> bool:
     return fx_market_open_at(datetime.utcnow())
 
 
+def weekend_flatten_minutes() -> float:
+    """Lead time before Friday FX close to flatten. ``0`` disables. Default 15."""
+    raw = (os.getenv("WEEKEND_FLATTEN_MINUTES") or "15").strip()
+    try:
+        return max(0.0, float(raw))
+    except ValueError:
+        return 15.0
+
+
+def flatten_for_weekend_at(at_utc: datetime) -> bool:
+    """
+    True while the FX week is still open and we are inside the Friday flatten lead.
+
+    Closes must happen *before* Friday ``FX_WEEK_CLOSE_UTC`` (default 21:00). After that
+    the market is closed and a PositionClose cannot reliably fill.
+    """
+    now_utc = _as_naive_utc(at_utc)
+    lead = weekend_flatten_minutes()
+    if lead <= 0:
+        return False
+    if now_utc.weekday() != 4:
+        return False
+    if not fx_market_open_at(now_utc):
+        return False
+    close_t = _parse_hhmm_utc(os.getenv("FX_WEEK_CLOSE_UTC", "21:00"), "21:00")
+    close_dt = datetime.combine(now_utc.date(), close_t)
+    minutes_left = (close_dt - now_utc).total_seconds() / 60.0
+    return 0 < minutes_left <= lead
+
+
+def flatten_for_weekend() -> bool:
+    return flatten_for_weekend_at(datetime.utcnow())
+
+
 def in_active_session(symbol: str) -> bool:
     return in_active_session_at(symbol, datetime.utcnow())
 

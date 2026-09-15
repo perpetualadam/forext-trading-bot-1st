@@ -224,9 +224,11 @@ def fetch_broker_positions_detail() -> dict[str, tuple[float, float]]:
         logger.debug("reconciliation: skip fetch (no API or OANDA_ACCOUNT_ID)")
         return {}
 
+    from forex_bot.oanda_client import _oanda_request
+
     r = pos_ep.OpenPositions(accountID=aid)
     try:
-        resp: dict[str, Any] = api.request(r)
+        resp: dict[str, Any] = _oanda_request(api, r, context="open positions")
     except Exception as exc:
         logger.warning("reconciliation: OpenPositions failed: %s", exc)
         raise

@@ -12,7 +12,11 @@ from forex_bot.portfolio_exposure import (
     approx_gross_usd_notional_for,
     approx_signed_usd_exposure,
 )
-from forex_bot.session_rules import fx_market_open_at, in_active_session_at
+from forex_bot.session_rules import (
+    flatten_for_weekend_at,
+    fx_market_open_at,
+    in_active_session_at,
+)
 from forex_bot.trading import (
     calculate_pnl,
     position_sizing,
@@ -95,6 +99,26 @@ def test_fx_weekend_closed():
     assert fx_market_open_at(fri_open) is True
     assert fx_market_open_at(fri_closed) is False
     assert in_active_session_at("EUR_USD", sat) is False
+
+
+def test_weekend_flatten_only_friday_lead(monkeypatch):
+    monkeypatch.delenv("WEEKEND_FLATTEN_MINUTES", raising=False)
+    monkeypatch.delenv("FX_WEEK_CLOSE_UTC", raising=False)
+    fri_early = datetime(2026, 7, 17, 20, 0, 0)
+    fri_lead = datetime(2026, 7, 17, 20, 50, 0)
+    fri_closed = datetime(2026, 7, 17, 21, 5, 0)
+    sat = datetime(2026, 7, 18, 12, 0, 0)
+    thu = datetime(2026, 7, 16, 20, 50, 0)
+    assert flatten_for_weekend_at(fri_early) is False
+    assert flatten_for_weekend_at(fri_lead) is True
+    assert flatten_for_weekend_at(fri_closed) is False
+    assert flatten_for_weekend_at(sat) is False
+    assert flatten_for_weekend_at(thu) is False
+
+
+def test_weekend_flatten_disabled(monkeypatch):
+    monkeypatch.setenv("WEEKEND_FLATTEN_MINUTES", "0")
+    assert flatten_for_weekend_at(datetime(2026, 7, 17, 20, 50, 0)) is False
 
 
 def test_ai_ensemble_fails_closed_when_no_votes():

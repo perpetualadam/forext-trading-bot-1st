@@ -230,8 +230,36 @@ def _is_transient_v20(exc: BaseException) -> bool:
     return isinstance(exc, V20Error) and exc.code in (429, 502, 503, 504)
 
 
+def _is_transient_transport(exc: BaseException) -> bool:
+    """Dropped TLS / connection blips (e.g. SSLEOFError) — safe to retry GETs."""
+    seen: set[int] = set()
+    cur: BaseException | None = exc
+    needles = (
+        "ssleoferror",
+        "sslerror",
+        "unexpected_eof",
+        "eof occurred in violation of protocol",
+        "max retries exceeded",
+        "connection reset",
+        "connection aborted",
+        "read timed out",
+        "connect timeout",
+        "temporarily unavailable",
+    )
+    names = ("sslerror", "ssleoferror", "connectionerror", "timeout", "protocolerror")
+    while cur is not None and id(cur) not in seen:
+        seen.add(id(cur))
+        if any(n in type(cur).__name__.lower() for n in names):
+            return True
+        text = str(cur).lower()
+        if any(n in text for n in needles):
+            return True
+        cur = cur.__cause__ or getattr(cur, "__context__", None)
+    return False
+
+
 def _oanda_request(api: API, request_obj: Any, *, context: str) -> dict:
-    """REST call with exponential backoff on rate limit / gateway errors."""
+    """REST call with exponential backoff on rate limit / gateway / TLS drops."""
     max_retries = _oanda_max_retries()
     delay = 0.5
     last_exc: BaseException | None = None
@@ -240,12 +268,14 @@ def _oanda_request(api: API, request_obj: Any, *, context: str) -> dict:
             return api.request(request_obj)
         except Exception as exc:
             last_exc = exc
-            if _is_transient_v20(exc) and attempt < max_retries - 1:
+            transient = _is_transient_v20(exc) or _is_transient_transport(exc)
+            if transient and attempt < max_retries - 1:
                 wait = min(delay + random.random() * 0.35, 35.0)
+                code = getattr(exc, "code", type(exc).__name__)
                 logger.warning(
-                    "OANDA %s: HTTP %s (%s/%s) — retry in %.1fs",
+                    "OANDA %s: %s (%s/%s) — retry in %.1fs",
                     context,
-                    exc.code,
+                    code,
                     attempt + 1,
                     max_retries,
                     wait,

@@ -8,6 +8,8 @@ import pytest
 @pytest.fixture(autouse=True)
 def _isolate_sizing_env(monkeypatch):
     monkeypatch.delenv("POSITION_NOTIONAL_PCT_OF_NAV", raising=False)
+    monkeypatch.delenv("MAX_PORTFOLIO_GROSS_NOTIONAL_PCT_OF_NAV", raising=False)
+    monkeypatch.delenv("MAX_GROSS_USD_NOTIONAL", raising=False)
     monkeypatch.delenv("POSITION_RISK_PCT", raising=False)
     monkeypatch.delenv("POSITION_RISK_PCT_MAX", raising=False)
     monkeypatch.delenv("MIN_STOP_DISTANCE_PRICE", raising=False)

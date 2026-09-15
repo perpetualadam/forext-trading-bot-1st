@@ -32,8 +32,29 @@ _CCY_USD_FALLBACK = {
 
 
 def notional_pct_of_nav() -> float:
-    """``POSITION_NOTIONAL_PCT_OF_NAV`` — e.g. 0.02 = each / total cap is 2% of NAV."""
+    """``POSITION_NOTIONAL_PCT_OF_NAV`` — per-trade target face value as a fraction of NAV."""
     return max(0.0, _env_float("POSITION_NOTIONAL_PCT_OF_NAV", 0.0))
+
+
+def portfolio_gross_notional_pct_of_nav() -> float:
+    """
+    Book-level gross notional cap as a fraction of NAV.
+
+    ``MAX_PORTFOLIO_GROSS_NOTIONAL_PCT_OF_NAV`` when set (including explicit ``0``).
+    If unset/blank, inherit ``POSITION_NOTIONAL_PCT_OF_NAV`` so existing 2% books stay 2%.
+    """
+    raw = os.getenv("MAX_PORTFOLIO_GROSS_NOTIONAL_PCT_OF_NAV")
+    if raw is None or not str(raw).strip():
+        return notional_pct_of_nav()
+    try:
+        return max(0.0, float(str(raw).strip()))
+    except ValueError:
+        return notional_pct_of_nav()
+
+
+def portfolio_gross_pct_is_inherited() -> bool:
+    raw = os.getenv("MAX_PORTFOLIO_GROSS_NOTIONAL_PCT_OF_NAV")
+    return raw is None or not str(raw).strip()
 
 
 def account_ccy_to_usd(amount: float) -> float:
@@ -65,12 +86,13 @@ def units_for_account_notional(symbol: str, price: float, account_notional: floa
 
 def configured_max_gross_usd() -> float:
     """
-    Max book notional in the same USD heuristic as :func:`approx_gross_usd_notional`.
+    Max **portfolio** gross USD notional (same heuristic as :func:`approx_gross_usd_notional`).
 
-    If ``POSITION_NOTIONAL_PCT_OF_NAV`` > 0, cap = that fraction of broker NAV (converted to USD).
-    Else ``MAX_GROSS_USD_NOTIONAL`` (0 = off).
+    If the resolved portfolio % (explicit or inherited) is > 0:
+    ``account_ccy_to_usd(NAV * portfolio_pct)``.
+    Else ``MAX_GROSS_USD_NOTIONAL`` (0 = check off).
     """
-    pct = notional_pct_of_nav()
+    pct = portfolio_gross_notional_pct_of_nav()
     if pct > 0:
         from forex_bot.state import current_equity
 
@@ -122,6 +144,14 @@ def approx_signed_usd_exposure() -> float:
     return float(net)
 
 
+def existing_gross_usd_by_symbol() -> dict[str, float]:
+    """Per-symbol USD notional currently counted toward the book cap (open locals only)."""
+    out: dict[str, float] = {}
+    for sym, p in posmap.items():
+        out[str(sym)] = approx_gross_usd_notional_for(sym, float(p.units), float(p.entry_price))
+    return out
+
+
 def exposure_snapshot() -> dict[str, Any]:
     cap = configured_max_gross_usd()
     gross = approx_gross_usd_notional()
@@ -131,12 +161,100 @@ def exposure_snapshot() -> dict[str, Any]:
         "net_usd_exposure_approx": round(signed, 2),
         "max_gross_usd_notional_cap": cap,
         "notional_pct_of_nav": notional_pct_of_nav(),
+        "portfolio_gross_notional_pct_of_nav": portfolio_gross_notional_pct_of_nav(),
+        "portfolio_gross_pct_inherited": portfolio_gross_pct_is_inherited(),
         "exposure_cap_breached": cap > 0 and gross > cap,
     }
 
 
-def would_exceed_cap_if_opening(additional_gross_usd: float) -> bool:
+def notional_cap_decision(additional_gross_usd: float) -> dict[str, Any]:
+    """
+    Book-level gross USD notional check.
+
+    Compares ``existing open locals + proposed add`` to :func:`configured_max_gross_usd`.
+    Pending orders, margin, and cash are **not** in this sum. Cap 0 means the check is off.
+    Equal-to-cap is allowed; only ``resulting > cap`` skips.
+    """
+    by_symbol = existing_gross_usd_by_symbol()
+    existing = float(sum(by_symbol.values()))
+    proposed = max(0.0, float(additional_gross_usd))
+    resulting = existing + proposed
     cap = configured_max_gross_usd()
-    if cap <= 0:
-        return False
-    return approx_gross_usd_notional() + max(0.0, float(additional_gross_usd)) > cap + 1e-6
+    exceeds = cap > 0 and resulting > cap + 1e-6
+    return {
+        "existing_gross_usd": existing,
+        "existing_by_symbol": by_symbol,
+        "proposed_add_usd": proposed,
+        "resulting_gross_usd": resulting,
+        "cap_usd": cap,
+        "exceeds": exceeds,
+        "cap_enabled": cap > 0,
+        "position_notional_pct": notional_pct_of_nav(),
+        "portfolio_gross_pct": portfolio_gross_notional_pct_of_nav(),
+        "portfolio_gross_pct_inherited": portfolio_gross_pct_is_inherited(),
+    }
+
+
+def format_notional_cap_report(
+    symbol: str,
+    decision: dict[str, Any],
+    *,
+    nav: float | None = None,
+    currency: str = "",
+    allowed: bool,
+) -> str:
+    """Full existing + proposed vs portfolio cap (skip alert or pass debug)."""
+    by = decision.get("existing_by_symbol") or {}
+    if by:
+        parts = ", ".join(f"{s} {v:.2f}" for s, v in sorted(by.items()))
+        per_symbol = f"[{parts}]"
+    else:
+        per_symbol = "[]"
+    existing = float(decision["existing_gross_usd"])
+    proposed = float(decision["proposed_add_usd"])
+    resulting = float(decision["resulting_gross_usd"])
+    cap = float(decision["cap_usd"])
+    pct = float(decision.get("portfolio_gross_pct") or 0.0)
+    inherit = " (inherited from POSITION_NOTIONAL_PCT_OF_NAV)" if decision.get(
+        "portfolio_gross_pct_inherited"
+    ) else ""
+    nav_line = (
+        f"Account NAV: {float(nav):.2f} {currency}"
+        if nav is not None and currency
+        else "Account NAV: (unknown)"
+    )
+    verb = "ALLOW because" if allowed else "SKIP because"
+    cmp = "<=" if allowed else ">"
+    headline = (
+        f"{symbol}: notional cap check passed"
+        if allowed
+        else f"{symbol}: Skip open — notional cap"
+    )
+    return (
+        f"{headline}\n"
+        f"Existing counted gross exposure: {existing:.2f} USD\n"
+        f"Per-symbol existing exposure: {per_symbol}\n"
+        f"Proposed additional exposure: {proposed:.2f} USD\n"
+        f"Resulting gross exposure: {resulting:.2f} USD\n"
+        f"Maximum portfolio gross exposure: {cap:.2f} USD\n"
+        f"Portfolio limit: {pct * 100:.2f}% of NAV{inherit}\n"
+        f"{nav_line}\n"
+        f"Decision: {verb} {resulting:.2f} {cmp} {cap:.2f} "
+        f"(open-position face value, not cash/margin; pending orders not counted)"
+    )
+
+
+def format_notional_cap_skip_alert(
+    symbol: str,
+    decision: dict[str, Any],
+    *,
+    nav: float | None = None,
+    currency: str = "",
+) -> str:
+    return format_notional_cap_report(
+        symbol, decision, nav=nav, currency=currency, allowed=False
+    )
+
+
+def would_exceed_cap_if_opening(additional_gross_usd: float) -> bool:
+    return bool(notional_cap_decision(additional_gross_usd)["exceeds"])
