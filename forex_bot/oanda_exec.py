@@ -256,8 +256,10 @@ def fetch_pending_orders_sync() -> list[dict[str, Any]]:
     if api is None or not aid:
         return []
     try:
+        from forex_bot.oanda_client import _oanda_request
+
         r = oanda_orders.OrdersPending(accountID=aid)
-        resp: dict[str, Any] = api.request(r)
+        resp: dict[str, Any] = _oanda_request(api, r, context="pending orders")
     except Exception as exc:
         logger.warning("OANDA OrdersPending failed: %s", exc)
         return []

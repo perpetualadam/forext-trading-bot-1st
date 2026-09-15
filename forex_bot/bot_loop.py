@@ -204,7 +204,7 @@ def _log_open_position_line(symbol: str, pos: Position, price: float) -> None:
 async def evaluate(symbol: str) -> None:
     """Evaluate: manage open positions (TP/SL) or open new risk-based positions (hybrid + AI + RL)."""
     ohlcv_count = _env_int("HYBRID_OHLCV_COUNT", 200)
-    raw = fetch_ohlcv(symbol, count=ohlcv_count)
+    raw = await asyncio.to_thread(fetch_ohlcv, symbol, "M5", ohlcv_count)
     if raw is None or raw.empty:
         logger.warning("No OHLCV for %s", symbol)
         return

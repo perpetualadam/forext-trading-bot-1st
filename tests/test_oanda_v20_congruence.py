@@ -6,8 +6,11 @@ from oandapyV20.contrib.requests import MarketOrderRequest, PositionCloseRequest
 from oandapyV20.definitions.orders import OrderPositionFill, TimeInForce
 
 from forex_bot.oanda_client import (
+    _apply_http_timeout,
     _is_transient_transport,
     _oanda_request,
+    build_api,
+    oanda_http_timeout,
     official_env_label,
     official_rest_host,
     oanda_instrument,
@@ -90,3 +93,59 @@ def test_oanda_request_retries_ssl_then_succeeds(monkeypatch):
     out = _oanda_request(api, object(), context="open positions")
     assert out == {"positions": []}
     assert api.n == 2
+
+
+def test_http_timeout_defaults_and_env(monkeypatch):
+    monkeypatch.delenv("OANDA_CONNECT_TIMEOUT_SEC", raising=False)
+    monkeypatch.delenv("OANDA_HTTP_TIMEOUT_SEC", raising=False)
+    assert oanda_http_timeout() == (5.0, 15.0)
+    monkeypatch.setenv("OANDA_CONNECT_TIMEOUT_SEC", "3")
+    monkeypatch.setenv("OANDA_HTTP_TIMEOUT_SEC", "12")
+    assert oanda_http_timeout() == (3.0, 12.0)
+
+
+def test_build_api_sets_requests_timeout(monkeypatch):
+    from forex_bot import oanda_client as oc
+    from forex_bot.config import Config
+
+    monkeypatch.setattr(Config, "OANDA_ACCESS_TOKEN", "tok")
+    monkeypatch.setattr(Config, "TRADING_MODE", "practice")
+    monkeypatch.setenv("OANDA_CONNECT_TIMEOUT_SEC", "4")
+    monkeypatch.setenv("OANDA_HTTP_TIMEOUT_SEC", "11")
+    prev = oc._api
+    try:
+        api = build_api()
+        assert api is not None
+        assert api._request_params["timeout"] == (4.0, 11.0)
+    finally:
+        oc._api = prev
+
+
+def test_apply_timeout_repairs_client_without_timeout():
+    class Bare:
+        _request_params = {}
+
+    api = _apply_http_timeout(Bare())
+    assert "timeout" in api._request_params
+    assert api._request_params["timeout"][0] > 0
+    assert api._request_params["timeout"][1] > 0
+
+
+def test_read_timeout_is_transient_and_retried(monkeypatch):
+    from requests.exceptions import ReadTimeout
+
+    monkeypatch.setattr("forex_bot.oanda_client.time.sleep", lambda _s: None)
+    assert _is_transient_transport(ReadTimeout("Read timed out")) is True
+
+    class FakeAPI:
+        def __init__(self):
+            self.n = 0
+
+        def request(self, _r):
+            self.n += 1
+            if self.n == 1:
+                raise ReadTimeout("Read timed out")
+            return {"candles": []}
+
+    out = _oanda_request(FakeAPI(), object(), context="latest EUR_USD")
+    assert out == {"candles": []}

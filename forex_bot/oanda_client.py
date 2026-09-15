@@ -72,6 +72,32 @@ def oanda_instrument(symbol: str) -> str:
     return normalize_oanda_symbol(symbol)
 
 
+def _env_timeout_sec(name: str, default: float) -> float:
+    raw = (os.getenv(name) or "").strip()
+    if not raw:
+        return default
+    try:
+        return max(0.1, float(raw))
+    except ValueError:
+        return default
+
+
+def oanda_http_timeout() -> tuple[float, float]:
+    """``(connect, read)`` seconds for every OANDA REST call. Never leave these unset."""
+    connect = _env_timeout_sec("OANDA_CONNECT_TIMEOUT_SEC", 5.0)
+    read = _env_timeout_sec("OANDA_HTTP_TIMEOUT_SEC", 15.0)
+    return (connect, read)
+
+
+def _apply_http_timeout(api: API) -> API:
+    """Keep request_params.timeout on an existing client (shared Session has no default)."""
+    timeout = oanda_http_timeout()
+    params = dict(getattr(api, "_request_params", None) or {})
+    params["timeout"] = timeout
+    api._request_params = params
+    return api
+
+
 def build_api() -> API | None:
     """Create or replace the global API client for the current TRADING_MODE."""
     global _api
@@ -81,15 +107,18 @@ def build_api() -> API | None:
         _api = None
         return None
     # Official: Authorization Bearer (library) + Accept-Datetime-Format RFC3339.
+    # request_params.timeout is required: oandapyV20/requests otherwise wait forever.
     _api = API(
         access_token=token,
         environment=_environment(),
         headers={"Accept-Datetime-Format": "RFC3339"},
+        request_params={"timeout": oanda_http_timeout()},
     )
     logger.info(
-        "OANDA REST client %s %s (token matches this host only)",
+        "OANDA REST client %s %s timeout=%s (token matches this host only)",
         official_env_label(),
         official_rest_host(),
+        oanda_http_timeout(),
     )
     return _api
 
@@ -97,7 +126,7 @@ def build_api() -> API | None:
 def get_api() -> API | None:
     if _api is None:
         return build_api()
-    return _api
+    return _apply_http_timeout(_api)
 
 
 def last_account_summary() -> dict[str, Any]:
