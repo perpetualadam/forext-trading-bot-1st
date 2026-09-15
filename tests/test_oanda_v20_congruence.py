@@ -98,7 +98,7 @@ def test_oanda_request_retries_ssl_then_succeeds(monkeypatch):
 def test_http_timeout_defaults_and_env(monkeypatch):
     monkeypatch.delenv("OANDA_CONNECT_TIMEOUT_SEC", raising=False)
     monkeypatch.delenv("OANDA_HTTP_TIMEOUT_SEC", raising=False)
-    assert oanda_http_timeout() == (5.0, 15.0)
+    assert oanda_http_timeout() == (15.0, 15.0)
     monkeypatch.setenv("OANDA_CONNECT_TIMEOUT_SEC", "3")
     monkeypatch.setenv("OANDA_HTTP_TIMEOUT_SEC", "12")
     assert oanda_http_timeout() == (3.0, 12.0)

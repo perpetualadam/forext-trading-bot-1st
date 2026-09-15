@@ -143,6 +143,9 @@ def _place_market_order_sync(symbol: str, position_units: float, position_direct
         accountID=account_id, instrument=instrument, data=close_req.data
     )
     try:
+        from forex_bot.oanda_rate_limit import acquire_oanda_rest_slot
+
+        acquire_oanda_rest_slot()
         response = api.request(r)
     except Exception as exc:
         logger.error("OANDA PositionClose failed: %s", exc)
@@ -213,6 +216,9 @@ def _place_market_order_open_sync(
     r = oanda_orders.OrderCreate(accountID=account_id, data=mo.data)
     logger.info("[ORDER SENT] MARKET open %s units=%s", instrument, units_int)
     try:
+        from forex_bot.oanda_rate_limit import acquire_oanda_rest_slot
+
+        acquire_oanda_rest_slot()
         response = api.request(r)
     except Exception as exc:
         logger.error("[ORDER FAILED] OANDA OrderCreate (open) failed: %s", exc)

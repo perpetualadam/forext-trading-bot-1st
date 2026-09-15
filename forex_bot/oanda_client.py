@@ -84,7 +84,7 @@ def _env_timeout_sec(name: str, default: float) -> float:
 
 def oanda_http_timeout() -> tuple[float, float]:
     """``(connect, read)`` seconds for every OANDA REST call. Never leave these unset."""
-    connect = _env_timeout_sec("OANDA_CONNECT_TIMEOUT_SEC", 5.0)
+    connect = _env_timeout_sec("OANDA_CONNECT_TIMEOUT_SEC", 15.0)
     read = _env_timeout_sec("OANDA_HTTP_TIMEOUT_SEC", 15.0)
     return (connect, read)
 
@@ -296,6 +296,9 @@ def _oanda_request(api: API, request_obj: Any, *, context: str) -> dict:
     last_exc: BaseException | None = None
     for attempt in range(max_retries):
         try:
+            from forex_bot.oanda_rate_limit import acquire_oanda_rest_slot
+
+            acquire_oanda_rest_slot()
             return api.request(request_obj)
         except Exception as exc:
             last_exc = exc
