@@ -394,7 +394,7 @@ async def execute_trade(
                 "live close requires broker orders (EXECUTION_MODE=live_broker or paper_broker)"
             )
         pnl, exit_px_model = await oanda_exec.execute_oanda_market_close(
-            symbol, size, direction, price
+            symbol, size, direction, price, execution_kind=kind
         )
         oanda_broker = True
         alert(f"[OANDA LIVE] {symbol} {direction} {size:.2f} units PnL={pnl:.2f}")

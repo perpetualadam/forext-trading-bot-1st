@@ -10,6 +10,7 @@ from typing import Any
 
 import oandapyV20.endpoints.orders as oanda_orders
 import oandapyV20.endpoints.positions as oanda_positions
+import oandapyV20.endpoints.trades as oanda_trades
 from oandapyV20.contrib.requests import MarketOrderRequest, PositionCloseRequest
 from oandapyV20.definitions.orders import OrderPositionFill, TimeInForce
 
@@ -17,6 +18,25 @@ from forex_bot.config import Config
 from forex_bot.oanda_client import get_api, oanda_instrument
 
 logger = logging.getLogger(__name__)
+
+
+def assert_broker_order_allowed(*, execution_kind: str | None = None, action: str = "order") -> None:
+    """
+    Fail closed: paper / window_paper / simulated context must never submit broker orders,
+    even if EXECUTION_MODE is live_broker (off-window learning uses the same process).
+    """
+    from forex_bot.execution import ExecutionMode, get_execution_mode, is_paper_like_kind
+
+    kind = (execution_kind or "").strip().lower()
+    if is_paper_like_kind(kind):
+        raise RuntimeError(
+            f"refusing broker {action}: execution_kind={kind or 'unset'} is local-only "
+            f"(paper/window_paper/simulated cannot submit OANDA orders)"
+        )
+    if get_execution_mode() == ExecutionMode.PAPER:
+        raise RuntimeError(f"refusing broker {action}: EXECUTION_MODE=paper")
+    if not use_oanda_live():
+        raise RuntimeError(f"broker execution not enabled for {action}")
 
 
 def use_oanda_live() -> bool:
@@ -212,10 +232,10 @@ async def execute_oanda_market_open(
     *,
     stop_loss: float | None = None,
     take_profit: float | None = None,
+    execution_kind: str = "live",
 ) -> tuple[float, float, str, float]:
     """Broker-confirmed open: (fill_price, abs_filled_units, fill_transaction_id, pl_account_ccy)."""
-    if not use_oanda_live():
-        raise RuntimeError("broker execution not enabled for open")
+    assert_broker_order_allowed(execution_kind=execution_kind, action="open")
     if not _access_token():
         raise RuntimeError("OANDA_ACCESS_TOKEN or OANDA_API_KEY missing")
     return await asyncio.to_thread(
@@ -245,11 +265,38 @@ def fetch_pending_orders_sync() -> list[dict[str, Any]]:
     return list(orders) if isinstance(orders, list) else []
 
 
+def fetch_trade_details_sync(trade_id: str) -> dict[str, Any] | None:
+    """
+    GET a single trade. Never creates, cancels, or replaces orders.
+
+    OpenPositions does not include SL/TP or openTime; TradeDetails can.
+    """
+    tid = str(trade_id or "").strip()
+    if not tid:
+        return None
+    api = get_api()
+    aid = _account_id()
+    if api is None or not aid:
+        return None
+    try:
+        from forex_bot.oanda_client import _oanda_request
+
+        r = oanda_trades.TradeDetails(accountID=aid, tradeID=tid)
+        resp: dict[str, Any] = _oanda_request(api, r, context="trade details")
+    except Exception as exc:
+        logger.warning("OANDA TradeDetails %s failed: %s", tid, exc)
+        return None
+    trade = resp.get("trade") if isinstance(resp, dict) else None
+    return trade if isinstance(trade, dict) else None
+
+
 async def execute_oanda_market_close(
     symbol: str,
     position_units: float,
     position_direction: str,
     entry_price: float,
+    *,
+    execution_kind: str = "live",
 ) -> tuple[float, float]:
     """
     Place a market order to flatten ``position_units`` / ``position_direction``.
@@ -257,9 +304,7 @@ async def execute_oanda_market_close(
     Returns ``(realized_pnl_account_currency, exit_fill_price)``.
     Runs the synchronous REST call in a thread pool.
     """
-    if not use_oanda_live():
-        raise RuntimeError("USE_OANDA_LIVE is not enabled")
-
+    assert_broker_order_allowed(execution_kind=execution_kind, action="close")
     if not _access_token():
         raise RuntimeError("OANDA_ACCESS_TOKEN or OANDA_API_KEY missing")
 

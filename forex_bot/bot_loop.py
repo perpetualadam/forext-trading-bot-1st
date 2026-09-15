@@ -16,6 +16,7 @@ from forex_bot.config import Config
 from forex_bot.execution import (
     close_fill_path,
     effective_paper_trading,
+    is_paper_like_kind,
     open_fill_path,
     pre_trade_entry_blocked_reason,
 )
@@ -36,9 +37,11 @@ from forex_bot.portfolio_exposure import (
     configured_max_gross_usd,
     format_notional_cap_report,
     format_notional_cap_skip_alert,
+    format_usd_direction_skip,
     notional_cap_decision,
     notional_pct_of_nav,
     portfolio_gross_notional_pct_of_nav,
+    usd_direction_guard_decision,
 )
 from forex_bot.portfolio import PortfolioEngine
 from forex_bot.positions import Position, close_position, get_position, open_position
@@ -517,6 +520,14 @@ async def evaluate(symbol: str) -> None:
     else:
         exec_kind = "simulated" if paper else "window_paper"
 
+    if is_paper_like_kind(exec_kind):
+        from forex_bot.reconciliation import paper_open_blocked_reason
+
+        skip_why = paper_open_blocked_reason(symbol)
+        if skip_why:
+            logger.warning("[PAPER SKIP] %s | %s", symbol, skip_why)
+            return
+
     use_sim_layers = fill_path == "simulate"
     if live_window_log_enabled():
         win = symbol_live_window_status(symbol)
@@ -585,13 +596,29 @@ async def evaluate(symbol: str) -> None:
         )
         return
 
+    usd_dir_decision = usd_direction_guard_decision(symbol, direction)
+    if usd_dir_decision["exceeds"]:
+        msg = format_usd_direction_skip(usd_dir_decision)
+        alert(msg)
+        logger.warning("%s", msg)
+        return
+
     entry_price: float
     spread_amt: float
     slip_amt: float
     impact_amt: float
     position_units: float = float(units)
 
+    broker_oid = ""
+    client_order_id = ""
     if fill_path == "broker":
+        if is_paper_like_kind(exec_kind):
+            logger.error(
+                "%s: refuse broker open — fill_path=broker but exec_kind=%s",
+                symbol,
+                exec_kind,
+            )
+            return
         client_order_id = generate_client_order_id()
         t_reserve = time.perf_counter()
         if not try_begin_order_submission(
@@ -619,6 +646,7 @@ async def evaluate(symbol: str) -> None:
                 client_order_id,
                 stop_loss=broker_sl,
                 take_profit=broker_tp,
+                execution_kind=exec_kind,
             )
         except Exception as exc:
             record_fill_failure()
@@ -635,6 +663,7 @@ async def evaluate(symbol: str) -> None:
             st = OrderStatus.PARTIAL
             logger.info("[ORDER PARTIAL] %s filled=%.4f requested=%.4f", symbol, filled_u, units)
         position_units = float(filled_u)
+        broker_oid = str(oid) if oid else ""
         finalize_order_fill(
             client_order_id,
             broker_order_id=str(oid) if oid else "",
@@ -710,12 +739,24 @@ async def evaluate(symbol: str) -> None:
             rl_state=state,
             execution_kind=exec_kind,
             atr_at_entry_pips=atr_entry,
+            client_order_id=client_order_id,
+            broker_order_id=broker_oid,
+            broker_order=fill_path == "broker",
         )
     )
-    alert(
-        f"[OPEN] {symbol} {direction} units={position_units:.2f} entry={entry_price:.5f} mid={price:.5f} "
-        f"SL={stop_loss:.5f} TP={take_profit:.5f} kind={exec_kind}"
-    )
+    if fill_path == "broker":
+        alert(
+            f"[OPEN] {symbol} {direction} units={position_units:.2f} entry={entry_price:.5f} "
+            f"mid={price:.5f} SL={stop_loss:.5f} TP={take_profit:.5f} kind={exec_kind} "
+            f"broker_order=true cid={client_order_id} broker_id={broker_oid} "
+            f"strategy={strategy_name} horizon={horizon}"
+        )
+    else:
+        alert(
+            f"[OPEN] {symbol} {direction} units={position_units:.2f} entry={entry_price:.5f} "
+            f"mid={price:.5f} SL={stop_loss:.5f} TP={take_profit:.5f} kind={exec_kind} "
+            f"broker_order=false strategy={strategy_name} horizon={horizon}"
+        )
     logger.info(
         "[AI+RL] %s | OPEN Dir=%s | Units=%.4f | Conf=%.2f | RL_Action=%s | State=%s | %s lb=%s",
         symbol,

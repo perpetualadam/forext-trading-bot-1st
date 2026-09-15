@@ -271,3 +271,100 @@ def format_notional_cap_skip_alert(
 
 def would_exceed_cap_if_opening(additional_gross_usd: float) -> bool:
     return bool(notional_cap_decision(additional_gross_usd)["exceeds"])
+
+
+def usd_direction(symbol: str, side: str) -> str | None:
+    """
+    USD directional exposure from BASE_QUOTE + BUY/SELL.
+
+    XXX_USD BUY → SHORT USD; XXX_USD SELL → LONG USD.
+    USD_XXX BUY → LONG USD; USD_XXX SELL → SHORT USD.
+    No USD in the pair → None (do not guess).
+    """
+    from forex_bot.symbols import is_valid_oanda_forex_symbol, normalize_oanda_symbol
+
+    s = normalize_oanda_symbol(symbol)
+    d = (side or "").upper().strip()
+    if d not in ("BUY", "SELL") or not is_valid_oanda_forex_symbol(s):
+        return None
+    base, quote = s.split("_", 1)
+    if quote == "USD" and base != "USD":
+        return "SHORT" if d == "BUY" else "LONG"
+    if base == "USD" and quote != "USD":
+        return "LONG" if d == "BUY" else "SHORT"
+    return None
+
+
+def max_same_usd_direction_positions() -> int:
+    """0 disables the guard. Default 2 (conservative; not a third same-USD slot)."""
+    raw = (os.getenv("MAX_SAME_USD_DIRECTION_POSITIONS") or "2").strip()
+    try:
+        return max(0, int(float(raw)))
+    except ValueError:
+        return 2
+
+
+def _counts_toward_usd_direction_guard(pos: Any) -> bool:
+    """Live/broker-backed locals only. Paper/window_paper must not affect live USD counts."""
+    from forex_bot.execution import is_broker_backed
+
+    return is_broker_backed(pos)
+
+
+def same_usd_direction_open_positions(usd_dir: str) -> list[tuple[str, str]]:
+    """``(symbol, side)`` of broker-backed locals with this USD direction."""
+    out: list[tuple[str, str]] = []
+    want = (usd_dir or "").upper().strip()
+    if want not in ("LONG", "SHORT"):
+        return out
+    for sym, p in posmap.items():
+        if not _counts_toward_usd_direction_guard(p):
+            continue
+        got = usd_direction(str(sym), p.direction)
+        if got == want:
+            out.append((str(sym), (p.direction or "").upper().strip()))
+    return out
+
+
+def usd_direction_guard_decision(symbol: str, side: str) -> dict[str, Any]:
+    """
+    New-entry-only same-USD-direction count vs ``MAX_SAME_USD_DIRECTION_POSITIONS``.
+
+    Never closes or resizes existing positions. Cap 0 = off.
+    """
+    cand = usd_direction(symbol, side)
+    limit = max_same_usd_direction_positions()
+    existing = same_usd_direction_open_positions(cand) if cand else []
+    count = len(existing)
+    exceeds = bool(cand and limit > 0 and count >= limit)
+    return {
+        "candidate_symbol": symbol,
+        "candidate_side": (side or "").upper().strip(),
+        "candidate_usd_direction": cand,
+        "existing": existing,
+        "same_direction_count": count,
+        "max_same_direction": limit,
+        "exceeds": exceeds,
+        "cap_enabled": limit > 0 and cand is not None,
+    }
+
+
+def format_usd_direction_skip(decision: dict[str, Any]) -> str:
+    existing = decision.get("existing") or []
+    exist_s = ",".join(f"{s}:{d}" for s, d in existing) if existing else "(none)"
+    usd = decision.get("candidate_usd_direction") or "n/a"
+    n = int(decision.get("same_direction_count") or 0)
+    mx = int(decision.get("max_same_direction") or 0)
+    sym = decision.get("candidate_symbol")
+    side = decision.get("candidate_side")
+    return (
+        f"[RISK SKIP] {sym} {side} | USD_DIRECTION={usd} | same_direction={n}/{mx} "
+        f"| existing={exist_s}\n"
+        f"Candidate symbol: {sym}\n"
+        f"Candidate side: {side}\n"
+        f"Candidate USD direction: {usd}\n"
+        f"Current same-direction position count: {n}\n"
+        f"Configured maximum: {mx}\n"
+        f"Existing positions contributing: {exist_s}\n"
+        f"Rejection reason: same-USD-direction position limit"
+    )

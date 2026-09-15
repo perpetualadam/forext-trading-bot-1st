@@ -15,6 +15,34 @@ class ExecutionMode(str, Enum):
     LIVE_BROKER = "live_broker"
 
 
+# Local-only fill tags. Must never reach OANDA OrderCreate / PositionClose.
+PAPER_LIKE_KINDS = frozenset({"paper", "simulated", "window_paper"})
+
+
+def is_paper_like_kind(execution_kind: str | None) -> bool:
+    return (execution_kind or "").strip().lower() in PAPER_LIKE_KINDS
+
+
+BROKER_BACKED_KINDS = frozenset({"live", "reconcile_import"})
+
+
+def is_paper_like(pos: object | None) -> bool:
+    """True for local-only simulation rows (paper / simulated / window_paper)."""
+    if pos is None:
+        return False
+    return is_paper_like_kind(getattr(pos, "execution_kind", None))
+
+
+def is_broker_backed(pos: object | None) -> bool:
+    """True for genuine broker/reconcile rows. Paper-like never counts, even if flags are messy."""
+    if pos is None or is_paper_like(pos):
+        return False
+    kind = (getattr(pos, "execution_kind", None) or "").strip().lower()
+    if kind in BROKER_BACKED_KINDS:
+        return True
+    return bool(getattr(pos, "broker_order", False))
+
+
 _trading_halted: bool = False
 
 

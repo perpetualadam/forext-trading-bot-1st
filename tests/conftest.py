@@ -15,6 +15,7 @@ def _isolate_sizing_env(monkeypatch):
     monkeypatch.delenv("MIN_STOP_DISTANCE_PRICE", raising=False)
     monkeypatch.delenv("FX_SESSION_ALWAYS", raising=False)
     monkeypatch.delenv("FOREX_SYMBOLS", raising=False)
+    monkeypatch.delenv("MAX_SAME_USD_DIRECTION_POSITIONS", raising=False)
     monkeypatch.setenv("EXECUTION_MODE", "paper")
     monkeypatch.setenv("PAPER_TRADING", "true")
     monkeypatch.setenv("USE_OANDA_LIVE", "false")

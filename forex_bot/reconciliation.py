@@ -23,6 +23,13 @@ logger = logging.getLogger(__name__)
 
 _reconcile_runs_total = 0
 _reconcile_fixes_total = 0
+# Last successful OpenPositions nets (symbol → signed units). None until first success.
+_last_broker_nets: dict[str, float] = {}
+_have_broker_snapshot = False
+_logged_conflict: set[str] = set()
+_logged_match: set[str] = set()
+_logged_paper_preserved: set[str] = set()
+_last_trade_ids: dict[str, list[str]] = {}
 
 
 def _max_fixes_per_cycle() -> int:
@@ -234,6 +241,7 @@ def fetch_broker_positions_detail() -> dict[str, tuple[float, float]]:
         raise
 
     out: dict[str, tuple[float, float]] = {}
+    _last_trade_ids.clear()
     for p in resp.get("positions") or []:
         inst = oanda_instrument(str(p.get("instrument") or ""))
         if not inst:
@@ -267,6 +275,12 @@ def fetch_broker_positions_detail() -> dict[str, tuple[float, float]]:
             denom = abs(lu) + abs(su)
             ap = (abs(lu) * lp + abs(su) * sp) / denom if denom > 1e-12 else lp
         out[inst] = (net, ap)
+        tids = []
+        for raw_id in list(long_u.get("tradeIDs") or []) + list(short_u.get("tradeIDs") or []):
+            s = str(raw_id or "").strip()
+            if s:
+                tids.append(s)
+        _last_trade_ids[inst] = tids
     return out
 
 
@@ -274,6 +288,124 @@ def fetch_broker_open_positions() -> dict[str, float]:
     """Net long units per instrument (compat)."""
     d = fetch_broker_positions_detail()
     return {k: v[0] for k, v in d.items()}
+
+
+def known_broker_net(symbol: str) -> float | None:
+    """Signed broker units from the last successful OpenPositions snapshot, or None if none yet."""
+    if not _have_broker_snapshot:
+        return None
+    return float(_last_broker_nets.get(_norm_inst(symbol), 0.0))
+
+
+def paper_open_blocked_reason(symbol: str) -> str | None:
+    """If a new paper/window_paper row must not occupy the symbol slot, return why."""
+    from forex_bot.execution import is_broker_backed
+
+    local = posmod.positions.get(_norm_inst(symbol)) or posmod.positions.get(symbol)
+    if local is not None and is_broker_backed(local):
+        return (
+            f"broker-backed position already exists "
+            f"(kind={local.execution_kind} net="
+            f"{(float(local.units) if local.direction == 'BUY' else -float(local.units)):.4f})"
+        )
+    bnet = known_broker_net(symbol)
+    if bnet is not None and abs(float(bnet)) > 1e-9:
+        return f"broker-backed position already exists (net={float(bnet):.4f})"
+    return None
+
+
+def _remember_broker_snapshot(broker_detail: dict[str, tuple[float, float]]) -> None:
+    global _have_broker_snapshot, _last_broker_nets
+    _last_broker_nets = {_norm_inst(k): float(v[0]) for k, v in broker_detail.items()}
+    _have_broker_snapshot = True
+
+
+def _broker_execution_mode() -> bool:
+    from forex_bot.execution import ExecutionMode, get_execution_mode
+
+    return get_execution_mode() in (ExecutionMode.PAPER_BROKER, ExecutionMode.LIVE_BROKER)
+
+
+def _parse_oanda_open_time(raw: Any) -> float | None:
+    """OANDA RFC3339 trade openTime → epoch seconds. None if missing/unparseable."""
+    if raw in (None, ""):
+        return None
+    s = str(raw).strip()
+    if not s:
+        return None
+    try:
+        if s.endswith("Z"):
+            s = s[:-1] + "+00:00"
+        # OANDA uses nanoseconds; datetime accepts up to microseconds.
+        if "." in s:
+            head, rest = s.split(".", 1)
+            frac, tz = rest, ""
+            for i, ch in enumerate(rest):
+                if ch in "+-" and i > 0:
+                    frac, tz = rest[:i], rest[i:]
+                    break
+            frac = (frac + "000000")[:6]
+            s = f"{head}.{frac}{tz or '+00:00'}"
+        dt = datetime.fromisoformat(s)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.timestamp()
+    except (TypeError, ValueError):
+        return None
+
+
+def _order_price(blob: Any) -> float | None:
+    if not isinstance(blob, dict):
+        return None
+    raw = blob.get("price")
+    try:
+        return float(str(raw).replace(",", "")) if raw not in (None, "") else None
+    except (TypeError, ValueError):
+        return None
+
+
+def _fields_from_broker_trade(trade: dict[str, Any]) -> dict[str, Any]:
+    """Extract reconstructable fields from TradeDetails. Missing keys stay None/empty."""
+    sl = _order_price(trade.get("stopLossOrder"))
+    tp = _order_price(trade.get("takeProfitOrder"))
+    opened = _parse_oanda_open_time(trade.get("openTime"))
+    ce = trade.get("clientExtensions") if isinstance(trade.get("clientExtensions"), dict) else {}
+    cid = str(ce.get("id") or "").strip()
+    tid = str(trade.get("id") or "").strip()
+    return {
+        "open_time": opened,
+        "sl": sl,
+        "tp": tp,
+        "client_order_id": cid,
+        "broker_trade_id": tid,
+    }
+
+
+def _pending_sl_tp(symbol: str, pending: list[dict[str, Any]]) -> tuple[float | None, float | None]:
+    """STOP_LOSS / TAKE_PROFIT prices from already-fetched pending orders. None if absent."""
+    sl: float | None = None
+    tp: float | None = None
+    want = _norm_inst(symbol)
+    for bo in pending or []:
+        raw = bo.get("order") if isinstance(bo.get("order"), dict) else bo
+        if not isinstance(raw, dict):
+            continue
+        inst = _norm_inst(str(raw.get("instrument") or bo.get("instrument") or ""))
+        if inst != want:
+            continue
+        typ = str(raw.get("type") or bo.get("type") or "").upper()
+        px_raw = raw.get("price") or bo.get("price")
+        try:
+            px = float(str(px_raw).replace(",", "")) if px_raw not in (None, "") else None
+        except (TypeError, ValueError):
+            px = None
+        if px is None:
+            continue
+        if typ in {"STOP_LOSS", "GUARANTEED_STOP_LOSS"}:
+            sl = px
+        elif typ == "TAKE_PROFIT":
+            tp = px
+    return sl, tp
 
 
 def _norm_inst(s: str) -> str:
@@ -312,37 +444,169 @@ def _may_auto_fix_local() -> bool:
     return False
 
 
-def _apply_position_convergence(
-    broker_detail: dict[str, tuple[float, float]],
-) -> int:
-    """CASE A/B/C. Returns count of fix actions (capped per cycle)."""
+def _import_broker_truth(
+    symbol: str,
+    bnet: float,
+    bavg: float,
+    pending: list[dict[str, Any]],
+) -> None:
+    """Import broker units/entry. Prefer pending SL/TP; else local fallback (not claimed as broker)."""
     from forex_bot.trading import sl_tp_distance_for_entry
 
+    sl_pending, tp_pending = _pending_sl_tp(symbol, pending)
+    tids = _last_trade_ids.get(_norm_inst(symbol)) or []
+    trade_fields: dict[str, Any] = {}
+    if tids:
+        try:
+            from forex_bot.oanda_exec import fetch_trade_details_sync
+
+            trade = fetch_trade_details_sync(tids[0])
+            if isinstance(trade, dict):
+                trade_fields = _fields_from_broker_trade(trade)
+        except Exception as exc:
+            logger.warning("reconciliation: TradeDetails lookup failed for %s: %s", symbol, exc)
+
+    sl_b = trade_fields.get("sl") if trade_fields.get("sl") is not None else sl_pending
+    tp_b = trade_fields.get("tp") if trade_fields.get("tp") is not None else tp_pending
+    if trade_fields.get("sl") is not None:
+        sl_src = "broker_trade"
+    elif sl_pending is not None:
+        sl_src = "broker_pending"
+    else:
+        sl_src = "local_fallback"
+    if trade_fields.get("tp") is not None:
+        tp_src = "broker_trade"
+    elif tp_pending is not None:
+        tp_src = "broker_pending"
+    else:
+        tp_src = "local_fallback"
+    if sl_b is None or tp_b is None:
+        sl_d, tp_d = sl_tp_distance_for_entry(symbol, None)
+        entry = float(bavg)
+        if bnet > 0:
+            sl_fb, tp_fb = entry - sl_d, entry + tp_d
+        else:
+            sl_fb, tp_fb = entry + sl_d, entry - tp_d
+        sl = sl_b if sl_b is not None else sl_fb
+        tp = tp_b if tp_b is not None else tp_fb
+    else:
+        sl, tp = sl_b, tp_b
+    posmod.import_position_from_broker(
+        symbol,
+        bnet,
+        bavg,
+        sl,
+        tp,
+        broker_trade_ids=",".join(tids),
+        sl_source=sl_src,
+        tp_source=tp_src,
+        client_order_id=str(trade_fields.get("client_order_id") or ""),
+        broker_order_id=tids[0] if tids else "",
+        open_time=trade_fields.get("open_time"),
+    )
+
+
+def _apply_position_convergence(
+    broker_detail: dict[str, tuple[float, float]],
+    broker_pending: list[dict[str, Any]] | None = None,
+) -> int:
+    """CASE A/B/C/D. Never sends broker orders. Case B/C run in broker execution modes."""
+    from forex_bot.execution import is_broker_backed, is_paper_like
+
+    pending = broker_pending or []
     fixes = 0
     cap = _max_fixes_per_cycle()
-    import_ok = _truthy_env("RECONCILE_IMPORT_BROKER_POSITIONS", "false")
+    import_ok = _truthy_env("RECONCILE_IMPORT_BROKER_POSITIONS", "false") or _broker_execution_mode()
     adjust_ok = _truthy_env("RECONCILE_ADJUST_UNITS", "false")
-
     broker_nets = {_norm_inst(k): v[0] for k, v in broker_detail.items()}
 
     def _room() -> bool:
         return cap <= 0 or fixes < cap
+
+    # Case B: paper-like local must not hide a real broker position (broker modes).
+    if _broker_execution_mode():
+        for sym_raw, (bnet, bavg) in list(broker_detail.items()):
+            if abs(float(bnet)) < 1e-9 or not _room():
+                continue
+            sym = _norm_inst(sym_raw)
+            local = posmod.positions.get(sym)
+            if local is None or not is_paper_like(local):
+                continue
+            if sym not in _logged_conflict:
+                logger.warning(
+                    "[RECONCILE CONFLICT] %s broker position exists while local state is %s; "
+                    "displacing local paper state and importing broker truth | "
+                    "local_entry=%.5f broker_entry=%.5f broker_net=%.4f",
+                    sym,
+                    local.execution_kind,
+                    float(local.entry_price),
+                    float(bavg),
+                    float(bnet),
+                )
+                _logged_conflict.add(sym)
+            posmod.displace_paper_position(sym, reason="broker_authoritative")
+            _import_broker_truth(sym, float(bnet), float(bavg), pending)
+            fixes += 1
+            logger.info("[RECONCILE IMPORT] %s imported after paper displace (broker-backed)", sym)
+
+    # Case E: broker flat + local paper — keep simulation; log once (broker modes).
+    if _broker_execution_mode():
+        for sym, pos in list(posmod.positions.items()):
+            if not is_paper_like(pos):
+                continue
+            b = broker_nets.get(_norm_inst(sym))
+            if b is not None and abs(float(b)) > 1e-9:
+                continue
+            if sym not in _logged_paper_preserved:
+                logger.info(
+                    "[RECONCILE LOCAL PAPER PRESERVED] %s kind=%s entry=%.5f "
+                    "(broker has no matching position; simulation lifecycle unchanged)",
+                    sym,
+                    pos.execution_kind,
+                    float(pos.entry_price),
+                )
+                _logged_paper_preserved.add(sym)
+
+    # Case A match: broker-backed local agrees with broker units — log once.
+    if _broker_execution_mode():
+        for sym, pos in list(posmod.positions.items()):
+            if not is_broker_backed(pos):
+                continue
+            b = broker_nets.get(_norm_inst(sym))
+            if b is None or abs(float(b)) < 1e-9:
+                continue
+            local_u = float(pos.units) if pos.direction == "BUY" else -float(pos.units)
+            if abs(float(b) - local_u) > max(1.0, 0.01 * abs(local_u)):
+                continue
+            if sym not in _logged_match:
+                logger.info(
+                    "[RECONCILE MATCH] %s kind=%s local_net=%.4f broker_net=%.4f entry=%.5f",
+                    sym,
+                    pos.execution_kind,
+                    local_u,
+                    float(b),
+                    float(pos.entry_price),
+                )
+                _logged_match.add(sym)
 
     if _may_auto_fix_local():
         for sym, pos in list(posmod.positions.items()):
             if not _room():
                 logger.warning("[RECONCILE FIX] cap reached (%s); defer remaining fixes", cap)
                 break
-            # Intentionally non-broker-backed local positions must not be "fixed" away.
-            if (pos.execution_kind or "").strip().lower() in {"simulated", "window_paper"}:
+            # Case E: paper-like + broker flat — keep the simulation row.
+            if is_paper_like(pos):
+                continue
+            if not is_broker_backed(pos):
                 continue
             b = broker_nets.get(_norm_inst(sym))
             local_u = float(pos.units) if pos.direction == "BUY" else -float(pos.units)
             if b is None or abs(float(b)) < 1e-9:
+                # Case D
                 posmod.close_local_position(sym, reason="reconcile_fix_broker_flat")
                 fixes += 1
                 logger.warning(
-                    "[RECONCILE FIX] Closed local position (broker net=0) | %s | fix=%s/%s",
+                    "[RECONCILE BROKER POSITION MISSING] Closed local broker-backed %s | fix=%s/%s",
                     sym,
                     fixes,
                     cap or "inf",
@@ -355,41 +619,29 @@ def _apply_position_convergence(
             ):
                 posmod.adjust_position_units_to_broker(sym, b)
                 fixes += 1
-                logger.info("[RECONCILE FIX] adjusted units | %s | fix=%s/%s", sym, fixes, cap or "inf")
+                logger.info("[RECONCILE UPDATE] adjusted units | %s | fix=%s/%s", sym, fixes, cap or "inf")
 
-        if import_ok:
-            for sym_raw, (bnet, bavg) in broker_detail.items():
-                sym = _norm_inst(sym_raw)
-                if not _room():
-                    break
-                if sym in posmod.positions:
-                    continue
-                if abs(bnet) < 1e-9:
-                    continue
-                sl_d, tp_d = sl_tp_distance_for_entry(sym, None)
-                entry = float(bavg)
-                if bnet > 0:
-                    sl = entry - sl_d
-                    tp = entry + tp_d
-                else:
-                    sl = entry + sl_d
-                    tp = entry - tp_d
-                posmod.import_position_from_broker(
-                    sym,
-                    bnet,
-                    bavg,
-                    sl,
-                    tp,
-                )
-                fixes += 1
-                logger.info("[RECONCILE IMPORT] imported broker-only | %s | fix=%s/%s", sym, fixes, cap or "inf")
+    if import_ok:
+        for sym_raw, (bnet, bavg) in broker_detail.items():
+            if not _room():
+                break
+            if abs(bnet) < 1e-9:
+                continue
+            sym = _norm_inst(sym_raw)
+            if sym in posmod.positions:
+                continue
+            # Case C
+            _import_broker_truth(sym, float(bnet), float(bavg), pending)
+            fixes += 1
+            logger.info("[RECONCILE IMPORT] imported broker-only | %s | fix=%s/%s", sym, fixes, cap or "inf")
 
     return fixes
 
 
 def _is_broker_backed_local(pos: Any) -> bool:
-    kind = (getattr(pos, "execution_kind", None) or "").strip().lower()
-    return kind not in {"simulated", "window_paper"}
+    from forex_bot.execution import is_broker_backed
+
+    return is_broker_backed(pos)
 
 
 def _reconcile_pending_orders(broker_pending: list[dict[str, Any]]) -> None:
@@ -478,7 +730,8 @@ def reconcile_positions_log_only() -> list[tuple[str, str, str]]:
             logger.warning("reconciliation: pending orders fetch failed: %s", exc)
 
     if err is None:
-        fixes = _apply_position_convergence(broker_detail)
+        _remember_broker_snapshot(broker_detail)
+        fixes = _apply_position_convergence(broker_detail, broker_pending)
         _reconcile_fixes_total += fixes
         try:
             _reconcile_pending_orders(broker_pending)
@@ -519,8 +772,8 @@ def reconcile_positions_log_only() -> list[tuple[str, str, str]]:
                 )
                 if local_pos is not None and not _is_broker_backed_local(local_pos):
                     msg = (
-                        f"broker open net={bnet:.4f} but local is non-broker "
-                        f"(execution_kind={local_pos.execution_kind})"
+                        f"broker open net={bnet:.4f} but local is still paper-like "
+                        f"(execution_kind={local_pos.execution_kind}) after conflict resolution"
                     )
                     mismatches.append((nk, "critical", msg))
 
