@@ -19,3 +19,4 @@ def _isolate_sizing_env(monkeypatch):
     monkeypatch.setenv("EXECUTION_MODE", "paper")
     monkeypatch.setenv("PAPER_TRADING", "true")
     monkeypatch.setenv("USE_OANDA_LIVE", "false")
+    monkeypatch.setenv("TELEGRAM_COMMANDS", "false")

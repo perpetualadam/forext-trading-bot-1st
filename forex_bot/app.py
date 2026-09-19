@@ -260,9 +260,13 @@ async def lifespan(app: FastAPI):
     reco_task = asyncio.create_task(reconciliation_loop())
     health_task = asyncio.create_task(health_snapshot_loop())
     task = asyncio.create_task(run_bot())
+    from forex_bot.telegram_control import start_telegram_control, stop_telegram_control
+
+    start_telegram_control()
     try:
         yield
     finally:
+        stop_telegram_control()
         set_lifespan_phase("stopping")
         health_task.cancel()
         try:

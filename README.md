@@ -75,3 +75,9 @@ MAX_PORTFOLIO_GROSS_NOTIONAL_PCT_OF_NAV=0.06
 Confirm on `GET /system`: `execution_mode` is `paper_broker` or `live_broker`, `broker_orders_enabled=true`, `effective_paper_trading=false`. Logs should show `[ORDER SENT]` / `[EXECUTION] BROKER_FILL` when a trade opens.
 
 See [DEPLOYMENT.md](DEPLOYMENT.md) for Docker.
+
+## Telegram control
+
+If `TELEGRAM_TOKEN` (or `TELEGRAM_BOT_TOKEN`) and `TELEGRAM_CHAT_ID` are set, the bot keeps the existing outbound alerts and also listens for commands from that chat. Send `/start` or `/help` to pin a keyboard with P/L, drawdown, status, start, stop, positions, account, system, windows, metrics, trades, risk, experiment, and reconcile.
+
+Start / Stop map to the same in-process halt as `POST /halt` and `POST /resume` (new entries only; closes still run). They do not shut down the container. Only the configured chat id can use the buttons. Set `TELEGRAM_COMMANDS=0` to keep alerts and turn the listener off.

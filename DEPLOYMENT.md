@@ -16,7 +16,7 @@
 | Indicators (MA, RSI, MACD, BB, ATR) | Yes | ATR uses true range + rolling mean (more standard than the original shortcut). |
 | BUY / SELL | Yes | Ensemble returns a direction (quant stub uses `ma_fast` vs `ma_slow`); RL can override with SKIP. |
 | Session windows, pre-close sizing, volatility filter | Yes | Session times are interpreted in **UTC** (see limitations below). |
-| Telegram + Discord alerts | Yes | Only sends if env vars are set. |
+| Telegram + Discord alerts | Yes | Only sends if env vars are set. Same token/chat also exposes Telegram **command buttons** (P/L, drawdown, start/stop, positions, …). Disable inbound control with `TELEGRAM_COMMANDS=0`. |
 | PostgreSQL trade log | Yes | Lazy connect; bot still runs if DB is down (logs only). |
 | FastAPI dashboard | Yes | `/metrics`, `/replay`, `/strategy-analysis`, `/health`, `/set_mode`. |
 
