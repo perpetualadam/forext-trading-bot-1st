@@ -1,0 +1,10 @@
+{
+  "agency": "STATCAN",
+  "filename": "release_2026.pdf",
+  "source_url": "https://www150.statcan.gc.ca/n1/release-diffusion/2026-eng.pdf",
+  "retrieval_ts_utc": "2026-09-19T07:23:52Z",
+  "sha256": "f7af7f426ab9755ef209e8916f2ca03f93162a58dff7a0b3c4e61b084b964875",
+  "bytes": 158855,
+  "path": "data/research/external/raw/STATCAN/2026-09-19/release_2026.pdf",
+  "normalization_version": "d1"
+}

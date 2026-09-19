@@ -1,0 +1,29 @@
+{
+  "frozen_before_prediction_values": true,
+  "frozen_at_utc": "2026-09-19T09:00:00Z",
+  "provider": "FXMacroData",
+  "critical_rule": "A prediction attached to release T is PIT only if prediction value, type, publisher, announcement identity, and prediction as-of timestamp exist, and prediction_asof < official_release_time, or an equally strong documented mechanism proves the prediction was fixed before release.",
+  "insufficient": [
+    "historical prediction value returned today without vintage/as-of evidence",
+    "vendor statement that data is historical",
+    "a field named forecast or predicted_value by itself",
+    "database created_at/updated_at after release",
+    "FXMacroData blended/model forecast labelled as consensus",
+    "quarterly survey mapped onto a monthly release without a documented pre-release cutoff"
+  ],
+  "acceptable_proof": [
+    "provider timestamped pre-release snapshot",
+    "documented stored_at_generation capture with generated_at < release",
+    "retrospective official archive import with dated known-at marker strictly before release",
+    "provider-certified historical consensus snapshot"
+  ],
+  "sample_selection_rule": {
+    "n_target": "2-5",
+    "principle": "Most recent eligible completed USD event per priority category. Not selected by later FX move.",
+    "categories_in_order": ["INFLATION", "EMPLOYMENT", "CENTRAL_BANK_DECISION"],
+    "preferred_slugs": ["inflation", "non_farm_payrolls", "policy_rate"],
+    "source_of_identity": "FXMacroData announcement_id if no-key announcements work; otherwise official Experiment D most-recent USD clocks S03/S06/S09",
+    "do_not_select_by_fx_outcome": true
+  },
+  "existing_frozen_sample_untouched": "reports/decision_quality/quant_v2_pit_consensus_frozen_sample.json"
+}

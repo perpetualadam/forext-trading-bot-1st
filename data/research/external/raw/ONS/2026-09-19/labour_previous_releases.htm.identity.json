@@ -1,0 +1,10 @@
+{
+  "agency": "ONS",
+  "filename": "labour_previous_releases.htm",
+  "source_url": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/bulletins/uklabourmarket/previousreleases",
+  "retrieval_ts_utc": "2026-09-19T07:23:52Z",
+  "sha256": "9bb3496562fbcfdbf0085f2144f4e923d1f81773fff102241d16fc6cc4674c80",
+  "bytes": 61433,
+  "path": "data/research/external/raw/ONS/2026-09-19/labour_previous_releases.htm",
+  "normalization_version": "d1"
+}

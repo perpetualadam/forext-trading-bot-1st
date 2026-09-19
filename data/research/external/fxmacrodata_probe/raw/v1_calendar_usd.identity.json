@@ -1,0 +1,10 @@
+{
+  "name": "v1_calendar_usd",
+  "url": "https://api.fxmacrodata.com/v1/calendar/usd",
+  "retrieved_at_utc": "2026-09-19T08:57:59Z",
+  "status_code": 200,
+  "content_type": "application/json",
+  "sha256": "bf6bd8f1d0bdf0ecfa4b51822c96d29d4e2585fe40651a2a6baacf992e9b3a14",
+  "bytes": 58641,
+  "path": "data/research/external/fxmacrodata_probe/raw/v1_calendar_usd.json"
+}

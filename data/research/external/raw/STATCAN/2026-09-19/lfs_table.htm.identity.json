@@ -1,0 +1,10 @@
+{
+  "agency": "STATCAN",
+  "filename": "lfs_table.htm",
+  "source_url": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410028701",
+  "retrieval_ts_utc": "2026-09-19T07:26:36Z",
+  "sha256": "4a348f9dad1c40359febe1381934a9a322743353037f36226891ceaa92dda610",
+  "bytes": 89930,
+  "path": "data/research/external/raw/STATCAN/2026-09-19/lfs_table.htm",
+  "normalization_version": "d1"
+}

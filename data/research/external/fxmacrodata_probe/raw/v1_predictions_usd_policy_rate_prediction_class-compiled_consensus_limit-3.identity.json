@@ -1,0 +1,10 @@
+{
+  "name": "v1_predictions_usd_policy_rate_prediction_class-compiled_consensus_limit-3",
+  "url": "https://api.fxmacrodata.com/v1/predictions/usd/policy_rate?prediction_class=compiled_consensus&limit=3",
+  "retrieved_at_utc": "2026-09-19T08:58:02Z",
+  "status_code": 401,
+  "content_type": "application/json",
+  "sha256": "36010b3d6ad6972a6dd6e3b223859037f0955c75842a97f77e6c8e411e3b1a5a",
+  "bytes": 2192,
+  "path": "data/research/external/fxmacrodata_probe/raw/v1_predictions_usd_policy_rate_prediction_class-compiled_consensus_limit-3.json"
+}

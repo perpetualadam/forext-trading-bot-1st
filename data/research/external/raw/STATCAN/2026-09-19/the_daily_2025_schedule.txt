@@ -1,0 +1,18 @@
+official StatCan The Daily / major-release calendar clocks (08:30 Eastern).
+retrieval: 2026-09-19
+sources:
+  https://www150.statcan.gc.ca/n1/dai-quo/cal1-eng.htm (CPI August 2025 -> 2025-09-16)
+  https://www150.statcan.gc.ca/n1/daily-quotidien/250916/dq250916a-eng.htm
+  https://www150.statcan.gc.ca/n1/daily-quotidien/250905/dq250905a-eng.htm
+  https://www150.statcan.gc.ca/n1/daily-quotidien/251021/dq251021a-eng.htm
+  https://www150.statcan.gc.ca/n1/daily-quotidien/251010/dq251010a-eng.htm
+  https://www150.statcan.gc.ca/n1/daily-quotidien/251117/dq251117a-eng.htm
+  https://www150.statcan.gc.ca/n1/daily-quotidien/251215/dq251215a-eng.htm
+CPI	2025-09-16	08:30	America/New_York	August 2025
+CPI	2025-10-21	08:30	America/New_York	September 2025
+CPI	2025-11-17	08:30	America/New_York	October 2025
+CPI	2025-12-15	08:30	America/New_York	November 2025
+LFS	2025-09-05	08:30	America/New_York	August 2025
+LFS	2025-10-10	08:30	America/New_York	September 2025
+LFS	2025-11-07	08:30	America/New_York	October 2025
+LFS	2025-12-05	08:30	America/New_York	November 2025

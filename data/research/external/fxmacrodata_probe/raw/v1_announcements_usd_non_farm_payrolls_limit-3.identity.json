@@ -1,0 +1,10 @@
+{
+  "name": "v1_announcements_usd_non_farm_payrolls_limit-3",
+  "url": "https://api.fxmacrodata.com/v1/announcements/usd/non_farm_payrolls?limit=3",
+  "retrieved_at_utc": "2026-09-19T08:58:00Z",
+  "status_code": 200,
+  "content_type": "application/json",
+  "sha256": "5d8233b14ff4033a62c6eb36de656ec95c028c08e12fd2165e08d543f209e3ef",
+  "bytes": 7866,
+  "path": "data/research/external/fxmacrodata_probe/raw/v1_announcements_usd_non_farm_payrolls_limit-3.json"
+}

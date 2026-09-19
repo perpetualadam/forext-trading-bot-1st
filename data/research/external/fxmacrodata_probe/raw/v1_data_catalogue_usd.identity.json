@@ -1,0 +1,10 @@
+{
+  "name": "v1_data_catalogue_usd",
+  "url": "https://api.fxmacrodata.com/v1/data_catalogue/usd",
+  "retrieved_at_utc": "2026-09-19T08:57:58Z",
+  "status_code": 200,
+  "content_type": "application/json",
+  "sha256": "4781fcf92fea0f05f9dde60366d16c6552f8a628a5af59f68fb300d4404d0d4d",
+  "bytes": 103659,
+  "path": "data/research/external/fxmacrodata_probe/raw/v1_data_catalogue_usd.json"
+}

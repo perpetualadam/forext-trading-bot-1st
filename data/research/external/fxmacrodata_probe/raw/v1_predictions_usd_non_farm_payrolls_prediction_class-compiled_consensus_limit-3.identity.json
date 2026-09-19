@@ -1,0 +1,10 @@
+{
+  "name": "v1_predictions_usd_non_farm_payrolls_prediction_class-compiled_consensus_limit-3",
+  "url": "https://api.fxmacrodata.com/v1/predictions/usd/non_farm_payrolls?prediction_class=compiled_consensus&limit=3",
+  "retrieved_at_utc": "2026-09-19T08:58:02Z",
+  "status_code": 401,
+  "content_type": "application/json",
+  "sha256": "31725778cebdaa5b178080e2ca81ec65c699866497521152f19f21f15cc13710",
+  "bytes": 2264,
+  "path": "data/research/external/fxmacrodata_probe/raw/v1_predictions_usd_non_farm_payrolls_prediction_class-compiled_consensus_limit-3.json"
+}

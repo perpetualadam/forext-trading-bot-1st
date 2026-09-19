@@ -1,0 +1,10 @@
+{
+  "agency": "BOC",
+  "filename": "key_interest_rate.htm",
+  "source_url": "https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/",
+  "retrieval_ts_utc": "2026-09-19T07:23:52Z",
+  "sha256": "b96b4cc9be8c039419e71354e98030eda123fe3fb479cbad1b2744a17511c38d",
+  "bytes": 149158,
+  "path": "data/research/external/raw/BOC/2026-09-19/key_interest_rate.htm",
+  "normalization_version": "d1"
+}

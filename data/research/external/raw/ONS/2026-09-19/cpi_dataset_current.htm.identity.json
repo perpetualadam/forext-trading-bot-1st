@@ -1,0 +1,10 @@
+{
+  "agency": "ONS",
+  "filename": "cpi_dataset_current.htm",
+  "source_url": "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/consumerpriceinflation/current",
+  "retrieval_ts_utc": "2026-09-19T07:23:52Z",
+  "sha256": "cf88a8866934df780d7c00b64ed38920690bc117afed117fea50592df5400582",
+  "bytes": 289724,
+  "path": "data/research/external/raw/ONS/2026-09-19/cpi_dataset_current.htm",
+  "normalization_version": "d1"
+}

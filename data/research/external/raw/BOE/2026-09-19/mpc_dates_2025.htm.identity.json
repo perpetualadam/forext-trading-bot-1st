@@ -1,0 +1,10 @@
+{
+  "agency": "BOE",
+  "filename": "mpc_dates_2025.htm",
+  "source_url": "https://www.bankofengland.co.uk/news/2024/september/monetary-policy-committee-dates-for-2025",
+  "retrieval_ts_utc": "2026-09-19T07:23:52Z",
+  "sha256": "b6bc956d3995832cba0e14bcb94c917f8179ee37d52a9a2d637a5d28436b39b2",
+  "bytes": 78785,
+  "path": "data/research/external/raw/BOE/2026-09-19/mpc_dates_2025.htm",
+  "normalization_version": "d1"
+}

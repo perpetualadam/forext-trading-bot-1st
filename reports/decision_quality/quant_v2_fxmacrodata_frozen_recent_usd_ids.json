@@ -1,0 +1,38 @@
+{
+  "frozen_before_prediction_values": true,
+  "frozen_at_utc": "2026-09-19T08:58:00Z",
+  "selection_principle": "Most recent eligible completed USD announcement per INFLATION / EMPLOYMENT / CENTRAL_BANK_DECISION from no-key announcements?limit=3. Not selected by FX outcome.",
+  "n_sample": 3,
+  "events": [
+    {
+      "selection_rule": "most_recent_row_in_no_key_announcements_limit_3",
+      "category": "INFLATION",
+      "indicator": "inflation",
+      "announcement_id": "usd_inflation_2026-08-31",
+      "date": "2026-08-31",
+      "announcement_datetime": 1789129800,
+      "announcement_datetime_local": "2026-09-11T08:30:00-04:00",
+      "selected_before_prediction_values": true
+    },
+    {
+      "selection_rule": "most_recent_row_in_no_key_announcements_limit_3",
+      "category": "EMPLOYMENT",
+      "indicator": "non_farm_payrolls",
+      "announcement_id": "usd_non_farm_payrolls_2026-08-31",
+      "date": "2026-08-31",
+      "announcement_datetime": 1788525000,
+      "announcement_datetime_local": "2026-09-04T08:30:00-04:00",
+      "selected_before_prediction_values": true
+    },
+    {
+      "selection_rule": "most_recent_row_in_no_key_announcements_limit_3",
+      "category": "CENTRAL_BANK_DECISION",
+      "indicator": "policy_rate",
+      "announcement_id": "usd_policy_rate_2026-09-16",
+      "date": "2026-09-16",
+      "announcement_datetime": 1789581600,
+      "announcement_datetime_local": "2026-09-16T14:00:00-04:00",
+      "selected_before_prediction_values": true
+    }
+  ]
+}

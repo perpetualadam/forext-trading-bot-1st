@@ -1,0 +1,10 @@
+{
+  "agency": "BLS",
+  "filename": "year_2025_cpi_empsit.txt",
+  "source_url": "https://www.bls.gov/schedule/",
+  "retrieval_ts_utc": "2026-09-19T12:00:00Z",
+  "sha256": "57548bd522110744bcef853d6c52712546b3ba75f61dd33bb6dd631dc615eafd",
+  "bytes": 1874,
+  "path": "data/research/external/raw/BLS/2026-09-19/year_2025_cpi_empsit.txt",
+  "normalization_version": "d1"
+}

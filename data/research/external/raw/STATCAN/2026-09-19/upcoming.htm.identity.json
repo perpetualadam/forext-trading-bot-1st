@@ -1,0 +1,10 @@
+{
+  "agency": "STATCAN",
+  "filename": "upcoming.htm",
+  "source_url": "https://www150.statcan.gc.ca/n1/dai-quo/cal2-eng.htm",
+  "retrieval_ts_utc": "2026-09-19T07:23:52Z",
+  "sha256": "04e48047a1f22b4d38a458c65e87737008d858e2d8a29732b7d90ecc4a37db7c",
+  "bytes": 31622,
+  "path": "data/research/external/raw/STATCAN/2026-09-19/upcoming.htm",
+  "normalization_version": "d1"
+}

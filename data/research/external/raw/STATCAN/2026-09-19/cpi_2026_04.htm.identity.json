@@ -1,0 +1,10 @@
+{
+  "agency": "STATCAN",
+  "filename": "cpi_2026_04.htm",
+  "source_url": "https://www150.statcan.gc.ca/n1/dai-quo/cal1-eng.htm?nr=1&sk=3665&sm=4&sy=2026",
+  "retrieval_ts_utc": "2026-09-19T07:25:57Z",
+  "sha256": "2e5e771dcc3c954892833388600a98316639c0fe425510c6f2e4685699684fa8",
+  "bytes": 20693,
+  "path": "data/research/external/raw/STATCAN/2026-09-19/cpi_2026_04.htm",
+  "normalization_version": "d1"
+}

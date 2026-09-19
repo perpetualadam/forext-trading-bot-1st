@@ -1,0 +1,159 @@
+[
+  {
+    "name": "v1_predictions_coverage",
+    "url": "https://api.fxmacrodata.com/v1/predictions/coverage",
+    "retrieved_at_utc": "2026-09-19T08:57:56Z",
+    "status_code": 200,
+    "content_type": "application/json",
+    "sha256": "7001ffebad3143e1a2d84cdb969676ceea86decd5f6e847a683306e8b80c9e6b",
+    "bytes": 23136,
+    "path": "data/research/external/fxmacrodata_probe/raw/v1_predictions_coverage.json",
+    "stage": "coverage_or_discovery"
+  },
+  {
+    "name": "v1_predictions_coverage_usd",
+    "url": "https://api.fxmacrodata.com/v1/predictions/coverage/usd",
+    "retrieved_at_utc": "2026-09-19T08:57:56Z",
+    "status_code": 200,
+    "content_type": "application/json",
+    "sha256": "c4c81de83ef5cf2962d46de7b514cbd7f43b9e7ba8ffd7e00df87aa02bb2429f",
+    "bytes": 56395,
+    "path": "data/research/external/fxmacrodata_probe/raw/v1_predictions_coverage_usd.json",
+    "stage": "coverage_or_discovery"
+  },
+  {
+    "name": "v1_data_catalogue_usd",
+    "url": "https://api.fxmacrodata.com/v1/data_catalogue/usd",
+    "retrieved_at_utc": "2026-09-19T08:57:58Z",
+    "status_code": 200,
+    "content_type": "application/json",
+    "sha256": "4781fcf92fea0f05f9dde60366d16c6552f8a628a5af59f68fb300d4404d0d4d",
+    "bytes": 103659,
+    "path": "data/research/external/fxmacrodata_probe/raw/v1_data_catalogue_usd.json",
+    "stage": "coverage_or_discovery"
+  },
+  {
+    "name": "v1_calendar_usd",
+    "url": "https://api.fxmacrodata.com/v1/calendar/usd",
+    "retrieved_at_utc": "2026-09-19T08:57:59Z",
+    "status_code": 200,
+    "content_type": "application/json",
+    "sha256": "bf6bd8f1d0bdf0ecfa4b51822c96d29d4e2585fe40651a2a6baacf992e9b3a14",
+    "bytes": 58641,
+    "path": "data/research/external/fxmacrodata_probe/raw/v1_calendar_usd.json",
+    "stage": "coverage_or_discovery"
+  },
+  {
+    "name": "v1_announcements_usd_inflation_limit-3",
+    "url": "https://api.fxmacrodata.com/v1/announcements/usd/inflation?limit=3",
+    "retrieved_at_utc": "2026-09-19T08:57:59Z",
+    "status_code": 200,
+    "content_type": "application/json",
+    "sha256": "a74c323f167d2519e84efa7be7b8b0747f45285a945ffc45c8c7be3a0194b367",
+    "bytes": 8151,
+    "path": "data/research/external/fxmacrodata_probe/raw/v1_announcements_usd_inflation_limit-3.json",
+    "stage": "announcement_metadata"
+  },
+  {
+    "name": "v1_announcements_usd_non_farm_payrolls_limit-3",
+    "url": "https://api.fxmacrodata.com/v1/announcements/usd/non_farm_payrolls?limit=3",
+    "retrieved_at_utc": "2026-09-19T08:58:00Z",
+    "status_code": 200,
+    "content_type": "application/json",
+    "sha256": "5d8233b14ff4033a62c6eb36de656ec95c028c08e12fd2165e08d543f209e3ef",
+    "bytes": 7866,
+    "path": "data/research/external/fxmacrodata_probe/raw/v1_announcements_usd_non_farm_payrolls_limit-3.json",
+    "stage": "announcement_metadata"
+  },
+  {
+    "name": "v1_announcements_usd_policy_rate_limit-3",
+    "url": "https://api.fxmacrodata.com/v1/announcements/usd/policy_rate?limit=3",
+    "retrieved_at_utc": "2026-09-19T08:58:00Z",
+    "status_code": 200,
+    "content_type": "application/json",
+    "sha256": "b9211d6592b450b4f7cbb7259368de76a48e24ca2fd051375617b10f1d819b0a",
+    "bytes": 6427,
+    "path": "data/research/external/fxmacrodata_probe/raw/v1_announcements_usd_policy_rate_limit-3.json",
+    "stage": "announcement_metadata"
+  },
+  {
+    "name": "v1_predictions_usd_inflation_prediction_class-compiled_consensus_limit-3",
+    "url": "https://api.fxmacrodata.com/v1/predictions/usd/inflation?prediction_class=compiled_consensus&limit=3",
+    "retrieved_at_utc": "2026-09-19T08:58:01Z",
+    "status_code": 401,
+    "content_type": "application/json",
+    "sha256": "d3eee4e4628668a2f0198f4b41fb941636fb2c22e571ae9dd0d916a6b0085d0e",
+    "bytes": 2212,
+    "path": "data/research/external/fxmacrodata_probe/raw/v1_predictions_usd_inflation_prediction_class-compiled_consensus_limit-3.json",
+    "stage": "prediction_probe"
+  },
+  {
+    "stage": "stop_paid_auth",
+    "url": "https://api.fxmacrodata.com/v1/predictions/usd/inflation?prediction_class=compiled_consensus&limit=3",
+    "status_code": 401
+  },
+  {
+    "name": "v1_predictions_usd_inflation_prediction_class-forecaster_survey_limit-3",
+    "url": "https://api.fxmacrodata.com/v1/predictions/usd/inflation?prediction_class=forecaster_survey&limit=3",
+    "retrieved_at_utc": "2026-09-19T08:58:01Z",
+    "status_code": 401,
+    "content_type": "application/json",
+    "sha256": "d612b139bea765d120b059d75b563e04e11d72263e5ee9d12b7ed7519c03cbc5",
+    "bytes": 2208,
+    "path": "data/research/external/fxmacrodata_probe/raw/v1_predictions_usd_inflation_prediction_class-forecaster_survey_limit-3.json",
+    "stage": "prediction_probe"
+  },
+  {
+    "stage": "stop_paid_auth",
+    "url": "https://api.fxmacrodata.com/v1/predictions/usd/inflation?prediction_class=forecaster_survey&limit=3",
+    "status_code": 401
+  },
+  {
+    "name": "v1_predictions_usd_non_farm_payrolls_prediction_class-compiled_consensus_limit-3",
+    "url": "https://api.fxmacrodata.com/v1/predictions/usd/non_farm_payrolls?prediction_class=compiled_consensus&limit=3",
+    "retrieved_at_utc": "2026-09-19T08:58:02Z",
+    "status_code": 401,
+    "content_type": "application/json",
+    "sha256": "31725778cebdaa5b178080e2ca81ec65c699866497521152f19f21f15cc13710",
+    "bytes": 2264,
+    "path": "data/research/external/fxmacrodata_probe/raw/v1_predictions_usd_non_farm_payrolls_prediction_class-compiled_consensus_limit-3.json",
+    "stage": "prediction_probe"
+  },
+  {
+    "stage": "stop_paid_auth",
+    "url": "https://api.fxmacrodata.com/v1/predictions/usd/non_farm_payrolls?prediction_class=compiled_consensus&limit=3",
+    "status_code": 401
+  },
+  {
+    "name": "v1_predictions_usd_policy_rate_prediction_class-compiled_consensus_limit-3",
+    "url": "https://api.fxmacrodata.com/v1/predictions/usd/policy_rate?prediction_class=compiled_consensus&limit=3",
+    "retrieved_at_utc": "2026-09-19T08:58:02Z",
+    "status_code": 401,
+    "content_type": "application/json",
+    "sha256": "36010b3d6ad6972a6dd6e3b223859037f0955c75842a97f77e6c8e411e3b1a5a",
+    "bytes": 2192,
+    "path": "data/research/external/fxmacrodata_probe/raw/v1_predictions_usd_policy_rate_prediction_class-compiled_consensus_limit-3.json",
+    "stage": "prediction_probe"
+  },
+  {
+    "stage": "stop_paid_auth",
+    "url": "https://api.fxmacrodata.com/v1/predictions/usd/policy_rate?prediction_class=compiled_consensus&limit=3",
+    "status_code": 401
+  },
+  {
+    "name": "v1_predictions_usd_policy_rate_midpoint_prediction_class-forecaster_survey_limit-3",
+    "url": "https://api.fxmacrodata.com/v1/predictions/usd/policy_rate_midpoint?prediction_class=forecaster_survey&limit=3",
+    "retrieved_at_utc": "2026-09-19T08:58:03Z",
+    "status_code": 401,
+    "content_type": "application/json",
+    "sha256": "72b1b6ae2e1da5d2f0374a4f5f7fe6225fdf46d07475a8f62665c48ab3ec146b",
+    "bytes": 2198,
+    "path": "data/research/external/fxmacrodata_probe/raw/v1_predictions_usd_policy_rate_midpoint_prediction_class-forecaster_survey_limit-3.json",
+    "stage": "prediction_probe"
+  },
+  {
+    "stage": "stop_paid_auth",
+    "url": "https://api.fxmacrodata.com/v1/predictions/usd/policy_rate_midpoint?prediction_class=forecaster_survey&limit=3",
+    "status_code": 401
+  }
+]

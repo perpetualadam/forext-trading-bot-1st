@@ -1,0 +1,10 @@
+{
+  "agency": "BLS",
+  "filename": "cpi_schedule_table.htm",
+  "source_url": "https://www.bls.gov/schedule/",
+  "retrieval_ts_utc": "2026-09-19T12:00:00Z",
+  "sha256": "b18f209734fafc445a62bd842fb37e5d9c63295c5a1f99f29ff985b59e263fbe",
+  "bytes": 1221,
+  "path": "data/research/external/raw/BLS/2026-09-19/cpi_schedule_table.htm",
+  "normalization_version": "d1"
+}

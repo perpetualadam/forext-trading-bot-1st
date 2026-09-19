@@ -1,0 +1,10 @@
+{
+  "agency": "FRB",
+  "filename": "fomc_schedule_2025_2026.htm",
+  "source_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20240809a.htm",
+  "retrieval_ts_utc": "2026-09-19T07:23:52Z",
+  "sha256": "2ab8630f9f6a6d59550b2e7b5f0f0a5e307fba4b64c4352d394efa4675a766c0",
+  "bytes": 83621,
+  "path": "data/research/external/raw/FRB/2026-09-19/fomc_schedule_2025_2026.htm",
+  "normalization_version": "d1"
+}

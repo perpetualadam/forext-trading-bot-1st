@@ -1,0 +1,10 @@
+{
+  "agency": "ONS",
+  "filename": "lms_dataset_current.htm",
+  "source_url": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/datasets/labourmarketstatistics/current",
+  "retrieval_ts_utc": "2026-09-19T07:23:52Z",
+  "sha256": "3b3ce798e99accece17a9997db7fd2d55250edeab5f87980d3794c196b1574da",
+  "bytes": 580402,
+  "path": "data/research/external/raw/ONS/2026-09-19/lms_dataset_current.htm",
+  "normalization_version": "d1"
+}

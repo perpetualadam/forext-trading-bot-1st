@@ -1,0 +1,16 @@
+official source: https://www.bls.gov/schedule/news_release/empsit.htm
+retrieved: 2026-09-19
+Reference Month	Release Date	Release Time
+November 2025	Dec. 16, 2025	08:30 AM
+December 2025	Jan. 09, 2026	08:30 AM
+January 2026	Feb. 11, 2026	08:30 AM
+February 2026	Mar. 06, 2026	08:30 AM
+March 2026	Apr. 03, 2026	08:30 AM
+April 2026	May 08, 2026	08:30 AM
+May 2026	Jun. 05, 2026	08:30 AM
+June 2026	Jul. 02, 2026	08:30 AM
+July 2026	Aug. 07, 2026	08:30 AM
+August 2026	Sep. 04, 2026	08:30 AM
+September 2026	Oct. 02, 2026	08:30 AM
+October 2026	Nov. 06, 2026	08:30 AM
+November 2026	Dec. 04, 2026	08:30 AM

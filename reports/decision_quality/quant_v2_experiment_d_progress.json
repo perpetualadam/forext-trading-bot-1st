@@ -1,0 +1,45 @@
+{
+  "experiment": "quant_v2_experiment_d",
+  "started_at_utc": "2026-09-19T07:31:13Z",
+  "current_stage": 20,
+  "completed_stages": [
+    3,
+    20
+  ],
+  "stages": [
+    {
+      "stage": 3,
+      "stage_name": "schedule_integrity",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T07:31:13Z",
+      "finished_at_utc": "2026-09-19T07:31:13Z",
+      "findings": {
+        "n_in_period": 90,
+        "excluded": 9
+      }
+    },
+    {
+      "stage": 20,
+      "stage_name": "verdict",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T07:31:13Z",
+      "finished_at_utc": "2026-09-19T07:32:32Z",
+      "findings": {
+        "verdict": "D_PASS_INCREMENTAL_MAGNITUDE_INFORMATION",
+        "next": "PIT_CONSENSUS_SAMPLE_AUDIT_JUSTIFIED"
+      }
+    }
+  ],
+  "blocked": false,
+  "last_checkpoint_at_utc": "2026-09-19T07:32:32Z",
+  "finished_at_utc": "2026-09-19T07:32:32Z",
+  "verdict": "D_PASS_INCREMENTAL_MAGNITUDE_INFORMATION",
+  "next_external": "PIT_CONSENSUS_SAMPLE_AUDIT_JUSTIFIED",
+  "pytest": {
+    "command": "python -m pytest -q --tb=line",
+    "passed": 411,
+    "failed": 0,
+    "skipped": 0,
+    "duration_s": 29.14
+  }
+}

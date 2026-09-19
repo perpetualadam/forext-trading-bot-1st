@@ -1,0 +1,219 @@
+{
+  "task": "quant_v2_pit_consensus_sample_audit",
+  "started_at_utc": "2026-09-19T07:36:34Z",
+  "current_stage": 19,
+  "completed_stages": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+  "stages": [
+    {
+      "stage": 1,
+      "stage_name": "pit_acceptance_standard",
+      "status": "completed",
+      "findings": {
+        "critical_rule": "CONSENSUS MUST BE DEMONSTRABLY PRE-RELEASE",
+        "current_webpage_historical_number": "insufficient"
+      }
+    },
+    {
+      "stage": 2,
+      "stage_name": "consensus_semantics",
+      "status": "completed",
+      "findings": {
+        "econoday_consensus": "CLAIMED median of ~20 economists",
+        "te_forecast": "CLAIMED average of a representative group",
+        "te_actual": "VERIFIED docs: latest released value",
+        "te_previous": "VERIFIED docs: after revision if applicable",
+        "bloomberg_pit": "CLAIMED timestamps + revision history",
+        "unknowns_recorded": true
+      }
+    },
+    {
+      "stage": 3,
+      "stage_name": "provider_shortlist",
+      "status": "completed",
+      "findings": {
+        "providers": ["Econoday", "Trading Economics", "Bloomberg PIT"],
+        "forex_factory": "excluded",
+        "no_vendor_expansion": true
+      }
+    },
+    {
+      "stage": 4,
+      "stage_name": "documentation_audit",
+      "status": "completed",
+      "findings": {
+        "econoday_api_public_docs": "401 Unauthorized without API code",
+        "te_trial": "paid / auto-charge — not used",
+        "bloomberg_sample": "none public",
+        "free_sample_obtained": false
+      }
+    },
+    {
+      "stage": 5,
+      "stage_name": "sample_design",
+      "status": "completed",
+      "findings": {
+        "frozen_file": "reports/decision_quality/quant_v2_pit_consensus_frozen_sample.json",
+        "frozen_at_utc": "2026-09-19T07:36:34Z",
+        "n_sample": 18,
+        "timestamp_stress": ["T01", "T02"],
+        "selected_by_fx_move": false
+      }
+    },
+    {
+      "stage": 6,
+      "stage_name": "sample_acquisition",
+      "status": "completed",
+      "findings": {
+        "provider_sample_obtained": false,
+        "purchase_made": false,
+        "bulk_download": false,
+        "vendor_request_specified": true
+      }
+    },
+    {
+      "stage": 7,
+      "stage_name": "official_event_matching",
+      "status": "completed",
+      "findings": {
+        "vendor_rows_matched": 0,
+        "official_sample_already_tied_to_experiment_d": true
+      }
+    },
+    {
+      "stage": 8,
+      "stage_name": "pit_proof",
+      "status": "completed",
+      "findings": {
+        "econoday": "UNKNOWN",
+        "trading_economics": "PIT_PLAUSIBLE_NOT_VERIFIED / default fields look NOT_PIT",
+        "bloomberg": "UNKNOWN",
+        "sampled_events_classified_from_vendor_rows": 0
+      }
+    },
+    {
+      "stage": 9,
+      "stage_name": "revision_audit",
+      "status": "completed",
+      "findings": {
+        "te_default_actual": "latest",
+        "te_default_previous": "may be revised",
+        "first_print_verified_on_sample": false
+      }
+    },
+    {
+      "stage": 10,
+      "stage_name": "timestamp_audit",
+      "status": "completed",
+      "findings": {
+        "official_d_clocks": "verified in catalog",
+        "vendor_clocks": "untested",
+        "required_stress": ["BLS lapse T01/T02", "BoC 09:45 ET"]
+      }
+    },
+    {
+      "stage": 11,
+      "stage_name": "cross_source_spot_check",
+      "status": "completed",
+      "findings": {
+        "vendor_vs_official_actuals": "not performed — no sample",
+        "fx_outcomes_compared": false
+      }
+    },
+    {
+      "stage": 12,
+      "stage_name": "surprise_reconstruction_feasibility",
+      "status": "completed",
+      "findings": {
+        "can_reconstruct_without_hindsight": false,
+        "surprise_correlations_computed": false
+      }
+    },
+    {
+      "stage": 13,
+      "stage_name": "coverage_audit",
+      "status": "completed",
+      "findings": {
+        "usd_priority": "CLAIMED not verified",
+        "gbp_cad": "wait until USD PIT proven"
+      }
+    },
+    {
+      "stage": 14,
+      "stage_name": "licensing_cost",
+      "status": "completed",
+      "findings": {
+        "purchase_made": false,
+        "subscription_started": false,
+        "public_cost": "TE trial paid; Econoday/Bloomberg enterprise UNKNOWN"
+      }
+    },
+    {
+      "stage": 15,
+      "stage_name": "sample_quality_scorecard",
+      "status": "completed",
+      "findings": {
+        "pit_consensus_proof": "UNKNOWN",
+        "te_first_print": "UNSUITABLE on default schema"
+      }
+    },
+    {
+      "stage": 16,
+      "stage_name": "minimum_acquisition_spec",
+      "status": "completed",
+      "findings": {
+        "minimum_if_later_authorized": "S01–S09 USD CPI / Employment / FOMC only",
+        "acquired": false
+      }
+    },
+    {
+      "stage": 17,
+      "stage_name": "holdout_design",
+      "status": "completed",
+      "findings": {
+        "existing_2025_09_2026_08": "DEVELOPMENT / DISCOVERY",
+        "pit_does_not_repair_holdout": true
+      }
+    },
+    {
+      "stage": 18,
+      "stage_name": "final_questions",
+      "status": "completed",
+      "findings": {
+        "historical_consensus_demonstrated": false,
+        "pre_release_demonstrated": false,
+        "surprise_experiment_justified": false
+      }
+    },
+    {
+      "stage": 19,
+      "stage_name": "verdict",
+      "status": "completed",
+      "findings": {
+        "verdict": "PIT_SAMPLE_INCOMPLETE"
+      }
+    }
+  ],
+  "blocked": false,
+  "purchase_made": false,
+  "subscription_started": false,
+  "bulk_download": false,
+  "surprise_study_run": false,
+  "fx_join_run": false,
+  "production_changed": false,
+  "quant_stub_vote_changed": false,
+  "provider_sample_obtained": false,
+  "vendor_sample_paths": [],
+  "frozen_sample": "reports/decision_quality/quant_v2_pit_consensus_frozen_sample.json",
+  "report": "reports/decision_quality/quant_v2_pit_consensus_sample_audit.md",
+  "last_checkpoint_at_utc": "2026-09-19T08:40:00Z",
+  "finished_at_utc": "2026-09-19T08:40:00Z",
+  "verdict": "PIT_SAMPLE_INCOMPLETE",
+  "next_action": "human_review_only_do_not_purchase",
+  "pytest": {
+    "command": "python -m pytest -q --tb=line",
+    "passed": 419,
+    "failed": 0,
+    "skipped": 0,
+    "duration_s": 28.16
+  }
+}

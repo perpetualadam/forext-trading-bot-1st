@@ -1,0 +1,10 @@
+{
+  "agency": "FRB",
+  "filename": "fomccalendars.htm",
+  "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+  "retrieval_ts_utc": "2026-09-19T07:23:52Z",
+  "sha256": "4c12fa2b4642d522801ce4e44b15fb2853b5e6c5d381684a0babfd232b14e847",
+  "bytes": 167493,
+  "path": "data/research/external/raw/FRB/2026-09-19/fomccalendars.htm",
+  "normalization_version": "d1"
+}

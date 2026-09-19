@@ -1,0 +1,204 @@
+{
+  "task": "quant_v2_fxmacrodata_pit_probe",
+  "started_at_utc": "2026-09-19T08:56:00Z",
+  "current_stage": 20,
+  "completed_stages": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+  "stages": [
+    {
+      "stage": 1,
+      "stage_name": "documentation_verification",
+      "status": "completed",
+      "findings": {
+        "prediction_class_taxonomy": "VERIFIED_DOCUMENTATION",
+        "usd_predictions_free_claim": "AMBIGUOUS_DOCS_LIVE_401"
+      }
+    },
+    {
+      "stage": 2,
+      "stage_name": "identify_endpoints",
+      "status": "completed",
+      "findings": {
+        "coverage_no_key": true,
+        "predictions_live_auth": "401"
+      }
+    },
+    {
+      "stage": 3,
+      "stage_name": "free_coverage_probe",
+      "status": "completed",
+      "findings": {
+        "compiled_consensus_cpi_nfp_policy_rate": "no_source_for_pair",
+        "values_require_key": true
+      }
+    },
+    {
+      "stage": 4,
+      "stage_name": "pit_standard",
+      "status": "completed",
+      "findings": {
+        "frozen_file": "reports/decision_quality/quant_v2_fxmacrodata_pit_standard.json"
+      }
+    },
+    {
+      "stage": 5,
+      "stage_name": "small_recent_usd_sample",
+      "status": "completed",
+      "findings": {
+        "n_sample": 3,
+        "ids": [
+          "usd_inflation_2026-08-31",
+          "usd_non_farm_payrolls_2026-08-31",
+          "usd_policy_rate_2026-09-16"
+        ],
+        "frozen_before_prediction_values": true
+      }
+    },
+    {
+      "stage": 6,
+      "stage_name": "prediction_type_audit",
+      "status": "completed",
+      "findings": {
+        "prediction_values_seen": 0,
+        "compiled_consensus": "absent_for_sampled_series"
+      }
+    },
+    {
+      "stage": 7,
+      "stage_name": "pit_timestamp_audit",
+      "status": "completed",
+      "findings": {
+        "sampled_prediction_class": "UNKNOWN",
+        "announcement_point_in_time_safe": false
+      }
+    },
+    {
+      "stage": 8,
+      "stage_name": "announcement_identity",
+      "status": "completed",
+      "findings": {
+        "id_form": "{currency}_{indicator}_{reference_period_date}"
+      }
+    },
+    {
+      "stage": 9,
+      "stage_name": "official_clock_cross_check",
+      "status": "completed",
+      "findings": {
+        "s03_s06_s09_match": true
+      }
+    },
+    {
+      "stage": 10,
+      "stage_name": "actual_revision_semantics",
+      "status": "completed",
+      "findings": {
+        "default_revisions": "latest",
+        "nfp_july_latest_ne_first_print": true
+      }
+    },
+    {
+      "stage": 11,
+      "stage_name": "surprise_feasibility",
+      "status": "completed",
+      "findings": {
+        "can_construct_causal_surprise": false,
+        "fx_response_calculated": false
+      }
+    },
+    {
+      "stage": 12,
+      "stage_name": "free_access_boundary",
+      "status": "completed",
+      "findings": {
+        "free": ["coverage", "catalogue", "calendar", "usd_announcements_90d"],
+        "paid": ["all_prediction_values", "announcement_history_beyond_90d"]
+      }
+    },
+    {
+      "stage": 13,
+      "stage_name": "historical_depth",
+      "status": "completed",
+      "findings": {
+        "pit_values_verified": false
+      }
+    },
+    {
+      "stage": 14,
+      "stage_name": "existing_frozen_sample",
+      "status": "completed",
+      "findings": {
+        "s01_s18_untouched": true,
+        "s01_s09_compiled_consensus": "COVERAGE_NOT_AVAILABLE"
+      }
+    },
+    {
+      "stage": 15,
+      "stage_name": "prospective_collection",
+      "status": "completed",
+      "findings": {
+        "free_consensus_snapshots": false,
+        "scheduler_implemented": false
+      }
+    },
+    {
+      "stage": 16,
+      "stage_name": "holdout_implication",
+      "status": "completed",
+      "findings": {
+        "inspected_sept_2026_events_are_development": true
+      }
+    },
+    {
+      "stage": 17,
+      "stage_name": "provider_quality_summary",
+      "status": "completed"
+    },
+    {
+      "stage": 18,
+      "stage_name": "final_questions",
+      "status": "completed"
+    },
+    {
+      "stage": 19,
+      "stage_name": "verdict",
+      "status": "completed",
+      "findings": {
+        "verdict": "FXMACRODATA_UNSUITABLE"
+      }
+    },
+    {
+      "stage": 20,
+      "stage_name": "next_action",
+      "status": "completed",
+      "findings": {
+        "next_action": "PAID_VENDOR_SAMPLE_REQUEST_JUSTIFIED",
+        "fxmacrodata_trial_authorized": false,
+        "do_not_perform_next_action": true
+      }
+    }
+  ],
+  "blocked": false,
+  "purchase_made": false,
+  "subscription_started": false,
+  "trial_started": false,
+  "bulk_download": false,
+  "surprise_study_run": false,
+  "fx_join_run": false,
+  "production_changed": false,
+  "quant_stub_vote_changed": false,
+  "prediction_values_obtained": false,
+  "prior_frozen_sample_modified": false,
+  "raw_dir": "data/research/external/fxmacrodata_probe/raw",
+  "report": "reports/decision_quality/quant_v2_fxmacrodata_pit_probe.md",
+  "last_checkpoint_at_utc": "2026-09-19T09:05:00Z",
+  "finished_at_utc": "2026-09-19T09:05:00Z",
+  "verdict": "FXMACRODATA_UNSUITABLE",
+  "next_action": "PAID_VENDOR_SAMPLE_REQUEST_JUSTIFIED",
+  "pytest": {
+    "command": "python -m pytest -q --tb=line",
+    "passed": 429,
+    "failed": 0,
+    "skipped": 0,
+    "duration_s": 28.47
+  }
+}

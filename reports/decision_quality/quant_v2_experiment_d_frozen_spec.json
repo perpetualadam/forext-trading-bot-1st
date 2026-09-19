@@ -1,0 +1,102 @@
+{
+  "frozen_before_market_outcomes": true,
+  "period_primary": "2025-09-01 through 2026-08-31 UTC DEVELOPMENT/DISCOVERY",
+  "older_history_role": "optional extra DEVELOPMENT only if the same official source provides it cleanly; never a final holdout",
+  "authorized_currencies": ["USD", "GBP", "CAD"],
+  "authorized_categories": ["INFLATION", "EMPLOYMENT", "CENTRAL_BANK_DECISION"],
+  "disallowed_fields": [
+    "consensus",
+    "forecast",
+    "actual",
+    "revised_actual",
+    "surprise",
+    "news",
+    "statement_text",
+    "minutes_text"
+  ],
+  "official_clock_conventions": {
+    "BLS": {"local_clock": "08:30", "tz": "America/New_York", "note": "Eastern Time on BLS national release calendar"},
+    "FOMC": {"local_clock": "14:00", "tz": "America/New_York", "note": "Typical statement 'For release at 2:00 p.m. ET'. Unscheduled intermeetings marked UNCERTAIN if clock not on the page."},
+    "ONS": {"local_clock": "07:00", "tz": "Europe/London", "note": "UK official statistics standard publication time"},
+    "BOE_MPC": {"local_clock": "12:00", "tz": "Europe/London", "note": "Bank of England: decision and minutes at 12 noon UK"},
+    "STATCAN": {"local_clock": "08:30", "tz": "America/New_York", "note": "Statistics Canada The Daily / WDS releaseTime 08:30 ET"},
+    "BOC": {"local_clock": "09:45", "tz": "America/Toronto", "note": "Official BoC 2025/2026 schedule pages: all interest rate announcements at 09:45 ET."}
+  },
+  "event_name_map": {
+    "Consumer Price Index": "INFLATION",
+    "CPI": "INFLATION",
+    "CPIH": "INFLATION",
+    "Consumer price inflation": "INFLATION",
+    "Consumer Price Index (CPI)": "INFLATION",
+    "Employment Situation": "EMPLOYMENT",
+    "The Employment Situation": "EMPLOYMENT",
+    "Labour market statistics": "EMPLOYMENT",
+    "Labour market": "EMPLOYMENT",
+    "Labour Force Survey": "EMPLOYMENT",
+    "Labour force": "EMPLOYMENT",
+    "FOMC": "CENTRAL_BANK_DECISION",
+    "Federal Open Market Committee": "CENTRAL_BANK_DECISION",
+    "FOMC statement": "CENTRAL_BANK_DECISION",
+    "MPC": "CENTRAL_BANK_DECISION",
+    "Monetary Policy Committee": "CENTRAL_BANK_DECISION",
+    "Bank Rate": "CENTRAL_BANK_DECISION",
+    "Bank of Canada rate": "CENTRAL_BANK_DECISION",
+    "Interest rate announcement": "CENTRAL_BANK_DECISION",
+    "Policy interest rate": "CENTRAL_BANK_DECISION"
+  },
+  "excluded_official_names": [
+    "Real Earnings",
+    "Producer Price Index",
+    "PPI",
+    "Job Openings and Labor Turnover",
+    "JOLTS",
+    "GDP",
+    "Average Weekly Earnings"
+  ],
+  "pre_windows_min": [
+    {"id": "pre_120_60", "lo_min_before": 60, "hi_min_before": 120},
+    {"id": "pre_60_30", "lo_min_before": 30, "hi_min_before": 60},
+    {"id": "pre_30_15", "lo_min_before": 15, "hi_min_before": 30},
+    {"id": "pre_15_5", "lo_min_before": 5, "hi_min_before": 15}
+  ],
+  "post_windows_min": [
+    {"id": "post_0_15", "lo_min_after": 0, "hi_min_after": 15},
+    {"id": "post_15_30", "lo_min_after": 15, "hi_min_after": 30},
+    {"id": "post_30_60", "lo_min_after": 30, "hi_min_after": 60},
+    {"id": "post_60_120", "lo_min_after": 60, "hi_min_after": 120}
+  ],
+  "window_rule": "Half-open on the far side of the event: pre uses lo < minutes_to_event <= hi; post uses lo <= minutes_after < hi. Bar decision time is M5 bar end (t+5m). First post bar start >= scheduled_ts_utc.",
+  "pair_map": {
+    "USD": ["EUR_USD", "GBP_USD", "USD_JPY", "AUD_USD", "USD_CAD", "USD_CHF"],
+    "GBP": ["GBP_USD"],
+    "CAD": ["USD_CAD"]
+  },
+  "horizons_min": [15, 30, 60, 120, 240],
+  "bootstrap_seed": 42,
+  "bootstrap_reps": 200,
+  "splits": {
+    "train": "time <= 2026-03-03 12:15:00",
+    "valid": "2026-03-03 12:15:00 < time <= 2026-06-02 05:05:00",
+    "discovery_test": "time > 2026-06-02 05:05:00"
+  },
+  "activity": {
+    "source": "Experiment A frozen session-relative volume quintiles",
+    "field": "vol_sess_rel",
+    "edges": [0.005102040816326505, 0.6428571428571387, 0.879106438896188, 1.1380753138075266, 1.5610972568578514, 89.38255033556928],
+    "broad_low": [1, 2],
+    "broad_mid": [3],
+    "broad_high": [4, 5]
+  },
+  "dispersion": {
+    "source": "Experiment B frozen cross-sectional std of synchronized usd_ret_6",
+    "field": "disp_std",
+    "edges": [1.65263504079106e-05, 0.0001566334280648208, 0.00022407212602446188, 0.00030227406717171345, 0.0004242980957975246, 0.004644260999902006],
+    "broad_low": [1, 2],
+    "broad_mid": [3],
+    "broad_high": [4, 5]
+  },
+  "cost": "Experiment A contemporaneous M5 completed-bar half-spread (ask_close-bid_close)/2. JPY pip=0.01.",
+  "event_level_observation": "One row per (event_id, window_id, symbol): last completed pre-window bar, or first post-window bar. Bar counts are descriptive only.",
+  "clock_control": "Base bars: same symbol, same UTC hour, same weekday, outside any authorized event +/- 120 minutes.",
+  "normalization_version": "d1"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "v1_announcements_usd_inflation_limit-3",
+  "url": "https://api.fxmacrodata.com/v1/announcements/usd/inflation?limit=3",
+  "retrieved_at_utc": "2026-09-19T08:57:59Z",
+  "status_code": 200,
+  "content_type": "application/json",
+  "sha256": "a74c323f167d2519e84efa7be7b8b0747f45285a945ffc45c8c7be3a0194b367",
+  "bytes": 8151,
+  "path": "data/research/external/fxmacrodata_probe/raw/v1_announcements_usd_inflation_limit-3.json"
+}

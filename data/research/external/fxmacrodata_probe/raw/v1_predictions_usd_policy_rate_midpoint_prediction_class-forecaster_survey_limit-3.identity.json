@@ -1,0 +1,10 @@
+{
+  "name": "v1_predictions_usd_policy_rate_midpoint_prediction_class-forecaster_survey_limit-3",
+  "url": "https://api.fxmacrodata.com/v1/predictions/usd/policy_rate_midpoint?prediction_class=forecaster_survey&limit=3",
+  "retrieved_at_utc": "2026-09-19T08:58:03Z",
+  "status_code": 401,
+  "content_type": "application/json",
+  "sha256": "72b1b6ae2e1da5d2f0374a4f5f7fe6225fdf46d07475a8f62665c48ab3ec146b",
+  "bytes": 2198,
+  "path": "data/research/external/fxmacrodata_probe/raw/v1_predictions_usd_policy_rate_midpoint_prediction_class-forecaster_survey_limit-3.json"
+}

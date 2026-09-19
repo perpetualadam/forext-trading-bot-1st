@@ -1,0 +1,10 @@
+{
+  "name": "v1_predictions_usd_inflation_prediction_class-forecaster_survey_limit-3",
+  "url": "https://api.fxmacrodata.com/v1/predictions/usd/inflation?prediction_class=forecaster_survey&limit=3",
+  "retrieved_at_utc": "2026-09-19T08:58:01Z",
+  "status_code": 401,
+  "content_type": "application/json",
+  "sha256": "d612b139bea765d120b059d75b563e04e11d72263e5ee9d12b7ed7519c03cbc5",
+  "bytes": 2208,
+  "path": "data/research/external/fxmacrodata_probe/raw/v1_predictions_usd_inflation_prediction_class-forecaster_survey_limit-3.json"
+}

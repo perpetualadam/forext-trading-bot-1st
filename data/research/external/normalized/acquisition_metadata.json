@@ -1,0 +1,67 @@
+{
+  "normalization_version": "d1",
+  "retrieval_ts_utc": "2026-09-19T00:00:00Z",
+  "timezone_handling": "zoneinfo IANA: America/New_York, Europe/London, America/Toronto. DST applied from official local clocks. BoC official clock 09:45 ET.",
+  "event_mapping": "Official names mapped to INFLATION / EMPLOYMENT / CENTRAL_BANK_DECISION before outcome analysis. PPI, JOLTS, GDP, Real Earnings, AWE excluded.",
+  "disallowed_fields": ["consensus", "forecast", "actual", "revised_actual", "surprise", "news", "statement_text"],
+  "sources": [
+    {
+      "agency": "BLS",
+      "source_identity": "U.S. Bureau of Labor Statistics official release calendar",
+      "urls": [
+        "https://www.bls.gov/schedule/2025/",
+        "https://www.bls.gov/schedule/news_release/cpi.htm",
+        "https://www.bls.gov/schedule/news_release/empsit.htm"
+      ],
+      "clock": "08:30 America/New_York",
+      "note": "Direct HTTPS from this environment returned 403; official tables were retrieved from the same URLs in a browser session and stored under data/research/external/raw/BLS/2026-09-19/."
+    },
+    {
+      "agency": "FRB",
+      "source_identity": "Federal Reserve FOMC calendars",
+      "urls": [
+        "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+        "https://www.federalreserve.gov/newsevents/pressreleases/monetary20240809a.htm"
+      ],
+      "clock": "14:00 America/New_York statement; notation votes UNCERTAIN"
+    },
+    {
+      "agency": "ONS",
+      "source_identity": "Office for National Statistics dataset previous-version clocks",
+      "urls": [
+        "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/consumerpriceinflation/current",
+        "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/datasets/labourmarketstatistics/current"
+      ],
+      "clock": "07:00 Europe/London"
+    },
+    {
+      "agency": "BOE",
+      "source_identity": "Bank of England official MPC date pages",
+      "urls": [
+        "https://www.bankofengland.co.uk/news/2024/september/monetary-policy-committee-dates-for-2025",
+        "https://www.bankofengland.co.uk/news/2025/september/monetary-policy-committee-dates-for-2026",
+        "https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates"
+      ],
+      "clock": "12:00 Europe/London; Thursday announcement dates only"
+    },
+    {
+      "agency": "STATCAN",
+      "source_identity": "Statistics Canada 2026-2027 release PDF and The Daily / major-release calendar",
+      "urls": [
+        "https://www150.statcan.gc.ca/n1/release-diffusion/2026-eng.pdf",
+        "https://www150.statcan.gc.ca/n1/dai-quo/cal1-eng.htm",
+        "https://www150.statcan.gc.ca/n1/daily-quotidien/"
+      ],
+      "clock": "08:30 America/New_York"
+    },
+    {
+      "agency": "BOC",
+      "source_identity": "Bank of Canada official rate-announcement schedule pages",
+      "urls": [
+        "https://www.bankofcanada.ca/2024/08/bank-canada-publishes-2025-schedule-policy-interest-rate-announcements-other-major-publications/",
+        "https://www.bankofcanada.ca/2025/08/bank-canada-publishes-2026-schedule-policy-interest-rate-announcements-other-major-publications/"
+      ],
+      "clock": "09:45 America/Toronto; Wednesday announcement dates only"
+    }
+  ]
+}

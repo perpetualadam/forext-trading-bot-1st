@@ -1,0 +1,10 @@
+{
+  "agency": "BOE",
+  "filename": "upcoming_mpc_dates.htm",
+  "source_url": "https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates",
+  "retrieval_ts_utc": "2026-09-19T07:23:52Z",
+  "sha256": "e90d4a050a44555fbf464c7ca6998b047d6c133ddc9bf8863d1408ec70bcbcd3",
+  "bytes": 82635,
+  "path": "data/research/external/raw/BOE/2026-09-19/upcoming_mpc_dates.htm",
+  "normalization_version": "d1"
+}

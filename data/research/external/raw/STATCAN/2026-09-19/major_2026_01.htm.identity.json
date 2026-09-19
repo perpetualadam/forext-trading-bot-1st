@@ -1,0 +1,10 @@
+{
+  "agency": "STATCAN",
+  "filename": "major_2026_01.htm",
+  "source_url": "https://www150.statcan.gc.ca/n1/dai-quo/cal1-eng.htm?sm=1&sy=2026",
+  "retrieval_ts_utc": "2026-09-19T07:23:52Z",
+  "sha256": "2e5e771dcc3c954892833388600a98316639c0fe425510c6f2e4685699684fa8",
+  "bytes": 20693,
+  "path": "data/research/external/raw/STATCAN/2026-09-19/major_2026_01.htm",
+  "normalization_version": "d1"
+}

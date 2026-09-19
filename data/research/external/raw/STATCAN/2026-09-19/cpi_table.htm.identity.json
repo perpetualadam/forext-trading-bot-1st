@@ -1,0 +1,10 @@
+{
+  "agency": "STATCAN",
+  "filename": "cpi_table.htm",
+  "source_url": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810000401",
+  "retrieval_ts_utc": "2026-09-19T07:26:36Z",
+  "sha256": "d03d66583dff3083b71c90651d7254d1b2c94c7b7b37c1cd3606bc82a2d310c2",
+  "bytes": 95090,
+  "path": "data/research/external/raw/STATCAN/2026-09-19/cpi_table.htm",
+  "normalization_version": "d1"
+}

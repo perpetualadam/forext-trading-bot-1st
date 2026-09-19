@@ -1,0 +1,253 @@
+{
+  "frozen_before_vendor_values": true,
+  "frozen_at_utc": "2026-09-19T07:36:34Z",
+  "selection_principle": "Deterministic chronological first/middle/last within Experiment D PRIMARY in-period strata. USD prioritized. Not selected by FX outcome size.",
+  "n_sample": 18,
+  "events": [
+    {
+      "sample_id": "S01",
+      "event_id": "f54925c632bae4c8",
+      "currency": "USD",
+      "category": "INFLATION",
+      "source_agency": "BLS",
+      "source_event_name": "Thursday, September 11, 2025 08:30 AM Consumer Price Index for August 2025",
+      "scheduled_ts_utc": "2025-09-11T12:30:00",
+      "scheduled_tz_source": "America/New_York",
+      "selection_rule": "stratum USD/INFLATION chronological indexes [0, 4, -1]"
+    },
+    {
+      "sample_id": "S02",
+      "event_id": "a3b8ce9597fd3ab1",
+      "currency": "USD",
+      "category": "INFLATION",
+      "source_agency": "BLS",
+      "source_event_name": "Consumer Price Index March 2026",
+      "scheduled_ts_utc": "2026-04-10T12:30:00",
+      "scheduled_tz_source": "America/New_York",
+      "selection_rule": "stratum USD/INFLATION chronological indexes [0, 4, -1]"
+    },
+    {
+      "sample_id": "S03",
+      "event_id": "564d8ee639e592de",
+      "currency": "USD",
+      "category": "INFLATION",
+      "source_agency": "BLS",
+      "source_event_name": "Consumer Price Index July 2026",
+      "scheduled_ts_utc": "2026-08-12T12:30:00",
+      "scheduled_tz_source": "America/New_York",
+      "selection_rule": "stratum USD/INFLATION chronological indexes [0, 4, -1]"
+    },
+    {
+      "sample_id": "S04",
+      "event_id": "4356be4b0825259e",
+      "currency": "USD",
+      "category": "EMPLOYMENT",
+      "source_agency": "BLS",
+      "source_event_name": "Friday, September 5, 2025 08:30 AM Employment Situation for August 2025",
+      "scheduled_ts_utc": "2025-09-05T12:30:00",
+      "scheduled_tz_source": "America/New_York",
+      "selection_rule": "stratum USD/EMPLOYMENT chronological indexes [0, 4, -1]"
+    },
+    {
+      "sample_id": "S05",
+      "event_id": "a2700f60f9ba1893",
+      "currency": "USD",
+      "category": "EMPLOYMENT",
+      "source_agency": "BLS",
+      "source_event_name": "Employment Situation March 2026",
+      "scheduled_ts_utc": "2026-04-03T12:30:00",
+      "scheduled_tz_source": "America/New_York",
+      "selection_rule": "stratum USD/EMPLOYMENT chronological indexes [0, 4, -1]"
+    },
+    {
+      "sample_id": "S06",
+      "event_id": "cb0b32d184ae5bb4",
+      "currency": "USD",
+      "category": "EMPLOYMENT",
+      "source_agency": "BLS",
+      "source_event_name": "Employment Situation July 2026",
+      "scheduled_ts_utc": "2026-08-07T12:30:00",
+      "scheduled_tz_source": "America/New_York",
+      "selection_rule": "stratum USD/EMPLOYMENT chronological indexes [0, 4, -1]"
+    },
+    {
+      "sample_id": "S07",
+      "event_id": "0d696aa0f5398b8f",
+      "currency": "USD",
+      "category": "CENTRAL_BANK_DECISION",
+      "source_agency": "FRB",
+      "source_event_name": "FOMC statement September 17 2025",
+      "scheduled_ts_utc": "2025-09-17T18:00:00",
+      "scheduled_tz_source": "America/New_York",
+      "selection_rule": "stratum USD/CENTRAL_BANK_DECISION chronological indexes [0, 4, -1]"
+    },
+    {
+      "sample_id": "S08",
+      "event_id": "4cc39d980d7b6943",
+      "currency": "USD",
+      "category": "CENTRAL_BANK_DECISION",
+      "source_agency": "FRB",
+      "source_event_name": "FOMC statement March 18 2026",
+      "scheduled_ts_utc": "2026-03-18T18:00:00",
+      "scheduled_tz_source": "America/New_York",
+      "selection_rule": "stratum USD/CENTRAL_BANK_DECISION chronological indexes [0, 4, -1]"
+    },
+    {
+      "sample_id": "S09",
+      "event_id": "0e9343270e1771ba",
+      "currency": "USD",
+      "category": "CENTRAL_BANK_DECISION",
+      "source_agency": "FRB",
+      "source_event_name": "FOMC statement July 29 2026",
+      "scheduled_ts_utc": "2026-07-29T18:00:00",
+      "scheduled_tz_source": "America/New_York",
+      "selection_rule": "stratum USD/CENTRAL_BANK_DECISION chronological indexes [0, 4, -1]"
+    },
+    {
+      "sample_id": "S10",
+      "event_id": "d390e47e6dc8b8b2",
+      "currency": "GBP",
+      "category": "INFLATION",
+      "source_agency": "ONS",
+      "source_event_name": "CPI",
+      "scheduled_ts_utc": "2025-09-17T06:00:00",
+      "scheduled_tz_source": "Europe/London",
+      "selection_rule": "stratum GBP/INFLATION chronological indexes [0, -1]"
+    },
+    {
+      "sample_id": "S11",
+      "event_id": "00c748f1a025878a",
+      "currency": "GBP",
+      "category": "INFLATION",
+      "source_agency": "ONS",
+      "source_event_name": "CPI",
+      "scheduled_ts_utc": "2026-08-19T06:00:00",
+      "scheduled_tz_source": "Europe/London",
+      "selection_rule": "stratum GBP/INFLATION chronological indexes [0, -1]"
+    },
+    {
+      "sample_id": "S12",
+      "event_id": "70c9dd02dbfc2cac",
+      "currency": "GBP",
+      "category": "EMPLOYMENT",
+      "source_agency": "ONS",
+      "source_event_name": "Labour market",
+      "scheduled_ts_utc": "2025-09-16T06:00:00",
+      "scheduled_tz_source": "Europe/London",
+      "selection_rule": "stratum GBP/EMPLOYMENT chronological indexes [0]"
+    },
+    {
+      "sample_id": "S13",
+      "event_id": "9f43590a7436c016",
+      "currency": "GBP",
+      "category": "CENTRAL_BANK_DECISION",
+      "source_agency": "BOE",
+      "source_event_name": "MPC 18 September 2025",
+      "scheduled_ts_utc": "2025-09-18T11:00:00",
+      "scheduled_tz_source": "Europe/London",
+      "selection_rule": "stratum GBP/CENTRAL_BANK_DECISION chronological indexes [0, -1]"
+    },
+    {
+      "sample_id": "S14",
+      "event_id": "bc8aa4a1ef5497c7",
+      "currency": "GBP",
+      "category": "CENTRAL_BANK_DECISION",
+      "source_agency": "BOE",
+      "source_event_name": "MPC 30 July 2026",
+      "scheduled_ts_utc": "2026-07-30T11:00:00",
+      "scheduled_tz_source": "Europe/London",
+      "selection_rule": "stratum GBP/CENTRAL_BANK_DECISION chronological indexes [0, -1]"
+    },
+    {
+      "sample_id": "S15",
+      "event_id": "14920aecab84d1e2",
+      "currency": "CAD",
+      "category": "INFLATION",
+      "source_agency": "STATCAN",
+      "source_event_name": "Consumer Price Index",
+      "scheduled_ts_utc": "2025-09-16T12:30:00",
+      "scheduled_tz_source": "America/New_York",
+      "selection_rule": "stratum CAD/INFLATION chronological indexes [0]"
+    },
+    {
+      "sample_id": "S16",
+      "event_id": "68203d653750035b",
+      "currency": "CAD",
+      "category": "EMPLOYMENT",
+      "source_agency": "STATCAN",
+      "source_event_name": "Labour Force Survey",
+      "scheduled_ts_utc": "2025-09-05T12:30:00",
+      "scheduled_tz_source": "America/New_York",
+      "selection_rule": "stratum CAD/EMPLOYMENT chronological indexes [0]"
+    },
+    {
+      "sample_id": "S17",
+      "event_id": "54ab596dc3f23567",
+      "currency": "CAD",
+      "category": "CENTRAL_BANK_DECISION",
+      "source_agency": "BOC",
+      "source_event_name": "BoC rate September 17 2025",
+      "scheduled_ts_utc": "2025-09-17T13:45:00",
+      "scheduled_tz_source": "America/Toronto",
+      "selection_rule": "stratum CAD/CENTRAL_BANK_DECISION chronological indexes [0, -1]"
+    },
+    {
+      "sample_id": "S18",
+      "event_id": "a1004458a92506b8",
+      "currency": "CAD",
+      "category": "CENTRAL_BANK_DECISION",
+      "source_agency": "BOC",
+      "source_event_name": "BoC rate July 15 2026",
+      "scheduled_ts_utc": "2026-07-15T13:45:00",
+      "scheduled_tz_source": "America/Toronto",
+      "selection_rule": "stratum CAD/CENTRAL_BANK_DECISION chronological indexes [0, -1]"
+    }
+  ],
+  "timestamp_stress_not_for_consensus": [
+    {
+      "sample_id": "T01",
+      "role": "timestamp_stress_only_not_consensus_sample",
+      "event_id": "aabf560e455bc3d8",
+      "currency": "USD",
+      "category": "INFLATION",
+      "scheduled_ts_utc": "2025-10-24T12:30:00",
+      "uncertain_reason": "official_2025_lapse_delay",
+      "source_event_name": "Friday, October 24, 2025 08:30 AM Consumer Price Index for September 2025"
+    },
+    {
+      "sample_id": "T02",
+      "role": "timestamp_stress_only_not_consensus_sample",
+      "event_id": "f01d0977b1b98a04",
+      "currency": "USD",
+      "category": "EMPLOYMENT",
+      "scheduled_ts_utc": "2025-11-20T13:30:00",
+      "uncertain_reason": "official_2025_lapse_delay",
+      "source_event_name": "Thursday, November 20, 2025 08:30 AM Employment Situation for September 2025"
+    }
+  ],
+  "pit_acceptance_standard": {
+    "required_fields": [
+      "event identity",
+      "country/currency",
+      "event category",
+      "scheduled release timestamp",
+      "actual release timestamp if available",
+      "units",
+      "reference period",
+      "consensus value",
+      "timestamp/vintage of consensus",
+      "actual first-print value",
+      "previous value as known before release",
+      "revision metadata",
+      "provider/source identity"
+    ],
+    "critical_rule": "CONSENSUS MUST BE DEMONSTRABLY PRE-RELEASE. A current webpage historical number is insufficient.",
+    "acceptable_pit_proof": [
+      "provider timestamped snapshots",
+      "historical API vintages",
+      "documented immutable pre-release records",
+      "provider-certified historical consensus snapshots"
+    ],
+    "insufficient": "historical row returned today with no vintage semantics"
+  }
+}

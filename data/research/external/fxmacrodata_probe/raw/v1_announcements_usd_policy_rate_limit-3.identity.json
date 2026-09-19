@@ -1,0 +1,10 @@
+{
+  "name": "v1_announcements_usd_policy_rate_limit-3",
+  "url": "https://api.fxmacrodata.com/v1/announcements/usd/policy_rate?limit=3",
+  "retrieved_at_utc": "2026-09-19T08:58:00Z",
+  "status_code": 200,
+  "content_type": "application/json",
+  "sha256": "b9211d6592b450b4f7cbb7259368de76a48e24ca2fd051375617b10f1d819b0a",
+  "bytes": 6427,
+  "path": "data/research/external/fxmacrodata_probe/raw/v1_announcements_usd_policy_rate_limit-3.json"
+}

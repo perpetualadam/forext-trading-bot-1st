@@ -1,0 +1,10 @@
+{
+  "name": "v1_predictions_usd_inflation_prediction_class-compiled_consensus_limit-3",
+  "url": "https://api.fxmacrodata.com/v1/predictions/usd/inflation?prediction_class=compiled_consensus&limit=3",
+  "retrieved_at_utc": "2026-09-19T08:58:01Z",
+  "status_code": 401,
+  "content_type": "application/json",
+  "sha256": "d3eee4e4628668a2f0198f4b41fb941636fb2c22e571ae9dd0d916a6b0085d0e",
+  "bytes": 2212,
+  "path": "data/research/external/fxmacrodata_probe/raw/v1_predictions_usd_inflation_prediction_class-compiled_consensus_limit-3.json"
+}

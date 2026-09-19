@@ -1,0 +1,10 @@
+{
+  "agency": "ONS",
+  "filename": "cpi_previous_releases.htm",
+  "source_url": "https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/consumerpriceinflation/previousreleases",
+  "retrieval_ts_utc": "2026-09-19T07:23:52Z",
+  "sha256": "db666631e9d6b84e7e02fa3c48122db4590a5f7ad58a174bdf6588cfbff4e37d",
+  "bytes": 59974,
+  "path": "data/research/external/raw/ONS/2026-09-19/cpi_previous_releases.htm",
+  "normalization_version": "d1"
+}

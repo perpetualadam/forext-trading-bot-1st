@@ -1,0 +1,10 @@
+{
+  "agency": "BLS",
+  "filename": "empsit_schedule_table.txt",
+  "source_url": "https://www.bls.gov/schedule/",
+  "retrieval_ts_utc": "2026-09-19T12:00:00Z",
+  "sha256": "3cff8ed4d1c8e534ed8b04f2eff6b6602214b9c05b37bf81b44d2a7b2a46662c",
+  "bytes": 608,
+  "path": "data/research/external/raw/BLS/2026-09-19/empsit_schedule_table.txt",
+  "normalization_version": "d1"
+}

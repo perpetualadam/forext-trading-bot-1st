@@ -1,0 +1,10 @@
+{
+  "name": "v1_predictions_coverage_usd",
+  "url": "https://api.fxmacrodata.com/v1/predictions/coverage/usd",
+  "retrieved_at_utc": "2026-09-19T08:57:56Z",
+  "status_code": 200,
+  "content_type": "application/json",
+  "sha256": "c4c81de83ef5cf2962d46de7b514cbd7f43b9e7ba8ffd7e00df87aa02bb2429f",
+  "bytes": 56395,
+  "path": "data/research/external/fxmacrodata_probe/raw/v1_predictions_coverage_usd.json"
+}
