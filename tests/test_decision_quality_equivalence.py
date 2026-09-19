@@ -18,6 +18,25 @@ SYMBOL = "EUR_USD"
 CSV = Path("data/historical/EUR_USD_M5.csv")
 
 
+@pytest.fixture(autouse=True)
+def _pin_signal_env(monkeypatch):
+    """Do not inherit local .env routing/stops; CI has no .env."""
+    monkeypatch.delenv("HYBRID_EUR_USD", raising=False)
+    monkeypatch.delenv("SCALP_LOOKBACK", raising=False)
+    monkeypatch.delenv("SWING_LOOKBACK", raising=False)
+    monkeypatch.delenv("DEFAULT_INDICATOR_LOOKBACK", raising=False)
+    monkeypatch.delenv("HYBRID_ROUTE_LOOKBACK", raising=False)
+    monkeypatch.delenv("HYBRID_ATR_SCALP_THRESHOLD", raising=False)
+    monkeypatch.delenv("STUB_MOMENTUM_THRESHOLD", raising=False)
+    monkeypatch.delenv("STUB_SMA_EPSILON", raising=False)
+    monkeypatch.delenv("STUB_CONFIDENCE_SCALE", raising=False)
+    monkeypatch.setenv("AI_DISABLE_STUB", "false")
+    monkeypatch.delenv("USE_ATR_STOPS", raising=False)
+    monkeypatch.delenv("SL_ATR_MULT", raising=False)
+    monkeypatch.delenv("SL_FALLBACK_PIPS", raising=False)
+    monkeypatch.delenv("MIN_STOP_DISTANCE_PRICE", raising=False)
+
+
 def _fixture():
     if not CSV.is_file():
         pytest.skip("historical EUR_USD CSV missing")
@@ -104,38 +123,14 @@ def test_reference_signal_sequence_and_trade_count():
     assert [s.decision for s in r.snapshots] == [
         "NO_SIGNAL",
         "BUY",
-        "BUY",
         "NO_SIGNAL",
         "NO_SIGNAL",
         "SELL",
-        "NO_SIGNAL",
-        "SELL",
-        "SELL",
-        "NO_SIGNAL",
-        "NO_SIGNAL",
-        "NO_SIGNAL",
-        "NO_SIGNAL",
-        "NO_SIGNAL",
-        "NO_SIGNAL",
-        "NO_SIGNAL",
-        "NO_SIGNAL",
-        "NO_SIGNAL",
-        "BUY",
-        "NO_SIGNAL",
-        "NO_SIGNAL",
-        "NO_SIGNAL",
-        "NO_SIGNAL",
-        "NO_SIGNAL",
-        "NO_SIGNAL",
-        "NO_SIGNAL",
-        "NO_SIGNAL",
-        "NO_SIGNAL",
-        "BUY",
     ]
-    assert r.signals == 7
-    assert len(r.trades) == 7
-    assert [t.snapshot.decision for t in r.trades] == ["BUY", "BUY", "SELL", "SELL", "SELL", "BUY", "BUY"]
-    assert [t.exit_reason for t in r.trades] == ["sl", "sl", "tp", "sl", "sl", "sl", "eod"]
+    assert r.signals == 2
+    assert len(r.trades) == 2
+    assert [t.snapshot.decision for t in r.trades] == ["BUY", "SELL"]
+    assert [t.exit_reason for t in r.trades] == ["sl", "eod"]
 
 
 def test_reference_sl_tp_sides_and_exits():
