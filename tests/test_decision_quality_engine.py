@@ -9,7 +9,7 @@ import pytest
 
 from forex_bot.ai_ensemble import _quant_stub_vote
 from forex_bot.decision_quality.data import history_at
-from forex_bot.decision_quality.engine import run_symbol_backtest
+from forex_bot.decision_quality.engine import _stable_symbol_offset, run_symbol_backtest
 from forex_bot.decision_quality.forensics import classify_loss
 from forex_bot.decision_quality.isolation import assert_package_cannot_write_broker
 from forex_bot.decision_quality.outcomes import observe_after_stop
@@ -37,6 +37,16 @@ def _ohlcv(n: int, *, start: float = 1.1000, drift: float = 0.00002, vol: float 
             }
         )
     return pd.DataFrame(rows)
+
+
+def test_symbol_seed_offset_ignores_python_hash_salt():
+    import hashlib
+
+    a = _stable_symbol_offset("EUR_USD")
+    assert a == _stable_symbol_offset("EUR_USD")
+    expect = int.from_bytes(hashlib.sha256(b"EUR_USD").digest()[:4], "big") % 100000
+    assert a == expect
+    assert _stable_symbol_offset("GBP_USD") != a
 
 
 def test_package_cannot_reach_broker_writes():

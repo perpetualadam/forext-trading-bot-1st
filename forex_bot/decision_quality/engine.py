@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 from dataclasses import dataclass, field
 from datetime import datetime
 
@@ -20,6 +21,12 @@ from forex_bot.decision_quality.invariants import sl_tp_from_production_distance
 from forex_bot.decision_quality.outcomes import TradeRecord, finalize_trade
 from forex_bot.decision_quality.signal import evaluate_signal
 from forex_bot.decision_quality.snapshot import DecisionSnapshot
+
+
+def _stable_symbol_offset(symbol: str) -> int:
+    """Process-stable stand-in for ``hash(symbol) % 100000`` (PYTHONHASHSEED varies)."""
+    digest = hashlib.sha256(symbol.encode("utf-8")).digest()
+    return int.from_bytes(digest[:4], "big") % 100000
 
 
 @dataclass
@@ -121,7 +128,7 @@ def run_symbol_backtest(
                     open_pos = None
             continue
 
-        bar_seed = int(seed + i * 10007 + (hash(symbol) % 100000))
+        bar_seed = int(seed + i * 10007 + _stable_symbol_offset(symbol))
         if impl == "optimized" and cache is not None:
             snap = evaluate_signal_cached(
                 symbol,
