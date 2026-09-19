@@ -1,0 +1,173 @@
+{
+  "audit_started_at_utc": "2026-09-18T21:32:20Z",
+  "last_checkpoint_at_utc": "2026-09-18T21:37:10Z",
+  "current_item": 13,
+  "completed_items": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+  "total_items": 13,
+  "overall_status": "completed",
+  "pytest": {
+    "command": "python -m pytest -q --tb=line",
+    "passed": 321,
+    "failed": 0,
+    "skipped": 0,
+    "duration_seconds": 26.22
+  },
+  "items": [
+    {
+      "item_number": 1,
+      "item_name": "Artifact inventory",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T21:32:20Z",
+      "finished_at_utc": "2026-09-18T21:32:22Z",
+      "elapsed_seconds": 2,
+      "data_sources": ["reports/decision_quality/checkpoints/baseline/*__baseline.json"],
+      "commands_run": ["inventory of six artifacts"],
+      "tests_run": [],
+      "short_finding_summary": "Exactly 18689 trades. 5-60m forward/post-stop persisted. 120/240m candle-joinable."
+    },
+    {
+      "item_number": 2,
+      "item_name": "BUY vs SELL diagnosis",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T21:33:05Z",
+      "finished_at_utc": "2026-09-18T21:33:06Z",
+      "elapsed_seconds": 1,
+      "data_sources": ["persisted trades"],
+      "commands_run": ["_diag_item2.py"],
+      "tests_run": [],
+      "short_finding_summary": "Both sides negative on every symbol and split."
+    },
+    {
+      "item_number": 3,
+      "item_name": "Directional predictive edge",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T21:34:19Z",
+      "finished_at_utc": "2026-09-18T21:34:27Z",
+      "elapsed_seconds": 8,
+      "data_sources": ["persisted forward", "historical M5 for 120/240"],
+      "commands_run": ["_diag_item3.py"],
+      "tests_run": [],
+      "short_finding_summary": "No useful directional hit rate at 5-240m. Means always negative."
+    },
+    {
+      "item_number": 4,
+      "item_name": "MFE / MAE",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T21:35:03Z",
+      "finished_at_utc": "2026-09-18T21:35:04Z",
+      "elapsed_seconds": 1,
+      "data_sources": ["persisted MFE/MAE"],
+      "commands_run": ["_diag_item4.py"],
+      "tests_run": [],
+      "short_finding_summary": "Loser median MFE 0.29R; 27% MFE=0. Giveback is minority path."
+    },
+    {
+      "item_number": 5,
+      "item_name": "Stop-out aftermath",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T21:35:37Z",
+      "finished_at_utc": "2026-09-18T21:35:39Z",
+      "elapsed_seconds": 2,
+      "data_sources": ["persisted post_stop"],
+      "commands_run": ["_diag_item5.py"],
+      "tests_run": [],
+      "short_finding_summary": "30-60m after SL still adverse. Unlimited TP-touch is hours-later drift."
+    },
+    {
+      "item_number": 6,
+      "item_name": "Entry timing",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T21:36:16Z",
+      "finished_at_utc": "2026-09-18T21:36:17Z",
+      "elapsed_seconds": 1,
+      "data_sources": ["pre_move_atr"],
+      "commands_run": ["_diag_items_6_11.py"],
+      "tests_run": [],
+      "short_finding_summary": "Late vs small pre-move expectancy nearly identical."
+    },
+    {
+      "item_number": 7,
+      "item_name": "Strategy-label decomposition",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T21:36:17Z",
+      "finished_at_utc": "2026-09-18T21:36:18Z",
+      "elapsed_seconds": 1,
+      "data_sources": ["snapshot.strategy"],
+      "commands_run": ["_diag_items_6_11.py"],
+      "tests_run": [],
+      "short_finding_summary": "All labels negative in all splits. Scalp/trend less bad."
+    },
+    {
+      "item_number": 8,
+      "item_name": "Higher-timeframe context",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T21:36:18Z",
+      "finished_at_utc": "2026-09-18T21:36:18Z",
+      "elapsed_seconds": 0,
+      "data_sources": ["htf_agreement"],
+      "commands_run": ["_diag_items_6_11.py"],
+      "tests_run": [],
+      "short_finding_summary": "H1 aligned better than against; both negative. Tiny-sample H1-against story not reproduced."
+    },
+    {
+      "item_number": 9,
+      "item_name": "Market regime",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T21:36:18Z",
+      "finished_at_utc": "2026-09-18T21:36:18Z",
+      "elapsed_seconds": 0,
+      "data_sources": ["snapshot.regime"],
+      "commands_run": ["_diag_items_6_11.py"],
+      "tests_run": [],
+      "short_finding_summary": "LOW_VOLATILITY stably worse. All regimes negative."
+    },
+    {
+      "item_number": 10,
+      "item_name": "Session / time-of-day",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T21:36:18Z",
+      "finished_at_utc": "2026-09-18T21:36:19Z",
+      "elapsed_seconds": 1,
+      "data_sources": ["snapshot.session", "hour_utc"],
+      "commands_run": ["_diag_items_6_11.py"],
+      "tests_run": [],
+      "short_finding_summary": "Overlap least bad; Asia/rollover worse. All sessions negative in all splits."
+    },
+    {
+      "item_number": 11,
+      "item_name": "Cost / spread contribution",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T21:36:19Z",
+      "finished_at_utc": "2026-09-18T21:36:19Z",
+      "elapsed_seconds": 0,
+      "data_sources": ["spread_pips", "sl_distance_pips"],
+      "commands_run": ["_diag_items_6_11.py"],
+      "tests_run": [],
+      "short_finding_summary": "Entry half-spread ~0.179R vs book -0.1995R. Residual after adding cost back -0.021R."
+    },
+    {
+      "item_number": 12,
+      "item_name": "Chronological and cross-symbol stability",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T21:36:19Z",
+      "finished_at_utc": "2026-09-18T21:36:40Z",
+      "elapsed_seconds": 21,
+      "data_sources": ["items 2-11"],
+      "commands_run": [],
+      "tests_run": [],
+      "short_finding_summary": "No adequate-n positive stable edge. Relative least-bad cells remain negative."
+    },
+    {
+      "item_number": 13,
+      "item_name": "Root-cause synthesis",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T21:36:40Z",
+      "finished_at_utc": "2026-09-18T21:37:10Z",
+      "elapsed_seconds": 30,
+      "data_sources": ["items 1-12"],
+      "commands_run": [],
+      "tests_run": [],
+      "short_finding_summary": "A and L supported. J explains most R magnitude. B and C not supported on available evidence."
+    }
+  ]
+}

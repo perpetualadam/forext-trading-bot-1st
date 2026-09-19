@@ -1,0 +1,215 @@
+{
+  "study_started_at_utc": "2026-09-18T22:56:55Z",
+  "last_checkpoint_at_utc": "2026-09-18T23:02:01Z",
+  "current_stage": 22,
+  "completed_stages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22
+  ],
+  "total_stages": 22,
+  "overall_status": "completed",
+  "no_download": true,
+  "no_train": true,
+  "stages": [
+    {
+      "stage": 1,
+      "stage_name": "sync_panel",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:56:55Z",
+      "finished_at_utc": "2026-09-18T22:57:00Z",
+      "findings": "Inner-join sync 74454 / union 74575."
+    },
+    {
+      "stage": 2,
+      "stage_name": "returns",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:57:00Z",
+      "finished_at_utc": "2026-09-18T22:57:02Z",
+      "findings": "Predeclared 1/3/6/12 bar instrument and USD returns."
+    },
+    {
+      "stage": 3,
+      "stage_name": "simple_usd_factor",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:57:00Z",
+      "finished_at_utc": "2026-09-18T22:57:02Z",
+      "findings": "LOO median reference. Not claimed novel vs V1."
+    },
+    {
+      "stage": 4,
+      "stage_name": "train_pca",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:57:00Z",
+      "finished_at_utc": "2026-09-18T22:57:02Z",
+      "findings": "PCA-1 TRAIN-only, frozen weights/means/betas."
+    },
+    {
+      "stage": 5,
+      "stage_name": "residuals",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:57:00Z",
+      "finished_at_utc": "2026-09-18T22:57:02Z",
+      "findings": "PCA residual and LOO residual in USD-oriented units."
+    },
+    {
+      "stage": 6,
+      "stage_name": "residual_distributions",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:57:51Z",
+      "finished_at_utc": "2026-09-18T22:57:51Z",
+      "findings": "PCA residual distributions by symbol/split."
+    },
+    {
+      "stage": 7,
+      "stage_name": "residual_events",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:57:51Z",
+      "finished_at_utc": "2026-09-18T22:57:51Z",
+      "findings": "TRAIN quintile enter q1/q5 transitions."
+    },
+    {
+      "stage": 8,
+      "stage_name": "catchup_reversal_continuation",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:57:51Z",
+      "finished_at_utc": "2026-09-18T22:58:06Z",
+      "findings": "Three predeclared signed hypotheses on residual events."
+    },
+    {
+      "stage": 9,
+      "stage_name": "economic_cost",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:57:51Z",
+      "finished_at_utc": "2026-09-18T22:58:06Z",
+      "findings": "Close and MFE vs contemporaneous half-spread."
+    },
+    {
+      "stage": 10,
+      "stage_name": "dispersion",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:57:51Z",
+      "finished_at_utc": "2026-09-18T22:58:06Z",
+      "findings": "TRAIN quintiles of cross-sectional USD std."
+    },
+    {
+      "stage": 11,
+      "stage_name": "dispersion_events",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:57:51Z",
+      "finished_at_utc": "2026-09-18T22:58:06Z",
+      "findings": "NORMAL->HIGH and HIGH->NORMAL time events."
+    },
+    {
+      "stage": 12,
+      "stage_name": "relative_rank",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:57:51Z",
+      "finished_at_utc": "2026-09-18T22:58:06Z",
+      "findings": "Enter strongest/weakest USD rank."
+    },
+    {
+      "stage": 13,
+      "stage_name": "lead_lag",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:58:06Z",
+      "finished_at_utc": "2026-09-18T22:58:08Z",
+      "findings": "Predeclared lags 1/2/3 of PCA factor vs future 60m USD return."
+    },
+    {
+      "stage": 14,
+      "stage_name": "loo_robustness",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:58:06Z",
+      "finished_at_utc": "2026-09-18T22:58:08Z",
+      "findings": "PCA-1 refit excluding each pair on TRAIN."
+    },
+    {
+      "stage": 15,
+      "stage_name": "pair_structure",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:58:06Z",
+      "finished_at_utc": "2026-09-18T22:58:08Z",
+      "findings": "Per-symbol reversal/catchup/dispersion."
+    },
+    {
+      "stage": 16,
+      "stage_name": "time_stability",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:58:06Z",
+      "finished_at_utc": "2026-09-18T22:58:08Z",
+      "findings": "TRAIN/VALID/DISCOVERY_TEST for major effects."
+    },
+    {
+      "stage": 17,
+      "stage_name": "bootstrap",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:58:06Z",
+      "finished_at_utc": "2026-09-18T22:58:08Z",
+      "findings": "Event-level bootstrap seed=42."
+    },
+    {
+      "stage": 18,
+      "stage_name": "compare_v1_usd",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:58:08Z",
+      "finished_at_utc": "2026-09-18T22:58:14Z",
+      "findings": "PCA residual vs LOO residual; list what is new."
+    },
+    {
+      "stage": 19,
+      "stage_name": "activity_context",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:58:08Z",
+      "finished_at_utc": "2026-09-18T22:58:14Z",
+      "findings": "Residual events sliced by frozen A activity. Explanatory only."
+    },
+    {
+      "stage": 20,
+      "stage_name": "g3_gate",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T23:02:01Z",
+      "finished_at_utc": "2026-09-18T23:02:01Z",
+      "findings": "STATISTICAL residual reversal and dispersion magnitude; no unique path clears contemporaneous cost. G3 fail."
+    },
+    {
+      "stage": 21,
+      "stage_name": "verdict",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T23:02:01Z",
+      "finished_at_utc": "2026-09-18T23:02:01Z",
+      "findings": "B_USEFUL_CONTEXT_BUT_BELOW_G3"
+    },
+    {
+      "stage": 22,
+      "stage_name": "experiment_c",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T23:02:01Z",
+      "finished_at_utc": "2026-09-18T23:02:01Z",
+      "findings": "JUSTIFIED NEXT for M1 path-order of already-defined M5 events only. Do not download."
+    }
+  ],
+  "verdict": "B_USEFUL_CONTEXT_BUT_BELOW_G3",
+  "experiment_c": "JUSTIFIED NEXT",
+  "study_finished_at_utc": "2026-09-18T23:02:01Z",
+  "no_production_change": true
+}

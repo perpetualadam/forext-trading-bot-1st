@@ -1,0 +1,1 @@
+live-trade read failed (OperationalError); skipped.

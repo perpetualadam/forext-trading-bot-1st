@@ -1,0 +1,188 @@
+{
+  "study_started_at_utc": "2026-09-19T00:36:24Z",
+  "last_checkpoint_at_utc": "2026-09-19T00:45:49Z",
+  "current_stage": 19,
+  "completed_stages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "total_stages": 19,
+  "overall_status": "completed",
+  "no_train": true,
+  "no_production_change": true,
+  "m1_only_authorized_download": true,
+  "stages": [
+    {
+      "stage": 1,
+      "stage_name": "freeze_definitions",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:36:24Z",
+      "finished_at_utc": "2026-09-19T00:36:24Z",
+      "findings": "Frozen V1 range/breakout and B residual events."
+    },
+    {
+      "stage": 2,
+      "stage_name": "decision_timestamp",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:36:24Z",
+      "finished_at_utc": "2026-09-19T00:36:24Z",
+      "findings": "M1 path starts at t+5m only."
+    },
+    {
+      "stage": 3,
+      "stage_name": "m1_m5_alignment",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:37:04Z",
+      "finished_at_utc": "2026-09-19T00:39:11Z",
+      "findings": "Aligned frozen events to subsequent M1; gaps not filled."
+    },
+    {
+      "stage": 4,
+      "stage_name": "event_cost",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:37:04Z",
+      "finished_at_utc": "2026-09-19T00:39:12Z",
+      "findings": "Primary hurdle is event-time M5 half-spread."
+    },
+    {
+      "stage": 5,
+      "stage_name": "hurdles",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:37:04Z",
+      "finished_at_utc": "2026-09-19T00:39:12Z",
+      "findings": "Predeclared 1/1.5/2/3x and 15-480m."
+    },
+    {
+      "stage": 6,
+      "stage_name": "ambiguity_reduction",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:39:12Z",
+      "finished_at_utc": "2026-09-19T00:39:12Z",
+      "findings": "M1 labels of previously M5_AMBIGUOUS 60m 1x paths."
+    },
+    {
+      "stage": 7,
+      "stage_name": "range_bottom",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:39:12Z",
+      "finished_at_utc": "2026-09-19T00:39:12Z",
+      "findings": "Range-bottom first-touch."
+    },
+    {
+      "stage": 8,
+      "stage_name": "range_top",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:39:12Z",
+      "finished_at_utc": "2026-09-19T00:39:12Z",
+      "findings": "Range-top first-touch."
+    },
+    {
+      "stage": 9,
+      "stage_name": "breakout_failure",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:39:12Z",
+      "finished_at_utc": "2026-09-19T00:39:13Z",
+      "findings": "24-bar breakout failure first-touch."
+    },
+    {
+      "stage": 10,
+      "stage_name": "residual_extreme",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:39:12Z",
+      "finished_at_utc": "2026-09-19T00:39:13Z",
+      "findings": "B residual-extreme reversal first-touch."
+    },
+    {
+      "stage": 11,
+      "stage_name": "base_rate",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:39:13Z",
+      "finished_at_utc": "2026-09-19T00:43:54Z",
+      "findings": "Unconditional M1 first-touch base rates."
+    },
+    {
+      "stage": 12,
+      "stage_name": "unique_directional",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:43:54Z",
+      "finished_at_utc": "2026-09-19T00:43:54Z",
+      "findings": "Favorable-first minus adverse-first and vs base."
+    },
+    {
+      "stage": 14,
+      "stage_name": "bootstrap",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:43:54Z",
+      "finished_at_utc": "2026-09-19T00:43:56Z",
+      "findings": "Event-level bootstrap seed=42 on 60m 1x."
+    },
+    {
+      "stage": 15,
+      "stage_name": "time_stability",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:43:56Z",
+      "finished_at_utc": "2026-09-19T00:43:57Z",
+      "findings": "Monthly fav-adv at 60m 1x."
+    },
+    {
+      "stage": 16,
+      "stage_name": "symbol_stability",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:43:56Z",
+      "finished_at_utc": "2026-09-19T00:43:57Z",
+      "findings": "Per-symbol fav-adv at 60m 1x."
+    },
+    {
+      "stage": 13,
+      "stage_name": "g3_gate",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:45:49Z",
+      "finished_at_utc": "2026-09-19T00:45:49Z",
+      "findings": "M1 resolves most M5 ambiguity; residual-neg and range-bottom have small fav-first tilts; incremental vs base is ~1pp. G3 fail."
+    },
+    {
+      "stage": 17,
+      "stage_name": "compare_v1_b",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:45:49Z",
+      "finished_at_utc": "2026-09-19T00:45:49Z",
+      "findings": "M5 conclusions stand. M1 names first-touch more often; it does not create an exclusive economic path."
+    },
+    {
+      "stage": 18,
+      "stage_name": "verdict",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:45:49Z",
+      "finished_at_utc": "2026-09-19T00:45:49Z",
+      "findings": "C_RESOLVES_PATH_BUT_BELOW_G3"
+    },
+    {
+      "stage": 19,
+      "stage_name": "next_branch",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:45:49Z",
+      "finished_at_utc": "2026-09-19T00:45:49Z",
+      "findings": "NEW EXTERNAL INFORMATION RESEARCH. Do not run it in this task."
+    }
+  ],
+  "verdict": "C_RESOLVES_PATH_BUT_BELOW_G3",
+  "next_branch": "NEW EXTERNAL INFORMATION RESEARCH",
+  "study_finished_at_utc": "2026-09-19T00:45:49Z"
+}

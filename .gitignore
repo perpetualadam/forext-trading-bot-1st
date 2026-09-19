@@ -7,6 +7,10 @@ __pycache__/
 .pytest_cache/
 .cursor/
 
+# Local research caches over GitHub's 100 MB file limit / 50 MB warning
+data/research/quant_features/*.pkl
+data/historical/m1/*.csv
+
 # Local secrets / scratch (do not commit)
 oanda sep deets.txt
 main .env example for trading bot.txt

@@ -1,0 +1,86 @@
+workload=EUR_USD first 800 bars warmup=80 signals=35 trades=35 snapshots=70 wall_s=4.8485
+
+=== top 40 by cumulative time ===
+         6550581 function calls (6388375 primitive calls) in 4.842 seconds
+
+   Ordered by: cumulative time
+   List reduced from 1086 to 40 due to restriction <40>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.011    0.011    4.844    4.844 engine.py:53(run_symbol_backtest)
+       70    0.002    0.000    3.661    0.052 signal.py:75(evaluate_signal)
+       70    0.005    0.000    2.377    0.034 signal.py:180(_snapshot)
+      210    0.013    0.000    1.674    0.008 indicators.py:31(compute_indicators)
+       70    0.005    0.000    1.410    0.020 research_features.py:52(htf_trend_labels)
+      210    0.017    0.000    1.257    0.006 research_features.py:19(resample_closed_ohlc)
+    18945    0.153    0.000    1.120    0.000 series.py:389(__init__)
+       35    0.002    0.000    0.976    0.028 outcomes.py:268(finalize_trade)
+       25    0.041    0.002    0.969    0.039 outcomes.py:122(observe_after_stop)
+       70    0.004    0.000    0.942    0.013 research_features.py:148(indicator_research_fields)
+     9660    0.021    0.000    0.656    0.000 frame.py:1505(iterrows)
+       70    0.002    0.000    0.612    0.009 signal.py:49(production_quant_decision)
+6370/5670    0.008    0.000    0.592    0.000 common.py:62(new_method)
+     2100    0.012    0.000    0.481    0.000 frame.py:4271(__setitem__)
+    23915    0.112    0.000    0.473    0.000 construction.py:517(sanitize_array)
+      210    0.001    0.000    0.466    0.002 resample.py:343(aggregate)
+      210    0.000    0.000    0.465    0.002 apply.py:172(agg)
+      210    0.001    0.000    0.463    0.002 apply.py:415(agg_dict_like)
+      210    0.003    0.000    0.462    0.002 apply.py:1575(agg_or_apply_dict_like)
+     2100    0.004    0.000    0.460    0.000 frame.py:4514(_set_item)
+     2100    0.012    0.000    0.419    0.000 frame.py:4481(_set_item_mgr)
+     2310    0.023    0.000    0.416    0.000 managers.py:1347(insert)
+     4270    0.025    0.000    0.415    0.000 base.py:1371(_arith_method)
+     4060    0.004    0.000    0.401    0.000 series.py:6133(_arith_method)
+      280    0.004    0.000    0.389    0.001 indicators.py:8(_true_range)
+      210    0.004    0.000    0.386    0.002 indicators.py:21(_rsi)
+1376239/1357199    0.239    0.000    0.379    0.000 {built-in method builtins.isinstance}
+     5250    0.017    0.000    0.353    0.000 series.py:6201(_construct_result)
+       70    0.004    0.000    0.327    0.005 research_features.py:91(wilder_adx)
+     5917    0.013    0.000    0.309    0.000 indexing.py:1176(__getitem__)
+     2170    0.004    0.000    0.303    0.000 rolling.py:562(_apply)
+     2170    0.004    0.000    0.293    0.000 rolling.py:460(_apply_columnwise)
+      210    0.004    0.000    0.292    0.001 apply.py:425(compute_dict_like)
+     2170    0.012    0.000    0.279    0.000 rolling.py:440(_apply_series)
+     4760    0.042    0.000    0.277    0.000 base.py:475(__new__)
+      280    0.005    0.000    0.274    0.001 research_features.py:13(_asof_mask)
+     2310    0.022    0.000    0.270    0.000 base.py:6956(insert)
+      490    0.002    0.000    0.250    0.001 concat.py:157(concat)
+      490    0.013    0.000    0.239    0.000 frame.py:11435(_reduce)
+     9155    0.038    0.000    0.234    0.000 managers.py:317(apply)
+
+
+
+=== top 25 by tottime (self) ===
+         6550581 function calls (6388375 primitive calls) in 4.842 seconds
+
+   Ordered by: internal time
+   List reduced from 1086 to 25 due to restriction <25>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+1376239/1357199    0.239    0.000    0.379    0.000 {built-in method builtins.isinstance}
+    18945    0.153    0.000    1.120    0.000 series.py:389(__init__)
+    13275    0.118    0.000    0.173    0.000 cast.py:1156(maybe_infer_to_datetimelike)
+    34410    0.114    0.000    0.162    0.000 generic.py:6236(__finalize__)
+    23915    0.112    0.000    0.473    0.000 construction.py:517(sanitize_array)
+451702/316888    0.090    0.000    0.125    0.000 {built-in method builtins.len}
+    51440    0.082    0.000    0.225    0.000 generic.py:6301(__setattr__)
+    18060    0.081    0.000    0.084    0.000 datetimes.py:645(__iter__)
+    36650    0.076    0.000    0.091    0.000 generic.py:278(__init__)
+   149999    0.055    0.000    0.127    0.000 generic.py:42(_instancecheck)
+311639/308699    0.055    0.000    0.062    0.000 {built-in method builtins.getattr}
+    12120    0.053    0.000    0.053    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+    19785    0.049    0.000    0.165    0.000 managers.py:1863(from_array)
+   149999    0.046    0.000    0.069    0.000 generic.py:37(_check)
+     4760    0.042    0.000    0.277    0.000 base.py:475(__new__)
+       25    0.041    0.002    0.969    0.039 outcomes.py:122(observe_after_stop)
+    17405    0.040    0.000    0.067    0.000 numeric.py:290(full)
+    23510    0.038    0.000    0.064    0.000 blocks.py:2716(new_block)
+     9155    0.038    0.000    0.234    0.000 managers.py:317(apply)
+    21452    0.036    0.000    0.158    0.000 series.py:1095(__getitem__)
+    26337    0.036    0.000    0.052    0.000 base.py:3777(get_loc)
+    12850    0.033    0.000    0.044    0.000 base.py:649(_simple_new)
+     2170    0.032    0.000    0.096    0.000 rolling.py:601(calc)
+     2310    0.031    0.000    0.069    0.000 _function_base_impl.py:5456(insert)
+    20205    0.029    0.000    0.042    0.000 generic.py:6284(__getattr__)
+
+

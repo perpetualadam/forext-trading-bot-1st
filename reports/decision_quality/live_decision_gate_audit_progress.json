@@ -1,0 +1,369 @@
+{
+  "audit_started_at_utc": "2026-09-17T21:41:48Z",
+  "last_checkpoint_at_utc": "2026-09-17T22:49:32Z",
+  "current_item": 18,
+  "completed_items": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "total_items": 18,
+  "overall_status": "completed",
+  "items": [
+    {
+      "item_number": 1,
+      "item_name": "Trace live decision call path",
+      "status": "completed",
+      "started_at_utc": "2026-09-17T21:41:48Z",
+      "finished_at_utc": "2026-09-17T21:45:01Z",
+      "elapsed_seconds": 193,
+      "files_inspected": [
+        "forex_bot/app.py",
+        "forex_bot/bot_loop.py",
+        "forex_bot/ai_ensemble.py",
+        "forex_bot/strategy_meta.py",
+        "forex_bot/nn_pred.py",
+        "forex_bot/rl_agent.py",
+        "forex_bot/execution.py",
+        "forex_bot/oanda_exec.py",
+        "forex_bot/session_rules.py"
+      ],
+      "tests_run": [],
+      "test_result": null,
+      "production_code_changed": false,
+      "short_finding_summary": "New opens go evaluate() \u2192 indicators \u2192 select_strategy (label only) \u2192 ai.vote (quant+API together) \u2192 RL same-side gate \u2192 sizing/risk \u2192 open_fill_path \u2192 OANDA or local open_position. execute_trade is close-only. RL cannot reverse AI side."
+    },
+    {
+      "item_number": 2,
+      "item_name": "Quant directional logic",
+      "status": "completed",
+      "started_at_utc": "2026-09-17T21:46:33Z",
+      "finished_at_utc": "2026-09-17T21:48:39Z",
+      "elapsed_seconds": 126,
+      "files_inspected": [
+        "forex_bot/ai_ensemble.py",
+        "forex_bot/indicators.py",
+        "forex_bot/bot_loop.py",
+        "forex_bot/strategy_meta.py",
+        ".env.example"
+      ],
+      "tests_run": [
+        "python -m pytest tests/test_quant_stub_mapping.py -q --tb=short"
+      ],
+      "test_result": "9 passed in 0.23s",
+      "production_code_changed": false,
+      "short_finding_summary": "BUY if ma_fast > ma_slow+1e-6; SELL if ma_fast < ma_slow-1e-6; NO SIGNAL if |diff|<=eps or NaN MAs. allow also needs |pct_change|>0.0001 and ATR>0. Strategy names unused; lookback/horizon can change SMA windows only."
+    },
+    {
+      "item_number": 3,
+      "item_name": "Final direction authority",
+      "status": "completed",
+      "started_at_utc": "2026-09-17T21:52:53Z",
+      "finished_at_utc": "2026-09-17T21:58:11Z",
+      "elapsed_seconds": 318,
+      "files_inspected": [
+        "forex_bot/bot_loop.py",
+        "forex_bot/ai_ensemble.py",
+        "forex_bot/experiment.py",
+        "forex_bot/rl_agent.py"
+      ],
+      "tests_run": [
+        "python -m pytest tests/test_direction_authority.py -q --tb=short"
+      ],
+      "test_result": "6 passed in 0.14s",
+      "production_code_changed": false,
+      "short_finding_summary": "Executed side is AI aggregate (weighted BUY vs SELL), coerced to BUY if invalid. RL is same-side veto only and cannot reverse. API can change side vs quant via aggregation. Empty votes fail closed."
+    },
+    {
+      "item_number": 4,
+      "item_name": "RL implementation",
+      "status": "completed",
+      "started_at_utc": "2026-09-17T21:59:23Z",
+      "finished_at_utc": "2026-09-17T22:00:56Z",
+      "elapsed_seconds": 93,
+      "files_inspected": [
+        "forex_bot/rl_agent.py",
+        "forex_bot/bot_loop.py",
+        "forex_bot/backtest.py",
+        "forex_bot/app.py",
+        "requirements.txt"
+      ],
+      "tests_run": [],
+      "test_result": null,
+      "production_code_changed": false,
+      "short_finding_summary": "Production RL is an in-memory epsilon-greedy tabular bandit (BUY/SELL/SKIP), no neural net, no checkpoint file, empty Q at process start. Always-on same-side veto. Live update() writes Q from close PnL; lost on restart."
+    },
+    {
+      "item_number": 5,
+      "item_name": "RL action mapping",
+      "status": "completed",
+      "started_at_utc": "2026-09-17T22:02:05Z",
+      "finished_at_utc": "2026-09-17T22:03:54Z",
+      "elapsed_seconds": 109,
+      "files_inspected": [
+        "forex_bot/rl_agent.py",
+        "forex_bot/bot_loop.py",
+        "forex_bot/backtest.py"
+      ],
+      "tests_run": [
+        "python -m pytest tests/test_rl_action_mapping.py -q --tb=short"
+      ],
+      "test_result": "5 passed in 0.03s",
+      "production_code_changed": false,
+      "short_finding_summary": "Actions are strings BUY/SELL/SKIP, not integers. No BUY/SELL inversion. Unseen states random among three. Unexpected strings would not veto."
+    },
+    {
+      "item_number": 6,
+      "item_name": "RL training / checkpoint provenance",
+      "status": "completed",
+      "started_at_utc": "2026-09-17T22:06:16Z",
+      "finished_at_utc": "2026-09-17T22:09:41Z",
+      "elapsed_seconds": 205,
+      "files_inspected": [
+        "forex_bot/rl_agent.py",
+        "forex_bot/bot_loop.py",
+        "forex_bot/backtest.py",
+        "forex_bot/trading.py"
+      ],
+      "tests_run": [],
+      "test_result": null,
+      "production_code_changed": false,
+      "short_finding_summary": "No checkpoint, training script, or metadata. Live starts with empty Q and learns in-memory from close PnL; lost on restart. Reward is raw account-ccy PnL. Provenance of a trained model cannot be established."
+    },
+    {
+      "item_number": 7,
+      "item_name": "RL symbol / timeframe compatibility",
+      "status": "completed",
+      "started_at_utc": "2026-09-17T22:11:14Z",
+      "finished_at_utc": "2026-09-17T22:12:22Z",
+      "elapsed_seconds": 68,
+      "files_inspected": [
+        "forex_bot/bot_loop.py",
+        "forex_bot/symbols.py",
+        "forex_bot/config.py",
+        "forex_bot/rl_agent.py",
+        "forex_bot/indicators.py"
+      ],
+      "tests_run": [],
+      "test_result": null,
+      "production_code_changed": false,
+      "short_finding_summary": "One in-memory Q table for all six symbols. State has no symbol or timeframe. Features are raw price units (JPY vs majors differ). No designed six-pair training set."
+    },
+    {
+      "item_number": 8,
+      "item_name": "RL feature compatibility / training-live drift",
+      "status": "completed",
+      "started_at_utc": "2026-09-17T22:14:44Z",
+      "finished_at_utc": "2026-09-17T22:16:22Z",
+      "elapsed_seconds": 98,
+      "files_inspected": [
+        "forex_bot/bot_loop.py",
+        "forex_bot/indicators.py",
+        "forex_bot/rl_agent.py",
+        "forex_bot/backtest.py"
+      ],
+      "tests_run": [],
+      "test_result": null,
+      "production_code_changed": false,
+      "short_finding_summary": "Live RL features are only rounded trend (MA diff) and ATR as one string. No separate training feature pipeline. No verified train/live feature-file mismatch. RSI/pip-scale hypotheses do not apply as RL inputs."
+    },
+    {
+      "item_number": 9,
+      "item_name": "Identify all API / model voters",
+      "status": "completed",
+      "started_at_utc": "2026-09-17T22:16:43Z",
+      "finished_at_utc": "2026-09-17T22:18:18Z",
+      "elapsed_seconds": 95,
+      "files_inspected": [
+        "forex_bot/ai_ensemble.py",
+        "forex_bot/openai_voter.py",
+        "forex_bot/anthropic_voter.py",
+        ".env.example"
+      ],
+      "tests_run": [],
+      "test_result": null,
+      "production_code_changed": false,
+      "short_finding_summary": "Voters: LocalLLM stub; OpenAIVoter clones (OpenAI/DeepSeek/Mistral/xAI/Groq/Venice/Qrok); AnthropicVoter. ExternalLLMAPI unused. Workspace .env is ENSEMBLE_MODE=quant with no API keys. Docker live env UNKNOWN. HOLD coerced to BUY inside HTTP voters."
+    },
+    {
+      "item_number": 10,
+      "item_name": "API prompt / input structure",
+      "status": "completed",
+      "started_at_utc": "2026-09-17T22:18:48Z",
+      "finished_at_utc": "2026-09-17T22:20:12Z",
+      "elapsed_seconds": 84,
+      "files_inspected": [
+        "forex_bot/openai_voter.py",
+        "forex_bot/anthropic_voter.py",
+        "forex_bot/bot_loop.py"
+      ],
+      "tests_run": [],
+      "test_result": null,
+      "production_code_changed": false,
+      "short_finding_summary": "API voters get system JSON-schema prompt plus evaluate payload (symbol, strategy, price, MAs, return, ATR, nn/seq preds, horizon/lookback). No candles, spread, session, positions, news, quant vote, or RL. HOLD not requested. Potential feature-level confirmation, not an explicit prior decision."
+    },
+    {
+      "item_number": 11,
+      "item_name": "API failure behaviour",
+      "status": "completed",
+      "started_at_utc": "2026-09-17T22:22:04Z",
+      "finished_at_utc": "2026-09-17T22:24:29Z",
+      "elapsed_seconds": 145,
+      "files_inspected": [
+        "forex_bot/ai_ensemble.py",
+        "forex_bot/openai_voter.py",
+        "forex_bot/anthropic_voter.py"
+      ],
+      "tests_run": [
+        "python -m pytest tests/test_api_voter_failures.py -q --tb=short"
+      ],
+      "test_result": "9 passed in 0.16s",
+      "production_code_changed": false,
+      "short_finding_summary": "HTTP/parse failures omit that voter; empty votes fail closed. No retry. HOLD/unknown coerced to BUY inside voter. API mode does not add quant after failure. RL is not a fallback."
+    },
+    {
+      "item_number": 12,
+      "item_name": "Consensus / voting truth table",
+      "status": "completed",
+      "started_at_utc": "2026-09-17T22:26:12Z",
+      "finished_at_utc": "2026-09-17T22:26:52Z",
+      "elapsed_seconds": 40,
+      "files_inspected": [
+        "forex_bot/ai_ensemble.py",
+        "forex_bot/bot_loop.py"
+      ],
+      "tests_run": [
+        "python -m pytest tests/test_consensus_truth_table.py -q --tb=short"
+      ],
+      "test_result": "10 passed in 0.17s",
+      "production_code_changed": false,
+      "short_finding_summary": "Not a 3-way majority. AI weighted merge then RL same-side veto. Equal allow/deny confidence yields allow_score=0.5 \u2192 NO TRADE. API can flip AI side; RL cannot."
+    },
+    {
+      "item_number": 13,
+      "item_name": "Dead / stub / cosmetic / bypassed components",
+      "status": "completed",
+      "started_at_utc": "2026-09-17T22:27:22Z",
+      "finished_at_utc": "2026-09-17T22:28:05Z",
+      "elapsed_seconds": 43,
+      "files_inspected": [
+        "forex_bot/ai_ensemble.py",
+        "forex_bot/bot_loop.py",
+        "forex_bot/nn_pred.py",
+        "forex_bot/rl_agent.py",
+        "forex_bot/strategy_meta.py",
+        "forex_bot/session_rules.py"
+      ],
+      "tests_run": [],
+      "test_result": null,
+      "production_code_changed": false,
+      "short_finding_summary": "ExternalLLMAPI never constructed. API voters bypassed in ENSEMBLE_MODE=quant. seq/nn_pred unused by stub. Strategy names unused for side. RL starts as random gate. MICRO_STRATEGY hook commented out."
+    },
+    {
+      "item_number": 14,
+      "item_name": "Configuration audit",
+      "status": "completed",
+      "started_at_utc": "2026-09-17T22:31:00Z",
+      "finished_at_utc": "2026-09-17T22:31:21Z",
+      "elapsed_seconds": 21,
+      "files_inspected": [
+        ".env.example",
+        "forex_bot/experiment.py",
+        "forex_bot/ai_ensemble.py",
+        "forex_bot/openai_voter.py",
+        "forex_bot/anthropic_voter.py",
+        "forex_bot/nn_pred.py",
+        "forex_bot/rl_agent.py",
+        "forex_bot/strategy_meta.py"
+      ],
+      "tests_run": [],
+      "test_result": null,
+      "production_code_changed": false,
+      "short_finding_summary": "Workspace ENSEMBLE_MODE=quant bypasses all API voters. No RL env bypass. allow_score>0.5 hardcoded. API keys unset in this .env. Docker live env UNKNOWN. Ensemble built at import."
+    },
+    {
+      "item_number": 15,
+      "item_name": "Live decision observability",
+      "status": "completed",
+      "started_at_utc": "2026-09-17T22:34:50Z",
+      "finished_at_utc": "2026-09-17T22:37:49Z",
+      "elapsed_seconds": 179,
+      "files_inspected": [
+        "forex_bot/bot_loop.py",
+        "forex_bot/trade_diagnostics.py",
+        "forex_bot/database.py",
+        "forex_bot/positions.py",
+        "forex_bot/ai_ensemble.py"
+      ],
+      "tests_run": [],
+      "test_result": null,
+      "production_code_changed": false,
+      "short_finding_summary": "Opens log final Dir + aggregate Conf + RL action; DB stores final side only. Per-voter quant/API votes are not stored. AI allow=False is silent. Historical reconstruction is partial at best."
+    },
+    {
+      "item_number": 16,
+      "item_name": "Live vs offline decision parity",
+      "status": "completed",
+      "started_at_utc": "2026-09-17T22:38:09Z",
+      "finished_at_utc": "2026-09-17T22:40:19Z",
+      "elapsed_seconds": 130,
+      "files_inspected": [
+        "forex_bot/decision_quality/live_path.py",
+        "forex_bot/decision_quality/signal.py",
+        "forex_bot/decision_quality/execution_sim.py",
+        "forex_bot/bot_loop.py"
+      ],
+      "tests_run": [],
+      "test_result": null,
+      "production_code_changed": false,
+      "short_finding_summary": "Offline reuses indicators/routing/quant/SLTP/vol/FX-week. Omits RL, API, consensus, halt/reconcile, USD-direction, live session-hours default, and uses seeded routing plus high/low exits. Live and offline can disagree for those reasons."
+    },
+    {
+      "item_number": 17,
+      "item_name": "Historical replay feasibility",
+      "status": "completed",
+      "started_at_utc": "2026-09-17T22:41:37Z",
+      "finished_at_utc": "2026-09-17T22:45:41Z",
+      "elapsed_seconds": 244,
+      "files_inspected": [],
+      "tests_run": [],
+      "test_result": null,
+      "production_code_changed": false,
+      "short_finding_summary": "Quant+indicators A given same window. Routing B (need RNG or stored label). RL C historically (no Q/RNG). API C unless request/response stored. Ensemble A if votes known. Do not fabricate historical RL/API decisions."
+    },
+    {
+      "item_number": 18,
+      "item_name": "Final synthesis and regression check",
+      "status": "completed",
+      "started_at_utc": "2026-09-17T22:46:01Z",
+      "finished_at_utc": "2026-09-17T22:49:32Z",
+      "elapsed_seconds": 211,
+      "files_inspected": [
+        "reports/decision_quality/live_decision_gate_audit.md"
+      ],
+      "tests_run": [
+        "python -m pytest -q --tb=line"
+      ],
+      "test_result": "291 passed, 1 failed in 18.43s (test_inventory_reports_missing_pairs stale vs historical CSVs)",
+      "production_code_changed": false,
+      "short_finding_summary": "Live BUY/SELL is AI aggregate (quant stub in this .env); RL is untrained in-memory same-side veto; offline DQ omits RL/API. Production unchanged. Full pytest 291/1. Historical runner not launched."
+    }
+  ],
+  "audit_finished_at_utc": "2026-09-17T22:49:32Z",
+  "wall_clock_seconds": 4064
+}

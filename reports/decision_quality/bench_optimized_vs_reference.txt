@@ -1,0 +1,24 @@
+Bounded EUR_USD benchmark (not the 12-month six-pair baseline)
+csv=data\historical\EUR_USD_M5.csv total_rows=74572
+
+HEADLINE 800 bars:
+  REFERENCE 2.3692s  signals=35 trades=35
+  OPTIMIZED 0.8160s  signals=35 trades=35
+  SPEEDUP   2.903x  equivalent=YES
+
+SCALE (both impls):
+  n=  400  ref=1.3924s  opt=0.3678s  speedup=3.79x  trades=19 match=True
+  n=  800  ref=2.4001s  opt=0.9281s  speedup=2.59x  trades=35 match=True
+  n= 1600  ref=5.2637s  opt=2.2505s  speedup=2.34x  trades=61 match=True
+  n= 2400  ref=10.5882s  opt=5.0216s  speedup=2.11x  trades=101 match=True
+
+OPTIMIZED-ONLY larger windows:
+  n= 5000  opt=21.1379s  trades=218 signals=218
+  n= 8000  opt=46.8241s  trades=348 signals=348
+
+Linear projection from n=8000 (46.8241s):
+  per_bar=5.853012e-03s
+  one 12-month symbol (~74555 bars) ~ 436.4s
+  six symbols sequential ~ 2618.2s
+
+This script did not launch the six-pair 12-month baseline.

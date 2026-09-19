@@ -1,0 +1,128 @@
+{
+  "study_started_at_utc": "2026-09-18T22:36:00Z",
+  "last_checkpoint_at_utc": "2026-09-18T22:40:00Z",
+  "current_stage": 17,
+  "completed_stages": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+  "total_stages": 17,
+  "overall_status": "completed",
+  "pytest": {
+    "passed": 357,
+    "failed": 0,
+    "skipped": 0,
+    "duration_s": 26.13,
+    "command": "python -m pytest -q --tb=line"
+  },
+  "definitions_frozen": true,
+  "no_download": true,
+  "no_train": true,
+  "no_production_change": true,
+  "verdict_v1": "NO ECONOMICALLY USEFUL EVENT FOUND",
+  "outputs": [
+    "reports/decision_quality/quant_v1_final_assessment.md",
+    "reports/decision_quality/quant_v2_research_plan.md"
+  ],
+  "stages": [
+    {
+      "stage": 1,
+      "stage_name": "freeze_v1_evidence",
+      "status": "completed",
+      "findings": "Quant V1 frozen. Hand-written SMA stub; baseline -0.1995R; no economically useful mid-OHLC event. DEV0 year is discovery data."
+    },
+    {
+      "stage": 2,
+      "stage_name": "do_not_rediscover_register",
+      "status": "completed",
+      "findings": "Register V1-01 through V1-18. Replication on later data allowed; novel claims on DEV0 forbidden."
+    },
+    {
+      "stage": 3,
+      "stage_name": "raw_data_inventory",
+      "status": "completed",
+      "findings": "Six M5 CSVs have unused bid/ask OHLC and volume. No M1/tick/calendar/rates/order-book files."
+    },
+    {
+      "stage": 4,
+      "stage_name": "oanda_capability_inventory",
+      "status": "completed",
+      "findings": "Repo can GET InstrumentsCandles MBA and other listed granularities. No pricing stream. No requests made."
+    },
+    {
+      "stage": 5,
+      "stage_name": "microstructure_plan",
+      "status": "completed",
+      "findings": "Spread/asymmetry candidates from existing bid/ask. Primarily cost/tradeability. Not tested."
+    },
+    {
+      "stage": 6,
+      "stage_name": "volume_plan",
+      "status": "completed",
+      "findings": "OANDA candle volume stored, unused. Not centralized FX volume. Semantics require later verification. Not tested."
+    },
+    {
+      "stage": 7,
+      "stage_name": "cross_currency_plan",
+      "status": "completed",
+      "findings": "X1-X6 residual/dispersion/lag/basis designed. Do not repeat V1-12/13. Not run."
+    },
+    {
+      "stage": 8,
+      "stage_name": "lower_timeframe_plan",
+      "status": "completed",
+      "findings": "M1 would address 22.5% AMBIGUOUS path-order. Not on disk. Do not download now."
+    },
+    {
+      "stage": 9,
+      "stage_name": "macro_calendar_plan",
+      "status": "completed",
+      "findings": "No calendar in repo. Causal vintage schema and leakage list only. No vendor."
+    },
+    {
+      "stage": 10,
+      "stage_name": "rates_carry_plan",
+      "status": "completed",
+      "findings": "No rate files. Slow regime/pair-selection, not M5 timing. Not obtained."
+    },
+    {
+      "stage": 11,
+      "stage_name": "target_architecture_options",
+      "status": "completed",
+      "findings": "Six target options specified with gates. None selected for training."
+    },
+    {
+      "stage": 12,
+      "stage_name": "timeframe_question",
+      "status": "completed",
+      "findings": "M5 cost-dominated. Slower TF not assumed better. Comparison designed, not run."
+    },
+    {
+      "stage": 13,
+      "stage_name": "future_data_policy",
+      "status": "completed",
+      "findings": "DEV0=2025-09..2026-08. HOLDOUT1 must be later data in a separate directory. Inspected holdout becomes development."
+    },
+    {
+      "stage": 14,
+      "stage_name": "acquisition_priorities",
+      "status": "completed",
+      "findings": "Rank: existing spread, existing volume, richer cross-pair, M1, calendar, rates, live stream. More mid technicals deprioritized."
+    },
+    {
+      "stage": 15,
+      "stage_name": "next_experiments",
+      "status": "completed",
+      "findings": "Sequence A (spread/volume) then B (residuals) then C (M1 if authorized). Not run."
+    },
+    {
+      "stage": 16,
+      "stage_name": "go_nogo_gates",
+      "status": "completed",
+      "findings": "G1-G6: information, chronology, economic unique path >= 1x spread, sample, causal path, then train. +0.2 pip fails G3."
+    },
+    {
+      "stage": 17,
+      "stage_name": "roadmap",
+      "status": "completed",
+      "findings": "Acquisition -> information study -> target -> train -> sim -> paper -> live review. Stop for human review before Experiment A."
+    }
+  ]
+}

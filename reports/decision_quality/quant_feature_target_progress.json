@@ -1,0 +1,23 @@
+{
+  "study_started_at_utc": "2026-09-18T22:14:15Z",
+  "last_checkpoint_at_utc": "2026-09-18T22:17:18Z",
+  "current_stage": 20,
+  "completed_stages": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+  "total_stages": 20,
+  "overall_status": "completed",
+  "cache": "data/research/quant_features/six_pair_features.pkl",
+  "n_rows": 447027,
+  "splits": {
+    "t50": "2026-03-03T12:15:00",
+    "t75": "2026-06-02T05:05:00",
+    "discovery_test_note": "Inspected; not a future pristine holdout"
+  },
+  "verdict": "FEATURE SET NOT YET SUFFICIENT",
+  "pytest": {
+    "command": "python -m pytest -q --tb=line",
+    "passed": 340,
+    "failed": 0,
+    "skipped": 0,
+    "duration_seconds": 25.67
+  }
+}

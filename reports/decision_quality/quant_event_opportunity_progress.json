@@ -1,0 +1,255 @@
+{
+  "study_started_at_utc": "2026-09-18T22:29:50Z",
+  "last_checkpoint_at_utc": "2026-09-18T22:33:08Z",
+  "current_stage": 26,
+  "completed_stages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26
+  ],
+  "total_stages": 26,
+  "overall_status": "completed",
+  "stages": [
+    {
+      "stage": 1,
+      "stage_name": "identity",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:29:50Z",
+      "finished_at_utc": "2026-09-18T22:29:57Z",
+      "findings": "Six CSVs match prior study ranges; gaps not repaired."
+    },
+    {
+      "stage": 2,
+      "stage_name": "splits",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:29:57Z",
+      "finished_at_utc": "2026-09-18T22:30:03Z",
+      "findings": "Frozen prior cuts. DISCOVERY_TEST is exploratory only."
+    },
+    {
+      "stage": 3,
+      "stage_name": "cost_hurdles",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:29:57Z",
+      "finished_at_utc": "2026-09-18T22:30:03Z",
+      "findings": "Half-spread multiples 0.5/1/1.5/2/3 predeclared."
+    },
+    {
+      "stage": 4,
+      "stage_name": "future_paths",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:29:57Z",
+      "finished_at_utc": "2026-09-18T22:30:03Z",
+      "findings": "MFE-up/down and close returns 15-480m."
+    },
+    {
+      "stage": 5,
+      "stage_name": "path_order",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:29:57Z",
+      "finished_at_utc": "2026-09-18T22:30:03Z",
+      "findings": "Ambiguous same-bar rates: {'15': 0.22427280678795689, '30': 0.22491035217112165, '60': 0.22501101723162137, '120': 0.22502443923968798, '240': 0.22502443923968798, '480': 0.22502443923968798}"
+    },
+    {
+      "stage": 6,
+      "stage_name": "opportunity_balance",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:29:57Z",
+      "finished_at_utc": "2026-09-18T22:30:03Z",
+      "findings": "Class balance under predeclared cost hurdles."
+    },
+    {
+      "stage": 7,
+      "stage_name": "range_extreme_events",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:30:03Z",
+      "finished_at_utc": "2026-09-18T22:30:11Z",
+      "findings": "Entry into TRAIN q1/q5 pos_in_range_24."
+    },
+    {
+      "stage": 8,
+      "stage_name": "extension_events",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:30:03Z",
+      "finished_at_utc": "2026-09-18T22:30:11Z",
+      "findings": "Enter TRAIN q1/q5 dist_rollmean24_atr."
+    },
+    {
+      "stage": 9,
+      "stage_name": "impulse_events",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:30:03Z",
+      "finished_at_utc": "2026-09-18T22:30:11Z",
+      "findings": "Enter TRAIN q1/q5 signed_body_atr."
+    },
+    {
+      "stage": 10,
+      "stage_name": "vol_transition",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:30:03Z",
+      "finished_at_utc": "2026-09-18T22:30:11Z",
+      "findings": "atr_pctile enter q5; exit compression."
+    },
+    {
+      "stage": 11,
+      "stage_name": "breakouts",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:30:03Z",
+      "finished_at_utc": "2026-09-18T22:30:11Z",
+      "findings": "First close beyond prior 12/24/48 high/low."
+    },
+    {
+      "stage": 12,
+      "stage_name": "rejections",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:30:03Z",
+      "finished_at_utc": "2026-09-18T22:30:11Z",
+      "findings": "Trade beyond prior 24 range, close back inside."
+    },
+    {
+      "stage": 13,
+      "stage_name": "session_transitions",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:30:03Z",
+      "finished_at_utc": "2026-09-18T22:30:11Z",
+      "findings": "asia-london, london-overlap, overlap-lateNY."
+    },
+    {
+      "stage": 14,
+      "stage_name": "usd_context",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:30:03Z",
+      "finished_at_utc": "2026-09-18T22:30:11Z",
+      "findings": "Other-pairs-only median USD-direction ret_6."
+    },
+    {
+      "stage": 15,
+      "stage_name": "usd_divergence",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:30:03Z",
+      "finished_at_utc": "2026-09-18T22:30:11Z",
+      "findings": "Enter TRAIN extreme usd_div."
+    },
+    {
+      "stage": 16,
+      "stage_name": "combos",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:30:03Z",
+      "finished_at_utc": "2026-09-18T22:30:11Z",
+      "findings": "Predeclared combos: ['range_bottom_and_lower_reject', 'range_top_and_upper_reject', 'range_bottom_and_usd_div', 'breakout_up_24_and_vol_expand', 'impulse_bull_and_usd_agree']"
+    },
+    {
+      "stage": 17,
+      "stage_name": "independence",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:30:03Z",
+      "finished_at_utc": "2026-09-18T22:30:11Z",
+      "findings": "Event n is transition count, not persistent bars."
+    },
+    {
+      "stage": 18,
+      "stage_name": "bootstrap",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:30:03Z",
+      "finished_at_utc": "2026-09-18T22:30:11Z",
+      "findings": "Event-level bootstrap seed=42, 200 reps."
+    },
+    {
+      "stage": 19,
+      "stage_name": "cross_time",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:32:18Z",
+      "finished_at_utc": "2026-09-18T22:32:18Z",
+      "findings": "Range-bottom MR and breakout-failure keep sign; combo magnitude not stable. DISCOVERY_TEST exploratory."
+    },
+    {
+      "stage": 20,
+      "stage_name": "cross_symbol",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:32:18Z",
+      "finished_at_utc": "2026-09-18T22:32:18Z",
+      "findings": "Breakout-up failure is BROAD. Range-bottom BROAD-weak. USD/vol direction UNSTABLE."
+    },
+    {
+      "stage": 21,
+      "stage_name": "cost_hurdle",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:32:18Z",
+      "finished_at_utc": "2026-09-18T22:32:18Z",
+      "findings": "No event unique favorable path clears 1x/1.5x/2x/3x cost. Close effects 0.1-0.8 pips."
+    },
+    {
+      "stage": 22,
+      "stage_name": "direction_vs_magnitude",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:32:18Z",
+      "finished_at_utc": "2026-09-18T22:32:18Z",
+      "findings": "Tiny directional MR/failure; vol-expand is weak two-sided magnitude. No BOTH."
+    },
+    {
+      "stage": 23,
+      "stage_name": "classification",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:32:18Z",
+      "finished_at_utc": "2026-09-18T22:32:18Z",
+      "findings": "No PROMISING family. Weak / below cost / unstable / insufficient only."
+    },
+    {
+      "stage": 24,
+      "stage_name": "target_design",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:32:18Z",
+      "finished_at_utc": "2026-09-18T22:32:18Z",
+      "findings": "G: no current target sufficiently supported. Do not train A-F."
+    },
+    {
+      "stage": 25,
+      "stage_name": "future_holdout",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:32:18Z",
+      "finished_at_utc": "2026-09-18T22:32:18Z",
+      "findings": "2025-09..2026-08 is DEVELOPMENT/DISCOVERY. Later unseen data required. Not downloaded."
+    },
+    {
+      "stage": 26,
+      "stage_name": "synthesis",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:32:18Z",
+      "finished_at_utc": "2026-09-18T22:32:18Z",
+      "findings": "Verdict: NO ECONOMICALLY USEFUL EVENT FOUND. Stop for human review."
+    }
+  ],
+  "definitions_frozen": true,
+  "verdict": "NO ECONOMICALLY USEFUL EVENT FOUND",
+  "pytest_pending": false,
+  "pytest": {
+    "passed": 357,
+    "failed": 0,
+    "skipped": 0,
+    "duration_s": 26.25,
+    "command": "python -m pytest -q --tb=line"
+  }
+}

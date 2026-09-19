@@ -1,0 +1,173 @@
+{
+  "audit_started_at_utc": "2026-09-18T21:55:32Z",
+  "last_checkpoint_at_utc": "2026-09-18T22:05:00Z",
+  "current_stage": 13,
+  "completed_stages": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+  "total_stages": 13,
+  "overall_status": "completed",
+  "pytest": {
+    "command": "python -m pytest -q --tb=line",
+    "passed": 325,
+    "failed": 0,
+    "skipped": 0,
+    "duration_seconds": 25.35
+  },
+  "stages": [
+    {
+      "stage": 1,
+      "status": "completed",
+      "started_at_utc": "2026-09-18T21:55:32Z",
+      "finished_at_utc": "2026-09-18T21:58:00Z",
+      "elapsed_seconds": 148,
+      "files_inspected": ["forex_bot/ai_ensemble.py", "forex_bot/indicators.py", "forex_bot/bot_loop.py", "forex_bot/backtest.py", "forex_bot/strategy_meta.py", "forex_bot/decision_quality/signal.py"],
+      "commands_run": ["git log --follow forex_bot/ai_ensemble.py", "_quant_stub_forensic.py"],
+      "tests_run": [],
+      "findings": "Production direction is _quant_stub_vote. No model artifacts. STUB_* unset so defaults. ENSEMBLE_MODE=quant.",
+      "unresolved_questions": []
+    },
+    {
+      "stage": 2,
+      "status": "completed",
+      "started_at_utc": "2026-09-18T21:58:00Z",
+      "finished_at_utc": "2026-09-18T21:59:20Z",
+      "elapsed_seconds": 80,
+      "files_inspected": ["forex_bot/ai_ensemble.py", "forex_bot/indicators.py"],
+      "commands_run": [],
+      "tests_run": [],
+      "findings": "STATE rule: fast>slow BUY. Momentum sign unused. Not a cross.",
+      "unresolved_questions": []
+    },
+    {
+      "stage": 3,
+      "status": "completed",
+      "started_at_utc": "2026-09-18T21:57:12Z",
+      "finished_at_utc": "2026-09-18T21:57:41Z",
+      "elapsed_seconds": 29,
+      "files_inspected": ["data/historical/*_M5.csv"],
+      "commands_run": ["python reports/decision_quality/_quant_stub_traces.py"],
+      "tests_run": [],
+      "findings": "Independent SMA match. BUY/SELL/agree/disagree/near-threshold traces on all six pairs.",
+      "unresolved_questions": []
+    },
+    {
+      "stage": 4,
+      "status": "completed",
+      "started_at_utc": "2026-09-18T21:59:20Z",
+      "finished_at_utc": "2026-09-18T22:00:10Z",
+      "elapsed_seconds": 50,
+      "files_inspected": ["_quant_stub_traces.py output", "ai_ensemble.py"],
+      "commands_run": [],
+      "tests_run": [],
+      "findings": "No BUY/SELL inversion. Inversion would not explain bilateral losses anyway.",
+      "unresolved_questions": []
+    },
+    {
+      "stage": 5,
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:00:10Z",
+      "finished_at_utc": "2026-09-18T22:01:00Z",
+      "elapsed_seconds": 50,
+      "files_inspected": ["indicators.py", "oanda_client.py", "decision_quality/data.py", "decision_quality/engine.py"],
+      "commands_run": [],
+      "tests_run": [],
+      "findings": "No lookahead. Signal known at last complete M5 close. STATE persists hours.",
+      "unresolved_questions": []
+    },
+    {
+      "stage": 6,
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:01:00Z",
+      "finished_at_utc": "2026-09-18T22:01:40Z",
+      "elapsed_seconds": 40,
+      "files_inspected": ["git history ai_ensemble.py", "repo model glob"],
+      "commands_run": ["git show ec68e8e/bd24462 ai_ensemble"],
+      "tests_run": [],
+      "findings": "Hard-coded since 2026-03-31. Previously random. No artifacts.",
+      "unresolved_questions": ["user 'difficult to train' report has no repo artifact"]
+    },
+    {
+      "stage": 7,
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:01:40Z",
+      "finished_at_utc": "2026-09-18T22:02:00Z",
+      "elapsed_seconds": 20,
+      "files_inspected": ["ai_ensemble.py"],
+      "commands_run": [],
+      "tests_run": [],
+      "findings": "No target/label/horizon implementation.",
+      "unresolved_questions": []
+    },
+    {
+      "stage": 8,
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:02:00Z",
+      "finished_at_utc": "2026-09-18T22:02:20Z",
+      "elapsed_seconds": 20,
+      "files_inspected": ["indicators.py", "ai_ensemble.py"],
+      "commands_run": [],
+      "tests_run": [],
+      "findings": "Raw-price MA compare is sound. Percent allow threshold is not pip-normalized.",
+      "unresolved_questions": []
+    },
+    {
+      "stage": 9,
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:02:20Z",
+      "finished_at_utc": "2026-09-18T22:02:40Z",
+      "elapsed_seconds": 20,
+      "files_inspected": [],
+      "commands_run": [],
+      "tests_run": [],
+      "findings": "No trainer split to reconstruct.",
+      "unresolved_questions": []
+    },
+    {
+      "stage": 10,
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:02:40Z",
+      "finished_at_utc": "2026-09-18T22:03:00Z",
+      "elapsed_seconds": 20,
+      "files_inspected": ["bot_loop.py", "decision_quality/signal.py", "backtest.py"],
+      "commands_run": [],
+      "tests_run": [],
+      "findings": "Live and offline stub math match. No training pipeline.",
+      "unresolved_questions": []
+    },
+    {
+      "stage": 11,
+      "status": "completed",
+      "started_at_utc": "2026-09-18T21:57:12Z",
+      "finished_at_utc": "2026-09-18T21:57:41Z",
+      "elapsed_seconds": 29,
+      "files_inspected": ["historical M5 CSVs"],
+      "commands_run": ["_quant_stub_traces.py"],
+      "tests_run": [],
+      "findings": "Direction assigned on >99.8% of bars. Allow 36-64%. Agree ~50%. Runs last hours.",
+      "unresolved_questions": []
+    },
+    {
+      "stage": 12,
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:03:00Z",
+      "finished_at_utc": "2026-09-18T22:04:00Z",
+      "elapsed_seconds": 60,
+      "files_inspected": ["tests/test_quant_stub_mapping.py", "tests/test_decision_quality_engine.py"],
+      "commands_run": [],
+      "tests_run": ["added disagreement, JPY, SMA recompute, history_at tests"],
+      "findings": "Existing tests covered BUY/SELL mapping; gaps filled without production changes.",
+      "unresolved_questions": []
+    },
+    {
+      "stage": 13,
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:04:00Z",
+      "finished_at_utc": "2026-09-18T22:05:00Z",
+      "elapsed_seconds": 60,
+      "files_inspected": ["all prior stages"],
+      "commands_run": [],
+      "tests_run": [],
+      "findings": "HAND-WRITTEN HEURISTIC/FALLBACK STUB. Orientation correct. No trained model. Negative edge is the rule, not a load/sign bug.",
+      "unresolved_questions": []
+    }
+  ]
+}

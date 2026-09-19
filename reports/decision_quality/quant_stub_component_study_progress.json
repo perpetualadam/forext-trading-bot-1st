@@ -1,0 +1,27 @@
+{
+  "study_started_at_utc": "2026-09-18T22:03:02Z",
+  "last_checkpoint_at_utc": "2026-09-18T22:05:28Z",
+  "current_item": "complete",
+  "completed_items": [
+    "definitions",
+    "compute",
+    "state_age",
+    "momentum_sign",
+    "event_vs_state",
+    "stub_vs_inverse",
+    "report"
+  ],
+  "overall_status": "completed",
+  "data_file": "reports/decision_quality/quant_stub_component_study_data.json",
+  "report_file": "reports/decision_quality/quant_stub_component_study.md",
+  "n_bars": 447052,
+  "n_episodes": 14769,
+  "stub_parity_mismatches": 0,
+  "pytest": {
+    "command": "python -m pytest -q --tb=line",
+    "passed": 333,
+    "failed": 0,
+    "skipped": 0,
+    "duration_seconds": 26.22
+  }
+}

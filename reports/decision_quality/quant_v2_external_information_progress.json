@@ -1,0 +1,176 @@
+{
+  "study_started_at_utc": "2026-09-19T00:50:00Z",
+  "last_checkpoint_at_utc": "2026-09-19T01:05:00Z",
+  "current_stage": 20,
+  "completed_stages": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+  "total_stages": 20,
+  "overall_status": "completed",
+  "no_download": true,
+  "no_train": true,
+  "no_production_change": true,
+  "no_paid_purchase": true,
+  "verdict": "EXTERNAL_DATA_FEASIBILITY_INCOMPLETE",
+  "report_path": "reports/decision_quality/quant_v2_external_information_feasibility.md",
+  "stages": [
+    {
+      "stage": 1,
+      "stage_name": "repository_inventory",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:50:00Z",
+      "finished_at_utc": "2026-09-19T00:52:00Z",
+      "findings": "Calendar/macro/news/rate/yield caches ABSENT. Event schema PARTIAL (V2 plan docs only). APIs PARTIAL (OANDA/LLM only). No unused external-info env vars. oandapyV20 Calendar unused."
+    },
+    {
+      "stage": 2,
+      "stage_name": "causal_data_requirements",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:52:00Z",
+      "finished_at_utc": "2026-09-19T00:53:00Z",
+      "findings": "Frozen field list and KNOWN_BEFORE / AT_RELEASE / LATER_ONLY buckets. Date-only vintages are not M5-safe clocks."
+    },
+    {
+      "stage": 3,
+      "stage_name": "vintage_revision_requirements",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:53:00Z",
+      "finished_at_utc": "2026-09-19T00:54:00Z",
+      "findings": "AS-KNOWN-AT-TIME standard. 12 leakage hazards including revised actuals, overwritten consensus, ALFRED-date-as-midnight, and vol-inferred events."
+    },
+    {
+      "stage": 4,
+      "stage_name": "currency_coverage",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:54:00Z",
+      "finished_at_utc": "2026-09-19T00:54:30Z",
+      "findings": "Mapped EUR/GBP/USD/JPY/AUD/CAD/CHF to economies and central banks. No predictive claim."
+    },
+    {
+      "stage": 5,
+      "stage_name": "event_taxonomy",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:54:30Z",
+      "finished_at_utc": "2026-09-19T00:55:00Z",
+      "findings": "Eight research categories. First experiment subset: inflation, employment, cb_rate_decision."
+    },
+    {
+      "stage": 6,
+      "stage_name": "provider_feasibility",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:55:00Z",
+      "finished_at_utc": "2026-09-19T00:58:00Z",
+      "findings": "Public-doc review only. Official actuals/vintages exist. Consensus is vendor-claimed. FF scrape prohibited. Uncertain fields left UNKNOWN."
+    },
+    {
+      "stage": 7,
+      "stage_name": "official_macro_sources",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:58:00Z",
+      "finished_at_utc": "2026-09-19T00:59:00Z",
+      "findings": "ALFRED/BLS/ONS/StatCan/ECB usable for actuals/vintages. Eurostat overwrites. Official sources do not provide market consensus."
+    },
+    {
+      "stage": 8,
+      "stage_name": "consensus_data",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T00:59:00Z",
+      "finished_at_utc": "2026-09-19T01:00:00Z",
+      "findings": "No defensible pre-release consensus verified. Surprise study blocked. Monthly SPF/Consensus Economics is the wrong frequency."
+    },
+    {
+      "stage": 9,
+      "stage_name": "central_bank_information",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T01:00:00Z",
+      "finished_at_utc": "2026-09-19T01:01:00Z",
+      "findings": "Decision levels feasible. Fed 14:00 ET and BoE 12:00 UK clocks documented. Other official minutes UNKNOWN. No NLP."
+    },
+    {
+      "stage": 10,
+      "stage_name": "rate_yield_data",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T01:01:00Z",
+      "finished_at_utc": "2026-09-19T01:01:30Z",
+      "findings": "Daily policy rates and Treasury yields feasible as slow regime context. Not M5 timing."
+    },
+    {
+      "stage": 11,
+      "stage_name": "news_text_feasibility",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T01:01:30Z",
+      "finished_at_utc": "2026-09-19T01:02:00Z",
+      "findings": "Paid newswire archives exist (LSEG/DJ). Licensing/cost not practical. No scrape, no NLP."
+    },
+    {
+      "stage": 12,
+      "stage_name": "market_data_alignment",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T01:02:00Z",
+      "finished_at_utc": "2026-09-19T01:02:30Z",
+      "findings": "UTC join rules: first eligible bar starts at or after actual publication. DST via tzdata. Date-only and estimated clocks are INSUFFICIENT_DATA."
+    },
+    {
+      "stage": 13,
+      "stage_name": "future_hypotheses",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T01:02:30Z",
+      "finished_at_utc": "2026-09-19T01:03:00Z",
+      "findings": "Designed A magnitude-proximity, B surprise direction, C relative surprise, D policy-rate surprise, E slow yield differential. Only A is close to data-ready. None tested."
+    },
+    {
+      "stage": 14,
+      "stage_name": "interaction_with_ab",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T01:03:00Z",
+      "finished_at_utc": "2026-09-19T01:03:15Z",
+      "findings": "Test external information alone first. No combinatorial grid with activity or dispersion."
+    },
+    {
+      "stage": 15,
+      "stage_name": "holdout_problem",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T01:03:15Z",
+      "finished_at_utc": "2026-09-19T01:03:30Z",
+      "findings": "DEV0 remains DEVELOPMENT/DISCOVERY after any new join. New feature on old prices is not a pristine holdout."
+    },
+    {
+      "stage": 16,
+      "stage_name": "source_scorecard",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T01:03:30Z",
+      "finished_at_utc": "2026-09-19T01:04:00Z",
+      "findings": "Scorecard written with UNKNOWN preserved. FF do-not-use. Official actuals strong; consensus unpaid/unverified."
+    },
+    {
+      "stage": 17,
+      "stage_name": "minimum_viable_dataset",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T01:04:00Z",
+      "finished_at_utc": "2026-09-19T01:04:15Z",
+      "findings": "Clock-stamped inflation+employment+cb_rate_decision for USD/GBP/CAD. No consensus. Target n>=80."
+    },
+    {
+      "stage": 18,
+      "stage_name": "acquisition_plan",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T01:04:15Z",
+      "finished_at_utc": "2026-09-19T01:04:30Z",
+      "findings": "Designed official Path 1/2, licensed Path 3, rejected scrape/OANDA-as-vintage/news. Not executed."
+    },
+    {
+      "stage": 19,
+      "stage_name": "go_nogo_gates",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T01:04:30Z",
+      "finished_at_utc": "2026-09-19T01:04:45Z",
+      "findings": "E1-E7 plus unchanged G3. E3 failed for surprise. E1 not demonstrated on an assembled file. E6 closed."
+    },
+    {
+      "stage": 20,
+      "stage_name": "final_recommendation",
+      "status": "completed",
+      "started_at_utc": "2026-09-19T01:04:45Z",
+      "finished_at_utc": "2026-09-19T01:05:00Z",
+      "findings": "EXTERNAL_DATA_FEASIBILITY_INCOMPLETE. First experiment if later authorized: Hypothesis A alone. No acquisition now."
+    }
+  ]
+}

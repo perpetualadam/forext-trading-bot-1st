@@ -1,0 +1,7 @@
+symbol,timeframe,path,earliest,latest,bars,missing
+AUD_USD,M5,C:\Users\Brian\OneDrive\Desktop\Forext Trading Bot 1st\data\historical\AUD_USD_M5.csv,2025-09-01T00:00:00,2026-08-31T23:50:00,74563,
+EUR_USD,M5,C:\Users\Brian\OneDrive\Desktop\Forext Trading Bot 1st\data\historical\EUR_USD_M5.csv,2025-09-01T00:00:00,2026-08-31T23:50:00,74572,
+GBP_USD,M5,C:\Users\Brian\OneDrive\Desktop\Forext Trading Bot 1st\data\historical\GBP_USD_M5.csv,2025-09-01T00:00:00,2026-08-31T23:50:00,74555,
+USD_CAD,M5,C:\Users\Brian\OneDrive\Desktop\Forext Trading Bot 1st\data\historical\USD_CAD_M5.csv,2025-09-01T00:00:00,2026-08-31T23:50:00,74560,
+USD_CHF,M5,C:\Users\Brian\OneDrive\Desktop\Forext Trading Bot 1st\data\historical\USD_CHF_M5.csv,2025-09-01T00:00:00,2026-08-31T23:50:00,74514,
+USD_JPY,M5,C:\Users\Brian\OneDrive\Desktop\Forext Trading Bot 1st\data\historical\USD_JPY_M5.csv,2025-09-01T00:00:00,2026-08-31T23:50:00,74557,

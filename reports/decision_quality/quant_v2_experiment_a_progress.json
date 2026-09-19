@@ -1,0 +1,256 @@
+{
+  "study_started_at_utc": "2026-09-18T22:46:17Z",
+  "last_checkpoint_at_utc": "2026-09-18T22:48:12Z",
+  "current_stage": 26,
+  "completed_stages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26
+  ],
+  "total_stages": 26,
+  "overall_status": "completed",
+  "pytest": {
+    "passed": 367,
+    "failed": 0,
+    "skipped": 0,
+    "duration_s": 27.33,
+    "command": "python -m pytest -q --tb=line"
+  },
+  "no_download": true,
+  "no_train": true,
+  "stages": [
+    {
+      "stage": 1,
+      "stage_name": "identity",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:17Z",
+      "finished_at_utc": "2026-09-18T22:46:23Z",
+      "findings": "Six MBA CSVs match V1 DEV0 identity; bid/ask/volume present."
+    },
+    {
+      "stage": 2,
+      "stage_name": "spread_definition",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:23Z",
+      "finished_at_utc": "2026-09-18T22:46:29Z",
+      "findings": "Close/open spread defined; ask_low-bid_high unused."
+    },
+    {
+      "stage": 3,
+      "stage_name": "spread_quality",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:23Z",
+      "finished_at_utc": "2026-09-18T22:46:29Z",
+      "findings": "Distributions persisted; negatives counted not cleaned."
+    },
+    {
+      "stage": 4,
+      "stage_name": "vs_v1_cost",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:23Z",
+      "finished_at_utc": "2026-09-18T22:46:29Z",
+      "findings": "Historical half-spread compared to modeled 1.0/1.5 pip entry cost."
+    },
+    {
+      "stage": 5,
+      "stage_name": "volume_semantics",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:23Z",
+      "finished_at_utc": "2026-09-18T22:46:29Z",
+      "findings": "Activity field, not FX volume."
+    },
+    {
+      "stage": 6,
+      "stage_name": "spread_states",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:29Z",
+      "finished_at_utc": "2026-09-18T22:46:29Z",
+      "findings": "TRAIN quintiles of half-spread pips and spread/ATR frozen."
+    },
+    {
+      "stage": 7,
+      "stage_name": "activity_states",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:29Z",
+      "finished_at_utc": "2026-09-18T22:46:29Z",
+      "findings": "TRAIN quintiles of raw volume and session-relative volume frozen."
+    },
+    {
+      "stage": 8,
+      "stage_name": "spread_tradeability",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:29Z",
+      "finished_at_utc": "2026-09-18T22:46:37Z",
+      "findings": "Future MFE/cost by frozen spread quintile."
+    },
+    {
+      "stage": 9,
+      "stage_name": "activity_magnitude",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:29Z",
+      "finished_at_utc": "2026-09-18T22:46:37Z",
+      "findings": "Future abs movement by frozen activity quintile."
+    },
+    {
+      "stage": 10,
+      "stage_name": "spread_direction",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:29Z",
+      "finished_at_utc": "2026-09-18T22:46:37Z",
+      "findings": "Signed close by spread quintile."
+    },
+    {
+      "stage": 11,
+      "stage_name": "activity_direction",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:29Z",
+      "finished_at_utc": "2026-09-18T22:46:37Z",
+      "findings": "Signed close by activity level and expand/contract."
+    },
+    {
+      "stage": 12,
+      "stage_name": "spread_events",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:29Z",
+      "finished_at_utc": "2026-09-18T22:46:37Z",
+      "findings": "Enter/exit/expand/contract transitions."
+    },
+    {
+      "stage": 13,
+      "stage_name": "activity_events",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:29Z",
+      "finished_at_utc": "2026-09-18T22:46:37Z",
+      "findings": "Activity transition events."
+    },
+    {
+      "stage": 14,
+      "stage_name": "spread_x_activity",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:29Z",
+      "finished_at_utc": "2026-09-18T22:46:37Z",
+      "findings": "Four predeclared LOW/HIGH cells."
+    },
+    {
+      "stage": 15,
+      "stage_name": "v1_events_actual_cost",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:29Z",
+      "finished_at_utc": "2026-09-18T22:46:37Z",
+      "findings": "Frozen V1 events vs contemporaneous half-spread."
+    },
+    {
+      "stage": 16,
+      "stage_name": "range_bottom_cost",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:29Z",
+      "finished_at_utc": "2026-09-18T22:46:37Z",
+      "findings": "Range-bottom rechecked vs actual cost."
+    },
+    {
+      "stage": 17,
+      "stage_name": "breakout_cost",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:29Z",
+      "finished_at_utc": "2026-09-18T22:46:37Z",
+      "findings": "24-bar breakouts rechecked vs actual cost."
+    },
+    {
+      "stage": 18,
+      "stage_name": "two_sided_actual_cost",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:29Z",
+      "finished_at_utc": "2026-09-18T22:46:37Z",
+      "findings": "BOTH/ONLY/NEITHER using contemporaneous half-spread."
+    },
+    {
+      "stage": 19,
+      "stage_name": "independence",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:29Z",
+      "finished_at_utc": "2026-09-18T22:46:37Z",
+      "findings": "Event n vs persistent state bars."
+    },
+    {
+      "stage": 20,
+      "stage_name": "bootstrap",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:29Z",
+      "finished_at_utc": "2026-09-18T22:46:37Z",
+      "findings": "Event-level bootstrap seed=42, 200 reps."
+    },
+    {
+      "stage": 21,
+      "stage_name": "cross_time",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:29Z",
+      "finished_at_utc": "2026-09-18T22:46:37Z",
+      "findings": "Splits + monthly for key cells."
+    },
+    {
+      "stage": 22,
+      "stage_name": "cross_symbol",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:46:29Z",
+      "finished_at_utc": "2026-09-18T22:46:37Z",
+      "findings": "Per-symbol h60 inside each summarize()."
+    },
+    {
+      "stage": 23,
+      "stage_name": "classification",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:48:12Z",
+      "finished_at_utc": "2026-09-18T22:48:12Z",
+      "findings": "Spread=cost/tradeability (mostly mechanical). Activity=magnitude, no direction. 2x2 pair-specific."
+    },
+    {
+      "stage": 24,
+      "stage_name": "g3_hurdle",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:48:12Z",
+      "finished_at_utc": "2026-09-18T22:48:12Z",
+      "findings": "No unique favorable path >= 1x actual half-spread. V1 events still below cost."
+    },
+    {
+      "stage": 25,
+      "stage_name": "verdict",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:48:12Z",
+      "finished_at_utc": "2026-09-18T22:48:12Z",
+      "findings": "A_USEFUL_CONTEXT_BUT_BELOW_G3. Actual cost lower than V1 model; BOTH rises to 75%; activity ranks magnitude."
+    },
+    {
+      "stage": 26,
+      "stage_name": "experiment_b",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T22:48:12Z",
+      "finished_at_utc": "2026-09-18T22:48:12Z",
+      "findings": "NOT JUSTIFIED BY A BUT STILL INDEPENDENTLY JUSTIFIED BY V2 PLAN. B not run."
+    }
+  ],
+  "verdict": "A_USEFUL_CONTEXT_BUT_BELOW_G3",
+  "experiment_b": "NOT JUSTIFIED BY A BUT STILL INDEPENDENTLY JUSTIFIED BY V2 PLAN"
+}

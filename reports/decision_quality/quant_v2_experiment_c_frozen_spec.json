@@ -1,0 +1,88 @@
+{
+  "frozen_before_m1_outcomes": true,
+  "period": "2025-09-01 through 2026-08-31 UTC DEVELOPMENT/DISCOVERY",
+  "oanda_candle_time": "bar start UTC. M5 at t covers [t, t+5m) and is knowable at t+5m.",
+  "first_eligible_m1": "m5_event_time + 5 minutes. Forming M1 bars t..t+4m excluded from future path.",
+  "primary_cost": "Experiment A contemporaneous M5 completed-bar half-spread = (ask_close-bid_close)/2 at event time. Not refit.",
+  "jpy_pip": 0.01,
+  "other_pip": 0.0001,
+  "hurdles": [1.0, 1.5, 2.0, 3.0],
+  "horizons_min": [15, 30, 60, 120, 240, 480],
+  "path_labels": ["UP_FIRST", "DOWN_FIRST", "NEITHER", "M1_AMBIGUOUS", "INSUFFICIENT_DATA"],
+  "same_m1_both_touch": "M1_AMBIGUOUS. No intra-minute order invented.",
+  "missing_m1": "INSUFFICIENT_DATA. Not treated as NEITHER.",
+  "base_rate": "all eligible M5 timestamps with valid event-time half-spread; same hurdles/horizons. Incremental = event rate minus base rate. Established before event outcome tables.",
+  "no_activity_conditioning": true,
+  "no_dispersion_conditioning": true,
+  "no_pair_specific_thresholds": true,
+  "no_m1_indicator_search": true,
+  "splits": {
+    "train": "time <= 2026-03-03 12:15:00",
+    "valid": "2026-03-03 12:15:00 < time <= 2026-06-02 05:05:00",
+    "discovery_test": "time > 2026-06-02 05:05:00"
+  },
+  "families": {
+    "range_bottom": {
+      "definition": "enter_true_grouped(pos_in_range_24 <= 0.1911764703070358)",
+      "hypothesis_instrument": "UP",
+      "source": "V1 range_bottom_enter"
+    },
+    "range_top": {
+      "definition": "enter_true_grouped(pos_in_range_24 >= 0.8314606732231985)",
+      "hypothesis_instrument": "DOWN",
+      "source": "V1 range_top_enter"
+    },
+    "breakout_up_24": {
+      "definition": "enter_true_grouped(close > prior_rolling_max(high, 24) excluding current bar)",
+      "hypothesis_instrument": "DOWN",
+      "source": "V1 breakout_up_24 failure"
+    },
+    "breakout_dn_24": {
+      "definition": "enter_true_grouped(close < prior_rolling_min(low, 24) excluding current bar)",
+      "hypothesis_instrument": "UP",
+      "source": "V1 breakout_dn_24 failure"
+    },
+    "resid_pos": {
+      "definition": "enter_true_grouped(resid_pca6 quintile == 5) using frozen B TRAIN edges/PCA",
+      "hypothesis_instrument": "reversal of +USD residual (EUR/GBP/AUD BUY=UP; JPY/CAD/CHF SELL=DOWN)",
+      "source": "Experiment B ENTER q5 resid_pca6"
+    },
+    "resid_neg": {
+      "definition": "enter_true_grouped(resid_pca6 quintile == 1) using frozen B TRAIN edges/PCA",
+      "hypothesis_instrument": "reversal of -USD residual (EUR/GBP/AUD SELL=DOWN; JPY/CAD/CHF BUY=UP)",
+      "source": "Experiment B ENTER q1 resid_pca6"
+    }
+  },
+  "resid_pca6_edges": [
+    -0.007343785608701278,
+    -0.00021615500470774783,
+    -5.8241172034417324e-05,
+    5.898286497246002e-05,
+    0.0002158161844480932,
+    0.009593179900670682
+  ],
+  "pca_weights": {
+    "EUR_USD": 0.3826791451527134,
+    "GBP_USD": 0.42033418915928444,
+    "USD_JPY": 0.420135385904811,
+    "AUD_USD": 0.5047914399110883,
+    "USD_CAD": 0.24366056395835575,
+    "USD_CHF": 0.4314825958988349
+  },
+  "pca_means": {
+    "EUR_USD": 1.2429041787559855e-06,
+    "GBP_USD": 2.189809036763197e-06,
+    "USD_JPY": 1.1433747155708329e-05,
+    "AUD_USD": -1.1878573172995098e-05,
+    "USD_CAD": -3.753022178956559e-07,
+    "USD_CHF": -2.6613173592054044e-06
+  },
+  "pca_betas": {
+    "EUR_USD": 0.3826791451527139,
+    "GBP_USD": 0.4203341891592841,
+    "USD_JPY": 0.4201353859048107,
+    "AUD_USD": 0.5047914399110884,
+    "USD_CAD": 0.24366056395835584,
+    "USD_CHF": 0.4314825958988346
+  }
+}

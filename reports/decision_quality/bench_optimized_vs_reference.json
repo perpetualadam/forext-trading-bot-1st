@@ -1,0 +1,75 @@
+{
+  "symbol": "EUR_USD",
+  "warmup": 80,
+  "seed": 42,
+  "csv": "data\\historical\\EUR_USD_M5.csv",
+  "headline_800": {
+    "reference_s": 2.3692,
+    "optimized_s": 0.816,
+    "speedup": 2.903,
+    "equivalent": true,
+    "signals": 35,
+    "trades": 35
+  },
+  "scale": [
+    {
+      "bars": 400,
+      "reference_s": 1.3924,
+      "optimized_s": 0.3678,
+      "speedup": 3.786,
+      "signals_match": true,
+      "trades_match": true,
+      "trades": 19
+    },
+    {
+      "bars": 800,
+      "reference_s": 2.4001,
+      "optimized_s": 0.9281,
+      "speedup": 2.586,
+      "signals_match": true,
+      "trades_match": true,
+      "trades": 35
+    },
+    {
+      "bars": 1600,
+      "reference_s": 5.2637,
+      "optimized_s": 2.2505,
+      "speedup": 2.339,
+      "signals_match": true,
+      "trades_match": true,
+      "trades": 61
+    },
+    {
+      "bars": 2400,
+      "reference_s": 10.5882,
+      "optimized_s": 5.0216,
+      "speedup": 2.109,
+      "signals_match": true,
+      "trades_match": true,
+      "trades": 101
+    }
+  ],
+  "optimized_larger": [
+    {
+      "bars": 5000,
+      "optimized_s": 21.1379,
+      "trades": 218,
+      "signals": 218
+    },
+    {
+      "bars": 8000,
+      "optimized_s": 46.8241,
+      "trades": 348,
+      "signals": 348
+    }
+  ],
+  "projection": {
+    "measured_bars": 8000,
+    "measured_s": 46.8241,
+    "seconds_per_bar": 0.0058530119875031235,
+    "assumed_year_bars": 74555,
+    "projected_one_symbol_s": 436.3713087282954,
+    "projected_six_symbol_s": 2618.2278523697723,
+    "assumption": "linear scale from largest optimized window; includes trade-sim cost on that window"
+  }
+}

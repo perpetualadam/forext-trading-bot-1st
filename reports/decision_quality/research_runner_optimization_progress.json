@@ -1,0 +1,286 @@
+{
+  "audit_started_at_utc": "2026-09-18T09:35:26Z",
+  "last_checkpoint_at_utc": "2026-09-18T09:56:13Z",
+  "current_stage": 10,
+  "completed_stages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "total_stages": 10,
+  "overall_status": "completed",
+  "stages": [
+    {
+      "stage_number": 1,
+      "stage_name": "Static performance inspection",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T09:35:26Z",
+      "finished_at_utc": "2026-09-18T09:36:19Z",
+      "elapsed_seconds": 53,
+      "files_inspected": [
+        "forex_bot/decision_quality/__main__.py",
+        "forex_bot/decision_quality/engine.py",
+        "forex_bot/decision_quality/signal.py",
+        "forex_bot/decision_quality/data.py",
+        "forex_bot/decision_quality/research_features.py",
+        "forex_bot/decision_quality/outcomes.py",
+        "forex_bot/indicators.py"
+      ],
+      "files_changed": [
+        "reports/decision_quality/research_runner_optimization.md",
+        "reports/decision_quality/research_runner_optimization_progress.json"
+      ],
+      "commands_run": [],
+      "tests_run": [],
+      "benchmark_results": null,
+      "short_finding_summary": "Per empty bar: prefix copy + 2-3x compute_indicators + 3x HTF resample. ATR experiments replay the full signal path. Hypothesized O(N^2). Reports only at end."
+    },
+    {
+      "stage_number": 2,
+      "stage_name": "Profile representative workload",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T09:36:47Z",
+      "finished_at_utc": "2026-09-18T09:37:47Z",
+      "elapsed_seconds": 60,
+      "files_inspected": [
+        "forex_bot/decision_quality/engine.py",
+        "forex_bot/decision_quality/signal.py"
+      ],
+      "files_changed": [
+        "reports/decision_quality/_profile_small_backtest.py",
+        "reports/decision_quality/profile_small_eurusd_800.txt"
+      ],
+      "commands_run": [
+        "PYTHONPATH=. python reports/decision_quality/_profile_small_backtest.py"
+      ],
+      "tests_run": [],
+      "benchmark_results": {
+        "bars": 800,
+        "wall_s": 4.8485,
+        "signals": 35,
+        "trades": 35,
+        "eval_calls": 70,
+        "compute_indicators_calls": 210
+      },
+      "short_finding_summary": "800-bar EUR_USD: 4.85s. 76% in evaluate_signal; 3x compute_indicators + HTF resample + _snapshot. 70 evals only (positions skip). observe_after_stop 20% via iterrows."
+    },
+    {
+      "stage_number": 3,
+      "stage_name": "Explain the 35-hour failure mode",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T09:38:10Z",
+      "finished_at_utc": "2026-09-18T09:38:54Z",
+      "elapsed_seconds": 44,
+      "files_inspected": [
+        "reports/decision_quality/profile_small_eurusd_800.txt"
+      ],
+      "files_changed": [],
+      "commands_run": [
+        "timed run_symbol_backtest at 400/800/1600/2400 bars"
+      ],
+      "tests_run": [],
+      "benchmark_results": {
+        "400": 1.435,
+        "800": 2.539,
+        "1600": 5.404,
+        "2400": 10.998
+      },
+      "short_finding_summary": "Per-eval cost grows with prefix (superlinear). Worst-case Theta(N^2) when bars are empty. 30 full replays + no checkpoint explain ~35h with no report."
+    },
+    {
+      "stage_number": 4,
+      "stage_name": "Design the optimization",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T09:39:25Z",
+      "finished_at_utc": "2026-09-18T09:39:45Z",
+      "elapsed_seconds": 20,
+      "files_inspected": [],
+      "files_changed": [
+        "reports/decision_quality/research_runner_optimization.md"
+      ],
+      "commands_run": [],
+      "tests_run": [],
+      "benchmark_results": null,
+      "short_finding_summary": "Design: keep reference path; precompute causal indicators/HTF; no per-bar prefix copy; split signals vs SL simulation. Lookahead: iloc[i] and closed HTF only."
+    },
+    {
+      "stage_number": 5,
+      "stage_name": "Build equivalence tests before optimization",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T09:40:09Z",
+      "finished_at_utc": "2026-09-18T09:41:42Z",
+      "elapsed_seconds": 93,
+      "files_inspected": [
+        "tests/test_decision_quality_engine.py"
+      ],
+      "files_changed": [
+        "tests/test_decision_quality_equivalence.py"
+      ],
+      "commands_run": [],
+      "tests_run": [
+        "python -m pytest tests/test_decision_quality_equivalence.py -q --tb=short"
+      ],
+      "benchmark_results": {
+        "passed": 4,
+        "skipped": 1
+      },
+      "short_finding_summary": "Equivalence tests lock 250-bar EUR_USD reference: 7 trades, decision sequence, SL/TP, HTF fields. Optimized compare skipped until impl exists."
+    },
+    {
+      "stage_number": 6,
+      "stage_name": "Implement performance optimization",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T09:42:48Z",
+      "finished_at_utc": "2026-09-18T09:47:31Z",
+      "elapsed_seconds": 283,
+      "files_inspected": [
+        "forex_bot/decision_quality/signal.py",
+        "forex_bot/decision_quality/engine.py",
+        "forex_bot/decision_quality/research_features.py",
+        "forex_bot/decision_quality/fast_cache.py"
+      ],
+      "files_changed": [
+        "forex_bot/decision_quality/fast_cache.py",
+        "forex_bot/decision_quality/engine.py",
+        "tests/test_decision_quality_equivalence.py",
+        "reports/decision_quality/research_runner_optimization.md",
+        "reports/decision_quality/research_runner_optimization_progress.json"
+      ],
+      "commands_run": [
+        "python -m pytest tests/test_decision_quality_equivalence.py -q --tb=short"
+      ],
+      "tests_run": [
+        "tests/test_decision_quality_equivalence.py"
+      ],
+      "benchmark_results": {
+        "equivalence_passed": 5,
+        "equivalence_failed": 0
+      },
+      "short_finding_summary": "Optimized impl wired. Equivalence 5/5 after matching _blank lookback=0 on VOLATILITY_FILTER. Trading semantics unchanged."
+    },
+    {
+      "stage_number": 7,
+      "stage_name": "Baseline progress / checkpoint / resume",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T09:47:42Z",
+      "finished_at_utc": "2026-09-18T09:49:21Z",
+      "elapsed_seconds": 99,
+      "files_inspected": [
+        "forex_bot/decision_quality/__main__.py",
+        "forex_bot/symbols.py"
+      ],
+      "files_changed": [
+        "forex_bot/decision_quality/checkpoint.py",
+        "forex_bot/decision_quality/runner.py",
+        "forex_bot/decision_quality/__main__.py",
+        "tests/test_decision_quality_checkpoint.py",
+        "reports/decision_quality/research_runner_optimization.md",
+        "reports/decision_quality/research_runner_optimization_progress.json"
+      ],
+      "commands_run": [
+        "python -m pytest tests/test_decision_quality_checkpoint.py tests/test_decision_quality_equivalence.py tests/test_decision_quality_engine.py::test_package_cannot_reach_broker_writes -q --tb=short"
+      ],
+      "tests_run": [
+        "tests/test_decision_quality_checkpoint.py"
+      ],
+      "benchmark_results": {
+        "passed": 12
+      },
+      "short_finding_summary": "Six baseline units with atomic per-symbol persist and incompatible-checkpoint refusal. ATR no longer auto-runs. 12-month baseline not launched."
+    },
+    {
+      "stage_number": 8,
+      "stage_name": "Separate baseline from experiments",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T09:49:53Z",
+      "finished_at_utc": "2026-09-18T09:50:53Z",
+      "elapsed_seconds": 60,
+      "files_inspected": [
+        "forex_bot/decision_quality/__main__.py",
+        "forex_bot/decision_quality/runner.py"
+      ],
+      "files_changed": [
+        "forex_bot/decision_quality/runner.py",
+        "forex_bot/decision_quality/__main__.py",
+        "tests/test_decision_quality_checkpoint.py",
+        "reports/decision_quality/research_runner_optimization.md",
+        "reports/decision_quality/research_runner_optimization_progress.json"
+      ],
+      "commands_run": [
+        "python -m pytest tests/test_decision_quality_checkpoint.py -q --tb=short"
+      ],
+      "tests_run": [
+        "tests/test_decision_quality_checkpoint.py"
+      ],
+      "benchmark_results": {
+        "passed": 10
+      },
+      "short_finding_summary": "Baseline is default. stop_width is explicit, 24-unit capable, not executed on historical data."
+    },
+    {
+      "stage_number": 9,
+      "stage_name": "Fix stale historical inventory test",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T09:51:26Z",
+      "finished_at_utc": "2026-09-18T09:51:52Z",
+      "elapsed_seconds": 26,
+      "files_inspected": [
+        "tests/test_decision_quality_data.py",
+        "forex_bot/decision_quality/data.py"
+      ],
+      "files_changed": [
+        "tests/test_decision_quality_data.py",
+        "reports/decision_quality/research_runner_optimization.md",
+        "reports/decision_quality/research_runner_optimization_progress.json"
+      ],
+      "commands_run": [
+        "python -m pytest tests/test_decision_quality_data.py -q --tb=short"
+      ],
+      "tests_run": [
+        "tests/test_decision_quality_data.py"
+      ],
+      "benchmark_results": {
+        "passed": 5
+      },
+      "short_finding_summary": "Inventory test now requires the six downloaded M5 histories and still detects a missing required pair in an isolated dir."
+    },
+    {
+      "stage_number": 10,
+      "stage_name": "Validate performance without full baseline",
+      "status": "completed",
+      "started_at_utc": "2026-09-18T09:52:54Z",
+      "finished_at_utc": "2026-09-18T09:55:00Z",
+      "elapsed_seconds": 126,
+      "files_inspected": [
+        "reports/decision_quality/_profile_small_backtest.py"
+      ],
+      "files_changed": [
+        "reports/decision_quality/_bench_optimized.py",
+        "reports/decision_quality/bench_optimized_vs_reference.txt",
+        "reports/decision_quality/bench_optimized_vs_reference.json",
+        "reports/decision_quality/research_runner_optimization.md",
+        "reports/decision_quality/research_runner_optimization_progress.json"
+      ],
+      "commands_run": [
+        "PYTHONPATH=. python reports/decision_quality/_bench_optimized.py"
+      ],
+      "tests_run": [],
+      "benchmark_results": {
+        "reference_800_s": 2.3692,
+        "optimized_800_s": 0.816,
+        "speedup_800": 2.903,
+        "equivalent_800": true,
+        "optimized_8000_s": 46.8241,
+        "projected_six_symbol_s_linear": 2618.2
+      },
+      "short_finding_summary": "800-bar equivalent, 2.90x. 8000-bar optimized 46.8s. Linear six-symbol year ~44 min. Superlinear remainder remains. Full baseline not launched."
+    }
+  ]
+}
