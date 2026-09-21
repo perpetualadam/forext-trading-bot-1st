@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import math
 import os
 import random
 import time
@@ -447,3 +448,79 @@ def fetch_ohlcv(
     if not ohlcv:
         return None
     return pd.DataFrame(ohlcv)
+
+
+def _parse_pricing_px(raw: Any) -> float | None:
+    if raw in (None, ""):
+        return None
+    try:
+        px = float(str(raw).replace(",", ""))
+    except (TypeError, ValueError):
+        return None
+    if not math.isfinite(px) or px <= 0:
+        return None
+    return px
+
+
+def fetch_pricing_snapshot(symbols: list[str] | tuple[str, ...] | None = None) -> dict[str, Any]:
+    """
+    GET /v3/accounts/{id}/pricing for the given instruments in one request.
+
+    Returns ``instrument -> ManageQuote``. Empty dict if unavailable. Never writes.
+    """
+    from forex_bot.live_manage import ManageQuote
+    from forex_bot.profit_protection import _to_epoch
+    from forex_bot.symbols import DEFAULT_FOREX_SYMBOLS
+
+    api = get_api()
+    aid = (Config.OANDA_ACCOUNT_ID or os.getenv("OANDA_ACCOUNT_ID") or "").strip()
+    if api is None or not aid:
+        return {}
+    raw_syms = list(symbols) if symbols else list(DEFAULT_FOREX_SYMBOLS)
+    insts: list[str] = []
+    seen: set[str] = set()
+    for s in raw_syms:
+        inst = oanda_instrument(s)
+        if inst and inst not in seen:
+            seen.add(inst)
+            insts.append(inst)
+    if not insts:
+        return {}
+    try:
+        import oandapyV20.endpoints.pricing as pricing
+    except ImportError:
+        logger.warning("oandapyV20 pricing endpoint unavailable")
+        return {}
+    r = pricing.PricingInfo(accountID=aid, params={"instruments": ",".join(insts)})
+    try:
+        data = _oanda_request(api, r, context="pricing snapshot")
+    except Exception as exc:
+        logger.error("OANDA PricingInfo failed: %s", _format_oanda_error(exc))
+        return {}
+    out: dict[str, ManageQuote] = {}
+    for p in data.get("prices") or []:
+        if not isinstance(p, dict):
+            continue
+        inst = oanda_instrument(str(p.get("instrument") or ""))
+        if not inst:
+            continue
+        bids = p.get("bids") or []
+        asks = p.get("asks") or []
+        bid0 = bids[0].get("price") if bids and isinstance(bids[0], dict) else None
+        ask0 = asks[0].get("price") if asks and isinstance(asks[0], dict) else None
+        status = str(p.get("status") or "").strip().lower()
+        tradeable_flag = p.get("tradeable")
+        if tradeable_flag is None:
+            tradeable = status not in ("non-tradeable", "nontradeable", "invalid")
+        else:
+            tradeable = bool(tradeable_flag)
+        out[inst] = ManageQuote(
+            instrument=inst,
+            bid=_parse_pricing_px(bid0),
+            ask=_parse_pricing_px(ask0),
+            closeout_bid=_parse_pricing_px(p.get("closeoutBid")),
+            closeout_ask=_parse_pricing_px(p.get("closeoutAsk")),
+            time_epoch=_to_epoch(p.get("time")),
+            tradeable=tradeable,
+        )
+    return out

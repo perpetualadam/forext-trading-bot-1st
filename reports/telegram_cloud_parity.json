@@ -1,0 +1,27 @@
+{
+  "source": "telegram_bot_api",
+  "identity": {
+    "id": 7527052874,
+    "username": "Quantumskiesbot",
+    "can_join_groups": true,
+    "can_read_all_group_messages": false,
+    "supports_inline_queries": false
+  },
+  "commands": [],
+  "webhook": {
+    "url": "",
+    "has_custom_certificate": false,
+    "pending_update_count": 3,
+    "last_error_date": null,
+    "last_error_message": null,
+    "ip_address": null,
+    "allowed_updates": []
+  },
+  "local_handles_inbound_commands": false,
+  "webhook_conflicts_with_local_alerts": false,
+  "parity_note": "Local app only sends sendMessage alerts. Slash commands registered in Telegram Cloud do nothing until inbound getUpdates/webhook handling exists.",
+  "ok": true,
+  "retrieved_at_utc": "2026-09-20T14:50:03Z",
+  "chat_id_configured": true,
+  "token_configured": true
+}

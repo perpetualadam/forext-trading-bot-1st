@@ -356,7 +356,18 @@ def _to_epoch(val: Any) -> float | None:
         except (TypeError, ValueError, OSError):
             pass
     try:
-        s = str(val).strip().replace("Z", "+00:00")
+        s = str(val).strip()
+        if s.endswith("Z"):
+            s = s[:-1] + "+00:00"
+        if "." in s:
+            head, rest = s.split(".", 1)
+            frac, tz = rest, ""
+            for i, ch in enumerate(rest):
+                if ch in "+-" and i > 0:
+                    frac, tz = rest[:i], rest[i:]
+                    break
+            frac = (frac + "000000")[:6]
+            s = f"{head}.{frac}{tz or '+00:00'}"
         dt = datetime.fromisoformat(s)
         if dt.tzinfo is None:
             dt = dt.replace(tzinfo=timezone.utc)
@@ -365,20 +376,33 @@ def _to_epoch(val: Any) -> float | None:
         return None
 
 
-def reconstruct_mfe_from_ohlcv(
+def candle_vs_fill(
+    bar_start_epoch: float,
+    fill_epoch: float,
+    bar_seconds: float = 300.0,
+) -> str:
+    """``pre_entry`` / ``partial_entry`` / ``post_entry`` relative to the fill clock."""
+    start = float(bar_start_epoch)
+    fill = float(fill_epoch)
+    end = start + float(bar_seconds)
+    if end <= fill:
+        return "pre_entry"
+    if start < fill:
+        return "partial_entry"
+    return "post_entry"
+
+
+def _ohlcv_extreme_pips(
     symbol: str,
     direction: str,
     entry_price: float,
     open_time: float,
     ohlcv: Any,
     *,
-    bar_seconds: float = 300.0,
+    bar_seconds: float,
+    include_partial_entry_bar: bool,
+    favourable: bool,
 ) -> float | None:
-    """
-    Best favourable excursion from complete candles that overlap or follow entry.
-
-    Returns None if ``ohlcv`` has no usable high/low after the open (cannot reconstruct).
-    """
     if ohlcv is None:
         return None
     try:
@@ -395,17 +419,53 @@ def reconstruct_mfe_from_ohlcv(
     for row in ohlcv.itertuples(index=False):
         t_raw = getattr(row, "time", None)
         t_epoch = _to_epoch(t_raw)
-        if t_epoch is None or (t_epoch + float(bar_seconds)) <= open_epoch:
+        if t_epoch is None:
+            continue
+        rel = candle_vs_fill(t_epoch, open_epoch, bar_seconds)
+        if rel == "pre_entry":
+            continue
+        if rel == "partial_entry" and not include_partial_entry_bar:
             continue
         hi = float(getattr(row, "high"))
         lo = float(getattr(row, "low"))
         if not math.isfinite(hi) or not math.isfinite(lo):
             continue
         saw = True
-        best = max(best, extreme_favourable_pips(symbol, direction, entry_price, hi, lo))
+        if favourable:
+            best = max(best, extreme_favourable_pips(symbol, direction, entry_price, hi, lo))
+        else:
+            best = max(best, extreme_adverse_pips(symbol, direction, entry_price, hi, lo))
     if not saw:
         return None
     return best
+
+
+def reconstruct_mfe_from_ohlcv(
+    symbol: str,
+    direction: str,
+    entry_price: float,
+    open_time: float,
+    ohlcv: Any,
+    *,
+    bar_seconds: float = 300.0,
+    include_partial_entry_bar: bool = True,
+) -> float | None:
+    """
+    Best favourable excursion from candles that overlap or follow entry.
+
+    ``include_partial_entry_bar=False`` (live/broker-backed) keeps only bars whose
+    start is at or after the fill — no pre-entry or unknown intra-bar ordering.
+    """
+    return _ohlcv_extreme_pips(
+        symbol,
+        direction,
+        entry_price,
+        open_time,
+        ohlcv,
+        bar_seconds=bar_seconds,
+        include_partial_entry_bar=include_partial_entry_bar,
+        favourable=True,
+    )
 
 
 def reconstruct_mae_from_ohlcv(
@@ -416,35 +476,19 @@ def reconstruct_mae_from_ohlcv(
     ohlcv: Any,
     *,
     bar_seconds: float = 300.0,
+    include_partial_entry_bar: bool = True,
 ) -> float | None:
     """Worst adverse excursion (positive pips) from candles overlapping or after entry."""
-    if ohlcv is None:
-        return None
-    try:
-        empty = bool(ohlcv.empty)
-    except AttributeError:
-        empty = len(ohlcv) == 0
-    if empty:
-        return None
-    if "high" not in ohlcv.columns or "low" not in ohlcv.columns:
-        return None
-    open_epoch = float(open_time)
-    worst = 0.0
-    saw = False
-    for row in ohlcv.itertuples(index=False):
-        t_raw = getattr(row, "time", None)
-        t_epoch = _to_epoch(t_raw)
-        if t_epoch is None or (t_epoch + float(bar_seconds)) <= open_epoch:
-            continue
-        hi = float(getattr(row, "high"))
-        lo = float(getattr(row, "low"))
-        if not math.isfinite(hi) or not math.isfinite(lo):
-            continue
-        saw = True
-        worst = max(worst, extreme_adverse_pips(symbol, direction, entry_price, hi, lo))
-    if not saw:
-        return None
-    return worst
+    return _ohlcv_extreme_pips(
+        symbol,
+        direction,
+        entry_price,
+        open_time,
+        ohlcv,
+        bar_seconds=bar_seconds,
+        include_partial_entry_bar=include_partial_entry_bar,
+        favourable=False,
+    )
 
 
 @dataclass
@@ -469,11 +513,13 @@ def seed_position_mfe(
     ohlcv: Any = None,
     *,
     atr_price: float | None = None,
+    include_partial_entry_bar: bool = True,
 ) -> str:
     """
     Restart-safe MFE seed. Never assume 0 when current profit is positive.
 
     Prefer candle high/low since entry; otherwise seed from current unrealised pips.
+    Live/broker-backed callers pass ``include_partial_entry_bar=False``.
     """
     if getattr(pos, "profit_protection_seeded", False):
         return "already"
@@ -484,6 +530,7 @@ def seed_position_mfe(
         pos.entry_price,
         float(pos.open_time),
         ohlcv,
+        include_partial_entry_bar=include_partial_entry_bar,
     )
     prior = float(getattr(pos, "max_profit_pips", 0.0) or 0.0)
     if reconstructed is None:
@@ -508,6 +555,7 @@ def seed_position_mfe(
             pos.entry_price,
             float(pos.open_time),
             ohlcv,
+            include_partial_entry_bar=include_partial_entry_bar,
         )
         if mae is not None:
             pos.max_adverse_pips = max(float(getattr(pos, "max_adverse_pips", 0.0) or 0.0), mae)
@@ -542,6 +590,36 @@ def seed_position_mfe(
         )
         pos.profit_protection_last_logged_mfe = seeded
     return source
+
+
+def raise_mfe_from_post_entry_ohlcv(pos: Any, ohlcv: Any = None) -> float:
+    """Raise MFE/MAE from fully post-entry completed bars only. Never uses the entry bar."""
+    prior = float(getattr(pos, "max_profit_pips", 0.0) or 0.0)
+    rec = reconstruct_mfe_from_ohlcv(
+        pos.symbol,
+        pos.direction,
+        pos.entry_price,
+        float(pos.open_time),
+        ohlcv,
+        include_partial_entry_bar=False,
+    )
+    if rec is not None:
+        pos.max_profit_pips = max(prior, rec)
+    try:
+        mae = reconstruct_mae_from_ohlcv(
+            pos.symbol,
+            pos.direction,
+            pos.entry_price,
+            float(pos.open_time),
+            ohlcv,
+            include_partial_entry_bar=False,
+        )
+        if mae is not None:
+            pos.max_adverse_pips = max(float(getattr(pos, "max_adverse_pips", 0.0) or 0.0), mae)
+            pos.min_profit_pips = min(float(getattr(pos, "min_profit_pips", 0.0) or 0.0), -mae)
+    except Exception:
+        logger.exception("[PROFIT PROTECTION] %s | post-entry MAE update failed (ignored)", _pos_label(pos))
+    return float(getattr(pos, "max_profit_pips", 0.0) or 0.0)
 
 
 def apply_profit_protection(

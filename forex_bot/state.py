@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import time
 from datetime import datetime, timezone
 from typing import Any
 
@@ -21,6 +22,8 @@ state: dict[str, Any] = {
     "broker_nav": None,
     "broker_currency": "",
     "last_mids": {},
+    "pricing_snapshot": {},
+    "pricing_snapshot_ts": None,
 }
 
 
@@ -72,6 +75,16 @@ def last_mid(symbol: str) -> float | None:
     mids = state.get("last_mids") or {}
     px = mids.get(s)
     return float(px) if px else None
+
+
+def set_pricing_snapshot(quotes: dict[str, Any], fetched_at: float | None = None) -> None:
+    state["pricing_snapshot"] = dict(quotes or {})
+    state["pricing_snapshot_ts"] = float(fetched_at if fetched_at is not None else time.time())
+
+
+def pricing_snapshot() -> dict[str, Any]:
+    snap = state.get("pricing_snapshot") or {}
+    return dict(snap)
 
 
 def current_equity() -> float:

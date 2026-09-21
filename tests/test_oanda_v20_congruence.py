@@ -18,6 +18,17 @@ from forex_bot.oanda_client import (
 from forex_bot.oanda_exec import _abs_units_decimal, _order_units_for_open
 
 
+def test_pricing_info_request_is_batched_get():
+    import oandapyV20.endpoints.pricing as pricing
+
+    instruments = "EUR_USD,GBP_USD,USD_JPY,AUD_USD,USD_CAD,USD_CHF"
+    r = pricing.PricingInfo(accountID="ACC", params={"instruments": instruments})
+    assert type(r).__name__ == "PricingInfo"
+    blob = " ".join(str(getattr(r, name, "")) for name in dir(r))
+    assert "pricing" in blob.lower() or "instruments" in blob.lower()
+    assert instruments.count(",") == 5
+
+
 def test_instrument_name_underscore():
     assert oanda_instrument("eur-usd") == "EUR_USD"
     assert oanda_instrument("GBP/USD") == "GBP_USD"

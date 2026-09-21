@@ -212,6 +212,8 @@ def import_position_from_broker(
         tp_source=tp_source,
         client_order_id=client_order_id,
         broker_order_id=broker_order_id,
+        max_profit_pips=0.0,
+        profit_protection_seeded=True,
     )
     logging.getLogger(__name__).info(
         "[RECONCILE IMPORT] Imported broker position %s net=%.4f entry=%.5f sl_src=%s tp_src=%s",

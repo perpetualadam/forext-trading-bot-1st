@@ -96,6 +96,29 @@ async def health_snapshot_loop() -> None:
             logger.exception("health snapshot loop: %s", exc)
 
 
+async def telegram_inbound_loop() -> None:
+    """Legacy read-only /help /status poller. Skipped when telegram_control owns getUpdates."""
+    from forex_bot.telegram_commands import handle_pending_updates, inbound_enabled, sync_command_menu
+
+    commands_raw = (os.getenv("TELEGRAM_COMMANDS") or "1").strip().lower()
+    if commands_raw not in ("0", "false", "no", "off"):
+        return
+    if not inbound_enabled():
+        return
+    try:
+        await asyncio.to_thread(sync_command_menu)
+    except Exception as exc:
+        logger.warning("telegram command menu sync: %s", exc)
+    while True:
+        try:
+            await asyncio.to_thread(handle_pending_updates, lambda: _health_alert_text("BOT STATUS"))
+        except asyncio.CancelledError:
+            raise
+        except Exception as exc:
+            logger.warning("telegram inbound: %s", exc)
+        await asyncio.sleep(2)
+
+
 def _profit_factor_json(pf: float | None) -> float | str | None:
     if pf is None:
         return None
@@ -259,6 +282,7 @@ async def lifespan(app: FastAPI):
     log_live_windows(reason="startup")
     reco_task = asyncio.create_task(reconciliation_loop())
     health_task = asyncio.create_task(health_snapshot_loop())
+    telegram_task = asyncio.create_task(telegram_inbound_loop())
     task = asyncio.create_task(run_bot())
     from forex_bot.telegram_control import start_telegram_control, stop_telegram_control
 
@@ -271,6 +295,11 @@ async def lifespan(app: FastAPI):
         health_task.cancel()
         try:
             await health_task
+        except asyncio.CancelledError:
+            pass
+        telegram_task.cancel()
+        try:
+            await telegram_task
         except asyncio.CancelledError:
             pass
         reco_task.cancel()

@@ -303,11 +303,15 @@ def test_mfe_seed_uses_broker_entry_and_does_not_invent_peak():
         open_time=1_700_000_000.0,
     )
     pos = positions["EUR_USD"]
-    current = 1.15370  # +5 pips for SELL
-    src = seed_position_mfe(pos, current, None)
-    assert src == "current"
-    assert pos.max_profit_pips == pytest.approx(5.0, abs=0.05)
     assert pos.profit_protection_seeded is True
+    assert pos.max_profit_pips == pytest.approx(0.0)
+    current = 1.15370  # +5 pips for SELL
+    src = seed_position_mfe(pos, current, None, include_partial_entry_bar=False)
+    assert src == "already"
+    from forex_bot.profit_protection import apply_profit_protection
+
+    d = apply_profit_protection(pos, current)
+    assert d.max_profit_pips == pytest.approx(5.0, abs=0.05)
     assert pos.profit_protection_active is False
 
 
@@ -323,6 +327,7 @@ def test_mfe_seed_from_candles_when_open_time_known():
         open_time=opened,
     )
     pos = positions["EUR_USD"]
+    assert pos.profit_protection_seeded is True
     ohlcv = pd.DataFrame(
         {
             "time": ["2026-09-15T17:12:00Z", "2026-09-15T17:16:00Z"],
@@ -331,9 +336,12 @@ def test_mfe_seed_from_candles_when_open_time_known():
             "close": [1.15370, 1.15380],
         }
     )
-    src = seed_position_mfe(pos, 1.15380, ohlcv)
-    assert src == "ohlcv"
-    # SELL MFE uses lows vs entry 1.15420 → 1.15300 = 12 pips
+    from forex_bot.profit_protection import raise_mfe_from_post_entry_ohlcv
+
+    src = seed_position_mfe(pos, 1.15380, ohlcv, include_partial_entry_bar=False)
+    assert src == "already"
+    raise_mfe_from_post_entry_ohlcv(pos, ohlcv)
+    # SELL MFE uses post-entry lows vs entry 1.15420 → 1.15300 = 12 pips
     assert pos.max_profit_pips == pytest.approx(12.0, abs=0.05)
 
 
@@ -388,10 +396,15 @@ def test_restart_window_paper_cannot_hide_live_broker_position(monkeypatch):
     assert last_displaced_paper()[-1]["entry_price"] == pytest.approx(1.15398)
     # 13–14. No new broker order; existing SL/TP not modified (no order APIs called).
     assert calls == []
-    # 15. MFE reconstruction seeds conservatively from current pips (no invented peak).
-    seed = seed_position_mfe(pos, 1.15370, None)
-    assert seed == "current"
-    assert pos.max_profit_pips == pytest.approx(5.0, abs=0.05)
+    # 15. Restart import does not invent MFE; current closeout can raise it later.
+    assert pos.profit_protection_seeded is True
+    assert pos.max_profit_pips == pytest.approx(0.0)
+    seed = seed_position_mfe(pos, 1.15370, None, include_partial_entry_bar=False)
+    assert seed == "already"
+    from forex_bot.profit_protection import apply_profit_protection
+
+    d_pp = apply_profit_protection(pos, 1.15370)
+    assert d_pp.max_profit_pips == pytest.approx(5.0, abs=0.05)
     assert rec.paper_open_blocked_reason("EUR_USD") is not None
 
 

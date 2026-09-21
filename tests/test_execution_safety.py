@@ -115,7 +115,7 @@ def test_live_open_reaches_sync_place_and_keeps_ids(monkeypatch):
             "EUR_USD", 2.0, "SELL", "cid-live-1", execution_kind="live"
         )
 
-    fp, uf, oid, _pl = asyncio.run(_run())
+    fp, uf, oid, _pl, _ts = asyncio.run(_run())
     assert fp == pytest.approx(1.15398)
     assert uf == 2.0
     assert oid == "tx-99"

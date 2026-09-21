@@ -193,7 +193,7 @@ def test_oanda_open_attaches_sl_tp():
         patch.object(oanda_exec, "get_api", return_value=FakeAPI()),
         patch.object(oanda_exec, "_account_id", return_value="ACC"),
     ):
-        fp, uf, oid, _pl = oanda_exec._place_market_order_open_sync(
+        fp, uf, oid, _pl, _fill_ts = oanda_exec._place_market_order_open_sync(
             "EUR_USD",
             10.0,
             "BUY",

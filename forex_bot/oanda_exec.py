@@ -99,7 +99,7 @@ def _parse_fill(response: dict[str, Any]) -> tuple[float, float]:
     return pl, fill_price
 
 
-def _parse_open_fill(response: dict[str, Any]) -> tuple[float, float, str, float]:
+def _parse_open_fill(response: dict[str, Any]) -> tuple[float, float, str, float, float | None]:
     """
     Market open: (fill_price, abs_units_filled, order_fill_transaction_id, realized_pl or nan).
     """
@@ -118,7 +118,10 @@ def _parse_open_fill(response: dict[str, Any]) -> tuple[float, float, str, float
         pl = float("nan")
     else:
         pl = float(str(pl_raw).replace(",", ""))
-    return fill_price, uf, oid, pl
+    from forex_bot.profit_protection import _to_epoch
+
+    fill_ts = _to_epoch(oft.get("time"))
+    return fill_price, uf, oid, pl, fill_ts
 
 
 def _place_market_order_sync(symbol: str, position_units: float, position_direction: str) -> tuple[float, float]:
@@ -176,8 +179,8 @@ def _place_market_order_open_sync(
     client_order_id: str,
     stop_loss: float | None = None,
     take_profit: float | None = None,
-) -> tuple[float, float, str, float]:
-    """Place MARKET order to open; returns (fill_price, abs_units, fill_tx_id, pl)."""
+) -> tuple[float, float, str, float, float | None]:
+    """Place MARKET order to open; returns (fill_price, abs_units, fill_tx_id, pl, fill_time)."""
     api = get_api()
     if api is None:
         raise RuntimeError("OANDA API client unavailable (token / build_api)")
@@ -225,9 +228,9 @@ def _place_market_order_open_sync(
         raise RuntimeError(str(exc)) from exc
     if not isinstance(response, dict):
         raise ValueError("invalid OANDA response")
-    fp, uf, oid, pl = _parse_open_fill(response)
+    fp, uf, oid, pl, fill_ts = _parse_open_fill(response)
     logger.info("[ORDER FILLED] %s %s units≈%.4f fill=%.5f id=%s", instrument, direction, uf, fp, oid)
-    return fp, uf, oid, pl
+    return fp, uf, oid, pl, fill_ts
 
 
 async def execute_oanda_market_open(
@@ -239,12 +242,12 @@ async def execute_oanda_market_open(
     stop_loss: float | None = None,
     take_profit: float | None = None,
     execution_kind: str = "live",
-) -> tuple[float, float, str, float]:
-    """Broker-confirmed open: (fill_price, abs_filled_units, fill_transaction_id, pl_account_ccy)."""
+) -> tuple[float, float, str, float, float | None]:
+    """Broker-confirmed open: (fill_price, abs_units, fill_tx_id, pl, fill_time_epoch|None)."""
     assert_broker_order_allowed(execution_kind=execution_kind, action="open")
     if not _access_token():
         raise RuntimeError("OANDA_ACCESS_TOKEN or OANDA_API_KEY missing")
-    return await asyncio.to_thread(
+    result = await asyncio.to_thread(
         _place_market_order_open_sync,
         symbol,
         position_units,
@@ -253,6 +256,9 @@ async def execute_oanda_market_open(
         stop_loss,
         take_profit,
     )
+    if isinstance(result, tuple) and len(result) == 4:
+        return (*result, None)
+    return result
 
 
 def fetch_pending_orders_sync() -> list[dict[str, Any]]:

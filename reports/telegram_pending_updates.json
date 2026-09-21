@@ -1,0 +1,40 @@
+{
+  "ok": true,
+  "updates": [
+    {
+      "update_id": 138777638,
+      "chat_id": 6306660314,
+      "chat_type": "private",
+      "date": 1789835034,
+      "text": "/help",
+      "is_command": true,
+      "command": "help"
+    },
+    {
+      "update_id": 138777639,
+      "chat_id": 6306660314,
+      "chat_type": "private",
+      "date": 1789835045,
+      "text": "\\help",
+      "is_command": false,
+      "command": ""
+    },
+    {
+      "update_id": 138777640,
+      "chat_id": 6306660314,
+      "chat_type": "private",
+      "date": 1789835068,
+      "text": "/status",
+      "is_command": true,
+      "command": "status"
+    }
+  ],
+  "n_updates": 3,
+  "commands": [
+    "help",
+    "status"
+  ],
+  "next_offset": 138777641,
+  "acknowledged": true,
+  "retrieved_at_utc": "2026-09-20T14:50:03Z"
+}

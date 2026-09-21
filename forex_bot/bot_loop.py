@@ -16,6 +16,7 @@ from forex_bot.config import Config
 from forex_bot.execution import (
     close_fill_path,
     effective_paper_trading,
+    is_broker_backed,
     is_paper_like_kind,
     open_fill_path,
     pre_trade_entry_blocked_reason,
@@ -23,7 +24,12 @@ from forex_bot.execution import (
 from forex_bot.indicators import compute_indicators
 from forex_bot.nn_pred import compute_nn_pred
 import forex_bot.oanda_exec as oanda_exec
-from forex_bot.oanda_client import fetch_account_summary, fetch_ohlcv, last_account_summary
+from forex_bot.oanda_client import (
+    fetch_account_summary,
+    fetch_ohlcv,
+    fetch_pricing_snapshot,
+    last_account_summary,
+)
 from forex_bot.execution_metrics import record_fill_failure, record_fill_quality
 from forex_bot.orders import (
     OrderStatus,
@@ -46,11 +52,15 @@ from forex_bot.portfolio_exposure import (
 from forex_bot.portfolio import PortfolioEngine
 from forex_bot.positions import Position, close_position, get_position, open_position
 from forex_bot.profit_protection import (
+    ProtectionDecision,
     apply_profit_protection,
     mark_protection_close_attempt,
+    original_tp_distance_pips,
     pip_size as _pip_size,
     protection_close_allowed,
+    raise_mfe_from_post_entry_ohlcv,
     seed_position_mfe,
+    unrealized_profit_pips,
 )
 from forex_bot.rl_agent import RLAgent
 from forex_bot.session_rules import (
@@ -67,8 +77,10 @@ from forex_bot.operational_events import record_operational_transition_if_change
 from forex_bot.state import (
     current_equity,
     last_report_ts,
+    pricing_snapshot,
     record_mid,
     set_last_report_ts,
+    set_pricing_snapshot,
     state as state_dict,
 )
 from forex_bot.strategy_meta import select_strategy, seq_model, strategies
@@ -201,6 +213,31 @@ def _log_open_position_line(symbol: str, pos: Position, price: float) -> None:
     )
 
 
+def _refresh_pricing_snapshot() -> None:
+    """One batched PricingInfo GET per bot cycle. Never writes."""
+    try:
+        snap = fetch_pricing_snapshot(Config.SYMBOLS)
+    except Exception:
+        logger.exception("pricing snapshot failed")
+        snap = {}
+    set_pricing_snapshot(snap)
+
+
+def _m5_bar_time(raw) -> str:
+    try:
+        return str(raw["time"].iloc[-1])
+    except Exception:
+        return ""
+
+
+def _tp_progress(pos: Position) -> float | None:
+    dist = original_tp_distance_pips(pos)
+    mfe = float(getattr(pos, "max_profit_pips", 0.0) or 0.0)
+    if dist is None or dist <= 0:
+        return None
+    return mfe / dist
+
+
 async def evaluate(symbol: str) -> None:
     """Evaluate: manage open positions (TP/SL) or open new risk-based positions (hybrid + AI + RL)."""
     ohlcv_count = _env_int("HYBRID_OHLCV_COUNT", 200)
@@ -223,16 +260,87 @@ async def evaluate(symbol: str) -> None:
         return
 
     if pos:
-        if _position_log_enabled():
-            _log_open_position_line(symbol, pos, price)
-        seed_position_mfe(pos, price, raw)
-        pp = apply_profit_protection(pos, price, ohlcv=raw)
-        sl_tp_hit = False
-        if pos.direction == "BUY":
-            sl_tp_hit = price <= pos.stop_loss or price >= pos.take_profit
+        from forex_bot.live_manage import (
+            PRICE_SOURCE_PAPER_CANDLE,
+            broker_sl_tp_hit,
+            format_close_decision_line,
+            format_manage_price_line,
+            resolve_broker_manage_price,
+        )
+
+        m5_close = price
+        m5_time = _m5_bar_time(raw)
+        quote = None
+        if is_broker_backed(pos):
+            snap = pricing_snapshot()
+            quote = snap.get(pos.symbol) or snap.get(symbol)
+            manage_price, price_source = resolve_broker_manage_price(quote, pos.direction)
         else:
-            sl_tp_hit = price >= pos.stop_loss or price <= pos.take_profit
+            manage_price = m5_close
+            price_source = PRICE_SOURCE_PAPER_CANDLE
+
+        log_px = manage_price if manage_price is not None else m5_close
+        if _position_log_enabled():
+            _log_open_position_line(symbol, pos, log_px)
+
+        current_pips = None
+        if manage_price is not None:
+            current_pips = unrealized_profit_pips(
+                pos.symbol, pos.direction, pos.entry_price, manage_price
+            )
+            if is_broker_backed(pos):
+                seed_position_mfe(
+                    pos, manage_price, raw, include_partial_entry_bar=False
+                )
+                raise_mfe_from_post_entry_ohlcv(pos, raw)
+            else:
+                seed_position_mfe(pos, manage_price, raw)
+            pp = apply_profit_protection(pos, manage_price, ohlcv=raw)
+        else:
+            pp = ProtectionDecision(
+                enabled=True,
+                current_pips=0.0,
+                max_profit_pips=float(getattr(pos, "max_profit_pips", 0.0) or 0.0),
+                active=bool(getattr(pos, "profit_protection_active", False)),
+                exit_threshold_pips=getattr(pos, "profit_protection_exit_pips", None),
+                should_close=False,
+                just_activated=False,
+                just_ratcheted=False,
+            )
+
+        if is_broker_backed(pos):
+            logger.info(
+                format_manage_price_line(
+                    symbol=symbol,
+                    broker_id=str(getattr(pos, "broker_order_id", "") or ""),
+                    side=pos.direction,
+                    source=price_source,
+                    current_price=manage_price,
+                    closeout_bid=getattr(quote, "closeout_bid", None) if quote else None,
+                    closeout_ask=getattr(quote, "closeout_ask", None) if quote else None,
+                    m5_close=m5_close,
+                    m5_time=m5_time,
+                    fill=float(pos.entry_price),
+                    fill_time=str(pos.open_time),
+                    current_pips=current_pips,
+                    mfe_pips=float(getattr(pos, "max_profit_pips", 0.0) or 0.0),
+                    tp_progress=_tp_progress(pos),
+                )
+            )
+
+        sl_tp_hit = False
+        if is_broker_backed(pos):
+            sl_tp_hit = broker_sl_tp_hit(pos)
+        elif manage_price is not None:
+            if pos.direction == "BUY":
+                sl_tp_hit = manage_price <= pos.stop_loss or manage_price >= pos.take_profit
+            else:
+                sl_tp_hit = manage_price >= pos.stop_loss or manage_price <= pos.take_profit
         protect_hit = bool(pp.should_close)
+        if is_broker_backed(pos) and manage_price is None:
+            protect_hit = False
+        if manage_price is not None:
+            price = float(manage_price)
         if protect_hit and not protection_close_allowed(pos):
             logger.warning(
                 "%s: profit-protection close deferred — previous close attempt still cooling down",
@@ -305,8 +413,8 @@ async def evaluate(symbol: str) -> None:
                 pnl = calculate_pnl(pos, exit_price_exec)
                 if fill_path == "broker":
                     alert(
-                        f"[EXECUTION] BROKER_CLOSE {symbol} mid={price:.5f} "
-                        f"(PositionClose; local mid is pre-fill only)"
+                        f"[EXECUTION] BROKER_CLOSE {symbol} current={price:.5f} "
+                        f"source={price_source} (PositionClose)"
                     )
                 else:
                     alert(
@@ -319,6 +427,33 @@ async def evaluate(symbol: str) -> None:
             close_reason = "sl_tp" if sl_tp_hit else (
                 "weekend_flatten" if weekend_flat and not protect_hit else (
                     "profit_protection" if protect_hit else "close"
+                )
+            )
+            trigger = (
+                "sl_tp_hit" if sl_tp_hit else (
+                    "weekend_flat" if weekend_flat and not protect_hit else (
+                        "protect_hit" if protect_hit else "close"
+                    )
+                )
+            )
+            logger.info(
+                format_close_decision_line(
+                    symbol=symbol,
+                    broker_id=str(getattr(pos, "broker_order_id", "") or ""),
+                    reason=close_reason,
+                    entry=float(pos.entry_price),
+                    current_price=float(price),
+                    price_source=price_source if pos else PRICE_SOURCE_PAPER_CANDLE,
+                    sl=float(pos.stop_loss),
+                    tp=float(pos.take_profit),
+                    mfe_pips=float(getattr(pos, "max_profit_pips", 0.0) or 0.0),
+                    tp_progress=_tp_progress(pos),
+                    protected_exit_pips=getattr(pos, "profit_protection_exit_pips", None),
+                    trigger=trigger,
+                    sl_tp_hit=sl_tp_hit,
+                    weekend_flat=weekend_flat,
+                    protect_hit=protect_hit,
+                    current_side=pos.direction,
                 )
             )
             diagnostics = None
@@ -611,6 +746,7 @@ async def evaluate(symbol: str) -> None:
 
     broker_oid = ""
     client_order_id = ""
+    fill_ts: float | None = None
     if fill_path == "broker":
         if is_paper_like_kind(exec_kind):
             logger.error(
@@ -639,7 +775,7 @@ async def evaluate(symbol: str) -> None:
             broker_sl = float(price) + float(sl_d)
             broker_tp = float(price) - float(tp_d)
         try:
-            fill_price, filled_u, oid, _pl = await oanda_exec.execute_oanda_market_open(
+            fill_price, filled_u, oid, _pl, fill_ts = await oanda_exec.execute_oanda_market_open(
                 symbol,
                 units,
                 direction,
@@ -726,6 +862,10 @@ async def evaluate(symbol: str) -> None:
             atr_entry = atr_to_pips(symbol, atr_px)
     except Exception:
         logger.exception("%s: ATR-at-entry snapshot failed (ignored)", symbol)
+    if fill_path == "broker" and fill_ts:
+        opened_at = float(fill_ts)
+    else:
+        opened_at = datetime.utcnow().timestamp()
     open_position(
         Position(
             symbol=symbol,
@@ -734,7 +874,7 @@ async def evaluate(symbol: str) -> None:
             entry_price=entry_price,
             stop_loss=stop_loss,
             take_profit=take_profit,
-            open_time=datetime.utcnow().timestamp(),
+            open_time=opened_at,
             strategy_name=strategy_name,
             rl_state=state,
             execution_kind=exec_kind,
@@ -742,6 +882,8 @@ async def evaluate(symbol: str) -> None:
             client_order_id=client_order_id,
             broker_order_id=broker_oid,
             broker_order=fill_path == "broker",
+            max_profit_pips=0.0,
+            profit_protection_seeded=fill_path == "broker",
         )
     )
     if fill_path == "broker":
@@ -804,6 +946,7 @@ async def run_bot() -> None:
         try:
             # Reconciliation runs in app.reconciliation_loop only (avoid concurrent mutation).
             await asyncio.to_thread(fetch_account_summary)
+            await asyncio.to_thread(_refresh_pricing_snapshot)
             for s in Config.SYMBOLS:
                 await evaluate(s)
             state_dict["last_bot_cycle_utc"] = datetime.now(timezone.utc).isoformat()
