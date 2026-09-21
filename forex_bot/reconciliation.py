@@ -163,6 +163,9 @@ def _persist_reconcile_state_enabled() -> bool:
 
 def load_reconcile_state_from_db() -> None:
     global _snapshot
+    from forex_bot.broker_exit import load_broker_exit_state_from_db
+
+    load_broker_exit_state_from_db()
     if not _persist_reconcile_state_enabled():
         return
     from forex_bot.database import fetch_reconcile_metadata
@@ -302,6 +305,11 @@ def paper_open_blocked_reason(symbol: str) -> str | None:
     from forex_bot.execution import is_broker_backed
 
     local = posmod.positions.get(_norm_inst(symbol)) or posmod.positions.get(symbol)
+    from forex_bot.broker_exit import broker_exit_open_blocked_reason
+
+    pending_why = broker_exit_open_blocked_reason(symbol)
+    if pending_why:
+        return pending_why
     if local is not None and is_broker_backed(local):
         return (
             f"broker-backed position already exists "
@@ -491,6 +499,9 @@ def _import_broker_truth(
         tp = tp_b if tp_b is not None else tp_fb
     else:
         sl, tp = sl_b, tp_b
+    from forex_bot.broker_exit import clear_pending_broker_exit
+
+    clear_pending_broker_exit(symbol)
     posmod.import_position_from_broker(
         symbol,
         bnet,
@@ -602,15 +613,18 @@ def _apply_position_convergence(
             b = broker_nets.get(_norm_inst(sym))
             local_u = float(pos.units) if pos.direction == "BUY" else -float(pos.units)
             if b is None or abs(float(b)) < 1e-9:
-                # Case D
-                posmod.close_local_position(sym, reason="reconcile_fix_broker_flat")
+                # Case D: broker flat — attribute the OANDA close before dropping exposure.
+                from forex_bot.broker_exit import account_disappeared_broker_position
+
+                result = account_disappeared_broker_position(pos)
                 fixes += 1
-                logger.warning(
-                    "[RECONCILE BROKER POSITION MISSING] Closed local broker-backed %s | fix=%s/%s",
-                    sym,
-                    fixes,
-                    cap or "inf",
-                )
+                if result == "pending":
+                    logger.warning(
+                        "[RECONCILE BROKER POSITION MISSING] %s awaiting broker exit tx | fix=%s/%s",
+                        sym,
+                        fixes,
+                        cap or "inf",
+                    )
                 continue
             if (
                 adjust_ok
@@ -634,6 +648,11 @@ def _apply_position_convergence(
             _import_broker_truth(sym, float(bnet), float(bavg), pending)
             fixes += 1
             logger.info("[RECONCILE IMPORT] imported broker-only | %s | fix=%s/%s", sym, fixes, cap or "inf")
+
+    from forex_bot.broker_exit import retry_pending_broker_exits
+
+    booked_pending = retry_pending_broker_exits(broker_nets)
+    fixes += int(booked_pending)
 
     return fixes
 

@@ -304,6 +304,31 @@ def fetch_trade_details_sync(trade_id: str) -> dict[str, Any] | None:
     return trade if isinstance(trade, dict) else None
 
 
+def fetch_transaction_details_sync(transaction_id: str) -> dict[str, Any] | None:
+    """
+    GET a single account transaction. Never creates, cancels, or replaces orders.
+    """
+    xid = str(transaction_id or "").strip()
+    if not xid:
+        return None
+    api = get_api()
+    aid = _account_id()
+    if api is None or not aid:
+        return None
+    try:
+        import oandapyV20.endpoints.transactions as tx_ep
+
+        from forex_bot.oanda_client import _oanda_request
+
+        r = tx_ep.TransactionDetails(accountID=aid, transactionID=xid)
+        resp: dict[str, Any] = _oanda_request(api, r, context="transaction details")
+    except Exception as exc:
+        logger.warning("OANDA TransactionDetails %s failed: %s", xid, exc)
+        return None
+    tx = resp.get("transaction") if isinstance(resp, dict) else None
+    return tx if isinstance(tx, dict) else None
+
+
 async def execute_oanda_market_close(
     symbol: str,
     position_units: float,

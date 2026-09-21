@@ -90,6 +90,27 @@ ALTER_EXEC_ORDERS_FILLED_UNITS_SQL = (
     "ALTER TABLE exec_orders ADD COLUMN IF NOT EXISTS filled_units DOUBLE PRECISION;"
 )
 
+CREATE_BROKER_EXIT_LEDGER_SQL = """
+CREATE TABLE IF NOT EXISTS broker_exit_ledger (
+    closing_transaction_id TEXT NOT NULL,
+    broker_trade_id TEXT NOT NULL,
+    symbol TEXT NOT NULL,
+    booked_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    PRIMARY KEY (closing_transaction_id, broker_trade_id)
+);
+"""
+
+CREATE_BROKER_EXIT_PENDING_SQL = """
+CREATE TABLE IF NOT EXISTS broker_exit_pending (
+    symbol TEXT PRIMARY KEY,
+    broker_trade_id TEXT NOT NULL,
+    first_seen_utc TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    last_attempt_utc TIMESTAMPTZ,
+    last_error TEXT,
+    snapshot JSONB
+);
+"""
+
 
 def get_connection() -> PGConnection | None:
     """Return shared PG connection. Callers must hold ``_pg_lock`` around cursor use."""
@@ -114,6 +135,8 @@ def get_connection() -> PGConnection | None:
         _pg_cursor.execute(CREATE_OPERATIONAL_EVENT_LOG_INDEX_SQL)
         _pg_cursor.execute(CREATE_EXEC_ORDERS_SQL)
         _pg_cursor.execute(ALTER_EXEC_ORDERS_FILLED_UNITS_SQL)
+        _pg_cursor.execute(CREATE_BROKER_EXIT_LEDGER_SQL)
+        _pg_cursor.execute(CREATE_BROKER_EXIT_PENDING_SQL)
         _pg_conn.commit()
         return _pg_conn
     except Exception as exc:
@@ -134,6 +157,7 @@ def log_trade_pg(
     *,
     execution_kind: str = "simulated",
     diagnostics: dict[str, Any] | None = None,
+    closed_at: datetime | None = None,
 ) -> None:
     with _pg_lock:
         conn = get_connection()
@@ -151,7 +175,7 @@ def log_trade_pg(
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 """,
                 (
-                    datetime.now(),
+                    closed_at if closed_at is not None else datetime.now(),
                     symbol,
                     strategy,
                     direction,
@@ -530,3 +554,160 @@ def client_order_id_exists_in_db(client_order_id: str) -> bool:
             return _pg_cursor.fetchone() is not None
         except Exception:
             return False
+
+
+def broker_exit_ledger_exists(closing_transaction_id: str, broker_trade_id: str) -> bool:
+    xid = str(closing_transaction_id or "").strip()
+    tid = str(broker_trade_id or "").strip()
+    if not xid or not tid:
+        return False
+    with _pg_lock:
+        conn = get_connection()
+        if conn is None or _pg_cursor is None:
+            return False
+        try:
+            _pg_cursor.execute(
+                """
+                SELECT 1 FROM broker_exit_ledger
+                WHERE closing_transaction_id = %s AND broker_trade_id = %s
+                LIMIT 1
+                """,
+                (xid, tid),
+            )
+            return _pg_cursor.fetchone() is not None
+        except Exception:
+            return False
+
+
+def insert_broker_exit_ledger(closing_transaction_id: str, broker_trade_id: str, symbol: str) -> bool:
+    """Insert booked-exit key. True if inserted, False if already present or DB down (caller uses memory)."""
+    xid = str(closing_transaction_id or "").strip()
+    tid = str(broker_trade_id or "").strip()
+    if not xid or not tid:
+        return False
+    with _pg_lock:
+        conn = get_connection()
+        if conn is None or _pg_cursor is None:
+            return True
+        try:
+            _pg_cursor.execute(
+                """
+                INSERT INTO broker_exit_ledger (closing_transaction_id, broker_trade_id, symbol)
+                VALUES (%s, %s, %s)
+                ON CONFLICT (closing_transaction_id, broker_trade_id) DO NOTHING
+                """,
+                (xid, tid, str(symbol or "").strip().upper()),
+            )
+            conn.commit()
+            return _pg_cursor.rowcount > 0
+        except Exception as exc:
+            logger.warning("insert_broker_exit_ledger failed: %s", exc)
+            conn.rollback()
+            return True
+
+
+def fetch_broker_exit_ledger() -> list[dict[str, Any]]:
+    with _pg_lock:
+        conn = get_connection()
+        if conn is None or _pg_cursor is None:
+            return []
+        try:
+            _pg_cursor.execute(
+                "SELECT closing_transaction_id, broker_trade_id, symbol FROM broker_exit_ledger"
+            )
+            return [
+                {
+                    "closing_transaction_id": str(r[0]),
+                    "broker_trade_id": str(r[1]),
+                    "symbol": str(r[2] or ""),
+                }
+                for r in _pg_cursor.fetchall()
+            ]
+        except Exception:
+            return []
+
+
+def upsert_broker_exit_pending(
+    *,
+    symbol: str,
+    broker_trade_id: str,
+    first_seen_utc: str,
+    last_attempt_utc: str,
+    last_error: str,
+    snapshot: dict[str, Any] | None = None,
+) -> None:
+    with _pg_lock:
+        conn = get_connection()
+        if conn is None or _pg_cursor is None:
+            return
+        try:
+            _pg_cursor.execute(
+                """
+                INSERT INTO broker_exit_pending (
+                    symbol, broker_trade_id, first_seen_utc, last_attempt_utc, last_error, snapshot
+                ) VALUES (%s, %s, %s, %s, %s, %s)
+                ON CONFLICT (symbol) DO UPDATE SET
+                    broker_trade_id = EXCLUDED.broker_trade_id,
+                    last_attempt_utc = EXCLUDED.last_attempt_utc,
+                    last_error = EXCLUDED.last_error,
+                    snapshot = EXCLUDED.snapshot
+                """,
+                (
+                    symbol.upper().strip(),
+                    broker_trade_id,
+                    first_seen_utc,
+                    last_attempt_utc,
+                    last_error,
+                    Json(snapshot or {}),
+                ),
+            )
+            conn.commit()
+        except Exception as exc:
+            logger.warning("upsert_broker_exit_pending failed: %s", exc)
+            conn.rollback()
+
+
+def delete_broker_exit_pending(symbol: str) -> None:
+    with _pg_lock:
+        conn = get_connection()
+        if conn is None or _pg_cursor is None:
+            return
+        try:
+            _pg_cursor.execute(
+                "DELETE FROM broker_exit_pending WHERE symbol = %s",
+                (symbol.upper().strip(),),
+            )
+            conn.commit()
+        except Exception:
+            conn.rollback()
+
+
+def fetch_broker_exit_pending() -> list[dict[str, Any]]:
+    with _pg_lock:
+        conn = get_connection()
+        if conn is None or _pg_cursor is None:
+            return []
+        try:
+            _pg_cursor.execute(
+                """
+                SELECT symbol, broker_trade_id, first_seen_utc, last_attempt_utc, last_error, snapshot
+                FROM broker_exit_pending
+                """
+            )
+            out: list[dict[str, Any]] = []
+            for r in _pg_cursor.fetchall():
+                ts0 = r[2]
+                ts1 = r[3]
+                out.append(
+                    {
+                        "symbol": str(r[0] or ""),
+                        "broker_trade_id": str(r[1] or ""),
+                        "first_seen_utc": ts0.isoformat() if hasattr(ts0, "isoformat") else str(ts0 or ""),
+                        "last_attempt_utc": ts1.isoformat() if hasattr(ts1, "isoformat") else str(ts1 or ""),
+                        "last_error": str(r[4] or ""),
+                        "snapshot": r[5] if isinstance(r[5], dict) else {},
+                    }
+                )
+            return out
+        except Exception:
+            return []

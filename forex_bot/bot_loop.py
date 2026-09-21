@@ -84,6 +84,14 @@ from forex_bot.state import (
     state as state_dict,
 )
 from forex_bot.strategy_meta import select_strategy, seq_model, strategies
+from forex_bot.entry_geometry import (
+    fetch_fresh_entry_quote,
+    format_entry_fill_geometry_line,
+    format_entry_geometry_line,
+    format_entry_geometry_skip,
+    live_broker_geometry_required,
+    resolve_live_entry_geometry,
+)
 from forex_bot.trading import (
     apply_execution_costs,
     apply_latency,
@@ -500,6 +508,13 @@ async def evaluate(symbol: str) -> None:
             )
         return
 
+    from forex_bot.broker_exit import broker_exit_open_blocked_reason
+
+    pending_exit = broker_exit_open_blocked_reason(symbol)
+    if pending_exit:
+        logger.warning("%s: new entry blocked — %s", symbol, pending_exit)
+        return
+
     blocked = pre_trade_entry_blocked_reason()
     if blocked:
         logger.warning("%s: new entry blocked — %s", symbol, blocked)
@@ -767,13 +782,31 @@ async def evaluate(symbol: str) -> None:
             logger.warning("%s: idempotent skip — duplicate client_order_id or DB conflict", symbol)
             return
         t_sent = time.perf_counter()
-        # Pre-compute SL/TP from mid so broker can attach protective orders on fill.
-        if direction == "BUY":
-            broker_sl = float(price) - float(sl_d)
-            broker_tp = float(price) + float(tp_d)
-        else:
-            broker_sl = float(price) + float(sl_d)
-            broker_tp = float(price) - float(tp_d)
+        # Live/paper_broker: attach SL/TP to a fresh executable bid/ask, not M5 mid.
+        # Cycle snapshot is stale; dedicated PricingInfo GET immediately before OrderCreate.
+        if not live_broker_geometry_required(fill_path):
+            mark_order_failed_or_cancelled(client_order_id)
+            logger.error("%s: refuse broker open — fill_path=%s is not broker", symbol, fill_path)
+            return
+        quote = fetch_fresh_entry_quote(symbol)
+        geom, skip_reason = resolve_live_entry_geometry(
+            symbol,
+            direction,
+            float(sl_d),
+            float(tp_d),
+            float(price),
+            quote=quote,
+            atr=atr_v,
+        )
+        if geom is None:
+            mark_order_failed_or_cancelled(client_order_id)
+            msg = format_entry_geometry_skip(symbol, direction, skip_reason or "unknown")
+            logger.warning("%s", msg)
+            alert(msg)
+            return
+        logger.info("%s", format_entry_geometry_line(geom))
+        broker_sl = float(geom.sl)
+        broker_tp = float(geom.tp)
         try:
             fill_price, filled_u, oid, _pl, fill_ts = await oanda_exec.execute_oanda_market_open(
                 symbol,
@@ -808,17 +841,33 @@ async def evaluate(symbol: str) -> None:
             status=st,
             metadata={
                 "expected_mid": float(price),
+                "executable_reference": float(geom.executable_reference),
+                "submitted_sl": broker_sl,
+                "submitted_tp": broker_tp,
                 "slippage_signed": (entry_price - float(price))
                 if direction == "BUY"
                 else (float(price) - entry_price),
             },
         )
         record_fill_quality(
-            expected_price=float(price),
+            expected_price=float(geom.executable_reference),
             fill_price=entry_price,
             direction=direction,
             latency_signal_to_send_ms=(t_sent - t_reserve) * 1000.0,
             latency_send_to_fill_ms=(t_fill - t_sent) * 1000.0,
+        )
+        logger.info(
+            "%s",
+            format_entry_fill_geometry_line(
+                symbol=symbol,
+                side=direction,
+                reference=float(geom.executable_reference),
+                fill=entry_price,
+                sl=broker_sl,
+                tp=broker_tp,
+                broker_id=broker_oid,
+                transaction_id=str(oid or ""),
+            ),
         )
         alert(
             f"[EXECUTION] BROKER_FILL {symbol} open fill={entry_price:.5f} units≈{filled_u:.4f} id={oid} cid={client_order_id}"

@@ -20,6 +20,7 @@ from forex_bot.positions import (
 from forex_bot.profit_protection import seed_position_mfe
 from forex_bot import positions as posmod
 from forex_bot import reconciliation as rec
+from forex_bot.broker_exit import pending_broker_exits, reset_broker_exit_state
 
 
 def _paper(symbol: str = "EUR_USD", *, entry: float = 1.15398, kind: str = "window_paper") -> Position:
@@ -70,6 +71,7 @@ def _reset(rec_mod=rec):
     rec_mod._logged_match.clear()
     rec_mod._logged_paper_preserved.clear()
     rec_mod._last_trade_ids = {}
+    reset_broker_exit_state()
 
 
 @pytest.fixture(autouse=True)
@@ -78,14 +80,22 @@ def _isolate(monkeypatch):
     monkeypatch.setenv("RECONCILE_ACTION", "log_only")
     monkeypatch.setenv("PERSIST_RECONCILE_STATE", "false")
     monkeypatch.setenv("MAX_SAME_USD_DIRECTION_POSITIONS", "2")
+    monkeypatch.setattr("forex_bot.database.insert_broker_exit_ledger", lambda *_a, **_k: True)
+    monkeypatch.setattr("forex_bot.database.upsert_broker_exit_pending", lambda *_a, **_k: None)
+    monkeypatch.setattr("forex_bot.database.delete_broker_exit_pending", lambda *_a, **_k: None)
+    monkeypatch.setattr("forex_bot.database.broker_exit_ledger_exists", lambda *_a, **_k: False)
+    monkeypatch.setattr("forex_bot.database.fetch_broker_exit_ledger", lambda: [])
+    monkeypatch.setattr("forex_bot.database.fetch_broker_exit_pending", lambda: [])
+    monkeypatch.setattr("forex_bot.trading.log_trade_pg", lambda *_a, **_k: None)
     _reset()
     yield
     _reset()
 
 
-def _patch_broker(monkeypatch, detail: dict, pending=None, trade=None, *, order_calls=None):
+def _patch_broker(monkeypatch, detail: dict, pending=None, trade=None, *, order_calls=None, transactions=None):
     pending = pending if pending is not None else []
     order_calls = order_calls if order_calls is not None else []
+    transactions = transactions if transactions is not None else {}
 
     def fake_detail():
         rec._last_trade_ids = {
@@ -93,9 +103,13 @@ def _patch_broker(monkeypatch, detail: dict, pending=None, trade=None, *, order_
         }
         return dict(detail)
 
+    def fake_tx(xid):
+        return transactions.get(str(xid))
+
     monkeypatch.setattr(rec, "fetch_broker_positions_detail", fake_detail)
     monkeypatch.setattr("forex_bot.oanda_exec.fetch_pending_orders_sync", lambda: list(pending))
     monkeypatch.setattr("forex_bot.oanda_exec.fetch_trade_details_sync", lambda *_a, **_k: trade)
+    monkeypatch.setattr("forex_bot.oanda_exec.fetch_transaction_details_sync", fake_tx)
     monkeypatch.setattr(
         "forex_bot.oanda_exec.execute_oanda_market_open",
         lambda *_a, **_k: order_calls.append("open") or (_ for _ in ()).throw(AssertionError("no open")),
@@ -218,6 +232,9 @@ def test_case_d_auto_fix_drops_broker_backed_when_broker_flat(monkeypatch):
     _patch_broker(monkeypatch, {})
     rec.reconcile_positions_log_only()
     assert "EUR_USD" not in positions
+    pend = pending_broker_exits()
+    assert "EUR_USD" in pend
+    assert pend["EUR_USD"].last_error == "trade_details_unavailable"
 
 
 def test_case_e_preserves_paper_when_broker_flat(monkeypatch, caplog):

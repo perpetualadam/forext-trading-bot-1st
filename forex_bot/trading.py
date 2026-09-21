@@ -475,3 +475,68 @@ async def execute_trade(
     else:
         alert(f"[{tag}] {direction} {symbol} size {size} PnL {pnl:.2f}")
     return pnl
+
+
+def record_completed_trade(
+    symbol: str,
+    strategy_name: str,
+    direction: str,
+    size: float,
+    price: float,
+    *,
+    realized_pnl: float,
+    exit_price: float,
+    execution_kind: str = "live",
+    diagnostics: dict | None = None,
+    apply_equity: bool = True,
+    closed_at: Any = None,
+) -> float:
+    """
+    Book a completed trade without sending broker orders.
+
+    ``apply_equity=False`` when OANDA NAV already includes the realized P&L.
+    """
+    from datetime import datetime
+
+    pnl = float(realized_pnl)
+    exit_px = float(exit_price)
+    analytics.log_trade(pnl)
+    strat = strategies.get(strategy_name)
+    if strat is not None:
+        strat.update_pnl(pnl)
+        meta.update(strategy_name, pnl)
+    else:
+        logger.warning(
+            "record_completed_trade: unknown strategy %r — skipping strategy/meta PnL update",
+            strategy_name,
+        )
+    if apply_equity:
+        update_equity(pnl)
+    if diagnostics:
+        try:
+            from forex_bot.trade_diagnostics import emit_trade_result, finalize_diagnostics
+
+            diagnostics = finalize_diagnostics(
+                diagnostics,
+                symbol=symbol,
+                direction=direction,
+                entry_price=price,
+                exit_price=exit_px,
+            )
+            emit_trade_result(diagnostics)
+        except Exception:
+            logger.exception("trade diagnostics emit failed (ignored)")
+    closed = closed_at if isinstance(closed_at, datetime) else None
+    log_trade_pg(
+        symbol,
+        strategy_name,
+        direction,
+        pnl,
+        size,
+        price,
+        exit_px,
+        execution_kind=execution_kind,
+        diagnostics=diagnostics,
+        closed_at=closed,
+    )
+    return pnl
