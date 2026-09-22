@@ -462,11 +462,17 @@ def _parse_pricing_px(raw: Any) -> float | None:
     return px
 
 
-def fetch_pricing_snapshot(symbols: list[str] | tuple[str, ...] | None = None) -> dict[str, Any]:
+def fetch_pricing_snapshot(
+    symbols: list[str] | tuple[str, ...] | None = None,
+    *,
+    raise_on_error: bool = False,
+) -> dict[str, Any]:
     """
     GET /v3/accounts/{id}/pricing for the given instruments in one request.
 
     Returns ``instrument -> ManageQuote``. Empty dict if unavailable. Never writes.
+    Manage-path callers keep the default (swallow errors). Entry geometry uses
+    ``raise_on_error=True`` so a failed GET is fail-closed as a request failure.
     """
     from forex_bot.live_manage import ManageQuote
     from forex_bot.profit_protection import _to_epoch
@@ -475,6 +481,8 @@ def fetch_pricing_snapshot(symbols: list[str] | tuple[str, ...] | None = None) -
     api = get_api()
     aid = (Config.OANDA_ACCOUNT_ID or os.getenv("OANDA_ACCOUNT_ID") or "").strip()
     if api is None or not aid:
+        if raise_on_error:
+            raise RuntimeError("OANDA API client unavailable for PricingInfo")
         return {}
     raw_syms = list(symbols) if symbols else list(DEFAULT_FOREX_SYMBOLS)
     insts: list[str] = []
@@ -490,12 +498,16 @@ def fetch_pricing_snapshot(symbols: list[str] | tuple[str, ...] | None = None) -
         import oandapyV20.endpoints.pricing as pricing
     except ImportError:
         logger.warning("oandapyV20 pricing endpoint unavailable")
+        if raise_on_error:
+            raise
         return {}
     r = pricing.PricingInfo(accountID=aid, params={"instruments": ",".join(insts)})
     try:
         data = _oanda_request(api, r, context="pricing snapshot")
     except Exception as exc:
         logger.error("OANDA PricingInfo failed: %s", _format_oanda_error(exc))
+        if raise_on_error:
+            raise
         return {}
     out: dict[str, ManageQuote] = {}
     for p in data.get("prices") or []:

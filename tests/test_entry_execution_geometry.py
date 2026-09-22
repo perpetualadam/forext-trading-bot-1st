@@ -10,11 +10,11 @@ from pathlib import Path
 import pytest
 
 from forex_bot.entry_geometry import (
-    ENTRY_QUOTE_STALE_SEC,
     PRICE_SOURCE_OANDA_PRICING,
     apply_broker_price_precision,
     construct_absolute_sl_tp,
     executable_entry_reference,
+    fetch_entry_pricing,
     fill_based_geometry,
     format_broker_price,
     format_entry_fill_geometry_line,
@@ -217,22 +217,23 @@ def test_missing_pricinginfo_fails_closed():
         "EUR_USD", "BUY", 0.0002, 0.0004, 1.10, quote=None
     )
     assert geom is None
-    assert skip == "missing_quote"
+    assert skip == "instrument_missing"
 
 
-def test_stale_pricinginfo_fails_closed():
+def test_last_change_age_over_5s_is_accepted_if_bid_ask_valid():
+    """ClientPrice.time last-change age is diagnostic, not a reject."""
     now = time.time()
     q = quote_from_parts(
         instrument="EUR_USD",
         bid=1.10,
         ask=1.1002,
-        time_epoch=now - (ENTRY_QUOTE_STALE_SEC + 1.0),
+        time_epoch=now - 10.0,
     )
     geom, skip = resolve_live_entry_geometry(
         "EUR_USD", "BUY", 0.0002, 0.0004, 1.10, quote=q, now=now
     )
-    assert geom is None
-    assert skip == "stale_quote"
+    assert skip is None and geom is not None
+    assert geom.price_last_change_age_ms == pytest.approx(10_000.0, abs=50.0)
 
 
 def test_malformed_quote_fails_closed():
@@ -244,7 +245,7 @@ def test_malformed_quote_fails_closed():
         "EUR_USD", "BUY", 0.0002, 0.0004, 1.10, quote=q, now=now
     )
     assert geom is None
-    assert skip == "missing_executable_price"
+    assert skip == "executable_ask_missing"
 
 
 def test_untradeable_quote_fails_closed():
@@ -257,13 +258,14 @@ def test_untradeable_quote_fails_closed():
     assert skip == "not_tradeable"
 
 
-def test_missing_quote_time_fails_closed():
+def test_missing_clientprice_time_is_not_an_independent_reject():
     q = quote_from_parts(instrument="EUR_USD", bid=1.10, ask=1.1002, time_epoch=None)
     geom, skip = resolve_live_entry_geometry(
         "EUR_USD", "BUY", 0.0002, 0.0004, 1.10, quote=q
     )
-    assert geom is None
-    assert skip == "missing_quote_time"
+    assert skip is None and geom is not None
+    assert geom.price_last_change_age_ms is None
+    assert geom.price_time is None
 
 
 # --- J / K / L: rounding and precision ---
@@ -401,9 +403,16 @@ def test_geometry_log_lines_contain_required_fields():
         "price_source=OANDA_PRICING",
         "expected_r=",
         "spread_pips=",
-        "quote_age_ms=",
+        "bid=",
+        "ask=",
+        "spread_pips=",
+        "request_duration_ms=",
+        "price_time=",
+        "price_last_change_age_ms=",
+        "risk_distance_pips=",
     ):
         assert token in line
+    assert "quote_age_ms=" not in line
     fill_line = format_entry_fill_geometry_line(
         symbol="GBP_USD",
         side="SELL",
@@ -416,7 +425,10 @@ def test_geometry_log_lines_contain_required_fields():
     )
     assert "[ENTRY FILL GEOMETRY]" in fill_line
     assert "actual_r=" in fill_line
-    skip_line = format_entry_geometry_skip("EUR_USD", "BUY", "stale_quote")
+    assert "fill_delta_pips=" in fill_line
+    assert "actual_risk_pips=" in fill_line
+    assert "actual_reward_pips=" in fill_line
+    skip_line = format_entry_geometry_skip("EUR_USD", "BUY", "pricing_request_failed")
     assert "fail_closed=true" in skip_line
 
 
@@ -447,7 +459,10 @@ def test_oanda_exec_open_is_single_request():
 def test_fetch_fresh_entry_quote_returns_none_when_snapshot_empty(monkeypatch):
     from forex_bot import entry_geometry as eg
 
-    monkeypatch.setattr("forex_bot.oanda_client.fetch_pricing_snapshot", lambda symbols=None: {})
+    monkeypatch.setattr(
+        "forex_bot.oanda_client.fetch_pricing_snapshot",
+        lambda symbols=None, **kw: {},
+    )
     assert eg.fetch_fresh_entry_quote("EUR_USD") is None
 
 
@@ -458,7 +473,7 @@ def test_fetch_fresh_entry_quote_uses_pricing_snapshot(monkeypatch):
     q = _fresh_quote("EUR_USD", 1.1, 1.1002)
     monkeypatch.setattr(
         "forex_bot.oanda_client.fetch_pricing_snapshot",
-        lambda symbols=None: {oanda_instrument("EUR_USD"): q},
+        lambda symbols=None, **kw: {oanda_instrument("EUR_USD"): q},
     )
     got = eg.fetch_fresh_entry_quote("EUR_USD")
     assert got is q
@@ -511,3 +526,264 @@ def test_no_minimum_r_or_spread_filter_in_resolver():
     assert "MIN_EXPECTED_R" not in src
     assert "spread_filter" not in src
     assert "MIN_FILL_R" not in src
+
+
+# --- freshness semantics A–Z ---
+
+
+def _resolve_with_last_change_age(age_sec: float, *, bid: float = 1.10, ask: float = 1.1002):
+    now = time.time()
+    q = quote_from_parts(
+        instrument="EUR_USD",
+        bid=bid,
+        ask=ask,
+        time_epoch=now - age_sec,
+    )
+    return resolve_live_entry_geometry(
+        "EUR_USD", "BUY", 0.0002, 0.0004, 1.10, quote=q, now=now
+    )
+
+
+def test_fresh_get_clientprice_time_1s_old_accepts():
+    geom, skip = _resolve_with_last_change_age(1.0)
+    assert skip is None and geom is not None
+    assert geom.price_last_change_age_ms == pytest.approx(1000.0, abs=50.0)
+
+
+def test_fresh_get_clientprice_time_10s_old_accepts_valid_bid_ask():
+    geom, skip = _resolve_with_last_change_age(10.0)
+    assert skip is None and geom is not None
+    assert geom.executable_reference == pytest.approx(1.1002)
+
+
+def test_fresh_get_clientprice_time_60s_old_does_not_reject_on_time_alone():
+    geom, skip = _resolve_with_last_change_age(60.0)
+    assert skip is None and geom is not None
+    assert geom.price_last_change_age_ms == pytest.approx(60_000.0, abs=50.0)
+    assert skip != "stale_quote"
+
+
+def test_pricing_request_failed_fails_closed(monkeypatch):
+    def _boom(*_a, **_k):
+        raise RuntimeError("OANDA PricingInfo failed")
+
+    monkeypatch.setattr("forex_bot.oanda_client.fetch_pricing_snapshot", _boom)
+    fetched = fetch_entry_pricing("EUR_USD")
+    assert fetched.quote is None
+    assert fetched.skip_reason == "pricing_request_failed"
+    assert fetched.request_duration_ms >= 0.0
+
+
+def test_pricing_timeout_fails_closed(monkeypatch):
+    def _boom(*_a, **_k):
+        raise TimeoutError("read timed out")
+
+    monkeypatch.setattr("forex_bot.oanda_client.fetch_pricing_snapshot", _boom)
+    fetched = fetch_entry_pricing("EUR_USD")
+    assert fetched.quote is None
+    assert fetched.skip_reason == "pricing_timeout"
+
+
+def test_instrument_missing_fails_closed(monkeypatch):
+    monkeypatch.setattr(
+        "forex_bot.oanda_client.fetch_pricing_snapshot",
+        lambda symbols=None, **kw: {},
+    )
+    fetched = fetch_entry_pricing("EUR_USD")
+    assert fetched.quote is None
+    assert fetched.skip_reason == "instrument_missing"
+
+
+def test_bid_missing_for_sell_fails_closed():
+    now = time.time()
+    q = quote_from_parts(instrument="EUR_USD", bid=None, ask=1.1002, time_epoch=now)
+    geom, skip = resolve_live_entry_geometry(
+        "EUR_USD", "SELL", 0.0002, 0.0004, 1.10, quote=q, now=now
+    )
+    assert geom is None
+    assert skip == "executable_bid_missing"
+
+
+def test_ask_missing_for_buy_fails_closed():
+    now = time.time()
+    q = quote_from_parts(instrument="EUR_USD", bid=1.10, ask=None, time_epoch=now)
+    geom, skip = resolve_live_entry_geometry(
+        "EUR_USD", "BUY", 0.0002, 0.0004, 1.10, quote=q, now=now
+    )
+    assert geom is None
+    assert skip == "executable_ask_missing"
+
+
+def test_malformed_non_finite_executable_price_fails_closed():
+    now = time.time()
+    q = quote_from_parts(
+        instrument="EUR_USD", bid=1.10, ask=float("nan"), time_epoch=now
+    )
+    geom, skip = resolve_live_entry_geometry(
+        "EUR_USD", "BUY", 0.0002, 0.0004, 1.10, quote=q, now=now
+    )
+    assert geom is None
+    assert skip == "malformed_price"
+    q2 = quote_from_parts(
+        instrument="EUR_USD", bid=float("inf"), ask=1.1002, time_epoch=now
+    )
+    geom2, skip2 = resolve_live_entry_geometry(
+        "EUR_USD", "SELL", 0.0002, 0.0004, 1.10, quote=q2, now=now
+    )
+    assert geom2 is None
+    assert skip2 == "malformed_price"
+
+
+def test_zero_or_negative_executable_price_fails_closed():
+    now = time.time()
+    q0 = quote_from_parts(instrument="EUR_USD", bid=1.10, ask=0.0, time_epoch=now)
+    geom, skip = resolve_live_entry_geometry(
+        "EUR_USD", "BUY", 0.0002, 0.0004, 1.10, quote=q0, now=now
+    )
+    assert geom is None
+    assert skip == "malformed_price"
+    qn = quote_from_parts(instrument="EUR_USD", bid=-1.10, ask=1.1002, time_epoch=now)
+    geom2, skip2 = resolve_live_entry_geometry(
+        "EUR_USD", "SELL", 0.0002, 0.0004, 1.10, quote=qn, now=now
+    )
+    assert geom2 is None
+    assert skip2 == "malformed_price"
+
+
+def test_rounding_breaks_orientation_fails_closed():
+    now = time.time()
+    geom, skip = resolve_live_entry_geometry(
+        "EUR_USD",
+        "BUY",
+        0.000001,
+        0.000002,
+        1.10000,
+        quote=_fresh_quote("EUR_USD", 1.10000, 1.10000, now=now),
+        now=now,
+    )
+    assert geom is None
+    assert skip == "invalid_orientation_after_rounding"
+
+
+def test_gbp_usd_2484_style_geometry_remains_2r():
+    mid = 1.33678
+    xref = 1.33686
+    sl_d, tp_d = 0.00046, 0.00092
+    now = time.time()
+    geom, skip = resolve_live_entry_geometry(
+        "GBP_USD",
+        "SELL",
+        sl_d,
+        tp_d,
+        mid,
+        quote=_fresh_quote("GBP_USD", xref, xref + 0.00008, now=now),
+        now=now,
+    )
+    assert skip is None and geom is not None
+    assert geom.executable_reference == pytest.approx(xref)
+    assert geom.sl == pytest.approx(1.33732, abs=5e-6)
+    assert geom.tp == pytest.approx(1.33594, abs=5e-6)
+    assert geom.expected_r == pytest.approx(2.0, abs=0.02)
+    _rp, _rwp, fill_r = fill_based_geometry("GBP_USD", "SELL", xref, geom.sl, geom.tp)
+    assert fill_r == pytest.approx(2.0, abs=0.02)
+    old_sl, _old_tp = m5_anchored_sl_tp(mid, "SELL", sl_d, tp_d)
+    assert geom.sl != pytest.approx(old_sl)
+
+
+def test_usd_jpy_2488_style_geometry_remains_2r():
+    mid = 157.326
+    xref = 157.352
+    sl_d, tp_d = 0.061, 0.122
+    now = time.time()
+    geom, skip = resolve_live_entry_geometry(
+        "USD_JPY",
+        "SELL",
+        sl_d,
+        tp_d,
+        mid,
+        quote=_fresh_quote("USD_JPY", xref, xref + 0.008, now=now),
+        now=now,
+    )
+    assert skip is None and geom is not None
+    assert geom.executable_reference == pytest.approx(xref)
+    assert geom.sl == pytest.approx(157.413, abs=5e-4)
+    assert geom.tp == pytest.approx(157.230, abs=5e-4)
+    assert geom.expected_r == pytest.approx(2.0, abs=0.02)
+    _rp, _rwp, fill_r = fill_based_geometry("USD_JPY", "SELL", xref, geom.sl, geom.tp)
+    assert fill_r == pytest.approx(2.0, abs=0.02)
+    old_sl, _old_tp = m5_anchored_sl_tp(mid, "SELL", sl_d, tp_d)
+    assert geom.sl != pytest.approx(old_sl)
+
+
+def test_no_m5_fallback_on_live_broker_entry():
+    import forex_bot.bot_loop as bot_loop
+    from forex_bot import entry_geometry as eg
+
+    src = inspect.getsource(bot_loop.evaluate)
+    broker = src.split('if fill_path == "broker":', 1)[-1]
+    assert "fetch_entry_pricing" in broker
+    assert "PRICE_SOURCE_M5_MID" not in broker[:4500]
+    assert "m5_anchored_sl_tp" not in broker[:4500]
+    resolve_src = inspect.getsource(eg.resolve_live_entry_geometry)
+    assert "PRICE_SOURCE_M5_MID" not in resolve_src
+    assert "stale_quote" not in resolve_src
+    assert "pricing_request_too_slow" not in inspect.getsource(eg)
+
+
+def test_paper_window_paper_simulated_backtest_paths_unchanged():
+    assert live_broker_geometry_required("mid") is False
+    assert live_broker_geometry_required("simulate") is False
+    assert live_broker_geometry_required("paper") is False
+    assert live_broker_geometry_required("window_paper") is False
+    assert live_broker_geometry_required("backtest") is False
+    import forex_bot.bot_loop as bot_loop
+
+    src = inspect.getsource(bot_loop.evaluate)
+    sim_branch = src.split("elif use_sim_layers:", 1)[-1]
+    assert "fetch_entry_pricing" not in sim_branch.split("else:", 1)[0]
+    assert "resolve_live_entry_geometry" not in sim_branch.split("else:", 1)[0]
+
+
+def test_fetch_entry_pricing_raises_on_error_and_does_not_cache(monkeypatch):
+    calls: list[dict] = []
+    q = _fresh_quote("EUR_USD", 1.1, 1.1002)
+
+    def _snap(symbols=None, **kw):
+        calls.append({"symbols": symbols, **kw})
+        from forex_bot.oanda_client import oanda_instrument
+
+        return {oanda_instrument("EUR_USD"): q}
+
+    monkeypatch.setattr("forex_bot.oanda_client.fetch_pricing_snapshot", _snap)
+    a = fetch_entry_pricing("EUR_USD")
+    b = fetch_entry_pricing("EUR_USD")
+    assert a.quote is q and b.quote is q
+    assert len(calls) == 2
+    assert all(c.get("raise_on_error") is True for c in calls)
+    assert a.skip_reason is None
+    assert a.request_duration_ms >= 0.0
+
+
+def test_clientprice_time_is_diagnostic_only():
+    src = inspect.getsource(resolve_live_entry_geometry)
+    assert "stale_quote" not in src
+    assert "missing_quote_time" not in src
+    now = time.time()
+    geom, skip = resolve_live_entry_geometry(
+        "EUR_USD",
+        "BUY",
+        0.0002,
+        0.0004,
+        1.10,
+        quote=quote_from_parts(
+            instrument="EUR_USD", bid=1.10, ask=1.1002, time_epoch=now - 45.0
+        ),
+        now=now,
+        request_duration_ms=12.0,
+        fetch_age_ms=1.0,
+    )
+    assert skip is None and geom is not None
+    assert geom.price_last_change_age_ms == pytest.approx(45_000.0, abs=50.0)
+    assert geom.request_duration_ms == pytest.approx(12.0)
+    assert geom.fetch_age_ms == pytest.approx(1.0)
+    assert geom.price_time is not None

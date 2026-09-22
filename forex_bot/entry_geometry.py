@@ -10,13 +10,16 @@ import logging
 import math
 import time
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from forex_bot.live_manage import ManageQuote, quote_age_sec
 from forex_bot.profit_protection import pip_size
 from forex_bot.trading import TP_RISK_REWARD
 
 logger = logging.getLogger(__name__)
 
-# Fresh GET immediately before OrderCreate. Cycle-start snapshots are too old.
+# Historical last-change threshold. NOT a fetch-freshness gate and NOT used to
+# reject a successfully fetched ClientPrice. Official OANDA ClientPrice.time is
+# when that Price was created / last changed, not HTTP GET age.
 ENTRY_QUOTE_STALE_SEC = 5.0
 PRICE_SOURCE_OANDA_PRICING = "OANDA_PRICING"
 PRICE_SOURCE_M5_MID = "M5_MID"
@@ -40,10 +43,28 @@ class LiveEntryGeometry:
     reward_pips: float
     spread: float | None
     spread_pips: float | None
-    quote_age_ms: float | None
+    price_last_change_age_ms: float | None
     bid: float | None
     ask: float | None
     atr: float | None = None
+    request_duration_ms: float | None = None
+    price_time: str | None = None
+    fetch_age_ms: float | None = None
+
+
+@dataclass(frozen=True)
+class EntryPricingFetch:
+    """Result of a dedicated PricingInfo GET immediately before OrderCreate."""
+
+    quote: ManageQuote | None
+    skip_reason: str | None
+    request_started_mono: float
+    response_received_mono: float
+    request_duration_ms: float
+
+    def fetch_age_ms(self, now_mono: float | None = None) -> float:
+        now = time.perf_counter() if now_mono is None else float(now_mono)
+        return max(0.0, (now - float(self.response_received_mono)) * 1000.0)
 
 
 def live_broker_geometry_required(fill_path: str) -> bool:
@@ -63,19 +84,62 @@ def apply_broker_price_precision(symbol: str, price: float) -> float:
     return float(format_broker_price(symbol, price))
 
 
+def classify_executable_reference(
+    quote: ManageQuote | None, direction: str
+) -> tuple[float | None, str | None]:
+    """Return (executable price, skip reason). BUY=ask, SELL=bid. No M5 fallback."""
+    if quote is None:
+        return None, "instrument_missing"
+    d = (direction or "").upper().strip()
+    if d == "BUY":
+        raw = quote.ask
+        missing = "executable_ask_missing"
+    elif d == "SELL":
+        raw = quote.bid
+        missing = "executable_bid_missing"
+    else:
+        return None, "invalid_geometry"
+    if raw is None:
+        return None, missing
+    try:
+        px = float(raw)
+    except (TypeError, ValueError):
+        return None, "malformed_price"
+    if not math.isfinite(px) or px <= 0:
+        return None, "malformed_price"
+    return px, None
+
+
 def executable_entry_reference(quote: ManageQuote | None, direction: str) -> float | None:
     """BUY market pays the ask; SELL market hits the bid. Not closeout prices."""
-    if quote is None:
-        return None
-    d = (direction or "").upper().strip()
-    raw = quote.ask if d == "BUY" else quote.bid
-    try:
-        px = float(raw) if raw is not None else float("nan")
-    except (TypeError, ValueError):
-        return None
-    if not math.isfinite(px) or px <= 0:
-        return None
+    px, _reason = classify_executable_reference(quote, direction)
     return px
+
+
+def format_client_price_time(time_epoch: float | None) -> str | None:
+    if time_epoch is None:
+        return None
+    try:
+        return datetime.fromtimestamp(float(time_epoch), tz=timezone.utc).strftime(
+            "%Y-%m-%dT%H:%M:%S.%fZ"
+        )
+    except (TypeError, ValueError, OSError, OverflowError):
+        return None
+
+
+def _is_timeout_error(exc: BaseException) -> bool:
+    seen: set[int] = set()
+    cur: BaseException | None = exc
+    while cur is not None and id(cur) not in seen:
+        seen.add(id(cur))
+        name = type(cur).__name__.lower()
+        if isinstance(cur, TimeoutError) or "timeout" in name:
+            return True
+        text = str(cur).lower()
+        if "timed out" in text or "timeout" in text:
+            return True
+        cur = cur.__cause__ or getattr(cur, "__context__", None)
+    return False
 
 
 def construct_absolute_sl_tp(
@@ -151,26 +215,16 @@ def fill_based_geometry(
     return risk_pips, reward_pips, actual_r
 
 
-def _quote_usable(
-    quote: ManageQuote | None,
-    *,
-    now: float | None,
-    max_age_sec: float,
-) -> str | None:
-    """Return a skip reason, or None if the quote may be used."""
+def _quote_usable_for_entry(quote: ManageQuote | None) -> str | None:
+    """Return a skip reason, or None if the freshly fetched quote may be used.
+
+    ClientPrice.time / last-change age is not a reject. Fetch success is
+    established by ``fetch_entry_pricing`` immediately before this check.
+    """
     if quote is None:
-        return "missing_quote"
+        return "instrument_missing"
     if not quote.tradeable:
         return "not_tradeable"
-    if quote.time_epoch is None:
-        return "missing_quote_time"
-    age = quote_age_sec(quote, now)
-    if age is None:
-        return "missing_quote_time"
-    if age < -2.0:
-        return "quote_clock_skew"
-    if age > float(max_age_sec):
-        return "stale_quote"
     return None
 
 
@@ -185,14 +239,20 @@ def resolve_live_entry_geometry(
     now: float | None = None,
     max_age_sec: float = ENTRY_QUOTE_STALE_SEC,
     atr: float | None = None,
+    request_duration_ms: float | None = None,
+    fetch_age_ms: float | None = None,
 ) -> tuple[LiveEntryGeometry | None, str | None]:
-    """Build rounded broker SL/TP around a fresh executable price. Fail closed on None."""
-    skip = _quote_usable(quote, now=now, max_age_sec=max_age_sec)
+    """Build rounded broker SL/TP around a freshly fetched executable price. Fail closed on None.
+
+    ``max_age_sec`` is unused: ClientPrice.time is last-change, not fetch age.
+    """
+    del max_age_sec  # last-change age must not reject a valid freshly fetched quote
+    skip = _quote_usable_for_entry(quote)
     if skip:
         return None, skip
-    ref = executable_entry_reference(quote, direction)
+    ref, ref_skip = classify_executable_reference(quote, direction)
     if ref is None:
-        return None, "missing_executable_price"
+        return None, ref_skip or "malformed_price"
     if not math.isfinite(float(sl_distance)) or float(sl_distance) <= 0:
         return None, "invalid_risk_distance"
     if not math.isfinite(float(tp_distance)) or float(tp_distance) <= 0:
@@ -215,7 +275,7 @@ def resolve_live_entry_geometry(
             spread = float(ask) - float(bid)
         except (TypeError, ValueError):
             spread = None
-    age = quote_age_sec(quote, now)
+    last_change_age = quote_age_sec(quote, now)
     risk = abs(ref_r - sl)
     reward = abs(tp - ref_r)
     return (
@@ -236,40 +296,91 @@ def resolve_live_entry_geometry(
             reward_pips=(reward / pip) if pip else float("nan"),
             spread=spread,
             spread_pips=(spread / pip) if spread is not None and pip else None,
-            quote_age_ms=None if age is None else age * 1000.0,
+            price_last_change_age_ms=(
+                None if last_change_age is None else last_change_age * 1000.0
+            ),
             bid=float(bid) if bid is not None else None,
             ask=float(ask) if ask is not None else None,
             atr=float(atr) if atr is not None and math.isfinite(float(atr)) else None,
+            request_duration_ms=request_duration_ms,
+            price_time=format_client_price_time(getattr(quote, "time_epoch", None)),
+            fetch_age_ms=fetch_age_ms,
         ),
         None,
     )
 
 
-def fetch_fresh_entry_quote(symbol: str) -> ManageQuote | None:
-    """Dedicated PricingInfo GET for one instrument. Never writes. No M5 fallback."""
+def fetch_entry_pricing(symbol: str) -> EntryPricingFetch:
+    """Dedicated PricingInfo GET for one instrument immediately before OrderCreate.
+
+    Never writes. No cache. No M5 fallback. HTTP timeout/failure is fail-closed.
+    There is no extra request-duration reject: the existing OANDA connect/read
+    timeout already bounds a hung GET.
+    """
     from forex_bot.oanda_client import fetch_pricing_snapshot, oanda_instrument
 
+    started = time.perf_counter()
     try:
-        snap = fetch_pricing_snapshot([symbol])
-    except Exception:
-        logger.exception("entry PricingInfo failed for %s", symbol)
-        return None
-    if not snap:
-        return None
+        snap = fetch_pricing_snapshot([symbol], raise_on_error=True)
+    except Exception as exc:
+        ended = time.perf_counter()
+        reason = "pricing_timeout" if _is_timeout_error(exc) else "pricing_request_failed"
+        logger.exception("entry PricingInfo %s for %s", reason, symbol)
+        return EntryPricingFetch(
+            quote=None,
+            skip_reason=reason,
+            request_started_mono=started,
+            response_received_mono=ended,
+            request_duration_ms=(ended - started) * 1000.0,
+        )
+    ended = time.perf_counter()
+    duration_ms = (ended - started) * 1000.0
     inst = oanda_instrument(symbol)
-    return snap.get(inst) or snap.get(symbol)
+    quote = None
+    if snap:
+        quote = snap.get(inst) or snap.get(symbol)
+    if quote is None:
+        return EntryPricingFetch(
+            quote=None,
+            skip_reason="instrument_missing",
+            request_started_mono=started,
+            response_received_mono=ended,
+            request_duration_ms=duration_ms,
+        )
+    return EntryPricingFetch(
+        quote=quote,
+        skip_reason=None,
+        request_started_mono=started,
+        response_received_mono=ended,
+        request_duration_ms=duration_ms,
+    )
+
+
+def fetch_fresh_entry_quote(symbol: str) -> ManageQuote | None:
+    """Dedicated PricingInfo GET. Returns None on any fail-closed fetch outcome."""
+    return fetch_entry_pricing(symbol).quote
 
 
 def format_entry_geometry_line(geom: LiveEntryGeometry) -> str:
     atr = "n/a" if geom.atr is None else f"{geom.atr:.6f}"
     spr = "n/a" if geom.spread_pips is None else f"{geom.spread_pips:.2f}"
-    age = "n/a" if geom.quote_age_ms is None else f"{geom.quote_age_ms:.0f}"
+    last = (
+        "n/a"
+        if geom.price_last_change_age_ms is None
+        else f"{geom.price_last_change_age_ms:.0f}"
+    )
+    req = "n/a" if geom.request_duration_ms is None else f"{geom.request_duration_ms:.0f}"
+    pt = geom.price_time or "n/a"
+    bid_s = "n/a" if geom.bid is None else f"{geom.bid:.5f}"
+    ask_s = "n/a" if geom.ask is None else f"{geom.ask:.5f}"
     return (
         f"[ENTRY GEOMETRY] symbol={geom.symbol} side={geom.side} "
         f"signal_mid={geom.signal_mid:.5f} executable_reference={geom.executable_reference:.5f} "
-        f"price_source={geom.price_source} atr={atr} "
+        f"price_source={geom.price_source} bid={bid_s} ask={ask_s} "
+        f"spread_pips={spr} request_duration_ms={req} price_time={pt} "
+        f"price_last_change_age_ms={last} "
         f"risk_distance_pips={geom.risk_pips:.2f} sl={geom.sl_text} tp={geom.tp_text} "
-        f"expected_r={geom.expected_r:.4f} spread_pips={spr} quote_age_ms={age}"
+        f"expected_r={geom.expected_r:.4f} atr={atr}"
     )
 
 

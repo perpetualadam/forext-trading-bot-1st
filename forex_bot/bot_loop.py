@@ -85,7 +85,7 @@ from forex_bot.state import (
 )
 from forex_bot.strategy_meta import select_strategy, seq_model, strategies
 from forex_bot.entry_geometry import (
-    fetch_fresh_entry_quote,
+    fetch_entry_pricing,
     format_entry_fill_geometry_line,
     format_entry_geometry_line,
     format_entry_geometry_skip,
@@ -788,15 +788,23 @@ async def evaluate(symbol: str) -> None:
             mark_order_failed_or_cancelled(client_order_id)
             logger.error("%s: refuse broker open — fill_path=%s is not broker", symbol, fill_path)
             return
-        quote = fetch_fresh_entry_quote(symbol)
+        fetched = fetch_entry_pricing(symbol)
+        if fetched.skip_reason is not None:
+            mark_order_failed_or_cancelled(client_order_id)
+            msg = format_entry_geometry_skip(symbol, direction, fetched.skip_reason)
+            logger.warning("%s", msg)
+            alert(msg)
+            return
         geom, skip_reason = resolve_live_entry_geometry(
             symbol,
             direction,
             float(sl_d),
             float(tp_d),
             float(price),
-            quote=quote,
+            quote=fetched.quote,
             atr=atr_v,
+            request_duration_ms=fetched.request_duration_ms,
+            fetch_age_ms=fetched.fetch_age_ms(),
         )
         if geom is None:
             mark_order_failed_or_cancelled(client_order_id)
