@@ -1,0 +1,29 @@
+bot-1  | 2026-09-22T20:52:51.597792001Z [INFO] 2026-09-22 21:52:51.597493: [EXECUTION] BROKER_FILL USD_JPY open fill=157.37400 unitsΓëê2.0000 id=3124 cid=cid-f0018527cf024210bf211e9df62dd1ea
+bot-1  | 2026-09-22T20:52:51.599097516Z [INFO] 2026-09-22 21:52:51.598907: [OPEN] USD_JPY SELL units=2.00 entry=157.37400 mid=157.40000 SL=157.43060 TP=157.26080 kind=live broker_order=true cid=cid-f0018527cf024210bf211e9df62dd1ea broker_id=3124 strategy=trend horizon=legacy
+bot-1  | 2026-09-22T21:06:04.198550306Z [ORDER FAILED] GBP_USD open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:06:04.553556877Z [ORDER FAILED] USD_JPY open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:07:05.659686882Z [ORDER FAILED] GBP_USD open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:08:07.089738349Z [ORDER FAILED] AUD_USD open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:09:08.150336648Z [ORDER FAILED] USD_JPY open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:09:08.515082689Z [ORDER FAILED] AUD_USD open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:10:10.008511013Z [ORDER FAILED] USD_CHF open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:11:11.209537741Z [ORDER FAILED] USD_CHF open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:12:11.896069492Z [ORDER FAILED] GBP_USD open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:12:12.514554652Z [ORDER FAILED] USD_CAD open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:13:13.697070806Z [ORDER FAILED] USD_CAD open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:15:15.448732475Z [ORDER FAILED] GBP_USD open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:16:16.649538318Z [ORDER FAILED] GBP_USD open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:18:18.823478921Z [ORDER FAILED] GBP_USD open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:19:20.000918816Z [ORDER FAILED] GBP_USD open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:21:22.300315477Z [INFO] 2026-09-22 22:21:22.300105: [EXECUTION] BROKER_FILL USD_JPY open fill=157.46300 unitsΓëê2.0000 id=3163 cid=cid-239ddf6d18aa4f8d8a4d179949dd5c5f
+bot-1  | 2026-09-22T21:21:22.301732557Z [INFO] 2026-09-22 22:21:22.301502: [OPEN] USD_JPY BUY units=2.00 entry=157.46300 mid=157.44000 SL=157.41240 TP=157.56420 kind=live broker_order=true cid=cid-239ddf6d18aa4f8d8a4d179949dd5c5f broker_id=3163 strategy=swing_breakout horizon=legacy
+bot-1  | 2026-09-22T21:23:24.782869827Z [INFO] 2026-09-22 22:23:24.782649: [EXECUTION] BROKER_FILL USD_JPY open fill=157.44400 unitsΓëê2.0000 id=3169 cid=cid-868759c88fbf4106b7a450820dcd636d
+bot-1  | 2026-09-22T21:23:24.785844839Z [INFO] 2026-09-22 22:23:24.785625: [OPEN] USD_JPY BUY units=2.00 entry=157.44400 mid=157.44000 SL=157.39340 TP=157.54520 kind=live broker_order=true cid=cid-868759c88fbf4106b7a450820dcd636d broker_id=3169 strategy=mean_reversion horizon=legacy
+bot-1  | 2026-09-22T21:25:26.958987809Z [ORDER FAILED] GBP_USD open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:29:31.285250350Z [ORDER FAILED] GBP_USD open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:35:37.702175178Z [INFO] 2026-09-22 22:35:37.701680: [EXECUTION] BROKER_FILL GBP_USD open fill=1.33461 unitsΓëê1.0000 id=3183 cid=cid-4ddd3a933d47430aa4af478ebeef0267
+bot-1  | 2026-09-22T21:35:37.704588689Z [INFO] 2026-09-22 22:35:37.703533: [OPEN] GBP_USD BUY units=1.00 entry=1.33461 mid=1.33447 SL=1.33413 TP=1.33557 kind=live broker_order=true cid=cid-4ddd3a933d47430aa4af478ebeef0267 broker_id=3183 strategy=swing_breakout horizon=swing
+bot-1  | 2026-09-22T21:38:41.313542339Z [ORDER FAILED] AUD_USD open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:40:43.644481074Z [ORDER FAILED] AUD_USD open: OANDA response missing orderFillTransaction
+bot-1  | 2026-09-22T21:41:44.869743937Z [INFO] 2026-09-22 22:41:44.869517: [EXECUTION] BROKER_FILL USD_JPY open fill=157.42100 unitsΓëê2.0000 id=3191 cid=cid-0ff3d11b90464e358a077106d229d8eb
+bot-1  | 2026-09-22T21:41:44.872536313Z [INFO] 2026-09-22 22:41:44.872322: [OPEN] USD_JPY BUY units=2.00 entry=157.42100 mid=157.40200 SL=157.37760 TP=157.50780 kind=live broker_order=true cid=cid-0ff3d11b90464e358a077106d229d8eb broker_id=3191 strategy=swing_breakout horizon=legacy

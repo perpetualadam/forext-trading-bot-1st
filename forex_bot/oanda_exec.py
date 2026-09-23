@@ -6,6 +6,7 @@ import asyncio
 import logging
 import math
 import os
+from dataclasses import dataclass, field
 from typing import Any
 
 import oandapyV20.endpoints.orders as oanda_orders
@@ -13,11 +14,57 @@ import oandapyV20.endpoints.positions as oanda_positions
 import oandapyV20.endpoints.trades as oanda_trades
 from oandapyV20.contrib.requests import MarketOrderRequest, PositionCloseRequest
 from oandapyV20.definitions.orders import OrderPositionFill, TimeInForce
+from oandapyV20.exceptions import V20Error
 
 from forex_bot.config import Config
 from forex_bot.oanda_client import get_api, oanda_instrument
 
 logger = logging.getLogger(__name__)
+
+OUTCOME_FILLED = "FILLED"
+OUTCOME_CANCELLED = "CANCELLED"
+OUTCOME_REJECTED = "REJECTED"
+OUTCOME_AMBIGUOUS_TRANSPORT = "AMBIGUOUS_TRANSPORT_OUTCOME"
+OUTCOME_MALFORMED = "MALFORMED_RESPONSE"
+
+
+@dataclass(frozen=True)
+class OrderCreateClassification:
+    outcome: str
+    cancel_reason: str | None = None
+    create_tx_id: str | None = None
+    cancel_tx_id: str | None = None
+    fill_tx_id: str | None = None
+    client_id: str | None = None
+    related_transaction_ids: tuple[str, ...] = field(default_factory=tuple)
+    last_transaction_id: str | None = None
+    error_code: str | None = None
+    error_message: str | None = None
+    request_id: str | None = None
+
+
+class OrderCreateOutcomeError(RuntimeError):
+    """Broker open did not produce a fill. Never a signal to send another OrderCreate."""
+
+    def __init__(self, classification: OrderCreateClassification, message: str) -> None:
+        super().__init__(message)
+        self.classification = classification
+
+
+class OrderCreateCancelled(OrderCreateOutcomeError):
+    pass
+
+
+class OrderCreateRejected(OrderCreateOutcomeError):
+    pass
+
+
+class OrderCreateAmbiguous(OrderCreateOutcomeError):
+    pass
+
+
+class OrderCreateMalformed(OrderCreateOutcomeError):
+    pass
 
 
 def assert_broker_order_allowed(*, execution_kind: str | None = None, action: str = "order") -> None:
@@ -99,13 +146,231 @@ def _parse_fill(response: dict[str, Any]) -> tuple[float, float]:
     return pl, fill_price
 
 
+def _as_tx_dict(raw: Any) -> dict[str, Any] | None:
+    return raw if isinstance(raw, dict) and raw else None
+
+
+def _tx_id(raw: dict[str, Any] | None) -> str | None:
+    if not raw:
+        return None
+    val = raw.get("id")
+    if val is None:
+        return None
+    text = str(val).strip()
+    return text or None
+
+
+def _client_id_from_tx(raw: dict[str, Any] | None) -> str | None:
+    if not raw:
+        return None
+    ext = raw.get("clientExtensions")
+    if isinstance(ext, dict):
+        cid = ext.get("id")
+        if cid is not None and str(cid).strip():
+            return str(cid).strip()
+    return None
+
+
+def _related_ids(*sources: Any) -> tuple[str, ...]:
+    out: list[str] = []
+    seen: set[str] = set()
+    for src in sources:
+        if isinstance(src, dict):
+            raw = src.get("relatedTransactionIDs")
+        else:
+            raw = src
+        if not isinstance(raw, list):
+            continue
+        for item in raw:
+            text = str(item).strip()
+            if text and text not in seen:
+                seen.add(text)
+                out.append(text)
+    return tuple(out)
+
+
+def _fill_usable(fill: dict[str, Any] | None) -> bool:
+    if not fill:
+        return False
+    price = fill.get("price")
+    if price is None or str(price).strip() == "":
+        return False
+    try:
+        px = float(str(price).replace(",", ""))
+    except (TypeError, ValueError):
+        return False
+    return math.isfinite(px)
+
+
+def classify_order_create_response(response: Any) -> OrderCreateClassification:
+    """Classify an HTTP-successful OrderCreate body. Fill wins over cancel."""
+    if not isinstance(response, dict):
+        return OrderCreateClassification(
+            outcome=OUTCOME_MALFORMED,
+            error_message="invalid OANDA response",
+        )
+    fill = _as_tx_dict(response.get("orderFillTransaction"))
+    create_tx = _as_tx_dict(response.get("orderCreateTransaction"))
+    cancel_tx = _as_tx_dict(response.get("orderCancelTransaction"))
+    reject_tx = _as_tx_dict(response.get("orderRejectTransaction"))
+    last_id = str(response.get("lastTransactionID") or "").strip() or None
+    related = _related_ids(response, create_tx, cancel_tx, fill, reject_tx)
+    cid = (
+        _client_id_from_tx(fill)
+        or _client_id_from_tx(cancel_tx)
+        or _client_id_from_tx(create_tx)
+        or _client_id_from_tx(reject_tx)
+    )
+    if _fill_usable(fill):
+        return OrderCreateClassification(
+            outcome=OUTCOME_FILLED,
+            fill_tx_id=_tx_id(fill) or last_id,
+            create_tx_id=_tx_id(create_tx),
+            cancel_tx_id=_tx_id(cancel_tx),
+            client_id=cid,
+            related_transaction_ids=related,
+            last_transaction_id=last_id,
+        )
+    if cancel_tx is not None:
+        reason = str(cancel_tx.get("reason") or "").strip() or None
+        return OrderCreateClassification(
+            outcome=OUTCOME_CANCELLED,
+            cancel_reason=reason,
+            create_tx_id=_tx_id(create_tx) or str(cancel_tx.get("orderID") or "").strip() or None,
+            cancel_tx_id=_tx_id(cancel_tx),
+            client_id=cid,
+            related_transaction_ids=related,
+            last_transaction_id=last_id,
+        )
+    if reject_tx is not None:
+        return OrderCreateClassification(
+            outcome=OUTCOME_REJECTED,
+            create_tx_id=_tx_id(create_tx),
+            client_id=cid,
+            related_transaction_ids=related,
+            last_transaction_id=last_id,
+            error_code=str(reject_tx.get("rejectReason") or reject_tx.get("errorCode") or "").strip()
+            or None,
+            error_message=str(reject_tx.get("errorMessage") or reject_tx.get("rejectReason") or "").strip()
+            or None,
+        )
+    return OrderCreateClassification(
+        outcome=OUTCOME_MALFORMED,
+        create_tx_id=_tx_id(create_tx),
+        client_id=cid,
+        related_transaction_ids=related,
+        last_transaction_id=last_id,
+        error_message="unclassifiable OANDA OrderCreate response",
+    )
+
+
+def _is_timeout_like(exc: BaseException) -> bool:
+    seen: set[int] = set()
+    cur: BaseException | None = exc
+    while cur is not None and id(cur) not in seen:
+        seen.add(id(cur))
+        name = type(cur).__name__.lower()
+        if isinstance(cur, (TimeoutError, ConnectionError)):
+            return True
+        if "timeout" in name or "connection" in name:
+            return True
+        text = str(cur).lower()
+        if "timed out" in text or "timeout" in text or "connection" in text:
+            return True
+        cur = cur.__cause__ or getattr(cur, "__context__", None)
+    return False
+
+
+def classify_order_create_transport_error(exc: BaseException) -> OrderCreateClassification:
+    if isinstance(exc, V20Error):
+        try:
+            code_i = int(exc.code)
+        except (TypeError, ValueError):
+            code_i = None
+        msg = str(exc.msg or exc).strip() or None
+        code_s = None if code_i is None else str(code_i)
+        if code_i is not None and 400 <= code_i < 500 and code_i != 408:
+            return OrderCreateClassification(
+                outcome=OUTCOME_REJECTED,
+                error_code=code_s,
+                error_message=msg,
+            )
+        return OrderCreateClassification(
+            outcome=OUTCOME_AMBIGUOUS_TRANSPORT,
+            error_code=code_s,
+            error_message=msg,
+        )
+    if _is_timeout_like(exc):
+        return OrderCreateClassification(
+            outcome=OUTCOME_AMBIGUOUS_TRANSPORT,
+            error_message=str(exc).strip() or type(exc).__name__,
+        )
+    return OrderCreateClassification(
+        outcome=OUTCOME_AMBIGUOUS_TRANSPORT,
+        error_message=str(exc).strip() or type(exc).__name__,
+    )
+
+
+def format_order_cancel_line(
+    *,
+    symbol: str,
+    side: str,
+    cid: str,
+    classification: OrderCreateClassification,
+) -> str:
+    related = ",".join(classification.related_transaction_ids) or "n/a"
+    return (
+        f"[ORDER CANCEL] symbol={symbol} side={side} cid={cid or classification.client_id or 'n/a'} "
+        f"create_tx={classification.create_tx_id or 'n/a'} "
+        f"cancel_tx={classification.cancel_tx_id or 'n/a'} "
+        f"reason={classification.cancel_reason or 'n/a'} "
+        f"related_transaction_ids={related}"
+    )
+
+
+def _raise_for_classification(
+    classification: OrderCreateClassification, *, symbol: str = "", side: str = "", cid: str = ""
+) -> None:
+    if classification.outcome == OUTCOME_CANCELLED:
+        raise OrderCreateCancelled(
+            classification,
+            format_order_cancel_line(symbol=symbol, side=side, cid=cid, classification=classification),
+        )
+    if classification.outcome == OUTCOME_REJECTED:
+        raise OrderCreateRejected(
+            classification,
+            f"[ORDER REJECTED] symbol={symbol} side={side} cid={cid} "
+            f"errorCode={classification.error_code or 'n/a'} "
+            f"errorMessage={classification.error_message or 'n/a'}",
+        )
+    if classification.outcome == OUTCOME_AMBIGUOUS_TRANSPORT:
+        raise OrderCreateAmbiguous(
+            classification,
+            f"[ORDER AMBIGUOUS] symbol={symbol} side={side} cid={cid} "
+            f"{classification.error_message or 'uncertain broker write'}",
+        )
+    raise OrderCreateMalformed(
+        classification,
+        f"[ORDER MALFORMED] symbol={symbol} side={side} cid={cid} "
+        f"{classification.error_message or 'unclassifiable OANDA response'}",
+    )
+
+
 def _parse_open_fill(response: dict[str, Any]) -> tuple[float, float, str, float, float | None]:
     """
     Market open: (fill_price, abs_units_filled, order_fill_transaction_id, realized_pl or nan).
     """
+    classified = classify_order_create_response(response)
+    if classified.outcome != OUTCOME_FILLED:
+        _raise_for_classification(classified)
     oft = response.get("orderFillTransaction")
-    if not oft:
-        raise ValueError("OANDA response missing orderFillTransaction")
+    if not isinstance(oft, dict):
+        _raise_for_classification(
+            OrderCreateClassification(
+                outcome=OUTCOME_MALFORMED,
+                error_message="unclassifiable OANDA OrderCreate response",
+            )
+        )
     fill_price = float(str(oft.get("price", "0")).replace(",", ""))
     u_raw = oft.get("units")
     try:
@@ -223,11 +488,34 @@ def _place_market_order_open_sync(
 
         acquire_oanda_rest_slot()
         response = api.request(r)
+    except OrderCreateOutcomeError:
+        raise
     except Exception as exc:
-        logger.error("[ORDER FAILED] OANDA OrderCreate (open) failed: %s", exc)
-        raise RuntimeError(str(exc)) from exc
+        classified = classify_order_create_transport_error(exc)
+        logger.error("[ORDER FAILED] OANDA OrderCreate (open) %s: %s", classified.outcome, exc)
+        _raise_for_classification(classified, symbol=instrument, side=direction, cid=cid)
     if not isinstance(response, dict):
-        raise ValueError("invalid OANDA response")
+        classified = classify_order_create_response(response)
+        _raise_for_classification(classified, symbol=instrument, side=direction, cid=cid)
+    classified = classify_order_create_response(response)
+    if classified.outcome == OUTCOME_CANCELLED:
+        logger.warning(
+            "%s",
+            format_order_cancel_line(
+                symbol=instrument, side=direction, cid=cid, classification=classified
+            ),
+        )
+        _raise_for_classification(classified, symbol=instrument, side=direction, cid=cid)
+    if classified.outcome != OUTCOME_FILLED:
+        logger.warning(
+            "[ORDER %s] %s %s cid=%s %s",
+            classified.outcome,
+            instrument,
+            direction,
+            cid,
+            classified.error_message or classified.cancel_reason or "",
+        )
+        _raise_for_classification(classified, symbol=instrument, side=direction, cid=cid)
     fp, uf, oid, pl, fill_ts = _parse_open_fill(response)
     logger.info("[ORDER FILLED] %s %s units≈%.4f fill=%.5f id=%s", instrument, direction, uf, fp, oid)
     return fp, uf, oid, pl, fill_ts

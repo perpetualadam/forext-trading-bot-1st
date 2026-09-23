@@ -806,9 +806,17 @@ async def evaluate(symbol: str) -> None:
             request_duration_ms=fetched.request_duration_ms,
             fetch_age_ms=fetched.fetch_age_ms(),
         )
+        if skip_reason is not None:
+            mark_order_failed_or_cancelled(client_order_id)
+            msg = format_entry_geometry_skip(
+                symbol, direction, skip_reason or "unknown", geom=geom
+            )
+            logger.warning("%s", msg)
+            alert(msg)
+            return
         if geom is None:
             mark_order_failed_or_cancelled(client_order_id)
-            msg = format_entry_geometry_skip(symbol, direction, skip_reason or "unknown")
+            msg = format_entry_geometry_skip(symbol, direction, "unknown")
             logger.warning("%s", msg)
             alert(msg)
             return
@@ -825,6 +833,16 @@ async def evaluate(symbol: str) -> None:
                 take_profit=broker_tp,
                 execution_kind=exec_kind,
             )
+        except oanda_exec.OrderCreateCancelled as exc:
+            record_fill_failure()
+            mark_order_failed_or_cancelled(client_order_id)
+            logger.warning("%s", exc)
+            return
+        except oanda_exec.OrderCreateOutcomeError as exc:
+            record_fill_failure()
+            mark_order_failed_or_cancelled(client_order_id)
+            logger.warning("[ORDER FAILED] %s open: %s", symbol, exc)
+            return
         except Exception as exc:
             record_fill_failure()
             mark_order_failed_or_cancelled(client_order_id)

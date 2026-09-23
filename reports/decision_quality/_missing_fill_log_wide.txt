@@ -1,0 +1,64 @@
+bot-1  | [RECONCILE BROKER EXIT CONFIRMED] symbol=AUD_USD broker_id=3052 transaction_id=3059
+bot-1  | [INFO] 2026-09-22 18:53:55.364412: [EXECUTION] BROKER_FILL GBP_USD open fill=1.33323 unitsΓëê1.0000 id=3062 cid=cid-5ad59806621a456f8b6ad17d15c109b7
+bot-1  | [INFO] 2026-09-22 18:53:55.366763: [OPEN] GBP_USD SELL units=1.00 entry=1.33323 mid=1.33284 SL=1.33395 TP=1.33179 kind=live broker_order=true cid=cid-5ad59806621a456f8b6ad17d15c109b7 broker_id=3062 strategy=swing_trend horizon=swing
+bot-1  | [INFO] 2026-09-22 18:57:59.771841: [EXECUTION] BROKER_FILL USD_JPY open fill=157.37500 unitsΓëê2.0000 id=3070 cid=cid-ede77346173d456cb0d4e29dcb9c8649
+bot-1  | [INFO] 2026-09-22 18:57:59.773531: [OPEN] USD_JPY SELL units=2.00 entry=157.37500 mid=157.39800 SL=157.46740 TP=157.19020 kind=live broker_order=true cid=cid-ede77346173d456cb0d4e29dcb9c8649 broker_id=3070 strategy=mean_reversion horizon=legacy
+bot-1  | [RECONCILE BROKER EXIT CONFIRMED] symbol=EUR_USD broker_id=3048 transaction_id=3073
+bot-1  | [INFO] 2026-09-22 19:15:16.866432: [EXECUTION] BROKER_FILL AUD_USD open fill=0.71131 unitsΓëê3.0000 id=3076 cid=cid-d61b0db412f24b088a0004ac6f9626ec
+bot-1  | [INFO] 2026-09-22 19:15:16.869435: [OPEN] AUD_USD SELL units=3.00 entry=0.71131 mid=0.71136 SL=0.71171 TP=0.71051 kind=live broker_order=true cid=cid-d61b0db412f24b088a0004ac6f9626ec broker_id=3076 strategy=swing_mean_reversion horizon=swing
+bot-1  | [RECONCILE BROKER EXIT CONFIRMED] symbol=USD_JPY broker_id=3070 transaction_id=3079
+bot-1  | [INFO] 2026-09-22 19:38:39.481068: [EXECUTION] BROKER_FILL USD_JPY open fill=157.49000 unitsΓëê2.0000 id=3082 cid=cid-4385a09628d04fe78ba71ff1b96aadf6
+bot-1  | [INFO] 2026-09-22 19:38:39.483007: [OPEN] USD_JPY SELL units=2.00 entry=157.49000 mid=157.49200 SL=157.60800 TP=157.25400 kind=live broker_order=true cid=cid-4385a09628d04fe78ba71ff1b96aadf6 broker_id=3082 strategy=mean_reversion horizon=legacy
+bot-1  | [RECONCILE BROKER EXIT CONFIRMED] symbol=GBP_USD broker_id=3062 transaction_id=3085
+bot-1  | [INFO] 2026-09-22 20:16:16.595324: [EXECUTION] BROKER_FILL USD_CHF open fill=0.82123 unitsΓëê2.0000 id=3088 cid=cid-44027307f0914faca59761a3efc2a535
+bot-1  | [INFO] 2026-09-22 20:16:16.597185: [OPEN] USD_CHF BUY units=2.00 entry=0.82123 mid=0.82110 SL=0.82076 TP=0.82216 kind=live broker_order=true cid=cid-44027307f0914faca59761a3efc2a535 broker_id=3088 strategy=swing_trend horizon=swing
+bot-1  | [RECONCILE BROKER EXIT CONFIRMED] symbol=USD_CHF broker_id=3088 transaction_id=3091
+bot-1  | [INFO] 2026-09-22 20:26:26.540724: [EXECUTION] BROKER_FILL USD_CHF open fill=0.82076 unitsΓëê2.0000 id=3094 cid=cid-0f551537a56e44f6910b055542efaa77
+bot-1  | [INFO] 2026-09-22 20:26:26.542133: [OPEN] USD_CHF BUY units=2.00 entry=0.82076 mid=0.82089 SL=0.82031 TP=0.82165 kind=live broker_order=true cid=cid-0f551537a56e44f6910b055542efaa77 broker_id=3094 strategy=swing_breakout horizon=swing
+bot-1  | [RECONCILE BROKER EXIT CONFIRMED] symbol=AUD_USD broker_id=3076 transaction_id=3099
+bot-1  | [RECONCILE BROKER EXIT CONFIRMED] symbol=USD_CHF broker_id=3094 transaction_id=3097
+bot-1  | [INFO] 2026-09-22 20:33:33.366985: [EXECUTION] BROKER_FILL GBP_USD open fill=1.33435 unitsΓëê1.0000 id=3102 cid=cid-23a837632ec24342b6817c1aaf954b7c
+bot-1  | [INFO] 2026-09-22 20:33:33.369775: [OPEN] GBP_USD SELL units=1.00 entry=1.33435 mid=1.33421 SL=1.33493 TP=1.33319 kind=live broker_order=true cid=cid-23a837632ec24342b6817c1aaf954b7c broker_id=3102 strategy=swing_trend horizon=swing
+bot-1  | [INFO] 2026-09-22 20:33:33.899902: [EXECUTION] BROKER_FILL AUD_USD open fill=0.71179 unitsΓëê3.0000 id=3106 cid=cid-a92d8f4a9adc400f90a9220b18889402
+bot-1  | [INFO] 2026-09-22 20:33:33.901488: [OPEN] AUD_USD BUY units=3.00 entry=0.71179 mid=0.71147 SL=0.71144 TP=0.71249 kind=live broker_order=true cid=cid-a92d8f4a9adc400f90a9220b18889402 broker_id=3106 strategy=swing_breakout horizon=swing
+bot-1  | [INFO] 2026-09-22 20:35:36.226442: [EXECUTION] BROKER_FILL USD_CAD open fill=1.40638 unitsΓëê2.0000 id=3110 cid=cid-c905f53f1365489aa9c3f9e6fd56ff5c
+bot-1  | [INFO] 2026-09-22 20:35:36.228183: [OPEN] USD_CAD BUY units=2.00 entry=1.40638 mid=1.40631 SL=1.40581 TP=1.40753 kind=live broker_order=true cid=cid-c905f53f1365489aa9c3f9e6fd56ff5c broker_id=3110 strategy=swing_mean_reversion horizon=swing
+bot-1  | [RECONCILE BROKER EXIT CONFIRMED] symbol=USD_JPY broker_id=3082 transaction_id=3115
+bot-1  | [RECONCILE BROKER EXIT CONFIRMED] symbol=GBP_USD broker_id=3102 transaction_id=3113
+bot-1  | [INFO] 2026-09-22 20:37:37.888787: [EXECUTION] BROKER_FILL EUR_USD open fill=1.14530 unitsΓëê2.0000 id=3118 cid=cid-4c58ef93ad7343e0b256e7fe8b5b0c6c
+bot-1  | [INFO] 2026-09-22 20:37:37.891690: [OPEN] EUR_USD SELL units=2.00 entry=1.14530 mid=1.14515 SL=1.14574 TP=1.14442 kind=live broker_order=true cid=cid-4c58ef93ad7343e0b256e7fe8b5b0c6c broker_id=3118 strategy=swing_mean_reversion horizon=swing
+bot-1  | [RECONCILE BROKER EXIT CONFIRMED] symbol=AUD_USD broker_id=3106 transaction_id=3121
+bot-1  | [INFO] 2026-09-22 21:52:51.597493: [EXECUTION] BROKER_FILL USD_JPY open fill=157.37400 unitsΓëê2.0000 id=3124 cid=cid-f0018527cf024210bf211e9df62dd1ea
+bot-1  | [INFO] 2026-09-22 21:52:51.598907: [OPEN] USD_JPY SELL units=2.00 entry=157.37400 mid=157.40000 SL=157.43060 TP=157.26080 kind=live broker_order=true cid=cid-f0018527cf024210bf211e9df62dd1ea broker_id=3124 strategy=trend horizon=legacy
+bot-1  | [RECONCILE BROKER EXIT CONFIRMED] symbol=USD_CAD broker_id=3110 transaction_id=3128
+bot-1  | [RECONCILE BROKER EXIT CONFIRMED] symbol=USD_JPY broker_id=3124 transaction_id=3130
+bot-1  | [ORDER FAILED] GBP_USD open: OANDA response missing orderFillTransaction
+bot-1  | [ORDER FAILED] USD_JPY open: OANDA response missing orderFillTransaction
+bot-1  | [ORDER FAILED] GBP_USD open: OANDA response missing orderFillTransaction
+bot-1  | [ORDER FAILED] AUD_USD open: OANDA response missing orderFillTransaction
+bot-1  | [ORDER FAILED] USD_JPY open: OANDA response missing orderFillTransaction
+bot-1  | [ORDER FAILED] AUD_USD open: OANDA response missing orderFillTransaction
+bot-1  | [ORDER FAILED] USD_CHF open: OANDA response missing orderFillTransaction
+bot-1  | [ORDER FAILED] USD_CHF open: OANDA response missing orderFillTransaction
+bot-1  | [ORDER FAILED] GBP_USD open: OANDA response missing orderFillTransaction
+bot-1  | [ORDER FAILED] USD_CAD open: OANDA response missing orderFillTransaction
+bot-1  | [ORDER FAILED] USD_CAD open: OANDA response missing orderFillTransaction
+bot-1  | [ORDER FAILED] GBP_USD open: OANDA response missing orderFillTransaction
+bot-1  | [ORDER FAILED] GBP_USD open: OANDA response missing orderFillTransaction
+bot-1  | [ORDER FAILED] GBP_USD open: OANDA response missing orderFillTransaction
+bot-1  | [ORDER FAILED] GBP_USD open: OANDA response missing orderFillTransaction
+bot-1  | [INFO] 2026-09-22 22:21:22.300105: [EXECUTION] BROKER_FILL USD_JPY open fill=157.46300 unitsΓëê2.0000 id=3163 cid=cid-239ddf6d18aa4f8d8a4d179949dd5c5f
+bot-1  | [INFO] 2026-09-22 22:21:22.301502: [OPEN] USD_JPY BUY units=2.00 entry=157.46300 mid=157.44000 SL=157.41240 TP=157.56420 kind=live broker_order=true cid=cid-239ddf6d18aa4f8d8a4d179949dd5c5f broker_id=3163 strategy=swing_breakout horizon=legacy
+bot-1  | [RECONCILE BROKER EXIT CONFIRMED] symbol=USD_JPY broker_id=3163 transaction_id=3166
+bot-1  | [INFO] 2026-09-22 22:23:24.782649: [EXECUTION] BROKER_FILL USD_JPY open fill=157.44400 unitsΓëê2.0000 id=3169 cid=cid-868759c88fbf4106b7a450820dcd636d
+bot-1  | [INFO] 2026-09-22 22:23:24.785625: [OPEN] USD_JPY BUY units=2.00 entry=157.44400 mid=157.44000 SL=157.39340 TP=157.54520 kind=live broker_order=true cid=cid-868759c88fbf4106b7a450820dcd636d broker_id=3169 strategy=mean_reversion horizon=legacy
+bot-1  | [ORDER FAILED] GBP_USD open: OANDA response missing orderFillTransaction
+bot-1  | [ORDER FAILED] GBP_USD open: OANDA response missing orderFillTransaction
+bot-1  | [RECONCILE BROKER EXIT CONFIRMED] symbol=USD_JPY broker_id=3169 transaction_id=3180
+bot-1  | [INFO] 2026-09-22 22:35:37.701680: [EXECUTION] BROKER_FILL GBP_USD open fill=1.33461 unitsΓëê1.0000 id=3183 cid=cid-4ddd3a933d47430aa4af478ebeef0267
+bot-1  | [INFO] 2026-09-22 22:35:37.703533: [OPEN] GBP_USD BUY units=1.00 entry=1.33461 mid=1.33447 SL=1.33413 TP=1.33557 kind=live broker_order=true cid=cid-4ddd3a933d47430aa4af478ebeef0267 broker_id=3183 strategy=swing_breakout horizon=swing
+bot-1  | [ORDER FAILED] AUD_USD open: OANDA response missing orderFillTransaction
+bot-1  | [ORDER FAILED] AUD_USD open: OANDA response missing orderFillTransaction
+bot-1  | [INFO] 2026-09-22 22:41:44.869517: [EXECUTION] BROKER_FILL USD_JPY open fill=157.42100 unitsΓëê2.0000 id=3191 cid=cid-0ff3d11b90464e358a077106d229d8eb
+bot-1  | [INFO] 2026-09-22 22:41:44.872322: [OPEN] USD_JPY BUY units=2.00 entry=157.42100 mid=157.40200 SL=157.37760 TP=157.50780 kind=live broker_order=true cid=cid-0ff3d11b90464e358a077106d229d8eb broker_id=3191 strategy=swing_breakout horizon=legacy
+bot-1  | [RECONCILE BROKER EXIT CONFIRMED] symbol=USD_JPY broker_id=3191 transaction_id=3194

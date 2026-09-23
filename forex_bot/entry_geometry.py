@@ -23,6 +23,10 @@ logger = logging.getLogger(__name__)
 ENTRY_QUOTE_STALE_SEC = 5.0
 PRICE_SOURCE_OANDA_PRICING = "OANDA_PRICING"
 PRICE_SOURCE_M5_MID = "M5_MID"
+# Evidence-approved exact validity only. Skip when clearance <= this value.
+# Do not add a positive pip/spread/ATR buffer.
+REQUIRED_SL_TRIGGER_CLEARANCE = 0.0
+SKIP_INSUFFICIENT_SL_TRIGGER_CLEARANCE = "insufficient_sl_trigger_clearance"
 
 
 @dataclass(frozen=True)
@@ -50,6 +54,11 @@ class LiveEntryGeometry:
     request_duration_ms: float | None = None
     price_time: str | None = None
     fetch_age_ms: float | None = None
+    trigger_side: str | None = None
+    trigger_price: float | None = None
+    trigger_clearance: float | None = None
+    trigger_clearance_pips: float | None = None
+    required_clearance_pips: float = REQUIRED_SL_TRIGGER_CLEARANCE
 
 
 @dataclass(frozen=True)
@@ -84,6 +93,69 @@ def apply_broker_price_precision(symbol: str, price: float) -> float:
     return float(format_broker_price(symbol, price))
 
 
+def classify_book_price(raw: object, missing_reason: str) -> tuple[float | None, str | None]:
+    """Finite positive price, or fail-closed reason. No spread reconstruction."""
+    if raw is None:
+        return None, missing_reason
+    try:
+        px = float(raw)
+    except (TypeError, ValueError):
+        return None, "malformed_price"
+    if not math.isfinite(px) or px <= 0:
+        return None, "malformed_price"
+    return px, None
+
+
+def sl_trigger_side(direction: str) -> str | None:
+    """OANDA DEFAULT SL trigger: long SL vs bid, short SL vs ask."""
+    d = (direction or "").upper().strip()
+    if d == "BUY":
+        return "bid"
+    if d == "SELL":
+        return "ask"
+    return None
+
+
+def sl_trigger_price(direction: str, bid: float, ask: float) -> float | None:
+    side = sl_trigger_side(direction)
+    if side == "bid":
+        return float(bid)
+    if side == "ask":
+        return float(ask)
+    return None
+
+
+def sl_trigger_clearance(direction: str, sl: float, bid: float, ask: float) -> float | None:
+    """Positive means the rounded SL is strictly inside the trigger side."""
+    d = (direction or "").upper().strip()
+    if d == "BUY":
+        return float(bid) - float(sl)
+    if d == "SELL":
+        return float(sl) - float(ask)
+    return None
+
+
+def has_sl_trigger_clearance(clearance: float | None) -> bool:
+    if clearance is None:
+        return False
+    try:
+        cl = float(clearance)
+    except (TypeError, ValueError):
+        return False
+    return math.isfinite(cl) and cl > REQUIRED_SL_TRIGGER_CLEARANCE
+
+
+def sl_trigger_clearance_skip_reason(
+    direction: str, sl: float, bid: float, ask: float
+) -> str | None:
+    cl = sl_trigger_clearance(direction, sl, bid, ask)
+    if cl is None or not math.isfinite(cl):
+        return "malformed_price"
+    if not has_sl_trigger_clearance(cl):
+        return SKIP_INSUFFICIENT_SL_TRIGGER_CLEARANCE
+    return None
+
+
 def classify_executable_reference(
     quote: ManageQuote | None, direction: str
 ) -> tuple[float | None, str | None]:
@@ -92,22 +164,10 @@ def classify_executable_reference(
         return None, "instrument_missing"
     d = (direction or "").upper().strip()
     if d == "BUY":
-        raw = quote.ask
-        missing = "executable_ask_missing"
-    elif d == "SELL":
-        raw = quote.bid
-        missing = "executable_bid_missing"
-    else:
-        return None, "invalid_geometry"
-    if raw is None:
-        return None, missing
-    try:
-        px = float(raw)
-    except (TypeError, ValueError):
-        return None, "malformed_price"
-    if not math.isfinite(px) or px <= 0:
-        return None, "malformed_price"
-    return px, None
+        return classify_book_price(quote.ask, "executable_ask_missing")
+    if d == "SELL":
+        return classify_book_price(quote.bid, "executable_bid_missing")
+    return None, "invalid_geometry"
 
 
 def executable_entry_reference(quote: ManageQuote | None, direction: str) -> float | None:
@@ -253,6 +313,13 @@ def resolve_live_entry_geometry(
     ref, ref_skip = classify_executable_reference(quote, direction)
     if ref is None:
         return None, ref_skip or "malformed_price"
+    d = (direction or "").upper().strip()
+    bid_px, bid_skip = classify_book_price(getattr(quote, "bid", None), "executable_bid_missing")
+    ask_px, ask_skip = classify_book_price(getattr(quote, "ask", None), "executable_ask_missing")
+    if bid_px is None:
+        return None, bid_skip or "executable_bid_missing"
+    if ask_px is None:
+        return None, ask_skip or "executable_ask_missing"
     if not math.isfinite(float(sl_distance)) or float(sl_distance) <= 0:
         return None, "invalid_risk_distance"
     if not math.isfinite(float(tp_distance)) or float(tp_distance) <= 0:
@@ -267,47 +334,49 @@ def resolve_live_entry_geometry(
     if expected is None or expected <= 0:
         return None, "invalid_expected_r"
     pip = pip_size(symbol)
-    bid = getattr(quote, "bid", None)
-    ask = getattr(quote, "ask", None)
-    spread = None
-    if bid is not None and ask is not None:
-        try:
-            spread = float(ask) - float(bid)
-        except (TypeError, ValueError):
-            spread = None
+    spread = float(ask_px) - float(bid_px)
     last_change_age = quote_age_sec(quote, now)
     risk = abs(ref_r - sl)
     reward = abs(tp - ref_r)
-    return (
-        LiveEntryGeometry(
-            symbol=symbol,
-            side=(direction or "").upper().strip(),
-            signal_mid=float(signal_mid),
-            executable_reference=ref_r,
-            price_source=PRICE_SOURCE_OANDA_PRICING,
-            sl=sl,
-            tp=tp,
-            sl_text=format_broker_price(symbol, sl),
-            tp_text=format_broker_price(symbol, tp),
-            risk_distance=risk,
-            reward_distance=reward,
-            expected_r=float(expected),
-            risk_pips=(risk / pip) if pip else float("nan"),
-            reward_pips=(reward / pip) if pip else float("nan"),
-            spread=spread,
-            spread_pips=(spread / pip) if spread is not None and pip else None,
-            price_last_change_age_ms=(
-                None if last_change_age is None else last_change_age * 1000.0
-            ),
-            bid=float(bid) if bid is not None else None,
-            ask=float(ask) if ask is not None else None,
-            atr=float(atr) if atr is not None and math.isfinite(float(atr)) else None,
-            request_duration_ms=request_duration_ms,
-            price_time=format_client_price_time(getattr(quote, "time_epoch", None)),
-            fetch_age_ms=fetch_age_ms,
+    trig_side = sl_trigger_side(d)
+    trig_px = sl_trigger_price(d, bid_px, ask_px)
+    clearance = sl_trigger_clearance(d, sl, bid_px, ask_px)
+    trig_skip = sl_trigger_clearance_skip_reason(d, sl, bid_px, ask_px)
+    geom = LiveEntryGeometry(
+        symbol=symbol,
+        side=d,
+        signal_mid=float(signal_mid),
+        executable_reference=ref_r,
+        price_source=PRICE_SOURCE_OANDA_PRICING,
+        sl=sl,
+        tp=tp,
+        sl_text=format_broker_price(symbol, sl),
+        tp_text=format_broker_price(symbol, tp),
+        risk_distance=risk,
+        reward_distance=reward,
+        expected_r=float(expected),
+        risk_pips=(risk / pip) if pip else float("nan"),
+        reward_pips=(reward / pip) if pip else float("nan"),
+        spread=spread,
+        spread_pips=(spread / pip) if pip else None,
+        price_last_change_age_ms=(
+            None if last_change_age is None else last_change_age * 1000.0
         ),
-        None,
+        bid=float(bid_px),
+        ask=float(ask_px),
+        atr=float(atr) if atr is not None and math.isfinite(float(atr)) else None,
+        request_duration_ms=request_duration_ms,
+        price_time=format_client_price_time(getattr(quote, "time_epoch", None)),
+        fetch_age_ms=fetch_age_ms,
+        trigger_side=trig_side,
+        trigger_price=trig_px,
+        trigger_clearance=clearance,
+        trigger_clearance_pips=(clearance / pip) if clearance is not None and pip else None,
+        required_clearance_pips=REQUIRED_SL_TRIGGER_CLEARANCE,
     )
+    if trig_skip:
+        return geom, trig_skip
+    return geom, None
 
 
 def fetch_entry_pricing(symbol: str) -> EntryPricingFetch:
@@ -384,7 +453,43 @@ def format_entry_geometry_line(geom: LiveEntryGeometry) -> str:
     )
 
 
-def format_entry_geometry_skip(symbol: str, direction: str, reason: str) -> str:
+def format_sl_trigger_clearance_skip(geom: LiveEntryGeometry) -> str:
+    spr = "n/a" if geom.spread is None else f"{geom.spread:.6f}"
+    spr_p = "n/a" if geom.spread_pips is None else f"{geom.spread_pips:.2f}"
+    cl_p = "n/a" if geom.trigger_clearance_pips is None else f"{geom.trigger_clearance_pips:.4f}"
+    trig_px = "n/a" if geom.trigger_price is None else f"{geom.trigger_price:.5f}"
+    last = (
+        "n/a"
+        if geom.price_last_change_age_ms is None
+        else f"{geom.price_last_change_age_ms:.0f}"
+    )
+    bid_s = "n/a" if geom.bid is None else f"{geom.bid:.5f}"
+    ask_s = "n/a" if geom.ask is None else f"{geom.ask:.5f}"
+    return (
+        f"[ENTRY GEOMETRY SKIP] symbol={geom.symbol} side={geom.side} "
+        f"reason={SKIP_INSUFFICIENT_SL_TRIGGER_CLEARANCE} "
+        f"bid={bid_s} ask={ask_s} spread={spr} "
+        f"executable_reference={geom.executable_reference:.5f} "
+        f"trigger_side={geom.trigger_side or 'n/a'} trigger_price={trig_px} "
+        f"sl={geom.sl_text} tp={geom.tp_text} "
+        f"risk_distance_pips={geom.risk_pips:.2f} spread_pips={spr_p} "
+        f"trigger_clearance_pips={cl_p} "
+        f"required_clearance_pips={geom.required_clearance_pips:.1f} "
+        f"intended_r={geom.expected_r:.4f} "
+        f"price_time={geom.price_time or 'n/a'} "
+        f"price_last_change_age_ms={last} "
+        f"fail_closed=true"
+    )
+
+
+def format_entry_geometry_skip(
+    symbol: str,
+    direction: str,
+    reason: str,
+    geom: LiveEntryGeometry | None = None,
+) -> str:
+    if reason == SKIP_INSUFFICIENT_SL_TRIGGER_CLEARANCE and geom is not None:
+        return format_sl_trigger_clearance_skip(geom)
     return (
         f"[ENTRY GEOMETRY SKIP] symbol={symbol} side={direction} reason={reason} "
         f"fail_closed=true (no broker OrderCreate; no M5 fallback)"

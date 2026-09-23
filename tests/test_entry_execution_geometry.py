@@ -46,7 +46,7 @@ def _fresh_quote(symbol: str, bid: float, ask: float, *, now: float | None = Non
 def test_buy_anchors_to_ask_not_m5_mid():
     mid = 1.10000
     ask = 1.10040
-    bid = 1.10020
+    bid = 1.10025
     sl_d, tp_d = 0.00020, 0.00040
     old_sl, old_tp = m5_anchored_sl_tp(mid, "BUY", sl_d, tp_d)
     assert old_sl == pytest.approx(1.09980)
@@ -74,7 +74,7 @@ def test_buy_anchors_to_ask_not_m5_mid():
 def test_sell_anchors_to_bid_not_m5_mid():
     mid = 1.10000
     bid = 1.09960
-    ask = 1.09990
+    ask = 1.09970
     sl_d, tp_d = 0.00020, 0.00040
     old_sl, old_tp = m5_anchored_sl_tp(mid, "SELL", sl_d, tp_d)
     now = time.time()
@@ -127,7 +127,7 @@ def test_aud_usd_forensic_old_r_and_new_geometry():
         sl_d,
         tp_d,
         mid,
-        quote=_fresh_quote("AUD_USD", fill, fill + 0.00034, now=now),
+        quote=_fresh_quote("AUD_USD", fill, fill + 0.00008, now=now),
         now=now,
     )
     assert skip is None and geom is not None
@@ -158,7 +158,7 @@ def test_losing_take_profit_stale_mid_new_orientation_valid():
         sl_d,
         tp_d,
         mid,
-        quote=_fresh_quote("AUD_USD", bid, bid + 0.00020, now=now),
+        quote=_fresh_quote("AUD_USD", bid, bid + 0.00008, now=now),
         now=now,
     )
     assert skip is None and geom is not None
@@ -225,8 +225,8 @@ def test_last_change_age_over_5s_is_accepted_if_bid_ask_valid():
     now = time.time()
     q = quote_from_parts(
         instrument="EUR_USD",
-        bid=1.10,
-        ask=1.1002,
+        bid=1.10010,
+        ask=1.10020,
         time_epoch=now - 10.0,
     )
     geom, skip = resolve_live_entry_geometry(
@@ -259,7 +259,7 @@ def test_untradeable_quote_fails_closed():
 
 
 def test_missing_clientprice_time_is_not_an_independent_reject():
-    q = quote_from_parts(instrument="EUR_USD", bid=1.10, ask=1.1002, time_epoch=None)
+    q = quote_from_parts(instrument="EUR_USD", bid=1.10010, ask=1.10020, time_epoch=None)
     geom, skip = resolve_live_entry_geometry(
         "EUR_USD", "BUY", 0.0002, 0.0004, 1.10, quote=q
     )
@@ -531,7 +531,7 @@ def test_no_minimum_r_or_spread_filter_in_resolver():
 # --- freshness semantics A–Z ---
 
 
-def _resolve_with_last_change_age(age_sec: float, *, bid: float = 1.10, ask: float = 1.1002):
+def _resolve_with_last_change_age(age_sec: float, *, bid: float = 1.10010, ask: float = 1.10020):
     now = time.time()
     q = quote_from_parts(
         instrument="EUR_USD",
@@ -553,7 +553,7 @@ def test_fresh_get_clientprice_time_1s_old_accepts():
 def test_fresh_get_clientprice_time_10s_old_accepts_valid_bid_ask():
     geom, skip = _resolve_with_last_change_age(10.0)
     assert skip is None and geom is not None
-    assert geom.executable_reference == pytest.approx(1.1002)
+    assert geom.executable_reference == pytest.approx(1.10020)
 
 
 def test_fresh_get_clientprice_time_60s_old_does_not_reject_on_time_alone():
@@ -776,7 +776,7 @@ def test_clientprice_time_is_diagnostic_only():
         0.0004,
         1.10,
         quote=quote_from_parts(
-            instrument="EUR_USD", bid=1.10, ask=1.1002, time_epoch=now - 45.0
+            instrument="EUR_USD", bid=1.10010, ask=1.10020, time_epoch=now - 45.0
         ),
         now=now,
         request_duration_ms=12.0,
