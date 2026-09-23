@@ -16,6 +16,8 @@ from datetime import datetime
 import requests
 
 from forex_bot.config import Config
+from forex_bot.log_redact import redact_log_text
+from forex_bot.telegram_cloud import retry_after_seconds
 
 logger = logging.getLogger(__name__)
 
@@ -46,7 +48,7 @@ def _telegram_cooldown_sec() -> float:
     return _env_timeout("TELEGRAM_COOLDOWN_SEC", 60.0)
 
 
-def _deliver_telegram(msg: str) -> bool:
+def _deliver_telegram(msg: str, *, honor_cooldown: bool = True) -> bool:
     """POST sendMessage. Returns True on HTTP 200 + ok. Never raises to the caller."""
     global _telegram_missing_logged, _fail_streak, _cooldown_until, _cooldown_logged
     token = (Config.TELEGRAM_TOKEN or "").strip()
@@ -60,7 +62,7 @@ def _deliver_telegram(msg: str) -> bool:
             _telegram_missing_logged = True
         return False
     now = time.monotonic()
-    if now < _cooldown_until:
+    if honor_cooldown and now < _cooldown_until:
         return False
     if len(msg) > 4000:
         msg = msg[:3997] + "..."
@@ -74,6 +76,19 @@ def _deliver_telegram(msg: str) -> bool:
             body = resp.json()
         except ValueError:
             body = None
+        if resp.status_code == 429:
+            header = None
+            try:
+                header = resp.headers.get("Retry-After")
+            except Exception:
+                header = None
+            wait = retry_after_seconds(
+                body if isinstance(body, dict) else None,
+                default=_telegram_cooldown_sec(),
+                header=header,
+            )
+            _pause_telegram(float(wait or _telegram_cooldown_sec()), reason="HTTP 429")
+            return False
         if resp.status_code != 200:
             logger.warning(
                 "Telegram HTTP %s: %s",
@@ -91,24 +106,49 @@ def _deliver_telegram(msg: str) -> bool:
         _cooldown_logged = False
         return True
     except Exception as exc:
-        logger.warning("Telegram request failed: %s", exc)
+        logger.warning("Telegram request failed: %s", redact_log_text(exc))
         _note_telegram_failure()
         return False
 
 
 def _note_telegram_failure() -> None:
-    global _fail_streak, _cooldown_until, _cooldown_logged
+    global _fail_streak
     _fail_streak += 1
     if _fail_streak < 3:
         return
-    _cooldown_until = time.monotonic() + _telegram_cooldown_sec()
+    _pause_telegram(_telegram_cooldown_sec(), reason=f"{_fail_streak} failures")
+
+
+def _pause_telegram(seconds: float, *, reason: str) -> None:
+    global _cooldown_until, _cooldown_logged
+    wait = max(1.0, float(seconds))
+    _cooldown_until = time.monotonic() + wait
     if not _cooldown_logged:
         logger.warning(
-            "Telegram paused for %.0fs after %s failures (trading/alerts continue in Docker logs)",
-            _telegram_cooldown_sec(),
-            _fail_streak,
+            "Telegram paused for %.0fs after %s (trading/alerts continue in Docker logs)",
+            wait,
+            reason,
         )
         _cooldown_logged = True
+
+
+def telegram_ready_in() -> float:
+    return max(0.0, float(_cooldown_until) - time.monotonic())
+
+
+def _process_alert_item(
+    kind: str, msg: str, *, sleeper=time.sleep
+) -> bool | None:
+    """Send one queued alert. Waits out Telegram cooldown so later alerts are not dropped."""
+    if kind == "tg":
+        delay = telegram_ready_in()
+        if delay > 0:
+            sleeper(delay)
+        return _deliver_telegram(msg, honor_cooldown=False)
+    if kind == "dc":
+        _deliver_discord(msg)
+        return None
+    return None
 
 
 def _deliver_discord(msg: str) -> None:
@@ -124,10 +164,7 @@ def _alert_worker() -> None:
     while True:
         kind, msg = _queue.get()
         try:
-            if kind == "tg":
-                _deliver_telegram(msg)
-            elif kind == "dc":
-                _deliver_discord(msg)
+            _process_alert_item(kind, msg)
         except Exception:
             logger.exception("alert worker failed")
         finally:

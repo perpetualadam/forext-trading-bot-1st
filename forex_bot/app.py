@@ -13,6 +13,7 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.openapi.utils import get_openapi
 
 from forex_bot.alerts import alert
+from forex_bot.log_redact import redact_log_text
 from forex_bot.ai_ensemble import ai as ai_ensemble
 from forex_bot.analytics import analytics
 from forex_bot.bot_loop import run_bot
@@ -108,14 +109,14 @@ async def telegram_inbound_loop() -> None:
     try:
         await asyncio.to_thread(sync_command_menu)
     except Exception as exc:
-        logger.warning("telegram command menu sync: %s", exc)
+        logger.warning("telegram command menu sync: %s", redact_log_text(exc))
     while True:
         try:
             await asyncio.to_thread(handle_pending_updates, lambda: _health_alert_text("BOT STATUS"))
         except asyncio.CancelledError:
             raise
         except Exception as exc:
-            logger.warning("telegram inbound: %s", exc)
+            logger.warning("telegram inbound: %s", redact_log_text(exc))
         await asyncio.sleep(2)
 
 

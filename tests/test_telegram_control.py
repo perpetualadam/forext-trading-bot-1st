@@ -16,6 +16,7 @@ from forex_bot.telegram_control import (
     REPLY_BUTTON_ROWS,
     CommandReply,
     _HANDLERS,
+    command_query,
     commands_enabled,
     dispatch_text,
     handle_command,
@@ -315,3 +316,51 @@ def test_alert_path_unchanged_when_control_configured(monkeypatch):
     t0 = __import__("time").monotonic()
     alerts.alert("still non-blocking")
     assert __import__("time").monotonic() - t0 < 0.4
+
+
+def test_search_usage_and_query_parsing():
+    assert normalize_command("/search EUR_USD") == "search"
+    assert normalize_command("/search@MyBot pnl") == "search"
+    assert command_query("/search EUR_USD") == "EUR_USD"
+    assert command_query("/search@MyBot pnl") == "pnl"
+    assert command_query("/search") == ""
+    reply = dispatch_text("/search")
+    assert reply is not None
+    assert "Usage" in reply.text
+    assert is_trading_halted_runtime() is False
+
+
+def test_search_lists_stop_but_does_not_halt():
+    reply = dispatch_text("/search stop")
+    assert reply is not None
+    assert "/stop" in reply.text
+    assert "not executed" in reply.text.lower()
+    assert is_trading_halted_runtime() is False
+
+
+def test_search_finds_open_position_symbol():
+    open_position(_pos("EUR_USD"))
+    reply = dispatch_text("/search EUR")
+    assert reply is not None
+    assert "EUR_USD" in reply.text
+    assert is_trading_halted_runtime() is False
+
+
+def test_search_unknown_query_stays_read_only():
+    reply = dispatch_text("/search zzznomatch999")
+    assert reply is not None
+    assert "No matching" in reply.text
+    assert dispatch_text("/ping") is not None
+    assert dispatch_text("hello there") is None
+    assert is_trading_halted_runtime() is False
+
+
+def test_getupdates_wait_honors_retry_after():
+    from forex_bot.telegram_control import getupdates_wait_sec
+
+    assert getupdates_wait_sec(
+        429, {"ok": False, "parameters": {"retry_after": 12}}
+    ) == 12.0
+    assert getupdates_wait_sec(502, {"ok": False, "description": "Bad Gateway"}) == 5.0
+    assert getupdates_wait_sec(409, {}) == 15.0
+    assert getupdates_wait_sec(200, {"ok": True, "result": []}) == 0.0

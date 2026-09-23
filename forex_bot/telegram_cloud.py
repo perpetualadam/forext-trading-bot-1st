@@ -17,10 +17,34 @@ TELEGRAM_API_ROOT = "https://api.telegram.org"
 
 def mask_token(url: str, token: str = "") -> str:
     """Never persist or log a raw bot token."""
-    text = str(url or "")
-    if token:
-        text = text.replace(token, "<redacted>")
-    return re.sub(r"/bot[^/\s]+", "/bot<redacted>", text)
+    from forex_bot.log_redact import mask_token as _mask
+
+    return _mask(url, token)
+
+
+def retry_after_seconds(
+    payload: Any,
+    *,
+    default: float | None = None,
+    header: str | None = None,
+) -> float | None:
+    """Telegram 429 ``parameters.retry_after``, else ``Retry-After`` header."""
+    raw = None
+    if isinstance(payload, dict):
+        params = payload.get("parameters")
+        if isinstance(params, dict):
+            raw = params.get("retry_after")
+    if raw is None and header is not None and str(header).strip():
+        raw = header
+    if raw is None:
+        return default
+    try:
+        wait = float(raw)
+    except (TypeError, ValueError):
+        return default
+    if wait < 0 or wait != wait:  # NaN
+        return default
+    return min(wait, 300.0)
 
 
 def telegram_method_url(token: str, method: str) -> str:

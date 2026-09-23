@@ -22,27 +22,29 @@ logger = logging.getLogger(__name__)
 
 def _format_oanda_error(exc: BaseException) -> str:
     """Log a short message; avoid dumping Cloudflare/OANDA HTML error pages."""
+    from forex_bot.log_redact import redact_log_text
+
     if isinstance(exc, V20Error):
         body = (exc.msg or "").strip()
         if not body:
-            return f"V20Error HTTP {exc.code}"
+            return redact_log_text(f"V20Error HTTP {exc.code}")
         low = body.lower()
         if "<html" in low or "<!doctype" in low or len(body) > 400:
-            return (
+            return redact_log_text(
                 f"V20Error HTTP {exc.code} (HTML/long body omitted; "
                 "often 502 = OANDA/Cloudflare outage — retry later)"
             )
         if exc.code == 401:
-            return (
+            return redact_log_text(
                 f"V20Error HTTP 401: {body[:400]} "
                 "(token must match TRADING_MODE: practice token for practice, live token for live)"
             )
-        return f"V20Error HTTP {exc.code}: {body[:400]}"
+        return redact_log_text(f"V20Error HTTP {exc.code}: {body[:400]}")
     text = str(exc).strip()
     low = text.lower()
     if "<html" in low or len(text) > 500:
         return f"{type(exc).__name__}: non-JSON or long response ({len(text)} chars omitted)"
-    return f"{type(exc).__name__}: {text[:500]}"
+    return redact_log_text(f"{type(exc).__name__}: {text[:500]}")
 
 _api: API | None = None
 

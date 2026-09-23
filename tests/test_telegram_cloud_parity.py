@@ -14,6 +14,7 @@ from forex_bot.telegram_cloud import (
     parse_inbound_text,
     parse_updates,
     parse_webhook,
+    retry_after_seconds,
     telegram_method_url,
     webhook_conflicts_with_local_alerts,
 )
@@ -166,6 +167,15 @@ def test_set_local_command_menu_posts_readonly_list(monkeypatch):
     assert result["ok"] is True
     assert posted["json"]["commands"] == local_command_menu()
     assert all(row["command"] in ("help", "status") for row in posted["json"]["commands"])
+
+
+def test_retry_after_seconds_reads_telegram_429_body():
+    assert retry_after_seconds(
+        {"ok": False, "error_code": 429, "parameters": {"retry_after": 12}}
+    ) == 12.0
+    assert retry_after_seconds({"ok": False, "description": "Bad Gateway"}) is None
+    assert retry_after_seconds("nope", default=5.0) == 5.0
+    assert retry_after_seconds({}, header="7") == 7.0
 
 
 def test_method_url_requires_token():

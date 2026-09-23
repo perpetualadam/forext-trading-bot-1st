@@ -25,6 +25,8 @@ from typing import Any
 import requests
 
 from forex_bot.config import Config
+from forex_bot.log_redact import redact_log_text
+from forex_bot.telegram_cloud import retry_after_seconds
 
 logger = logging.getLogger(__name__)
 
@@ -56,6 +58,7 @@ BOT_COMMANDS: list[tuple[str, str]] = [
     ("reconcile", "Last broker reconcile snapshot"),
     ("mode", "OANDA host + execution mode (read-only)"),
     ("ping", "Confirm the command listener is alive"),
+    ("search", "Find commands, symbols, or recent trades (read-only)"),
 ]
 
 _COMMAND_ALIASES: dict[str, str] = {
@@ -105,6 +108,9 @@ _COMMAND_ALIASES: dict[str, str] = {
     "reconciliation": "reconcile",
     "mode": "mode",
     "ping": "ping",
+    "search": "search",
+    "find": "search",
+    "lookup": "search",
 }
 
 _poller_lock = threading.Lock()
@@ -218,6 +224,21 @@ def normalize_command(text: str) -> str:
     return _COMMAND_ALIASES.get(stripped, stripped)
 
 
+def command_query(text: str) -> str:
+    """Return the argument after a slash/plain command, or empty."""
+    raw = (text or "").strip()
+    if not raw:
+        return ""
+    if raw.startswith("/"):
+        parts = raw.split(None, 1)
+        return parts[1].strip() if len(parts) > 1 else ""
+    if normalize_command(raw) != "search":
+        return ""
+    stripped = _LABEL_PREFIX.sub("", raw).strip()
+    parts = stripped.split(None, 1)
+    return parts[1].strip() if len(parts) > 1 else ""
+
+
 def _signed(value: float, digits: int = 2) -> str:
     return f"{value:+.{digits}f}"
 
@@ -279,6 +300,7 @@ def cmd_help() -> CommandReply:
         "▶️ Start / /start_trading / /resume = allow new entries (POST /resume).\n"
         "⏹ Stop / /stop / /halt = block new entries (POST /halt). Closes still run.\n"
         "/start and ❓ Help only show this menu — they do not start trading.\n"
+        "/search <text> finds commands, open symbols, or recent trades. It never changes trades.\n"
         "Start/Stop never shut down the process or flatten positions.\n"
         "Only the configured TELEGRAM_CHAT_ID can use these controls."
     )
@@ -661,6 +683,83 @@ def cmd_mode() -> CommandReply:
     )
 
 
+def cmd_search(query: str = "") -> CommandReply:
+    """Read-only catalog/position/trade lookup. Never halt, resume, or flatten."""
+    q = (query or "").strip()
+    if not q:
+        return CommandReply(
+            "🔎 Search (read-only)\n"
+            "Usage: /search <command, symbol, or text>\n"
+            "Examples: /search pnl  |  /search EUR  |  /search stop\n"
+            "Search lists matches only. It never starts, stops, or changes trades."
+        )
+    needle = q.lower()
+    compact = needle.replace("_", "").replace("-", "").replace(" ", "")
+    lines = [f"🔎 Search: {q}"]
+
+    cmd_hits: list[str] = []
+    seen: set[str] = set()
+    desc_by_name = {name: desc for name, desc in BOT_COMMANDS}
+    for alias, target in _COMMAND_ALIASES.items():
+        hay = f"{alias} {target} {desc_by_name.get(target, '')}".lower()
+        if needle in hay or compact and compact in hay.replace("_", ""):
+            if target in seen:
+                continue
+            seen.add(target)
+            desc = desc_by_name.get(target, "")
+            extra = f" (alias {alias})" if alias != target else ""
+            cmd_hits.append(f"/{target} — {desc}{extra}".rstrip())
+    for name, desc in BOT_COMMANDS:
+        if name in seen:
+            continue
+        if needle in name or needle in desc.lower() or compact in name.replace("_", ""):
+            seen.add(name)
+            cmd_hits.append(f"/{name} — {desc}")
+    if cmd_hits:
+        lines.append("Commands:")
+        lines.extend(cmd_hits[:8])
+        lines.append("These are not executed by search.")
+
+    from forex_bot import positions as posmod
+
+    pos_hits: list[str] = []
+    for sym, pos in sorted(posmod.positions.items()):
+        blob = f"{sym} {pos.direction} {pos.strategy_name or ''}".lower()
+        if needle in blob or compact in sym.lower().replace("_", ""):
+            pos_hits.append(
+                f"{sym} {pos.direction} {pos.units:.2f}u entry={pos.entry_price:.5f}"
+            )
+    if pos_hits:
+        lines.append("Open positions:")
+        lines.extend(pos_hits[:8])
+
+    trade_hits: list[str] = []
+    try:
+        from forex_bot.database import fetch_all_trades_ordered
+
+        rows = fetch_all_trades_ordered()[:40]
+    except Exception as exc:
+        logger.warning("telegram search trades fetch failed: %s", redact_log_text(exc))
+        rows = []
+    for r in rows:
+        sym = str(r.get("symbol") or "")
+        blob = f"{sym} {r.get('direction') or ''} {r.get('strategy') or ''}".lower()
+        if needle in blob or compact in sym.lower().replace("_", ""):
+            pnl = r.get("pnl")
+            try:
+                pnl_s = _signed(float(pnl), 5)
+            except (TypeError, ValueError):
+                pnl_s = str(pnl)
+            trade_hits.append(f"{sym} {r.get('direction')} {pnl_s}")
+    if trade_hits:
+        lines.append("Recent trades:")
+        lines.extend(trade_hits[:8])
+
+    if len(lines) == 1:
+        lines.append("No matching commands, positions, or trades.")
+    return CommandReply("\n".join(lines))
+
+
 _HANDLERS: dict[str, Any] = {
     "help": cmd_help,
     "menu": cmd_menu,
@@ -680,11 +779,18 @@ _HANDLERS: dict[str, Any] = {
     "experiment": cmd_experiment,
     "reconcile": cmd_reconcile,
     "mode": cmd_mode,
+    "search": cmd_search,
 }
 
 
-def handle_command(name: str) -> CommandReply:
+def handle_command(name: str, query: str = "") -> CommandReply:
     key = (name or "").strip().lower()
+    if key == "search":
+        try:
+            return cmd_search(query)
+        except Exception:
+            logger.exception("telegram command search failed")
+            return CommandReply("Command 'search' failed (see Docker logs). Trading is unchanged.")
     fn = _HANDLERS.get(key)
     if fn is None:
         return CommandReply(
@@ -739,7 +845,7 @@ def send_control_message(
             return False
         return True
     except Exception as exc:
-        logger.warning("Telegram control send failed: %s", exc)
+        logger.warning("Telegram control send failed: %s", redact_log_text(exc))
         return False
 
 
@@ -754,7 +860,7 @@ def _answer_callback(callback_id: str, text: str = "") -> None:
             timeout=_env_timeout("TELEGRAM_TIMEOUT_SEC", 8.0),
         )
     except Exception as exc:
-        logger.debug("answerCallbackQuery: %s", exc)
+        logger.debug("answerCallbackQuery: %s", redact_log_text(exc))
 
 
 def _register_bot_commands() -> None:
@@ -775,7 +881,7 @@ def _register_bot_commands() -> None:
         else:
             logger.warning("setMyCommands HTTP %s: %s", resp.status_code, (resp.text or "")[:200])
     except Exception as exc:
-        logger.warning("setMyCommands failed: %s", exc)
+        logger.warning("setMyCommands failed: %s", redact_log_text(exc))
 
 
 def dispatch_text(text: str) -> CommandReply | None:
@@ -783,10 +889,11 @@ def dispatch_text(text: str) -> CommandReply | None:
     name = normalize_command(text)
     if not name:
         return None
+    query = command_query(text)
     if name in _HANDLERS:
-        return handle_command(name)
+        return handle_command(name, query)
     if (text or "").strip().startswith("/"):
-        return handle_command(name)
+        return handle_command(name, query)
     return None
 
 
@@ -871,6 +978,20 @@ def _poll_timeout_sec() -> float:
     return _env_timeout("TELEGRAM_POLL_TIMEOUT_SEC", 20.0)
 
 
+def getupdates_wait_sec(status_code: int, payload: Any = None) -> float:
+    """Backoff after a getUpdates response. Honors Telegram retry_after on 429."""
+    if int(status_code) == 409:
+        return 15.0
+    retry = retry_after_seconds(payload)
+    if retry is not None:
+        return max(1.0, float(retry))
+    if int(status_code) != 200:
+        return 5.0
+    if isinstance(payload, dict) and payload.get("ok") is False:
+        return 5.0
+    return 0.0
+
+
 def _drain_backlog(token: str) -> int:
     """Advance offset past queued updates so a restart does not replay old Start/Stop."""
     offset = 0
@@ -884,7 +1005,7 @@ def _drain_backlog(token: str) -> int:
             )
             body = resp.json() if resp.content else {}
         except Exception as exc:
-            logger.warning("telegram backlog drain failed: %s", exc)
+            logger.warning("telegram backlog drain failed: %s", redact_log_text(exc))
             return offset
         updates = body.get("result") if isinstance(body, dict) else None
         if not updates:
@@ -919,11 +1040,19 @@ def _poller_loop() -> None:
                 },
                 timeout=http_timeout,
             )
+            body: dict[str, Any] | None = None
+            if resp.content:
+                try:
+                    parsed = resp.json()
+                except ValueError:
+                    parsed = None
+                if isinstance(parsed, dict):
+                    body = parsed
             if resp.status_code == 409:
                 logger.warning(
                     "Telegram getUpdates 409 (another poller?). Backing off; trading continues."
                 )
-                _stop_event.wait(15.0)
+                _stop_event.wait(getupdates_wait_sec(409, body))
                 continue
             if resp.status_code != 200:
                 logger.warning(
@@ -931,18 +1060,17 @@ def _poller_loop() -> None:
                     resp.status_code,
                     (resp.text or "")[:300],
                 )
-                _stop_event.wait(5.0)
+                _stop_event.wait(getupdates_wait_sec(resp.status_code, body))
                 continue
-            body = resp.json() if resp.content else {}
             if isinstance(body, dict) and body.get("ok") is False:
                 logger.warning("Telegram getUpdates error: %s", body)
-                _stop_event.wait(5.0)
+                _stop_event.wait(getupdates_wait_sec(resp.status_code, body))
                 continue
             process_updates(body if isinstance(body, dict) else {})
         except Exception as exc:
             if _stop_event.is_set():
                 break
-            logger.warning("Telegram poller error: %s", exc)
+            logger.warning("Telegram poller error: %s", redact_log_text(exc))
             _stop_event.wait(5.0)
     logger.info("Telegram command listener stopped")
 
