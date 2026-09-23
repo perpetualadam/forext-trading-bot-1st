@@ -305,7 +305,9 @@ def test_valid_geometry_leaves_atr_tp_r_and_units_unchanged():
     assert geom.expected_r == pytest.approx(2.0, abs=0.05)
     units_after = position_sizing("EUR_USD", 1.10000, 1.10000 - sl_d, 10_000.0)
     assert units_after == units_before
-    geom_b, skip_b = _resolve("EUR_USD", "BUY", sl_d, tp_d, 1.10000, 1.09970, 1.10020)
+    # Bid at the rounded SL so skip is independent of USE_ATR_STOPS / fallback pips.
+    sl_px = apply_broker_price_precision("EUR_USD", 1.10020 - sl_d)
+    geom_b, skip_b = _resolve("EUR_USD", "BUY", sl_d, tp_d, 1.10000, sl_px, 1.10020)
     assert skip_b == SKIP_INSUFFICIENT_SL_TRIGGER_CLEARANCE
     assert sl_d == sl_tp_distance_for_entry("EUR_USD", 0.00020)[0]
 
