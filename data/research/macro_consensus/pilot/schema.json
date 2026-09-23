@@ -1,0 +1,39 @@
+{
+  "dataset": "macro_consensus_pilot_2025",
+  "stage": "2A_PILOT",
+  "purpose": "Test whether a pre-release economist consensus can be recovered from contemporaneous public sources without look-ahead.",
+  "first_print_authority": "data/research/macro_first_print/normalized/events_2025.csv",
+  "econoday_status": "NOT_INGESTED",
+  "do_not": [
+    "replace Stage 1 first-print actuals",
+    "average conflicting providers",
+    "use today's calendar Forecast field",
+    "backtest FX or create trade rules"
+  ],
+  "fields": {
+    "record_id": "stable observation id",
+    "event_id": "Stage 1 event_id",
+    "indicator": "CPI_HEADLINE_MOM | CPI_HEADLINE_YOY | CPI_CORE_MOM | CPI_CORE_YOY | NFP_PAYROLL_CHANGE | UNEMPLOYMENT_RATE | AHE_MOM | AHE_YOY",
+    "consensus_value": "numeric or null",
+    "unit": "percent | persons",
+    "consensus_type": "SURVEY_MEDIAN | SURVEY_MEAN | SURVEY_OTHER | SINGLE_FORECAST | UNKNOWN",
+    "survey_provider": "FactSet | Reuters | FinancialJuice | UNKNOWN | none",
+    "publisher": "outlet that published the page",
+    "source_url": "page opened for this record",
+    "publication_time_original": "as printed on the source",
+    "publication_time_utc": "normalized clock or null if date-only",
+    "official_release_time_utc": "Stage 1 scheduled_time_utc",
+    "lead_time_minutes": "release minus publication; null if no clock",
+    "source_title": "page title",
+    "source_evidence_excerpt": "short excerpt only",
+    "retrieved_at": "when the page was opened for this pilot",
+    "validation_status": "VERIFIED_PRE_RELEASE | PRE_RELEASE_DATE_ONLY | SINGLE_FORECAST_ONLY | POST_RELEASE_ONLY | CONFLICTING_SOURCES | NOT_FOUND",
+    "sample_n": "survey n if disclosed",
+    "range_low": "low estimate if disclosed",
+    "range_high": "high estimate if disclosed",
+    "qa_official_first_print": "Stage 1 first print for this indicator; not replaced",
+    "qa_arithmetic_difference": "first_print minus consensus; QA only",
+    "econoday_consensus_value": "reserved; null until Econoday sample arrives",
+    "notes": "provenance / conflict / quality flags"
+  }
+}

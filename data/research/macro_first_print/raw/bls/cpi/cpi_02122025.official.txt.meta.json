@@ -1,0 +1,12 @@
+{
+  "source_url": "https://www.bls.gov/news.release/archives/cpi_02122025.htm",
+  "retrieved_at_utc": "2026-09-23T22:50:00Z",
+  "source_publication_date": "2025-02-12",
+  "release_number": null,
+  "local_raw_filename": "cpi_02122025.official.txt",
+  "sha256": "b54d0e3add549e6965b2c3a57df6ef76eef36f40b67b1a8304c24f7a943398a5",
+  "http_status": 200,
+  "content_type": "text/plain; converted-from-official-bls-html",
+  "bytes": 131828,
+  "hash_changed_from": null
+}

@@ -1,0 +1,98 @@
+{
+  "pilot_event_count": 6,
+  "events": [
+    {
+      "event_id": "CPI_2024-12_2025-01-15",
+      "event_type": "CPI",
+      "reference_period": "2024-12",
+      "official_release_time_utc": "2025-01-15T13:30:00Z",
+      "stage1_status": "VERIFIED_FIRST_PRINT",
+      "first_print": {
+        "CPI_HEADLINE_MOM": 0.4,
+        "CPI_HEADLINE_YOY": 2.9,
+        "CPI_CORE_MOM": 0.2,
+        "CPI_CORE_YOY": 3.2
+      }
+    },
+    {
+      "event_id": "CPI_2025-04_2025-05-13",
+      "event_type": "CPI",
+      "reference_period": "2025-04",
+      "official_release_time_utc": "2025-05-13T12:30:00Z",
+      "stage1_status": "VERIFIED_FIRST_PRINT",
+      "first_print": {
+        "CPI_HEADLINE_MOM": 0.2,
+        "CPI_HEADLINE_YOY": 2.3,
+        "CPI_CORE_MOM": 0.2,
+        "CPI_CORE_YOY": 2.8
+      }
+    },
+    {
+      "event_id": "CPI_2025-08_2025-09-11",
+      "event_type": "CPI",
+      "reference_period": "2025-08",
+      "official_release_time_utc": "2025-09-11T12:30:00Z",
+      "stage1_status": "VERIFIED_FIRST_PRINT",
+      "first_print": {
+        "CPI_HEADLINE_MOM": 0.4,
+        "CPI_HEADLINE_YOY": 2.9,
+        "CPI_CORE_MOM": 0.3,
+        "CPI_CORE_YOY": 3.1
+      }
+    },
+    {
+      "event_id": "EMPLOYMENT_SITUATION_2024-12_2025-01-10",
+      "event_type": "EMPLOYMENT_SITUATION",
+      "reference_period": "2024-12",
+      "official_release_time_utc": "2025-01-10T13:30:00Z",
+      "stage1_status": "VERIFIED_FIRST_PRINT",
+      "first_print": {
+        "NFP_PAYROLL_CHANGE": 256000,
+        "UNEMPLOYMENT_RATE": 4.1,
+        "AHE_MOM": 0.3,
+        "AHE_YOY": 3.9
+      }
+    },
+    {
+      "event_id": "EMPLOYMENT_SITUATION_2025-05_2025-06-06",
+      "event_type": "EMPLOYMENT_SITUATION",
+      "reference_period": "2025-05",
+      "official_release_time_utc": "2025-06-06T12:30:00Z",
+      "stage1_status": "VERIFIED_FIRST_PRINT",
+      "first_print": {
+        "NFP_PAYROLL_CHANGE": 139000,
+        "UNEMPLOYMENT_RATE": 4.2,
+        "AHE_MOM": 0.4,
+        "AHE_YOY": 3.9
+      }
+    },
+    {
+      "event_id": "EMPLOYMENT_SITUATION_2025-09_2025-11-20",
+      "event_type": "EMPLOYMENT_SITUATION",
+      "reference_period": "2025-09",
+      "official_release_time_utc": "2025-11-20T13:30:00Z",
+      "stage1_status": "VERIFIED_FIRST_PRINT",
+      "first_print": {
+        "NFP_PAYROLL_CHANGE": 119000,
+        "UNEMPLOYMENT_RATE": 4.4,
+        "AHE_MOM": 0.2,
+        "AHE_YOY": 3.8
+      }
+    }
+  ],
+  "observation_count": 50,
+  "status_counts": {
+    "VERIFIED_PRE_RELEASE": 10,
+    "PRE_RELEASE_DATE_ONLY": 35,
+    "SINGLE_FORECAST_ONLY": 4,
+    "NOT_FOUND": 1
+  },
+  "events_with_verified_pre_release": [
+    "CPI_2024-12_2025-01-15",
+    "EMPLOYMENT_SITUATION_2025-05_2025-06-06",
+    "EMPLOYMENT_SITUATION_2025-09_2025-11-20"
+  ],
+  "econoday_reserved": true,
+  "production_code_changed": false,
+  "stage1_first_prints_changed": false
+}

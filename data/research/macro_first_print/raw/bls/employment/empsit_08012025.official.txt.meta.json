@@ -1,0 +1,12 @@
+{
+  "source_url": "https://www.bls.gov/news.release/archives/empsit_08012025.htm",
+  "retrieved_at_utc": "2026-09-23T22:50:00Z",
+  "source_publication_date": "2025-08-01",
+  "release_number": null,
+  "local_raw_filename": "empsit_08012025.official.txt",
+  "sha256": "00051e87cf0a2e863c53177ef78b4889f74dd2109c9444daaecddd0de0d610d2",
+  "http_status": 200,
+  "content_type": "text/plain; converted-from-official-bls-html",
+  "bytes": 133347,
+  "hash_changed_from": null
+}

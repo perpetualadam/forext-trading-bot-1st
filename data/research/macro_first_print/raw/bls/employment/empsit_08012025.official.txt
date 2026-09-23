@@ -1,0 +1,1587 @@
+Employment Situation News Release - 2025 M07 Results 
+
+# Employment Situation News Release
+
+```
+Transmission of material in this news release is embargoed until	               USDL-25-1202
+8:30 a.m. (ET) Friday, August 1, 2025
+
+Technical information: 
+ Household data:	(202) 691-6378  *  cpsinfo@bls.gov  *  www.bls.gov/cps
+ Establishment data:	(202) 691-6555  *  cesinfo@bls.gov  *  www.bls.gov/ces
+
+Media contact:	        (202) 691-5902  *  PressOffice@bls.gov
+
+                         THE EMPLOYMENT SITUATION -- JULY 2025
+
+Total nonfarm payroll employment changed little in July (+73,000) and has shown little change 
+since April, the U.S. Bureau of Labor Statistics (BLS) reported today. The unemployment rate, 
+at 4.2 percent, also changed little in July. Employment continued to trend up in health care 
+and in social assistance. Federal government continued to lose jobs.
+
+This news release presents statistics from two monthly surveys. The household survey measures
+labor force status, including unemployment, by demographic characteristics. The establishment
+survey measures nonfarm employment, hours, and earnings by industry. For more information 
+about the concepts and statistical methodology used in these two surveys, see the Technical 
+Note.
+
+Household Survey Data
+
+Both the unemployment rate, at 4.2 percent, and the number of unemployed people, at 7.2 million, 
+changed little in July. The unemployment rate has remained in a narrow range of 4.0 percent to 
+4.2 percent since May 2024. (See table A-1.)
+
+Among the major worker groups, the unemployment rates for adult men (4.0 percent), adult women 
+(3.7 percent), teenagers (15.2 percent), Whites (3.7 percent), Blacks (7.2 percent), Asians 
+(3.9 percent), and Hispanics (5.0 percent) showed little change in July. (See tables A-1, A-2, 
+and A-3.)
+
+Among the unemployed, the number of new entrants increased by 275,000 in July to 985,000. New 
+entrants are unemployed people who are looking for their first job. (See table A-11.)
+
+In July, the number of long-term unemployed (those jobless for 27 weeks or more) increased by 
+179,000 to 1.8 million. The long-term unemployed accounted for 24.9 percent of all unemployed
+people. (See table A-12.)
+
+The labor force participation rate, at 62.2 percent, changed little in July but has declined 
+by 0.5 percentage point over the year. The employment-population ratio, at 59.6 percent, also 
+changed little over the month but was down by 0.4 percentage point over the year. (See table 
+A-1.)
+
+The number of people employed part time for economic reasons, at 4.7 million, changed little in 
+July. These individuals would have preferred full-time employment but were working part time 
+because their hours had been reduced or they were unable to find full-time jobs. (See table A-8.)
+
+The number of people not in the labor force who currently want a job changed little in July at 
+6.2 million but was up by 568,000 over the year. These individuals were not counted as unemployed
+because they were not actively looking for work during the 4 weeks preceding the survey or were 
+unavailable to take a job. (See table A-1.)
+
+Among those not in the labor force who wanted a job, the number of people marginally attached 
+to the labor force changed little at 1.7 million in July. These individuals wanted and were 
+available for work and had looked for a job sometime in the prior 12 months but had not looked
+for work in the 4 weeks preceding the survey. The number of discouraged workers decreased by 
+212,000 in July to 425,000, largely offsetting an increase in the prior month. Discouraged 
+workers are a subset of the marginally attached who believed that no jobs were available for
+them. (See Summary table A.)
+
+Establishment Survey Data
+
+Total nonfarm payroll employment changed little in July (+73,000) and has shown little change
+since April. Over the month, employment continued to trend up in health care and in social 
+assistance. Federal government continued to lose jobs. (See table B-1.)
+
+In July, health care added 55,000 jobs, above the average monthly gain of 42,000 over the prior
+12 months. Over the month, job gains occurred in ambulatory health care services (+34,000) and 
+hospitals (+16,000).
+
+Social assistance employment continued to trend up in July (+18,000), reflecting continued job
+growth in individual and family services (+21,000). 
+
+Federal government employment continued to decline in July (-12,000) and is down by 84,000 
+since reaching a peak in January. (Employees on paid leave or receiving ongoing severance pay
+are counted as employed in the establishment survey.)
+
+Employment showed little change over the month in other major industries, including mining, 
+quarrying, and oil and gas extraction; construction; manufacturing; wholesale trade; retail 
+trade; transportation and warehousing; information; financial activities; professional and 
+business services; leisure and hospitality; and other services.
+
+Average hourly earnings for all employees on private nonfarm payrolls rose by 12 cents, or 
+0.3 percent, to $36.44 in July. Over the past 12 months, average hourly earnings have 
+increased by 3.9 percent. In July, average hourly earnings of private-sector production and
+nonsupervisory employees rose by 8 cents, or 0.3 percent, to $31.34. (See tables B-3 and B-8.)
+
+The average workweek for all employees on private nonfarm payrolls edged up by 0.1 hour to 34.3
+hours in July. In manufacturing, the average workweek held at 40.1 hours, and overtime edged 
+down to 2.8 hours. The average workweek for production and nonsupervisory employees on private
+nonfarm payrolls edged up by 0.1 hour to 33.7 hours in July. (See tables B-2 and B-7.)
+
+Revisions for May and June were larger than normal. The change in total nonfarm payroll employment
+for May was revised down by 125,000, from +144,000 to +19,000, and the change for June was revised 
+down by 133,000, from +147,000 to +14,000. With these revisions, employment in May and June 
+combined is 258,000 lower than previously reported. (Monthly revisions result from additional 
+reports received from businesses and government agencies since the last published estimates and 
+from the recalculation of seasonal factors.)
+
+_____________
+The Employment Situation for August is scheduled to be released on Friday, September 5, 2025, 
+at 8:30 a.m. (ET).
+
+ ___________________________________________________________________________________________
+|											    |
+|             2025 Preliminary Benchmark Revision to Establishment Survey Data		    |
+|                           to be released on September 9, 2025				    |
+|											    |
+| Each year, the establishment survey estimates are benchmarked to comprehensive counts	    |
+| of employment from the Quarterly Census of Employment and Wages (QCEW) for the month	    |
+| of March. These counts are derived from state unemployment insurance (UI) tax records	    |
+| that nearly all employers are required to file. At 10:00 a.m. (ET) on September 9,	    |
+| 2025, BLS will release the preliminary estimate of the upcoming annual benchmark revision |
+| to the establishment survey data. This is the same day that the first-quarter 2025 data   |
+| from QCEW will be issued.			                                            |
+|											    |
+| The final benchmark revision will be issued with the publication of the January 2026	    |
+| Employment Situation news release in February 2026.					    |
+|___________________________________________________________________________________________|
+
+```
+
+HOUSEHOLD DATA Summary table A. Household data, seasonally adjusted [Numbers in thousands]
+
+| Category | July 2024 | May 2025 | June 2025 | July 2025 | Change from: June 2025- July 2025 |
+| --- | --- | --- | --- | --- | --- |
+| Employment status | | | | | |
+| Civilian noninstitutional population | 268,644 | 273,385 | 273,585 | 273,785 | 200 |
+| Civilian labor force | 168,315 | 170,510 | 170,380 | 170,342 | -38 |
+| Participation rate | 62.7 | 62.4 | 62.3 | 62.2 | -0.1 |
+| Employed | 161,219 | 163,273 | 163,366 | 163,106 | -260 |
+| Employment-population ratio | 60.0 | 59.7 | 59.7 | 59.6 | -0.1 |
+| Unemployed | 7,097 | 7,237 | 7,015 | 7,236 | 221 |
+| Unemployment rate | 4.2 | 4.2 | 4.1 | 4.2 | 0.1 |
+| Not in labor force | 100,329 | 102,875 | 103,204 | 103,443 | 239 |
+| Unemployment rates | | | | | |
+| Total, 16 years and over | 4.2 | 4.2 | 4.1 | 4.2 | 0.1 |
+| Adult men (20 years and over) | 4.0 | 3.9 | 3.9 | 4.0 | 0.1 |
+| Adult women (20 years and over) | 3.8 | 3.9 | 3.6 | 3.7 | 0.1 |
+| Teenagers (16 to 19 years) | 12.6 | 13.4 | 14.4 | 15.2 | 0.8 |
+| White | 3.8 | 3.8 | 3.6 | 3.7 | 0.1 |
+| Black or African American | 6.3 | 6.0 | 6.8 | 7.2 | 0.4 |
+| Asian | 3.7 | 3.6 | 3.5 | 3.9 | 0.4 |
+| Hispanic or Latino ethnicity | 5.3 | 5.1 | 4.8 | 5.0 | 0.2 |
+| Total, 25 years and over | 3.5 | 3.4 | 3.3 | 3.4 | 0.1 |
+| Less than a high school diploma | 6.7 | 5.5 | 5.8 | 5.5 | -0.3 |
+| High school graduates, no college | 4.6 | 4.5 | 4.0 | 4.4 | 0.4 |
+| Some college or associate degree | 3.5 | 3.3 | 3.2 | 3.0 | -0.2 |
+| Bachelor's degree and higher | 2.3 | 2.6 | 2.5 | 2.7 | 0.2 |
+| Reason for unemployment | | | | | |
+| Job losers and people who completed temporary jobs | 3,545 | 3,457 | 3,293 | 3,405 | 112 |
+| Job leavers | 855 | 704 | 825 | 784 | -41 |
+| Reentrants | 2,161 | 2,288 | 2,145 | 2,180 | 35 |
+| New entrants | 648 | 725 | 710 | 985 | 275 |
+| Duration of unemployment | | | | | |
+| Less than 5 weeks | 2,348 | 2,451 | 2,241 | 2,299 | 58 |
+| 5 to 14 weeks | 2,162 | 2,208 | 2,131 | 2,034 | -97 |
+| 15 to 26 weeks | 1,078 | 1,039 | 1,063 | 1,167 | 104 |
+| 27 weeks and over | 1,543 | 1,457 | 1,647 | 1,826 | 179 |
+| Employed people at work part time | | | | | |
+| Part time for economic reasons | 4,564 | 4,624 | 4,465 | 4,684 | 219 |
+| Slack work or business conditions | 3,001 | 3,007 | 3,109 | 3,035 | -74 |
+| Could only find part-time work | 1,195 | 1,385 | 1,161 | 1,264 | 103 |
+| Part time for noneconomic reasons | 22,048 | 22,588 | 22,556 | 22,770 | 214 |
+| People not in the labor force | | | | | |
+| Marginally attached to the labor force | 1,571 | 1,556 | 1,790 | 1,689 | -101 |
+| Discouraged workers | 408 | 381 | 637 | 425 | -212 |
+| NOTE: People whose ethnicity is identified as Hispanic or Latino may be of any race. Detail for the seasonally adjusted data shown in this table will not necessarily add to totals because of the independent seasonal adjustment of the various series. Updated population controls are introduced annually with the release of January data. | | | | | |
+
+ESTABLISHMENT DATA Summary table B. Establishment data, seasonally adjusted 
+
+| Category | July 2024 | May 2025 | June 2025(p) | July 2025(p) |
+| --- | --- | --- | --- | --- |
+| EMPLOYMENT BY SELECTED INDUSTRY (Over-the-month change, in thousands) | | | | |
+| Total nonfarm | 88 | 19 | 14 | 73 |
+| Total private | 40 | 69 | 3 | 83 |
+| Goods-producing | 12 | -13 | -13 | -13 |
+| Mining and logging | 0 | -4 | -1 | -4 |
+| Construction | 11 | 2 | 3 | 2 |
+| Manufacturing | 1 | -11 | -15 | -11 |
+| Durable goods(1) | 0 | -8 | -13 | 0 |
+| Motor vehicles and parts | 6.2 | 2.9 | -2.9 | -2.4 |
+| Nondurable goods | 1 | -3 | -2 | -11 |
+| Private service-providing | 28 | 82 | 16 | 96 |
+| Wholesale trade | 7.8 | 1.6 | -8.1 | -7.8 |
+| Retail trade | -14.6 | -14.8 | -14.3 | 15.7 |
+| Transportation and warehousing | 0.1 | -0.5 | 0.6 | 3.6 |
+| Utilities | -0.3 | 2.6 | 0.3 | -0.1 |
+| Information | -17 | 2 | 0 | -2 |
+| Financial activities | -3 | 7 | -2 | 15 |
+| Professional and business services(1) | -16 | -23 | -11 | -14 |
+| Temporary help services | -25.4 | -15.2 | -3.0 | -4.4 |
+| Private education and health services(1) | 61 | 70 | 52 | 79 |
+| Health care and social assistance | 61.5 | 72.0 | 59.0 | 73.3 |
+| Leisure and hospitality | 9 | 27 | 4 | 5 |
+| Other services | 1 | 10 | -5 | 2 |
+| Government | 48 | -50 | 11 | -10 |
+| (3-month average change, in thousands) | | | | |
+| Total nonfarm | 123 | 99 | 64 | 35 |
+| Total private | 89 | 105 | 68 | 52 |
+| WOMEN AND PRODUCTION AND NONSUPERVISORY EMPLOYEES AS A PERCENT OF ALL EMPLOYEES(2) | | | | |
+| Total nonfarm women employees | 49.9 | 49.9 | 49.9 | 49.9 |
+| Total private women employees | 48.4 | 48.4 | 48.4 | 48.4 |
+| Total private production and nonsupervisory employees | 81.4 | 81.5 | 81.5 | 81.5 |
+| HOURS AND EARNINGS ALL EMPLOYEES | | | | |
+| Total private | | | | |
+| Average weekly hours | 34.2 | 34.3 | 34.2 | 34.3 |
+| Average hourly earnings | $35.07 | $36.23 | $36.32 | $36.44 |
+| Average weekly earnings | $1,199.39 | $1,242.69 | $1,242.14 | $1,249.89 |
+| Index of aggregate weekly hours (2007=100)(3) | 115.6 | 117.0 | 116.7 | 117.1 |
+| Over-the-month percent change | -0.3 | 0.1 | -0.3 | 0.3 |
+| Index of aggregate weekly payrolls (2007=100)(4) | 193.8 | 202.7 | 202.6 | 204.0 |
+| Over-the-month percent change | -0.1 | 0.5 | 0.0 | 0.7 |
+| DIFFUSION INDEX (Over 1-month span)(5) | | | | |
+| Total private (250 industries) | 46.8 | 49.2 | 47.2 | 51.2 |
+| Manufacturing (72 industries) | 41.7 | 39.6 | 48.6 | 43.8 |
+| Footnotes (1) Includes other industries, not shown separately. (2) Data relate to production employees in mining and logging and manufacturing, construction employees in construction, and nonsupervisory employees in the service-providing industries. (3) The indexes of aggregate weekly hours are calculated by dividing the current month's estimates of aggregate hours by the corresponding annual average aggregate hours. (4) The indexes of aggregate weekly payrolls are calculated by dividing the current month's estimates of aggregate weekly payrolls by the corresponding annual average aggregate weekly payrolls. (5) Figures are the percent of industries with employment increasing plus one-half of the industries with unchanged employment, where 50 percent indicates an equal balance between industries with increasing and decreasing employment. (p) Preliminary | | | | |
+| NOTE: Data have been revised to reflect March 2024 benchmark levels and updated seasonal adjustment factors. | | | | |
+
+```
+Frequently Asked Questions about Employment and Unemployment Estimates
+
+1. Why are there two monthly measures of employment?
+
+   The household survey and establishment survey both produce sample-based estimates
+   of employment, and both have strengths and limitations. The establishment survey
+   employment series has a smaller margin of error on the measurement of month-to-
+   month change than the household survey because of its much larger sample size. An
+   over-the-month employment change of about 136,000 is statistically significant in
+   the establishment survey, while the threshold for a statistically significant change
+   in the household survey is about 600,000. However, the household survey has a more
+   expansive scope than the establishment survey because it includes self-employed
+   workers whose businesses are unincorporated, unpaid family workers, agricultural
+   workers, and private household workers, who are excluded by the establishment survey.
+   The household survey also provides estimates of employment for demographic groups.
+   For more information on the differences between the two surveys, please visit
+   www.bls.gov/web/empsit/ces_cps_trends.htm.
+
+2. Are undocumented immigrants counted in the surveys?
+
+   It is likely that both surveys include at least some undocumented immigrants. However,
+   neither the establishment nor the household survey is designed to identify the legal
+   status of workers. Therefore, it is not possible to determine how many are counted in
+   either survey. The establishment survey does not collect data on the legal status of
+   workers. The household survey does include questions which identify the foreign and
+   native born, but it does not include questions about the legal status of the foreign
+   born. Data on the foreign and native born are published each month in table A-7 of
+   The Employment Situation news release.
+
+3. Why does the establishment survey have revisions?
+
+   The establishment survey revises published estimates to improve its data series by
+   incorporating additional information that was not available at the time of the
+   initial publication of the estimates. The establishment survey revises its initial
+   monthly estimates twice, in the immediately succeeding 2 months, to incorporate
+   additional sample receipts from respondents in the survey and recalculated seasonal
+   adjustment factors. For more information on the monthly revisions, please visit
+   www.bls.gov/web/empsit/cestn.htm#Revisions-Between-Preliminary-and-Final-Data.
+
+   On an annual basis, the establishment survey incorporates a benchmark revision that
+   re-anchors estimates to nearly complete employment counts available from unemployment
+   insurance tax records. The benchmark helps to control for sampling and modeling errors
+   in the estimates. For more information on the annual benchmark revision, please visit
+   www.bls.gov/web/empsit/cesbmart.htm.
+
+4. Does the establishment survey sample include small firms?
+
+   Yes. About 45 percent of the establishment survey sample is comprised of business
+   establishments with fewer than 20 employees. The establishment survey sample is
+   designed to maximize the reliability of the statewide total nonfarm employment
+   estimate; firms from all states, size classes, and industries are appropriately
+   sampled to achieve that goal.
+
+5. Does the establishment survey account for employment from new businesses?
+
+   Yes. Monthly establishment survey estimates include an adjustment to account for
+   the net employment change generated by business births and deaths. The adjustment
+   comes from an econometric model that forecasts the monthly net jobs impact of
+   business births and deaths based on the actual past values of the net impact that
+   can be observed with a lag from the Quarterly Census of Employment and Wages. The
+   establishment survey uses modeling rather than sampling for this purpose because
+   the survey is not immediately able to bring new businesses into the sample. There
+   is an unavoidable lag between the birth of a new firm and its appearance on the
+   sampling frame and availability for selection. BLS adds new businesses to the survey
+   twice a year.
+
+6. Is the count of unemployed people limited to just those receiving unemployment
+   insurance benefits?
+
+   No. The estimate of unemployment is based on a monthly sample survey of households.
+   All people who are without jobs and are actively seeking and available to work are
+   included among the unemployed. (People on temporary layoff are included even if
+   they do not actively seek work.) There is no requirement or question relating to
+   unemployment insurance benefits in the monthly survey.
+
+7. Does the official unemployment rate exclude people who want a job but are not currently
+   looking for work?
+
+   Yes. However, there are separate estimates of people outside the labor force who
+   want a job, including those who are not currently looking because they believe no
+   jobs are available (discouraged workers). In addition, alternative measures of labor
+   underutilization (some of which include discouraged workers and other groups not
+   officially counted as unemployed) are published each month in table A-15 of The
+   Employment Situation news release. For more information about these alternative
+   measures, please visit www.bls.gov/cps/lfcharacteristics.htm#altmeasures.
+
+8. How can unusually severe weather affect employment and hours estimates?
+
+   In the establishment survey, the reference period is the pay period that includes
+   the 12th of the month. Unusually severe weather is more likely to have an impact on
+   average weekly hours than on employment. Average weekly hours are estimated for paid
+   time during the pay period, including pay for holidays, sick leave, or other time off.
+   The impact of severe weather on hours estimates typically, but not always, results in
+   a reduction in average weekly hours. For example, some employees may be off work for
+   part of the pay period and not receive pay for the time missed, while some workers,
+   such as those dealing with cleanup or repair, may work extra hours.
+   
+   It is not possible to precisely quantify the effect of extreme weather on payroll
+   employment estimates. In order for severe weather conditions to reduce employment
+   estimates, employees have to be off work without pay for the entire pay period.
+   Employees who receive pay for any part of the pay period, even 1 hour, are counted in
+   the payroll employment figures. For more information on how often employees are paid,
+   please visit www.bls.gov/ces/publications/length-pay-period.htm.
+
+   In the household survey, the reference period is generally the calendar week that
+   includes the 12th of the month. People who miss the entire week's work for weather-
+   related events are counted as employed whether or not they are paid for the time
+   off. The household survey collects data on the number of people who had a job but
+   were not at work due to bad weather. It also provides a measure of the number of
+   people who usually work full time but had reduced hours due to bad weather. 
+   
+   Current and historical data are available on the household survey's most requested
+   statistics page, please visit data.bls.gov/toppicks?survey=ln.
+
+```
+
+```
+Technical Note
+
+   This news release presents statistics from two major surveys, the Current
+Population Survey (CPS; household survey) and the Current Employment Statistics
+survey (CES; establishment survey). The household survey provides information
+on the labor force, employment, and unemployment that appears in the "A" tables,
+marked HOUSEHOLD DATA. It is a sample survey of about 60,000 eligible households
+conducted by the U.S. Census Bureau for the U.S. Bureau of Labor Statistics (BLS).
+
+   The establishment survey provides information on employment, hours, and
+earnings of employees on nonfarm payrolls; the data appear in the "B" tables,
+marked ESTABLISHMENT DATA. BLS collects these data each month from the payroll
+records of a sample of nonagricultural business establishments. Each month
+the CES program surveys about 121,000 businesses and government agencies,
+representing approximately 631,000 individual worksites, in order to provide
+detailed industry data on employment, hours, and earnings of workers on nonfarm
+payrolls. The active sample includes approximately one-third of all nonfarm
+payroll jobs.
+
+   For both surveys, the data for a given month relate to a particular week or
+pay period. In the household survey, the reference period is generally the
+calendar week that contains the 12th day of the month. In the establishment
+survey, the reference period is the pay period including the 12th, which may or
+may not correspond directly to the calendar week.
+
+Coverage, definitions, and differences between surveys
+
+   Household survey. The sample is selected to reflect the entire civilian 
+noninstitutional population. Based on responses to a series of questions on 
+work and job search activities, each person 16 years and over in a sample
+household is classified as employed, unemployed, or not in the labor force.
+
+   People are classified as employed if they did any work at all as paid employees
+during the reference week; worked in their own business, profession, or on their
+own farm; or worked without pay at least 15 hours in a family business or farm.
+People are also counted as employed if they were temporarily absent from their jobs
+because of illness, bad weather, vacation, labor-management disputes, or personal
+reasons.
+
+   People are classified as unemployed if they meet all of the following criteria:
+they had no employment during the reference week; they were available for work at
+that time; and they made specific active efforts to find employment sometime during
+the 4-week period ending with the reference week. People laid off from a job and
+expecting recall need not be looking for work to be counted as unemployed. The
+unemployment data derived from the household survey in no way depend upon the
+eligibility for or receipt of unemployment insurance benefits.
+
+   The civilian labor force is the sum of the employed and unemployed.
+Those people not classified as employed or unemployed are not in the labor 
+force. The unemployment rate is the number unemployed as a percent of the 
+labor force. The labor force participation rate is the labor force as a 
+percent of the population, and the employment-population ratio is the 
+employed as a percent of the population. Additional information about the 
+household survey can be found at www.bls.gov/cps/documentation.htm.
+
+   Establishment survey. The sample establishments are drawn from private
+nonfarm businesses such as factories, offices, and stores, as well as
+from federal, state, and local government entities. Employees on nonfarm
+payrolls are those who worked or received pay for any part of the reference pay
+period, including people on paid leave. People are counted in each job
+they hold. Hours and earnings data are produced for the private sector for
+all employees and for production and nonsupervisory employees. Production
+and nonsupervisory employees are defined as production and related employees
+in manufacturing and mining and logging, construction workers in construction,
+and nonsupervisory employees in private service-providing industries.
+
+   Industries are classified on the basis of an establishment's principal
+activity in accordance with the 2022 version of the North American Industry
+Classification System. Additional information about the establishment survey
+can be found at www.bls.gov/ces/.
+
+   Differences in employment estimates. The numerous conceptual and methodological
+differences between the household and establishment surveys result in important
+distinctions in the employment estimates derived from the surveys. Among these are:
+
+   --The household survey includes agricultural workers, self-employed workers
+     whose businesses are unincorporated, unpaid family workers, and private
+     household workers among the employed. These groups are excluded from the
+     establishment survey.
+
+   --The household survey includes people on unpaid leave among the employed.
+     The establishment survey does not.
+
+   --The household survey is limited to workers 16 years of age and older.
+     The establishment survey is not limited by age.
+
+   --The household survey has no duplication of individuals, because
+     individuals are counted only once, even if they hold more than one
+     job. In the establishment survey, employees working at more than one
+     job and thus appearing on more than one payroll are counted separately
+     for each appearance.
+
+Seasonal adjustment
+
+   Over the course of a year, the size of the nation's labor force and the levels
+of employment and unemployment undergo regularly occurring fluctuations. These 
+events may result from seasonal changes in weather, major holidays, and the opening
+and closing of schools. The effect of such seasonal variation can be very large.
+
+   Because these seasonal events follow a more or less regular pattern each year,
+their influence on the level of a series can be tempered by adjusting for regular
+seasonal variation. These adjustments make nonseasonal developments, such as
+declines in employment or increases in the participation of women in the labor
+force, easier to spot. For example, in the household survey, the large number of
+youth entering the labor force each June is likely to obscure any other changes
+that have taken place relative to May, making it difficult to determine if the 
+level of economic activity has risen or declined. Similarly, in the establishment
+survey, payroll employment in education declines by about 20 percent at the end
+of the spring term and later rises with the start of the fall term, obscuring the
+underlying employment trends in the industry. Because seasonal employment changes
+at the end and beginning of the school year can be estimated, the statistics can be
+adjusted to make underlying employment patterns more discernable. The seasonally
+adjusted figures provide a more useful tool with which to analyze changes in
+month-to-month economic activity.
+
+   Many seasonally adjusted series are independently adjusted in both the household
+and establishment surveys. However, the adjusted series for many major estimates,
+such as total payroll employment, employment in most major sectors, total employment,
+and unemployment are computed by aggregating independently adjusted component series.
+For example, total unemployment is derived by summing the adjusted series for four
+major age-sex components; this differs from the unemployment estimate that would be
+obtained by directly adjusting the total or by combining the duration, reasons, or 
+more detailed age categories. Percentage distributions of unemployment by reason and
+duration are derived from the sum of the independently seasonally adjusted component
+series and will not necessarily match calculations made using the seasonally adjusted
+total unemployment level. Additional information about seasonal adjustment in the 
+household survey can be found at www.bls.gov/cps/documentation.htm#sa.
+
+   For both the household and establishment surveys, a concurrent seasonal adjustment
+methodology is used in which new seasonal factors are calculated each month using all
+relevant data, up to and including the data for the current month. In the household
+survey, new seasonal factors are used to adjust only the current month's data. In the
+establishment survey, however, new seasonal factors are used each month to adjust the
+three most recent monthly estimates. The prior 2 months are routinely revised to
+incorporate additional sample reports and recalculated seasonal adjustment factors.
+In both surveys, 5-year revisions to historical data are made once a year.
+
+Reliability of the estimates
+
+   Statistics based on the household and establishment surveys are subject to both
+sampling and nonsampling error. When a sample, rather than the entire population,
+is surveyed, there is a chance that the sample estimates may differ from the true
+population values they represent. The component of this difference that occurs
+because samples differ by chance is known as sampling error, and its variability
+is measured by the standard error of the estimate. There is about a 90-percent
+chance, or level of confidence, that an estimate based on a sample will differ by
+no more than 1.6 standard errors from the true population value because of sampling
+error. BLS analyses are generally conducted at the 90-percent level of confidence.
+
+   For example, the confidence interval for the monthly change in total nonfarm
+employment from the establishment survey is on the order of plus or minus 136,000.
+Suppose the estimate of nonfarm employment increases by 50,000 from one month to
+the next. The 90-percent confidence interval on the monthly change would range from
+-86,000 to +186,000 (50,000 +/- 136,000). These figures do not mean that the sample
+results are off by these magnitudes, but rather that there is about a 90-percent
+chance that the true over-the-month change lies within this interval. Since this
+range includes values of less than zero, we could not say with confidence that
+nonfarm employment had, in fact, increased that month. If, however, the reported
+nonfarm employment rise was 250,000, then all of the values within the 90-percent
+confidence interval would be greater than zero. In this case, it is likely (at
+least a 90-percent chance) that nonfarm employment had, in fact, risen that month.
+At an unemployment rate of around 6.0 percent, the 90-percent confidence interval
+for the monthly change in unemployment as measured by the household survey is
+about +/- 300,000, and for the monthly change in the unemployment rate it is about
++/- 0.2 percentage point.
+
+   In general, estimates involving many individuals or establishments have lower
+standard errors (relative to the size of the estimate) than estimates which are based
+on a small number of observations. The precision of estimates also is improved when
+the data are cumulated over time, such as for quarterly and annual averages.
+
+   The household and establishment surveys are also affected by nonsampling error,
+which can occur for many reasons, including the failure to sample a segment of the
+population, inability to obtain information for all respondents in the sample,
+inability or unwillingness of respondents to provide correct information on a
+timely basis, mistakes made by respondents, and errors made in the collection or
+processing of the data.
+
+   For example, in the establishment survey, estimates for the most recent 2 months
+are based on incomplete returns; for this reason, these estimates are labeled
+preliminary in the tables. It is only after two successive revisions to a monthly
+estimate, when nearly all sample reports have been received, that the estimate is
+considered final.
+
+   Another major source of nonsampling error in the establishment survey is the
+inability to capture, on a timely basis, employment generated by new firms. To
+correct for this systematic underestimation of employment growth, an estimation
+procedure with two components is used to account for business births. The first
+component excludes employment losses from business deaths from sample-based
+estimation in order to offset the missing employment gains from business births.
+This is incorporated into the sample-based estimation procedure by simply not
+reflecting sample units going out of business, but imputing to them the same
+employment trend as the other firms in the sample. This procedure accounts for
+most of the net birth/death employment.
+
+   The second component is an ARIMA time series model designed to estimate the
+residual net birth/death employment not accounted for by the imputation. The
+historical time series used to create and test the ARIMA model was derived from
+the unemployment insurance universe micro-level database and reflects the actual
+residual net of births and deaths over the past 5 years.
+
+   The sample-based estimates from the establishment survey are adjusted once a
+year (on a lagged basis) to universe counts of payroll employment obtained from
+administrative records of the unemployment insurance program. The difference 
+between the March sample-based employment estimates and the March universe counts
+is known as a benchmark revision, and serves as a rough proxy for total survey
+error. Benchmarks also incorporate changes in the classification of industries
+when necessary. Over the past decade, absolute benchmark revisions for total nonfarm
+employment have averaged 0.1 percent, with a range from -0.3 percent to 0.3 percent.
+
+Other information
+
+   If you are deaf, hard of hearing, or have a speech disability, please dial 7-1-1
+to access telecommunications relay services.
+
+```
+
+HOUSEHOLD DATA Table A-1. Employment status of the civilian population by sex and age [Numbers in thousands]
+
+| Employment status, sex, and age | Not seasonally adjusted | | | Seasonally adjusted(1) | | | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | June 2025 | July 2025 | July 2024 | Mar. 2025 | Apr. 2025 | May 2025 | June 2025 | July 2025 |
+| TOTAL | | | | | | | | | |
+| Civilian noninstitutional population | 268,644 | 273,585 | 273,785 | 268,644 | 273,023 | 273,197 | 273,385 | 273,585 | 273,785 |
+| Civilian labor force | 169,723 | 171,343 | 171,646 | 168,315 | 170,591 | 171,135 | 170,510 | 170,380 | 170,342 |
+| Participation rate | 63.2 | 62.6 | 62.7 | 62.7 | 62.5 | 62.6 | 62.4 | 62.3 | 62.2 |
+| Employed | 162,038 | 163,883 | 163,799 | 161,219 | 163,508 | 163,969 | 163,273 | 163,366 | 163,106 |
+| Employment-population ratio | 60.3 | 59.9 | 59.8 | 60.0 | 59.9 | 60.0 | 59.7 | 59.7 | 59.6 |
+| Unemployed | 7,685 | 7,460 | 7,847 | 7,097 | 7,083 | 7,166 | 7,237 | 7,015 | 7,236 |
+| Unemployment rate | 4.5 | 4.4 | 4.6 | 4.2 | 4.2 | 4.2 | 4.2 | 4.1 | 4.2 |
+| Not in labor force | 98,921 | 102,242 | 102,140 | 100,329 | 102,431 | 102,062 | 102,875 | 103,204 | 103,443 |
+| People who currently want a job | 5,950 | 6,455 | 6,533 | 5,607 | 5,915 | 5,672 | 5,991 | 6,030 | 6,175 |
+| Men, 16 years and over | | | | | | | | | |
+| Civilian noninstitutional population | 130,975 | 133,449 | 133,546 | 130,975 | 133,175 | 133,260 | 133,351 | 133,449 | 133,546 |
+| Civilian labor force | 90,256 | 91,247 | 91,334 | 89,194 | 90,244 | 90,693 | 90,392 | 90,461 | 90,319 |
+| Participation rate | 68.9 | 68.4 | 68.4 | 68.1 | 67.8 | 68.1 | 67.8 | 67.8 | 67.6 |
+| Employed | 86,368 | 87,272 | 87,317 | 85,347 | 86,443 | 86,733 | 86,486 | 86,575 | 86,347 |
+| Employment-population ratio | 65.9 | 65.4 | 65.4 | 65.2 | 64.9 | 65.1 | 64.9 | 64.9 | 64.7 |
+| Unemployed | 3,889 | 3,975 | 4,017 | 3,846 | 3,800 | 3,960 | 3,906 | 3,886 | 3,973 |
+| Unemployment rate | 4.3 | 4.4 | 4.4 | 4.3 | 4.2 | 4.4 | 4.3 | 4.3 | 4.4 |
+| Not in labor force | 40,719 | 42,202 | 42,212 | 41,781 | 42,932 | 42,567 | 42,959 | 42,988 | 43,227 |
+| Men, 20 years and over | | | | | | | | | |
+| Civilian noninstitutional population | 122,021 | 124,361 | 124,462 | 122,021 | 124,082 | 124,166 | 124,261 | 124,361 | 124,462 |
+| Civilian labor force | 86,388 | 87,428 | 87,478 | 85,991 | 86,887 | 87,309 | 87,087 | 87,250 | 87,111 |
+| Participation rate | 70.8 | 70.3 | 70.3 | 70.5 | 70.0 | 70.3 | 70.1 | 70.2 | 70.0 |
+| Employed | 83,026 | 84,147 | 84,106 | 82,573 | 83,563 | 83,858 | 83,704 | 83,872 | 83,660 |
+| Employment-population ratio | 68.0 | 67.7 | 67.6 | 67.7 | 67.3 | 67.5 | 67.4 | 67.4 | 67.2 |
+| Unemployed | 3,362 | 3,281 | 3,372 | 3,418 | 3,324 | 3,451 | 3,383 | 3,378 | 3,450 |
+| Unemployment rate | 3.9 | 3.8 | 3.9 | 4.0 | 3.8 | 4.0 | 3.9 | 3.9 | 4.0 |
+| Not in labor force | 35,633 | 36,933 | 36,984 | 36,031 | 37,195 | 36,857 | 37,174 | 37,111 | 37,351 |
+| Women, 16 years and over | | | | | | | | | |
+| Civilian noninstitutional population | 137,669 | 140,136 | 140,239 | 137,669 | 139,848 | 139,937 | 140,033 | 140,136 | 140,239 |
+| Civilian labor force | 79,467 | 80,095 | 80,311 | 79,122 | 80,348 | 80,442 | 80,118 | 79,920 | 80,023 |
+| Participation rate | 57.7 | 57.2 | 57.3 | 57.5 | 57.5 | 57.5 | 57.2 | 57.0 | 57.1 |
+| Employed | 75,670 | 76,611 | 76,482 | 75,871 | 77,065 | 77,236 | 76,787 | 76,791 | 76,760 |
+| Employment-population ratio | 55.0 | 54.7 | 54.5 | 55.1 | 55.1 | 55.2 | 54.8 | 54.8 | 54.7 |
+| Unemployed | 3,797 | 3,484 | 3,830 | 3,250 | 3,283 | 3,206 | 3,331 | 3,129 | 3,263 |
+| Unemployment rate | 4.8 | 4.4 | 4.8 | 4.1 | 4.1 | 4.0 | 4.2 | 3.9 | 4.1 |
+| Not in labor force | 58,203 | 60,041 | 59,928 | 58,547 | 59,500 | 59,495 | 59,915 | 60,216 | 60,216 |
+| Women, 20 years and over | | | | | | | | | |
+| Civilian noninstitutional population | 129,021 | 131,374 | 131,481 | 129,021 | 131,080 | 131,167 | 131,268 | 131,374 | 131,481 |
+| Civilian labor force | 75,657 | 76,552 | 76,672 | 75,954 | 76,997 | 77,241 | 76,968 | 76,865 | 76,991 |
+| Participation rate | 58.6 | 58.3 | 58.3 | 58.9 | 58.7 | 58.9 | 58.6 | 58.5 | 58.6 |
+| Employed | 72,348 | 73,630 | 73,404 | 73,076 | 74,159 | 74,379 | 73,979 | 74,134 | 74,155 |
+| Employment-population ratio | 56.1 | 56.0 | 55.8 | 56.6 | 56.6 | 56.7 | 56.4 | 56.4 | 56.4 |
+| Unemployed | 3,309 | 2,923 | 3,268 | 2,878 | 2,838 | 2,862 | 2,989 | 2,732 | 2,836 |
+| Unemployment rate | 4.4 | 3.8 | 4.3 | 3.8 | 3.7 | 3.7 | 3.9 | 3.6 | 3.7 |
+| Not in labor force | 53,364 | 54,822 | 54,809 | 53,067 | 54,082 | 53,926 | 54,300 | 54,509 | 54,490 |
+| Both sexes, 16 to 19 years | | | | | | | | | |
+| Civilian noninstitutional population | 17,602 | 17,850 | 17,843 | 17,602 | 17,862 | 17,863 | 17,856 | 17,850 | 17,843 |
+| Civilian labor force | 7,678 | 7,363 | 7,496 | 6,371 | 6,707 | 6,585 | 6,456 | 6,265 | 6,241 |
+| Participation rate | 43.6 | 41.2 | 42.0 | 36.2 | 37.6 | 36.9 | 36.2 | 35.1 | 35.0 |
+| Employed | 6,664 | 6,107 | 6,288 | 5,570 | 5,786 | 5,732 | 5,590 | 5,361 | 5,291 |
+| Employment-population ratio | 37.9 | 34.2 | 35.2 | 31.6 | 32.4 | 32.1 | 31.3 | 30.0 | 29.7 |
+| Unemployed | 1,014 | 1,256 | 1,207 | 801 | 921 | 853 | 866 | 905 | 950 |
+| Unemployment rate | 13.2 | 17.1 | 16.1 | 12.6 | 13.7 | 13.0 | 13.4 | 14.4 | 15.2 |
+| Not in labor force | 9,924 | 10,487 | 10,347 | 11,232 | 11,154 | 11,279 | 11,400 | 11,584 | 11,602 |
+| Footnotes (1) The population figures are not adjusted for seasonal variation; therefore, identical numbers appear in the unadjusted and seasonally adjusted columns. | | | | | | | | | |
+| NOTE: Updated population controls are introduced annually with the release of January data. | | | | | | | | | |
+
+HOUSEHOLD DATA Table A-2. Employment status of the civilian population by race, sex, and age [Numbers in thousands]
+
+| Employment status, race, sex, and age | Not seasonally adjusted | | | Seasonally adjusted(1) | | | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | June 2025 | July 2025 | July 2024 | Mar. 2025 | Apr. 2025 | May 2025 | June 2025 | July 2025 |
+| WHITE | | | | | | | | | |
+| Civilian noninstitutional population | 205,114 | 207,472 | 207,569 | 205,114 | 207,221 | 207,291 | 207,377 | 207,472 | 207,569 |
+| Civilian labor force | 128,804 | 129,114 | 129,515 | 127,863 | 128,769 | 129,149 | 128,538 | 128,514 | 128,628 |
+| Participation rate | 62.8 | 62.2 | 62.4 | 62.3 | 62.1 | 62.3 | 62.0 | 61.9 | 62.0 |
+| Employed | 123,595 | 124,209 | 124,367 | 123,012 | 123,993 | 124,198 | 123,605 | 123,899 | 123,864 |
+| Employment-population ratio | 60.3 | 59.9 | 59.9 | 60.0 | 59.8 | 59.9 | 59.6 | 59.7 | 59.7 |
+| Unemployed | 5,209 | 4,905 | 5,149 | 4,852 | 4,776 | 4,952 | 4,934 | 4,615 | 4,764 |
+| Unemployment rate | 4.0 | 3.8 | 4.0 | 3.8 | 3.7 | 3.8 | 3.8 | 3.6 | 3.7 |
+| Not in labor force | 76,311 | 78,358 | 78,054 | 77,251 | 78,452 | 78,142 | 78,839 | 78,958 | 78,941 |
+| Men, 20 years and over | | | | | | | | | |
+| Civilian labor force | 66,534 | 66,789 | 66,982 | 66,311 | 66,454 | 66,754 | 66,593 | 66,664 | 66,741 |
+| Participation rate | 70.3 | 69.7 | 69.9 | 70.1 | 69.5 | 69.8 | 69.6 | 69.6 | 69.6 |
+| Employed | 64,312 | 64,617 | 64,734 | 64,003 | 64,217 | 64,276 | 64,200 | 64,415 | 64,414 |
+| Employment-population ratio | 68.0 | 67.5 | 67.6 | 67.6 | 67.1 | 67.2 | 67.1 | 67.3 | 67.2 |
+| Unemployed | 2,222 | 2,172 | 2,249 | 2,309 | 2,237 | 2,478 | 2,392 | 2,250 | 2,327 |
+| Unemployment rate | 3.3 | 3.3 | 3.4 | 3.5 | 3.4 | 3.7 | 3.6 | 3.4 | 3.5 |
+| Women, 20 years and over | | | | | | | | | |
+| Civilian labor force | 56,257 | 56,671 | 56,728 | 56,525 | 57,193 | 57,326 | 56,923 | 57,000 | 57,008 |
+| Participation rate | 57.5 | 57.3 | 57.3 | 57.8 | 57.9 | 58.0 | 57.6 | 57.6 | 57.6 |
+| Employed | 54,005 | 54,779 | 54,671 | 54,585 | 55,307 | 55,440 | 55,047 | 55,244 | 55,259 |
+| Employment-population ratio | 55.2 | 55.4 | 55.2 | 55.8 | 56.0 | 56.1 | 55.7 | 55.9 | 55.8 |
+| Unemployed | 2,252 | 1,892 | 2,057 | 1,940 | 1,887 | 1,887 | 1,876 | 1,756 | 1,749 |
+| Unemployment rate | 4.0 | 3.3 | 3.6 | 3.4 | 3.3 | 3.3 | 3.3 | 3.1 | 3.1 |
+| Both sexes, 16 to 19 years | | | | | | | | | |
+| Civilian labor force | 6,013 | 5,654 | 5,805 | 5,027 | 5,122 | 5,069 | 5,023 | 4,850 | 4,879 |
+| Participation rate | 47.3 | 44.2 | 45.4 | 39.5 | 40.0 | 39.5 | 39.2 | 37.9 | 38.2 |
+| Employed | 5,279 | 4,814 | 4,962 | 4,424 | 4,470 | 4,482 | 4,358 | 4,241 | 4,191 |
+| Employment-population ratio | 41.5 | 37.6 | 38.8 | 34.8 | 34.9 | 35.0 | 34.0 | 33.1 | 32.8 |
+| Unemployed | 734 | 841 | 843 | 603 | 653 | 587 | 665 | 609 | 688 |
+| Unemployment rate | 12.2 | 14.9 | 14.5 | 12.0 | 12.7 | 11.6 | 13.2 | 12.6 | 14.1 |
+| BLACK OR AFRICAN AMERICAN | | | | | | | | | |
+| Civilian noninstitutional population | 35,017 | 35,784 | 35,818 | 35,017 | 35,687 | 35,719 | 35,751 | 35,784 | 35,818 |
+| Civilian labor force | 22,346 | 22,317 | 22,314 | 22,109 | 22,196 | 22,185 | 22,174 | 22,161 | 22,071 |
+| Participation rate | 63.8 | 62.4 | 62.3 | 63.1 | 62.2 | 62.1 | 62.0 | 61.9 | 61.6 |
+| Employed | 20,819 | 20,707 | 20,543 | 20,724 | 20,826 | 20,787 | 20,843 | 20,650 | 20,484 |
+| Employment-population ratio | 59.5 | 57.9 | 57.4 | 59.2 | 58.4 | 58.2 | 58.3 | 57.7 | 57.2 |
+| Unemployed | 1,526 | 1,610 | 1,771 | 1,385 | 1,370 | 1,399 | 1,332 | 1,511 | 1,587 |
+| Unemployment rate | 6.8 | 7.2 | 7.9 | 6.3 | 6.2 | 6.3 | 6.0 | 6.8 | 7.2 |
+| Not in labor force | 12,671 | 13,467 | 13,504 | 12,908 | 13,491 | 13,534 | 13,577 | 13,623 | 13,747 |
+| Men, 20 years and over | | | | | | | | | |
+| Civilian labor force | 10,445 | 10,527 | 10,415 | 10,367 | 10,511 | 10,504 | 10,409 | 10,473 | 10,346 |
+| Participation rate | 70.2 | 69.2 | 68.4 | 69.7 | 69.3 | 69.2 | 68.5 | 68.8 | 67.9 |
+| Employed | 9,749 | 9,813 | 9,675 | 9,681 | 9,870 | 9,917 | 9,869 | 9,752 | 9,623 |
+| Employment-population ratio | 65.5 | 64.5 | 63.5 | 65.1 | 65.1 | 65.3 | 64.9 | 64.1 | 63.2 |
+| Unemployed | 696 | 713 | 740 | 686 | 641 | 587 | 540 | 721 | 723 |
+| Unemployment rate | 6.7 | 6.8 | 7.1 | 6.6 | 6.1 | 5.6 | 5.2 | 6.9 | 7.0 |
+| Women, 20 years and over | | | | | | | | | |
+| Civilian labor force | 11,019 | 10,871 | 10,948 | 11,021 | 10,857 | 10,923 | 11,016 | 10,883 | 10,941 |
+| Participation rate | 62.9 | 60.8 | 61.2 | 62.9 | 60.9 | 61.2 | 61.7 | 60.9 | 61.1 |
+| Employed | 10,331 | 10,188 | 10,145 | 10,418 | 10,300 | 10,260 | 10,332 | 10,248 | 10,247 |
+| Employment-population ratio | 59.0 | 57.0 | 56.7 | 59.5 | 57.8 | 57.5 | 57.8 | 57.3 | 57.2 |
+| Unemployed | 688 | 682 | 802 | 603 | 557 | 663 | 684 | 634 | 694 |
+| Unemployment rate | 6.2 | 6.3 | 7.3 | 5.5 | 5.1 | 6.1 | 6.2 | 5.8 | 6.3 |
+| Both sexes, 16 to 19 years | | | | | | | | | |
+| Civilian labor force | 881 | 919 | 951 | 722 | 828 | 759 | 749 | 806 | 783 |
+| Participation rate | 33.6 | 34.3 | 35.5 | 27.5 | 30.9 | 28.3 | 27.9 | 30.0 | 29.2 |
+| Employed | 739 | 706 | 723 | 625 | 655 | 610 | 641 | 651 | 614 |
+| Employment-population ratio | 28.2 | 26.3 | 26.9 | 23.8 | 24.5 | 22.8 | 23.9 | 24.3 | 22.9 |
+| Unemployed | 142 | 214 | 229 | 97 | 172 | 149 | 108 | 155 | 170 |
+| Unemployment rate | 16.1 | 23.3 | 24.1 | 13.4 | 20.8 | 19.6 | 14.4 | 19.2 | 21.7 |
+| ASIAN | | | | | | | | | |
+| Civilian noninstitutional population | 17,971 | 19,294 | 19,313 | 17,971 | 19,241 | 19,272 | 19,291 | 19,294 | 19,313 |
+| Civilian labor force | 11,924 | 12,712 | 12,647 | 11,804 | 12,653 | 12,717 | 12,708 | 12,633 | 12,530 |
+| Participation rate | 66.4 | 65.9 | 65.5 | 65.7 | 65.8 | 66.0 | 65.9 | 65.5 | 64.9 |
+| Employed | 11,466 | 12,221 | 12,123 | 11,371 | 12,213 | 12,332 | 12,247 | 12,186 | 12,036 |
+| Employment-population ratio | 63.8 | 63.3 | 62.8 | 63.3 | 63.5 | 64.0 | 63.5 | 63.2 | 62.3 |
+| Unemployed | 459 | 491 | 524 | 432 | 441 | 385 | 461 | 447 | 494 |
+| Unemployment rate | 3.8 | 3.9 | 4.1 | 3.7 | 3.5 | 3.0 | 3.6 | 3.5 | 3.9 |
+| Not in labor force | 6,047 | 6,582 | 6,666 | 6,167 | 6,588 | 6,555 | 6,583 | 6,661 | 6,783 |
+| Footnotes (1) The population figures are not adjusted for seasonal variation; therefore, identical numbers appear in the unadjusted and seasonally adjusted columns. | | | | | | | | | |
+| NOTE: Estimates for the above race groups will not sum to totals shown in table A-1 because data are not presented for all races. Updated population controls are introduced annually with the release of January data. | | | | | | | | | |
+
+HOUSEHOLD DATA Table A-3. Employment status of the Hispanic or Latino population by sex and age [Numbers in thousands]
+
+| Employment status, sex, and age | Not seasonally adjusted | | | Seasonally adjusted(1) | | | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | June 2025 | July 2025 | July 2024 | Mar. 2025 | Apr. 2025 | May 2025 | June 2025 | July 2025 |
+| HISPANIC OR LATINO ETHNICITY | | | | | | | | | |
+| Civilian noninstitutional population | 48,966 | 51,406 | 51,514 | 48,966 | 51,083 | 51,191 | 51,297 | 51,406 | 51,514 |
+| Civilian labor force | 33,011 | 34,466 | 34,585 | 32,951 | 34,330 | 34,446 | 34,452 | 34,318 | 34,500 |
+| Participation rate | 67.4 | 67.0 | 67.1 | 67.3 | 67.2 | 67.3 | 67.2 | 66.8 | 67.0 |
+| Employed | 31,207 | 32,831 | 32,807 | 31,200 | 32,578 | 32,650 | 32,682 | 32,686 | 32,773 |
+| Employment-population ratio | 63.7 | 63.9 | 63.7 | 63.7 | 63.8 | 63.8 | 63.7 | 63.6 | 63.6 |
+| Unemployed | 1,805 | 1,635 | 1,778 | 1,751 | 1,752 | 1,795 | 1,770 | 1,632 | 1,727 |
+| Unemployment rate | 5.5 | 4.7 | 5.1 | 5.3 | 5.1 | 5.2 | 5.1 | 4.8 | 5.0 |
+| Not in labor force | 15,954 | 16,940 | 16,930 | 16,015 | 16,753 | 16,745 | 16,845 | 17,088 | 17,014 |
+| Men, 20 years and over | | | | | | | | | |
+| Civilian labor force | 17,718 | 18,483 | 18,448 | 17,702 | 18,301 | 18,410 | 18,431 | 18,455 | 18,435 |
+| Participation rate | 80.1 | 79.3 | 79.0 | 80.0 | 79.1 | 79.4 | 79.3 | 79.2 | 78.9 |
+| Employed | 16,990 | 17,797 | 17,723 | 16,921 | 17,476 | 17,488 | 17,610 | 17,694 | 17,652 |
+| Employment-population ratio | 76.8 | 76.4 | 75.9 | 76.5 | 75.5 | 75.4 | 75.7 | 75.9 | 75.6 |
+| Unemployed | 728 | 686 | 725 | 781 | 825 | 921 | 821 | 761 | 782 |
+| Unemployment rate | 4.1 | 3.7 | 3.9 | 4.4 | 4.5 | 5.0 | 4.5 | 4.1 | 4.2 |
+| Women, 20 years and over | | | | | | | | | |
+| Civilian labor force | 13,583 | 14,291 | 14,348 | 13,709 | 14,398 | 14,512 | 14,473 | 14,305 | 14,450 |
+| Participation rate | 61.1 | 61.3 | 61.4 | 61.7 | 62.1 | 62.5 | 62.2 | 61.3 | 61.8 |
+| Employed | 12,807 | 13,639 | 13,662 | 12,967 | 13,732 | 13,846 | 13,742 | 13,668 | 13,797 |
+| Employment-population ratio | 57.6 | 58.5 | 58.4 | 58.3 | 59.3 | 59.6 | 59.1 | 58.6 | 59.0 |
+| Unemployed | 776 | 653 | 686 | 742 | 666 | 666 | 731 | 637 | 652 |
+| Unemployment rate | 5.7 | 4.6 | 4.8 | 5.4 | 4.6 | 4.6 | 5.0 | 4.5 | 4.5 |
+| Both sexes, 16 to 19 years | | | | | | | | | |
+| Civilian labor force | 1,711 | 1,692 | 1,789 | 1,540 | 1,631 | 1,523 | 1,549 | 1,558 | 1,616 |
+| Participation rate | 37.2 | 35.4 | 37.4 | 33.5 | 34.2 | 31.9 | 32.4 | 32.6 | 33.8 |
+| Employed | 1,409 | 1,396 | 1,421 | 1,312 | 1,370 | 1,316 | 1,330 | 1,324 | 1,323 |
+| Employment-population ratio | 30.6 | 29.2 | 29.7 | 28.5 | 28.8 | 27.6 | 27.9 | 27.7 | 27.7 |
+| Unemployed | 302 | 296 | 368 | 228 | 261 | 208 | 218 | 234 | 292 |
+| Unemployment rate | 17.6 | 17.5 | 20.6 | 14.8 | 16.0 | 13.6 | 14.1 | 15.0 | 18.1 |
+| Footnotes (1) The population figures are not adjusted for seasonal variation; therefore, identical numbers appear in the unadjusted and seasonally adjusted columns. | | | | | | | | | |
+| NOTE: People whose ethnicity is identified as Hispanic or Latino may be of any race. Updated population controls are introduced annually with the release of January data. | | | | | | | | | |
+
+HOUSEHOLD DATA Table A-4. Employment status of the civilian population 25 years and over by educational attainment [Numbers in thousands]
+
+| Educational attainment | Not seasonally adjusted | | | Seasonally adjusted | | | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | June 2025 | July 2025 | July 2024 | Mar. 2025 | Apr. 2025 | May 2025 | June 2025 | July 2025 |
+| Less than a high school diploma | | | | | | | | | |
+| Civilian labor force | 8,997 | 9,228 | 8,839 | 9,194 | 9,061 | 8,891 | 9,055 | 9,019 | 9,036 |
+| Participation rate | 47.9 | 47.3 | 47.9 | 48.9 | 48.1 | 46.4 | 46.6 | 46.2 | 49.0 |
+| Employed | 8,408 | 8,753 | 8,365 | 8,578 | 8,538 | 8,344 | 8,553 | 8,496 | 8,534 |
+| Employment-population ratio | 44.8 | 44.8 | 45.4 | 45.7 | 45.3 | 43.6 | 44.0 | 43.5 | 46.3 |
+| Unemployed | 589 | 475 | 474 | 616 | 523 | 546 | 502 | 522 | 501 |
+| Unemployment rate | 6.5 | 5.1 | 5.4 | 6.7 | 5.8 | 6.1 | 5.5 | 5.8 | 5.5 |
+| High school graduates, no college(1) | | | | | | | | | |
+| Civilian labor force | 36,537 | 36,289 | 36,103 | 36,686 | 36,023 | 36,525 | 36,460 | 36,569 | 36,255 |
+| Participation rate | 56.7 | 56.7 | 56.2 | 56.9 | 56.4 | 56.7 | 56.6 | 57.1 | 56.5 |
+| Employed | 34,832 | 34,916 | 34,487 | 34,985 | 34,538 | 35,069 | 34,836 | 35,124 | 34,658 |
+| Employment-population ratio | 54.1 | 54.5 | 53.7 | 54.3 | 54.1 | 54.5 | 54.1 | 54.8 | 54.0 |
+| Unemployed | 1,705 | 1,373 | 1,616 | 1,701 | 1,485 | 1,456 | 1,623 | 1,446 | 1,597 |
+| Unemployment rate | 4.7 | 3.8 | 4.5 | 4.6 | 4.1 | 4.0 | 4.5 | 4.0 | 4.4 |
+| Some college or associate degree | | | | | | | | | |
+| Civilian labor force | 35,537 | 36,102 | 36,031 | 35,697 | 36,196 | 36,491 | 36,128 | 36,218 | 36,212 |
+| Participation rate | 62.7 | 62.7 | 62.7 | 63.0 | 62.5 | 62.8 | 62.8 | 62.9 | 63.0 |
+| Employed | 34,198 | 34,951 | 34,891 | 34,434 | 34,930 | 35,157 | 34,946 | 35,069 | 35,129 |
+| Employment-population ratio | 60.4 | 60.7 | 60.7 | 60.8 | 60.3 | 60.5 | 60.8 | 60.9 | 61.1 |
+| Unemployed | 1,339 | 1,151 | 1,140 | 1,263 | 1,266 | 1,334 | 1,181 | 1,149 | 1,083 |
+| Unemployment rate | 3.8 | 3.2 | 3.2 | 3.5 | 3.5 | 3.7 | 3.3 | 3.2 | 3.0 |
+| Bachelor's degree and higher(2) | | | | | | | | | |
+| Civilian labor force | 65,086 | 66,266 | 67,011 | 65,248 | 66,752 | 66,666 | 66,744 | 66,761 | 67,178 |
+| Participation rate | 72.5 | 71.5 | 71.4 | 72.7 | 72.0 | 72.7 | 72.3 | 72.0 | 71.5 |
+| Employed | 63,340 | 64,486 | 64,940 | 63,719 | 65,014 | 65,005 | 65,022 | 65,089 | 65,339 |
+| Employment-population ratio | 70.5 | 69.5 | 69.2 | 71.0 | 70.1 | 70.9 | 70.4 | 70.2 | 69.6 |
+| Unemployed | 1,746 | 1,779 | 2,071 | 1,529 | 1,738 | 1,661 | 1,722 | 1,672 | 1,838 |
+| Unemployment rate | 2.7 | 2.7 | 3.1 | 2.3 | 2.6 | 2.5 | 2.6 | 2.5 | 2.7 |
+| Footnotes (1) Includes people with a high school diploma or equivalent. (2) Includes people with bachelor's, master's, professional, and doctoral degrees. | | | | | | | | | |
+| NOTE: Detail for the seasonally adjusted data shown in this table will not necessarily add to totals for those 25 years and over because of the independent seasonal adjustment of the various series. Updated population controls are introduced annually with the release of January data. | | | | | | | | | |
+
+HOUSEHOLD DATA Table A-5. Employment status of the civilian population 18 years and over by veteran status, period of service, and sex, not seasonally adjusted [Numbers in thousands]
+
+| Employment status, veteran status, and period of service | Total | | Men | | Women | |
+| --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | July 2025 | July 2024 | July 2025 | July 2024 | July 2025 |
+| VETERANS, 18 years and over | | | | | | |
+| Civilian noninstitutional population | 17,556 | 17,241 | 15,505 | 15,163 | 2,051 | 2,078 |
+| Civilian labor force | 8,374 | 8,240 | 7,222 | 7,044 | 1,152 | 1,196 |
+| Participation rate | 47.7 | 47.8 | 46.6 | 46.5 | 56.2 | 57.6 |
+| Employed | 8,119 | 7,996 | 7,025 | 6,852 | 1,094 | 1,144 |
+| Employment-population ratio | 46.2 | 46.4 | 45.3 | 45.2 | 53.4 | 55.0 |
+| Unemployed | 255 | 244 | 197 | 192 | 57 | 52 |
+| Unemployment rate | 3.0 | 3.0 | 2.7 | 2.7 | 5.0 | 4.4 |
+| Not in labor force | 9,182 | 9,001 | 8,283 | 8,119 | 899 | 882 |
+| Gulf War-era II veterans | | | | | | |
+| Civilian noninstitutional population | 5,299 | 5,692 | 4,365 | 4,674 | 934 | 1,018 |
+| Civilian labor force | 4,181 | 4,390 | 3,508 | 3,610 | 674 | 780 |
+| Participation rate | 78.9 | 77.1 | 80.4 | 77.2 | 72.1 | 76.6 |
+| Employed | 4,046 | 4,253 | 3,410 | 3,511 | 636 | 742 |
+| Employment-population ratio | 76.4 | 74.7 | 78.1 | 75.1 | 68.1 | 72.9 |
+| Unemployed | 135 | 137 | 97 | 99 | 37 | 38 |
+| Unemployment rate | 3.2 | 3.1 | 2.8 | 2.7 | 5.6 | 4.9 |
+| Not in labor force | 1,118 | 1,302 | 857 | 1,064 | 260 | 238 |
+| Gulf War-era I veterans | | | | | | |
+| Civilian noninstitutional population | 2,849 | 3,188 | 2,382 | 2,701 | 467 | 487 |
+| Civilian labor force | 1,906 | 2,010 | 1,622 | 1,761 | 284 | 249 |
+| Participation rate | 66.9 | 63.0 | 68.1 | 65.2 | 60.8 | 51.0 |
+| Employed | 1,874 | 1,980 | 1,597 | 1,741 | 277 | 239 |
+| Employment-population ratio | 65.8 | 62.1 | 67.0 | 64.5 | 59.4 | 49.1 |
+| Unemployed | 32 | 29 | 25 | 20 | 7 | 9 |
+| Unemployment rate | 1.7 | 1.5 | 1.6 | 1.1 | 2.3 | 3.8 |
+| Not in labor force | 943 | 1,178 | 760 | 940 | 183 | 238 |
+| Vietnam-era and earlier wartime veterans | | | | | | |
+| Civilian noninstitutional population | 5,627 | 4,857 | 5,389 | 4,672 | 238 | 185 |
+| Civilian labor force | 712 | 580 | 691 | 553 | 22 | 27 |
+| Participation rate | 12.7 | 11.9 | 12.8 | 11.8 | 9.2 | 14.4 |
+| Employed | 671 | 549 | 657 | 523 | 14 | 27 |
+| Employment-population ratio | 11.9 | 11.3 | 12.2 | 11.2 | 5.8 | 14.4 |
+| Unemployed | 41 | 31 | 33 | 31 | 8 | 0 |
+| Unemployment rate | 5.8 | 5.3 | 4.8 | 5.5 | - | - |
+| Not in labor force | 4,915 | 4,277 | 4,698 | 4,119 | 216 | 158 |
+| Veterans of other service periods | | | | | | |
+| Civilian noninstitutional population | 3,781 | 3,504 | 3,369 | 3,116 | 412 | 388 |
+| Civilian labor force | 1,574 | 1,261 | 1,402 | 1,120 | 172 | 141 |
+| Participation rate | 41.6 | 36.0 | 41.6 | 35.9 | 41.8 | 36.2 |
+| Employed | 1,527 | 1,213 | 1,360 | 1,077 | 167 | 136 |
+| Employment-population ratio | 40.4 | 34.6 | 40.4 | 34.6 | 40.5 | 35.0 |
+| Unemployed | 47 | 47 | 41 | 43 | 5 | 5 |
+| Unemployment rate | 3.0 | 3.8 | 3.0 | 3.8 | 3.1 | 3.4 |
+| Not in labor force | 2,207 | 2,243 | 1,967 | 1,996 | 240 | 247 |
+| NONVETERANS, 18 years and over | | | | | | |
+| Civilian noninstitutional population | 241,785 | 247,097 | 110,674 | 113,608 | 131,112 | 133,489 |
+| Civilian labor force | 158,352 | 160,499 | 81,576 | 82,858 | 76,775 | 77,641 |
+| Participation rate | 65.5 | 65.0 | 73.7 | 72.9 | 58.6 | 58.2 |
+| Employed | 151,309 | 153,377 | 78,050 | 79,311 | 73,259 | 74,066 |
+| Employment-population ratio | 62.6 | 62.1 | 70.5 | 69.8 | 55.9 | 55.5 |
+| Unemployed | 7,043 | 7,121 | 3,526 | 3,547 | 3,516 | 3,574 |
+| Unemployment rate | 4.4 | 4.4 | 4.3 | 4.3 | 4.6 | 4.6 |
+| Not in labor force | 83,434 | 86,598 | 29,097 | 30,750 | 54,336 | 55,848 |
+| NOTE: Veterans served on active duty in the U.S. Armed Forces and were not on active duty at the time of the survey. Nonveterans never served on active duty in the U.S. Armed Forces. Veterans could have served anywhere in the world during these periods of service: Gulf War era II (September 2001-present), Gulf War era I (August 1990-August 2001), Vietnam era (August 1964-April 1975), Korean War (July 1950-January 1955), World War II (December 1941-December 1946), and other service periods (all other time periods). Veterans who served in more than one wartime period are classified only in the most recent one. Veterans who served during one of the selected wartime periods and another period are classified only in the wartime period. Dash indicates no data or data that do not meet publication criteria (values not shown where base is less than 75,000). | | | | | | |
+
+HOUSEHOLD DATA Table A-6. Employment status of the civilian population by sex, age, and disability status, not seasonally adjusted [Numbers in thousands]
+
+| Employment status, sex, and age | People with a disability | | People with no disability | |
+| --- | --- | --- | --- | --- |
+| | July 2024 | July 2025 | July 2024 | July 2025 |
+| TOTAL, 16 years and over | | | | |
+| Civilian noninstitutional population | 33,362 | 35,889 | 235,282 | 237,897 |
+| Civilian labor force | 8,077 | 8,878 | 161,646 | 162,767 |
+| Participation rate | 24.2 | 24.7 | 68.7 | 68.4 |
+| Employed | 7,418 | 7,988 | 154,620 | 155,811 |
+| Employment-population ratio | 22.2 | 22.3 | 65.7 | 65.5 |
+| Unemployed | 659 | 891 | 7,027 | 6,956 |
+| Unemployment rate | 8.2 | 10.0 | 4.3 | 4.3 |
+| Not in labor force | 25,285 | 27,010 | 73,636 | 75,129 |
+| Men, 16 to 64 years | | | | |
+| Civilian labor force | 3,389 | 3,745 | 80,504 | 81,028 |
+| Participation rate | 42.2 | 42.4 | 84.1 | 84.0 |
+| Employed | 3,120 | 3,325 | 77,105 | 77,645 |
+| Employment-population ratio | 38.9 | 37.6 | 80.6 | 80.5 |
+| Unemployed | 268 | 420 | 3,399 | 3,382 |
+| Unemployment rate | 7.9 | 11.2 | 4.2 | 4.2 |
+| Not in labor force | 4,642 | 5,098 | 15,184 | 15,460 |
+| Women, 16 to 64 years | | | | |
+| Civilian labor force | 3,277 | 3,606 | 70,842 | 71,509 |
+| Participation rate | 38.8 | 40.9 | 73.3 | 73.1 |
+| Employed | 2,961 | 3,210 | 67,628 | 68,238 |
+| Employment-population ratio | 35.1 | 36.4 | 69.9 | 69.8 |
+| Unemployed | 316 | 396 | 3,213 | 3,271 |
+| Unemployment rate | 9.7 | 11.0 | 4.5 | 4.6 |
+| Not in labor force | 5,164 | 5,220 | 25,859 | 26,320 |
+| Both sexes, 65 years and over | | | | |
+| Civilian labor force | 1,411 | 1,527 | 10,300 | 10,230 |
+| Participation rate | 8.4 | 8.4 | 24.0 | 23.5 |
+| Employed | 1,337 | 1,453 | 9,886 | 9,927 |
+| Employment-population ratio | 7.9 | 8.0 | 23.0 | 22.8 |
+| Unemployed | 74 | 74 | 414 | 302 |
+| Unemployment rate | 5.2 | 4.9 | 4.0 | 3.0 |
+| Not in labor force | 15,479 | 16,692 | 32,593 | 33,349 |
+| NOTE: A person with a disability has at least one of the following conditions: is deaf or has serious difficulty hearing; is blind or has serious difficulty seeing even when wearing glasses; has serious difficulty concentrating, remembering, or making decisions because of a physical, mental, or emotional condition; has serious difficulty walking or climbing stairs; has difficulty dressing or bathing; or has difficulty doing errands alone such as visiting a doctor's office or shopping because of a physical, mental, or emotional condition. Updated population controls are introduced annually with the release of January data. | | | | |
+
+HOUSEHOLD DATA Table A-7. Employment status of the civilian population by nativity and sex, not seasonally adjusted [Numbers in thousands]
+
+| Employment status and nativity | Total | | Men | | Women | |
+| --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | July 2025 | July 2024 | July 2025 | July 2024 | July 2025 |
+| Foreign born, 16 years and over | | | | | | |
+| Civilian noninstitutional population | 48,327 | 48,510 | 23,491 | 23,595 | 24,836 | 24,915 |
+| Civilian labor force | 32,518 | 32,066 | 18,389 | 18,294 | 14,129 | 13,772 |
+| Participation rate | 67.3 | 66.1 | 78.3 | 77.5 | 56.9 | 55.3 |
+| Employed | 31,001 | 30,764 | 17,696 | 17,597 | 13,305 | 13,167 |
+| Employment-population ratio | 64.1 | 63.4 | 75.3 | 74.6 | 53.6 | 52.8 |
+| Unemployed | 1,517 | 1,302 | 693 | 698 | 824 | 604 |
+| Unemployment rate | 4.7 | 4.1 | 3.8 | 3.8 | 5.8 | 4.4 |
+| Not in labor force | 15,809 | 16,444 | 5,101 | 5,300 | 10,708 | 11,143 |
+| Native born, 16 years and over | | | | | | |
+| Civilian noninstitutional population | 220,317 | 225,276 | 107,484 | 109,952 | 112,833 | 115,324 |
+| Civilian labor force | 137,205 | 139,580 | 71,867 | 73,040 | 65,338 | 66,540 |
+| Participation rate | 62.3 | 62.0 | 66.9 | 66.4 | 57.9 | 57.7 |
+| Employed | 131,037 | 133,035 | 68,671 | 69,720 | 62,365 | 63,315 |
+| Employment-population ratio | 59.5 | 59.1 | 63.9 | 63.4 | 55.3 | 54.9 |
+| Unemployed | 6,168 | 6,545 | 3,196 | 3,320 | 2,973 | 3,225 |
+| Unemployment rate | 4.5 | 4.7 | 4.4 | 4.5 | 4.5 | 4.8 |
+| Not in labor force | 83,112 | 85,696 | 35,617 | 36,912 | 47,495 | 48,784 |
+| NOTE: The foreign born are those residing in the United States who were not U.S. citizens at birth. That is, they were born outside the United States or one of its outlying areas such as Puerto Rico or Guam, to parents neither of whom was a U.S. citizen. The native born are people who were born in the United States or one of its outlying areas such as Puerto Rico or Guam or who were born abroad of at least one parent who was a U.S. citizen. Updated population controls are introduced annually with the release of January data. | | | | | | |
+
+HOUSEHOLD DATA Table A-8. Employed people by class of worker and part-time status [In thousands]
+
+| Category | Not seasonally adjusted | | | Seasonally adjusted | | | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | June 2025 | July 2025 | July 2024 | Mar. 2025 | Apr. 2025 | May 2025 | June 2025 | July 2025 |
+| CLASS OF WORKER | | | | | | | | | |
+| Agriculture and related industries | 2,421 | 2,284 | 2,365 | 2,271 | 2,371 | 2,246 | 2,062 | 2,162 | 2,216 |
+| Wage and salary workers(1) | 1,729 | 1,644 | 1,775 | 1,593 | 1,595 | 1,556 | 1,414 | 1,529 | 1,610 |
+| Self-employed workers, unincorporated | 673 | 609 | 571 | 642 | 740 | 666 | 628 | 581 | 554 |
+| Unpaid family workers | 20 | 30 | 18 | - | - | - | - | - | - |
+| Nonagricultural industries | 159,616 | 161,599 | 161,434 | 159,099 | 160,920 | 161,591 | 161,223 | 161,353 | 160,962 |
+| Wage and salary workers(1) | 150,290 | 152,376 | 152,274 | 149,761 | 151,946 | 152,265 | 151,789 | 152,125 | 151,816 |
+| Government | 20,704 | 20,974 | 20,688 | 21,640 | 21,748 | 21,856 | 21,807 | 21,532 | 21,635 |
+| Private industries | 129,586 | 131,402 | 131,586 | 128,090 | 130,227 | 130,408 | 129,957 | 130,589 | 130,131 |
+| Private households | 629 | 614 | 587 | - | - | - | - | - | - |
+| Other industries | 128,956 | 130,788 | 130,998 | 127,451 | 129,585 | 129,731 | 129,357 | 129,930 | 129,534 |
+| Self-employed workers, unincorporated | 9,285 | 9,184 | 9,146 | 9,194 | 9,055 | 9,281 | 9,385 | 9,095 | 9,060 |
+| Unpaid family workers | 41 | 39 | 14 | - | - | - | - | - | - |
+| PEOPLE AT WORK PART TIME(2) | | | | | | | | | |
+| All industries | | | | | | | | | |
+| Part time for economic reasons(3) | 4,718 | 4,659 | 4,838 | 4,564 | 4,780 | 4,690 | 4,624 | 4,465 | 4,684 |
+| Slack work or business conditions | 2,996 | 3,120 | 3,027 | 3,001 | 3,156 | 3,148 | 3,007 | 3,109 | 3,035 |
+| Could only find part-time work | 1,301 | 1,159 | 1,374 | 1,195 | 1,255 | 1,260 | 1,385 | 1,161 | 1,264 |
+| Part time for noneconomic reasons(4) | 20,566 | 21,564 | 21,307 | 22,048 | 22,625 | 22,723 | 22,588 | 22,556 | 22,770 |
+| Nonagricultural industries | | | | | | | | | |
+| Part time for economic reasons(3) | 4,661 | 4,577 | 4,729 | 4,490 | 4,717 | 4,622 | 4,548 | 4,372 | 4,559 |
+| Slack work or business conditions | 2,954 | 3,049 | 2,941 | 2,942 | 3,125 | 3,103 | 2,941 | 3,022 | 2,932 |
+| Could only find part-time work | 1,291 | 1,154 | 1,363 | 1,188 | 1,255 | 1,253 | 1,375 | 1,156 | 1,257 |
+| Part time for noneconomic reasons(4) | 20,201 | 21,221 | 20,917 | 21,694 | 22,196 | 22,381 | 22,239 | 22,208 | 22,392 |
+| Footnotes (1) Includes self-employed workers whose businesses are incorporated. (2) Refers to those who worked 1 to 34 hours during the survey reference week and excludes employed people who were absent from their jobs for the entire week. (3) Refers to those who worked 1 to 34 hours during the reference week for an economic reason such as slack work or unfavorable business conditions, inability to find full-time work, or seasonal declines in demand. (4) Refers to people who usually work part time for noneconomic reasons such as childcare problems, family or personal obligations, school or training, retirement or Social Security limits on earnings, and other reasons. This excludes people who usually work full time but worked only 1 to 34 hours during the reference week for reasons such as vacations, holidays, illness, and bad weather. | | | | | | | | | |
+| - Data not available. NOTE: Detail for the seasonally adjusted data shown in this table will not necessarily add to totals because of the independent seasonal adjustment of the various series. Updated population controls are introduced annually with the release of January data. | | | | | | | | | |
+
+HOUSEHOLD DATA Table A-9. Selected employment indicators [Numbers in thousands]
+
+| Characteristic | Not seasonally adjusted | | | Seasonally adjusted | | | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | June 2025 | July 2025 | July 2024 | Mar. 2025 | Apr. 2025 | May 2025 | June 2025 | July 2025 |
+| AGE AND SEX | | | | | | | | | |
+| Total, 16 years and over | 162,038 | 163,883 | 163,799 | 161,219 | 163,508 | 163,969 | 163,273 | 163,366 | 163,106 |
+| 16 to 19 years | 6,664 | 6,107 | 6,288 | 5,570 | 5,786 | 5,732 | 5,590 | 5,361 | 5,291 |
+| 16 to 17 years | 2,609 | 2,222 | 2,425 | 2,125 | 2,095 | 2,001 | 1,939 | 1,958 | 1,985 |
+| 18 to 19 years | 4,054 | 3,884 | 3,863 | 3,427 | 3,708 | 3,719 | 3,646 | 3,419 | 3,290 |
+| 20 years and over | 155,374 | 157,776 | 157,510 | 155,649 | 157,722 | 158,237 | 157,683 | 158,005 | 157,815 |
+| 20 to 24 years | 14,596 | 14,670 | 14,828 | 14,081 | 14,609 | 14,495 | 14,332 | 14,298 | 14,321 |
+| 25 years and over | 140,778 | 143,106 | 142,683 | 141,572 | 143,207 | 143,737 | 143,369 | 143,707 | 143,522 |
+| 25 to 54 years | 103,547 | 105,600 | 104,853 | 104,088 | 105,279 | 105,602 | 105,404 | 105,843 | 105,425 |
+| 25 to 34 years | 35,418 | 36,387 | 36,008 | 35,556 | 36,333 | 36,369 | 36,413 | 36,425 | 36,169 |
+| 35 to 44 years | 36,057 | 36,864 | 36,825 | 36,267 | 36,844 | 36,979 | 36,842 | 36,994 | 37,041 |
+| 45 to 54 years | 32,072 | 32,349 | 32,021 | 32,265 | 32,101 | 32,255 | 32,149 | 32,424 | 32,216 |
+| 55 years and over | 37,231 | 37,506 | 37,830 | 37,484 | 37,928 | 38,134 | 37,965 | 37,863 | 38,097 |
+| Men, 16 years and over | 86,368 | 87,272 | 87,317 | 85,347 | 86,443 | 86,733 | 86,486 | 86,575 | 86,347 |
+| 16 to 19 years | 3,342 | 3,125 | 3,211 | 2,774 | 2,880 | 2,875 | 2,782 | 2,703 | 2,686 |
+| 16 to 17 years | 1,293 | 1,112 | 1,153 | 1,032 | 1,041 | 1,037 | 953 | 943 | 931 |
+| 18 to 19 years | 2,049 | 2,013 | 2,057 | 1,728 | 1,855 | 1,839 | 1,829 | 1,776 | 1,742 |
+| 20 years and over | 83,026 | 84,147 | 84,106 | 82,573 | 83,563 | 83,858 | 83,704 | 83,872 | 83,660 |
+| 20 to 24 years | 7,517 | 7,640 | 7,616 | 7,159 | 7,377 | 7,340 | 7,314 | 7,378 | 7,266 |
+| 25 years and over | 75,509 | 76,507 | 76,490 | 75,392 | 76,290 | 76,528 | 76,358 | 76,455 | 76,392 |
+| 25 to 54 years | 55,494 | 56,399 | 56,076 | 55,346 | 55,952 | 56,209 | 56,033 | 56,262 | 55,948 |
+| 25 to 34 years | 19,083 | 19,500 | 19,323 | 19,014 | 19,317 | 19,446 | 19,388 | 19,449 | 19,264 |
+| 35 to 44 years | 19,432 | 19,857 | 19,789 | 19,372 | 19,789 | 19,818 | 19,717 | 19,821 | 19,737 |
+| 45 to 54 years | 16,979 | 17,041 | 16,964 | 16,960 | 16,846 | 16,945 | 16,927 | 16,992 | 16,947 |
+| 55 years and over | 20,014 | 20,108 | 20,414 | 20,046 | 20,338 | 20,319 | 20,325 | 20,193 | 20,444 |
+| Women, 16 years and over | 75,670 | 76,611 | 76,482 | 75,871 | 77,065 | 77,236 | 76,787 | 76,791 | 76,760 |
+| 16 to 19 years | 3,322 | 2,981 | 3,078 | 2,796 | 2,906 | 2,857 | 2,808 | 2,657 | 2,605 |
+| 16 to 17 years | 1,317 | 1,110 | 1,272 | 1,093 | 1,053 | 963 | 986 | 1,015 | 1,054 |
+| 18 to 19 years | 2,005 | 1,871 | 1,806 | 1,699 | 1,853 | 1,880 | 1,817 | 1,643 | 1,548 |
+| 20 years and over | 72,348 | 73,630 | 73,404 | 73,076 | 74,159 | 74,379 | 73,979 | 74,134 | 74,155 |
+| 20 to 24 years | 7,078 | 7,030 | 7,212 | 6,923 | 7,231 | 7,154 | 7,018 | 6,920 | 7,055 |
+| 25 years and over | 65,270 | 66,599 | 66,193 | 66,180 | 66,917 | 67,209 | 67,011 | 67,252 | 67,129 |
+| 25 to 54 years | 48,053 | 49,201 | 48,777 | 48,742 | 49,327 | 49,393 | 49,370 | 49,581 | 49,477 |
+| 25 to 34 years | 16,335 | 16,887 | 16,685 | 16,542 | 17,016 | 16,922 | 17,024 | 16,976 | 16,905 |
+| 35 to 44 years | 16,625 | 17,007 | 17,036 | 16,895 | 17,055 | 17,161 | 17,125 | 17,173 | 17,304 |
+| 45 to 54 years | 15,093 | 15,308 | 15,057 | 15,305 | 15,255 | 15,310 | 15,222 | 15,432 | 15,269 |
+| 55 years and over | 17,217 | 17,398 | 17,416 | 17,438 | 17,590 | 17,816 | 17,640 | 17,671 | 17,652 |
+| MARITAL STATUS | | | | | | | | | |
+| Married men, spouse present(1) | 45,792 | 46,577 | 46,734 | 46,043 | 45,698 | 45,988 | 46,449 | 46,654 | 46,905 |
+| Married women, spouse present(1) | 36,393 | 37,247 | 37,371 | 36,990 | 36,650 | 37,121 | 37,084 | 37,660 | 37,921 |
+| Women who maintain families(2) | 10,066 | 9,536 | 9,287 | - | - | - | - | - | - |
+| FULL- OR PART-TIME STATUS | | | | | | | | | |
+| Full-time workers(3) | 135,036 | 136,347 | 136,148 | 133,648 | 135,135 | 135,463 | 134,840 | 135,277 | 134,837 |
+| Part-time workers(4) | 27,002 | 27,536 | 27,651 | 27,740 | 28,467 | 28,524 | 28,557 | 28,190 | 28,437 |
+| MULTIPLE JOBHOLDERS | | | | | | | | | |
+| Total multiple jobholders | 8,402 | 8,703 | 8,243 | 8,475 | 8,936 | 8,866 | 8,583 | 8,865 | 8,342 |
+| Percent of total employed | 5.2 | 5.3 | 5.0 | 5.3 | 5.5 | 5.4 | 5.3 | 5.4 | 5.1 |
+| SELF-EMPLOYMENT | | | | | | | | | |
+| Self-employed workers, incorporated | 6,911 | 7,052 | 6,761 | - | - | - | - | - | - |
+| Self-employed workers, unincorporated | 9,957 | 9,794 | 9,717 | 9,837 | 9,794 | 9,947 | 10,013 | 9,675 | 9,613 |
+| Footnotes (1) Beginning with data for January 2020, refers to people in both opposite-sex and same-sex married couples. Prior to January 2020, referred to people in opposite-sex married couples only. (2) Beginning with data for January 2020, refers to female householders residing with one or more family members, but not a spouse of either sex. Prior to January 2020, referred to female householders residing with one or more family members, but not an opposite-sex spouse. (3) Employed full-time workers are people who usually work 35 hours or more per week. (4) Employed part-time workers are people who usually work less than 35 hours per week. | | | | | | | | | |
+| - Data not available. NOTE: Detail for the seasonally adjusted data shown in this table will not necessarily add to totals because of the independent seasonal adjustment of the various series. Updated population controls are introduced annually with the release of January data. | | | | | | | | | |
+
+HOUSEHOLD DATA Table A-10. Selected unemployment indicators, seasonally adjusted
+
+| Characteristic | Number of unemployed people (in thousands) | | | Unemployment rates | | | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | June 2025 | July 2025 | July 2024 | Mar. 2025 | Apr. 2025 | May 2025 | June 2025 | July 2025 |
+| AGE AND SEX | | | | | | | | | |
+| Total, 16 years and over | 7,097 | 7,015 | 7,236 | 4.2 | 4.2 | 4.2 | 4.2 | 4.1 | 4.2 |
+| 16 to 19 years | 801 | 905 | 950 | 12.6 | 13.7 | 13.0 | 13.4 | 14.4 | 15.2 |
+| 16 to 17 years | 277 | 318 | 345 | 11.5 | 15.3 | 14.4 | 14.5 | 14.0 | 14.8 |
+| 18 to 19 years | 537 | 607 | 610 | 13.5 | 12.8 | 12.0 | 12.7 | 15.1 | 15.6 |
+| 20 years and over | 6,296 | 6,110 | 6,286 | 3.9 | 3.8 | 3.8 | 3.9 | 3.7 | 3.8 |
+| 20 to 24 years | 1,172 | 1,270 | 1,225 | 7.7 | 7.5 | 8.2 | 8.2 | 8.2 | 7.9 |
+| 25 years and over | 5,124 | 4,833 | 5,039 | 3.5 | 3.3 | 3.4 | 3.4 | 3.3 | 3.4 |
+| 25 to 54 years | 3,926 | 3,635 | 3,914 | 3.6 | 3.5 | 3.5 | 3.6 | 3.3 | 3.6 |
+| 25 to 34 years | 1,781 | 1,432 | 1,615 | 4.8 | 4.0 | 4.2 | 4.1 | 3.8 | 4.3 |
+| 35 to 44 years | 1,182 | 1,241 | 1,322 | 3.2 | 3.2 | 3.2 | 3.3 | 3.2 | 3.4 |
+| 45 to 54 years | 963 | 961 | 977 | 2.9 | 3.2 | 3.0 | 3.2 | 2.9 | 2.9 |
+| 55 years and over | 1,198 | 1,184 | 1,125 | 3.1 | 2.9 | 3.1 | 3.0 | 3.0 | 2.9 |
+| Men, 16 years and over | 3,846 | 3,886 | 3,973 | 4.3 | 4.2 | 4.4 | 4.3 | 4.3 | 4.4 |
+| 16 to 19 years | 429 | 507 | 522 | 13.4 | 14.2 | 15.0 | 15.8 | 15.8 | 16.3 |
+| 16 to 17 years | 126 | 155 | 206 | 10.9 | 14.2 | 13.8 | 17.5 | 14.1 | 18.1 |
+| 18 to 19 years | 309 | 370 | 315 | 15.2 | 14.0 | 15.2 | 14.5 | 17.2 | 15.3 |
+| 20 years and over | 3,418 | 3,378 | 3,450 | 4.0 | 3.8 | 4.0 | 3.9 | 3.9 | 4.0 |
+| 20 to 24 years | 617 | 731 | 661 | 7.9 | 8.4 | 9.6 | 8.8 | 9.0 | 8.3 |
+| 25 years and over | 2,797 | 2,617 | 2,762 | 3.6 | 3.3 | 3.4 | 3.3 | 3.3 | 3.5 |
+| 25 to 54 years | 2,123 | 1,961 | 2,142 | 3.7 | 3.5 | 3.5 | 3.5 | 3.4 | 3.7 |
+| 25 to 34 years | 942 | 809 | 930 | 4.7 | 4.4 | 4.3 | 4.2 | 4.0 | 4.6 |
+| 35 to 44 years | 671 | 614 | 698 | 3.3 | 3.0 | 3.1 | 3.0 | 3.0 | 3.4 |
+| 45 to 54 years | 510 | 538 | 514 | 2.9 | 3.1 | 3.0 | 3.2 | 3.1 | 2.9 |
+| 55 years and over | 674 | 657 | 620 | 3.3 | 2.9 | 3.2 | 3.0 | 3.1 | 2.9 |
+| Women, 16 years and over | 3,250 | 3,129 | 3,263 | 4.1 | 4.1 | 4.0 | 4.2 | 3.9 | 4.1 |
+| 16 to 19 years | 372 | 397 | 428 | 11.8 | 13.3 | 10.7 | 10.9 | 13.0 | 14.1 |
+| 16 to 17 years | 152 | 163 | 139 | 12.2 | 16.4 | 15.0 | 11.4 | 13.9 | 11.7 |
+| 18 to 19 years | 227 | 237 | 295 | 11.8 | 11.5 | 8.7 | 10.8 | 12.6 | 16.0 |
+| 20 years and over | 2,878 | 2,732 | 2,836 | 3.8 | 3.7 | 3.7 | 3.9 | 3.6 | 3.7 |
+| 20 to 24 years | 555 | 538 | 564 | 7.4 | 6.6 | 6.8 | 7.6 | 7.2 | 7.4 |
+| 25 years and over | 2,327 | 2,216 | 2,277 | 3.4 | 3.3 | 3.3 | 3.5 | 3.2 | 3.3 |
+| 25 to 54 years | 1,803 | 1,674 | 1,772 | 3.6 | 3.5 | 3.5 | 3.6 | 3.3 | 3.5 |
+| 25 to 34 years | 839 | 623 | 685 | 4.8 | 3.6 | 4.1 | 4.0 | 3.5 | 3.9 |
+| 35 to 44 years | 511 | 628 | 623 | 2.9 | 3.5 | 3.2 | 3.6 | 3.5 | 3.5 |
+| 45 to 54 years | 453 | 423 | 464 | 2.9 | 3.3 | 3.1 | 3.3 | 2.7 | 2.9 |
+| 55 years and over | 521 | 545 | 501 | 2.9 | 2.9 | 2.9 | 3.0 | 3.0 | 2.8 |
+| MARITAL STATUS | | | | | | | | | |
+| Married men, spouse present(1) | 999 | 1,062 | 1,023 | 2.1 | 2.1 | 2.3 | 2.3 | 2.2 | 2.1 |
+| Married women, spouse present(1) | 899 | 967 | 997 | 2.4 | 2.5 | 2.3 | 2.6 | 2.5 | 2.6 |
+| Women who maintain families(2) | 592 | 551 | 648 | 5.6 | 5.8 | 5.2 | 5.9 | 5.5 | 6.5 |
+| FULL- OR PART-TIME STATUS | | | | | | | | | |
+| Full-time workers(3) | 5,768 | 5,572 | 5,986 | 4.1 | 4.1 | 4.2 | 4.2 | 4.0 | 4.3 |
+| Part-time workers(4) | 1,360 | 1,394 | 1,262 | 4.7 | 4.5 | 4.1 | 4.4 | 4.7 | 4.3 |
+| Footnotes (1) Beginning with data for January 2020, refers to people in both opposite-sex and same-sex married couples. Prior to January 2020, referred to people in opposite-sex married couples only. (2) Data are not seasonally adjusted. Beginning with data for January 2020, refers to female householders residing with one or more family members, but not a spouse of either sex. Prior to January 2020, referred to female householders residing with one or more family members, but not an opposite-sex spouse. (3) Full-time workers are unemployed people who have expressed a desire to work full time (35 hours or more per week) or are on layoff from full-time jobs. (4) Part-time workers are unemployed people who have expressed a desire to work part time (less than 35 hours per week) or are on layoff from part-time jobs. | | | | | | | | | |
+| NOTE: Detail for the seasonally adjusted data shown in this table will not necessarily add to totals because of the independent seasonal adjustment of the various series. Updated population controls are introduced annually with the release of January data. | | | | | | | | | |
+
+HOUSEHOLD DATA Table A-11. Unemployed people by reason for unemployment [Numbers in thousands]
+
+| Reason | Not seasonally adjusted | | | Seasonally adjusted | | | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | June 2025 | July 2025 | July 2024 | Mar. 2025 | Apr. 2025 | May 2025 | June 2025 | July 2025 |
+| NUMBER OF UNEMPLOYED | | | | | | | | | |
+| Job losers and people who completed temporary jobs | 3,649 | 3,311 | 3,534 | 3,545 | 3,313 | 3,455 | 3,457 | 3,293 | 3,405 |
+| On temporary layoff | 1,266 | 918 | 1,118 | 1,109 | 811 | 867 | 874 | 860 | 940 |
+| Not on temporary layoff | 2,382 | 2,393 | 2,415 | 2,436 | 2,502 | 2,588 | 2,583 | 2,433 | 2,465 |
+| Permanent job losers | 1,669 | 1,885 | 1,871 | 1,691 | 1,810 | 1,918 | 1,916 | 1,887 | 1,887 |
+| People who completed temporary jobs | 714 | 508 | 544 | 745 | 692 | 670 | 668 | 546 | 577 |
+| Job leavers | 894 | 798 | 818 | 855 | 870 | 855 | 704 | 825 | 784 |
+| Reentrants | 2,329 | 2,342 | 2,346 | 2,161 | 2,176 | 2,235 | 2,288 | 2,145 | 2,180 |
+| New entrants | 814 | 1,008 | 1,149 | 648 | 739 | 701 | 725 | 710 | 985 |
+| PERCENT DISTRIBUTION | | | | | | | | | |
+| Job losers and people who completed temporary jobs | 47.5 | 44.4 | 45.0 | 49.2 | 46.7 | 47.7 | 48.2 | 47.2 | 46.3 |
+| On temporary layoff | 16.5 | 12.3 | 14.3 | 15.4 | 11.4 | 12.0 | 12.2 | 12.3 | 12.8 |
+| Not on temporary layoff | 31.0 | 32.1 | 30.8 | 33.8 | 35.3 | 35.7 | 36.0 | 34.9 | 33.5 |
+| Job leavers | 11.6 | 10.7 | 10.4 | 11.9 | 12.3 | 11.8 | 9.8 | 11.8 | 10.7 |
+| Reentrants | 30.3 | 31.4 | 29.9 | 30.0 | 30.7 | 30.8 | 31.9 | 30.8 | 29.6 |
+| New entrants | 10.6 | 13.5 | 14.6 | 9.0 | 10.4 | 9.7 | 10.1 | 10.2 | 13.4 |
+| UNEMPLOYED AS A PERCENT OF THE CIVILIAN LABOR FORCE | | | | | | | | | |
+| Job losers and people who completed temporary jobs | 2.1 | 1.9 | 2.1 | 2.1 | 1.9 | 2.0 | 2.0 | 1.9 | 2.0 |
+| Job leavers | 0.5 | 0.5 | 0.5 | 0.5 | 0.5 | 0.5 | 0.4 | 0.5 | 0.5 |
+| Reentrants | 1.4 | 1.4 | 1.4 | 1.3 | 1.3 | 1.3 | 1.3 | 1.3 | 1.3 |
+| New entrants | 0.5 | 0.6 | 0.7 | 0.4 | 0.4 | 0.4 | 0.4 | 0.4 | 0.6 |
+| NOTE: Detail for the seasonally adjusted data shown in this table will not necessarily add to total unemployed in table A-1 because of the independent seasonal adjustment of the various series. Updated population controls are introduced annually with the release of January data. | | | | | | | | | |
+
+HOUSEHOLD DATA Table A-12. Unemployed people by duration of unemployment [Numbers in thousands]
+
+| Duration | Not seasonally adjusted | | | Seasonally adjusted | | | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | June 2025 | July 2025 | July 2024 | Mar. 2025 | Apr. 2025 | May 2025 | June 2025 | July 2025 |
+| NUMBER OF UNEMPLOYED | | | | | | | | | |
+| Less than 5 weeks | 2,638 | 2,932 | 2,588 | 2,348 | 2,362 | 2,187 | 2,451 | 2,241 | 2,299 |
+| 5 to 14 weeks | 2,542 | 1,936 | 2,377 | 2,162 | 2,146 | 2,269 | 2,208 | 2,131 | 2,034 |
+| 15 weeks and over | 2,505 | 2,591 | 2,881 | 2,620 | 2,501 | 2,662 | 2,495 | 2,710 | 2,993 |
+| 15 to 26 weeks | 938 | 1,010 | 1,028 | 1,078 | 1,006 | 987 | 1,039 | 1,063 | 1,167 |
+| 27 weeks and over | 1,568 | 1,581 | 1,854 | 1,543 | 1,495 | 1,675 | 1,457 | 1,647 | 1,826 |
+| Average (mean) duration, in weeks | 19.6 | 21.5 | 22.9 | 20.6 | 22.8 | 23.2 | 21.8 | 23.0 | 24.1 |
+| Median duration, in weeks | 8.7 | 7.9 | 9.3 | 9.5 | 9.8 | 10.4 | 9.5 | 10.1 | 10.2 |
+| PERCENT DISTRIBUTION | | | | | | | | | |
+| Less than 5 weeks | 34.3 | 39.3 | 33.0 | 32.9 | 33.7 | 30.7 | 34.3 | 31.6 | 31.4 |
+| 5 to 14 weeks | 33.1 | 26.0 | 30.3 | 30.3 | 30.6 | 31.9 | 30.9 | 30.1 | 27.8 |
+| 15 weeks and over | 32.6 | 34.7 | 36.7 | 36.7 | 35.7 | 37.4 | 34.9 | 38.3 | 40.9 |
+| 15 to 26 weeks | 12.2 | 13.5 | 13.1 | 15.1 | 14.4 | 13.9 | 14.5 | 15.0 | 15.9 |
+| 27 weeks and over | 20.4 | 21.2 | 23.6 | 21.6 | 21.3 | 23.5 | 20.4 | 23.3 | 24.9 |
+| NOTE: Detail for the seasonally adjusted data shown in this table will not necessarily add to total unemployed in table A-1 because of the independent seasonal adjustment of the various series. Updated population controls are introduced annually with the release of January data. | | | | | | | | | |
+
+HOUSEHOLD DATA Table A-13. Employed and unemployed people by occupation, not seasonally adjusted [Numbers in thousands]
+
+| Occupation | Employed | | Unemployed | | Unemployment rates | |
+| --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | July 2025 | July 2024 | July 2025 | July 2024 | July 2025 |
+| Total, 16 years and over(1) | 162,038 | 163,799 | 7,685 | 7,847 | 4.5 | 4.6 |
+| Management, professional, and related occupations | 70,167 | 69,809 | 2,095 | 2,162 | 2.9 | 3.0 |
+| Management, business, and financial operations occupations | 30,816 | 30,985 | 740 | 680 | 2.3 | 2.1 |
+| Professional and related occupations | 39,351 | 38,825 | 1,355 | 1,482 | 3.3 | 3.7 |
+| Service occupations | 27,346 | 28,253 | 1,469 | 1,529 | 5.1 | 5.1 |
+| Sales and office occupations | 29,919 | 31,067 | 1,279 | 1,253 | 4.1 | 3.9 |
+| Sales and related occupations | 14,104 | 14,502 | 680 | 592 | 4.6 | 3.9 |
+| Office and administrative support occupations | 15,814 | 16,565 | 598 | 661 | 3.6 | 3.8 |
+| Natural resources, construction, and maintenance occupations | 14,740 | 15,349 | 713 | 547 | 4.6 | 3.4 |
+| Farming, fishing, and forestry occupations | 1,129 | 1,198 | 119 | 50 | 9.6 | 4.0 |
+| Construction and extraction occupations | 8,759 | 8,922 | 442 | 392 | 4.8 | 4.2 |
+| Installation, maintenance, and repair occupations | 4,853 | 5,229 | 151 | 105 | 3.0 | 2.0 |
+| Production, transportation, and material moving occupations | 19,866 | 19,321 | 1,293 | 1,198 | 6.1 | 5.8 |
+| Production occupations | 7,889 | 7,662 | 416 | 411 | 5.0 | 5.1 |
+| Transportation and material moving occupations | 11,977 | 11,659 | 877 | 788 | 6.8 | 6.3 |
+| Footnotes (1) People with no previous work experience and people whose last job was in the U.S. Armed Forces are included in the unemployed total. | | | | | | |
+| NOTE: Updated population controls are introduced annually with the release of January data. | | | | | | |
+
+HOUSEHOLD DATA Table A-14. Unemployed people by industry and class of worker, not seasonally adjusted
+
+| Industry and class of worker | Number of unemployed people (in thousands) | | Unemployment rates | |
+| --- | --- | --- | --- | --- |
+| | July 2024 | July 2025 | July 2024 | July 2025 |
+| Total, 16 years and over(1) | 7,685 | 7,847 | 4.5 | 4.6 |
+| Nonagricultural private wage and salary workers | 5,636 | 5,487 | 4.2 | 4.0 |
+| Mining, quarrying, and oil and gas extraction | 31 | 22 | 5.4 | 4.2 |
+| Construction | 420 | 379 | 3.9 | 3.4 |
+| Manufacturing | 537 | 641 | 3.6 | 4.2 |
+| Durable goods | 298 | 413 | 3.1 | 4.2 |
+| Nondurable goods | 239 | 228 | 4.5 | 4.4 |
+| Wholesale and retail trade | 965 | 877 | 4.9 | 4.4 |
+| Transportation and utilities | 432 | 329 | 5.1 | 3.9 |
+| Information | 145 | 140 | 5.6 | 5.5 |
+| Financial activities | 256 | 238 | 2.5 | 2.2 |
+| Professional and business services | 845 | 696 | 4.2 | 3.3 |
+| Education and health services | 973 | 1,023 | 3.7 | 3.8 |
+| Leisure and hospitality | 811 | 883 | 5.5 | 6.2 |
+| Other services | 219 | 259 | 3.2 | 3.9 |
+| Agriculture and related private wage and salary workers | 152 | 64 | 8.5 | 3.6 |
+| Government workers | 762 | 793 | 3.5 | 3.7 |
+| Self-employed workers, unincorporated, and unpaid family workers | 322 | 354 | 3.1 | 3.5 |
+| Footnotes (1) People with no previous work experience and people whose last job was in the U.S. Armed Forces are included in the unemployed total. | | | | |
+| NOTE: Updated population controls are introduced annually with the release of January data. Effective with January 2025 data, industries reflect the introduction of the 2022 Census industry classification system, derived from the 2022 North American Industry Classification System (NAICS). No historical data have been revised. Data for 2025 are not strictly comparable with earlier years. | | | | |
+
+HOUSEHOLD DATA Table A-15. Alternative measures of labor underutilization [Percent]
+
+| Measure | Not seasonally adjusted | | | Seasonally adjusted | | | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | June 2025 | July 2025 | July 2024 | Mar. 2025 | Apr. 2025 | May 2025 | June 2025 | July 2025 |
+| U-1 People unemployed 15 weeks or longer, as a percent of the civilian labor force | 1.5 | 1.5 | 1.7 | 1.6 | 1.5 | 1.6 | 1.5 | 1.6 | 1.8 |
+| U-2 Job losers and people who completed temporary jobs, as a percent of the civilian labor force | 2.1 | 1.9 | 2.1 | 2.1 | 1.9 | 2.0 | 2.0 | 1.9 | 2.0 |
+| U-3 Total unemployed, as a percent of the civilian labor force (official unemployment rate) | 4.5 | 4.4 | 4.6 | 4.2 | 4.2 | 4.2 | 4.2 | 4.1 | 4.2 |
+| U-4 Total unemployed plus discouraged workers, as a percent of the civilian labor force plus discouraged workers | 4.8 | 4.7 | 4.8 | 4.4 | 4.4 | 4.4 | 4.5 | 4.5 | 4.5 |
+| U-5 Total unemployed, plus discouraged workers, plus all other people marginally attached to the labor force, as a percent of the civilian labor force plus all people marginally attached to the labor force | 5.4 | 5.4 | 5.5 | 5.1 | 5.1 | 5.1 | 5.1 | 5.1 | 5.2 |
+| U-6 Total unemployed, plus all people marginally attached to the labor force, plus total employed part time for economic reasons, as a percent of the civilian labor force plus all people marginally attached to the labor force | 8.2 | 8.1 | 8.3 | 7.8 | 7.9 | 7.8 | 7.8 | 7.7 | 7.9 |
+| NOTE: People marginally attached to the labor force are those who currently are neither working nor looking for work but indicate that they want and are available for a job and have looked for work sometime in the past 12 months. Discouraged workers, a subset of the marginally attached, have given a job-market related reason for not currently looking for work. People employed part time for economic reasons are those who want and are available for full-time work but have had to settle for a part-time schedule. Updated population controls are introduced annually with the release of January data. | | | | | | | | | |
+
+HOUSEHOLD DATA Table A-16. People not in the labor force and multiple jobholders by sex, not seasonally adjusted [Numbers in thousands]
+
+| Category | Total | | Men | | Women | |
+| --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | July 2025 | July 2024 | July 2025 | July 2024 | July 2025 |
+| NOT IN THE LABOR FORCE | | | | | | |
+| Total not in the labor force | 98,921 | 102,140 | 40,719 | 42,212 | 58,203 | 59,928 |
+| People who currently want a job | 5,950 | 6,533 | 2,723 | 2,995 | 3,227 | 3,538 |
+| Marginally attached to the labor force(1) | 1,628 | 1,751 | 896 | 891 | 732 | 860 |
+| Discouraged workers(2) | 449 | 457 | 282 | 270 | 167 | 187 |
+| Other people marginally attached to the labor force(3) | 1,178 | 1,294 | 614 | 621 | 565 | 673 |
+| MULTIPLE JOBHOLDERS | | | | | | |
+| Total multiple jobholders(4) | 8,402 | 8,243 | 4,056 | 4,086 | 4,346 | 4,157 |
+| Percent of total employed | 5.2 | 5.0 | 4.7 | 4.7 | 5.7 | 5.4 |
+| Primary job full time, secondary job part time | 4,793 | 4,757 | 2,577 | 2,537 | 2,216 | 2,220 |
+| Primary and secondary jobs both part time | 2,028 | 2,069 | 679 | 754 | 1,349 | 1,315 |
+| Primary and secondary jobs both full time | 464 | 391 | 264 | 240 | 199 | 151 |
+| Hours vary on primary or secondary job | 1,043 | 948 | 499 | 527 | 544 | 421 |
+| Footnotes (1) Data refer to people who want a job, have searched for work during the prior 12 months, and were available to take a job during the reference week, but had not looked for work in the past 4 weeks. (2) Includes those who did not actively look for work in the prior 4 weeks for reasons such as thinks no work available, could not find work, lacks schooling or training, employer thinks too young or old, and other types of discrimination. (3) Includes those who did not actively look for work in the prior 4 weeks for such reasons as school or family responsibilities, ill health, and transportation problems, as well as a number for whom reason for nonparticipation was not determined. (4) Includes a small number of people who work part time on their primary job and full time on their secondary job(s), not shown separately. | | | | | | |
+| NOTE: Updated population controls are introduced annually with the release of January data. | | | | | | |
+
+ESTABLISHMENT DATA Table B-1. Employees on nonfarm payrolls by industry sector and selected industry detail [In thousands]
+
+| Industry | Not seasonally adjusted | | | | Seasonally adjusted | | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | May 2025 | June 2025(p) | July 2025(p) | July 2024 | May 2025 | June 2025(p) | July 2025(p) | Change from: June2025 - July2025(p) |
+| Total nonfarm | 157,771 | 159,930 | 160,293 | 159,227 | 158,003 | 159,452 | 159,466 | 159,539 | 73 |
+| Total private | 135,580 | 136,097 | 136,833 | 136,877 | 134,611 | 135,884 | 135,887 | 135,970 | 83 |
+| Goods-producing | 21,964 | 21,715 | 21,913 | 21,929 | 21,677 | 21,680 | 21,667 | 21,654 | -13 |
+| Mining and logging | 630 | 622 | 626 | 623 | 623 | 622 | 621 | 617 | -4 |
+| Logging | 40.1 | 37.5 | 38.7 | 38.8 | 38.9 | 39.2 | 38.8 | 37.9 | -0.9 |
+| Mining, quarrying, and oil and gas extraction | 589.7 | 584.4 | 586.9 | 583.8 | 583.9 | 582.9 | 582.4 | 579.0 | -3.4 |
+| Oil and gas extraction | 124.0 | 122.2 | 122.7 | 122.7 | 123.0 | 122.6 | 122.2 | 121.8 | -0.4 |
+| Mining (except oil and gas) | 195.6 | 193.5 | 194.8 | 194.4 | 191.7 | 191.8 | 191.7 | 190.9 | -0.8 |
+| Coal mining | 43.2 | 41.3 | 41.1 | 40.9 | 42.9 | 41.0 | 41.0 | 40.6 | -0.4 |
+| Metal ore mining | 45.6 | 44.3 | 44.5 | 44.4 | 45.1 | 44.4 | 44.2 | 44.1 | -0.1 |
+| Nonmetallic mineral mining and quarrying | 106.8 | 107.9 | 109.2 | 109.1 | 103.7 | 106.4 | 106.5 | 106.2 | -0.3 |
+| Support activities for mining | 270.1 | 268.7 | 269.4 | 266.7 | 269.2 | 268.5 | 268.5 | 266.3 | -2.2 |
+| Construction | 8,430 | 8,353 | 8,480 | 8,518 | 8,214 | 8,305 | 8,308 | 8,310 | 2 |
+| Construction of buildings | 1,895.7 | 1,878.9 | 1,907.9 | 1,913.0 | 1,857.1 | 1,881.2 | 1,879.2 | 1,876.3 | -2.9 |
+| Residential building construction | 958.5 | 958.5 | 968.5 | 970.6 | 940.8 | 956.8 | 956.1 | 954.7 | -1.4 |
+| Nonresidential building construction | 937.2 | 920.4 | 939.4 | 942.4 | 916.3 | 924.4 | 923.1 | 921.6 | -1.5 |
+| Heavy and civil engineering construction | 1,196.1 | 1,203.6 | 1,215.2 | 1,224.2 | 1,146.5 | 1,176.0 | 1,172.0 | 1,178.0 | 6.0 |
+| Specialty trade contractors | 5,338.6 | 5,270.0 | 5,356.4 | 5,380.4 | 5,210.4 | 5,248.1 | 5,257.0 | 5,255.9 | -1.1 |
+| Residential specialty trade contractors | 2,472.5 | 2,393.6 | 2,432.9 | 2,438.7 | 2,410.1 | 2,381.3 | 2,381.0 | 2,378.0 | -3.0 |
+| Nonresidential specialty trade contractors | 2,866.1 | 2,876.4 | 2,923.5 | 2,941.7 | 2,800.3 | 2,866.8 | 2,876.0 | 2,877.9 | 1.9 |
+| Manufacturing | 12,904 | 12,740 | 12,807 | 12,788 | 12,840 | 12,753 | 12,738 | 12,727 | -11 |
+| Durable goods | 8,008 | 7,894 | 7,931 | 7,915 | 7,983 | 7,902 | 7,889 | 7,889 | 0 |
+| Wood product manufacturing | 422.3 | 415.8 | 415.3 | 415.1 | 419.0 | 416.0 | 413.2 | 412.1 | -1.1 |
+| Nonmetallic mineral product manufacturing | 426.8 | 431.6 | 434.8 | 434.9 | 421.9 | 430.1 | 430.1 | 430.3 | 0.2 |
+| Primary metal manufacturing | 375.0 | 376.3 | 377.5 | 378.3 | 373.7 | 376.1 | 375.3 | 376.7 | 1.4 |
+| Fabricated metal product manufacturing | 1,445.9 | 1,437.7 | 1,444.2 | 1,445.2 | 1,439.4 | 1,437.4 | 1,436.6 | 1,438.5 | 1.9 |
+| Machinery manufacturing | 1,124.0 | 1,111.7 | 1,114.5 | 1,110.4 | 1,116.7 | 1,111.8 | 1,107.6 | 1,104.4 | -3.2 |
+| Computer and electronic product manufacturing | 1,037.4 | 1,003.8 | 1,009.0 | 1,012.3 | 1,029.0 | 1,006.8 | 1,003.8 | 1,003.8 | 0.0 |
+| Computer and peripheral equipment manufacturing | 110.6 | 108.7 | 109.7 | 110.0 | 110.0 | 109.2 | 109.7 | 109.4 | -0.3 |
+| Communications equipment manufacturing | 83.3 | 82.4 | 82.1 | 82.4 | 82.5 | 82.1 | 81.1 | 81.6 | 0.5 |
+| Semiconductor and other electronic component manufacturing | 398.2 | 376.4 | 378.5 | 377.4 | 394.1 | 377.4 | 375.8 | 373.6 | -2.2 |
+| Navigational, measuring, electromedical, and control instruments manufacturing | 415.3 | 408.3 | 410.2 | 414.0 | 413.0 | 410.0 | 409.0 | 411.1 | 2.1 |
+| Manufacturing and reproducing magnetic and optical media and audio and video equipment manufacturing | 30.0 | 28.0 | 28.5 | 28.5 | 29.5 | 28.1 | 28.2 | 28.1 | -0.1 |
+| Electrical equipment, appliance, and component manufacturing | 414.8 | 405.3 | 407.8 | 407.6 | 412.9 | 405.8 | 406.2 | 405.6 | -0.6 |
+| Transportation equipment manufacturing(1) | 1,802.9 | 1,760.6 | 1,771.3 | 1,753.5 | 1,815.9 | 1,767.4 | 1,767.2 | 1,766.2 | -1.0 |
+| Motor vehicles and parts(2) | 1,016.9 | 1,002.4 | 1,004.1 | 982.1 | 1,032.6 | 1,002.2 | 999.3 | 996.9 | -2.4 |
+| Furniture and related product manufacturing | 343.4 | 338.8 | 343.4 | 343.3 | 342.7 | 339.0 | 340.0 | 340.9 | 0.9 |
+| Miscellaneous manufacturing | 615.9 | 611.9 | 613.6 | 613.9 | 611.7 | 611.2 | 609.1 | 610.6 | 1.5 |
+| Nondurable goods | 4,896 | 4,846 | 4,876 | 4,873 | 4,857 | 4,851 | 4,849 | 4,838 | -11 |
+| Food manufacturing | 1,782.0 | 1,764.9 | 1,776.6 | 1,783.1 | 1,770.1 | 1,775.1 | 1,774.0 | 1,771.9 | -2.1 |
+| Textile mills | 87.5 | 85.0 | 85.4 | 84.2 | 86.9 | 85.0 | 85.3 | 83.8 | -1.5 |
+| Textile product mills | 100.3 | 99.1 | 99.3 | 98.0 | 100.2 | 98.8 | 99.2 | 98.1 | -1.1 |
+| Apparel manufacturing | 84.6 | 83.1 | 82.6 | 82.5 | 84.4 | 82.6 | 81.9 | 82.3 | 0.4 |
+| Paper manufacturing | 356.1 | 353.7 | 355.2 | 356.3 | 355.6 | 354.9 | 355.5 | 355.6 | 0.1 |
+| Printing and related support activities | 356.3 | 350.8 | 352.1 | 348.8 | 355.5 | 350.7 | 351.3 | 348.6 | -2.7 |
+| Petroleum and coal products manufacturing | 111.6 | 107.9 | 109.0 | 109.1 | 109.2 | 106.2 | 106.6 | 106.9 | 0.3 |
+| Chemical manufacturing | 905.6 | 903.1 | 907.8 | 908.5 | 899.1 | 902.6 | 903.5 | 902.4 | -1.1 |
+| Plastics and rubber products manufacturing | 727.9 | 720.8 | 721.1 | 719.4 | 725.1 | 718.9 | 716.3 | 716.6 | 0.3 |
+| Beverage, tobacco, and leather and allied product manufacturing | 384.5 | 377.5 | 386.5 | 383.5 | 370.9 | 376.2 | 375.1 | 371.6 | -3.5 |
+| Private service-providing | 113,616 | 114,382 | 114,920 | 114,948 | 112,934 | 114,204 | 114,220 | 114,316 | 96 |
+| Trade, transportation, and utilities | 28,857 | 28,947 | 29,048 | 29,005 | 28,919 | 29,088 | 29,066 | 29,077 | 11 |
+| Wholesale trade | 6,179.2 | 6,186.0 | 6,199.9 | 6,194.7 | 6,143.6 | 6,179.6 | 6,171.5 | 6,163.7 | -7.8 |
+| Merchant wholesalers, durable goods | 3,460.3 | 3,465.5 | 3,472.7 | 3,471.9 | 3,443.5 | 3,465.5 | 3,460.1 | 3,456.9 | -3.2 |
+| Merchant wholesalers, nondurable goods | 2,224.8 | 2,233.3 | 2,241.2 | 2,238.7 | 2,207.8 | 2,225.9 | 2,225.0 | 2,223.9 | -1.1 |
+| Wholesale trade agents and brokers | 494.1 | 487.2 | 486.0 | 484.1 | 492.3 | 488.2 | 486.4 | 482.9 | -3.5 |
+| Retail trade | 15,540.0 | 15,505.6 | 15,580.6 | 15,595.9 | 15,522.8 | 15,575.7 | 15,561.4 | 15,577.1 | 15.7 |
+| Motor vehicle and parts dealers | 2,060.9 | 2,065.1 | 2,067.5 | 2,067.7 | 2,050.4 | 2,061.3 | 2,056.5 | 2,058.4 | 1.9 |
+| Automobile dealers | 1,290.5 | 1,299.3 | 1,302.2 | 1,299.6 | 1,289.3 | 1,298.9 | 1,298.5 | 1,298.9 | 0.4 |
+| Other motor vehicle dealers | 177.1 | 165.1 | 165.7 | 167.9 | 168.1 | 160.1 | 157.9 | 159.3 | 1.4 |
+| Automotive parts, accessories, and tire retailers | 593.3 | 600.7 | 599.6 | 600.2 | 593.0 | 602.3 | 600.1 | 600.1 | 0.0 |
+| Building material and garden equipment and supplies dealers | 1,429.1 | 1,433.8 | 1,439.3 | 1,419.8 | 1,401.0 | 1,385.8 | 1,387.8 | 1,388.6 | 0.8 |
+| Food and beverage retailers | 3,233.8 | 3,230.5 | 3,250.1 | 3,254.2 | 3,219.7 | 3,243.5 | 3,242.9 | 3,241.4 | -1.5 |
+| Furniture, home furnishings, electronics, and appliance retailers | 786.7 | 778.9 | 776.5 | 777.0 | 800.9 | 795.1 | 791.6 | 792.2 | 0.6 |
+| Furniture and home furnishings retailers | 398.2 | 400.4 | 397.9 | 397.9 | 405.8 | 406.7 | 404.4 | 406.1 | 1.7 |
+| Electronics and appliance retailers | 388.5 | 378.5 | 378.6 | 379.1 | 395.1 | 388.4 | 387.2 | 386.1 | -1.1 |
+| General merchandise retailers | 3,247.0 | 3,258.2 | 3,265.5 | 3,290.4 | 3,271.5 | 3,305.0 | 3,302.2 | 3,313.0 | 10.8 |
+| Department stores | 1,000.0 | 980.8 | 979.8 | 987.8 | 1,015.7 | 1,011.3 | 1,006.7 | 1,006.9 | 0.2 |
+| Warehouse clubs, supercenters, and other general merchandise retailers | 2,247.0 | 2,277.4 | 2,285.7 | 2,302.6 | 2,255.8 | 2,293.7 | 2,295.4 | 2,306.1 | 10.7 |
+| Health and personal care retailers | 1,071.4 | 1,075.9 | 1,081.6 | 1,076.8 | 1,086.7 | 1,086.9 | 1,089.3 | 1,091.4 | 2.1 |
+| Gasoline stations and fuel dealers | 1,066.4 | 1,055.9 | 1,061.8 | 1,065.4 | 1,053.9 | 1,056.0 | 1,050.8 | 1,053.8 | 3.0 |
+| Clothing, clothing accessories, shoe, and jewelry retailers | 1,127.0 | 1,104.7 | 1,120.0 | 1,124.5 | 1,132.8 | 1,131.9 | 1,131.0 | 1,131.0 | 0.0 |
+| Sporting goods, hobby, musical instrument, book, and miscellaneous retailers | 1,517.7 | 1,502.6 | 1,518.3 | 1,520.1 | 1,505.9 | 1,510.2 | 1,509.3 | 1,507.3 | -2.0 |
+| Transportation and warehousing | 6,542.6 | 6,657.0 | 6,665.9 | 6,611.7 | 6,661.3 | 6,734.0 | 6,734.6 | 6,738.2 | 3.6 |
+| Air transportation | 568.9 | 581.0 | 581.0 | 583.6 | 564.8 | 580.6 | 577.0 | 579.5 | 2.5 |
+| Rail transportation | 155.8 | 153.5 | 153.0 | 153.0 | 156.0 | 153.4 | 153.2 | 153.2 | 0.0 |
+| Water transportation | 74.0 | 72.8 | 75.0 | 74.9 | 70.7 | 71.0 | 71.6 | 71.4 | -0.2 |
+| Truck transportation | 1,533.3 | 1,523.2 | 1,531.6 | 1,539.3 | 1,516.6 | 1,523.9 | 1,519.6 | 1,523.2 | 3.6 |
+| Transit and ground passenger transportation | 406.3 | 505.4 | 481.4 | 427.1 | 466.8 | 489.6 | 491.6 | 489.5 | -2.1 |
+| Pipeline transportation | 56.7 | 60.5 | 61.2 | 60.7 | 56.3 | 60.1 | 60.8 | 60.4 | -0.4 |
+| Scenic and sightseeing transportation | 40.5 | 37.2 | 43.9 | 46.1 | 31.4 | 34.2 | 35.6 | 36.0 | 0.4 |
+| Support activities for transportation | 840.8 | 847.6 | 845.4 | 847.8 | 841.5 | 848.9 | 848.8 | 849.0 | 0.2 |
+| Couriers and messengers | 1,032.6 | 1,068.1 | 1,088.9 | 1,078.1 | 1,100.3 | 1,144.9 | 1,151.7 | 1,157.7 | 6.0 |
+| Warehousing and storage | 1,833.7 | 1,807.7 | 1,804.5 | 1,801.1 | 1,856.9 | 1,827.4 | 1,824.7 | 1,818.3 | -6.4 |
+| Utilities | 595.5 | 598.0 | 601.7 | 602.5 | 591.6 | 598.2 | 598.5 | 598.4 | -0.1 |
+| Information | 2,960 | 2,932 | 2,955 | 2,961 | 2,936 | 2,941 | 2,941 | 2,939 | -2 |
+| Motion picture and sound recording industries | 413.3 | 414.4 | 423.2 | 427.1 | 400.7 | 411.1 | 412.8 | 415.3 | 2.5 |
+| Publishing industries | 917.7 | 913.4 | 924.4 | 925.0 | 912.6 | 919.5 | 919.4 | 919.8 | 0.4 |
+| Broadcasting and content providers | 340.0 | 334.1 | 334.5 | 334.6 | 340.8 | 334.4 | 334.3 | 334.6 | 0.3 |
+| Telecommunications | 621.8 | 603.6 | 603.1 | 601.8 | 619.3 | 604.5 | 602.8 | 600.5 | -2.3 |
+| Computing infrastructure providers, data processing, web hosting, and related services | 484.2 | 483.7 | 485.8 | 487.0 | 480.3 | 486.9 | 487.4 | 483.9 | -3.5 |
+| Web search portals, libraries, archives, and other information services | 183.3 | 182.7 | 184.3 | 185.3 | 182.1 | 184.4 | 184.1 | 184.5 | 0.4 |
+| Financial activities | 9,239 | 9,221 | 9,279 | 9,339 | 9,164 | 9,250 | 9,248 | 9,263 | 15 |
+| Finance and insurance | 6,738.5 | 6,723.9 | 6,754.6 | 6,793.6 | 6,704.9 | 6,747.6 | 6,744.5 | 6,758.7 | 14.2 |
+| Monetary authorities-central bank | 20.9 | 21.2 | 21.2 | 21.1 | 20.5 | 21.2 | 21.1 | 20.8 | -0.3 |
+| Credit intermediation and related activities | 2,572.1 | 2,556.2 | 2,565.3 | 2,570.9 | 2,562.4 | 2,558.8 | 2,559.0 | 2,561.2 | 2.2 |
+| Depository credit intermediation(1) | 1,787.8 | 1,772.7 | 1,783.6 | 1,786.7 | 1,780.0 | 1,776.3 | 1,778.1 | 1,778.4 | 0.3 |
+| Commercial banking | 1,380.3 | 1,359.5 | 1,367.1 | 1,368.7 | 1,374.1 | 1,362.3 | 1,363.4 | 1,362.1 | -1.3 |
+| Nondepository credit intermediation | 509.4 | 506.8 | 507.0 | 507.1 | 507.0 | 506.5 | 506.1 | 505.3 | -0.8 |
+| Activities related to credit intermediation | 274.9 | 276.7 | 274.7 | 277.1 | 275.4 | 276.0 | 274.7 | 277.5 | 2.8 |
+| Securities, commodity contracts, funds, trusts, and other financial vehicles, investments, and related activities | 1,131.1 | 1,131.1 | 1,150.3 | 1,167.5 | 1,116.5 | 1,141.9 | 1,146.8 | 1,151.6 | 4.8 |
+| Insurance carriers and related activities | 3,014.4 | 3,015.4 | 3,017.8 | 3,034.1 | 3,005.5 | 3,025.7 | 3,017.6 | 3,025.1 | 7.5 |
+| Real estate and rental and leasing | 2,500.4 | 2,497.3 | 2,524.7 | 2,545.2 | 2,458.8 | 2,502.7 | 2,503.4 | 2,504.7 | 1.3 |
+| Real estate | 1,888.5 | 1,875.9 | 1,887.6 | 1,902.0 | 1,867.5 | 1,881.2 | 1,880.8 | 1,881.5 | 0.7 |
+| Rental and leasing services | 589.2 | 598.3 | 613.9 | 619.9 | 568.8 | 598.3 | 599.6 | 600.1 | 0.5 |
+| Lessors of nonfinancial intangible assets (except copyrighted works) | 22.7 | 23.1 | 23.2 | 23.3 | 22.5 | 23.2 | 23.0 | 23.1 | 0.1 |
+| Professional and business services | 22,730 | 22,631 | 22,695 | 22,670 | 22,623 | 22,587 | 22,576 | 22,562 | -14 |
+| Professional, scientific, and technical services | 10,883.9 | 10,831.3 | 10,864.1 | 10,907.1 | 10,832.0 | 10,860.6 | 10,848.9 | 10,852.0 | 3.1 |
+| Legal services | 1,201.0 | 1,191.8 | 1,211.4 | 1,210.7 | 1,190.5 | 1,196.6 | 1,199.3 | 1,199.9 | 0.6 |
+| Accounting, tax preparation, bookkeeping, and payroll services | 1,123.7 | 1,140.3 | 1,130.1 | 1,129.2 | 1,155.8 | 1,153.0 | 1,154.4 | 1,155.0 | 0.6 |
+| Architectural, engineering, and related services | 1,737.8 | 1,740.1 | 1,769.2 | 1,785.4 | 1,706.9 | 1,744.5 | 1,747.6 | 1,754.3 | 6.7 |
+| Specialized design services | 150.3 | 147.8 | 149.1 | 149.2 | 150.1 | 148.8 | 148.7 | 149.2 | 0.5 |
+| Computer systems design and related services | 2,462.1 | 2,430.6 | 2,419.8 | 2,434.7 | 2,447.5 | 2,431.7 | 2,426.3 | 2,421.1 | -5.2 |
+| Management, scientific, and technical consulting services | 1,871.6 | 1,873.7 | 1,871.3 | 1,873.9 | 1,866.0 | 1,877.9 | 1,871.8 | 1,869.2 | -2.6 |
+| Scientific research and development services | 949.1 | 935.4 | 939.5 | 943.7 | 934.8 | 936.4 | 931.4 | 930.4 | -1.0 |
+| Advertising, public relations, and related services | 499.6 | 491.6 | 494.4 | 498.2 | 497.2 | 491.8 | 492.6 | 495.4 | 2.8 |
+| Other professional, scientific, and technical services | 888.7 | 880.0 | 879.3 | 882.1 | 883.2 | 880.0 | 876.8 | 877.6 | 0.8 |
+| Management of companies and enterprises | 2,641.4 | 2,622.8 | 2,649.2 | 2,659.0 | 2,622.8 | 2,633.3 | 2,636.1 | 2,637.9 | 1.8 |
+| Administrative and support and waste management and remediation services | 9,205.1 | 9,177.3 | 9,181.3 | 9,103.5 | 9,167.9 | 9,093.0 | 9,091.1 | 9,072.0 | -19.1 |
+| Administrative and support services | 8,688.5 | 8,658.4 | 8,655.1 | 8,576.5 | 8,657.0 | 8,572.3 | 8,569.6 | 8,549.8 | -19.8 |
+| Office administrative services | 620.9 | 622.7 | 620.4 | 624.2 | 617.8 | 623.5 | 620.9 | 621.9 | 1.0 |
+| Facilities support services | 183.6 | 185.2 | 185.8 | 184.6 | 182.0 | 184.7 | 184.9 | 184.1 | -0.8 |
+| Employment services(1) | 3,222.7 | 3,247.9 | 3,193.2 | 3,130.1 | 3,315.4 | 3,237.0 | 3,231.6 | 3,224.4 | -7.2 |
+| Temporary help services | 2,506.7 | 2,536.0 | 2,488.8 | 2,436.8 | 2,594.3 | 2,529.0 | 2,526.0 | 2,521.6 | -4.4 |
+| Business support services | 680.3 | 650.6 | 647.1 | 638.4 | 687.8 | 656.8 | 652.2 | 646.5 | -5.7 |
+| Travel arrangement and reservation services | 189.8 | 196.2 | 197.7 | 195.8 | 187.8 | 195.2 | 195.7 | 194.3 | -1.4 |
+| Investigation and security services | 1,026.1 | 1,032.5 | 1,034.1 | 1,032.9 | 1,028.0 | 1,031.3 | 1,033.8 | 1,034.4 | 0.6 |
+| Services to buildings and dwellings | 2,427.8 | 2,386.2 | 2,434.2 | 2,427.8 | 2,303.7 | 2,311.5 | 2,313.8 | 2,305.9 | -7.9 |
+| Other support services | 337.3 | 337.1 | 342.6 | 342.7 | 334.4 | 332.2 | 336.6 | 338.4 | 1.8 |
+| Waste management and remediation services | 516.6 | 518.9 | 526.2 | 527.0 | 510.9 | 520.7 | 521.5 | 522.2 | 0.7 |
+| Private education and health services | 26,215 | 27,275 | 27,121 | 27,084 | 26,525 | 27,278 | 27,330 | 27,409 | 79 |
+| Private educational services | 3,665.1 | 4,027.0 | 3,794.8 | 3,699.7 | 3,956.9 | 4,001.9 | 3,994.3 | 4,000.1 | 5.8 |
+| Health care and social assistance | 22,549.4 | 23,248.2 | 23,325.8 | 23,384.6 | 22,568.5 | 23,276.5 | 23,335.5 | 23,408.8 | 73.3 |
+| Health care(3) | 17,689.5 | 18,045.6 | 18,111.9 | 18,195.6 | 17,683.3 | 18,105.6 | 18,143.2 | 18,198.6 | 55.4 |
+| Ambulatory health care services | 8,788.6 | 8,937.9 | 8,944.1 | 8,985.4 | 8,799.1 | 8,959.6 | 8,970.3 | 9,003.9 | 33.6 |
+| Offices of physicians | 2,977.3 | 3,044.4 | 3,044.7 | 3,053.8 | 2,980.1 | 3,049.2 | 3,050.4 | 3,057.1 | 6.7 |
+| Offices of dentists | 1,050.8 | 1,047.6 | 1,050.0 | 1,060.8 | 1,048.0 | 1,050.4 | 1,049.8 | 1,056.9 | 7.1 |
+| Offices of other health practitioners | 1,228.9 | 1,277.9 | 1,274.3 | 1,274.3 | 1,232.0 | 1,276.6 | 1,279.2 | 1,281.2 | 2.0 |
+| Outpatient care centers | 1,117.2 | 1,117.9 | 1,117.4 | 1,120.0 | 1,118.6 | 1,121.5 | 1,120.4 | 1,121.7 | 1.3 |
+| Medical and diagnostic laboratories | 304.8 | 305.8 | 307.2 | 308.4 | 306.4 | 306.4 | 308.1 | 309.1 | 1.0 |
+| Home health care services | 1,753.7 | 1,785.3 | 1,787.2 | 1,804.3 | 1,755.7 | 1,794.0 | 1,798.2 | 1,812.6 | 14.4 |
+| Other ambulatory health care services | 355.9 | 359.0 | 363.3 | 363.8 | 358.4 | 361.4 | 364.3 | 365.4 | 1.1 |
+| Hospitals | 5,566.1 | 5,700.6 | 5,733.0 | 5,762.8 | 5,562.4 | 5,728.7 | 5,743.2 | 5,759.2 | 16.0 |
+| Nursing and residential care facilities | 3,334.8 | 3,407.1 | 3,434.8 | 3,447.4 | 3,321.8 | 3,417.3 | 3,429.7 | 3,435.5 | 5.8 |
+| Skilled nursing care facilities | 1,500.3 | 1,537.0 | 1,551.9 | 1,560.4 | 1,493.5 | 1,544.9 | 1,550.8 | 1,553.7 | 2.9 |
+| Residential intellectual and developmental disability, mental health, and substance abuse facilities | 674.6 | 694.7 | 697.9 | 700.6 | 671.7 | 695.1 | 695.8 | 697.8 | 2.0 |
+| Continuing care retirement communities and assisted living facilities for the elderly | 991.1 | 1,002.1 | 1,009.8 | 1,011.3 | 988.5 | 1,003.8 | 1,008.4 | 1,009.5 | 1.1 |
+| Other residential care facilities | 168.8 | 173.3 | 175.2 | 175.1 | 168.0 | 173.6 | 174.8 | 174.4 | -0.4 |
+| Social assistance | 4,859.9 | 5,202.6 | 5,213.9 | 5,189.0 | 4,885.2 | 5,170.9 | 5,192.3 | 5,210.2 | 17.9 |
+| Individual and family services | 3,275.8 | 3,548.4 | 3,570.8 | 3,590.3 | 3,267.9 | 3,539.6 | 3,557.9 | 3,578.5 | 20.6 |
+| Community food and housing, and emergency and other relief services | 236.9 | 241.9 | 241.4 | 241.3 | 236.9 | 241.6 | 240.3 | 241.2 | 0.9 |
+| Vocational rehabilitation services | 291.5 | 286.3 | 292.4 | 291.8 | 287.5 | 285.4 | 288.8 | 287.6 | -1.2 |
+| Child care services | 1,055.7 | 1,126.0 | 1,109.3 | 1,065.6 | 1,092.9 | 1,104.3 | 1,105.4 | 1,102.9 | -2.5 |
+| Leisure and hospitality | 17,562 | 17,312 | 17,713 | 17,779 | 16,792 | 17,021 | 17,025 | 17,030 | 5 |
+| Arts, entertainment, and recreation | 2,971.5 | 2,784.7 | 2,994.3 | 3,054.3 | 2,627.5 | 2,704.2 | 2,711.9 | 2,712.6 | 0.7 |
+| Performing arts, spectator sports, and related industries | 609.1 | 657.5 | 671.1 | 661.6 | 583.3 | 628.8 | 637.5 | 636.9 | -0.6 |
+| Museums, historical sites, and similar institutions | 194.7 | 186.1 | 194.0 | 198.4 | 178.4 | 182.2 | 181.9 | 182.7 | 0.8 |
+| Amusement, gambling, and recreation industries | 2,167.7 | 1,941.1 | 2,129.2 | 2,194.3 | 1,865.8 | 1,893.2 | 1,892.5 | 1,893.0 | 0.5 |
+| Accommodation and food services | 14,590.5 | 14,526.8 | 14,718.6 | 14,724.4 | 14,164.9 | 14,316.6 | 14,312.6 | 14,317.4 | 4.8 |
+| Accommodation | 2,078.9 | 1,967.4 | 2,049.5 | 2,093.6 | 1,931.8 | 1,949.9 | 1,945.5 | 1,950.6 | 5.1 |
+| Food services and drinking places | 12,511.6 | 12,559.4 | 12,669.1 | 12,630.8 | 12,233.1 | 12,366.7 | 12,367.1 | 12,366.8 | -0.3 |
+| Other services | 6,053 | 6,064 | 6,109 | 6,110 | 5,975 | 6,039 | 6,034 | 6,036 | 2 |
+| Repair and maintenance | 1,474.4 | 1,495.2 | 1,498.1 | 1,491.2 | 1,464.6 | 1,486.9 | 1,484.1 | 1,482.9 | -1.2 |
+| Personal and laundry services | 1,608.5 | 1,632.7 | 1,629.1 | 1,628.1 | 1,596.2 | 1,619.1 | 1,615.8 | 1,618.2 | 2.4 |
+| Religious, grantmaking, civic, professional, and similar organizations | 2,970.2 | 2,936.1 | 2,981.7 | 2,990.6 | 2,913.9 | 2,932.8 | 2,934.0 | 2,934.7 | 0.7 |
+| Government | 22,191 | 23,833 | 23,460 | 22,350 | 23,392 | 23,568 | 23,579 | 23,569 | -10 |
+| Federal | 3,015 | 2,947 | 2,938 | 2,938 | 3,002 | 2,952 | 2,943 | 2,931 | -12 |
+| Federal, except U.S. Postal Service | 2,406.4 | 2,356.9 | 2,348.8 | 2,338.8 | 2,394.7 | 2,359.1 | 2,349.2 | 2,335.1 | -14.1 |
+| U.S. Postal Service | 608.8 | 590.2 | 588.8 | 599.0 | 606.8 | 592.7 | 593.7 | 596.1 | 2.4 |
+| State government | 5,102 | 5,498 | 5,257 | 5,176 | 5,444 | 5,515 | 5,525 | 5,530 | 5 |
+| State government education | 2,235.6 | 2,604.1 | 2,346.1 | 2,257.8 | 2,593.4 | 2,620.8 | 2,628.7 | 2,627.5 | -1.2 |
+| State government, excluding education | 2,866.2 | 2,894.2 | 2,910.9 | 2,917.9 | 2,850.1 | 2,894.1 | 2,896.2 | 2,902.1 | 5.9 |
+| Local government | 14,074 | 15,388 | 15,265 | 14,236 | 14,946 | 15,101 | 15,111 | 15,108 | -3 |
+| Local government education | 7,035.8 | 8,489.5 | 8,160.4 | 7,081.6 | 8,144.9 | 8,204.4 | 8,204.0 | 8,193.6 | -10.4 |
+| Local government, excluding education | 7,037.8 | 6,898.9 | 7,104.2 | 7,153.9 | 6,800.8 | 6,896.5 | 6,906.6 | 6,914.1 | 7.5 |
+| Footnotes (1) Includes other industries, not shown separately. (2) Includes motor vehicle manufacturing, motor vehicle body and trailer manufacturing, and motor vehicle parts manufacturing. (3) Includes ambulatory health care services, hospitals, and nursing and residential care facilities. (p) Preliminary | | | | | | | | | |
+| NOTE: Data have been revised to reflect March 2024 benchmark levels and updated seasonal adjustment factors. | | | | | | | | | |
+
+ESTABLISHMENT DATA Table B-2. Average weekly hours and overtime of all employees on private nonfarm payrolls by industry sector, seasonally adjusted
+
+| Industry | July 2024 | May 2025 | June 2025(p) | July 2025(p) |
+| --- | --- | --- | --- | --- |
+| AVERAGE WEEKLY HOURS | | | | |
+| Total private | 34.2 | 34.3 | 34.2 | 34.3 |
+| Goods-producing | 39.7 | 39.8 | 39.7 | 39.9 |
+| Mining and logging | 44.2 | 44.8 | 44.3 | 44.8 |
+| Construction | 38.9 | 39.0 | 38.9 | 39.1 |
+| Manufacturing | 40.0 | 40.1 | 40.1 | 40.1 |
+| Durable goods | 40.4 | 40.5 | 40.5 | 40.5 |
+| Nondurable goods | 39.2 | 39.3 | 39.3 | 39.5 |
+| Private service-providing | 33.2 | 33.2 | 33.1 | 33.2 |
+| Trade, transportation, and utilities | 33.9 | 34.0 | 34.0 | 34.0 |
+| Wholesale trade | 39.2 | 39.1 | 39.1 | 39.2 |
+| Retail trade | 29.7 | 29.7 | 29.8 | 29.7 |
+| Transportation and warehousing | 37.9 | 38.4 | 38.2 | 38.6 |
+| Utilities | 42.2 | 42.2 | 42.3 | 42.3 |
+| Information | 36.7 | 36.8 | 36.7 | 36.8 |
+| Financial activities | 37.4 | 37.6 | 37.7 | 37.6 |
+| Professional and business services | 36.4 | 36.5 | 36.4 | 36.4 |
+| Private education and health services | 33.0 | 32.8 | 32.7 | 32.8 |
+| Leisure and hospitality | 25.4 | 25.6 | 25.5 | 25.6 |
+| Other services | 32.1 | 31.9 | 31.9 | 31.9 |
+| AVERAGE OVERTIME HOURS | | | | |
+| Manufacturing | 2.9 | 2.9 | 2.9 | 2.8 |
+| Durable goods | 2.9 | 2.9 | 2.9 | 2.8 |
+| Nondurable goods | 3.0 | 2.8 | 2.8 | 2.9 |
+| Footnotes (p) Preliminary | | | | |
+| NOTE: Data have been revised to reflect March 2024 benchmark levels and updated seasonal adjustment factors. | | | | |
+
+ESTABLISHMENT DATA Table B-3. Average hourly and weekly earnings of all employees on private nonfarm payrolls by industry sector, seasonally adjusted
+
+| Industry | Average hourly earnings | | | | Average weekly earnings | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | May 2025 | June 2025(p) | July 2025(p) | July 2024 | May 2025 | June 2025(p) | July 2025(p) |
+| Total private | $35.07 | $36.23 | $36.32 | $36.44 | $1,199.39 | $1,242.69 | $1,242.14 | $1,249.89 |
+| Goods-producing | 35.81 | 36.99 | 37.09 | 37.11 | 1,421.66 | 1,472.20 | 1,472.47 | 1,480.69 |
+| Mining and logging | 39.67 | 40.26 | 40.29 | 40.43 | 1,753.41 | 1,803.65 | 1,784.85 | 1,811.26 |
+| Construction | 38.26 | 39.44 | 39.60 | 39.69 | 1,488.31 | 1,538.16 | 1,540.44 | 1,551.88 |
+| Manufacturing | 34.08 | 35.25 | 35.32 | 35.30 | 1,363.20 | 1,413.53 | 1,416.33 | 1,415.53 |
+| Durable goods | 36.13 | 37.43 | 37.47 | 37.48 | 1,459.65 | 1,515.92 | 1,517.54 | 1,517.94 |
+| Nondurable goods | 30.60 | 31.60 | 31.72 | 31.65 | 1,199.52 | 1,241.88 | 1,246.60 | 1,250.18 |
+| Private service-providing | 34.91 | 36.06 | 36.15 | 36.29 | 1,159.01 | 1,197.19 | 1,196.57 | 1,204.83 |
+| Trade, transportation, and utilities | 29.97 | 30.85 | 30.90 | 31.12 | 1,015.98 | 1,048.90 | 1,050.60 | 1,058.08 |
+| Wholesale trade | 37.67 | 38.66 | 38.71 | 38.86 | 1,476.66 | 1,511.61 | 1,513.56 | 1,523.31 |
+| Retail trade | 24.45 | 25.35 | 25.41 | 25.71 | 726.17 | 752.90 | 757.22 | 763.59 |
+| Transportation and warehousing | 30.63 | 31.35 | 31.40 | 31.52 | 1,160.88 | 1,203.84 | 1,199.48 | 1,216.67 |
+| Utilities | 51.03 | 51.85 | 52.00 | 51.87 | 2,153.47 | 2,188.07 | 2,199.60 | 2,194.10 |
+| Information | 49.92 | 52.16 | 52.43 | 52.61 | 1,832.06 | 1,919.49 | 1,924.18 | 1,936.05 |
+| Financial activities | 45.63 | 47.40 | 47.44 | 47.67 | 1,706.56 | 1,782.24 | 1,788.49 | 1,792.39 |
+| Professional and business services | 42.21 | 44.00 | 44.18 | 44.36 | 1,536.44 | 1,606.00 | 1,608.15 | 1,614.70 |
+| Private education and health services | 34.42 | 35.40 | 35.42 | 35.52 | 1,135.86 | 1,161.12 | 1,158.23 | 1,165.06 |
+| Leisure and hospitality | 22.06 | 22.73 | 22.79 | 22.83 | 560.32 | 581.89 | 581.15 | 584.45 |
+| Other services | 31.92 | 32.53 | 32.65 | 32.71 | 1,024.63 | 1,037.71 | 1,041.54 | 1,043.45 |
+| Footnotes (p) Preliminary | | | | | | | | |
+| NOTE: Data have been revised to reflect March 2024 benchmark levels and updated seasonal adjustment factors. | | | | | | | | |
+
+ESTABLISHMENT DATA Table B-4. Indexes of aggregate weekly hours and payrolls for all employees on private nonfarm payrolls by industry sector, seasonally adjusted [2007=100]
+
+| Industry | Index of aggregate weekly hours(1) | | | | | Index of aggregate weekly payrolls(2) | | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | May 2025 | June 2025(p) | July 2025(p) | Percent change from: June 2025 - July 2025(p) | July 2024 | May 2025 | June 2025(p) | July 2025(p) | Percent change from: June 2025 - July 2025(p) |
+| Total private | 115.6 | 117.0 | 116.7 | 117.1 | 0.3 | 193.8 | 202.7 | 202.6 | 204.0 | 0.7 |
+| Goods-producing | 98.1 | 98.3 | 98.0 | 98.5 | 0.5 | 158.7 | 164.4 | 164.3 | 165.2 | 0.5 |
+| Mining and logging | 86.5 | 87.6 | 86.4 | 86.9 | 0.6 | 137.8 | 141.5 | 139.8 | 141.0 | 0.9 |
+| Construction | 110.1 | 111.7 | 111.4 | 112.0 | 0.5 | 183.1 | 191.3 | 191.7 | 193.2 | 0.8 |
+| Manufacturing | 92.4 | 92.0 | 91.9 | 91.9 | 0.0 | 146.5 | 150.9 | 151.0 | 150.8 | -0.1 |
+| Durable goods | 90.8 | 90.1 | 90.0 | 90.0 | 0.0 | 145.8 | 149.9 | 149.8 | 149.8 | 0.0 |
+| Nondurable goods | 95.0 | 95.2 | 95.1 | 95.4 | 0.3 | 147.6 | 152.6 | 153.1 | 153.2 | 0.1 |
+| Private service-providing | 120.7 | 122.1 | 121.7 | 122.2 | 0.4 | 204.8 | 213.9 | 213.8 | 215.5 | 0.8 |
+| Trade, transportation, and utilities | 107.1 | 108.1 | 108.0 | 108.0 | 0.0 | 173.1 | 179.8 | 179.9 | 181.3 | 0.8 |
+| Wholesale trade | 106.2 | 106.6 | 106.4 | 106.6 | 0.2 | 167.4 | 172.4 | 172.4 | 173.2 | 0.5 |
+| Retail trade | 93.8 | 94.2 | 94.4 | 94.2 | -0.2 | 151.7 | 157.8 | 158.6 | 160.1 | 0.9 |
+| Transportation and warehousing | 145.1 | 148.6 | 147.8 | 149.4 | 1.1 | 226.0 | 237.0 | 236.1 | 239.6 | 1.5 |
+| Utilities | 108.1 | 109.3 | 109.6 | 109.6 | 0.0 | 182.2 | 187.2 | 188.2 | 187.7 | -0.3 |
+| Information | 98.4 | 98.9 | 98.6 | 98.8 | 0.2 | 174.9 | 183.6 | 184.0 | 185.1 | 0.6 |
+| Financial activities | 112.3 | 113.9 | 114.2 | 114.1 | -0.1 | 199.8 | 210.6 | 211.3 | 212.1 | 0.4 |
+| Professional and business services | 128.8 | 128.9 | 128.5 | 128.4 | -0.1 | 220.2 | 229.8 | 230.0 | 230.8 | 0.3 |
+| Private education and health services | 143.0 | 146.1 | 146.0 | 146.8 | 0.5 | 236.7 | 248.9 | 248.7 | 250.9 | 0.9 |
+| Leisure and hospitality | 121.7 | 124.3 | 123.9 | 124.4 | 0.4 | 216.6 | 228.0 | 227.8 | 229.1 | 0.6 |
+| Other services | 110.6 | 111.1 | 111.0 | 111.0 | 0.0 | 193.5 | 198.0 | 198.6 | 199.0 | 0.2 |
+| Footnotes (1) The indexes of aggregate weekly hours are calculated by dividing the current month's estimates of aggregate hours by the corresponding 2007 annual average aggregate hours. Aggregate hours estimates are the product of estimates of average weekly hours and employment. (2) The indexes of aggregate weekly payrolls are calculated by dividing the current month's estimates of aggregate weekly payrolls by the corresponding 2007 annual average aggregate weekly payrolls. Aggregate payrolls estimates are the product of estimates of average hourly earnings, average weekly hours, and employment. (p) Preliminary | | | | | | | | | | |
+| NOTE: Data have been revised to reflect March 2024 benchmark levels and updated seasonal adjustment factors. | | | | | | | | | | |
+
+ESTABLISHMENT DATA Table B-5. Employment of women on nonfarm payrolls by industry sector, seasonally adjusted
+
+| Industry | Women employees (in thousands) | | | | Percent of all employees | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | May 2025 | June 2025(p) | July 2025(p) | July 2024 | May 2025 | June 2025(p) | July 2025(p) |
+| Total nonfarm | 78,842 | 79,557 | 79,584 | 79,644 | 49.9 | 49.9 | 49.9 | 49.9 |
+| Total private | 65,180 | 65,759 | 65,778 | 65,837 | 48.4 | 48.4 | 48.4 | 48.4 |
+| Goods-producing | 4,977 | 4,953 | 4,947 | 4,933 | 23.0 | 22.8 | 22.8 | 22.8 |
+| Mining and logging | 86 | 87 | 86 | 85 | 13.8 | 14.0 | 13.8 | 13.8 |
+| Construction | 1,173 | 1,198 | 1,199 | 1,198 | 14.3 | 14.4 | 14.4 | 14.4 |
+| Manufacturing | 3,718 | 3,668 | 3,662 | 3,650 | 29.0 | 28.8 | 28.7 | 28.7 |
+| Durable goods | 1,963 | 1,929 | 1,923 | 1,920 | 24.6 | 24.4 | 24.4 | 24.3 |
+| Nondurable goods | 1,755 | 1,739 | 1,739 | 1,730 | 36.1 | 35.8 | 35.9 | 35.8 |
+| Private service-providing | 60,203 | 60,806 | 60,831 | 60,904 | 53.3 | 53.2 | 53.3 | 53.3 |
+| Trade, transportation, and utilities | 11,237 | 11,257 | 11,251 | 11,257 | 38.9 | 38.7 | 38.7 | 38.7 |
+| Wholesale trade | 1,864.8 | 1,881.1 | 1,877.1 | 1,874.8 | 30.4 | 30.4 | 30.4 | 30.4 |
+| Retail trade | 7,456.3 | 7,450.9 | 7,453.0 | 7,459.5 | 48.0 | 47.8 | 47.9 | 47.9 |
+| Transportation and warehousing | 1,760.6 | 1,769.5 | 1,766.2 | 1,767.9 | 26.4 | 26.3 | 26.2 | 26.2 |
+| Utilities | 155.1 | 155.0 | 155.0 | 154.6 | 26.2 | 25.9 | 25.9 | 25.8 |
+| Information | 1,171 | 1,177 | 1,178 | 1,183 | 39.9 | 40.0 | 40.1 | 40.3 |
+| Financial activities | 5,096 | 5,083 | 5,078 | 5,086 | 55.6 | 55.0 | 54.9 | 54.9 |
+| Professional and business services | 10,350 | 10,226 | 10,223 | 10,220 | 45.7 | 45.3 | 45.3 | 45.3 |
+| Private education and health services | 20,364 | 20,906 | 20,953 | 21,001 | 76.8 | 76.6 | 76.7 | 76.6 |
+| Leisure and hospitality | 8,783 | 8,899 | 8,895 | 8,902 | 52.3 | 52.3 | 52.2 | 52.3 |
+| Other services | 3,202 | 3,258 | 3,253 | 3,255 | 53.6 | 53.9 | 53.9 | 53.9 |
+| Government | 13,662 | 13,798 | 13,806 | 13,807 | 58.4 | 58.5 | 58.6 | 58.6 |
+| Footnotes (p) Preliminary | | | | | | | | |
+| NOTE: Data have been revised to reflect March 2024 benchmark levels and updated seasonal adjustment factors. | | | | | | | | |
+
+ESTABLISHMENT DATA Table B-6. Employment of production and nonsupervisory employees on private nonfarm payrolls by industry sector, seasonally adjusted(1) [In thousands]
+
+| Industry | July 2024 | May 2025 | June 2025(p) | July 2025(p) |
+| --- | --- | --- | --- | --- |
+| Total private | 109,602 | 110,722 | 110,733 | 110,756 |
+| Goods-producing | 15,430 | 15,383 | 15,369 | 15,347 |
+| Mining and logging | 480 | 462 | 459 | 454 |
+| Construction | 5,986 | 6,034 | 6,037 | 6,037 |
+| Manufacturing | 8,964 | 8,887 | 8,873 | 8,856 |
+| Durable goods | 5,430 | 5,349 | 5,345 | 5,343 |
+| Nondurable goods | 3,534 | 3,538 | 3,528 | 3,513 |
+| Private service-providing | 94,172 | 95,339 | 95,364 | 95,409 |
+| Trade, transportation, and utilities | 24,476 | 24,655 | 24,654 | 24,673 |
+| Wholesale trade | 4,857.2 | 4,897.9 | 4,890.1 | 4,885.5 |
+| Retail trade | 13,320.1 | 13,376.8 | 13,377.3 | 13,397.5 |
+| Transportation and warehousing | 5,828.4 | 5,907.6 | 5,913.0 | 5,916.1 |
+| Utilities | 470.3 | 473.1 | 474.0 | 473.6 |
+| Information | 2,356 | 2,347 | 2,347 | 2,341 |
+| Financial activities | 6,907 | 7,005 | 7,009 | 7,018 |
+| Professional and business services | 17,797 | 17,715 | 17,696 | 17,677 |
+| Private education and health services | 23,150 | 23,894 | 23,950 | 24,010 |
+| Leisure and hospitality | 14,636 | 14,820 | 14,810 | 14,801 |
+| Other services | 4,850 | 4,903 | 4,898 | 4,889 |
+| Footnotes (1) Data relate to production employees in mining and logging and manufacturing, construction employees in construction, and nonsupervisory employees in the service-providing industries. These groups account for approximately four-fifths of the total employment on private nonfarm payrolls. (p) Preliminary | | | | |
+| NOTE: Data have been revised to reflect March 2024 benchmark levels and updated seasonal adjustment factors. | | | | |
+
+ESTABLISHMENT DATA Table B-7. Average weekly hours and overtime of production and nonsupervisory employees on private nonfarm payrolls by industry sector, seasonally adjusted(1)
+
+| Industry | July 2024 | May 2025 | June 2025(p) | July 2025(p) |
+| --- | --- | --- | --- | --- |
+| AVERAGE WEEKLY HOURS | | | | |
+| Total private | 33.7 | 33.7 | 33.6 | 33.7 |
+| Goods-producing | 40.5 | 40.7 | 40.6 | 40.7 |
+| Mining and logging | 46.7 | 44.6 | 44.3 | 44.6 |
+| Construction | 39.8 | 39.9 | 39.7 | 39.9 |
+| Manufacturing | 40.6 | 41.0 | 41.0 | 41.0 |
+| Durable goods | 40.7 | 41.3 | 41.2 | 41.3 |
+| Nondurable goods | 40.5 | 40.7 | 40.7 | 40.7 |
+| Private service-providing | 32.5 | 32.5 | 32.4 | 32.6 |
+| Trade, transportation, and utilities | 34.0 | 34.2 | 34.1 | 34.3 |
+| Wholesale trade | 39.1 | 39.1 | 39.2 | 39.3 |
+| Retail trade | 30.3 | 30.4 | 30.2 | 30.4 |
+| Transportation and warehousing | 37.5 | 38.1 | 37.9 | 38.4 |
+| Utilities | 42.7 | 42.6 | 43.4 | 43.0 |
+| Information | 35.7 | 35.7 | 35.4 | 35.7 |
+| Financial activities | 37.0 | 37.2 | 37.3 | 37.4 |
+| Professional and business services | 36.4 | 36.3 | 36.2 | 36.4 |
+| Private education and health services | 32.1 | 31.8 | 31.7 | 31.7 |
+| Leisure and hospitality | 23.9 | 24.3 | 24.1 | 24.2 |
+| Other services | 31.3 | 30.9 | 30.9 | 31.1 |
+| AVERAGE OVERTIME HOURS | | | | |
+| Manufacturing | 3.7 | 3.6 | 3.6 | 3.6 |
+| Durable goods | 3.6 | 3.6 | 3.6 | 3.5 |
+| Nondurable goods | 3.8 | 3.7 | 3.7 | 3.7 |
+| Footnotes (1) Data relate to production employees in mining and logging and manufacturing, construction employees in construction, and nonsupervisory employees in the service-providing industries. These groups account for approximately four-fifths of the total employment on private nonfarm payrolls. (p) Preliminary | | | | |
+| NOTE: Data have been revised to reflect March 2024 benchmark levels and updated seasonal adjustment factors. | | | | |
+
+ESTABLISHMENT DATA Table B-8. Average hourly and weekly earnings of production and nonsupervisory employees on private nonfarm payrolls by industry sector, seasonally adjusted(1)
+
+| Industry | Average hourly earnings | | | | Average weekly earnings | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | May 2025 | June 2025(p) | July 2025(p) | July 2024 | May 2025 | June 2025(p) | July 2025(p) |
+| Total private | $30.17 | $31.14 | $31.26 | $31.34 | $1,016.73 | $1,049.42 | $1,050.34 | $1,056.16 |
+| Goods-producing | 31.18 | 32.31 | 32.40 | 32.43 | 1,262.79 | 1,315.02 | 1,315.44 | 1,319.90 |
+| Mining and logging | 36.40 | 37.42 | 37.57 | 37.47 | 1,699.88 | 1,668.93 | 1,664.35 | 1,671.16 |
+| Construction | 35.71 | 37.08 | 37.20 | 37.23 | 1,421.26 | 1,479.49 | 1,476.84 | 1,485.48 |
+| Manufacturing | 27.90 | 28.87 | 28.96 | 28.96 | 1,132.74 | 1,183.67 | 1,187.36 | 1,187.36 |
+| Durable goods | 29.47 | 30.48 | 30.56 | 30.57 | 1,199.43 | 1,258.82 | 1,259.07 | 1,262.54 |
+| Nondurable goods | 25.49 | 26.40 | 26.49 | 26.48 | 1,032.35 | 1,074.48 | 1,078.14 | 1,077.74 |
+| Private service-providing | 29.96 | 30.91 | 31.03 | 31.12 | 973.70 | 1,004.58 | 1,005.37 | 1,014.51 |
+| Trade, transportation, and utilities | 26.03 | 26.67 | 26.84 | 26.98 | 885.02 | 912.11 | 915.24 | 925.41 |
+| Wholesale trade | 31.25 | 32.07 | 32.24 | 32.52 | 1,221.88 | 1,253.94 | 1,263.81 | 1,278.04 |
+| Retail trade | 20.91 | 21.46 | 21.55 | 21.65 | 633.57 | 652.38 | 650.81 | 658.16 |
+| Transportation and warehousing | 29.20 | 29.81 | 30.00 | 30.17 | 1,095.00 | 1,135.76 | 1,137.00 | 1,158.53 |
+| Utilities | 45.15 | 45.56 | 45.80 | 45.62 | 1,927.91 | 1,940.86 | 1,987.72 | 1,961.66 |
+| Information | 40.75 | 42.61 | 42.82 | 43.06 | 1,454.78 | 1,521.18 | 1,515.83 | 1,537.24 |
+| Financial activities | 35.79 | 37.23 | 37.37 | 37.57 | 1,324.23 | 1,384.96 | 1,393.90 | 1,405.12 |
+| Professional and business services | 35.63 | 37.04 | 37.17 | 37.13 | 1,296.93 | 1,344.55 | 1,345.55 | 1,351.53 |
+| Private education and health services | 31.56 | 32.58 | 32.65 | 32.77 | 1,013.08 | 1,036.04 | 1,035.01 | 1,038.81 |
+| Leisure and hospitality | 19.57 | 20.10 | 20.16 | 20.23 | 467.72 | 488.43 | 485.86 | 489.57 |
+| Other services | 27.61 | 28.44 | 28.51 | 28.55 | 864.19 | 878.80 | 880.96 | 887.91 |
+| Footnotes (1) Data relate to production employees in mining and logging and manufacturing, construction employees in construction, and nonsupervisory employees in the service-providing industries. These groups account for approximately four-fifths of the total employment on private nonfarm payrolls. (p) Preliminary | | | | | | | | |
+| NOTE: Data have been revised to reflect March 2024 benchmark levels and updated seasonal adjustment factors. | | | | | | | | |
+
+ESTABLISHMENT DATA Table B-9. Indexes of aggregate weekly hours and payrolls for production and nonsupervisory employees on private nonfarm payrolls by industry sector, seasonally adjusted(1) [2002=100]
+
+| Industry | Index of aggregate weekly hours(2) | | | | | Index of aggregate weekly payrolls(3) | | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | July 2024 | May 2025 | June 2025(p) | July 2025(p) | Percent change from: June 2025 - July 2025(p) | July 2024 | May 2025 | June 2025(p) | July 2025(p) | Percent change from: June 2025 - July 2025(p) |
+| Total private | 123.1 | 124.3 | 124.0 | 124.4 | 0.3 | 248.2 | 258.8 | 259.0 | 260.5 | 0.6 |
+| Goods-producing | 95.5 | 95.7 | 95.4 | 95.5 | 0.1 | 182.3 | 189.3 | 189.2 | 189.5 | 0.2 |
+| Mining and logging | 119.1 | 109.5 | 108.1 | 107.6 | -0.5 | 252.2 | 238.3 | 236.1 | 234.5 | -0.7 |
+| Construction | 119.3 | 120.5 | 120.0 | 120.6 | 0.5 | 230.0 | 241.4 | 241.0 | 242.5 | 0.6 |
+| Manufacturing | 83.5 | 83.6 | 83.5 | 83.4 | -0.1 | 152.4 | 157.9 | 158.2 | 157.9 | -0.2 |
+| Durable goods | 83.0 | 83.0 | 82.7 | 82.9 | 0.2 | 152.8 | 157.9 | 157.8 | 158.2 | 0.3 |
+| Nondurable goods | 84.3 | 84.8 | 84.6 | 84.2 | -0.5 | 151.9 | 158.3 | 158.4 | 157.6 | -0.5 |
+| Private service-providing | 130.4 | 132.0 | 131.6 | 132.5 | 0.7 | 268.0 | 279.9 | 280.2 | 282.9 | 1.0 |
+| Trade, transportation, and utilities | 116.5 | 118.0 | 117.7 | 118.5 | 0.7 | 216.7 | 225.0 | 225.7 | 228.4 | 1.2 |
+| Wholesale trade | 112.7 | 113.7 | 113.8 | 113.9 | 0.1 | 207.9 | 215.1 | 216.5 | 218.7 | 1.0 |
+| Retail trade | 102.3 | 103.1 | 102.4 | 103.3 | 0.9 | 183.5 | 189.7 | 189.3 | 191.7 | 1.3 |
+| Transportation and warehousing | 165.4 | 170.3 | 169.6 | 171.9 | 1.4 | 307.4 | 323.2 | 323.9 | 330.2 | 1.9 |
+| Utilities | 102.7 | 103.0 | 105.2 | 104.1 | -1.0 | 193.5 | 195.9 | 201.1 | 198.3 | -1.4 |
+| Information | 96.0 | 95.6 | 94.8 | 95.4 | 0.6 | 193.7 | 201.7 | 201.0 | 203.4 | 1.2 |
+| Financial activities | 120.3 | 122.6 | 123.0 | 123.5 | 0.4 | 264.8 | 280.9 | 282.9 | 285.5 | 0.9 |
+| Professional and business services | 144.6 | 143.6 | 143.0 | 143.6 | 0.4 | 306.5 | 316.3 | 316.2 | 317.2 | 0.3 |
+| Private education and health services | 158.4 | 162.0 | 161.9 | 162.3 | 0.2 | 330.0 | 348.4 | 348.8 | 351.0 | 0.6 |
+| Leisure and hospitality | 128.1 | 131.9 | 130.7 | 131.2 | 0.4 | 284.8 | 301.1 | 299.3 | 301.4 | 0.7 |
+| Other services | 106.5 | 106.3 | 106.1 | 106.6 | 0.5 | 214.2 | 220.2 | 220.5 | 221.8 | 0.6 |
+| Footnotes (1) Data relate to production employees in mining and logging and manufacturing, construction employees in construction, and nonsupervisory employees in the service-providing industries. These groups account for approximately four-fifths of the total employment on private nonfarm payrolls. (2) The indexes of aggregate weekly hours are calculated by dividing the current month's estimates of aggregate hours by the corresponding 2002 annual average aggregate hours. Aggregate hours estimates are the product of estimates of average weekly hours and employment. (3) The indexes of aggregate weekly payrolls are calculated by dividing the current month's estimates of aggregate weekly payrolls by the corresponding 2002 annual average aggregate weekly payrolls. Aggregate payrolls estimates are the product of estimates of average hourly earnings, average weekly hours, and employment. (p) Preliminary | | | | | | | | | | |
+| NOTE: Data have been revised to reflect March 2024 benchmark levels and updated seasonal adjustment factors. | | | | | | | | | | |
+
+ Telephone: 202-691-6378 (12026916378) www.bls.gov/CPS Contact CPS 
+
+ U.S. Bureau of Labor Statistics Current Employment Statistics Office of Employment and Unemployment Statistics Suitland Federal Center Floor 3 4600 Silver Hill Road Washington, DC 20212-0002 
+
+ Telephone: 202-691-6555 (12026916555) www.bls.gov/CES Contact CES

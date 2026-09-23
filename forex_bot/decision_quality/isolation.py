@@ -34,8 +34,8 @@ def _package_dir() -> Path:
 
 
 def iter_package_sources() -> list[Path]:
-    skip = {"__init__.py", "isolation.py"}
-    return sorted(p for p in _package_dir().glob("*.py") if p.name not in skip)
+    skip = {"isolation.py"}
+    return sorted(p for p in _package_dir().rglob("*.py") if p.name not in skip)
 
 
 def forbidden_hits_in_source(source: str) -> list[str]:

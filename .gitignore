@@ -10,6 +10,8 @@ __pycache__/
 # Local research caches over GitHub's 100 MB file limit / 50 MB warning
 data/research/quant_features/*.pkl
 data/historical/m1/*.csv
+data/research/trading_economics/raw/*.json
+data/research/trading_economics/normalized/*.json
 
 # Local secrets / scratch (do not commit)
 oanda sep deets.txt

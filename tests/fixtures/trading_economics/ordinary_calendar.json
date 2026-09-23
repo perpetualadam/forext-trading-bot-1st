@@ -1,0 +1,26 @@
+[
+  {
+    "CalendarId": "87213",
+    "Date": "2016-12-01T13:30:00",
+    "Country": "United States",
+    "Category": "Initial Jobless Claims",
+    "Event": "Initial Jobless Claims",
+    "Reference": "Nov/26",
+    "ReferenceDate": "2016-11-26T00:00:00",
+    "Source": "U.S. Department of Labor",
+    "SourceURL": "http://www.dol.gov",
+    "Actual": "268K",
+    "Previous": "251K",
+    "Forecast": "253K",
+    "TEForecast": "253.1K",
+    "URL": "/united-states/jobless-claims",
+    "DateSpan": "0",
+    "Importance": 2,
+    "LastUpdate": "2016-12-01T13:30:00",
+    "Revised": "",
+    "Currency": "",
+    "Unit": "K",
+    "Ticker": "IJCUSA",
+    "Symbol": "IJCUSA"
+  }
+]

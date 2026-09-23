@@ -1,0 +1,150 @@
+================================================================================
+baseline_sma_first_qual
+  overall  n=9238 buy=4605 sell=4633 wr=0.211 expR=-0.3661 pf=0.5358 totR=-3382.1 holdm=100.9
+  train    n=4461 buy=2211 sell=2250 wr=0.219 expR=-0.3443 pf=0.5594 totR=-1536.0 holdm=109.9
+  valid    n=2374 buy=1191 sell=1183 wr=0.221 expR=-0.3378 pf=0.5665 totR=-802.0 holdm=98.0
+  test     n=2403 buy=1203 sell=1200 wr=0.189 expR=-0.4345 pf=0.4644 totR=-1044.1 holdm=86.9
+  buy      n=4605 buy=4605 sell=0 wr=0.221 expR=-0.3375 pf=0.5668 totR=-1554.1 holdm=103.4
+  sell     n=4633 buy=0 sell=4633 wr=0.202 expR=-0.3946 pf=0.5057 totR=-1828.0 holdm=98.4
+    EUR_USD  n=1423 buy=714 sell=709 wr=0.219 expR=-0.3422 pf=0.5617 totR=-487.0 holdm=105.2
+    GBP_USD  n=1439 buy=722 sell=717 wr=0.213 expR=-0.3621 pf=0.5402 totR=-521.0 holdm=105.5
+    USD_JPY  n=1746 buy=856 sell=890 wr=0.251 expR=-0.2457 pf=0.6718 totR=-429.0 holdm=123.0
+    AUD_USD  n=1515 buy=771 sell=744 wr=0.205 expR=-0.3866 pf=0.5140 totR=-585.7 holdm=99.4
+    USD_CAD  n=1547 buy=754 sell=793 wr=0.183 expR=-0.4512 pf=0.4478 totR=-698.0 holdm=87.2
+    USD_CHF  n=1568 buy=788 sell=780 wr=0.193 expR=-0.4219 pf=0.4773 totR=-661.5 holdm=83.0
+  FWD all    n=14104 buy=7067 sell=7037 5m=-0.001 15m=0.013 30m=-0.043 60m=0.030 120m=-0.256 240m=-0.132
+  FWD train  n=7170 buy=3572 sell=3598 5m=-0.016 15m=-0.009 30m=-0.012 60m=0.104 120m=-0.122 240m=-0.079
+  FWD valid  n=3529 buy=1772 sell=1757 5m=0.009 15m=0.022 30m=-0.159 60m=-0.195 120m=-0.687 240m=-0.460
+  FWD test   n=3405 buy=1723 sell=1682 5m=0.018 15m=0.050 30m=0.011 60m=0.108 120m=-0.093 240m=0.095
+  FWD symbols:
+    EUR_USD  n=2011 5m=-0.012 15m=-0.103 30m=-0.151 60m=-0.291 120m=-0.384 240m=-0.219
+    GBP_USD  n=2057 5m=-0.056 15m=-0.062 30m=-0.110 60m=0.055 120m=-0.791 240m=-0.256
+    USD_JPY  n=3851 5m=-0.041 15m=0.118 30m=0.040 60m=0.229 120m=0.019 240m=-0.105
+    AUD_USD  n=2105 5m=0.096 15m=0.061 30m=-0.077 60m=0.102 120m=-0.484 240m=-0.215
+    USD_CAD  n=2052 5m=0.026 15m=0.002 30m=0.088 60m=-0.062 120m=-0.193 240m=-0.127
+    USD_CHF  n=2028 5m=0.011 15m=-0.034 30m=-0.125 60m=-0.037 120m=0.062 240m=0.108
+================================================================================
+ema50_100_pull_resume
+  overall  n=2696 buy=1371 sell=1325 wr=0.211 expR=-0.3682 pf=0.5333 totR=-992.6 holdm=96.8
+  train    n=1393 buy=704 sell=689 wr=0.215 expR=-0.3561 pf=0.5466 totR=-496.0 holdm=97.6
+  valid    n=628 buy=318 sell=310 wr=0.205 expR=-0.3838 pf=0.5170 totR=-241.0 holdm=102.4
+  test     n=675 buy=349 sell=326 wr=0.207 expR=-0.3787 pf=0.5213 totR=-255.6 holdm=90.0
+  buy      n=1371 buy=1371 sell=0 wr=0.220 expR=-0.3425 pf=0.5611 totR=-469.6 holdm=96.9
+  sell     n=1325 buy=0 sell=1325 wr=0.202 expR=-0.3948 pf=0.5052 totR=-523.1 holdm=96.7
+    EUR_USD  n=432 buy=206 sell=226 wr=0.234 expR=-0.2986 pf=0.6103 totR=-129.0 holdm=89.3
+    GBP_USD  n=450 buy=224 sell=226 wr=0.216 expR=-0.3533 pf=0.5496 totR=-159.0 holdm=100.4
+    USD_JPY  n=447 buy=236 sell=211 wr=0.219 expR=-0.3402 pf=0.5631 totR=-152.1 holdm=103.3
+    AUD_USD  n=461 buy=239 sell=222 wr=0.204 expR=-0.3917 pf=0.5079 totR=-180.6 holdm=96.3
+    USD_CAD  n=449 buy=226 sell=223 wr=0.180 expR=-0.4588 pf=0.4402 totR=-206.0 holdm=101.0
+    USD_CHF  n=457 buy=240 sell=217 wr=0.212 expR=-0.3632 pf=0.5389 totR=-166.0 holdm=90.5
+  FWD all    n=2788 buy=1414 sell=1374 5m=-0.005 15m=-0.142 30m=-0.253 60m=-0.166 120m=0.077 240m=-0.064
+  FWD train  n=1446 buy=729 sell=717 5m=0.004 15m=-0.248 30m=-0.536 60m=-0.437 120m=-0.307 240m=-0.348
+  FWD valid  n=645 buy=324 sell=321 5m=0.116 15m=-0.014 30m=0.093 60m=0.164 120m=1.147 240m=1.148
+  FWD test   n=697 buy=361 sell=336 5m=-0.136 15m=-0.040 30m=0.012 60m=0.090 120m=-0.117 240m=-0.598
+  FWD symbols:
+    EUR_USD  n=439 5m=0.095 15m=-0.026 30m=-0.324 60m=-0.198 120m=0.297 240m=0.713
+    GBP_USD  n=470 5m=-0.135 15m=-0.707 30m=-0.613 60m=-0.073 120m=0.466 240m=0.390
+    USD_JPY  n=465 5m=-0.000 15m=0.008 30m=-0.057 60m=-0.203 120m=0.290 240m=-0.817
+    AUD_USD  n=471 5m=0.066 15m=0.042 30m=-0.233 60m=0.018 120m=-0.287 240m=-0.170
+    USD_CAD  n=472 5m=0.031 15m=0.117 30m=-0.120 60m=-0.397 120m=-0.542 240m=-0.062
+    USD_CHF  n=471 5m=-0.081 15m=-0.276 30m=-0.177 60m=-0.148 120m=0.259 240m=-0.397
+================================================================================
+ema50_200_pull_resume
+  overall  n=1712 buy=848 sell=864 wr=0.217 expR=-0.3499 pf=0.5533 totR=-599.0 holdm=105.2
+  train    n=886 buy=433 sell=453 wr=0.216 expR=-0.3533 pf=0.5496 totR=-313.0 holdm=106.2
+  valid    n=405 buy=199 sell=206 wr=0.237 expR=-0.2889 pf=0.6214 totR=-117.0 holdm=112.3
+  test     n=421 buy=216 sell=205 wr=0.200 expR=-0.4014 pf=0.4986 totR=-169.0 holdm=96.3
+  buy      n=848 buy=848 sell=0 wr=0.226 expR=-0.3207 pf=0.5854 totR=-272.0 holdm=109.6
+  sell     n=864 buy=0 sell=864 wr=0.207 expR=-0.3785 pf=0.5226 totR=-327.0 holdm=100.8
+    EUR_USD  n=292 buy=134 sell=158 wr=0.202 expR=-0.3938 pf=0.5064 totR=-115.0 holdm=91.8
+    GBP_USD  n=298 buy=143 sell=155 wr=0.262 expR=-0.2148 pf=0.7091 totR=-64.0 holdm=92.4
+    USD_JPY  n=274 buy=144 sell=130 wr=0.237 expR=-0.2883 pf=0.6220 totR=-79.0 holdm=126.6
+    AUD_USD  n=288 buy=142 sell=146 wr=0.188 expR=-0.4375 pf=0.4615 totR=-126.0 holdm=116.7
+    USD_CAD  n=290 buy=148 sell=142 wr=0.203 expR=-0.3897 pf=0.5108 totR=-113.0 holdm=106.0
+    USD_CHF  n=270 buy=137 sell=133 wr=0.207 expR=-0.3777 pf=0.5234 totR=-102.0 holdm=99.0
+  FWD all    n=1747 buy=868 sell=879 5m=0.001 15m=0.009 30m=0.067 60m=0.158 120m=0.345 240m=-0.032
+  FWD train  n=903 buy=441 sell=462 5m=0.014 15m=-0.068 30m=-0.085 60m=0.071 120m=0.170 240m=0.551
+  FWD valid  n=416 buy=206 sell=210 5m=0.057 15m=0.180 30m=0.263 60m=0.258 120m=1.148 240m=-0.377
+  FWD test   n=428 buy=221 sell=207 5m=-0.080 15m=0.005 30m=0.199 60m=0.244 120m=-0.068 240m=-0.931
+  FWD symbols:
+    EUR_USD  n=298 5m=-0.134 15m=-0.201 30m=0.151 60m=0.253 120m=0.161 240m=-0.652
+    GBP_USD  n=301 5m=0.180 15m=0.265 30m=0.856 60m=1.104 120m=2.437 240m=1.658
+    USD_JPY  n=281 5m=-0.157 15m=0.368 30m=0.175 60m=0.419 120m=-0.053 240m=0.668
+    AUD_USD  n=299 5m=0.024 15m=-0.044 30m=-0.233 60m=-0.070 120m=0.346 240m=0.626
+    USD_CAD  n=297 5m=0.215 15m=-0.133 30m=-0.234 60m=-0.602 120m=-0.735 240m=-1.240
+    USD_CHF  n=271 5m=-0.145 15m=-0.202 30m=-0.352 60m=-0.183 120m=-0.182 240m=-1.353
+================================================================================
+ema50_200_pull_only
+  overall  n=2183 buy=1079 sell=1104 wr=0.240 expR=-0.2798 pf=0.6318 totR=-610.7 holdm=108.1
+  train    n=1113 buy=546 sell=567 wr=0.240 expR=-0.2803 pf=0.6312 totR=-312.0 holdm=109.9
+  valid    n=518 buy=260 sell=258 wr=0.261 expR=-0.2181 pf=0.7050 totR=-113.0 holdm=109.4
+  test     n=552 buy=273 sell=279 wr=0.221 expR=-0.3365 pf=0.5678 totR=-185.7 holdm=103.1
+  buy      n=1079 buy=1079 sell=0 wr=0.257 expR=-0.2296 pf=0.6910 totR=-247.7 holdm=108.5
+  sell     n=1104 buy=0 sell=1104 wr=0.224 expR=-0.3288 pf=0.5764 totR=-363.0 holdm=107.6
+    EUR_USD  n=361 buy=178 sell=183 wr=0.260 expR=-0.2188 pf=0.7041 totR=-79.0 holdm=104.3
+    GBP_USD  n=374 buy=180 sell=194 wr=0.257 expR=-0.2299 pf=0.6906 totR=-86.0 holdm=93.6
+    USD_JPY  n=345 buy=172 sell=173 wr=0.258 expR=-0.2261 pf=0.6953 totR=-78.0 holdm=133.6
+    AUD_USD  n=371 buy=183 sell=188 wr=0.245 expR=-0.2642 pf=0.6500 totR=-98.0 holdm=111.4
+    USD_CAD  n=371 buy=190 sell=181 wr=0.210 expR=-0.3693 pf=0.5324 totR=-137.0 holdm=116.3
+    USD_CHF  n=361 buy=176 sell=185 wr=0.211 expR=-0.3677 pf=0.5338 totR=-132.7 holdm=90.5
+  FWD all    n=2271 buy=1130 sell=1141 5m=0.066 15m=0.105 30m=0.203 60m=0.325 120m=0.519 240m=0.423
+  FWD train  n=1165 buy=574 sell=591 5m=0.001 15m=-0.077 30m=0.190 60m=0.184 120m=0.256 240m=0.718
+  FWD valid  n=529 buy=267 sell=262 5m=0.047 15m=0.224 30m=0.267 60m=0.733 120m=1.112 240m=0.706
+  FWD test   n=577 buy=289 sell=288 5m=0.215 15m=0.364 30m=0.172 60m=0.234 120m=0.505 240m=-0.437
+  FWD symbols:
+    EUR_USD  n=378 5m=-0.022 15m=0.067 30m=0.152 60m=0.714 120m=0.383 240m=0.421
+    GBP_USD  n=386 5m=0.090 15m=0.256 30m=0.182 60m=0.310 120m=2.070 240m=1.913
+    USD_JPY  n=369 5m=0.142 15m=-0.135 30m=0.327 60m=0.755 120m=-0.082 240m=-0.121
+    AUD_USD  n=385 5m=0.056 15m=0.236 30m=0.265 60m=0.066 120m=0.715 240m=1.105
+    USD_CAD  n=385 5m=0.088 15m=-0.029 30m=0.163 60m=-0.292 120m=-0.143 240m=-0.428
+    USD_CHF  n=368 5m=0.043 15m=0.228 30m=0.133 60m=0.426 120m=0.117 240m=-0.415
+================================================================================
+ema50_200_swing50_resume
+  overall  n=2388 buy=1190 sell=1198 wr=0.215 expR=-0.3540 pf=0.5488 totR=-845.2 holdm=114.2
+  train    n=1230 buy=608 sell=622 wr=0.220 expR=-0.3390 pf=0.5652 totR=-417.0 holdm=115.9
+  valid    n=548 buy=275 sell=273 wr=0.223 expR=-0.3321 pf=0.5728 totR=-182.0 holdm=127.8
+  test     n=610 buy=307 sell=303 wr=0.198 expR=-0.4037 pf=0.4957 totR=-246.2 holdm=98.8
+  buy      n=1190 buy=1190 sell=0 wr=0.220 expR=-0.3389 pf=0.5651 totR=-403.2 holdm=109.0
+  sell     n=1198 buy=0 sell=1198 wr=0.210 expR=-0.3689 pf=0.5328 totR=-442.0 holdm=119.4
+    EUR_USD  n=400 buy=200 sell=200 wr=0.255 expR=-0.2350 pf=0.6846 totR=-94.0 holdm=133.2
+    GBP_USD  n=425 buy=214 sell=211 wr=0.219 expR=-0.3418 pf=0.5615 totR=-145.3 holdm=106.5
+    USD_JPY  n=380 buy=189 sell=191 wr=0.239 expR=-0.2816 pf=0.6298 totR=-107.0 holdm=139.6
+    AUD_USD  n=385 buy=191 sell=194 wr=0.210 expR=-0.3688 pf=0.5329 totR=-142.0 holdm=112.4
+    USD_CAD  n=403 buy=199 sell=204 wr=0.161 expR=-0.5161 pf=0.3846 totR=-208.0 holdm=94.5
+    USD_CHF  n=395 buy=197 sell=198 wr=0.208 expR=-0.3772 pf=0.5240 totR=-149.0 holdm=100.9
+  FWD all    n=2449 buy=1220 sell=1229 5m=0.129 15m=0.056 30m=-0.074 60m=-0.099 120m=-0.180 240m=0.497
+  FWD train  n=1263 buy=624 sell=639 5m=0.171 15m=0.091 30m=-0.385 60m=-0.665 120m=-1.176 240m=-0.633
+  FWD valid  n=566 buy=284 sell=282 5m=0.195 15m=0.064 30m=0.620 60m=0.812 120m=1.350 240m=2.605
+  FWD test   n=620 buy=312 sell=308 5m=-0.017 15m=-0.023 30m=-0.076 60m=0.223 120m=0.452 240m=0.877
+  FWD symbols:
+    EUR_USD  n=419 5m=-0.065 15m=-0.139 30m=0.300 60m=0.069 120m=0.214 240m=0.605
+    GBP_USD  n=433 5m=-0.000 15m=-0.202 30m=-0.705 60m=-0.442 120m=-0.935 240m=0.158
+    USD_JPY  n=392 5m=0.335 15m=0.287 30m=-0.036 60m=-0.371 120m=-0.162 240m=1.920
+    AUD_USD  n=394 5m=0.262 15m=0.349 30m=0.281 60m=0.411 120m=0.014 240m=0.531
+    USD_CAD  n=412 5m=0.105 15m=0.074 30m=-0.375 60m=-0.416 120m=-0.120 240m=-0.516
+    USD_CHF  n=399 5m=0.163 15m=0.005 30m=0.138 60m=0.189 120m=-0.046 240m=0.367
+================================================================================
+mean_reversion_ema50_z2
+  overall  n=10951 buy=5269 sell=5682 wr=0.225 expR=-0.3266 pf=0.5788 totR=-3576.5 holdm=108.9
+  train    n=5507 buy=2669 sell=2838 wr=0.228 expR=-0.3163 pf=0.5903 totR=-1742.0 holdm=107.4
+  valid    n=2662 buy=1251 sell=1411 wr=0.236 expR=-0.2934 pf=0.6162 totR=-781.0 holdm=114.7
+  test     n=2782 buy=1349 sell=1433 wr=0.207 expR=-0.3787 pf=0.5221 totR=-1053.5 holdm=106.4
+  buy      n=5269 buy=5269 sell=0 wr=0.230 expR=-0.3102 pf=0.5971 totR=-1634.6 holdm=110.5
+  sell     n=5682 buy=0 sell=5682 wr=0.219 expR=-0.3418 pf=0.5621 totR=-1942.0 holdm=107.4
+    EUR_USD  n=1719 buy=862 sell=857 wr=0.223 expR=-0.3298 pf=0.5753 totR=-567.0 holdm=124.7
+    GBP_USD  n=1805 buy=884 sell=921 wr=0.235 expR=-0.2943 pf=0.6150 totR=-531.3 holdm=111.7
+    USD_JPY  n=1629 buy=734 sell=895 wr=0.255 expR=-0.2363 pf=0.6829 totR=-385.0 holdm=130.3
+    AUD_USD  n=1829 buy=886 sell=943 wr=0.222 expR=-0.3341 pf=0.5706 totR=-611.0 holdm=107.1
+    USD_CAD  n=1942 buy=916 sell=1026 wr=0.213 expR=-0.3618 pf=0.5404 totR=-702.6 holdm=96.9
+    USD_CHF  n=2027 buy=987 sell=1040 wr=0.205 expR=-0.3847 pf=0.5160 totR=-779.8 holdm=88.9
+  FWD all    n=27441 buy=13237 sell=14204 5m=0.096 15m=0.183 30m=0.233 60m=0.300 120m=0.413 240m=0.382
+  FWD train  n=13824 buy=6701 sell=7123 5m=0.109 15m=0.200 30m=0.218 60m=0.223 120m=0.538 240m=0.715
+  FWD valid  n=6749 buy=3195 sell=3554 5m=0.086 15m=0.244 30m=0.315 60m=0.566 120m=0.678 240m=0.219
+  FWD test   n=6868 buy=3341 sell=3527 5m=0.082 15m=0.088 30m=0.180 60m=0.195 120m=-0.101 240m=-0.131
+  FWD symbols:
+    EUR_USD  n=4664 5m=0.030 15m=0.200 30m=0.246 60m=0.347 120m=0.251 240m=0.254
+    GBP_USD  n=4530 5m=0.188 15m=0.236 30m=0.363 60m=0.604 120m=1.069 240m=0.648
+    USD_JPY  n=4423 5m=0.073 15m=0.178 30m=0.256 60m=0.215 120m=0.173 240m=0.105
+    AUD_USD  n=4601 5m=0.086 15m=0.145 30m=0.164 60m=0.172 120m=0.376 240m=0.609
+    USD_CAD  n=4550 5m=0.091 15m=0.168 30m=0.178 60m=0.269 120m=0.469 240m=0.453
+    USD_CHF  n=4673 5m=0.112 15m=0.170 30m=0.192 60m=0.198 120m=0.146 240m=0.218
