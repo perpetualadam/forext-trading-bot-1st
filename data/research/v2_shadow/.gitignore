@@ -1,0 +1,4 @@
+# Append-only research logs. Do not commit live observations.
+observations.jsonl
+outcomes.jsonl
+market/*.jsonl

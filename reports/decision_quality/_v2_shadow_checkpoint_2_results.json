@@ -1,0 +1,906 @@
+{
+  "stopped": false,
+  "preflight": {
+    "observation_count": 2941,
+    "unique_decision_ids": 2941,
+    "observation_range": [
+      "2026-09-24T10:26:54.809816+00:00",
+      "2026-09-25T20:03:24.226553+00:00"
+    ],
+    "observation_malformed": 0,
+    "market_by_symbol": {
+      "AUD_USD": {
+        "rows": 688,
+        "usable": 688,
+        "first": "2026-09-23T11:40:00+00:00",
+        "last": "2026-09-25T20:55:00+00:00"
+      },
+      "EUR_USD": {
+        "rows": 688,
+        "usable": 688,
+        "first": "2026-09-23T11:40:00+00:00",
+        "last": "2026-09-25T20:55:00+00:00"
+      },
+      "GBP_USD": {
+        "rows": 688,
+        "usable": 688,
+        "first": "2026-09-23T11:40:00+00:00",
+        "last": "2026-09-25T20:55:00+00:00"
+      },
+      "USD_CAD": {
+        "rows": 688,
+        "usable": 688,
+        "first": "2026-09-23T11:40:00+00:00",
+        "last": "2026-09-25T20:55:00+00:00"
+      },
+      "USD_CHF": {
+        "rows": 687,
+        "usable": 687,
+        "first": "2026-09-23T11:40:00+00:00",
+        "last": "2026-09-25T20:55:00+00:00"
+      },
+      "USD_JPY": {
+        "rows": 688,
+        "usable": 688,
+        "first": "2026-09-23T11:40:00+00:00",
+        "last": "2026-09-25T20:55:00+00:00"
+      }
+    },
+    "market_malformed": 0,
+    "market_duplicates": 0,
+    "existing_outcome_rows": 1267,
+    "existing_logical_keys": 14020,
+    "outcome_malformed": 0,
+    "store_safe": true,
+    "historical_duplicates": 0,
+    "historical_conflicts": 0,
+    "unsafe_reason": "",
+    "unique_opportunities": 671,
+    "post_checkpoint_opportunities": 381
+  },
+  "sample": {
+    "ids": [
+      "v2sh_24d96f8f4319e0a469c9",
+      "v2sh_6e076cd55ad3a69e45db",
+      "v2sh_462c0e842c0c1e72b989"
+    ],
+    "written": 3,
+    "conflicts": 0,
+    "executable_sides_ok": true,
+    "outcomes": 3
+  },
+  "first": {
+    "written": 2018,
+    "already_exists": 923,
+    "conflicts": 0,
+    "unsafe": 0,
+    "skipped_no_mature": 0,
+    "skipped_no_market": 0,
+    "skipped_bad_decision": 0,
+    "observations_seen": 2941,
+    "logical_labels_written": 21014,
+    "conflict_keys": [],
+    "observation_malformed": 0,
+    "market": {
+      "by_symbol": {
+        "AUD_USD": {
+          "rows": 688,
+          "usable": 688,
+          "first": "2026-09-23T11:40:00+00:00",
+          "last": "2026-09-25T20:55:00+00:00"
+        },
+        "EUR_USD": {
+          "rows": 688,
+          "usable": 688,
+          "first": "2026-09-23T11:40:00+00:00",
+          "last": "2026-09-25T20:55:00+00:00"
+        },
+        "GBP_USD": {
+          "rows": 688,
+          "usable": 688,
+          "first": "2026-09-23T11:40:00+00:00",
+          "last": "2026-09-25T20:55:00+00:00"
+        },
+        "USD_CAD": {
+          "rows": 688,
+          "usable": 688,
+          "first": "2026-09-23T11:40:00+00:00",
+          "last": "2026-09-25T20:55:00+00:00"
+        },
+        "USD_CHF": {
+          "rows": 687,
+          "usable": 687,
+          "first": "2026-09-23T11:40:00+00:00",
+          "last": "2026-09-25T20:55:00+00:00"
+        },
+        "USD_JPY": {
+          "rows": 688,
+          "usable": 688,
+          "first": "2026-09-23T11:40:00+00:00",
+          "last": "2026-09-25T20:55:00+00:00"
+        }
+      },
+      "malformed": 0,
+      "duplicates": 0
+    }
+  },
+  "second": {
+    "written": 0,
+    "already_exists": 2941,
+    "conflicts": 0,
+    "unsafe": 0,
+    "skipped_no_mature": 0,
+    "skipped_no_market": 0,
+    "skipped_bad_decision": 0,
+    "observations_seen": 2941,
+    "logical_labels_written": 0,
+    "conflict_keys": [],
+    "observation_malformed": 0,
+    "market": {
+      "by_symbol": {
+        "AUD_USD": {
+          "rows": 688,
+          "usable": 688,
+          "first": "2026-09-23T11:40:00+00:00",
+          "last": "2026-09-25T20:55:00+00:00"
+        },
+        "EUR_USD": {
+          "rows": 688,
+          "usable": 688,
+          "first": "2026-09-23T11:40:00+00:00",
+          "last": "2026-09-25T20:55:00+00:00"
+        },
+        "GBP_USD": {
+          "rows": 688,
+          "usable": 688,
+          "first": "2026-09-23T11:40:00+00:00",
+          "last": "2026-09-25T20:55:00+00:00"
+        },
+        "USD_CAD": {
+          "rows": 688,
+          "usable": 688,
+          "first": "2026-09-23T11:40:00+00:00",
+          "last": "2026-09-25T20:55:00+00:00"
+        },
+        "USD_CHF": {
+          "rows": 687,
+          "usable": 687,
+          "first": "2026-09-23T11:40:00+00:00",
+          "last": "2026-09-25T20:55:00+00:00"
+        },
+        "USD_JPY": {
+          "rows": 688,
+          "usable": 688,
+          "first": "2026-09-23T11:40:00+00:00",
+          "last": "2026-09-25T20:55:00+00:00"
+        }
+      },
+      "malformed": 0,
+      "duplicates": 0
+    }
+  },
+  "outcome_rows_after": 3285,
+  "outcome_malformed_after": 0,
+  "merged_decisions": 2941,
+  "coverage_observation": {
+    "overall": {
+      "5": {
+        "eligible": 2936,
+        "scored": 2936,
+        "missing_future": 5
+      },
+      "15": {
+        "eligible": 2941,
+        "scored": 2941,
+        "missing_future": 0
+      },
+      "30": {
+        "eligible": 2936,
+        "scored": 2936,
+        "missing_future": 5
+      },
+      "60": {
+        "eligible": 2932,
+        "scored": 2932,
+        "missing_future": 9
+      },
+      "120": {
+        "eligible": 2903,
+        "scored": 2903,
+        "missing_future": 38
+      },
+      "240": {
+        "eligible": 2869,
+        "scored": 2869,
+        "missing_future": 72
+      }
+    },
+    "by_symbol": {
+      "EUR_USD": {
+        "5": {
+          "eligible": 376,
+          "scored": 376,
+          "missing_future": 0
+        },
+        "15": {
+          "eligible": 376,
+          "scored": 376,
+          "missing_future": 0
+        },
+        "30": {
+          "eligible": 376,
+          "scored": 376,
+          "missing_future": 0
+        },
+        "60": {
+          "eligible": 376,
+          "scored": 376,
+          "missing_future": 0
+        },
+        "120": {
+          "eligible": 376,
+          "scored": 376,
+          "missing_future": 0
+        },
+        "240": {
+          "eligible": 371,
+          "scored": 371,
+          "missing_future": 5
+        }
+      },
+      "GBP_USD": {
+        "5": {
+          "eligible": 447,
+          "scored": 447,
+          "missing_future": 0
+        },
+        "15": {
+          "eligible": 447,
+          "scored": 447,
+          "missing_future": 0
+        },
+        "30": {
+          "eligible": 447,
+          "scored": 447,
+          "missing_future": 0
+        },
+        "60": {
+          "eligible": 447,
+          "scored": 447,
+          "missing_future": 0
+        },
+        "120": {
+          "eligible": 447,
+          "scored": 447,
+          "missing_future": 0
+        },
+        "240": {
+          "eligible": 447,
+          "scored": 447,
+          "missing_future": 0
+        }
+      },
+      "AUD_USD": {
+        "5": {
+          "eligible": 605,
+          "scored": 605,
+          "missing_future": 0
+        },
+        "15": {
+          "eligible": 605,
+          "scored": 605,
+          "missing_future": 0
+        },
+        "30": {
+          "eligible": 605,
+          "scored": 605,
+          "missing_future": 0
+        },
+        "60": {
+          "eligible": 605,
+          "scored": 605,
+          "missing_future": 0
+        },
+        "120": {
+          "eligible": 605,
+          "scored": 605,
+          "missing_future": 0
+        },
+        "240": {
+          "eligible": 602,
+          "scored": 602,
+          "missing_future": 3
+        }
+      },
+      "USD_CAD": {
+        "5": {
+          "eligible": 435,
+          "scored": 435,
+          "missing_future": 0
+        },
+        "15": {
+          "eligible": 435,
+          "scored": 435,
+          "missing_future": 0
+        },
+        "30": {
+          "eligible": 435,
+          "scored": 435,
+          "missing_future": 0
+        },
+        "60": {
+          "eligible": 435,
+          "scored": 435,
+          "missing_future": 0
+        },
+        "120": {
+          "eligible": 435,
+          "scored": 435,
+          "missing_future": 0
+        },
+        "240": {
+          "eligible": 435,
+          "scored": 435,
+          "missing_future": 0
+        }
+      },
+      "USD_CHF": {
+        "5": {
+          "eligible": 663,
+          "scored": 663,
+          "missing_future": 5
+        },
+        "15": {
+          "eligible": 668,
+          "scored": 668,
+          "missing_future": 0
+        },
+        "30": {
+          "eligible": 663,
+          "scored": 663,
+          "missing_future": 5
+        },
+        "60": {
+          "eligible": 663,
+          "scored": 663,
+          "missing_future": 5
+        },
+        "120": {
+          "eligible": 663,
+          "scored": 663,
+          "missing_future": 5
+        },
+        "240": {
+          "eligible": 649,
+          "scored": 649,
+          "missing_future": 19
+        }
+      },
+      "USD_JPY": {
+        "5": {
+          "eligible": 410,
+          "scored": 410,
+          "missing_future": 0
+        },
+        "15": {
+          "eligible": 410,
+          "scored": 410,
+          "missing_future": 0
+        },
+        "30": {
+          "eligible": 410,
+          "scored": 410,
+          "missing_future": 0
+        },
+        "60": {
+          "eligible": 406,
+          "scored": 406,
+          "missing_future": 4
+        },
+        "120": {
+          "eligible": 377,
+          "scored": 377,
+          "missing_future": 33
+        },
+        "240": {
+          "eligible": 365,
+          "scored": 365,
+          "missing_future": 45
+        }
+      }
+    }
+  },
+  "coverage_unique": {
+    "overall": {
+      "5": {
+        "eligible": 670,
+        "scored": 670,
+        "missing_future": 1
+      },
+      "15": {
+        "eligible": 671,
+        "scored": 671,
+        "missing_future": 0
+      },
+      "30": {
+        "eligible": 670,
+        "scored": 670,
+        "missing_future": 1
+      },
+      "60": {
+        "eligible": 669,
+        "scored": 669,
+        "missing_future": 2
+      },
+      "120": {
+        "eligible": 663,
+        "scored": 663,
+        "missing_future": 8
+      },
+      "240": {
+        "eligible": 654,
+        "scored": 654,
+        "missing_future": 17
+      }
+    },
+    "by_symbol": {
+      "EUR_USD": {
+        "5": {
+          "eligible": 88,
+          "scored": 88,
+          "missing_future": 0
+        },
+        "15": {
+          "eligible": 88,
+          "scored": 88,
+          "missing_future": 0
+        },
+        "30": {
+          "eligible": 88,
+          "scored": 88,
+          "missing_future": 0
+        },
+        "60": {
+          "eligible": 88,
+          "scored": 88,
+          "missing_future": 0
+        },
+        "120": {
+          "eligible": 88,
+          "scored": 88,
+          "missing_future": 0
+        },
+        "240": {
+          "eligible": 87,
+          "scored": 87,
+          "missing_future": 1
+        }
+      },
+      "GBP_USD": {
+        "5": {
+          "eligible": 105,
+          "scored": 105,
+          "missing_future": 0
+        },
+        "15": {
+          "eligible": 105,
+          "scored": 105,
+          "missing_future": 0
+        },
+        "30": {
+          "eligible": 105,
+          "scored": 105,
+          "missing_future": 0
+        },
+        "60": {
+          "eligible": 105,
+          "scored": 105,
+          "missing_future": 0
+        },
+        "120": {
+          "eligible": 105,
+          "scored": 105,
+          "missing_future": 0
+        },
+        "240": {
+          "eligible": 105,
+          "scored": 105,
+          "missing_future": 0
+        }
+      },
+      "AUD_USD": {
+        "5": {
+          "eligible": 135,
+          "scored": 135,
+          "missing_future": 0
+        },
+        "15": {
+          "eligible": 135,
+          "scored": 135,
+          "missing_future": 0
+        },
+        "30": {
+          "eligible": 135,
+          "scored": 135,
+          "missing_future": 0
+        },
+        "60": {
+          "eligible": 135,
+          "scored": 135,
+          "missing_future": 0
+        },
+        "120": {
+          "eligible": 135,
+          "scored": 135,
+          "missing_future": 0
+        },
+        "240": {
+          "eligible": 134,
+          "scored": 134,
+          "missing_future": 1
+        }
+      },
+      "USD_CAD": {
+        "5": {
+          "eligible": 96,
+          "scored": 96,
+          "missing_future": 0
+        },
+        "15": {
+          "eligible": 96,
+          "scored": 96,
+          "missing_future": 0
+        },
+        "30": {
+          "eligible": 96,
+          "scored": 96,
+          "missing_future": 0
+        },
+        "60": {
+          "eligible": 96,
+          "scored": 96,
+          "missing_future": 0
+        },
+        "120": {
+          "eligible": 96,
+          "scored": 96,
+          "missing_future": 0
+        },
+        "240": {
+          "eligible": 96,
+          "scored": 96,
+          "missing_future": 0
+        }
+      },
+      "USD_CHF": {
+        "5": {
+          "eligible": 149,
+          "scored": 149,
+          "missing_future": 1
+        },
+        "15": {
+          "eligible": 150,
+          "scored": 150,
+          "missing_future": 0
+        },
+        "30": {
+          "eligible": 149,
+          "scored": 149,
+          "missing_future": 1
+        },
+        "60": {
+          "eligible": 149,
+          "scored": 149,
+          "missing_future": 1
+        },
+        "120": {
+          "eligible": 149,
+          "scored": 149,
+          "missing_future": 1
+        },
+        "240": {
+          "eligible": 146,
+          "scored": 146,
+          "missing_future": 4
+        }
+      },
+      "USD_JPY": {
+        "5": {
+          "eligible": 97,
+          "scored": 97,
+          "missing_future": 0
+        },
+        "15": {
+          "eligible": 97,
+          "scored": 97,
+          "missing_future": 0
+        },
+        "30": {
+          "eligible": 97,
+          "scored": 97,
+          "missing_future": 0
+        },
+        "60": {
+          "eligible": 96,
+          "scored": 96,
+          "missing_future": 1
+        },
+        "120": {
+          "eligible": 90,
+          "scored": 90,
+          "missing_future": 7
+        },
+        "240": {
+          "eligible": 86,
+          "scored": 86,
+          "missing_future": 11
+        }
+      }
+    }
+  },
+  "label_health_observation": {
+    "5": {
+      "buy_n": 2936,
+      "buy_hit": 0.27724795640326977,
+      "buy_mean_pips": -1.8084468664850049,
+      "buy_median_pips": -1.40000000000029,
+      "sell_n": 2936,
+      "sell_hit": 0.26396457765667575,
+      "sell_mean_pips": -1.3926089918255988,
+      "sell_median_pips": -1.60000000000049,
+      "buy_plus_sell_mean_pips": -3.2010558583106037
+    },
+    "15": {
+      "buy_n": 2941,
+      "buy_hit": 0.35294117647058826,
+      "buy_mean_pips": -1.8633458007480443,
+      "buy_median_pips": -1.40000000000029,
+      "sell_n": 2941,
+      "sell_hit": 0.33253995239714385,
+      "sell_mean_pips": -1.3777626657599487,
+      "sell_median_pips": -1.6000000000016001,
+      "buy_plus_sell_mean_pips": -3.2411084665079932
+    },
+    "30": {
+      "buy_n": 2936,
+      "buy_hit": 0.41348773841961856,
+      "buy_mean_pips": -1.5956403269754533,
+      "buy_median_pips": -0.9999999999998899,
+      "sell_n": 2936,
+      "sell_hit": 0.34434604904632155,
+      "sell_mean_pips": -1.6032697547683992,
+      "sell_median_pips": -2.100000000000435,
+      "buy_plus_sell_mean_pips": -3.1989100817438523
+    },
+    "60": {
+      "buy_n": 2932,
+      "buy_hit": 0.4406548431105048,
+      "buy_mean_pips": -1.1731923601636844,
+      "buy_median_pips": -0.8999999999992347,
+      "sell_n": 2932,
+      "sell_hit": 0.3567530695770805,
+      "sell_mean_pips": -2.164938608458384,
+      "sell_median_pips": -2.4999999999997247,
+      "buy_plus_sell_mean_pips": -3.338130968622068
+    },
+    "120": {
+      "buy_n": 2903,
+      "buy_hit": 0.48501550120564935,
+      "buy_mean_pips": -0.4122976231484563,
+      "buy_median_pips": -0.1999999999990898,
+      "sell_n": 2903,
+      "sell_hit": 0.33792628315535655,
+      "sell_mean_pips": -2.8810885291078248,
+      "sell_median_pips": -3.1000000000003247,
+      "buy_plus_sell_mean_pips": -3.2933861522562813
+    },
+    "240": {
+      "buy_n": 2869,
+      "buy_hit": 0.42628093412338797,
+      "buy_mean_pips": -2.6227953990937496,
+      "buy_median_pips": -1.40000000000029,
+      "sell_n": 2869,
+      "sell_hit": 0.40850470547229,
+      "sell_mean_pips": -0.6371906587661185,
+      "sell_median_pips": -1.900000000001345,
+      "buy_plus_sell_mean_pips": -3.259986057859868
+    }
+  },
+  "label_health_dedup": {
+    "5": {
+      "buy_n": 670,
+      "buy_hit": 0.3208955223880597,
+      "buy_mean_pips": -1.7026865671642029,
+      "buy_median_pips": -1.2999999999996348,
+      "sell_n": 670,
+      "sell_hit": 0.2791044776119403,
+      "sell_mean_pips": -1.5080597014925279,
+      "sell_median_pips": -1.7999999999995797,
+      "buy_plus_sell_mean_pips": -3.210746268656731
+    },
+    "15": {
+      "buy_n": 671,
+      "buy_hit": 0.3740685543964232,
+      "buy_mean_pips": -1.7222056631892912,
+      "buy_median_pips": -1.40000000000029,
+      "sell_n": 671,
+      "sell_hit": 0.33383010432190763,
+      "sell_mean_pips": -1.5262295081967387,
+      "sell_median_pips": -1.7000000000000348,
+      "buy_plus_sell_mean_pips": -3.24843517138603
+    },
+    "30": {
+      "buy_n": 670,
+      "buy_hit": 0.408955223880597,
+      "buy_mean_pips": -1.432985074626874,
+      "buy_median_pips": -0.8999999999997899,
+      "sell_n": 670,
+      "sell_hit": 0.33880597014925373,
+      "sell_mean_pips": -1.7679104477612162,
+      "sell_median_pips": -2.1999999999994246,
+      "buy_plus_sell_mean_pips": -3.20089552238809
+    },
+    "60": {
+      "buy_n": 669,
+      "buy_hit": 0.45739910313901344,
+      "buy_mean_pips": -1.0473841554559016,
+      "buy_median_pips": -0.8000000000008001,
+      "sell_n": 669,
+      "sell_hit": 0.351270553064275,
+      "sell_mean_pips": -2.272346786248142,
+      "sell_median_pips": -2.6999999999986812,
+      "buy_plus_sell_mean_pips": -3.3197309417040435
+    },
+    "120": {
+      "buy_n": 663,
+      "buy_hit": 0.48114630467571645,
+      "buy_mean_pips": -0.4514328808446641,
+      "buy_median_pips": -0.20000000000131024,
+      "sell_n": 663,
+      "sell_hit": 0.3453996983408748,
+      "sell_mean_pips": -2.827149321266988,
+      "sell_median_pips": -3.00000000000078,
+      "buy_plus_sell_mean_pips": -3.278582202111652
+    },
+    "240": {
+      "buy_n": 654,
+      "buy_hit": 0.43730886850152906,
+      "buy_mean_pips": -2.256574923547426,
+      "buy_median_pips": -1.0999999999999899,
+      "sell_n": 654,
+      "sell_hit": 0.39602446483180426,
+      "sell_mean_pips": -1.0238532110091945,
+      "sell_median_pips": -2.3500000000004073,
+      "buy_plus_sell_mean_pips": -3.280428134556621
+    }
+  },
+  "label_health_post": {
+    "5": {
+      "buy_n": 381,
+      "buy_hit": 0.30971128608923887,
+      "buy_mean_pips": -1.8496062992126021,
+      "buy_median_pips": -1.40000000000029,
+      "sell_n": 381,
+      "sell_hit": 0.30183727034120733,
+      "sell_mean_pips": -1.1459317585301787,
+      "sell_median_pips": -1.6000000000019554,
+      "buy_plus_sell_mean_pips": -2.995538057742781
+    },
+    "15": {
+      "buy_n": 381,
+      "buy_hit": 0.3674540682414698,
+      "buy_mean_pips": -1.9923884514435792,
+      "buy_median_pips": -1.40000000000029,
+      "sell_n": 381,
+      "sell_hit": 0.3464566929133858,
+      "sell_mean_pips": -0.9960629921259918,
+      "sell_median_pips": -1.4999999999987246,
+      "buy_plus_sell_mean_pips": -2.988451443569571
+    },
+    "30": {
+      "buy_n": 381,
+      "buy_hit": 0.3989501312335958,
+      "buy_mean_pips": -1.7656167979002497,
+      "buy_median_pips": -0.7999999999996898,
+      "sell_n": 381,
+      "sell_hit": 0.32545931758530183,
+      "sell_mean_pips": -1.2241469816273478,
+      "sell_median_pips": -2.100000000000435,
+      "buy_plus_sell_mean_pips": -2.9897637795275975
+    },
+    "60": {
+      "buy_n": 380,
+      "buy_hit": 0.44473684210526315,
+      "buy_mean_pips": -1.6073684210526118,
+      "buy_median_pips": -0.8999999999992347,
+      "sell_n": 380,
+      "sell_hit": 0.37105263157894736,
+      "sell_mean_pips": -1.3786842105263346,
+      "sell_median_pips": -2.20000000000109,
+      "buy_plus_sell_mean_pips": -2.9860526315789464
+    },
+    "120": {
+      "buy_n": 374,
+      "buy_hit": 0.47593582887700536,
+      "buy_mean_pips": -1.0812834224598935,
+      "buy_median_pips": -0.30000000000085514,
+      "sell_n": 374,
+      "sell_hit": 0.38235294117647056,
+      "sell_mean_pips": -1.8879679144385488,
+      "sell_median_pips": -2.7500000000002522,
+      "buy_plus_sell_mean_pips": -2.9692513368984423
+    },
+    "240": {
+      "buy_n": 364,
+      "buy_hit": 0.46153846153846156,
+      "buy_mean_pips": -3.7804945054945414,
+      "buy_median_pips": -0.6999999999995898,
+      "sell_n": 364,
+      "sell_hit": 0.3983516483516483,
+      "sell_mean_pips": 0.7769230769230189,
+      "sell_median_pips": -2.449999999999952,
+      "buy_plus_sell_mean_pips": -3.0035714285715227
+    }
+  },
+  "rl": {
+    "state": 2941,
+    "action": 2941,
+    "q_values": 2941,
+    "epsilon": 2941,
+    "agree": 2941,
+    "veto": 2941,
+    "complete": 2941,
+    "q_all_zero": 2941,
+    "q_nonzero": 0,
+    "n": 2941
+  },
+  "correlation": {
+    "m5_timestamps": 308,
+    "multi_symbol": 206,
+    "size_hist": {
+      "4": 24,
+      "1": 102,
+      "3": 67,
+      "5": 10,
+      "2": 102,
+      "6": 3
+    }
+  },
+  "time": {
+    "hour": {
+      "10": 52,
+      "11": 54,
+      "12": 55,
+      "13": 65,
+      "14": 49,
+      "15": 59,
+      "16": 54,
+      "17": 23,
+      "18": 28,
+      "19": 26,
+      "20": 20,
+      "21": 12,
+      "22": 5,
+      "23": 7,
+      "0": 12,
+      "1": 19,
+      "2": 10,
+      "3": 7,
+      "4": 5,
+      "5": 11,
+      "6": 27,
+      "7": 23,
+      "8": 26,
+      "9": 22
+    },
+    "block": {
+      "06-12": 204,
+      "12-18": 305,
+      "18-24": 98,
+      "00-06": 64
+    }
+  },
+  "repeat_count": 2270,
+  "repeat_rate": 77.18463107786467,
+  "scored_obs": 2941
+}

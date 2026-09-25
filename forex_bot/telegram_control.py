@@ -26,7 +26,13 @@ import requests
 
 from forex_bot.config import Config
 from forex_bot.log_redact import redact_log_text
-from forex_bot.telegram_cloud import retry_after_seconds
+from forex_bot.telegram_cloud import (
+    claim_getupdates_owner,
+    delete_webhook_if_configured,
+    get_updates,
+    release_getupdates_owner,
+    retry_after_seconds,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -115,9 +121,12 @@ _COMMAND_ALIASES: dict[str, str] = {
 
 _poller_lock = threading.Lock()
 _poller_started = False
+_poller_thread: threading.Thread | None = None
 _stop_event = threading.Event()
 _offset = 0
 _commands_registered = False
+_last_409_log = 0.0
+_GETUPDATES_OWNER = "telegram_control"
 
 
 @dataclass(frozen=True)
@@ -998,9 +1007,9 @@ def _drain_backlog(token: str) -> int:
     timeout = _env_timeout("TELEGRAM_TIMEOUT_SEC", 8.0)
     for _ in range(20):
         try:
-            resp = requests.get(
-                f"https://api.telegram.org/bot{token}/getUpdates",
-                params={"timeout": 0, "limit": 100, "offset": offset},
+            resp = get_updates(
+                token,
+                {"timeout": 0, "limit": 100, "offset": offset},
                 timeout=timeout,
             )
             body = resp.json() if resp.content else {}
@@ -1020,10 +1029,44 @@ def _drain_backlog(token: str) -> int:
     return offset
 
 
+def _log_getupdates_409(body: dict[str, Any] | None) -> None:
+    global _last_409_log
+    now = time.monotonic()
+    if _last_409_log and now - _last_409_log < 120.0:
+        return
+    _last_409_log = now
+    desc = ""
+    if isinstance(body, dict):
+        desc = str(body.get("description") or "")[:200]
+    logger.warning(
+        "Telegram getUpdates 409 (%s). Backing off; trading continues.",
+        redact_log_text(desc) or "another getUpdates client or leftover webhook",
+    )
+
+
 def _poller_loop() -> None:
     token = (Config.TELEGRAM_TOKEN or "").strip()
     if not token:
         return
+    claim_getupdates_owner(_GETUPDATES_OWNER)
+    try:
+        _poller_loop_inner(token)
+    finally:
+        release_getupdates_owner(_GETUPDATES_OWNER)
+
+
+def _poller_loop_inner(token: str) -> None:
+    cleared = delete_webhook_if_configured(token)
+    if cleared.get("deleted"):
+        logger.warning(
+            "Telegram leftover webhook cleared host=%s so getUpdates can run",
+            cleared.get("url_host") or "unknown",
+        )
+    elif not cleared.get("ok"):
+        logger.warning(
+            "Telegram webhook check failed: %s",
+            redact_log_text(str(cleared.get("error") or "unknown")),
+        )
     _register_bot_commands()
     global _offset
     _offset = _drain_backlog(token)
@@ -1031,9 +1074,9 @@ def _poller_loop() -> None:
     http_timeout = _poll_timeout_sec() + 5.0
     while not _stop_event.is_set():
         try:
-            resp = requests.get(
-                f"https://api.telegram.org/bot{token}/getUpdates",
-                params={
+            resp = get_updates(
+                token,
+                {
                     "timeout": int(_poll_timeout_sec()),
                     "offset": _offset,
                     "allowed_updates": '["message","callback_query","edited_message"]',
@@ -1049,9 +1092,7 @@ def _poller_loop() -> None:
                 if isinstance(parsed, dict):
                     body = parsed
             if resp.status_code == 409:
-                logger.warning(
-                    "Telegram getUpdates 409 (another poller?). Backing off; trading continues."
-                )
+                _log_getupdates_409(body)
                 _stop_event.wait(getupdates_wait_sec(409, body))
                 continue
             if resp.status_code != 200:
@@ -1077,7 +1118,7 @@ def _poller_loop() -> None:
 
 def start_telegram_control() -> None:
     """Start the getUpdates thread if configured. Never raises to the caller."""
-    global _poller_started
+    global _poller_started, _poller_thread
     if not commands_enabled():
         if telegram_configured():
             logger.info("Telegram commands disabled (TELEGRAM_COMMANDS=0)")
@@ -1087,28 +1128,37 @@ def start_telegram_control() -> None:
             return
         _stop_event.clear()
         try:
-            threading.Thread(
+            thread = threading.Thread(
                 target=_poller_loop,
                 name="telegram-control",
                 daemon=True,
-            ).start()
+            )
+            thread.start()
+            _poller_thread = thread
             _poller_started = True
         except Exception:
             logger.exception("telegram control failed to start (trading continues)")
 
 
 def stop_telegram_control() -> None:
-    """Ask the poller to exit. The thread is daemon, so shutdown is best-effort."""
-    global _poller_started
+    """Ask the poller to exit and wait briefly so a restart cannot overlap getUpdates."""
+    global _poller_started, _poller_thread
     _stop_event.set()
+    thread = None
     with _poller_lock:
+        thread = _poller_thread
         _poller_started = False
+        _poller_thread = None
+    if thread is not None and thread.is_alive() and thread is not threading.current_thread():
+        thread.join(timeout=2.0)
 
 
 def reset_telegram_control_for_tests() -> None:
-    global _offset, _commands_registered, _poller_started
+    global _offset, _commands_registered, _poller_started, _last_409_log
     stop_telegram_control()
+    release_getupdates_owner(_GETUPDATES_OWNER)
     _offset = 0
     _commands_registered = False
     _poller_started = False
+    _last_409_log = 0.0
     _stop_event.clear()

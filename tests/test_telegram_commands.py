@@ -45,9 +45,18 @@ def test_menu_matches_local_readonly_commands():
     assert "close" not in names
 
 
+def test_inbound_disabled_when_command_listener_owns_getupdates(monkeypatch):
+    monkeypatch.setattr(Config, "TELEGRAM_TOKEN", "tok")
+    monkeypatch.setattr(Config, "TELEGRAM_CHAT_ID", "9")
+    monkeypatch.setenv("TELEGRAM_COMMANDS", "true")
+    monkeypatch.setenv("TELEGRAM_INBOUND", "1")
+    assert tcmd.inbound_enabled() is False
+
+
 def test_handle_pending_updates_replies_only_to_safe_commands(monkeypatch):
     monkeypatch.setattr(Config, "TELEGRAM_TOKEN", "tok")
     monkeypatch.setattr(Config, "TELEGRAM_CHAT_ID", "9")
+    monkeypatch.setenv("TELEGRAM_COMMANDS", "false")
     monkeypatch.setenv("TELEGRAM_INBOUND", "1")
     sent: list[str] = []
     monkeypatch.setattr(

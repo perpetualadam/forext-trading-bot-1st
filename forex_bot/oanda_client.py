@@ -415,38 +415,73 @@ def fetch_ohlcv_range(
     return df
 
 
+def _optional_price(block: dict[str, Any] | None, key: str) -> float | None:
+    if not block:
+        return None
+    try:
+        return float(block[key])
+    except (KeyError, TypeError, ValueError):
+        return None
+
+
 def fetch_ohlcv(
     symbol: str = "EUR_USD",
     granularity: str = "M5",
     count: int = 50,
 ) -> pd.DataFrame | None:
+    """
+    Latest completed candles. One InstrumentsCandles GET.
+
+    Mid OHLC columns (open/high/low/close) are unchanged for trading.
+    When the same payload includes bid/ask, those columns are retained for
+    research persistence. Incomplete/forming candles are dropped.
+    """
     api = get_api()
     if api is None:
         return None
     inst = oanda_instrument(symbol)
-    params = {"granularity": granularity, "count": count, "price": "M"}
+    # Same request count as price=M. MBA adds bid/ask buckets on the payload.
+    params = {"granularity": granularity, "count": count, "price": "MBA"}
     r = instruments.InstrumentsCandles(instrument=inst, params=params)
     try:
         data = _oanda_request(api, r, context=f"latest {inst}")
     except Exception as exc:
         logger.error("OANDA candles failed for %s: %s", inst, _format_oanda_error(exc))
         return None
-    ohlcv: list[dict[str, float | str]] = []
+    ohlcv: list[dict[str, float | str | bool | None]] = []
     for c in data.get("candles", []):
         if not c.get("complete", True):
             continue
         mid = c.get("mid") or {}
         if not mid:
             continue
-        ohlcv.append(
-            {
+        try:
+            row: dict[str, float | str | bool | None] = {
                 "time": c["time"],
                 "open": float(mid["o"]),
                 "high": float(mid["h"]),
                 "low": float(mid["l"]),
                 "close": float(mid["c"]),
+                "complete": True,
             }
-        )
+        except (KeyError, TypeError, ValueError):
+            continue
+        bid = c.get("bid") or {}
+        ask = c.get("ask") or {}
+        row["bid_open"] = _optional_price(bid, "o")
+        row["bid_high"] = _optional_price(bid, "h")
+        row["bid_low"] = _optional_price(bid, "l")
+        row["bid_close"] = _optional_price(bid, "c")
+        row["ask_open"] = _optional_price(ask, "o")
+        row["ask_high"] = _optional_price(ask, "h")
+        row["ask_low"] = _optional_price(ask, "l")
+        row["ask_close"] = _optional_price(ask, "c")
+        vol = c.get("volume")
+        try:
+            row["volume"] = float(vol) if vol is not None and str(vol) != "" else None
+        except (TypeError, ValueError):
+            row["volume"] = None
+        ohlcv.append(row)
     if not ohlcv:
         return None
     return pd.DataFrame(ohlcv)

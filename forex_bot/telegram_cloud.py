@@ -8,11 +8,18 @@ poll getUpdates, place trades, or register new commands.
 from __future__ import annotations
 
 import re
+import threading
 from typing import Any
+from urllib.parse import urlparse
 
 import requests
+from requests.adapters import HTTPAdapter
 
 TELEGRAM_API_ROOT = "https://api.telegram.org"
+_GETUPDATES_LOCK = threading.Lock()
+_GETUPDATES_OWNER = ""
+_GETUPDATES_OWNER_LOCK = threading.Lock()
+_NO_RETRY = HTTPAdapter(max_retries=0)
 
 
 def mask_token(url: str, token: str = "") -> str:
@@ -151,6 +158,85 @@ def webhook_conflicts_with_local_alerts(webhook: dict[str, Any]) -> bool:
     return bool((webhook.get("url") or "").strip())
 
 
+def webhook_url_host(url: str) -> str:
+    raw = (url or "").strip()
+    if not raw:
+        return ""
+    parsed = urlparse(raw if "://" in raw else f"https://{raw}")
+    return str(parsed.netloc or "")
+
+
+def claim_getupdates_owner(name: str) -> str:
+    """Mark which in-process listener owns getUpdates."""
+    global _GETUPDATES_OWNER
+    label = str(name or "").strip() or "anonymous"
+    with _GETUPDATES_OWNER_LOCK:
+        _GETUPDATES_OWNER = label
+        return label
+
+
+def release_getupdates_owner(name: str) -> None:
+    global _GETUPDATES_OWNER
+    label = str(name or "").strip()
+    with _GETUPDATES_OWNER_LOCK:
+        if not label or _GETUPDATES_OWNER == label:
+            _GETUPDATES_OWNER = ""
+
+
+def getupdates_owner() -> str:
+    with _GETUPDATES_OWNER_LOCK:
+        return _GETUPDATES_OWNER
+
+
+def get_updates(token: str, params: dict[str, Any] | None = None, timeout: float = 8.0):
+    """One serialized getUpdates call. No HTTP retries — a retry 409s the live poller."""
+    t = (token or "").strip()
+    if not t:
+        raise ValueError("telegram token missing")
+    session = requests.Session()
+    session.mount("https://", _NO_RETRY)
+    session.mount("http://", _NO_RETRY)
+    try:
+        with _GETUPDATES_LOCK:
+            return session.get(
+                telegram_method_url(t, "getUpdates"),
+                params=params or {},
+                timeout=timeout,
+            )
+    finally:
+        session.close()
+
+
+def delete_webhook_if_configured(token: str, timeout: float = 8.0) -> dict[str, Any]:
+    """Clear a leftover webhook so getUpdates can run. Does not drop queued updates."""
+    t = (token or "").strip()
+    if not t:
+        return {"ok": False, "deleted": False, "error": "telegram_token_missing"}
+    try:
+        info = requests.get(telegram_method_url(t, "getWebhookInfo"), timeout=timeout)
+        body = info.json() if info.content else {}
+    except Exception as exc:
+        return {"ok": False, "deleted": False, "error": str(exc)[:200]}
+    parsed = parse_webhook((body or {}).get("result") or {}, t)
+    if not webhook_conflicts_with_local_alerts(parsed):
+        return {"ok": True, "deleted": False, "reason": "no_webhook"}
+    try:
+        resp = requests.post(
+            telegram_method_url(t, "deleteWebhook"),
+            json={"drop_pending_updates": False},
+            timeout=timeout,
+        )
+        ack = parse_api_payload(resp.json() if resp.content else {})
+    except Exception as exc:
+        return {"ok": False, "deleted": False, "error": str(exc)[:200]}
+    return {
+        "ok": bool(ack.get("ok")),
+        "deleted": bool(ack.get("ok")),
+        "url_host": webhook_url_host(str(parsed.get("url") or "")),
+        "error": ack.get("error"),
+    }
+
+
 def cloud_parity_snapshot(
     *,
     identity: dict[str, Any],
@@ -211,7 +297,10 @@ def fetch_pending_updates(token: str, timeout: float = 8.0, *, acknowledge: bool
     t = (token or "").strip()
     if not t:
         return {"ok": False, "error": "telegram_token_missing"}
-    resp = requests.get(telegram_method_url(t, "getUpdates"), params={"timeout": 0}, timeout=timeout)
+    owner = getupdates_owner()
+    if owner and owner != "inbound":
+        return {"ok": False, "error": "getupdates_owned_by_other_poller", "owner": owner}
+    resp = get_updates(t, {"timeout": 0}, timeout=timeout)
     try:
         body = resp.json()
     except ValueError:
@@ -223,9 +312,9 @@ def fetch_pending_updates(token: str, timeout: float = 8.0, *, acknowledge: bool
     offset = next_update_offset(updates)
     acknowledged = False
     if acknowledge and offset is not None:
-        ack = requests.get(
-            telegram_method_url(t, "getUpdates"),
-            params={"timeout": 0, "offset": offset},
+        ack = get_updates(
+            t,
+            {"timeout": 0, "offset": offset},
             timeout=timeout,
         )
         try:

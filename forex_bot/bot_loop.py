@@ -47,10 +47,12 @@ from forex_bot.portfolio_exposure import (
     notional_cap_decision,
     notional_pct_of_nav,
     portfolio_gross_notional_pct_of_nav,
+    same_usd_direction_open_positions,
+    usd_direction,
     usd_direction_guard_decision,
 )
 from forex_bot.portfolio import PortfolioEngine
-from forex_bot.positions import Position, close_position, get_position, open_position
+from forex_bot.positions import Position, close_position, get_position, open_position, positions as position_map
 from forex_bot.profit_protection import (
     ProtectionDecision,
     apply_profit_protection,
@@ -246,6 +248,98 @@ def _tp_progress(pos: Position) -> float | None:
     return mfe / dist
 
 
+def _df_last(df, column: str) -> float | None:
+    if column not in df.columns:
+        return None
+    raw = df[column].iloc[-1]
+    try:
+        val = float(raw)
+    except (TypeError, ValueError):
+        return None
+    if val != val:
+        return None
+    return val
+
+
+def _persist_v2_shadow_market_m5(symbol: str, raw) -> None:
+    """Research-only. Uses already-fetched M5. Return discarded. Never authorizes."""
+    from forex_bot.v2_shadow.market import maybe_record_completed_m5
+
+    maybe_record_completed_m5(symbol, raw)
+
+
+def _observe_v2_shadow_candidate(
+    *,
+    symbol: str,
+    strategy_name: str,
+    direction: str,
+    price: float,
+    df,
+    atr_v: float,
+    ma_fast: float,
+    ma_slow: float,
+    ret_1: float,
+    rl_action: str,
+    rl_state: str,
+) -> None:
+    """Shadow-only. Return is discarded. Must never change production direction."""
+    from forex_bot.v2_shadow import maybe_observe_candidate
+
+    quote = pricing_snapshot().get(symbol)
+    bid = getattr(quote, "bid", None) if quote is not None else None
+    ask = getattr(quote, "ask", None) if quote is not None else None
+    if bid is None and quote is not None:
+        bid = getattr(quote, "closeout_bid", None)
+    if ask is None and quote is not None:
+        ask = getattr(quote, "closeout_ask", None)
+    now_utc = datetime.now(timezone.utc)
+    rets: dict[str, float | None] = {}
+    for label, steps in (("ret_5", 1), ("ret_15", 3), ("ret_30", 6)):
+        if len(df) > steps:
+            c0 = float(df["close"].iloc[-1])
+            c1 = float(df["close"].iloc[-1 - steps])
+            rets[label] = ((c0 - c1) / c1) if c1 else None
+        else:
+            rets[label] = None
+    n_broker = sum(1 for p in position_map.values() if is_broker_backed(p))
+    usd_dir = usd_direction(symbol, direction)
+    usd_count = len(same_usd_direction_open_positions(usd_dir)) if usd_dir else None
+    acct = last_account_summary() or {}
+    exposure = acct.get("positionValue")
+    if exposure is None:
+        exposure = acct.get("NAV")
+    maybe_observe_candidate(
+        symbol=symbol,
+        strategy_label=strategy_name,
+        production_side=direction,
+        mid=price,
+        bid=float(bid) if bid is not None else None,
+        ask=float(ask) if ask is not None else None,
+        pip_size=_pip_size(symbol),
+        atr=None if atr_v != atr_v else atr_v,
+        sma_fast=None if ma_fast != ma_fast else ma_fast,
+        sma_slow=None if ma_slow != ma_slow else ma_slow,
+        rsi=_df_last(df, "rsi"),
+        macd=_df_last(df, "macd"),
+        boll_up=_df_last(df, "boll_up"),
+        boll_down=_df_last(df, "boll_down"),
+        ret_1=None if ret_1 != ret_1 else ret_1,
+        ret_5=rets["ret_5"],
+        ret_15=rets["ret_15"],
+        ret_30=rets["ret_30"],
+        hour_utc=now_utc.hour,
+        day_of_week=now_utc.weekday(),
+        usd_direction=usd_dir,
+        broker_backed_position_count=n_broker,
+        gross_portfolio_exposure=float(exposure) if exposure is not None else None,
+        same_usd_direction_count=usd_count,
+        rl_action=rl_action,
+        rl_state=rl_state,
+        rl_q_values=dict(rl_agent.q.get(rl_state) or {}),
+        rl_epsilon=float(rl_agent.epsilon),
+    )
+
+
 async def evaluate(symbol: str) -> None:
     """Evaluate: manage open positions (TP/SL) or open new risk-based positions (hybrid + AI + RL)."""
     ohlcv_count = _env_int("HYBRID_OHLCV_COUNT", 200)
@@ -253,6 +347,10 @@ async def evaluate(symbol: str) -> None:
     if raw is None or raw.empty:
         logger.warning("No OHLCV for %s", symbol)
         return
+    try:
+        _persist_v2_shadow_market_m5(symbol, raw)
+    except Exception:
+        logger.exception("[V2 SHADOW] market persist failed (ignored)")
 
     price = float(raw["close"].iloc[-1])
     record_mid(symbol, price)
@@ -580,6 +678,22 @@ async def evaluate(symbol: str) -> None:
     if direction not in ("BUY", "SELL"):
         direction = "BUY"
     rl_action = rl_agent.decide(state)
+    try:
+        _observe_v2_shadow_candidate(
+            symbol=symbol,
+            strategy_name=strategy_name,
+            direction=direction,
+            price=price,
+            df=df,
+            atr_v=atr_v,
+            ma_fast=ma_fast,
+            ma_slow=ma_slow,
+            ret_1=ret_1,
+            rl_action=rl_action,
+            rl_state=state,
+        )
+    except Exception:
+        logger.exception("[V2 SHADOW] observe failed (ignored)")
     if rl_action == "SKIP":
         logger.info("%s: RL decided to skip trade (state=%s)", symbol, state)
         return

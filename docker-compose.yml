@@ -107,6 +107,8 @@ services:
       OPENAI_TEMPERATURE: ${OPENAI_TEMPERATURE:-}
       AI_DISABLE_STUB: ${AI_DISABLE_STUB:-}
       ENSEMBLE_MODE: ${ENSEMBLE_MODE:-}
+      V2_SHADOW_ENABLED: ${V2_SHADOW_ENABLED:-}
+      V2_SHADOW_ARCHIVE_BYTES: ${V2_SHADOW_ARCHIVE_BYTES:-}
       NN_PRED_MODE: ${NN_PRED_MODE:-}
       STUB_SMA_EPSILON: ${STUB_SMA_EPSILON:-}
       STUB_MOMENTUM_THRESHOLD: ${STUB_MOMENTUM_THRESHOLD:-}
@@ -192,6 +194,9 @@ services:
       BACKTEST_STEP_BARS: ${BACKTEST_STEP_BARS:-}
       BACKTEST_FAST_WINDOW: ${BACKTEST_FAST_WINDOW:-}
       BACKTEST_INDICATOR_WINDOW: ${BACKTEST_INDICATOR_WINDOW:-}
+    volumes:
+      # V2 shadow JSONL must survive container recreate/rebuild. Observe-only.
+      - ./data/research/v2_shadow:/app/data/research/v2_shadow
     depends_on:
       db:
         condition: service_healthy

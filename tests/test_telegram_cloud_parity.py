@@ -119,12 +119,14 @@ def test_fetch_pending_updates_parses_and_can_ack(monkeypatch):
     class _Resp:
         def __init__(self, payload):
             self._payload = payload
+            self.status_code = 200
+            self.content = b"{}"
 
         def json(self):
             return self._payload
 
-    def fake_get(url, params=None, timeout=8.0):
-        calls.append({"url": url, "params": params or {}})
+    def fake_get_updates(token, params=None, timeout=8.0):
+        calls.append({"token": token, "params": params or {}, "timeout": timeout})
         if params and params.get("offset") == 12:
             return _Resp({"ok": True, "result": []})
         return _Resp(
@@ -139,12 +141,61 @@ def test_fetch_pending_updates_parses_and_can_ack(monkeypatch):
             }
         )
 
-    monkeypatch.setattr(tc.requests, "get", fake_get)
+    monkeypatch.setattr(tc, "get_updates", fake_get_updates)
     pulled = tc.fetch_pending_updates("tok", acknowledge=True)
     assert pulled["ok"] is True
     assert pulled["commands"] == ["help"]
     assert pulled["acknowledged"] is True
     assert calls[-1]["params"]["offset"] == 12
+
+
+def test_fetch_pending_updates_refuses_when_command_poller_owns(monkeypatch):
+    from forex_bot import telegram_cloud as tc
+
+    tc.claim_getupdates_owner("telegram_control")
+    try:
+        pulled = tc.fetch_pending_updates("tok")
+        assert pulled["ok"] is False
+        assert pulled["error"] == "getupdates_owned_by_other_poller"
+    finally:
+        tc.release_getupdates_owner("telegram_control")
+
+
+def test_delete_webhook_if_configured_clears_url(monkeypatch):
+    from forex_bot import telegram_cloud as tc
+
+    calls = []
+
+    class _Resp:
+        def __init__(self, payload):
+            self.status_code = 200
+            self.content = b"{}"
+            self._payload = payload
+
+        def json(self):
+            return self._payload
+
+    def fake_get(url, timeout=8.0):
+        calls.append(("GET", url))
+        return _Resp(
+            {
+                "ok": True,
+                "result": {"url": "https://cloud.example/hook", "pending_update_count": 1},
+            }
+        )
+
+    def fake_post(url, json=None, timeout=8.0):
+        calls.append(("POST", url, json))
+        return _Resp({"ok": True, "result": True})
+
+    monkeypatch.setattr(tc.requests, "get", fake_get)
+    monkeypatch.setattr(tc.requests, "post", fake_post)
+    result = tc.delete_webhook_if_configured("tok")
+    assert result["ok"] is True
+    assert result["deleted"] is True
+    assert result["url_host"] == "cloud.example"
+    assert calls[-1][0] == "POST"
+    assert calls[-1][2] == {"drop_pending_updates": False}
 
 
 def test_set_local_command_menu_posts_readonly_list(monkeypatch):

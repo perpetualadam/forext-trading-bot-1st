@@ -364,3 +364,15 @@ def test_getupdates_wait_honors_retry_after():
     assert getupdates_wait_sec(502, {"ok": False, "description": "Bad Gateway"}) == 5.0
     assert getupdates_wait_sec(409, {}) == 15.0
     assert getupdates_wait_sec(200, {"ok": True, "result": []}) == 0.0
+
+
+def test_409_log_is_rate_limited(monkeypatch, caplog):
+    from forex_bot import telegram_control as tc
+
+    tc._last_409_log = 0.0
+    with caplog.at_level("WARNING"):
+        tc._log_getupdates_409({"description": "terminated by other getUpdates request"})
+        tc._log_getupdates_409({"description": "terminated by other getUpdates request"})
+    lines = [r.message for r in caplog.records if "getUpdates 409" in r.message]
+    assert len(lines) == 1
+    assert "terminated by other getUpdates request" in lines[0]

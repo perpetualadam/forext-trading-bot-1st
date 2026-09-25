@@ -38,8 +38,11 @@ HELP_TEXT = (
 
 
 def inbound_enabled() -> bool:
-    raw = (os.getenv("TELEGRAM_INBOUND") or "1").strip().lower()
-    if raw in ("0", "false", "no", "off"):
+    commands = (os.getenv("TELEGRAM_COMMANDS") or "1").strip().lower()
+    if commands not in ("0", "false", "no", "off"):
+        return False
+    raw = (os.getenv("TELEGRAM_INBOUND") or "0").strip().lower()
+    if raw in ("0", "false", "no", "off", ""):
         return False
     return bool((Config.TELEGRAM_TOKEN or "").strip() and (Config.TELEGRAM_CHAT_ID or "").strip())
 

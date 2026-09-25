@@ -1,0 +1,5213 @@
+{
+  "historical": {
+    "dataset": {
+      "source": "data/historical/*_M5.csv",
+      "range": "2025-09-01 through 2026-08-31 complete M5 bid/ask",
+      "lookbacks": {
+        "USD_JPY": 50,
+        "EUR_USD": 100,
+        "GBP_USD": 100,
+        "AUD_USD": 100,
+        "USD_CAD": 100,
+        "USD_CHF": 100
+      },
+      "event_rule": "first qualifying stub-allow bar of each SMA episode",
+      "target": "UP if bid[t+h] > ask[t]; DOWN if ask[t+h] < bid[t]; else ECONOMICALLY_FLAT",
+      "cost": "executable BUY=(bid_future-ask_entry)/pip; SELL=(bid_entry-ask_future)/pip",
+      "risk_r": "2 * ATR_pips at entry (research 2xATR stop, not live P/L)",
+      "splits": {
+        "cut_50": "2026-02-27 07:47:30+00:00",
+        "cut_75": "2026-05-29 02:10:00+00:00",
+        "n_train": 7052,
+        "n_valid": 3528,
+        "n_test": 3524
+      },
+      "live_holdout": "2026-09-21T22:00:04Z corrected-build trades; not used for fitting"
+    },
+    "n_events": 14104,
+    "inversion_first_qual": {
+      "train": {
+        "5": {
+          "original": {
+            "n": 7052,
+            "hit": 0.210579,
+            "mean_pips": -1.886047,
+            "median_pips": -1.7,
+            "sum_pips": -13300.4,
+            "profit_factor": 0.20146,
+            "mean_r": -0.339656,
+            "median_r": -0.282757
+          },
+          "inverted": {
+            "n": 7052,
+            "hit": 0.207317,
+            "mean_pips": -1.887422,
+            "median_pips": -1.7,
+            "sum_pips": -13310.1,
+            "profit_factor": 0.194397,
+            "mean_r": -0.33811,
+            "median_r": -0.28367
+          }
+        },
+        "15": {
+          "original": {
+            "n": 7052,
+            "hit": 0.305871,
+            "mean_pips": -1.886841,
+            "median_pips": -1.8,
+            "sum_pips": -13306.0,
+            "profit_factor": 0.37331,
+            "mean_r": -0.336778,
+            "median_r": -0.29826
+          },
+          "inverted": {
+            "n": 7052,
+            "hit": 0.297646,
+            "mean_pips": -1.877198,
+            "median_pips": -1.8,
+            "sum_pips": -13238.0,
+            "profit_factor": 0.368452,
+            "mean_r": -0.339832,
+            "median_r": -0.29051
+          }
+        },
+        "30": {
+          "original": {
+            "n": 7052,
+            "hit": 0.349121,
+            "mean_pips": -1.896483,
+            "median_pips": -1.9,
+            "sum_pips": -13374.0,
+            "profit_factor": 0.493361,
+            "mean_r": -0.343671,
+            "median_r": -0.311279
+          },
+          "inverted": {
+            "n": 7052,
+            "hit": 0.351957,
+            "mean_pips": -1.858919,
+            "median_pips": -1.8,
+            "sum_pips": -13109.1,
+            "profit_factor": 0.492594,
+            "mean_r": -0.332573,
+            "median_r": -0.297562
+          }
+        },
+        "60": {
+          "original": {
+            "n": 7052,
+            "hit": 0.392229,
+            "mean_pips": -1.769455,
+            "median_pips": -1.8,
+            "sum_pips": -12478.2,
+            "profit_factor": 0.620498,
+            "mean_r": -0.331614,
+            "median_r": -0.299837
+          },
+          "inverted": {
+            "n": 7052,
+            "hit": 0.385139,
+            "mean_pips": -1.945122,
+            "median_pips": -1.9,
+            "sum_pips": -13717.0,
+            "profit_factor": 0.587199,
+            "mean_r": -0.33511,
+            "median_r": -0.323435
+          }
+        },
+        "120": {
+          "original": {
+            "n": 7052,
+            "hit": 0.407402,
+            "mean_pips": -2.027694,
+            "median_pips": -2.1,
+            "sum_pips": -14299.3,
+            "profit_factor": 0.680719,
+            "mean_r": -0.377311,
+            "median_r": -0.359318
+          },
+          "inverted": {
+            "n": 7052,
+            "hit": 0.431083,
+            "mean_pips": -1.684898,
+            "median_pips": -1.6,
+            "sum_pips": -11881.9,
+            "profit_factor": 0.723436,
+            "mean_r": -0.283508,
+            "median_r": -0.26346
+          }
+        },
+        "240": {
+          "original": {
+            "n": 7052,
+            "hit": 0.440868,
+            "mean_pips": -1.969356,
+            "median_pips": -1.95,
+            "sum_pips": -13887.9,
+            "profit_factor": 0.763943,
+            "mean_r": -0.365788,
+            "median_r": -0.314048
+          },
+          "inverted": {
+            "n": 7052,
+            "hit": 0.448242,
+            "mean_pips": -1.735777,
+            "median_pips": -1.7,
+            "sum_pips": -12240.7,
+            "profit_factor": 0.788206,
+            "mean_r": -0.283899,
+            "median_r": -0.275658
+          }
+        }
+      },
+      "valid": {
+        "5": {
+          "original": {
+            "n": 3528,
+            "hit": 0.20805,
+            "mean_pips": -2.082228,
+            "median_pips": -1.8,
+            "sum_pips": -7346.1,
+            "profit_factor": 0.198837,
+            "mean_r": -0.348593,
+            "median_r": -0.279518
+          },
+          "inverted": {
+            "n": 3528,
+            "hit": 0.198413,
+            "mean_pips": -2.045578,
+            "median_pips": -1.8,
+            "sum_pips": -7216.8,
+            "profit_factor": 0.197545,
+            "mean_r": -0.354608,
+            "median_r": -0.276053
+          }
+        },
+        "15": {
+          "original": {
+            "n": 3528,
+            "hit": 0.296769,
+            "mean_pips": -2.030782,
+            "median_pips": -2.0,
+            "sum_pips": -7164.6,
+            "profit_factor": 0.38129,
+            "mean_r": -0.339883,
+            "median_r": -0.311628
+          },
+          "inverted": {
+            "n": 3528,
+            "hit": 0.304989,
+            "mean_pips": -2.080045,
+            "median_pips": -1.8,
+            "sum_pips": -7338.4,
+            "profit_factor": 0.351519,
+            "mean_r": -0.35944,
+            "median_r": -0.274471
+          }
+        },
+        "30": {
+          "original": {
+            "n": 3528,
+            "hit": 0.324263,
+            "mean_pips": -2.168991,
+            "median_pips": -2.2,
+            "sum_pips": -7652.2,
+            "profit_factor": 0.462966,
+            "mean_r": -0.356698,
+            "median_r": -0.325645
+          },
+          "inverted": {
+            "n": 3528,
+            "hit": 0.35034,
+            "mean_pips": -1.911848,
+            "median_pips": -1.7,
+            "sum_pips": -6745.0,
+            "profit_factor": 0.493173,
+            "mean_r": -0.339352,
+            "median_r": -0.280976
+          }
+        },
+        "60": {
+          "original": {
+            "n": 3528,
+            "hit": 0.363946,
+            "mean_pips": -2.16165,
+            "median_pips": -2.1,
+            "sum_pips": -7626.3,
+            "profit_factor": 0.566508,
+            "mean_r": -0.346607,
+            "median_r": -0.332539
+          },
+          "inverted": {
+            "n": 3528,
+            "hit": 0.387472,
+            "mean_pips": -1.837783,
+            "median_pips": -1.8,
+            "sum_pips": -6483.7,
+            "profit_factor": 0.611834,
+            "mean_r": -0.32948,
+            "median_r": -0.271459
+          }
+        },
+        "120": {
+          "original": {
+            "n": 3528,
+            "hit": 0.399943,
+            "mean_pips": -2.582086,
+            "median_pips": -2.6,
+            "sum_pips": -9109.6,
+            "profit_factor": 0.616991,
+            "mean_r": -0.418859,
+            "median_r": -0.397106
+          },
+          "inverted": {
+            "n": 3528,
+            "hit": 0.438209,
+            "mean_pips": -1.418169,
+            "median_pips": -1.5,
+            "sum_pips": -5003.3,
+            "profit_factor": 0.764791,
+            "mean_r": -0.249768,
+            "median_r": -0.256993
+          }
+        },
+        "240": {
+          "original": {
+            "n": 3528,
+            "hit": 0.432256,
+            "mean_pips": -2.3928,
+            "median_pips": -2.4,
+            "sum_pips": -8441.8,
+            "profit_factor": 0.718717,
+            "mean_r": -0.401037,
+            "median_r": -0.382243
+          },
+          "inverted": {
+            "n": 3528,
+            "hit": 0.450397,
+            "mean_pips": -1.564059,
+            "median_pips": -1.7,
+            "sum_pips": -5518.0,
+            "profit_factor": 0.805104,
+            "mean_r": -0.25611,
+            "median_r": -0.269544
+          }
+        }
+      },
+      "test": {
+        "5": {
+          "original": {
+            "n": 3524,
+            "hit": 0.164586,
+            "mean_pips": -1.909024,
+            "median_pips": -1.7,
+            "sum_pips": -6727.4,
+            "profit_factor": 0.143813,
+            "mean_r": -0.423151,
+            "median_r": -0.344828
+          },
+          "inverted": {
+            "n": 3524,
+            "hit": 0.160329,
+            "mean_pips": -1.936578,
+            "median_pips": -1.7,
+            "sum_pips": -6824.5,
+            "profit_factor": 0.131323,
+            "mean_r": -0.42681,
+            "median_r": -0.346744
+          }
+        },
+        "15": {
+          "original": {
+            "n": 3524,
+            "hit": 0.253973,
+            "mean_pips": -1.883059,
+            "median_pips": -1.9,
+            "sum_pips": -6635.9,
+            "profit_factor": 0.302725,
+            "mean_r": -0.435642,
+            "median_r": -0.381907
+          },
+          "inverted": {
+            "n": 3524,
+            "hit": 0.269012,
+            "mean_pips": -1.965721,
+            "median_pips": -1.7,
+            "sum_pips": -6927.2,
+            "profit_factor": 0.267838,
+            "mean_r": -0.417156,
+            "median_r": -0.348458
+          }
+        },
+        "30": {
+          "original": {
+            "n": 3523,
+            "hit": 0.306841,
+            "mean_pips": -1.924411,
+            "median_pips": -2.0,
+            "sum_pips": -6779.7,
+            "profit_factor": 0.409825,
+            "mean_r": -0.437767,
+            "median_r": -0.388601
+          },
+          "inverted": {
+            "n": 3523,
+            "hit": 0.333806,
+            "mean_pips": -1.914192,
+            "median_pips": -1.7,
+            "sum_pips": -6743.7,
+            "profit_factor": 0.397723,
+            "mean_r": -0.41115,
+            "median_r": -0.328947
+          }
+        },
+        "60": {
+          "original": {
+            "n": 3521,
+            "hit": 0.352173,
+            "mean_pips": -1.77708,
+            "median_pips": -2.1,
+            "sum_pips": -6257.1,
+            "profit_factor": 0.561032,
+            "mean_r": -0.424043,
+            "median_r": -0.413793
+          },
+          "inverted": {
+            "n": 3521,
+            "hit": 0.370633,
+            "mean_pips": -1.998523,
+            "median_pips": -1.7,
+            "sum_pips": -7036.8,
+            "profit_factor": 0.508548,
+            "mean_r": -0.408632,
+            "median_r": -0.330396
+          }
+        },
+        "120": {
+          "original": {
+            "n": 3518,
+            "hit": 0.38971,
+            "mean_pips": -1.975213,
+            "median_pips": -2.0,
+            "sum_pips": -6948.8,
+            "profit_factor": 0.631342,
+            "mean_r": -0.447041,
+            "median_r": -0.400195
+          },
+          "inverted": {
+            "n": 3518,
+            "hit": 0.398238,
+            "mean_pips": -1.785333,
+            "median_pips": -1.9,
+            "sum_pips": -6280.8,
+            "profit_factor": 0.657221,
+            "mean_r": -0.37367,
+            "median_r": -0.386631
+          }
+        },
+        "240": {
+          "original": {
+            "n": 3511,
+            "hit": 0.438621,
+            "mean_pips": -1.742381,
+            "median_pips": -2.0,
+            "sum_pips": -6117.5,
+            "profit_factor": 0.75055,
+            "mean_r": -0.360077,
+            "median_r": -0.384615
+          },
+          "inverted": {
+            "n": 3511,
+            "hit": 0.430362,
+            "mean_pips": -1.988835,
+            "median_pips": -2.1,
+            "sum_pips": -6982.8,
+            "profit_factor": 0.721063,
+            "mean_r": -0.442974,
+            "median_r": -0.4038
+          }
+        }
+      }
+    },
+    "inversion_all_allow_sensitivity": {
+      "train": {
+        "60": {
+          "original": {
+            "n": 118415,
+            "hit": 0.384993,
+            "mean_pips": -1.911458,
+            "median_pips": -2.0,
+            "sum_pips": -226345.3,
+            "profit_factor": 0.599742,
+            "mean_r": -0.314402,
+            "median_r": -0.300954
+          },
+          "inverted": {
+            "n": 118415,
+            "hit": 0.406553,
+            "mean_pips": -1.643903,
+            "median_pips": -1.6,
+            "sum_pips": -194662.8,
+            "profit_factor": 0.642367,
+            "mean_r": -0.264282,
+            "median_r": -0.242424
+          }
+        }
+      },
+      "valid": {
+        "60": {
+          "original": {
+            "n": 59209,
+            "hit": 0.397304,
+            "mean_pips": -2.029592,
+            "median_pips": -2.0,
+            "sum_pips": -120170.1,
+            "profit_factor": 0.612117,
+            "mean_r": -0.292776,
+            "median_r": -0.258065
+          },
+          "inverted": {
+            "n": 59209,
+            "hit": 0.407151,
+            "mean_pips": -1.711931,
+            "median_pips": -1.8,
+            "sum_pips": -101361.7,
+            "profit_factor": 0.66121,
+            "mean_r": -0.240961,
+            "median_r": -0.23888
+          }
+        }
+      },
+      "test": {
+        "60": {
+          "original": {
+            "n": 59181,
+            "hit": 0.373042,
+            "mean_pips": -1.76581,
+            "median_pips": -1.9,
+            "sum_pips": -104502.4,
+            "profit_factor": 0.568526,
+            "mean_r": -0.343011,
+            "median_r": -0.324074
+          },
+          "inverted": {
+            "n": 59181,
+            "hit": 0.382183,
+            "mean_pips": -1.800296,
+            "median_pips": -1.7,
+            "sum_pips": -106543.3,
+            "profit_factor": 0.55947,
+            "mean_r": -0.335457,
+            "median_r": -0.30303
+          }
+        }
+      }
+    },
+    "inversion_breakdowns": {
+      "symbol": {
+        "AUD_USD": {
+          "5": {
+            "original": {
+              "n": 2105,
+              "hit": 0.209501,
+              "mean_pips": -1.405938,
+              "median_pips": -1.4,
+              "sum_pips": -2959.5,
+              "profit_factor": 0.218593,
+              "mean_r": -0.331004,
+              "median_r": -0.299587
+            },
+            "inverted": {
+              "n": 2105,
+              "hit": 0.189074,
+              "mean_pips": -1.60076,
+              "median_pips": -1.4,
+              "sum_pips": -3369.6,
+              "profit_factor": 0.15926,
+              "mean_r": -0.367283,
+              "median_r": -0.29877
+            }
+          },
+          "15": {
+            "original": {
+              "n": 2105,
+              "hit": 0.287411,
+              "mean_pips": -1.440903,
+              "median_pips": -1.5,
+              "sum_pips": -3033.1,
+              "profit_factor": 0.372639,
+              "mean_r": -0.340253,
+              "median_r": -0.321782
+            },
+            "inverted": {
+              "n": 2105,
+              "hit": 0.296912,
+              "mean_pips": -1.56323,
+              "median_pips": -1.4,
+              "sum_pips": -3290.6,
+              "profit_factor": 0.324977,
+              "mean_r": -0.359059,
+              "median_r": -0.294118
+            }
+          },
+          "30": {
+            "original": {
+              "n": 2104,
+              "hit": 0.326046,
+              "mean_pips": -1.582557,
+              "median_pips": -1.6,
+              "sum_pips": -3329.7,
+              "profit_factor": 0.445179,
+              "mean_r": -0.382285,
+              "median_r": -0.327869
+            },
+            "inverted": {
+              "n": 2104,
+              "hit": 0.344106,
+              "mean_pips": -1.428137,
+              "median_pips": -1.4,
+              "sum_pips": -3004.8,
+              "profit_factor": 0.474309,
+              "mean_r": -0.319728,
+              "median_r": -0.288464
+            }
+          },
+          "60": {
+            "original": {
+              "n": 2104,
+              "hit": 0.379753,
+              "mean_pips": -1.382177,
+              "median_pips": -1.5,
+              "sum_pips": -2908.1,
+              "profit_factor": 0.602767,
+              "mean_r": -0.346694,
+              "median_r": -0.303491
+            },
+            "inverted": {
+              "n": 2104,
+              "hit": 0.379278,
+              "mean_pips": -1.587262,
+              "median_pips": -1.5,
+              "sum_pips": -3339.6,
+              "profit_factor": 0.551298,
+              "mean_r": -0.3466,
+              "median_r": -0.307242
+            }
+          },
+          "120": {
+            "original": {
+              "n": 2104,
+              "hit": 0.385932,
+              "mean_pips": -1.953089,
+              "median_pips": -2.0,
+              "sum_pips": -4109.3,
+              "profit_factor": 0.600309,
+              "mean_r": -0.469413,
+              "median_r": -0.401536
+            },
+            "inverted": {
+              "n": 2104,
+              "hit": 0.432034,
+              "mean_pips": -0.986692,
+              "median_pips": -1.1,
+              "sum_pips": -2076.0,
+              "profit_factor": 0.770577,
+              "mean_r": -0.206608,
+              "median_r": -0.218939
+            }
+          },
+          "240": {
+            "original": {
+              "n": 2102,
+              "hit": 0.432921,
+              "mean_pips": -1.702759,
+              "median_pips": -1.8,
+              "sum_pips": -3579.2,
+              "profit_factor": 0.726468,
+              "mean_r": -0.413215,
+              "median_r": -0.363447
+            },
+            "inverted": {
+              "n": 2102,
+              "hit": 0.454329,
+              "mean_pips": -1.272788,
+              "median_pips": -1.3,
+              "sum_pips": -2675.4,
+              "profit_factor": 0.786366,
+              "mean_r": -0.263648,
+              "median_r": -0.244132
+            }
+          }
+        },
+        "EUR_USD": {
+          "5": {
+            "original": {
+              "n": 2011,
+              "hit": 0.18001,
+              "mean_pips": -1.754152,
+              "median_pips": -1.6,
+              "sum_pips": -3527.6,
+              "profit_factor": 0.162409,
+              "mean_r": -0.358603,
+              "median_r": -0.309524
+            },
+            "inverted": {
+              "n": 2011,
+              "hit": 0.184983,
+              "mean_pips": -1.733366,
+              "median_pips": -1.7,
+              "sum_pips": -3485.8,
+              "profit_factor": 0.169375,
+              "mean_r": -0.351204,
+              "median_r": -0.316574
+            }
+          },
+          "15": {
+            "original": {
+              "n": 2011,
+              "hit": 0.272004,
+              "mean_pips": -1.850373,
+              "median_pips": -1.8,
+              "sum_pips": -3721.1,
+              "profit_factor": 0.297813,
+              "mean_r": -0.369909,
+              "median_r": -0.342577
+            },
+            "inverted": {
+              "n": 2011,
+              "hit": 0.280955,
+              "mean_pips": -1.645549,
+              "median_pips": -1.6,
+              "sum_pips": -3309.2,
+              "profit_factor": 0.337232,
+              "mean_r": -0.342487,
+              "median_r": -0.295671
+            }
+          },
+          "30": {
+            "original": {
+              "n": 2011,
+              "hit": 0.325211,
+              "mean_pips": -1.909448,
+              "median_pips": -1.9,
+              "sum_pips": -3839.9,
+              "profit_factor": 0.410154,
+              "mean_r": -0.391276,
+              "median_r": -0.366492
+            },
+            "inverted": {
+              "n": 2011,
+              "hit": 0.34908,
+              "mean_pips": -1.608702,
+              "median_pips": -1.6,
+              "sum_pips": -3235.1,
+              "profit_factor": 0.462206,
+              "mean_r": -0.324341,
+              "median_r": -0.30837
+            }
+          },
+          "60": {
+            "original": {
+              "n": 2010,
+              "hit": 0.363682,
+              "mean_pips": -2.020498,
+              "median_pips": -1.9,
+              "sum_pips": -4061.2,
+              "profit_factor": 0.513121,
+              "mean_r": -0.411904,
+              "median_r": -0.360087
+            },
+            "inverted": {
+              "n": 2010,
+              "hit": 0.3801,
+              "mean_pips": -1.441244,
+              "median_pips": -1.6,
+              "sum_pips": -2896.9,
+              "profit_factor": 0.619999,
+              "mean_r": -0.287844,
+              "median_r": -0.302314
+            }
+          },
+          "120": {
+            "original": {
+              "n": 2010,
+              "hit": 0.397015,
+              "mean_pips": -2.109055,
+              "median_pips": -1.9,
+              "sum_pips": -4239.2,
+              "profit_factor": 0.620582,
+              "mean_r": -0.450469,
+              "median_r": -0.36731
+            },
+            "inverted": {
+              "n": 2010,
+              "hit": 0.420896,
+              "mean_pips": -1.345423,
+              "median_pips": -1.55,
+              "sum_pips": -2704.3,
+              "profit_factor": 0.737138,
+              "mean_r": -0.244629,
+              "median_r": -0.296797
+            }
+          },
+          "240": {
+            "original": {
+              "n": 2009,
+              "hit": 0.443504,
+              "mean_pips": -1.943355,
+              "median_pips": -1.9,
+              "sum_pips": -3904.2,
+              "profit_factor": 0.731334,
+              "mean_r": -0.40412,
+              "median_r": -0.333333
+            },
+            "inverted": {
+              "n": 2009,
+              "hit": 0.452464,
+              "mean_pips": -1.509856,
+              "median_pips": -1.7,
+              "sum_pips": -3033.3,
+              "profit_factor": 0.784283,
+              "mean_r": -0.285168,
+              "median_r": -0.279395
+            }
+          }
+        },
+        "GBP_USD": {
+          "5": {
+            "original": {
+              "n": 2057,
+              "hit": 0.197861,
+              "mean_pips": -2.431405,
+              "median_pips": -2.1,
+              "sum_pips": -5001.4,
+              "profit_factor": 0.160656,
+              "mean_r": -0.385403,
+              "median_r": -0.292599
+            },
+            "inverted": {
+              "n": 2057,
+              "hit": 0.198347,
+              "mean_pips": -2.320175,
+              "median_pips": -2.0,
+              "sum_pips": -4772.6,
+              "profit_factor": 0.176186,
+              "mean_r": -0.369625,
+              "median_r": -0.295567
+            }
+          },
+          "15": {
+            "original": {
+              "n": 2057,
+              "hit": 0.294118,
+              "mean_pips": -2.428537,
+              "median_pips": -2.2,
+              "sum_pips": -4995.5,
+              "profit_factor": 0.323937,
+              "mean_r": -0.38635,
+              "median_r": -0.322581
+            },
+            "inverted": {
+              "n": 2057,
+              "hit": 0.293632,
+              "mean_pips": -2.306077,
+              "median_pips": -2.1,
+              "sum_pips": -4743.6,
+              "profit_factor": 0.33935,
+              "mean_r": -0.362787,
+              "median_r": -0.299625
+            }
+          },
+          "30": {
+            "original": {
+              "n": 2057,
+              "hit": 0.333982,
+              "mean_pips": -2.459358,
+              "median_pips": -2.6,
+              "sum_pips": -5058.9,
+              "profit_factor": 0.446286,
+              "mean_r": -0.389429,
+              "median_r": -0.36036
+            },
+            "inverted": {
+              "n": 2057,
+              "hit": 0.358289,
+              "mean_pips": -2.241565,
+              "median_pips": -1.9,
+              "sum_pips": -4610.9,
+              "profit_factor": 0.467834,
+              "mean_r": -0.355405,
+              "median_r": -0.287425
+            }
+          },
+          "60": {
+            "original": {
+              "n": 2056,
+              "hit": 0.384241,
+              "mean_pips": -2.259047,
+              "median_pips": -2.3,
+              "sum_pips": -4644.6,
+              "profit_factor": 0.581937,
+              "mean_r": -0.364488,
+              "median_r": -0.321334
+            },
+            "inverted": {
+              "n": 2056,
+              "hit": 0.372082,
+              "mean_pips": -2.371644,
+              "median_pips": -2.5,
+              "sum_pips": -4876.1,
+              "profit_factor": 0.563371,
+              "mean_r": -0.366096,
+              "median_r": -0.340495
+            }
+          },
+          "120": {
+            "original": {
+              "n": 2056,
+              "hit": 0.390564,
+              "mean_pips": -3.108901,
+              "median_pips": -3.2,
+              "sum_pips": -6391.9,
+              "profit_factor": 0.585936,
+              "mean_r": -0.462262,
+              "median_r": -0.434022
+            },
+            "inverted": {
+              "n": 2056,
+              "hit": 0.437743,
+              "mean_pips": -1.529864,
+              "median_pips": -1.9,
+              "sum_pips": -3145.4,
+              "profit_factor": 0.767768,
+              "mean_r": -0.258086,
+              "median_r": -0.252695
+            }
+          },
+          "240": {
+            "original": {
+              "n": 2055,
+              "hit": 0.43309,
+              "mean_pips": -2.526229,
+              "median_pips": -2.6,
+              "sum_pips": -5191.4,
+              "profit_factor": 0.720158,
+              "mean_r": -0.376934,
+              "median_r": -0.38175
+            },
+            "inverted": {
+              "n": 2055,
+              "hit": 0.446715,
+              "mean_pips": -2.01528,
+              "median_pips": -2.0,
+              "sum_pips": -4141.4,
+              "profit_factor": 0.769907,
+              "mean_r": -0.319101,
+              "median_r": -0.27027
+            }
+          }
+        },
+        "USD_CAD": {
+          "5": {
+            "original": {
+              "n": 2052,
+              "hit": 0.152534,
+              "mean_pips": -2.022807,
+              "median_pips": -2.0,
+              "sum_pips": -4150.8,
+              "profit_factor": 0.12091,
+              "mean_r": -0.408704,
+              "median_r": -0.358999
+            },
+            "inverted": {
+              "n": 2052,
+              "hit": 0.152534,
+              "mean_pips": -2.070712,
+              "median_pips": -1.9,
+              "sum_pips": -4249.1,
+              "profit_factor": 0.106525,
+              "mean_r": -0.43364,
+              "median_r": -0.356189
+            }
+          },
+          "15": {
+            "original": {
+              "n": 2052,
+              "hit": 0.263158,
+              "mean_pips": -2.064035,
+              "median_pips": -1.95,
+              "sum_pips": -4235.4,
+              "profit_factor": 0.261971,
+              "mean_r": -0.416215,
+              "median_r": -0.389477
+            },
+            "inverted": {
+              "n": 2052,
+              "hit": 0.266082,
+              "mean_pips": -2.068177,
+              "median_pips": -2.0,
+              "sum_pips": -4243.9,
+              "profit_factor": 0.259858,
+              "mean_r": -0.434633,
+              "median_r": -0.396476
+            }
+          },
+          "30": {
+            "original": {
+              "n": 2052,
+              "hit": 0.317739,
+              "mean_pips": -1.981628,
+              "median_pips": -2.1,
+              "sum_pips": -4066.3,
+              "profit_factor": 0.400684,
+              "mean_r": -0.402471,
+              "median_r": -0.394596
+            },
+            "inverted": {
+              "n": 2052,
+              "hit": 0.309942,
+              "mean_pips": -2.156481,
+              "median_pips": -2.0,
+              "sum_pips": -4425.1,
+              "profit_factor": 0.364109,
+              "mean_r": -0.451087,
+              "median_r": -0.403493
+            }
+          },
+          "60": {
+            "original": {
+              "n": 2052,
+              "hit": 0.352827,
+              "mean_pips": -2.124805,
+              "median_pips": -2.2,
+              "sum_pips": -4360.1,
+              "profit_factor": 0.482186,
+              "mean_r": -0.408374,
+              "median_r": -0.425764
+            },
+            "inverted": {
+              "n": 2052,
+              "hit": 0.365984,
+              "mean_pips": -2.001803,
+              "median_pips": -2.1,
+              "sum_pips": -4107.7,
+              "profit_factor": 0.500632,
+              "mean_r": -0.440889,
+              "median_r": -0.399005
+            }
+          },
+          "120": {
+            "original": {
+              "n": 2052,
+              "hit": 0.37963,
+              "mean_pips": -2.273733,
+              "median_pips": -2.5,
+              "sum_pips": -4665.7,
+              "profit_factor": 0.566667,
+              "mean_r": -0.427444,
+              "median_r": -0.473039
+            },
+            "inverted": {
+              "n": 2052,
+              "hit": 0.407895,
+              "mean_pips": -1.889717,
+              "median_pips": -1.8,
+              "sum_pips": -3877.7,
+              "profit_factor": 0.617686,
+              "mean_r": -0.42345,
+              "median_r": -0.35017
+            }
+          },
+          "240": {
+            "original": {
+              "n": 2050,
+              "hit": 0.425366,
+              "mean_pips": -2.161268,
+              "median_pips": -2.3,
+              "sum_pips": -4430.6,
+              "profit_factor": 0.675507,
+              "mean_r": -0.420024,
+              "median_r": -0.44127
+            },
+            "inverted": {
+              "n": 2050,
+              "hit": 0.427805,
+              "mean_pips": -1.908488,
+              "median_pips": -2.1,
+              "sum_pips": -3912.4,
+              "profit_factor": 0.705967,
+              "mean_r": -0.405711,
+              "median_r": -0.377121
+            }
+          }
+        },
+        "USD_CHF": {
+          "5": {
+            "original": {
+              "n": 2028,
+              "hit": 0.162229,
+              "mean_pips": -2.005966,
+              "median_pips": -1.6,
+              "sum_pips": -4068.1,
+              "profit_factor": 0.109825,
+              "mean_r": -0.488407,
+              "median_r": -0.3521
+            },
+            "inverted": {
+              "n": 2028,
+              "hit": 0.141519,
+              "mean_pips": -2.028304,
+              "median_pips": -1.7,
+              "sum_pips": -4113.4,
+              "profit_factor": 0.099656,
+              "mean_r": -0.486258,
+              "median_r": -0.367968
+            }
+          },
+          "15": {
+            "original": {
+              "n": 2028,
+              "hit": 0.266765,
+              "mean_pips": -2.027268,
+              "median_pips": -1.7,
+              "sum_pips": -4111.3,
+              "profit_factor": 0.241542,
+              "mean_r": -0.485046,
+              "median_r": -0.386048
+            },
+            "inverted": {
+              "n": 2028,
+              "hit": 0.241617,
+              "mean_pips": -1.963856,
+              "median_pips": -1.75,
+              "sum_pips": -3982.7,
+              "profit_factor": 0.237031,
+              "mean_r": -0.485281,
+              "median_r": -0.396378
+            }
+          },
+          "30": {
+            "original": {
+              "n": 2028,
+              "hit": 0.308679,
+              "mean_pips": -2.100592,
+              "median_pips": -1.8,
+              "sum_pips": -4260.0,
+              "profit_factor": 0.33255,
+              "mean_r": -0.49767,
+              "median_r": -0.395731
+            },
+            "inverted": {
+              "n": 2028,
+              "hit": 0.302268,
+              "mean_pips": -1.852811,
+              "median_pips": -1.8,
+              "sum_pips": -3757.5,
+              "profit_factor": 0.362531,
+              "mean_r": -0.463703,
+              "median_r": -0.40876
+            }
+          },
+          "60": {
+            "original": {
+              "n": 2028,
+              "hit": 0.349606,
+              "mean_pips": -1.977022,
+              "median_pips": -1.8,
+              "sum_pips": -4009.4,
+              "profit_factor": 0.462273,
+              "mean_r": -0.481223,
+              "median_r": -0.394835
+            },
+            "inverted": {
+              "n": 2028,
+              "hit": 0.338757,
+              "mean_pips": -1.908284,
+              "median_pips": -2.0,
+              "sum_pips": -3870.0,
+              "profit_factor": 0.462224,
+              "mean_r": -0.460802,
+              "median_r": -0.428694
+            }
+          },
+          "120": {
+            "original": {
+              "n": 2027,
+              "hit": 0.396645,
+              "mean_pips": -1.85037,
+              "median_pips": -2.0,
+              "sum_pips": -3750.7,
+              "profit_factor": 0.599844,
+              "mean_r": -0.448541,
+              "median_r": -0.434783
+            },
+            "inverted": {
+              "n": 2027,
+              "hit": 0.390725,
+              "mean_pips": -1.977208,
+              "median_pips": -2.1,
+              "sum_pips": -4007.8,
+              "profit_factor": 0.567985,
+              "mean_r": -0.467584,
+              "median_r": -0.459459
+            }
+          },
+          "240": {
+            "original": {
+              "n": 2027,
+              "hit": 0.433152,
+              "mean_pips": -1.794721,
+              "median_pips": -1.6,
+              "sum_pips": -3637.9,
+              "profit_factor": 0.700939,
+              "mean_r": -0.41447,
+              "median_r": -0.402685
+            },
+            "inverted": {
+              "n": 2027,
+              "hit": 0.412432,
+              "mean_pips": -2.011741,
+              "median_pips": -2.3,
+              "sum_pips": -4077.8,
+              "profit_factor": 0.670574,
+              "mean_r": -0.480867,
+              "median_r": -0.50152
+            }
+          }
+        },
+        "USD_JPY": {
+          "5": {
+            "original": {
+              "n": 3851,
+              "hit": 0.24591,
+              "mean_pips": -1.990782,
+              "median_pips": -1.8,
+              "sum_pips": -7666.5,
+              "profit_factor": 0.265182,
+              "mean_r": -0.279522,
+              "median_r": -0.228216
+            },
+            "inverted": {
+              "n": 3851,
+              "hit": 0.246429,
+              "mean_pips": -1.911426,
+              "median_pips": -1.7,
+              "sum_pips": -7360.9,
+              "profit_factor": 0.267521,
+              "mean_r": -0.265856,
+              "median_r": -0.218121
+            }
+          },
+          "15": {
+            "original": {
+              "n": 3851,
+              "hit": 0.327447,
+              "mean_pips": -1.820332,
+              "median_pips": -1.9,
+              "sum_pips": -7010.1,
+              "profit_factor": 0.486308,
+              "mean_r": -0.264004,
+              "median_r": -0.238095
+            },
+            "inverted": {
+              "n": 3851,
+              "hit": 0.335757,
+              "mean_pips": -2.06014,
+              "median_pips": -1.8,
+              "sum_pips": -7933.6,
+              "profit_factor": 0.422461,
+              "mean_r": -0.277285,
+              "median_r": -0.22
+            }
+          },
+          "30": {
+            "original": {
+              "n": 3851,
+              "hit": 0.358868,
+              "mean_pips": -1.882914,
+              "median_pips": -2.2,
+              "sum_pips": -7251.1,
+              "profit_factor": 0.581321,
+              "mean_r": -0.258857,
+              "median_r": -0.256724
+            },
+            "inverted": {
+              "n": 3851,
+              "hit": 0.384835,
+              "mean_pips": -1.964269,
+              "median_pips": -1.7,
+              "sum_pips": -7564.4,
+              "profit_factor": 0.557423,
+              "mean_r": -0.277584,
+              "median_r": -0.212766
+            }
+          },
+          "60": {
+            "original": {
+              "n": 3851,
+              "hit": 0.399117,
+              "mean_pips": -1.656245,
+              "median_pips": -2.3,
+              "sum_pips": -6378.2,
+              "profit_factor": 0.711118,
+              "mean_r": -0.242473,
+              "median_r": -0.272436
+            },
+            "inverted": {
+              "n": 3851,
+              "hit": 0.421449,
+              "mean_pips": -2.115606,
+              "median_pips": -1.6,
+              "sum_pips": -8147.2,
+              "profit_factor": 0.639425,
+              "mean_r": -0.276468,
+              "median_r": -0.210773
+            }
+          },
+          "120": {
+            "original": {
+              "n": 3849,
+              "hit": 0.431021,
+              "mean_pips": -1.87085,
+              "median_pips": -2.1,
+              "sum_pips": -7200.9,
+              "profit_factor": 0.763035,
+              "mean_r": -0.28096,
+              "median_r": -0.258799
+            },
+            "inverted": {
+              "n": 3849,
+              "hit": 0.442453,
+              "mean_pips": -1.910834,
+              "median_pips": -1.8,
+              "sum_pips": -7354.8,
+              "profit_factor": 0.756921,
+              "mean_r": -0.239362,
+              "median_r": -0.22093
+            }
+          },
+          "240": {
+            "original": {
+              "n": 3848,
+              "hit": 0.450364,
+              "mean_pips": -2.002053,
+              "median_pips": -2.1,
+              "sum_pips": -7703.9,
+              "profit_factor": 0.813836,
+              "mean_r": -0.286484,
+              "median_r": -0.251171
+            },
+            "inverted": {
+              "n": 3848,
+              "hit": 0.45894,
+              "mean_pips": -1.793451,
+              "median_pips": -1.75,
+              "sum_pips": -6901.2,
+              "profit_factor": 0.831156,
+              "mean_r": -0.226516,
+              "median_r": -0.223455
+            }
+          }
+        }
+      },
+      "stub_side": {
+        "BUY": {
+          "5": {
+            "original": {
+              "n": 7067,
+              "hit": 0.19683,
+              "mean_pips": -1.914136,
+              "median_pips": -1.7,
+              "sum_pips": -13527.2,
+              "profit_factor": 0.182266,
+              "mean_r": -0.361275,
+              "median_r": -0.294906
+            },
+            "inverted": {
+              "n": 7067,
+              "hit": 0.190463,
+              "mean_pips": -1.865615,
+              "median_pips": -1.7,
+              "sum_pips": -13184.3,
+              "profit_factor": 0.186365,
+              "mean_r": -0.345909,
+              "median_r": -0.290881
+            }
+          },
+          "15": {
+            "original": {
+              "n": 7067,
+              "hit": 0.292486,
+              "mean_pips": -1.897538,
+              "median_pips": -1.8,
+              "sum_pips": -13409.9,
+              "profit_factor": 0.352892,
+              "mean_r": -0.361841,
+              "median_r": -0.309735
+            },
+            "inverted": {
+              "n": 7067,
+              "hit": 0.287392,
+              "mean_pips": -1.884902,
+              "median_pips": -1.8,
+              "sum_pips": -13320.6,
+              "profit_factor": 0.346943,
+              "mean_r": -0.346225,
+              "median_r": -0.301887
+            }
+          },
+          "30": {
+            "original": {
+              "n": 7066,
+              "hit": 0.340221,
+              "mean_pips": -1.916303,
+              "median_pips": -1.8,
+              "sum_pips": -13540.6,
+              "profit_factor": 0.466538,
+              "mean_r": -0.367651,
+              "median_r": -0.309694
+            },
+            "inverted": {
+              "n": 7066,
+              "hit": 0.338523,
+              "mean_pips": -1.871257,
+              "median_pips": -1.8,
+              "sum_pips": -13222.3,
+              "profit_factor": 0.468965,
+              "mean_r": -0.343475,
+              "median_r": -0.319064
+            }
+          },
+          "60": {
+            "original": {
+              "n": 7066,
+              "hit": 0.391452,
+              "mean_pips": -1.819955,
+              "median_pips": -1.7,
+              "sum_pips": -12859.8,
+              "profit_factor": 0.59359,
+              "mean_r": -0.351123,
+              "median_r": -0.279844
+            },
+            "inverted": {
+              "n": 7066,
+              "hit": 0.369941,
+              "mean_pips": -1.931489,
+              "median_pips": -2.1,
+              "sum_pips": -13647.9,
+              "profit_factor": 0.57345,
+              "mean_r": -0.348791,
+              "median_r": -0.352405
+            }
+          },
+          "120": {
+            "original": {
+              "n": 7064,
+              "hit": 0.413788,
+              "mean_pips": -2.032319,
+              "median_pips": -2.0,
+              "sum_pips": -14356.3,
+              "profit_factor": 0.665208,
+              "mean_r": -0.395296,
+              "median_r": -0.331042
+            },
+            "inverted": {
+              "n": 7064,
+              "hit": 0.411099,
+              "mean_pips": -1.724745,
+              "median_pips": -1.9,
+              "sum_pips": -12183.6,
+              "profit_factor": 0.706465,
+              "mean_r": -0.300073,
+              "median_r": -0.333333
+            }
+          },
+          "240": {
+            "original": {
+              "n": 7059,
+              "hit": 0.460122,
+              "mean_pips": -1.661652,
+              "median_pips": -1.4,
+              "sum_pips": -11729.6,
+              "profit_factor": 0.786742,
+              "mean_r": -0.32687,
+              "median_r": -0.239234
+            },
+            "inverted": {
+              "n": 7059,
+              "hit": 0.427964,
+              "mean_pips": -2.085536,
+              "median_pips": -2.6,
+              "sum_pips": -14721.8,
+              "profit_factor": 0.740926,
+              "mean_r": -0.356674,
+              "median_r": -0.4047
+            }
+          }
+        },
+        "SELL": {
+          "5": {
+            "original": {
+              "n": 7037,
+              "hit": 0.200085,
+              "mean_pips": -1.967699,
+              "median_pips": -1.8,
+              "sum_pips": -13846.7,
+              "profit_factor": 0.192155,
+              "mean_r": -0.364238,
+              "median_r": -0.29877
+            },
+            "inverted": {
+              "n": 7037,
+              "hit": 0.196248,
+              "mean_pips": -2.01323,
+              "median_pips": -1.8,
+              "sum_pips": -14167.1,
+              "profit_factor": 0.174762,
+              "mean_r": -0.382968,
+              "median_r": -0.304569
+            }
+          },
+          "15": {
+            "original": {
+              "n": 7037,
+              "hit": 0.288759,
+              "mean_pips": -1.946369,
+              "median_pips": -1.9,
+              "sum_pips": -13696.6,
+              "profit_factor": 0.36608,
+              "mean_r": -0.362674,
+              "median_r": -0.334262
+            },
+            "inverted": {
+              "n": 7037,
+              "hit": 0.297286,
+              "mean_pips": -2.01549,
+              "median_pips": -1.8,
+              "sum_pips": -14183.0,
+              "profit_factor": 0.335426,
+              "mean_r": -0.381964,
+              "median_r": -0.295567
+            }
+          },
+          "30": {
+            "original": {
+              "n": 7037,
+              "hit": 0.324428,
+              "mean_pips": -2.027185,
+              "median_pips": -2.2,
+              "sum_pips": -14265.3,
+              "profit_factor": 0.46675,
+              "mean_r": -0.373231,
+              "median_r": -0.370197
+            },
+            "inverted": {
+              "n": 7037,
+              "hit": 0.355549,
+              "mean_pips": -1.900739,
+              "median_pips": -1.6,
+              "sum_pips": -13375.5,
+              "profit_factor": 0.474269,
+              "mean_r": -0.364364,
+              "median_r": -0.288462
+            }
+          },
+          "60": {
+            "original": {
+              "n": 7035,
+              "hit": 0.358778,
+              "mean_pips": -1.919232,
+              "median_pips": -2.3,
+              "sum_pips": -13501.8,
+              "profit_factor": 0.591904,
+              "mean_r": -0.365798,
+              "median_r": -0.389908
+            },
+            "inverted": {
+              "n": 7035,
+              "hit": 0.394314,
+              "mean_pips": -1.931713,
+              "median_pips": -1.6,
+              "sum_pips": -13589.6,
+              "profit_factor": 0.578681,
+              "mean_r": -0.355343,
+              "median_r": -0.28169
+            }
+          },
+          "120": {
+            "original": {
+              "n": 7034,
+              "hit": 0.388399,
+              "mean_pips": -2.274865,
+              "median_pips": -2.5,
+              "sum_pips": -16001.4,
+              "profit_factor": 0.640725,
+              "mean_r": -0.414963,
+              "median_r": -0.420168
+            },
+            "inverted": {
+              "n": 7034,
+              "hit": 0.4383,
+              "mean_pips": -1.561331,
+              "median_pips": -1.4,
+              "sum_pips": -10982.4,
+              "profit_factor": 0.732469,
+              "mean_r": -0.295042,
+              "median_r": -0.245915
+            }
+          },
+          "240": {
+            "original": {
+              "n": 7032,
+              "hit": 0.416098,
+              "mean_pips": -2.377361,
+              "median_pips": -2.7,
+              "sum_pips": -16717.6,
+              "profit_factor": 0.713577,
+              "mean_r": -0.419689,
+              "median_r": -0.44379
+            },
+            "inverted": {
+              "n": 7032,
+              "hit": 0.460751,
+              "mean_pips": -1.424872,
+              "median_pips": -1.2,
+              "sum_pips": -10019.7,
+              "profit_factor": 0.815532,
+              "mean_r": -0.276328,
+              "median_r": -0.191805
+            }
+          }
+        }
+      },
+      "usd_dir": {
+        "LONG_USD": {
+          "5": {
+            "original": {
+              "n": 7062,
+              "hit": 0.205749,
+              "mean_pips": -1.863962,
+              "median_pips": -1.7,
+              "sum_pips": -13163.3,
+              "profit_factor": 0.192931,
+              "mean_r": -0.351976,
+              "median_r": -0.290106
+            },
+            "inverted": {
+              "n": 7062,
+              "hit": 0.187766,
+              "mean_pips": -1.977499,
+              "median_pips": -1.8,
+              "sum_pips": -13965.1,
+              "profit_factor": 0.167833,
+              "mean_r": -0.370484,
+              "median_r": -0.298308
+            }
+          },
+          "15": {
+            "original": {
+              "n": 7062,
+              "hit": 0.297933,
+              "mean_pips": -1.819711,
+              "median_pips": -1.8,
+              "sum_pips": -12850.8,
+              "profit_factor": 0.371122,
+              "mean_r": -0.342507,
+              "median_r": -0.310321
+            },
+            "inverted": {
+              "n": 7062,
+              "hit": 0.286746,
+              "mean_pips": -2.007732,
+              "median_pips": -1.8,
+              "sum_pips": -14178.6,
+              "profit_factor": 0.323014,
+              "mean_r": -0.377641,
+              "median_r": -0.308406
+            }
+          },
+          "30": {
+            "original": {
+              "n": 7062,
+              "hit": 0.341121,
+              "mean_pips": -1.873421,
+              "median_pips": -1.9,
+              "sum_pips": -13230.1,
+              "profit_factor": 0.476363,
+              "mean_r": -0.349802,
+              "median_r": -0.315262
+            },
+            "inverted": {
+              "n": 7062,
+              "hit": 0.337157,
+              "mean_pips": -1.968408,
+              "median_pips": -1.8,
+              "sum_pips": -13900.9,
+              "profit_factor": 0.450168,
+              "mean_r": -0.374737,
+              "median_r": -0.319149
+            }
+          },
+          "60": {
+            "original": {
+              "n": 7060,
+              "hit": 0.387535,
+              "mean_pips": -1.797691,
+              "median_pips": -1.7,
+              "sum_pips": -12691.7,
+              "profit_factor": 0.598275,
+              "mean_r": -0.339443,
+              "median_r": -0.293531
+            },
+            "inverted": {
+              "n": 7060,
+              "hit": 0.36728,
+              "mean_pips": -2.003102,
+              "median_pips": -2.0,
+              "sum_pips": -14141.9,
+              "profit_factor": 0.561959,
+              "mean_r": -0.373703,
+              "median_r": -0.345189
+            }
+          },
+          "120": {
+            "original": {
+              "n": 7058,
+              "hit": 0.419949,
+              "mean_pips": -1.877827,
+              "median_pips": -1.8,
+              "sum_pips": -13253.7,
+              "profit_factor": 0.690002,
+              "mean_r": -0.353008,
+              "median_r": -0.303843
+            },
+            "inverted": {
+              "n": 7058,
+              "hit": 0.409606,
+              "mean_pips": -1.876523,
+              "median_pips": -2.0,
+              "sum_pips": -13244.5,
+              "profit_factor": 0.689122,
+              "mean_r": -0.342316,
+              "median_r": -0.347882
+            }
+          },
+          "240": {
+            "original": {
+              "n": 7055,
+              "hit": 0.461658,
+              "mean_pips": -1.554529,
+              "median_pips": -1.2,
+              "sum_pips": -10967.2,
+              "profit_factor": 0.800111,
+              "mean_r": -0.296522,
+              "median_r": -0.196399
+            },
+            "inverted": {
+              "n": 7055,
+              "hit": 0.419702,
+              "mean_pips": -2.194373,
+              "median_pips": -2.7,
+              "sum_pips": -15481.3,
+              "profit_factor": 0.731046,
+              "mean_r": -0.388706,
+              "median_r": -0.417981
+            }
+          }
+        },
+        "SHORT_USD": {
+          "5": {
+            "original": {
+              "n": 7042,
+              "hit": 0.191139,
+              "mean_pips": -2.017978,
+              "median_pips": -1.8,
+              "sum_pips": -14210.6,
+              "profit_factor": 0.182011,
+              "mean_r": -0.373562,
+              "median_r": -0.304794
+            },
+            "inverted": {
+              "n": 7042,
+              "hit": 0.198949,
+              "mean_pips": -1.900923,
+              "median_pips": -1.7,
+              "sum_pips": -13386.3,
+              "profit_factor": 0.193105,
+              "mean_r": -0.358297,
+              "median_r": -0.296938
+            }
+          },
+          "15": {
+            "original": {
+              "n": 7042,
+              "hit": 0.2833,
+              "mean_pips": -2.024382,
+              "median_pips": -1.9,
+              "sum_pips": -14255.7,
+              "profit_factor": 0.348891,
+              "mean_r": -0.382062,
+              "median_r": -0.331879
+            },
+            "inverted": {
+              "n": 7042,
+              "hit": 0.297927,
+              "mean_pips": -1.892218,
+              "median_pips": -1.7,
+              "sum_pips": -13325.0,
+              "profit_factor": 0.359224,
+              "mean_r": -0.350434,
+              "median_r": -0.294118
+            }
+          },
+          "30": {
+            "original": {
+              "n": 7041,
+              "hit": 0.323534,
+              "mean_pips": -2.070132,
+              "median_pips": -2.1,
+              "sum_pips": -14575.8,
+              "profit_factor": 0.457509,
+              "mean_r": -0.39113,
+              "median_r": -0.358491
+            },
+            "inverted": {
+              "n": 7041,
+              "hit": 0.35691,
+              "mean_pips": -1.803281,
+              "median_pips": -1.6,
+              "sum_pips": -12696.9,
+              "profit_factor": 0.493314,
+              "mean_r": -0.332996,
+              "median_r": -0.288462
+            }
+          },
+          "60": {
+            "original": {
+              "n": 7041,
+              "hit": 0.362733,
+              "mean_pips": -1.941471,
+              "median_pips": -2.2,
+              "sum_pips": -13669.9,
+              "profit_factor": 0.58744,
+              "mean_r": -0.377497,
+              "median_r": -0.380228
+            },
+            "inverted": {
+              "n": 7041,
+              "hit": 0.396961,
+              "mean_pips": -1.859906,
+              "median_pips": -1.6,
+              "sum_pips": -13095.6,
+              "profit_factor": 0.590334,
+              "mean_r": -0.330359,
+              "median_r": -0.284091
+            }
+          },
+          "120": {
+            "original": {
+              "n": 7040,
+              "hit": 0.382244,
+              "mean_pips": -2.429545,
+              "median_pips": -2.6,
+              "sum_pips": -17104.0,
+              "profit_factor": 0.617061,
+              "mean_r": -0.457343,
+              "median_r": -0.450371
+            },
+            "inverted": {
+              "n": 7040,
+              "hit": 0.439773,
+              "mean_pips": -1.409304,
+              "median_pips": -1.3,
+              "sum_pips": -9921.5,
+              "profit_factor": 0.751676,
+              "mean_r": -0.252697,
+              "median_r": -0.229621
+            }
+          },
+          "240": {
+            "original": {
+              "n": 7036,
+              "hit": 0.414582,
+              "mean_pips": -2.484366,
+              "median_pips": -3.0,
+              "sum_pips": -17480.0,
+              "profit_factor": 0.701208,
+              "mean_r": -0.450066,
+              "median_r": -0.485009
+            },
+            "inverted": {
+              "n": 7036,
+              "hit": 0.469016,
+              "mean_pips": -1.316117,
+              "median_pips": -0.95,
+              "sum_pips": -9260.2,
+              "profit_factor": 0.827171,
+              "mean_r": -0.244255,
+              "median_r": -0.147077
+            }
+          }
+        }
+      },
+      "hour_bucket": {
+        "00-03": {
+          "5": {
+            "original": {
+              "n": 2360,
+              "hit": 0.185593,
+              "mean_pips": -1.567627,
+              "median_pips": -1.6,
+              "sum_pips": -3699.6,
+              "profit_factor": 0.192051,
+              "mean_r": -0.328299,
+              "median_r": -0.321093
+            },
+            "inverted": {
+              "n": 2360,
+              "hit": 0.165254,
+              "mean_pips": -1.735212,
+              "median_pips": -1.6,
+              "sum_pips": -4095.1,
+              "profit_factor": 0.151222,
+              "mean_r": -0.360198,
+              "median_r": -0.332197
+            }
+          },
+          "15": {
+            "original": {
+              "n": 2360,
+              "hit": 0.294915,
+              "mean_pips": -1.509661,
+              "median_pips": -1.7,
+              "sum_pips": -3562.8,
+              "profit_factor": 0.367816,
+              "mean_r": -0.321895,
+              "median_r": -0.331104
+            },
+            "inverted": {
+              "n": 2360,
+              "hit": 0.286017,
+              "mean_pips": -1.79589,
+              "median_pips": -1.7,
+              "sum_pips": -4238.3,
+              "profit_factor": 0.291681,
+              "mean_r": -0.367057,
+              "median_r": -0.328399
+            }
+          },
+          "30": {
+            "original": {
+              "n": 2360,
+              "hit": 0.316949,
+              "mean_pips": -1.696737,
+              "median_pips": -1.75,
+              "sum_pips": -4004.3,
+              "profit_factor": 0.440607,
+              "mean_r": -0.354278,
+              "median_r": -0.335481
+            },
+            "inverted": {
+              "n": 2360,
+              "hit": 0.344492,
+              "mean_pips": -1.609492,
+              "median_pips": -1.5,
+              "sum_pips": -3798.4,
+              "profit_factor": 0.453884,
+              "mean_r": -0.335485,
+              "median_r": -0.298656
+            }
+          },
+          "60": {
+            "original": {
+              "n": 2360,
+              "hit": 0.380508,
+              "mean_pips": -1.470339,
+              "median_pips": -1.45,
+              "sum_pips": -3470.0,
+              "profit_factor": 0.600051,
+              "mean_r": -0.32247,
+              "median_r": -0.278589
+            },
+            "inverted": {
+              "n": 2360,
+              "hit": 0.368644,
+              "mean_pips": -1.828856,
+              "median_pips": -1.8,
+              "sum_pips": -4316.1,
+              "profit_factor": 0.52999,
+              "mean_r": -0.365673,
+              "median_r": -0.344828
+            }
+          },
+          "120": {
+            "original": {
+              "n": 2360,
+              "hit": 0.420339,
+              "mean_pips": -1.475932,
+              "median_pips": -1.6,
+              "sum_pips": -3483.2,
+              "profit_factor": 0.688469,
+              "mean_r": -0.326066,
+              "median_r": -0.307353
+            },
+            "inverted": {
+              "n": 2360,
+              "hit": 0.412712,
+              "mean_pips": -1.818814,
+              "median_pips": -1.7,
+              "sum_pips": -4292.4,
+              "profit_factor": 0.630084,
+              "mean_r": -0.361488,
+              "median_r": -0.326132
+            }
+          },
+          "240": {
+            "original": {
+              "n": 2360,
+              "hit": 0.457627,
+              "mean_pips": -1.40589,
+              "median_pips": -1.2,
+              "sum_pips": -3317.9,
+              "profit_factor": 0.778835,
+              "mean_r": -0.318585,
+              "median_r": -0.248887
+            },
+            "inverted": {
+              "n": 2360,
+              "hit": 0.432203,
+              "mean_pips": -1.879322,
+              "median_pips": -2.0,
+              "sum_pips": -4435.2,
+              "profit_factor": 0.716816,
+              "mean_r": -0.367416,
+              "median_r": -0.387258
+            }
+          }
+        },
+        "04-07": {
+          "5": {
+            "original": {
+              "n": 2443,
+              "hit": 0.201392,
+              "mean_pips": -1.675031,
+              "median_pips": -1.6,
+              "sum_pips": -4092.1,
+              "profit_factor": 0.190292,
+              "mean_r": -0.334242,
+              "median_r": -0.30581
+            },
+            "inverted": {
+              "n": 2443,
+              "hit": 0.203438,
+              "mean_pips": -1.598526,
+              "median_pips": -1.7,
+              "sum_pips": -3905.2,
+              "profit_factor": 0.216798,
+              "mean_r": -0.333092,
+              "median_r": -0.321429
+            }
+          },
+          "15": {
+            "original": {
+              "n": 2443,
+              "hit": 0.302497,
+              "mean_pips": -1.675317,
+              "median_pips": -1.7,
+              "sum_pips": -4092.8,
+              "profit_factor": 0.391975,
+              "mean_r": -0.337408,
+              "median_r": -0.338266
+            },
+            "inverted": {
+              "n": 2443,
+              "hit": 0.311912,
+              "mean_pips": -1.596357,
+              "median_pips": -1.6,
+              "sum_pips": -3899.9,
+              "profit_factor": 0.406995,
+              "mean_r": -0.32988,
+              "median_r": -0.301887
+            }
+          },
+          "30": {
+            "original": {
+              "n": 2443,
+              "hit": 0.361441,
+              "mean_pips": -1.55612,
+              "median_pips": -1.6,
+              "sum_pips": -3801.6,
+              "profit_factor": 0.528062,
+              "mean_r": -0.320661,
+              "median_r": -0.312815
+            },
+            "inverted": {
+              "n": 2443,
+              "hit": 0.353664,
+              "mean_pips": -1.713549,
+              "median_pips": -1.6,
+              "sum_pips": -4186.2,
+              "profit_factor": 0.493178,
+              "mean_r": -0.345989,
+              "median_r": -0.330789
+            }
+          },
+          "60": {
+            "original": {
+              "n": 2443,
+              "hit": 0.410561,
+              "mean_pips": -1.468236,
+              "median_pips": -1.7,
+              "sum_pips": -3586.9,
+              "profit_factor": 0.661335,
+              "mean_r": -0.333015,
+              "median_r": -0.332481
+            },
+            "inverted": {
+              "n": 2443,
+              "hit": 0.40483,
+              "mean_pips": -1.800082,
+              "median_pips": -1.5,
+              "sum_pips": -4397.6,
+              "profit_factor": 0.59937,
+              "mean_r": -0.332953,
+              "median_r": -0.316027
+            }
+          },
+          "120": {
+            "original": {
+              "n": 2443,
+              "hit": 0.427753,
+              "mean_pips": -1.779615,
+              "median_pips": -1.8,
+              "sum_pips": -4347.6,
+              "profit_factor": 0.706646,
+              "mean_r": -0.37882,
+              "median_r": -0.327586
+            },
+            "inverted": {
+              "n": 2443,
+              "hit": 0.440033,
+              "mean_pips": -1.475072,
+              "median_pips": -1.4,
+              "sum_pips": -3603.6,
+              "profit_factor": 0.749972,
+              "mean_r": -0.284115,
+              "median_r": -0.286055
+            }
+          },
+          "240": {
+            "original": {
+              "n": 2443,
+              "hit": 0.470323,
+              "mean_pips": -1.015104,
+              "median_pips": -1.0,
+              "sum_pips": -2479.9,
+              "profit_factor": 0.865462,
+              "mean_r": -0.274258,
+              "median_r": -0.180879
+            },
+            "inverted": {
+              "n": 2443,
+              "hit": 0.437986,
+              "mean_pips": -2.236021,
+              "median_pips": -2.2,
+              "sum_pips": -5462.6,
+              "profit_factor": 0.727516,
+              "mean_r": -0.388428,
+              "median_r": -0.377358
+            }
+          }
+        },
+        "08-11": {
+          "5": {
+            "original": {
+              "n": 2315,
+              "hit": 0.229374,
+              "mean_pips": -1.576156,
+              "median_pips": -1.6,
+              "sum_pips": -3648.8,
+              "profit_factor": 0.226507,
+              "mean_r": -0.234216,
+              "median_r": -0.233813
+            },
+            "inverted": {
+              "n": 2315,
+              "hit": 0.216847,
+              "mean_pips": -1.637883,
+              "median_pips": -1.6,
+              "sum_pips": -3791.7,
+              "profit_factor": 0.209255,
+              "mean_r": -0.240148,
+              "median_r": -0.228137
+            }
+          },
+          "15": {
+            "original": {
+              "n": 2315,
+              "hit": 0.319222,
+              "mean_pips": -1.505313,
+              "median_pips": -1.7,
+              "sum_pips": -3484.8,
+              "profit_factor": 0.429413,
+              "mean_r": -0.231303,
+              "median_r": -0.234899
+            },
+            "inverted": {
+              "n": 2315,
+              "hit": 0.317495,
+              "mean_pips": -1.707214,
+              "median_pips": -1.5,
+              "sum_pips": -3952.2,
+              "profit_factor": 0.373413,
+              "mean_r": -0.242969,
+              "median_r": -0.209864
+            }
+          },
+          "30": {
+            "original": {
+              "n": 2315,
+              "hit": 0.380562,
+              "mean_pips": -1.401987,
+              "median_pips": -1.6,
+              "sum_pips": -3245.6,
+              "profit_factor": 0.570688,
+              "mean_r": -0.21543,
+              "median_r": -0.231924
+            },
+            "inverted": {
+              "n": 2315,
+              "hit": 0.380562,
+              "mean_pips": -1.822678,
+              "median_pips": -1.6,
+              "sum_pips": -4219.5,
+              "profit_factor": 0.475154,
+              "mean_r": -0.260838,
+              "median_r": -0.229469
+            }
+          },
+          "60": {
+            "original": {
+              "n": 2315,
+              "hit": 0.406048,
+              "mean_pips": -1.439093,
+              "median_pips": -1.5,
+              "sum_pips": -3331.5,
+              "profit_factor": 0.666963,
+              "mean_r": -0.221587,
+              "median_r": -0.225141
+            },
+            "inverted": {
+              "n": 2315,
+              "hit": 0.407343,
+              "mean_pips": -1.78311,
+              "median_pips": -1.6,
+              "sum_pips": -4127.9,
+              "profit_factor": 0.603399,
+              "mean_r": -0.254221,
+              "median_r": -0.23015
+            }
+          },
+          "120": {
+            "original": {
+              "n": 2315,
+              "hit": 0.422894,
+              "mean_pips": -2.165832,
+              "median_pips": -1.8,
+              "sum_pips": -5013.9,
+              "profit_factor": 0.67279,
+              "mean_r": -0.329894,
+              "median_r": -0.258264
+            },
+            "inverted": {
+              "n": 2315,
+              "hit": 0.457451,
+              "mean_pips": -1.056631,
+              "median_pips": -1.4,
+              "sum_pips": -2446.1,
+              "profit_factor": 0.824373,
+              "mean_r": -0.145852,
+              "median_r": -0.181818
+            }
+          },
+          "240": {
+            "original": {
+              "n": 2315,
+              "hit": 0.457451,
+              "mean_pips": -2.28216,
+              "median_pips": -1.8,
+              "sum_pips": -5283.2,
+              "profit_factor": 0.767809,
+              "mean_r": -0.322799,
+              "median_r": -0.246154
+            },
+            "inverted": {
+              "n": 2315,
+              "hit": 0.470842,
+              "mean_pips": -0.951361,
+              "median_pips": -1.4,
+              "sum_pips": -2202.4,
+              "profit_factor": 0.895985,
+              "mean_r": -0.153744,
+              "median_r": -0.173536
+            }
+          }
+        },
+        "12-15": {
+          "5": {
+            "original": {
+              "n": 2538,
+              "hit": 0.286446,
+              "mean_pips": -1.587746,
+              "median_pips": -1.6,
+              "sum_pips": -4029.7,
+              "profit_factor": 0.326835,
+              "mean_r": -0.181397,
+              "median_r": -0.185043
+            },
+            "inverted": {
+              "n": 2538,
+              "hit": 0.279354,
+              "mean_pips": -1.657329,
+              "median_pips": -1.6,
+              "sum_pips": -4206.3,
+              "profit_factor": 0.308288,
+              "mean_r": -0.203382,
+              "median_r": -0.18509
+            }
+          },
+          "15": {
+            "original": {
+              "n": 2538,
+              "hit": 0.366824,
+              "mean_pips": -1.565169,
+              "median_pips": -1.7,
+              "sum_pips": -3972.4,
+              "profit_factor": 0.532499,
+              "mean_r": -0.180602,
+              "median_r": -0.189263
+            },
+            "inverted": {
+              "n": 2538,
+              "hit": 0.37037,
+              "mean_pips": -1.694405,
+              "median_pips": -1.5,
+              "sum_pips": -4300.4,
+              "profit_factor": 0.502159,
+              "mean_r": -0.205887,
+              "median_r": -0.181087
+            }
+          },
+          "30": {
+            "original": {
+              "n": 2538,
+              "hit": 0.403861,
+              "mean_pips": -1.722813,
+              "median_pips": -1.9,
+              "sum_pips": -4372.5,
+              "profit_factor": 0.621497,
+              "mean_r": -0.184487,
+              "median_r": -0.21297
+            },
+            "inverted": {
+              "n": 2538,
+              "hit": 0.425926,
+              "mean_pips": -1.513396,
+              "median_pips": -1.3,
+              "sum_pips": -3841.0,
+              "profit_factor": 0.656265,
+              "mean_r": -0.198695,
+              "median_r": -0.135053
+            }
+          },
+          "60": {
+            "original": {
+              "n": 2538,
+              "hit": 0.423562,
+              "mean_pips": -1.588258,
+              "median_pips": -1.7,
+              "sum_pips": -4031.0,
+              "profit_factor": 0.730415,
+              "mean_r": -0.173284,
+              "median_r": -0.20321
+            },
+            "inverted": {
+              "n": 2538,
+              "hit": 0.44602,
+              "mean_pips": -1.643144,
+              "median_pips": -1.4,
+              "sum_pips": -4170.3,
+              "profit_factor": 0.721026,
+              "mean_r": -0.209974,
+              "median_r": -0.16214
+            }
+          },
+          "120": {
+            "original": {
+              "n": 2538,
+              "hit": 0.444444,
+              "mean_pips": -1.565997,
+              "median_pips": -2.0,
+              "sum_pips": -3974.5,
+              "profit_factor": 0.796299,
+              "mean_r": -0.155786,
+              "median_r": -0.222275
+            },
+            "inverted": {
+              "n": 2538,
+              "hit": 0.464933,
+              "mean_pips": -1.655753,
+              "median_pips": -1.05,
+              "sum_pips": -4202.3,
+              "profit_factor": 0.784915,
+              "mean_r": -0.226342,
+              "median_r": -0.133299
+            }
+          },
+          "240": {
+            "original": {
+              "n": 2538,
+              "hit": 0.460205,
+              "mean_pips": -1.601418,
+              "median_pips": -1.85,
+              "sum_pips": -4064.4,
+              "profit_factor": 0.833512,
+              "mean_r": -0.164636,
+              "median_r": -0.194123
+            },
+            "inverted": {
+              "n": 2538,
+              "hit": 0.472025,
+              "mean_pips": -1.625493,
+              "median_pips": -1.3,
+              "sum_pips": -4125.5,
+              "profit_factor": 0.830928,
+              "mean_r": -0.218036,
+              "median_r": -0.145162
+            }
+          }
+        },
+        "16-19": {
+          "5": {
+            "original": {
+              "n": 2040,
+              "hit": 0.204412,
+              "mean_pips": -1.569706,
+              "median_pips": -1.6,
+              "sum_pips": -3202.2,
+              "profit_factor": 0.22974,
+              "mean_r": -0.254311,
+              "median_r": -0.246965
+            },
+            "inverted": {
+              "n": 2040,
+              "hit": 0.198039,
+              "mean_pips": -1.666275,
+              "median_pips": -1.6,
+              "sum_pips": -3399.2,
+              "profit_factor": 0.203412,
+              "mean_r": -0.255367,
+              "median_r": -0.246104
+            }
+          },
+          "15": {
+            "original": {
+              "n": 2040,
+              "hit": 0.304412,
+              "mean_pips": -1.620343,
+              "median_pips": -1.5,
+              "sum_pips": -3305.5,
+              "profit_factor": 0.372306,
+              "mean_r": -0.252597,
+              "median_r": -0.231827
+            },
+            "inverted": {
+              "n": 2040,
+              "hit": 0.294118,
+              "mean_pips": -1.621618,
+              "median_pips": -1.7,
+              "sum_pips": -3308.1,
+              "profit_factor": 0.378609,
+              "mean_r": -0.258509,
+              "median_r": -0.253651
+            }
+          },
+          "30": {
+            "original": {
+              "n": 2040,
+              "hit": 0.330882,
+              "mean_pips": -1.742647,
+              "median_pips": -1.7,
+              "sum_pips": -3555.0,
+              "profit_factor": 0.466417,
+              "mean_r": -0.270331,
+              "median_r": -0.260552
+            },
+            "inverted": {
+              "n": 2040,
+              "hit": 0.35098,
+              "mean_pips": -1.495196,
+              "median_pips": -1.5,
+              "sum_pips": -3050.2,
+              "profit_factor": 0.520898,
+              "mean_r": -0.239811,
+              "median_r": -0.222441
+            }
+          },
+          "60": {
+            "original": {
+              "n": 2040,
+              "hit": 0.373039,
+              "mean_pips": -1.670441,
+              "median_pips": -1.6,
+              "sum_pips": -3407.7,
+              "profit_factor": 0.586414,
+              "mean_r": -0.258826,
+              "median_r": -0.261885
+            },
+            "inverted": {
+              "n": 2040,
+              "hit": 0.381863,
+              "mean_pips": -1.624461,
+              "median_pips": -1.6,
+              "sum_pips": -3313.9,
+              "profit_factor": 0.593207,
+              "mean_r": -0.26645,
+              "median_r": -0.24876
+            }
+          },
+          "120": {
+            "original": {
+              "n": 2040,
+              "hit": 0.380882,
+              "mean_pips": -2.267549,
+              "median_pips": -2.2,
+              "sum_pips": -4625.8,
+              "profit_factor": 0.593929,
+              "mean_r": -0.40217,
+              "median_r": -0.352697
+            },
+            "inverted": {
+              "n": 2040,
+              "hit": 0.380392,
+              "mean_pips": -2.031961,
+              "median_pips": -2.3,
+              "sum_pips": -4145.2,
+              "profit_factor": 0.623297,
+              "mean_r": -0.319683,
+              "median_r": -0.358609
+            }
+          },
+          "240": {
+            "original": {
+              "n": 2040,
+              "hit": 0.388725,
+              "mean_pips": -2.557941,
+              "median_pips": -2.5,
+              "sum_pips": -5218.2,
+              "profit_factor": 0.627795,
+              "mean_r": -0.429965,
+              "median_r": -0.399155
+            },
+            "inverted": {
+              "n": 2040,
+              "hit": 0.404902,
+              "mean_pips": -2.066176,
+              "median_pips": -2.1,
+              "sum_pips": -4215.0,
+              "profit_factor": 0.688693,
+              "mean_r": -0.298006,
+              "median_r": -0.347528
+            }
+          }
+        },
+        "20-23": {
+          "5": {
+            "original": {
+              "n": 2408,
+              "hit": 0.080565,
+              "mean_pips": -3.61358,
+              "median_pips": -2.4,
+              "sum_pips": -8701.5,
+              "profit_factor": 0.053053,
+              "mean_r": -0.832037,
+              "median_r": -0.595238
+            },
+            "inverted": {
+              "n": 2408,
+              "hit": 0.093439,
+              "mean_pips": -3.303115,
+              "median_pips": -2.3,
+              "sum_pips": -7953.9,
+              "profit_factor": 0.055053,
+              "mean_r": -0.781813,
+              "median_r": -0.567366
+            }
+          },
+          "15": {
+            "original": {
+              "n": 2408,
+              "hit": 0.1549,
+              "mean_pips": -3.608056,
+              "median_pips": -2.8,
+              "sum_pips": -8688.2,
+              "profit_factor": 0.139049,
+              "mean_r": -0.837282,
+              "median_r": -0.648691
+            },
+            "inverted": {
+              "n": 2408,
+              "hit": 0.170681,
+              "mean_pips": -3.241154,
+              "median_pips": -2.4,
+              "sum_pips": -7804.7,
+              "profit_factor": 0.123993,
+              "mean_r": -0.768324,
+              "median_r": -0.578558
+            }
+          },
+          "30": {
+            "original": {
+              "n": 2407,
+              "hit": 0.197341,
+              "mean_pips": -3.667179,
+              "median_pips": -3.1,
+              "sum_pips": -8826.9,
+              "profit_factor": 0.208059,
+              "mean_r": -0.866785,
+              "median_r": -0.72
+            },
+            "inverted": {
+              "n": 2407,
+              "hit": 0.22393,
+              "mean_pips": -3.116951,
+              "median_pips": -2.4,
+              "sum_pips": -7502.5,
+              "profit_factor": 0.214028,
+              "mean_r": -0.729823,
+              "median_r": -0.570175
+            }
+          },
+          "60": {
+            "original": {
+              "n": 2405,
+              "hit": 0.254886,
+              "mean_pips": -3.548649,
+              "median_pips": -3.5,
+              "sum_pips": -8534.5,
+              "profit_factor": 0.30413,
+              "mean_r": -0.831213,
+              "median_r": -0.783333
+            },
+            "inverted": {
+              "n": 2405,
+              "hit": 0.280665,
+              "mean_pips": -2.873888,
+              "median_pips": -2.7,
+              "sum_pips": -6911.7,
+              "profit_factor": 0.347208,
+              "mean_r": -0.674848,
+              "median_r": -0.606061
+            }
+          },
+          "120": {
+            "original": {
+              "n": 2402,
+              "hit": 0.305579,
+              "mean_pips": -3.710533,
+              "median_pips": -3.6,
+              "sum_pips": -8912.7,
+              "profit_factor": 0.413322,
+              "mean_r": -0.847932,
+              "median_r": -0.79101
+            },
+            "inverted": {
+              "n": 2402,
+              "hit": 0.384263,
+              "mean_pips": -1.863614,
+              "median_pips": -1.9,
+              "sum_pips": -4476.4,
+              "profit_factor": 0.62917,
+              "mean_r": -0.451119,
+              "median_r": -0.439332
+            }
+          },
+          "240": {
+            "original": {
+              "n": 2395,
+              "hit": 0.386221,
+              "mean_pips": -3.375198,
+              "median_pips": -3.4,
+              "sum_pips": -8083.6,
+              "profit_factor": 0.568833,
+              "mean_r": -0.749267,
+              "median_r": -0.813008
+            },
+            "inverted": {
+              "n": 2395,
+              "hit": 0.441336,
+              "mean_pips": -1.795741,
+              "median_pips": -1.7,
+              "sum_pips": -4300.8,
+              "profit_factor": 0.736432,
+              "mean_r": -0.470833,
+              "median_r": -0.373626
+            }
+          }
+        }
+      }
+    },
+    "strength": {
+      "edges": [
+        0.000716,
+        0.061753,
+        0.137373,
+        0.24729,
+        0.45506,
+        6.744509
+      ],
+      "by_split": {
+        "train": {
+          "Q1": {
+            "n": 1411,
+            "hit": 0.417434,
+            "mean_pips": -1.499717,
+            "median_pips": -1.6,
+            "sum_pips": -2116.1,
+            "profit_factor": 0.679335,
+            "mean_r": -0.244977,
+            "median_r": -0.236686
+          },
+          "Q2": {
+            "n": 1410,
+            "hit": 0.409929,
+            "mean_pips": -1.512837,
+            "median_pips": -1.5,
+            "sum_pips": -2133.1,
+            "profit_factor": 0.671831,
+            "mean_r": -0.260976,
+            "median_r": -0.255564
+          },
+          "Q3": {
+            "n": 1410,
+            "hit": 0.400709,
+            "mean_pips": -1.496879,
+            "median_pips": -1.7,
+            "sum_pips": -2110.6,
+            "profit_factor": 0.679824,
+            "mean_r": -0.284853,
+            "median_r": -0.263575
+          },
+          "Q4": {
+            "n": 1410,
+            "hit": 0.371631,
+            "mean_pips": -2.177943,
+            "median_pips": -2.3,
+            "sum_pips": -3070.9,
+            "profit_factor": 0.560276,
+            "mean_r": -0.403758,
+            "median_r": -0.39682
+          },
+          "Q5": {
+            "n": 1411,
+            "hit": 0.361446,
+            "mean_pips": -2.159816,
+            "median_pips": -1.9,
+            "sum_pips": -3047.5,
+            "profit_factor": 0.508919,
+            "mean_r": -0.463474,
+            "median_r": -0.367647
+          },
+          "monotonic_hit": 0
+        },
+        "valid": {
+          "Q1": {
+            "n": 682,
+            "hit": 0.375367,
+            "mean_pips": -1.636657,
+            "median_pips": -2.35,
+            "sum_pips": -1116.2,
+            "profit_factor": 0.678939,
+            "mean_r": -0.221057,
+            "median_r": -0.296554
+          },
+          "Q2": {
+            "n": 688,
+            "hit": 0.372093,
+            "mean_pips": -2.263953,
+            "median_pips": -1.8,
+            "sum_pips": -1557.6,
+            "profit_factor": 0.551382,
+            "mean_r": -0.324302,
+            "median_r": -0.259232
+          },
+          "Q3": {
+            "n": 698,
+            "hit": 0.382521,
+            "mean_pips": -1.953295,
+            "median_pips": -2.2,
+            "sum_pips": -1363.4,
+            "profit_factor": 0.631703,
+            "mean_r": -0.273364,
+            "median_r": -0.299725
+          },
+          "Q4": {
+            "n": 700,
+            "hit": 0.342857,
+            "mean_pips": -2.337,
+            "median_pips": -2.15,
+            "sum_pips": -1635.9,
+            "profit_factor": 0.51898,
+            "mean_r": -0.397417,
+            "median_r": -0.377985
+          },
+          "Q5": {
+            "n": 760,
+            "hit": 0.348684,
+            "mean_pips": -2.57,
+            "median_pips": -2.3,
+            "sum_pips": -1953.2,
+            "profit_factor": 0.448451,
+            "mean_r": -0.499931,
+            "median_r": -0.427598
+          },
+          "monotonic_hit": 0
+        },
+        "test": {
+          "Q1": {
+            "n": 607,
+            "hit": 0.364086,
+            "mean_pips": -1.700824,
+            "median_pips": -2.0,
+            "sum_pips": -1032.4,
+            "profit_factor": 0.595661,
+            "mean_r": -0.364579,
+            "median_r": -0.338983
+          },
+          "Q2": {
+            "n": 658,
+            "hit": 0.335866,
+            "mean_pips": -2.172492,
+            "median_pips": -2.25,
+            "sum_pips": -1429.5,
+            "profit_factor": 0.500367,
+            "mean_r": -0.442681,
+            "median_r": -0.413147
+          },
+          "Q3": {
+            "n": 630,
+            "hit": 0.339683,
+            "mean_pips": -2.46127,
+            "median_pips": -2.4,
+            "sum_pips": -1550.6,
+            "profit_factor": 0.439772,
+            "mean_r": -0.454488,
+            "median_r": -0.473617
+          },
+          "Q4": {
+            "n": 727,
+            "hit": 0.370014,
+            "mean_pips": -1.198212,
+            "median_pips": -1.9,
+            "sum_pips": -871.1,
+            "profit_factor": 0.705241,
+            "mean_r": -0.445146,
+            "median_r": -0.374449
+          },
+          "Q5": {
+            "n": 899,
+            "hit": 0.350389,
+            "mean_pips": -1.527809,
+            "median_pips": -2.1,
+            "sum_pips": -1373.5,
+            "profit_factor": 0.559295,
+            "mean_r": -0.412152,
+            "median_r": -0.473684
+          },
+          "monotonic_hit": 0
+        }
+      }
+    },
+    "subgroups": {
+      "symbol": {
+        "AUD_USD": {
+          "n": 2105,
+          "train": {
+            "n": 1051,
+            "hit": 0.379638,
+            "mean_pips": -1.427688,
+            "median_pips": -1.5,
+            "sum_pips": -1500.5,
+            "profit_factor": 0.584188,
+            "mean_r": -0.352918,
+            "median_r": -0.304348
+          },
+          "valid": {
+            "n": 505,
+            "hit": 0.388119,
+            "mean_pips": -1.141188,
+            "median_pips": -1.5,
+            "sum_pips": -576.3,
+            "profit_factor": 0.71231,
+            "mean_r": -0.209971,
+            "median_r": -0.246914
+          },
+          "test": {
+            "n": 548,
+            "hit": 0.372263,
+            "mean_pips": -1.516971,
+            "median_pips": -1.6,
+            "sum_pips": -831.3,
+            "profit_factor": 0.513604,
+            "mean_r": -0.460754,
+            "median_r": -0.366589
+          },
+          "stable_positive": 0
+        },
+        "EUR_USD": {
+          "n": 2011,
+          "train": {
+            "n": 993,
+            "hit": 0.386707,
+            "mean_pips": -1.832729,
+            "median_pips": -1.8,
+            "sum_pips": -1819.9,
+            "profit_factor": 0.54642,
+            "mean_r": -0.373617,
+            "median_r": -0.324675
+          },
+          "valid": {
+            "n": 503,
+            "hit": 0.369781,
+            "mean_pips": -2.467396,
+            "median_pips": -2.1,
+            "sum_pips": -1241.1,
+            "profit_factor": 0.502246,
+            "mean_r": -0.386624,
+            "median_r": -0.339168
+          },
+          "test": {
+            "n": 514,
+            "hit": 0.31323,
+            "mean_pips": -1.945914,
+            "median_pips": -2.1,
+            "sum_pips": -1000.2,
+            "profit_factor": 0.45511,
+            "mean_r": -0.510611,
+            "median_r": -0.456969
+          },
+          "stable_positive": 0
+        },
+        "GBP_USD": {
+          "n": 2057,
+          "train": {
+            "n": 1043,
+            "hit": 0.401726,
+            "mean_pips": -2.218408,
+            "median_pips": -2.3,
+            "sum_pips": -2313.8,
+            "profit_factor": 0.601529,
+            "mean_r": -0.359999,
+            "median_r": -0.302752
+          },
+          "valid": {
+            "n": 482,
+            "hit": 0.39834,
+            "mean_pips": -2.177386,
+            "median_pips": -1.8,
+            "sum_pips": -1049.5,
+            "profit_factor": 0.618544,
+            "mean_r": -0.260613,
+            "median_r": -0.216144
+          },
+          "test": {
+            "n": 531,
+            "hit": 0.3371,
+            "mean_pips": -2.412994,
+            "median_pips": -2.8,
+            "sum_pips": -1281.3,
+            "profit_factor": 0.497884,
+            "mean_r": -0.467595,
+            "median_r": -0.474308
+          },
+          "stable_positive": 0
+        },
+        "USD_CAD": {
+          "n": 2052,
+          "train": {
+            "n": 993,
+            "hit": 0.380665,
+            "mean_pips": -1.725881,
+            "median_pips": -1.6,
+            "sum_pips": -1713.8,
+            "profit_factor": 0.539487,
+            "mean_r": -0.352532,
+            "median_r": -0.363196
+          },
+          "valid": {
+            "n": 543,
+            "hit": 0.322284,
+            "mean_pips": -2.631123,
+            "median_pips": -2.7,
+            "sum_pips": -1428.7,
+            "profit_factor": 0.445617,
+            "mean_r": -0.467442,
+            "median_r": -0.494382
+          },
+          "test": {
+            "n": 516,
+            "hit": 0.331395,
+            "mean_pips": -2.35969,
+            "median_pips": -2.45,
+            "sum_pips": -1217.6,
+            "profit_factor": 0.426094,
+            "mean_r": -0.453676,
+            "median_r": -0.495524
+          },
+          "stable_positive": 0
+        },
+        "USD_CHF": {
+          "n": 2028,
+          "train": {
+            "n": 1007,
+            "hit": 0.355511,
+            "mean_pips": -1.912016,
+            "median_pips": -1.7,
+            "sum_pips": -1925.4,
+            "profit_factor": 0.474896,
+            "mean_r": -0.477421,
+            "median_r": -0.374593
+          },
+          "valid": {
+            "n": 505,
+            "hit": 0.338614,
+            "mean_pips": -2.187921,
+            "median_pips": -1.8,
+            "sum_pips": -1104.9,
+            "profit_factor": 0.444467,
+            "mean_r": -0.469237,
+            "median_r": -0.38864
+          },
+          "test": {
+            "n": 516,
+            "hit": 0.348837,
+            "mean_pips": -1.897481,
+            "median_pips": -1.8,
+            "sum_pips": -979.1,
+            "profit_factor": 0.456237,
+            "mean_r": -0.500371,
+            "median_r": -0.461545
+          },
+          "stable_positive": 0
+        },
+        "USD_JPY": {
+          "n": 3851,
+          "train": {
+            "n": 1965,
+            "hit": 0.421374,
+            "mean_pips": -1.630941,
+            "median_pips": -2.2,
+            "sum_pips": -3204.8,
+            "profit_factor": 0.734366,
+            "mean_r": -0.198635,
+            "median_r": -0.213115
+          },
+          "valid": {
+            "n": 990,
+            "hit": 0.367677,
+            "mean_pips": -2.248283,
+            "median_pips": -2.6,
+            "sum_pips": -2225.8,
+            "profit_factor": 0.614834,
+            "mean_r": -0.30901,
+            "median_r": -0.320724
+          },
+          "test": {
+            "n": 896,
+            "hit": 0.385045,
+            "mean_pips": -1.057589,
+            "median_pips": -2.1,
+            "sum_pips": -947.6,
+            "profit_factor": 0.776267,
+            "mean_r": -0.265098,
+            "median_r": -0.353379
+          },
+          "stable_positive": 0
+        }
+      },
+      "stub_side": {
+        "BUY": {
+          "n": 7067,
+          "train": {
+            "n": 3513,
+            "hit": 0.412753,
+            "mean_pips": -1.540108,
+            "median_pips": -1.5,
+            "sum_pips": -5410.4,
+            "profit_factor": 0.656522,
+            "mean_r": -0.294542,
+            "median_r": -0.239808
+          },
+          "valid": {
+            "n": 1770,
+            "hit": 0.380226,
+            "mean_pips": -2.201921,
+            "median_pips": -1.8,
+            "sum_pips": -3897.4,
+            "profit_factor": 0.549631,
+            "mean_r": -0.372359,
+            "median_r": -0.262784
+          },
+          "test": {
+            "n": 1783,
+            "hit": 0.360628,
+            "mean_pips": -1.992148,
+            "median_pips": -1.9,
+            "sum_pips": -3552.0,
+            "profit_factor": 0.509175,
+            "mean_r": -0.441521,
+            "median_r": -0.384
+          },
+          "stable_positive": 0
+        },
+        "SELL": {
+          "n": 7037,
+          "train": {
+            "n": 3539,
+            "hit": 0.371856,
+            "mean_pips": -1.997118,
+            "median_pips": -2.1,
+            "sum_pips": -7067.8,
+            "profit_factor": 0.587371,
+            "mean_r": -0.368413,
+            "median_r": -0.356347
+          },
+          "valid": {
+            "n": 1758,
+            "hit": 0.347554,
+            "mean_pips": -2.121104,
+            "median_pips": -2.5,
+            "sum_pips": -3728.9,
+            "profit_factor": 0.582846,
+            "mean_r": -0.320678,
+            "median_r": -0.392414
+          },
+          "test": {
+            "n": 1738,
+            "hit": 0.343498,
+            "mean_pips": -1.556444,
+            "median_pips": -2.35,
+            "sum_pips": -2705.1,
+            "profit_factor": 0.61451,
+            "mean_r": -0.406113,
+            "median_r": -0.463578
+          },
+          "stable_positive": 0
+        }
+      },
+      "usd_dir": {
+        "LONG_USD": {
+          "n": 7062,
+          "train": {
+            "n": 3532,
+            "hit": 0.392978,
+            "mean_pips": -1.721971,
+            "median_pips": -1.8,
+            "sum_pips": -6082.0,
+            "profit_factor": 0.630902,
+            "mean_r": -0.336037,
+            "median_r": -0.300736
+          },
+          "valid": {
+            "n": 1770,
+            "hit": 0.385876,
+            "mean_pips": -1.895989,
+            "median_pips": -1.7,
+            "sum_pips": -3355.9,
+            "profit_factor": 0.601763,
+            "mean_r": -0.299676,
+            "median_r": -0.259498
+          },
+          "test": {
+            "n": 1758,
+            "hit": 0.378271,
+            "mean_pips": -1.850853,
+            "median_pips": -1.65,
+            "sum_pips": -3253.8,
+            "profit_factor": 0.513494,
+            "mean_r": -0.386326,
+            "median_r": -0.311652
+          },
+          "stable_positive": 0
+        },
+        "SHORT_USD": {
+          "n": 7042,
+          "train": {
+            "n": 3520,
+            "hit": 0.391477,
+            "mean_pips": -1.817102,
+            "median_pips": -1.8,
+            "sum_pips": -6396.2,
+            "profit_factor": 0.610047,
+            "mean_r": -0.327176,
+            "median_r": -0.297376
+          },
+          "valid": {
+            "n": 1758,
+            "hit": 0.341866,
+            "mean_pips": -2.429124,
+            "median_pips": -2.6,
+            "sum_pips": -4270.4,
+            "profit_factor": 0.534094,
+            "mean_r": -0.393858,
+            "median_r": -0.397475
+          },
+          "test": {
+            "n": 1763,
+            "hit": 0.326149,
+            "mean_pips": -1.703517,
+            "median_pips": -2.6,
+            "sum_pips": -3003.3,
+            "profit_factor": 0.603053,
+            "mean_r": -0.461653,
+            "median_r": -0.522388
+          },
+          "stable_positive": 0
+        }
+      },
+      "hour_bucket": {
+        "00-03": {
+          "n": 2360,
+          "train": {
+            "n": 1177,
+            "hit": 0.412065,
+            "mean_pips": -1.272387,
+            "median_pips": -1.1,
+            "sum_pips": -1497.6,
+            "profit_factor": 0.670074,
+            "mean_r": -0.26805,
+            "median_r": -0.201681
+          },
+          "valid": {
+            "n": 573,
+            "hit": 0.342059,
+            "mean_pips": -1.388482,
+            "median_pips": -1.7,
+            "sum_pips": -795.6,
+            "profit_factor": 0.624646,
+            "mean_r": -0.296543,
+            "median_r": -0.306346
+          },
+          "test": {
+            "n": 610,
+            "hit": 0.355738,
+            "mean_pips": -1.92918,
+            "median_pips": -1.7,
+            "sum_pips": -1176.8,
+            "profit_factor": 0.416646,
+            "mean_r": -0.451828,
+            "median_r": -0.377358
+          },
+          "stable_positive": 0
+        },
+        "04-07": {
+          "n": 2443,
+          "train": {
+            "n": 1228,
+            "hit": 0.414495,
+            "mean_pips": -1.643078,
+            "median_pips": -1.8,
+            "sum_pips": -2017.7,
+            "profit_factor": 0.657122,
+            "mean_r": -0.360815,
+            "median_r": -0.321547
+          },
+          "valid": {
+            "n": 603,
+            "hit": 0.442786,
+            "mean_pips": -0.837313,
+            "median_pips": -1.1,
+            "sum_pips": -504.9,
+            "profit_factor": 0.7993,
+            "mean_r": -0.216565,
+            "median_r": -0.180995
+          },
+          "test": {
+            "n": 612,
+            "hit": 0.370915,
+            "mean_pips": -1.739052,
+            "median_pips": -2.0,
+            "sum_pips": -1064.3,
+            "profit_factor": 0.51424,
+            "mean_r": -0.39197,
+            "median_r": -0.450737
+          },
+          "stable_positive": 0
+        },
+        "08-11": {
+          "n": 2315,
+          "train": {
+            "n": 1179,
+            "hit": 0.425785,
+            "mean_pips": -1.36268,
+            "median_pips": -1.3,
+            "sum_pips": -1606.6,
+            "profit_factor": 0.682383,
+            "mean_r": -0.206935,
+            "median_r": -0.181058
+          },
+          "valid": {
+            "n": 544,
+            "hit": 0.397059,
+            "mean_pips": -2.161029,
+            "median_pips": -1.8,
+            "sum_pips": -1175.6,
+            "profit_factor": 0.575657,
+            "mean_r": -0.277695,
+            "median_r": -0.215616
+          },
+          "test": {
+            "n": 592,
+            "hit": 0.375,
+            "mean_pips": -0.927872,
+            "median_pips": -1.7,
+            "sum_pips": -549.3,
+            "profit_factor": 0.747413,
+            "mean_r": -0.199207,
+            "median_r": -0.29307
+          },
+          "stable_positive": 0
+        },
+        "12-15": {
+          "n": 2538,
+          "train": {
+            "n": 1241,
+            "hit": 0.436745,
+            "mean_pips": -1.495488,
+            "median_pips": -1.5,
+            "sum_pips": -1855.9,
+            "profit_factor": 0.749821,
+            "mean_r": -0.14541,
+            "median_r": -0.198103
+          },
+          "valid": {
+            "n": 661,
+            "hit": 0.416036,
+            "mean_pips": -2.129955,
+            "median_pips": -2.0,
+            "sum_pips": -1407.9,
+            "profit_factor": 0.645383,
+            "mean_r": -0.202992,
+            "median_r": -0.188324
+          },
+          "test": {
+            "n": 636,
+            "hit": 0.40566,
+            "mean_pips": -1.206289,
+            "median_pips": -1.8,
+            "sum_pips": -767.2,
+            "profit_factor": 0.784742,
+            "mean_r": -0.196798,
+            "median_r": -0.241814
+          },
+          "stable_positive": 0
+        },
+        "16-19": {
+          "n": 2040,
+          "train": {
+            "n": 1035,
+            "hit": 0.399034,
+            "mean_pips": -1.377005,
+            "median_pips": -1.3,
+            "sum_pips": -1425.2,
+            "profit_factor": 0.641224,
+            "mean_r": -0.193325,
+            "median_r": -0.199275
+          },
+          "valid": {
+            "n": 523,
+            "hit": 0.344168,
+            "mean_pips": -2.32218,
+            "median_pips": -1.9,
+            "sum_pips": -1214.5,
+            "profit_factor": 0.52185,
+            "mean_r": -0.319961,
+            "median_r": -0.275126
+          },
+          "test": {
+            "n": 482,
+            "hit": 0.348548,
+            "mean_pips": -1.593361,
+            "median_pips": -1.7,
+            "sum_pips": -768.0,
+            "profit_factor": 0.555298,
+            "mean_r": -0.333141,
+            "median_r": -0.376911
+          },
+          "stable_positive": 0
+        },
+        "20-23": {
+          "n": 2408,
+          "train": {
+            "n": 1192,
+            "hit": 0.264262,
+            "mean_pips": -3.418792,
+            "median_pips": -3.4,
+            "sum_pips": -4075.2,
+            "profit_factor": 0.321671,
+            "mean_r": -0.801546,
+            "median_r": -0.744622
+          },
+          "valid": {
+            "n": 624,
+            "hit": 0.240385,
+            "mean_pips": -4.050962,
+            "median_pips": -3.6,
+            "sum_pips": -2527.8,
+            "profit_factor": 0.3125,
+            "mean_r": -0.752784,
+            "median_r": -0.711867
+          },
+          "test": {
+            "n": 589,
+            "hit": 0.251273,
+            "mean_pips": -3.279287,
+            "median_pips": -3.4,
+            "sum_pips": -1931.5,
+            "profit_factor": 0.251357,
+            "mean_r": -0.974342,
+            "median_r": -0.978261
+          },
+          "stable_positive": 0
+        }
+      },
+      "vol_q": {
+        "Q1": {
+          "n": 3410,
+          "train": {
+            "n": 1411,
+            "hit": 0.325301,
+            "mean_pips": -2.228632,
+            "median_pips": -2.1,
+            "sum_pips": -3144.6,
+            "profit_factor": 0.383992,
+            "mean_r": -0.661477,
+            "median_r": -0.583756
+          },
+          "valid": {
+            "n": 715,
+            "hit": 0.297902,
+            "mean_pips": -2.410769,
+            "median_pips": -2.3,
+            "sum_pips": -1723.7,
+            "profit_factor": 0.349768,
+            "mean_r": -0.670369,
+            "median_r": -0.636943
+          },
+          "test": {
+            "n": 1281,
+            "hit": 0.315379,
+            "mean_pips": -2.247853,
+            "median_pips": -2.4,
+            "sum_pips": -2879.5,
+            "profit_factor": 0.365413,
+            "mean_r": -0.667933,
+            "median_r": -0.634328
+          },
+          "stable_positive": 0
+        },
+        "Q2": {
+          "n": 2926,
+          "train": {
+            "n": 1410,
+            "hit": 0.360993,
+            "mean_pips": -2.135887,
+            "median_pips": -2.25,
+            "sum_pips": -3011.6,
+            "profit_factor": 0.505914,
+            "mean_r": -0.437072,
+            "median_r": -0.445629
+          },
+          "valid": {
+            "n": 646,
+            "hit": 0.345201,
+            "mean_pips": -2.115789,
+            "median_pips": -2.3,
+            "sum_pips": -1366.8,
+            "profit_factor": 0.495943,
+            "mean_r": -0.412883,
+            "median_r": -0.436046
+          },
+          "test": {
+            "n": 870,
+            "hit": 0.349425,
+            "mean_pips": -1.747701,
+            "median_pips": -2.15,
+            "sum_pips": -1520.5,
+            "profit_factor": 0.551131,
+            "mean_r": -0.370946,
+            "median_r": -0.440352
+          },
+          "stable_positive": 0
+        },
+        "Q3": {
+          "n": 2673,
+          "train": {
+            "n": 1410,
+            "hit": 0.426241,
+            "mean_pips": -1.359362,
+            "median_pips": -1.15,
+            "sum_pips": -1916.7,
+            "profit_factor": 0.681426,
+            "mean_r": -0.235945,
+            "median_r": -0.189545
+          },
+          "valid": {
+            "n": 634,
+            "hit": 0.359621,
+            "mean_pips": -1.512303,
+            "median_pips": -2.0,
+            "sum_pips": -958.8,
+            "profit_factor": 0.679642,
+            "mean_r": -0.233628,
+            "median_r": -0.314161
+          },
+          "test": {
+            "n": 629,
+            "hit": 0.332273,
+            "mean_pips": -2.062003,
+            "median_pips": -2.3,
+            "sum_pips": -1297.0,
+            "profit_factor": 0.481428,
+            "mean_r": -0.366878,
+            "median_r": -0.382848
+          },
+          "stable_positive": 0
+        },
+        "Q4": {
+          "n": 2518,
+          "train": {
+            "n": 1410,
+            "hit": 0.414894,
+            "mean_pips": -1.403901,
+            "median_pips": -1.6,
+            "sum_pips": -1979.5,
+            "profit_factor": 0.714366,
+            "mean_r": -0.182404,
+            "median_r": -0.219207
+          },
+          "valid": {
+            "n": 666,
+            "hit": 0.387387,
+            "mean_pips": -2.1,
+            "median_pips": -2.0,
+            "sum_pips": -1398.6,
+            "profit_factor": 0.625733,
+            "mean_r": -0.24393,
+            "median_r": -0.233274
+          },
+          "test": {
+            "n": 442,
+            "hit": 0.418552,
+            "mean_pips": -1.265611,
+            "median_pips": -1.1,
+            "sum_pips": -559.4,
+            "profit_factor": 0.692671,
+            "mean_r": -0.187793,
+            "median_r": -0.165766
+          },
+          "stable_positive": 0
+        },
+        "Q5": {
+          "n": 2577,
+          "train": {
+            "n": 1411,
+            "hit": 0.433735,
+            "mean_pips": -1.719206,
+            "median_pips": -1.7,
+            "sum_pips": -2425.8,
+            "profit_factor": 0.722248,
+            "mean_r": -0.141073,
+            "median_r": -0.150977
+          },
+          "valid": {
+            "n": 867,
+            "hit": 0.417532,
+            "mean_pips": -2.512572,
+            "median_pips": -1.8,
+            "sum_pips": -2178.4,
+            "profit_factor": 0.603956,
+            "mean_r": -0.191712,
+            "median_r": -0.167401
+          },
+          "test": {
+            "n": 299,
+            "hit": 0.461538,
+            "mean_pips": -0.002341,
+            "median_pips": -1.0,
+            "sum_pips": -0.7,
+            "profit_factor": 0.999651,
+            "mean_r": -0.003147,
+            "median_r": -0.11011
+          },
+          "stable_positive": 0
+        }
+      },
+      "spread_q": {
+        "Q1": {
+          "n": 2427,
+          "train": {
+            "n": 1411,
+            "hit": 0.437279,
+            "mean_pips": -1.745571,
+            "median_pips": -1.8,
+            "sum_pips": -2463.0,
+            "profit_factor": 0.736943,
+            "mean_r": -0.124041,
+            "median_r": -0.132193
+          },
+          "valid": {
+            "n": 763,
+            "hit": 0.423329,
+            "mean_pips": -2.556881,
+            "median_pips": -2.1,
+            "sum_pips": -1950.9,
+            "profit_factor": 0.621346,
+            "mean_r": -0.175429,
+            "median_r": -0.171731
+          },
+          "test": {
+            "n": 253,
+            "hit": 0.458498,
+            "mean_pips": 0.226877,
+            "median_pips": -1.1,
+            "sum_pips": 57.4,
+            "profit_factor": 1.029673,
+            "mean_r": 0.007577,
+            "median_r": -0.11011
+          },
+          "stable_positive": 0
+        },
+        "Q2": {
+          "n": 2683,
+          "train": {
+            "n": 1410,
+            "hit": 0.43617,
+            "mean_pips": -1.143972,
+            "median_pips": -1.5,
+            "sum_pips": -1613.0,
+            "profit_factor": 0.768187,
+            "mean_r": -0.141633,
+            "median_r": -0.181341
+          },
+          "valid": {
+            "n": 769,
+            "hit": 0.421326,
+            "mean_pips": -1.281144,
+            "median_pips": -1.7,
+            "sum_pips": -985.2,
+            "profit_factor": 0.757394,
+            "mean_r": -0.152468,
+            "median_r": -0.182186
+          },
+          "test": {
+            "n": 504,
+            "hit": 0.410714,
+            "mean_pips": -1.519643,
+            "median_pips": -1.6,
+            "sum_pips": -765.9,
+            "profit_factor": 0.642687,
+            "mean_r": -0.161161,
+            "median_r": -0.204543
+          },
+          "stable_positive": 0
+        },
+        "Q3": {
+          "n": 2849,
+          "train": {
+            "n": 1410,
+            "hit": 0.423404,
+            "mean_pips": -1.266454,
+            "median_pips": -1.2,
+            "sum_pips": -1785.7,
+            "profit_factor": 0.685672,
+            "mean_r": -0.214717,
+            "median_r": -0.217434
+          },
+          "valid": {
+            "n": 638,
+            "hit": 0.358934,
+            "mean_pips": -1.989342,
+            "median_pips": -2.1,
+            "sum_pips": -1269.2,
+            "profit_factor": 0.550614,
+            "mean_r": -0.299421,
+            "median_r": -0.313796
+          },
+          "test": {
+            "n": 801,
+            "hit": 0.390762,
+            "mean_pips": -1.041573,
+            "median_pips": -1.7,
+            "sum_pips": -834.3,
+            "profit_factor": 0.712647,
+            "mean_r": -0.183775,
+            "median_r": -0.281065
+          },
+          "stable_positive": 0
+        },
+        "Q4": {
+          "n": 3006,
+          "train": {
+            "n": 1410,
+            "hit": 0.380142,
+            "mean_pips": -1.706383,
+            "median_pips": -1.5,
+            "sum_pips": -2406.0,
+            "profit_factor": 0.523781,
+            "mean_r": -0.354213,
+            "median_r": -0.317909
+          },
+          "valid": {
+            "n": 620,
+            "hit": 0.343548,
+            "mean_pips": -1.720161,
+            "median_pips": -1.9,
+            "sum_pips": -1066.5,
+            "profit_factor": 0.535071,
+            "mean_r": -0.346388,
+            "median_r": -0.386143
+          },
+          "test": {
+            "n": 976,
+            "hit": 0.321721,
+            "mean_pips": -2.15123,
+            "median_pips": -2.2,
+            "sum_pips": -2099.6,
+            "profit_factor": 0.417393,
+            "mean_r": -0.457097,
+            "median_r": -0.478309
+          },
+          "stable_positive": 0
+        },
+        "Q5": {
+          "n": 3139,
+          "train": {
+            "n": 1411,
+            "hit": 0.284196,
+            "mean_pips": -2.984054,
+            "median_pips": -2.6,
+            "sum_pips": -4210.5,
+            "profit_factor": 0.277291,
+            "mean_r": -0.823265,
+            "median_r": -0.759076
+          },
+          "valid": {
+            "n": 738,
+            "hit": 0.264228,
+            "mean_pips": -3.190379,
+            "median_pips": -2.8,
+            "sum_pips": -2354.5,
+            "profit_factor": 0.278071,
+            "mean_r": -0.766853,
+            "median_r": -0.736805
+          },
+          "test": {
+            "n": 987,
+            "hit": 0.29382,
+            "mean_pips": -2.649139,
+            "median_pips": -2.5,
+            "sum_pips": -2614.7,
+            "profit_factor": 0.287354,
+            "mean_r": -0.831224,
+            "median_r": -0.805687
+          },
+          "stable_positive": 0
+        }
+      },
+      "ret30_q": {
+        "Q1": {
+          "n": 2626,
+          "train": {
+            "n": 1411,
+            "hit": 0.407512,
+            "mean_pips": -1.522254,
+            "median_pips": -1.9,
+            "sum_pips": -2147.9,
+            "profit_factor": 0.717527,
+            "mean_r": -0.226011,
+            "median_r": -0.260304
+          },
+          "valid": {
+            "n": 731,
+            "hit": 0.380301,
+            "mean_pips": -2.1658,
+            "median_pips": -2.5,
+            "sum_pips": -1583.2,
+            "profit_factor": 0.626304,
+            "mean_r": -0.225612,
+            "median_r": -0.282443
+          },
+          "test": {
+            "n": 484,
+            "hit": 0.407025,
+            "mean_pips": -0.108264,
+            "median_pips": -1.65,
+            "sum_pips": -52.4,
+            "profit_factor": 0.977178,
+            "mean_r": -0.194152,
+            "median_r": -0.24633
+          },
+          "stable_positive": 0
+        },
+        "Q2": {
+          "n": 2915,
+          "train": {
+            "n": 1410,
+            "hit": 0.379433,
+            "mean_pips": -1.823333,
+            "median_pips": -1.85,
+            "sum_pips": -2570.9,
+            "profit_factor": 0.57861,
+            "mean_r": -0.363094,
+            "median_r": -0.353171
+          },
+          "valid": {
+            "n": 698,
+            "hit": 0.318052,
+            "mean_pips": -2.557593,
+            "median_pips": -2.8,
+            "sum_pips": -1785.2,
+            "profit_factor": 0.490118,
+            "mean_r": -0.458376,
+            "median_r": -0.508838
+          },
+          "test": {
+            "n": 805,
+            "hit": 0.309317,
+            "mean_pips": -2.109814,
+            "median_pips": -2.8,
+            "sum_pips": -1698.4,
+            "profit_factor": 0.453539,
+            "mean_r": -0.501461,
+            "median_r": -0.585774
+          },
+          "stable_positive": 0
+        },
+        "Q3": {
+          "n": 3046,
+          "train": {
+            "n": 1410,
+            "hit": 0.364539,
+            "mean_pips": -2.128085,
+            "median_pips": -2.1,
+            "sum_pips": -3000.6,
+            "profit_factor": 0.480452,
+            "mean_r": -0.462744,
+            "median_r": -0.414835
+          },
+          "valid": {
+            "n": 708,
+            "hit": 0.331921,
+            "mean_pips": -1.849718,
+            "median_pips": -2.1,
+            "sum_pips": -1309.6,
+            "profit_factor": 0.557851,
+            "mean_r": -0.428312,
+            "median_r": -0.406367
+          },
+          "test": {
+            "n": 928,
+            "hit": 0.338362,
+            "mean_pips": -2.038147,
+            "median_pips": -2.05,
+            "sum_pips": -1891.4,
+            "profit_factor": 0.437736,
+            "mean_r": -0.511896,
+            "median_r": -0.465634
+          },
+          "stable_positive": 0
+        },
+        "Q4": {
+          "n": 2869,
+          "train": {
+            "n": 1410,
+            "hit": 0.380142,
+            "mean_pips": -1.745887,
+            "median_pips": -1.7,
+            "sum_pips": -2461.7,
+            "profit_factor": 0.597433,
+            "mean_r": -0.388499,
+            "median_r": -0.340426
+          },
+          "valid": {
+            "n": 682,
+            "hit": 0.376833,
+            "mean_pips": -1.61393,
+            "median_pips": -1.6,
+            "sum_pips": -1100.7,
+            "profit_factor": 0.591804,
+            "mean_r": -0.314575,
+            "median_r": -0.258181
+          },
+          "test": {
+            "n": 776,
+            "hit": 0.372423,
+            "mean_pips": -1.877191,
+            "median_pips": -1.8,
+            "sum_pips": -1456.7,
+            "profit_factor": 0.502901,
+            "mean_r": -0.434429,
+            "median_r": -0.385069
+          },
+          "stable_positive": 0
+        },
+        "Q5": {
+          "n": 2648,
+          "train": {
+            "n": 1411,
+            "hit": 0.429483,
+            "mean_pips": -1.627994,
+            "median_pips": -1.3,
+            "sum_pips": -2297.1,
+            "profit_factor": 0.68469,
+            "mean_r": -0.217877,
+            "median_r": -0.186782
+          },
+          "valid": {
+            "n": 709,
+            "hit": 0.411848,
+            "mean_pips": -2.605924,
+            "median_pips": -1.8,
+            "sum_pips": -1847.6,
+            "profit_factor": 0.559728,
+            "mean_r": -0.310543,
+            "median_r": -0.192837
+          },
+          "test": {
+            "n": 528,
+            "hit": 0.361742,
+            "mean_pips": -2.193561,
+            "median_pips": -1.95,
+            "sum_pips": -1158.2,
+            "profit_factor": 0.546835,
+            "mean_r": -0.347075,
+            "median_r": -0.317175
+          },
+          "stable_positive": 0
+        }
+      },
+      "trend_q": {
+        "Q1": {
+          "n": 2700,
+          "train": {
+            "n": 1411,
+            "hit": 0.417434,
+            "mean_pips": -1.499717,
+            "median_pips": -1.6,
+            "sum_pips": -2116.1,
+            "profit_factor": 0.679335,
+            "mean_r": -0.244977,
+            "median_r": -0.236686
+          },
+          "valid": {
+            "n": 682,
+            "hit": 0.375367,
+            "mean_pips": -1.636657,
+            "median_pips": -2.35,
+            "sum_pips": -1116.2,
+            "profit_factor": 0.678939,
+            "mean_r": -0.221057,
+            "median_r": -0.296554
+          },
+          "test": {
+            "n": 607,
+            "hit": 0.364086,
+            "mean_pips": -1.700824,
+            "median_pips": -2.0,
+            "sum_pips": -1032.4,
+            "profit_factor": 0.595661,
+            "mean_r": -0.364579,
+            "median_r": -0.338983
+          },
+          "stable_positive": 0
+        },
+        "Q2": {
+          "n": 2756,
+          "train": {
+            "n": 1410,
+            "hit": 0.409929,
+            "mean_pips": -1.512837,
+            "median_pips": -1.5,
+            "sum_pips": -2133.1,
+            "profit_factor": 0.671831,
+            "mean_r": -0.260976,
+            "median_r": -0.255564
+          },
+          "valid": {
+            "n": 688,
+            "hit": 0.372093,
+            "mean_pips": -2.263953,
+            "median_pips": -1.8,
+            "sum_pips": -1557.6,
+            "profit_factor": 0.551382,
+            "mean_r": -0.324302,
+            "median_r": -0.259232
+          },
+          "test": {
+            "n": 658,
+            "hit": 0.335866,
+            "mean_pips": -2.172492,
+            "median_pips": -2.25,
+            "sum_pips": -1429.5,
+            "profit_factor": 0.500367,
+            "mean_r": -0.442681,
+            "median_r": -0.413147
+          },
+          "stable_positive": 0
+        },
+        "Q3": {
+          "n": 2738,
+          "train": {
+            "n": 1410,
+            "hit": 0.400709,
+            "mean_pips": -1.496879,
+            "median_pips": -1.7,
+            "sum_pips": -2110.6,
+            "profit_factor": 0.679824,
+            "mean_r": -0.284853,
+            "median_r": -0.263575
+          },
+          "valid": {
+            "n": 698,
+            "hit": 0.382521,
+            "mean_pips": -1.953295,
+            "median_pips": -2.2,
+            "sum_pips": -1363.4,
+            "profit_factor": 0.631703,
+            "mean_r": -0.273364,
+            "median_r": -0.299725
+          },
+          "test": {
+            "n": 630,
+            "hit": 0.339683,
+            "mean_pips": -2.46127,
+            "median_pips": -2.4,
+            "sum_pips": -1550.6,
+            "profit_factor": 0.439772,
+            "mean_r": -0.454488,
+            "median_r": -0.473617
+          },
+          "stable_positive": 0
+        },
+        "Q4": {
+          "n": 2837,
+          "train": {
+            "n": 1410,
+            "hit": 0.371631,
+            "mean_pips": -2.177943,
+            "median_pips": -2.3,
+            "sum_pips": -3070.9,
+            "profit_factor": 0.560276,
+            "mean_r": -0.403758,
+            "median_r": -0.39682
+          },
+          "valid": {
+            "n": 700,
+            "hit": 0.342857,
+            "mean_pips": -2.337,
+            "median_pips": -2.15,
+            "sum_pips": -1635.9,
+            "profit_factor": 0.51898,
+            "mean_r": -0.397417,
+            "median_r": -0.377985
+          },
+          "test": {
+            "n": 727,
+            "hit": 0.370014,
+            "mean_pips": -1.198212,
+            "median_pips": -1.9,
+            "sum_pips": -871.1,
+            "profit_factor": 0.705241,
+            "mean_r": -0.445146,
+            "median_r": -0.374449
+          },
+          "stable_positive": 0
+        },
+        "Q5": {
+          "n": 3073,
+          "train": {
+            "n": 1411,
+            "hit": 0.361446,
+            "mean_pips": -2.159816,
+            "median_pips": -1.9,
+            "sum_pips": -3047.5,
+            "profit_factor": 0.508919,
+            "mean_r": -0.463474,
+            "median_r": -0.367647
+          },
+          "valid": {
+            "n": 760,
+            "hit": 0.348684,
+            "mean_pips": -2.57,
+            "median_pips": -2.3,
+            "sum_pips": -1953.2,
+            "profit_factor": 0.448451,
+            "mean_r": -0.499931,
+            "median_r": -0.427598
+          },
+          "test": {
+            "n": 899,
+            "hit": 0.350389,
+            "mean_pips": -1.527809,
+            "median_pips": -2.1,
+            "sum_pips": -1373.5,
+            "profit_factor": 0.559295,
+            "mean_r": -0.412152,
+            "median_r": -0.473684
+          },
+          "stable_positive": 0
+        }
+      }
+    },
+    "models": {
+      "features": [
+        "sma_diff_atr",
+        "rsi",
+        "ret_5",
+        "ret_15",
+        "ret_30",
+        "atr_over_price",
+        "spread_over_atr",
+        "bb_pos",
+        "adx",
+        "xusd_net",
+        "dist_high_atr",
+        "dist_low_atr",
+        "rv_30",
+        "hour_sin",
+        "hour_cos",
+        "stub_side",
+        "usd_side"
+      ],
+      "logreg_weights": {
+        "bias": -0.388854,
+        "w": [
+          -0.001183,
+          0.003193,
+          -0.002764,
+          -0.002752,
+          -0.001288,
+          0.022817,
+          -0.041121,
+          0.004869,
+          0.00374,
+          -0.003417,
+          -0.004556,
+          0.001263,
+          0.018235,
+          0.019532,
+          -0.021577,
+          0.005476,
+          -0.001912
+        ]
+      },
+      "tree": {
+        "feat": 6,
+        "thr": 0.205308,
+        "p_left": 0.429179,
+        "p_right": 0.30404,
+        "feat_name": "spread_over_atr"
+      },
+      "scores": {
+        "train": {
+          "logreg": {
+            "accuracy": 0.595718,
+            "balanced_accuracy": 0.499937,
+            "log_loss": 0.670355,
+            "auc": 0.569776,
+            "n": 7052
+          },
+          "tree": {
+            "accuracy": 0.595859,
+            "balanced_accuracy": 0.5,
+            "log_loss": 0.66931,
+            "auc": 0.541586,
+            "n": 7052
+          },
+          "always_up": {
+            "accuracy": 0.595859,
+            "balanced_accuracy": 0.5,
+            "log_loss": 0.674655,
+            "auc": 0.5,
+            "n": 7052
+          },
+          "calibration": [
+            {
+              "bin": 1,
+              "n": 2661,
+              "mean_p": 0.385966,
+              "up_rate": 0.332958
+            },
+            {
+              "bin": 2,
+              "n": 4388,
+              "mean_p": 0.415037,
+              "up_rate": 0.447356
+            }
+          ]
+        },
+        "valid": {
+          "logreg": {
+            "accuracy": 0.60941,
+            "balanced_accuracy": 0.502168,
+            "log_loss": 0.663921,
+            "auc": 0.584533,
+            "n": 3528
+          },
+          "tree": {
+            "accuracy": 0.60771,
+            "balanced_accuracy": 0.5,
+            "log_loss": 0.662492,
+            "auc": 0.550834,
+            "n": 3528
+          },
+          "always_up": {
+            "accuracy": 0.60771,
+            "balanced_accuracy": 0.5,
+            "log_loss": 0.670054,
+            "auc": 0.5,
+            "n": 3528
+          },
+          "calibration": [
+            {
+              "bin": 1,
+              "n": 1294,
+              "mean_p": 0.385266,
+              "up_rate": 0.309892
+            },
+            {
+              "bin": 2,
+              "n": 2227,
+              "mean_p": 0.415743,
+              "up_rate": 0.438707
+            }
+          ]
+        },
+        "test": {
+          "logreg": {
+            "accuracy": 0.629651,
+            "balanced_accuracy": 0.500923,
+            "log_loss": 0.656515,
+            "auc": 0.561052,
+            "n": 3521
+          },
+          "tree": {
+            "accuracy": 0.629083,
+            "balanced_accuracy": 0.5,
+            "log_loss": 0.658087,
+            "auc": 0.536573,
+            "n": 3521
+          },
+          "always_up": {
+            "accuracy": 0.629083,
+            "balanced_accuracy": 0.5,
+            "log_loss": 0.661756,
+            "auc": 0.5,
+            "n": 3521
+          },
+          "calibration": [
+            {
+              "bin": 1,
+              "n": 1658,
+              "mean_p": 0.383714,
+              "up_rate": 0.326297
+            },
+            {
+              "bin": 2,
+              "n": 1859,
+              "mean_p": 0.411989,
+              "up_rate": 0.409898
+            }
+          ]
+        }
+      },
+      "economics": {
+        "train": {
+          "logreg_always": {
+            "n": 7052,
+            "hit": 0.373086,
+            "mean_pips": -2.087748,
+            "median_pips": -2.1,
+            "sum_pips": -14722.8,
+            "profit_factor": 0.568251,
+            "mean_r": -0.363694,
+            "median_r": -0.360676,
+            "coverage": 1.0,
+            "n_buy": 3,
+            "n_sell": 7049,
+            "n_skip": 0
+          },
+          "tree_always": {
+            "n": 7052,
+            "hit": 0.373227,
+            "mean_pips": -2.062961,
+            "median_pips": -2.1,
+            "sum_pips": -14548.0,
+            "profit_factor": 0.572256,
+            "mean_r": -0.363457,
+            "median_r": -0.360267,
+            "coverage": 1.0,
+            "n_buy": 0,
+            "n_sell": 7052,
+            "n_skip": 0
+          },
+          "stub": {
+            "n": 7052,
+            "hit": 0.392229,
+            "mean_pips": -1.769455,
+            "median_pips": -1.8,
+            "sum_pips": -12478.2,
+            "profit_factor": 0.620498,
+            "mean_r": -0.331614,
+            "median_r": -0.299837
+          },
+          "invert": {
+            "n": 7052,
+            "hit": 0.385139,
+            "mean_pips": -1.945122,
+            "median_pips": -1.9,
+            "sum_pips": -13717.0,
+            "profit_factor": 0.587199,
+            "mean_r": -0.33511,
+            "median_r": -0.323435
+          }
+        },
+        "valid": {
+          "logreg_always": {
+            "n": 3528,
+            "hit": 0.360828,
+            "mean_pips": -1.8875,
+            "median_pips": -2.3,
+            "sum_pips": -6659.1,
+            "profit_factor": 0.60959,
+            "mean_r": -0.308396,
+            "median_r": -0.349565,
+            "coverage": 1.0,
+            "n_buy": 6,
+            "n_sell": 3522,
+            "n_skip": 0
+          },
+          "tree_always": {
+            "n": 3528,
+            "hit": 0.359127,
+            "mean_pips": -1.939144,
+            "median_pips": -2.3,
+            "sum_pips": -6841.3,
+            "profit_factor": 0.601302,
+            "mean_r": -0.309948,
+            "median_r": -0.352941,
+            "coverage": 1.0,
+            "n_buy": 0,
+            "n_sell": 3528,
+            "n_skip": 0
+          },
+          "stub": {
+            "n": 3528,
+            "hit": 0.363946,
+            "mean_pips": -2.16165,
+            "median_pips": -2.1,
+            "sum_pips": -7626.3,
+            "profit_factor": 0.566508,
+            "mean_r": -0.346607,
+            "median_r": -0.332539
+          },
+          "invert": {
+            "n": 3528,
+            "hit": 0.387472,
+            "mean_pips": -1.837783,
+            "median_pips": -1.8,
+            "sum_pips": -6483.7,
+            "profit_factor": 0.611834,
+            "mean_r": -0.32948,
+            "median_r": -0.271459
+          }
+        },
+        "test": {
+          "logreg_always": {
+            "n": 3521,
+            "hit": 0.352457,
+            "mean_pips": -1.587532,
+            "median_pips": -2.0,
+            "sum_pips": -5589.7,
+            "profit_factor": 0.595591,
+            "mean_r": -0.391326,
+            "median_r": -0.397805,
+            "coverage": 1.0,
+            "n_buy": 4,
+            "n_sell": 3517,
+            "n_skip": 0
+          },
+          "tree_always": {
+            "n": 3521,
+            "hit": 0.351889,
+            "mean_pips": -1.636012,
+            "median_pips": -2.0,
+            "sum_pips": -5760.4,
+            "profit_factor": 0.585904,
+            "mean_r": -0.392318,
+            "median_r": -0.397805,
+            "coverage": 1.0,
+            "n_buy": 0,
+            "n_sell": 3521,
+            "n_skip": 0
+          },
+          "stub": {
+            "n": 3521,
+            "hit": 0.352173,
+            "mean_pips": -1.77708,
+            "median_pips": -2.1,
+            "sum_pips": -6257.1,
+            "profit_factor": 0.561032,
+            "mean_r": -0.424043,
+            "median_r": -0.413793
+          },
+          "invert": {
+            "n": 3521,
+            "hit": 0.370633,
+            "mean_pips": -1.998523,
+            "median_pips": -1.7,
+            "sum_pips": -7036.8,
+            "profit_factor": 0.508548,
+            "mean_r": -0.408632,
+            "median_r": -0.330396
+          }
+        }
+      }
+    },
+    "skip_gate": {
+      "0.55": {
+        "train": {
+          "n": 7010,
+          "hit": 0.372753,
+          "mean_pips": -2.06368,
+          "median_pips": -2.1,
+          "sum_pips": -14466.4,
+          "profit_factor": 0.570125,
+          "mean_r": -0.364239,
+          "median_r": -0.363343,
+          "coverage": 0.994044,
+          "n_buy": 3,
+          "n_sell": 7007,
+          "n_skip": 42
+        },
+        "valid": {
+          "n": 3495,
+          "hit": 0.359943,
+          "mean_pips": -1.894421,
+          "median_pips": -2.3,
+          "sum_pips": -6621.0,
+          "profit_factor": 0.606172,
+          "mean_r": -0.310247,
+          "median_r": -0.352941,
+          "coverage": 0.990646,
+          "n_buy": 2,
+          "n_sell": 3493,
+          "n_skip": 33
+        },
+        "test": {
+          "n": 3507,
+          "hit": 0.352723,
+          "mean_pips": -1.573168,
+          "median_pips": -2.0,
+          "sum_pips": -5517.1,
+          "profit_factor": 0.595855,
+          "mean_r": -0.391405,
+          "median_r": -0.397456,
+          "coverage": 0.996024,
+          "n_buy": 1,
+          "n_sell": 3506,
+          "n_skip": 14
+        }
+      },
+      "0.6": {
+        "train": {
+          "n": 2663,
+          "hit": 0.30905,
+          "mean_pips": -2.490312,
+          "median_pips": -2.3,
+          "sum_pips": -6631.7,
+          "profit_factor": 0.376749,
+          "mean_r": -0.582948,
+          "median_r": -0.528169,
+          "coverage": 0.377623,
+          "n_buy": 2,
+          "n_sell": 2661,
+          "n_skip": 4389
+        },
+        "valid": {
+          "n": 1296,
+          "hit": 0.29784,
+          "mean_pips": -2.157253,
+          "median_pips": -2.45,
+          "sum_pips": -2795.8,
+          "profit_factor": 0.452759,
+          "mean_r": -0.492547,
+          "median_r": -0.564655,
+          "coverage": 0.367347,
+          "n_buy": 1,
+          "n_sell": 1295,
+          "n_skip": 2232
+        },
+        "test": {
+          "n": 1658,
+          "hit": 0.297949,
+          "mean_pips": -2.338721,
+          "median_pips": -2.4,
+          "sum_pips": -3877.6,
+          "profit_factor": 0.347128,
+          "mean_r": -0.580583,
+          "median_r": -0.600021,
+          "coverage": 0.470889,
+          "n_buy": 0,
+          "n_sell": 1658,
+          "n_skip": 1863
+        }
+      },
+      "0.65": {
+        "train": {
+          "n": 79,
+          "hit": 0.063291,
+          "mean_pips": -7.664557,
+          "median_pips": -8.3,
+          "sum_pips": -605.5,
+          "profit_factor": 0.079647,
+          "mean_r": -2.132924,
+          "median_r": -2.275,
+          "coverage": 0.011202,
+          "n_buy": 0,
+          "n_sell": 79,
+          "n_skip": 6973
+        },
+        "valid": {
+          "n": 55,
+          "hit": 0.127273,
+          "mean_pips": -4.667273,
+          "median_pips": -6.1,
+          "sum_pips": -256.7,
+          "profit_factor": 0.26278,
+          "mean_r": -1.32589,
+          "median_r": -1.607143,
+          "coverage": 0.01559,
+          "n_buy": 0,
+          "n_sell": 55,
+          "n_skip": 3473
+        },
+        "test": {
+          "n": 83,
+          "hit": 0.084337,
+          "mean_pips": -6.203614,
+          "median_pips": -6.3,
+          "sum_pips": -514.9,
+          "profit_factor": 0.067379,
+          "mean_r": -1.793489,
+          "median_r": -1.746988,
+          "coverage": 0.023573,
+          "n_buy": 0,
+          "n_sell": 83,
+          "n_skip": 3438
+        }
+      }
+    },
+    "cross_usd": {
+      "agree": {
+        "False": {
+          "n": 6122,
+          "train": {
+            "n": 3129,
+            "hit": 0.40588,
+            "mean_pips": -1.373538,
+            "median_pips": -1.7,
+            "sum_pips": -4297.8,
+            "profit_factor": 0.705618,
+            "mean_r": -0.28704,
+            "median_r": -0.275624
+          },
+          "valid": {
+            "n": 1526,
+            "hit": 0.353211,
+            "mean_pips": -2.382896,
+            "median_pips": -2.5,
+            "sum_pips": -3636.3,
+            "profit_factor": 0.541271,
+            "mean_r": -0.36138,
+            "median_r": -0.364786
+          },
+          "test": {
+            "n": 1466,
+            "hit": 0.339018,
+            "mean_pips": -2.736085,
+            "median_pips": -2.4,
+            "sum_pips": -4011.1,
+            "profit_factor": 0.420311,
+            "mean_r": -0.522679,
+            "median_r": -0.465634
+          },
+          "stable_positive": 0
+        },
+        "True": {
+          "n": 7982,
+          "train": {
+            "n": 3923,
+            "hit": 0.381341,
+            "mean_pips": -2.085241,
+            "median_pips": -1.8,
+            "sum_pips": -8180.4,
+            "profit_factor": 0.552521,
+            "mean_r": -0.367167,
+            "median_r": -0.319767
+          },
+          "valid": {
+            "n": 2002,
+            "hit": 0.372128,
+            "mean_pips": -1.993007,
+            "median_pips": -1.9,
+            "sum_pips": -3990.0,
+            "profit_factor": 0.587204,
+            "mean_r": -0.335346,
+            "median_r": -0.303491
+          },
+          "test": {
+            "n": 2055,
+            "hit": 0.361557,
+            "mean_pips": -1.092944,
+            "median_pips": -1.9,
+            "sum_pips": -2246.0,
+            "profit_factor": 0.693784,
+            "mean_r": -0.353678,
+            "median_r": -0.384
+          },
+          "stable_positive": 0
+        }
+      },
+      "net_sign": {
+        "NET_FLAT": {
+          "n": 40,
+          "train": {
+            "n": 22,
+            "hit": 0.227273,
+            "mean_pips": -4.322727,
+            "median_pips": -1.7,
+            "sum_pips": -95.1,
+            "profit_factor": 0.348184,
+            "mean_r": -0.931905,
+            "median_r": -0.499006
+          },
+          "valid": {
+            "n": 12,
+            "hit": 0.416667,
+            "mean_pips": -3.858333,
+            "median_pips": -1.95,
+            "sum_pips": -46.3,
+            "profit_factor": 0.336676,
+            "mean_r": -0.942375,
+            "median_r": -0.270381
+          },
+          "test": {
+            "n": 6,
+            "hit": 0.166667,
+            "mean_pips": -1.766667,
+            "median_pips": -2.45,
+            "sum_pips": -10.6,
+            "profit_factor": 0.3375,
+            "mean_r": -0.214259,
+            "median_r": -0.552994
+          },
+          "stable_positive": 0
+        },
+        "NET_LONG_USD": {
+          "n": 7084,
+          "train": {
+            "n": 3473,
+            "hit": 0.387849,
+            "mean_pips": -1.852145,
+            "median_pips": -1.9,
+            "sum_pips": -6432.5,
+            "profit_factor": 0.604903,
+            "mean_r": -0.347754,
+            "median_r": -0.31746
+          },
+          "valid": {
+            "n": 1776,
+            "hit": 0.361486,
+            "mean_pips": -2.35473,
+            "median_pips": -2.2,
+            "sum_pips": -4182.0,
+            "profit_factor": 0.532596,
+            "mean_r": -0.356903,
+            "median_r": -0.344828
+          },
+          "test": {
+            "n": 1832,
+            "hit": 0.340611,
+            "mean_pips": -2.015721,
+            "median_pips": -2.2,
+            "sum_pips": -3692.8,
+            "profit_factor": 0.486626,
+            "mean_r": -0.456898,
+            "median_r": -0.424179
+          },
+          "stable_positive": 0
+        },
+        "NET_SHORT_USD": {
+          "n": 6980,
+          "train": {
+            "n": 3557,
+            "hit": 0.397526,
+            "mean_pips": -1.672927,
+            "median_pips": -1.7,
+            "sum_pips": -5950.6,
+            "profit_factor": 0.638345,
+            "mean_r": -0.312142,
+            "median_r": -0.284553
+          },
+          "valid": {
+            "n": 1740,
+            "hit": 0.366092,
+            "mean_pips": -1.952874,
+            "median_pips": -2.0,
+            "sum_pips": -3398.0,
+            "profit_factor": 0.60376,
+            "mean_r": -0.331989,
+            "median_r": -0.304401
+          },
+          "test": {
+            "n": 1683,
+            "hit": 0.365419,
+            "mean_pips": -1.51735,
+            "median_pips": -2.0,
+            "sum_pips": -2553.7,
+            "profit_factor": 0.637511,
+            "mean_r": -0.389028,
+            "median_r": -0.4
+          },
+          "stable_positive": 0
+        }
+      },
+      "follow_net": {
+        "train": {
+          "n": 7030,
+          "hit": 0.383926,
+          "mean_pips": -2.234097,
+          "median_pips": -1.9,
+          "sum_pips": -15705.7,
+          "profit_factor": 0.541672,
+          "mean_r": -0.361636,
+          "median_r": -0.317776
+        },
+        "valid": {
+          "n": 3516,
+          "hit": 0.382537,
+          "mean_pips": -1.857281,
+          "median_pips": -1.8,
+          "sum_pips": -6530.2,
+          "profit_factor": 0.610205,
+          "mean_r": -0.317639,
+          "median_r": -0.278943
+        },
+        "test": {
+          "n": 3515,
+          "hit": 0.379801,
+          "mean_pips": -1.03909,
+          "median_pips": -1.7,
+          "sum_pips": -3652.4,
+          "profit_factor": 0.711106,
+          "mean_r": -0.310923,
+          "median_r": -0.339168
+        }
+      }
+    },
+    "features_included": [
+      "sma_fast",
+      "sma_slow",
+      "sma_diff",
+      "sma_diff/atr",
+      "sma_slope_30m",
+      "price-sma_fast",
+      "price-sma_slow",
+      "rsi",
+      "macd",
+      "macd_signal (9-span of existing macd)",
+      "macd_hist",
+      "bollinger_position",
+      "adx (research wilder, not live)",
+      "atr",
+      "atr/price",
+      "ret 5/15/30/60/120m",
+      "rv_30",
+      "dist recent high/low ATR",
+      "spread",
+      "spread/atr",
+      "volume",
+      "rel_vol",
+      "hour UTC",
+      "dow",
+      "stub side",
+      "usd dir",
+      "cross-pair USD counts"
+    ],
+    "features_unavailable": [
+      "production strategy label on historical bars (select_strategy is RNG/meta; not reconstructed)",
+      "live ma_fast/ma_slow (not persisted; cache ends 2026-08-31 so live features not rebuilt)",
+      "RL veto records"
+    ],
+    "strength_filter_q5": {
+      "train": {
+        "n": 1411,
+        "hit": 0.361446,
+        "mean_pips": -2.159816,
+        "median_pips": -1.9,
+        "sum_pips": -3047.5,
+        "profit_factor": 0.508919,
+        "mean_r": -0.463474,
+        "median_r": -0.367647
+      },
+      "valid": {
+        "n": 760,
+        "hit": 0.348684,
+        "mean_pips": -2.57,
+        "median_pips": -2.3,
+        "sum_pips": -1953.2,
+        "profit_factor": 0.448451,
+        "mean_r": -0.499931,
+        "median_r": -0.427598
+      },
+      "test": {
+        "n": 899,
+        "hit": 0.350389,
+        "mean_pips": -1.527809,
+        "median_pips": -2.1,
+        "sum_pips": -1373.5,
+        "profit_factor": 0.559295,
+        "mean_r": -0.412152,
+        "median_r": -0.473684
+      }
+    }
+  },
+  "live": {
+    "n_scored": 212,
+    "window": {
+      "start": "2026-09-21T22:00:04+00:00",
+      "note": "corrected-build holdout; not used for fitting"
+    },
+    "inversion": {
+      "5": {
+        "original": {
+          "n": 212,
+          "hit": 0.268868,
+          "mean_pips": -1.308019,
+          "median_pips": -1.65,
+          "sum_pips": -277.3,
+          "profit_factor": 0.456275,
+          "mean_r": -0.291789,
+          "median_r": -0.3443
+        },
+        "inverted": {
+          "n": 212,
+          "hit": 0.726415,
+          "mean_pips": 1.308019,
+          "median_pips": 1.65,
+          "sum_pips": 277.3,
+          "profit_factor": 2.191663,
+          "mean_r": 0.291789,
+          "median_r": 0.3443
+        },
+        "note": "Live forwards already include executable-side path from the forensic study. Inversion is sign flip of that series (spread already paid on original entry)."
+      },
+      "15": {
+        "original": {
+          "n": 212,
+          "hit": 0.353774,
+          "mean_pips": -1.163679,
+          "median_pips": -1.3,
+          "sum_pips": -246.7,
+          "profit_factor": 0.598535,
+          "mean_r": -0.291791,
+          "median_r": -0.25165
+        },
+        "inverted": {
+          "n": 212,
+          "hit": 0.646226,
+          "mean_pips": 1.163679,
+          "median_pips": 1.3,
+          "sum_pips": 246.7,
+          "profit_factor": 1.670745,
+          "mean_r": 0.291791,
+          "median_r": 0.25165
+        },
+        "note": "Live forwards already include executable-side path from the forensic study. Inversion is sign flip of that series (spread already paid on original entry)."
+      },
+      "30": {
+        "original": {
+          "n": 212,
+          "hit": 0.358491,
+          "mean_pips": -1.501887,
+          "median_pips": -1.9,
+          "sum_pips": -318.4,
+          "profit_factor": 0.589691,
+          "mean_r": -0.283713,
+          "median_r": -0.42555
+        },
+        "inverted": {
+          "n": 212,
+          "hit": 0.632075,
+          "mean_pips": 1.501887,
+          "median_pips": 1.9,
+          "sum_pips": 318.4,
+          "profit_factor": 1.695804,
+          "mean_r": 0.283713,
+          "median_r": 0.42555
+        },
+        "note": "Live forwards already include executable-side path from the forensic study. Inversion is sign flip of that series (spread already paid on original entry)."
+      },
+      "60": {
+        "original": {
+          "n": 212,
+          "hit": 0.443396,
+          "mean_pips": -0.74717,
+          "median_pips": -1.05,
+          "sum_pips": -158.4,
+          "profit_factor": 0.833596,
+          "mean_r": -0.179593,
+          "median_r": -0.29035
+        },
+        "inverted": {
+          "n": 212,
+          "hit": 0.551887,
+          "mean_pips": 0.74717,
+          "median_pips": 1.05,
+          "sum_pips": 158.4,
+          "profit_factor": 1.199622,
+          "mean_r": 0.179593,
+          "median_r": 0.29035
+        },
+        "note": "Live forwards already include executable-side path from the forensic study. Inversion is sign flip of that series (spread already paid on original entry)."
+      },
+      "120": {
+        "original": {
+          "n": 212,
+          "hit": 0.382075,
+          "mean_pips": -2.452358,
+          "median_pips": -2.55,
+          "sum_pips": -519.9,
+          "profit_factor": 0.600261,
+          "mean_r": -0.502458,
+          "median_r": -0.48555
+        },
+        "inverted": {
+          "n": 212,
+          "hit": 0.617925,
+          "mean_pips": 2.452358,
+          "median_pips": 2.55,
+          "sum_pips": 519.9,
+          "profit_factor": 1.665941,
+          "mean_r": 0.502458,
+          "median_r": 0.48555
+        },
+        "note": "Live forwards already include executable-side path from the forensic study. Inversion is sign flip of that series (spread already paid on original entry)."
+      },
+      "240": {
+        "original": {
+          "n": 212,
+          "hit": 0.415094,
+          "mean_pips": -1.981132,
+          "median_pips": -3.15,
+          "sum_pips": -420.0,
+          "profit_factor": 0.730631,
+          "mean_r": -0.355559,
+          "median_r": -0.4104
+        },
+        "inverted": {
+          "n": 212,
+          "hit": 0.584906,
+          "mean_pips": 1.981132,
+          "median_pips": 3.15,
+          "sum_pips": 420.0,
+          "profit_factor": 1.36868,
+          "mean_r": 0.355559,
+          "median_r": 0.4104
+        },
+        "note": "Live forwards already include executable-side path from the forensic study. Inversion is sign flip of that series (spread already paid on original entry)."
+      }
+    },
+    "by_symbol": {
+      "USD_JPY": {
+        "n": 48,
+        "booked_mean_r": -0.301851,
+        "fwd60_mean_r": -0.056219,
+        "fwd60_hit": 0.520833
+      },
+      "USD_CHF": {
+        "n": 36,
+        "booked_mean_r": -0.649015,
+        "fwd60_mean_r": -0.334758,
+        "fwd60_hit": 0.388889
+      },
+      "AUD_USD": {
+        "n": 47,
+        "booked_mean_r": -0.398666,
+        "fwd60_mean_r": -0.293957,
+        "fwd60_hit": 0.319149
+      },
+      "USD_CAD": {
+        "n": 22,
+        "booked_mean_r": -0.728504,
+        "fwd60_mean_r": -0.639382,
+        "fwd60_hit": 0.454545
+      },
+      "GBP_USD": {
+        "n": 24,
+        "booked_mean_r": -0.281787,
+        "fwd60_mean_r": 0.027704,
+        "fwd60_hit": 0.541667
+      },
+      "EUR_USD": {
+        "n": 35,
+        "booked_mean_r": 0.137587,
+        "fwd60_mean_r": 0.111243,
+        "fwd60_hit": 0.485714
+      }
+    },
+    "by_side": {
+      "SELL": {
+        "n": 124,
+        "booked_mean_r": -0.260864,
+        "fwd60_mean_r": -0.022639,
+        "fwd60_hit": 0.483871
+      },
+      "BUY": {
+        "n": 88,
+        "booked_mean_r": -0.47975,
+        "fwd60_mean_r": -0.400757,
+        "fwd60_hit": 0.386364
+      }
+    },
+    "by_strategy": {
+      "trend": {
+        "n": 19,
+        "booked_mean_r": -0.444688,
+        "fwd60_mean_r": -0.057268,
+        "fwd60_hit": 0.473684
+      },
+      "swing_breakout": {
+        "n": 44,
+        "booked_mean_r": -0.633243,
+        "fwd60_mean_r": -0.213468,
+        "fwd60_hit": 0.409091
+      },
+      "swing_mean_reversion": {
+        "n": 48,
+        "booked_mean_r": -0.252415,
+        "fwd60_mean_r": -0.1869,
+        "fwd60_hit": 0.458333
+      },
+      "swing_trend": {
+        "n": 51,
+        "booked_mean_r": -0.331788,
+        "fwd60_mean_r": -0.131253,
+        "fwd60_hit": 0.431373
+      },
+      "scalp": {
+        "n": 22,
+        "booked_mean_r": -0.130394,
+        "fwd60_mean_r": -0.070164,
+        "fwd60_hit": 0.545455
+      },
+      "mean_reversion": {
+        "n": 28,
+        "booked_mean_r": -0.226699,
+        "fwd60_mean_r": -0.370871,
+        "fwd60_hit": 0.392857
+      }
+    },
+    "by_hour": {
+      "22": {
+        "n": 7,
+        "booked_mean_r": -0.746465,
+        "fwd60_mean_r": -0.058729,
+        "fwd60_hit": 0.428571
+      },
+      "23": {
+        "n": 4,
+        "booked_mean_r": -1.011239,
+        "fwd60_mean_r": -0.743775,
+        "fwd60_hit": 0.25
+      },
+      "unknown": {
+        "n": 19,
+        "booked_mean_r": -0.526101,
+        "fwd60_mean_r": -0.662574,
+        "fwd60_hit": 0.315789
+      },
+      "1": {
+        "n": 29,
+        "booked_mean_r": -0.462251,
+        "fwd60_mean_r": -0.597176,
+        "fwd60_hit": 0.413793
+      },
+      "2": {
+        "n": 17,
+        "booked_mean_r": -0.336117,
+        "fwd60_mean_r": -0.983965,
+        "fwd60_hit": 0.294118
+      },
+      "3": {
+        "n": 7,
+        "booked_mean_r": -0.309924,
+        "fwd60_mean_r": -0.155714,
+        "fwd60_hit": 0.571429
+      },
+      "6": {
+        "n": 14,
+        "booked_mean_r": -0.135718,
+        "fwd60_mean_r": 0.383214,
+        "fwd60_hit": 0.642857
+      },
+      "7": {
+        "n": 20,
+        "booked_mean_r": -0.057257,
+        "fwd60_mean_r": 0.85897,
+        "fwd60_hit": 0.7
+      },
+      "8": {
+        "n": 11,
+        "booked_mean_r": -0.164574,
+        "fwd60_mean_r": -0.979573,
+        "fwd60_hit": 0.363636
+      },
+      "9": {
+        "n": 6,
+        "booked_mean_r": -0.618729,
+        "fwd60_mean_r": -0.7142,
+        "fwd60_hit": 0.166667
+      },
+      "10": {
+        "n": 6,
+        "booked_mean_r": -0.671115,
+        "fwd60_mean_r": -0.660967,
+        "fwd60_hit": 0.166667
+      },
+      "12": {
+        "n": 7,
+        "booked_mean_r": -0.681496,
+        "fwd60_mean_r": 0.141371,
+        "fwd60_hit": 0.571429
+      },
+      "13": {
+        "n": 9,
+        "booked_mean_r": 0.723643,
+        "fwd60_mean_r": 1.648111,
+        "fwd60_hit": 0.777778
+      },
+      "14": {
+        "n": 4,
+        "booked_mean_r": -0.995609,
+        "fwd60_mean_r": -0.51355,
+        "fwd60_hit": 0.5
+      },
+      "11": {
+        "n": 2,
+        "booked_mean_r": 1.335402,
+        "fwd60_mean_r": 0.5587,
+        "fwd60_hit": 1.0
+      },
+      "15": {
+        "n": 5,
+        "booked_mean_r": 0.328161,
+        "fwd60_mean_r": 0.62238,
+        "fwd60_hit": 0.6
+      },
+      "16": {
+        "n": 10,
+        "booked_mean_r": -0.233738,
+        "fwd60_mean_r": -0.51069,
+        "fwd60_hit": 0.3
+      },
+      "17": {
+        "n": 7,
+        "booked_mean_r": -0.624996,
+        "fwd60_mean_r": -0.452143,
+        "fwd60_hit": 0.142857
+      },
+      "18": {
+        "n": 5,
+        "booked_mean_r": 0.084087,
+        "fwd60_mean_r": 0.95762,
+        "fwd60_hit": 0.8
+      },
+      "19": {
+        "n": 6,
+        "booked_mean_r": -0.668676,
+        "fwd60_mean_r": -0.447767,
+        "fwd60_hit": 0.166667
+      },
+      "20": {
+        "n": 1,
+        "booked_mean_r": -1.060071,
+        "fwd60_mean_r": -0.3357,
+        "fwd60_hit": 0.0
+      },
+      "21": {
+        "n": 9,
+        "booked_mean_r": -1.07179,
+        "fwd60_mean_r": -0.354633,
+        "fwd60_hit": 0.333333
+      },
+      "4": {
+        "n": 4,
+        "booked_mean_r": -0.472703,
+        "fwd60_mean_r": 0.386275,
+        "fwd60_hit": 0.75
+      },
+      "5": {
+        "n": 3,
+        "booked_mean_r": -0.195389,
+        "fwd60_mean_r": -0.108767,
+        "fwd60_hit": 0.333333
+      }
+    },
+    "by_usd": {
+      "SHORT_USD": {
+        "n": 84,
+        "booked_mean_r": -0.485417,
+        "fwd60_mean_r": -0.611771,
+        "fwd60_hit": 0.392857
+      },
+      "LONG_USD": {
+        "n": 128,
+        "booked_mean_r": -0.263985,
+        "fwd60_mean_r": 0.104023,
+        "fwd60_hit": 0.476562
+      }
+    },
+    "booked": {
+      "mean_r": null
+    },
+    "rl": {
+      "filled_trades": 212,
+      "vetoed_recorded": 0,
+      "note": "Filled live trades passed the same-side RL gate by construction. Vetoed stub candidates are not persisted in trades/exec_orders."
+    },
+    "live_used_for_model_selection": 0
+  },
+  "contamination": {
+    "live_used_for_fitting": 0,
+    "live_used_for_threshold_search": 0,
+    "thresholds_predeclared": [
+      0.55,
+      0.6,
+      0.65
+    ],
+    "live_still_untouched_holdout": 1
+  }
+}

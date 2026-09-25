@@ -19,6 +19,7 @@ LIVE_CALL_PATH = (
     "seq_model + compute_nn_pred",
     "ai.vote (quant stub and/or API voters) → allow + BUY/SELL",
     "rl_agent.decide (SKIP blocks; BUY/SELL must match AI)",
+    "v2_shadow observe (record-only; exception ignored; return discarded; no authority)",
     "sl_tp_distance_for_entry + position_sizing + notional/risk/USD-direction guards",
     "is_live_trading / open_fill_path → broker | simulate | window_paper",
     "broker market open or local fill; SL/TP placed from fill ± distances",
