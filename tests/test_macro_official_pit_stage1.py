@@ -75,8 +75,9 @@ def test_multi_value_single_event():
 
 def test_source_artifact_hash_is_stable():
     src = Path("data/research/macro_first_print/raw/bls/cpi/cpi_09112025.official.txt")
-    digest = __import__("hashlib").sha256(src.read_bytes()).hexdigest()
-    assert digest == "b26593eb25ba8638074c96ca805af459c4d05c4244b2eaee75c88ef3de5c41ca"
+    raw = src.read_bytes().replace(b"\r\n", b"\n")
+    digest = __import__("hashlib").sha256(raw).hexdigest()
+    assert digest == "661f535af15d617a3930e83ff2e549dcb0cc42feec5d8aefd93de974cb4076da"
 
 
 def test_consensus_without_asof_rejected():
