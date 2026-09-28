@@ -1,0 +1,17 @@
+[Unit]
+Description=Forex research prospective macro collect-due (oneshot)
+Documentation=file:reports/decision_quality/macro_prospective_vps_migration.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/path/to/forex-bot
+EnvironmentFile=-/etc/forex-macro-prospective.env
+Environment=FORWARD_CONSENSUS_COLLECTION_ENABLED=false
+ExecStart=/usr/bin/python3 -m reports.decision_quality.macro_prospective_cli collect-due
+Nice=10
+# One collect-due pass then exit. Do not convert this into a Python daemon.
+
+[Install]
+WantedBy=multi-user.target

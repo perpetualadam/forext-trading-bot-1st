@@ -1,0 +1,17 @@
+{
+  "usd_empsit_2026-10-02": {
+    "event_status": "PRE_WINDOW",
+    "failure_status": null,
+    "armed": true
+  },
+  "usd_cpi_2026-10-14": {
+    "event_status": "PRE_WINDOW",
+    "failure_status": null,
+    "armed": true
+  },
+  "usd_fomc_statement_2026-10-28": {
+    "event_status": "PRE_WINDOW",
+    "failure_status": null,
+    "armed": true
+  }
+}

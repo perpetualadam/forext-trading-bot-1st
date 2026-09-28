@@ -1,0 +1,72 @@
+{
+  "retrieved_at_utc": "2026-09-28T21:35:10Z",
+  "association_rule": "latest_checkpoint_at_or_before_observed_at_utc. The observation keeps its genuine observed_at_utc; the timestamp is never rewritten to the checkpoint clock. Association interval is [checkpoint_utc, next_checkpoint_utc); the last pre-release interval is [T0-5m, T0). Post-T0 observations (observed_at_utc >= T0) are not pre-release and do not capture any pre-release checkpoint. CAPTURED if any qualifying pre-release observation associates to that checkpoint. DUE if now >= checkpoint_utc and now < next_boundary and not CAPTURED. MISSED_NOT_OBSERVED if now >= next_boundary and not CAPTURED. FUTURE if now < checkpoint_utc. Missed is not a zero forecast.",
+  "schedules": [
+    {
+      "macro_event_id": "usd_empsit_2026-10-02",
+      "event_family": "EMPLOYMENT_SITUATION",
+      "event_name": "The Employment Situation",
+      "reference_period": "2026-09",
+      "scheduled_release_local": "2026-10-02T08:30:00",
+      "scheduled_timezone": "America/New_York",
+      "official_source": "BLS",
+      "official_schedule_url": "https://www.bls.gov/schedule/news_release/empsit.htm",
+      "official_clock_basis": "BLS Employment Situation schedule table: Reference Month September 2026, Release Date Oct. 02, 2026, Release Time 08:30 AM. Timezone America/New_York is the BLS national news-release convention; conversion is DST-aware ZoneInfo, not hardcoded EDT/EST.",
+      "schedule_row": {
+        "reference_month": "September 2026",
+        "release_date": "Oct. 02, 2026",
+        "release_time": "08:30 AM"
+      }
+    },
+    {
+      "macro_event_id": "usd_cpi_2026-10-14",
+      "event_family": "CPI",
+      "event_name": "Consumer Price Index",
+      "reference_period": "2026-09",
+      "scheduled_release_local": "2026-10-14T08:30:00",
+      "scheduled_timezone": "America/New_York",
+      "official_source": "BLS",
+      "official_schedule_url": "https://www.bls.gov/schedule/news_release/cpi.htm",
+      "official_clock_basis": "BLS CPI schedule table: Reference Month September 2026, Release Date Oct. 14, 2026, Release Time 08:30 AM. Timezone America/New_York is the BLS national news-release convention; conversion is DST-aware ZoneInfo, not hardcoded EDT/EST.",
+      "schedule_row": {
+        "reference_month": "September 2026",
+        "release_date": "Oct. 14, 2026",
+        "release_time": "08:30 AM"
+      }
+    },
+    {
+      "macro_event_id": "usd_fomc_statement_2026-10-28",
+      "event_family": "FOMC",
+      "event_name": "FOMC statement/decision",
+      "reference_period": "2026-10-27/28",
+      "scheduled_release_local": "2026-10-28T14:00:00",
+      "scheduled_timezone": "America/New_York",
+      "official_source": "Federal Reserve Board",
+      "official_schedule_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "official_clock_basis": "Meeting dates October 27-28 from the official 2026 FOMC calendar (https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm). Statement clock 14:00 America/New_York from the Federal Reserve's own statement release line 'For release at 2:00 p.m.' printed on official FOMC statements (e.g. monetary20260916a1.pdf, 16 Sep 2026). The calendar page lists dates; the 2:00 p.m. clock is the Fed's published statement release time, not a third-party calendar.",
+      "schedule_row": {
+        "meeting_dates": "October 27-28",
+        "statement_day": "2026-10-28",
+        "release_time": "2:00 p.m."
+      }
+    }
+  ],
+  "excerpts": [
+    {
+      "name": "bls_cpi_schedule",
+      "sha256": "3f08729018f860049d400cd4801e15793ef14fb138c1451f5d6cc0addbdc0d39",
+      "path": "data/research/macro/consensus_pit/prospective/manifests/official_schedule_excerpts/bls_cpi_schedule.txt"
+    },
+    {
+      "name": "bls_empsit_schedule",
+      "sha256": "1c2badac79d1548200353668673bd05d3e00d746c467f303c80bd8b38ed92e27",
+      "path": "data/research/macro/consensus_pit/prospective/manifests/official_schedule_excerpts/bls_empsit_schedule.txt"
+    },
+    {
+      "name": "fed_fomc_calendar",
+      "sha256": "9b936d69286afb7d2ab103aac1cd5754e48c0dc6beb0196cf8e71e1100785dc3",
+      "path": "data/research/macro/consensus_pit/prospective/manifests/official_schedule_excerpts/fed_fomc_calendar.txt"
+    }
+  ],
+  "notes": "Official BLS/Fed calendars are T0 authority. Economic-calendar providers are not."
+}

@@ -1,0 +1,31 @@
+[
+  {
+    "macro_event_id": "fixture_empsit_2026-10-02",
+    "event_family": "EMPLOYMENT_SITUATION",
+    "event_name": "Employment Situation",
+    "reference_period": "2026-09",
+    "currency": "USD",
+    "country": "US",
+    "scheduled_release_local": "2026-10-02T08:30:00",
+    "scheduled_timezone": "America/New_York",
+    "scheduled_release_utc": "2026-10-02T12:30:00Z",
+    "observation_window_start_utc": "2026-09-30T12:30:00Z",
+    "observation_window_end_utc": "2026-10-02T12:30:00Z",
+    "official_source": "BLS",
+    "event_status": "POST_RELEASE_OBSERVATION",
+    "checkpoints": {
+      "T0-48h": "2026-09-30T12:30:00Z",
+      "T0-36h": "2026-10-01T00:30:00Z",
+      "T0-24h": "2026-10-01T12:30:00Z",
+      "T0-12h": "2026-10-02T00:30:00Z",
+      "T0-6h": "2026-10-02T06:30:00Z",
+      "T0-4h": "2026-10-02T08:30:00Z",
+      "T0-2h": "2026-10-02T10:30:00Z",
+      "T0-1h": "2026-10-02T11:30:00Z",
+      "T0-30m": "2026-10-02T12:00:00Z",
+      "T0-15m": "2026-10-02T12:15:00Z",
+      "T0-5m": "2026-10-02T12:25:00Z"
+    },
+    "notes": "DRY-RUN FIXTURE. Not a real BLS event."
+  }
+]

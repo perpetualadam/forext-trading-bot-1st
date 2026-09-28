@@ -1,0 +1,1 @@
+provider=fixture_provider_c series=nonfarm_payroll_change unit=persons value=160000

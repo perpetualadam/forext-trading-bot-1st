@@ -1,0 +1,38 @@
+{
+  "window": {
+    "earliest": "2025-09-01T00:00:00Z",
+    "latest": "2026-08-31T23:50:00Z"
+  },
+  "cpi_expected": 11,
+  "cpi_unpublished": 1,
+  "cpi_archived": 10,
+  "cpi_blocked": 1,
+  "cpi_missing_unpublished": 1,
+  "employment_expected": 11,
+  "employment_archived": 11,
+  "employment_blocked": 0,
+  "employment_unpublished": 1,
+  "fomc_expected": 8,
+  "fomc_archived": 8,
+  "fomc_blocked": 0,
+  "total_inventory_rows": 32,
+  "total_archived_events": 29,
+  "total_value_records": 161,
+  "raw_artifacts": 29,
+  "unique_hashes": 29,
+  "revision_records": 33,
+  "irregular_releases": [
+    "usd_cpi_2025-12-18",
+    "usd_empsit_2026-01-09",
+    "usd_empsit_2026-02-11"
+  ],
+  "ambiguous_rejected": [],
+  "blockers": [
+    {
+      "macro_event_id": "usd_cpi_2026-08-12",
+      "url": "https://www.bls.gov/news.release/archives/cpi_08122026.htm",
+      "status": "RETRIEVAL_BLOCKED"
+    }
+  ],
+  "validation_problems": {}
+}

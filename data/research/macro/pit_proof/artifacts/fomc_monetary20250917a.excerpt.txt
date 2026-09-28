@@ -1,0 +1,9 @@
+SOURCE: https://www.federalreserve.gov/newsevents/pressreleases/monetary20250917a.htm
+RETRIEVED_FOR: macro_official_pit_stage1 proof sample
+DATE LINE: September 17, 2025
+RELEASE CLOCK: For release at 2:00 p.m. EDT
+DECISION: lower the target range for the federal funds rate by 1/4 percentage point to 4 to 4-1/4 percent.
+IMPLEMENTATION NOTE: https://www.federalreserve.gov/newsevents/pressreleases/monetary20250917a1.htm
+IMPLEMENTATION DIRECTIVE: maintain the federal funds rate in a target range of 4 to 4-1/4 percent. Effective September 18, 2025.
+PRESS CONFERENCE (SEPARATE EVENT): https://www.federalreserve.gov/monetarypolicy/fomcpresconf20250917.htm
+MINUTES (SEPARATE EVENT, released October 08, 2025): https://www.federalreserve.gov/monetarypolicy/fomcminutes20250917.htm

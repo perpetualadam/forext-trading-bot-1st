@@ -1,0 +1,5 @@
+# Prospective macro collect-due. Replace /path/to/forex-bot.
+# Cron does not start in the repository directory; the wrapper cds there.
+# Interval: every 5 minutes. Late wakes still use current UTC; the application
+# does not backdate missed checkpoints.
+*/5 * * * * /path/to/forex-bot/scripts/run_macro_prospective_collect_due.sh

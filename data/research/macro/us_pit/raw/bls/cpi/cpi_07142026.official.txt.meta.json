@@ -1,0 +1,12 @@
+{
+  "source_url": "https://www.bls.gov/news.release/archives/cpi_07142026.htm",
+  "retrieved_at_utc": "2026-09-28T11:32:01Z",
+  "source_publication_date": "2026-07-14",
+  "release_number": null,
+  "local_raw_filename": "cpi_07142026.official.txt",
+  "sha256": "ac989f5882d0c6b27081e855c9640895d579c4416ea8e87309b6a7a7d4ebdda3",
+  "http_status": 200,
+  "content_type": "text/plain; converted-from-official-html",
+  "bytes": 132689,
+  "hash_changed_from": null
+}

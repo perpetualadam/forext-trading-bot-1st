@@ -1,0 +1,13 @@
+[Unit]
+Description=Forex research prospective macro collect-due every 5 minutes
+Documentation=file:reports/decision_quality/macro_prospective_vps_migration.md
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=5min
+AccuracySec=30s
+Persistent=true
+Unit=forex-macro-prospective.service
+
+[Install]
+WantedBy=timers.target

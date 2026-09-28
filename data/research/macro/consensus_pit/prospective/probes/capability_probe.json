@@ -1,0 +1,19 @@
+{
+  "kind": "SOURCE_AUDIT_PROBE",
+  "live": false,
+  "trading_economics_credentials_present": false,
+  "requests": [
+    {
+      "source_id": "trading_economics",
+      "result": "NO_PROBE_CREDENTIALS_MISSING",
+      "count": 0
+    },
+    {
+      "source_id": "bls_official",
+      "result": "NO_PROBE_DISABLED_FORECAST_SOURCE",
+      "count": 0
+    }
+  ],
+  "total_external_requests": 0,
+  "entered_observations": false
+}

@@ -1,0 +1,5801 @@
+{
+  "eligible_n": 29,
+  "excluded": [
+    {
+      "macro_event_id": "usd_cpi_unpublished_2025-10",
+      "reasons": [
+        "archive_status=OFFICIALLY_UNPUBLISHED",
+        "no_hash",
+        "no_timestamp",
+        "officially_unpublished",
+        "pit_status=UNKNOWN"
+      ]
+    },
+    {
+      "macro_event_id": "usd_cpi_2026-08-12",
+      "reasons": [
+        "archive_status=RETRIEVAL_BLOCKED",
+        "no_hash",
+        "pit_status=UNKNOWN",
+        "retrieval_blocked"
+      ]
+    },
+    {
+      "macro_event_id": "usd_empsit_unpublished_2025-10",
+      "reasons": [
+        "archive_status=OFFICIALLY_UNPUBLISHED",
+        "no_hash",
+        "no_timestamp",
+        "officially_unpublished",
+        "pit_status=UNKNOWN"
+      ]
+    }
+  ],
+  "eligible_by_family": {
+    "CPI": 10,
+    "EMPLOYMENT_SITUATION": 11,
+    "FOMC": 8
+  },
+  "agreement_dist": {
+    "6": 22,
+    "5": 7
+  },
+  "primary_6of6": {
+    "n": 22,
+    "to_15": {
+      "n": 22,
+      "rate": 0.5454545454545454,
+      "ci_low": 0.3181818181818182,
+      "ci_high": 0.7727272727272727,
+      "labels": {
+        "reversal": 10,
+        "continuation": 12
+      }
+    },
+    "to_30": {
+      "n": 22,
+      "rate": 0.45454545454545453,
+      "ci_low": 0.2727272727272727,
+      "ci_high": 0.6818181818181818,
+      "labels": {
+        "continuation": 10,
+        "reversal": 12
+      }
+    },
+    "to_60": {
+      "n": 22,
+      "rate": 0.5454545454545454,
+      "ci_low": 0.36363636363636365,
+      "ci_high": 0.7727272727272727,
+      "labels": {
+        "continuation": 12,
+        "reversal": 10
+      }
+    }
+  },
+  "all_events": {
+    "n": 29,
+    "agreement_dist": {
+      "6": 22,
+      "5": 7,
+      "4": 0,
+      "3": 0
+    },
+    "by_agreement": {
+      "6": {
+        "n": 22,
+        "to_15": {
+          "continuation": 12,
+          "reversal": 10,
+          "flat": 0,
+          "median_signed_usd_pips": -1.7000000000005344,
+          "median_abs_usd_pips": 5.0874999999994674,
+          "median_exec_pips": 0.07499999999988072,
+          "median_per_pair_exec_pips": -0.1999999999996449,
+          "exec_positive": 11,
+          "exec_negative": 11,
+          "exec_flat": 0,
+          "exec_n": 22
+        },
+        "to_30": {
+          "continuation": 10,
+          "reversal": 12,
+          "flat": 0,
+          "median_signed_usd_pips": 3.824999999999712,
+          "median_abs_usd_pips": 4.274999999999141,
+          "median_exec_pips": -2.60000000000038,
+          "median_per_pair_exec_pips": -2.249999999999197,
+          "exec_positive": 8,
+          "exec_negative": 14,
+          "exec_flat": 0,
+          "exec_n": 22
+        },
+        "to_60": {
+          "continuation": 12,
+          "reversal": 10,
+          "flat": 0,
+          "median_signed_usd_pips": 0.33749999999989067,
+          "median_abs_usd_pips": 6.900000000000794,
+          "median_exec_pips": -0.9999999999996123,
+          "median_per_pair_exec_pips": -2.2999999999995246,
+          "exec_positive": 8,
+          "exec_negative": 14,
+          "exec_flat": 0,
+          "exec_n": 22
+        },
+        "to_120": {
+          "continuation": 7,
+          "reversal": 15,
+          "flat": 0,
+          "median_signed_usd_pips": 3.775000000001416,
+          "median_abs_usd_pips": 11.11250000000008,
+          "median_exec_pips": -4.950000000000232,
+          "median_per_pair_exec_pips": -4.300000000000415,
+          "exec_positive": 7,
+          "exec_negative": 15,
+          "exec_flat": 0,
+          "exec_n": 22
+        },
+        "to_240": {
+          "continuation": 12,
+          "reversal": 10,
+          "flat": 0,
+          "median_signed_usd_pips": 6.662499999999794,
+          "median_abs_usd_pips": 17.025000000000787,
+          "median_exec_pips": -1.3749999999998486,
+          "median_per_pair_exec_pips": -2.7999999999994696,
+          "exec_positive": 9,
+          "exec_negative": 13,
+          "exec_flat": 0,
+          "exec_n": 22
+        }
+      },
+      "5": {
+        "n": 7,
+        "to_15": {
+          "continuation": 4,
+          "reversal": 3,
+          "flat": 0,
+          "median_signed_usd_pips": 1.5250000000005537,
+          "median_abs_usd_pips": 3.0249999999998334,
+          "median_exec_pips": 0.3999999999992898,
+          "median_per_pair_exec_pips": -0.9500000000006725,
+          "exec_positive": 4,
+          "exec_negative": 3,
+          "exec_flat": 0,
+          "exec_n": 7
+        },
+        "to_30": {
+          "continuation": 3,
+          "reversal": 4,
+          "flat": 0,
+          "median_signed_usd_pips": 3.9500000000014523,
+          "median_abs_usd_pips": 4.824999999999413,
+          "median_exec_pips": -2.8999999999995696,
+          "median_per_pair_exec_pips": -2.649999999999597,
+          "exec_positive": 3,
+          "exec_negative": 4,
+          "exec_flat": 0,
+          "exec_n": 7
+        },
+        "to_60": {
+          "continuation": 4,
+          "reversal": 3,
+          "flat": 0,
+          "median_signed_usd_pips": 1.5249999999988884,
+          "median_abs_usd_pips": 6.87499999999841,
+          "median_exec_pips": 2.949999999999342,
+          "median_per_pair_exec_pips": -0.20000000000075513,
+          "exec_positive": 4,
+          "exec_negative": 3,
+          "exec_flat": 0,
+          "exec_n": 7
+        },
+        "to_120": {
+          "continuation": 3,
+          "reversal": 4,
+          "flat": 0,
+          "median_signed_usd_pips": 3.7750000000021267,
+          "median_abs_usd_pips": 9.92499999999783,
+          "median_exec_pips": -2.0500000000001073,
+          "median_per_pair_exec_pips": -2.0500000000001073,
+          "exec_positive": 3,
+          "exec_negative": 4,
+          "exec_flat": 0,
+          "exec_n": 7
+        },
+        "to_240": {
+          "continuation": 3,
+          "reversal": 4,
+          "flat": 0,
+          "median_signed_usd_pips": 6.849999999999357,
+          "median_abs_usd_pips": 8.97500000000051,
+          "median_exec_pips": -2.8500000000003523,
+          "median_per_pair_exec_pips": -3.2999999999999696,
+          "exec_positive": 2,
+          "exec_negative": 5,
+          "exec_flat": 0,
+          "exec_n": 7
+        }
+      },
+      "4": {
+        "n": 0,
+        "to_15": {
+          "continuation": 0,
+          "reversal": 0,
+          "flat": 0,
+          "median_signed_usd_pips": null,
+          "median_abs_usd_pips": null,
+          "median_exec_pips": null,
+          "median_per_pair_exec_pips": null,
+          "exec_positive": 0,
+          "exec_negative": 0,
+          "exec_flat": 0,
+          "exec_n": 0
+        },
+        "to_30": {
+          "continuation": 0,
+          "reversal": 0,
+          "flat": 0,
+          "median_signed_usd_pips": null,
+          "median_abs_usd_pips": null,
+          "median_exec_pips": null,
+          "median_per_pair_exec_pips": null,
+          "exec_positive": 0,
+          "exec_negative": 0,
+          "exec_flat": 0,
+          "exec_n": 0
+        },
+        "to_60": {
+          "continuation": 0,
+          "reversal": 0,
+          "flat": 0,
+          "median_signed_usd_pips": null,
+          "median_abs_usd_pips": null,
+          "median_exec_pips": null,
+          "median_per_pair_exec_pips": null,
+          "exec_positive": 0,
+          "exec_negative": 0,
+          "exec_flat": 0,
+          "exec_n": 0
+        },
+        "to_120": {
+          "continuation": 0,
+          "reversal": 0,
+          "flat": 0,
+          "median_signed_usd_pips": null,
+          "median_abs_usd_pips": null,
+          "median_exec_pips": null,
+          "median_per_pair_exec_pips": null,
+          "exec_positive": 0,
+          "exec_negative": 0,
+          "exec_flat": 0,
+          "exec_n": 0
+        },
+        "to_240": {
+          "continuation": 0,
+          "reversal": 0,
+          "flat": 0,
+          "median_signed_usd_pips": null,
+          "median_abs_usd_pips": null,
+          "median_exec_pips": null,
+          "median_per_pair_exec_pips": null,
+          "exec_positive": 0,
+          "exec_negative": 0,
+          "exec_flat": 0,
+          "exec_n": 0
+        }
+      },
+      "3": {
+        "n": 0,
+        "to_15": {
+          "continuation": 0,
+          "reversal": 0,
+          "flat": 0,
+          "median_signed_usd_pips": null,
+          "median_abs_usd_pips": null,
+          "median_exec_pips": null,
+          "median_per_pair_exec_pips": null,
+          "exec_positive": 0,
+          "exec_negative": 0,
+          "exec_flat": 0,
+          "exec_n": 0
+        },
+        "to_30": {
+          "continuation": 0,
+          "reversal": 0,
+          "flat": 0,
+          "median_signed_usd_pips": null,
+          "median_abs_usd_pips": null,
+          "median_exec_pips": null,
+          "median_per_pair_exec_pips": null,
+          "exec_positive": 0,
+          "exec_negative": 0,
+          "exec_flat": 0,
+          "exec_n": 0
+        },
+        "to_60": {
+          "continuation": 0,
+          "reversal": 0,
+          "flat": 0,
+          "median_signed_usd_pips": null,
+          "median_abs_usd_pips": null,
+          "median_exec_pips": null,
+          "median_per_pair_exec_pips": null,
+          "exec_positive": 0,
+          "exec_negative": 0,
+          "exec_flat": 0,
+          "exec_n": 0
+        },
+        "to_120": {
+          "continuation": 0,
+          "reversal": 0,
+          "flat": 0,
+          "median_signed_usd_pips": null,
+          "median_abs_usd_pips": null,
+          "median_exec_pips": null,
+          "median_per_pair_exec_pips": null,
+          "exec_positive": 0,
+          "exec_negative": 0,
+          "exec_flat": 0,
+          "exec_n": 0
+        },
+        "to_240": {
+          "continuation": 0,
+          "reversal": 0,
+          "flat": 0,
+          "median_signed_usd_pips": null,
+          "median_abs_usd_pips": null,
+          "median_exec_pips": null,
+          "median_per_pair_exec_pips": null,
+          "exec_positive": 0,
+          "exec_negative": 0,
+          "exec_flat": 0,
+          "exec_n": 0
+        }
+      }
+    }
+  },
+  "families": {
+    "CPI": {
+      "n": 10,
+      "agreement_dist": {
+        "6": 7,
+        "5": 3,
+        "4": 0,
+        "3": 0
+      },
+      "by_agreement": {
+        "6": {
+          "n": 7,
+          "to_15": {
+            "continuation": 3,
+            "reversal": 4,
+            "flat": 0,
+            "median_signed_usd_pips": -0.14999999999931735,
+            "median_abs_usd_pips": 2.849999999999242,
+            "median_exec_pips": -1.9499999999994522,
+            "median_per_pair_exec_pips": -2.2500000000003073,
+            "exec_positive": 3,
+            "exec_negative": 4,
+            "exec_flat": 0,
+            "exec_n": 7
+          },
+          "to_30": {
+            "continuation": 4,
+            "reversal": 3,
+            "flat": 0,
+            "median_signed_usd_pips": 4.775000000000196,
+            "median_abs_usd_pips": 5.6750000000006295,
+            "median_exec_pips": -1.2499999999993072,
+            "median_per_pair_exec_pips": -2.1999999999988695,
+            "exec_positive": 2,
+            "exec_negative": 5,
+            "exec_flat": 0,
+            "exec_n": 7
+          },
+          "to_60": {
+            "continuation": 5,
+            "reversal": 2,
+            "flat": 0,
+            "median_signed_usd_pips": -0.6500000000003725,
+            "median_abs_usd_pips": 2.6249999999994333,
+            "median_exec_pips": -0.7000000000019213,
+            "median_per_pair_exec_pips": -1.60000000000049,
+            "exec_positive": 2,
+            "exec_negative": 5,
+            "exec_flat": 0,
+            "exec_n": 7
+          },
+          "to_120": {
+            "continuation": 1,
+            "reversal": 6,
+            "flat": 0,
+            "median_signed_usd_pips": 3.9500000000014523,
+            "median_abs_usd_pips": 4.925000000000068,
+            "median_exec_pips": -5.7000000000007045,
+            "median_per_pair_exec_pips": -6.6000000000010495,
+            "exec_positive": 1,
+            "exec_negative": 6,
+            "exec_flat": 0,
+            "exec_n": 7
+          },
+          "to_240": {
+            "continuation": 3,
+            "reversal": 4,
+            "flat": 0,
+            "median_signed_usd_pips": 15.600000000000058,
+            "median_abs_usd_pips": 16.800000000000146,
+            "median_exec_pips": -9.549999999999837,
+            "median_per_pair_exec_pips": -2.5500000000000522,
+            "exec_positive": 3,
+            "exec_negative": 4,
+            "exec_flat": 0,
+            "exec_n": 7
+          }
+        },
+        "5": {
+          "n": 3,
+          "to_15": {
+            "continuation": 2,
+            "reversal": 1,
+            "flat": 0,
+            "median_signed_usd_pips": -3.0249999999998334,
+            "median_abs_usd_pips": 3.0249999999998334,
+            "median_exec_pips": 1.4999999999992797,
+            "median_per_pair_exec_pips": 0.6999999999995898,
+            "exec_positive": 2,
+            "exec_negative": 1,
+            "exec_flat": 0,
+            "exec_n": 3
+          },
+          "to_30": {
+            "continuation": 1,
+            "reversal": 2,
+            "flat": 0,
+            "median_signed_usd_pips": 1.174999999999926,
+            "median_abs_usd_pips": 3.9500000000014523,
+            "median_exec_pips": -2.8999999999995696,
+            "median_per_pair_exec_pips": -2.0999999999993246,
+            "exec_positive": 1,
+            "exec_negative": 2,
+            "exec_flat": 0,
+            "exec_n": 3
+          },
+          "to_60": {
+            "continuation": 2,
+            "reversal": 1,
+            "flat": 0,
+            "median_signed_usd_pips": -6.87499999999841,
+            "median_abs_usd_pips": 6.87499999999841,
+            "median_exec_pips": 5.299999999999194,
+            "median_per_pair_exec_pips": 4.850000000000132,
+            "exec_positive": 2,
+            "exec_negative": 1,
+            "exec_flat": 0,
+            "exec_n": 3
+          },
+          "to_120": {
+            "continuation": 2,
+            "reversal": 1,
+            "flat": 0,
+            "median_signed_usd_pips": -6.699999999999484,
+            "median_abs_usd_pips": 6.699999999999484,
+            "median_exec_pips": 5.199999999999094,
+            "median_per_pair_exec_pips": 3.7999999999999146,
+            "exec_positive": 2,
+            "exec_negative": 1,
+            "exec_flat": 0,
+            "exec_n": 3
+          },
+          "to_240": {
+            "continuation": 1,
+            "reversal": 2,
+            "flat": 0,
+            "median_signed_usd_pips": 6.849999999999357,
+            "median_abs_usd_pips": 6.849999999999357,
+            "median_exec_pips": -8.449999999999847,
+            "median_per_pair_exec_pips": -7.150000000000212,
+            "exec_positive": 0,
+            "exec_negative": 3,
+            "exec_flat": 0,
+            "exec_n": 3
+          }
+        },
+        "4": {
+          "n": 0,
+          "to_15": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_30": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_60": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_120": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_240": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          }
+        },
+        "3": {
+          "n": 0,
+          "to_15": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_30": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_60": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_120": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_240": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          }
+        }
+      }
+    },
+    "EMPLOYMENT_SITUATION": {
+      "n": 11,
+      "agreement_dist": {
+        "6": 8,
+        "5": 3,
+        "4": 0,
+        "3": 0
+      },
+      "by_agreement": {
+        "6": {
+          "n": 8,
+          "to_15": {
+            "continuation": 4,
+            "reversal": 4,
+            "flat": 0,
+            "median_signed_usd_pips": -4.899999999999904,
+            "median_abs_usd_pips": 5.999999999999773,
+            "median_exec_pips": -1.124999999999876,
+            "median_per_pair_exec_pips": -2.849999999999797,
+            "exec_positive": 3,
+            "exec_negative": 5,
+            "exec_flat": 0,
+            "exec_n": 8
+          },
+          "to_30": {
+            "continuation": 1,
+            "reversal": 7,
+            "flat": 0,
+            "median_signed_usd_pips": 1.024999999999776,
+            "median_abs_usd_pips": 2.687500000000398,
+            "median_exec_pips": -3.925000000000456,
+            "median_per_pair_exec_pips": -4.800000000000915,
+            "exec_positive": 1,
+            "exec_negative": 7,
+            "exec_flat": 0,
+            "exec_n": 8
+          },
+          "to_60": {
+            "continuation": 2,
+            "reversal": 6,
+            "flat": 0,
+            "median_signed_usd_pips": 1.4499999999997848,
+            "median_abs_usd_pips": 6.62500000000038,
+            "median_exec_pips": -6.0749999999998305,
+            "median_per_pair_exec_pips": -7.500000000000817,
+            "exec_positive": 1,
+            "exec_negative": 7,
+            "exec_flat": 0,
+            "exec_n": 8
+          },
+          "to_120": {
+            "continuation": 1,
+            "reversal": 7,
+            "flat": 0,
+            "median_signed_usd_pips": 4.0999999999996595,
+            "median_abs_usd_pips": 5.824999999999858,
+            "median_exec_pips": -7.3750000000005755,
+            "median_per_pair_exec_pips": -7.900000000000129,
+            "exec_positive": 1,
+            "exec_negative": 7,
+            "exec_flat": 0,
+            "exec_n": 8
+          },
+          "to_240": {
+            "continuation": 4,
+            "reversal": 4,
+            "flat": 0,
+            "median_signed_usd_pips": 2.8125000000001066,
+            "median_abs_usd_pips": 7.97499999999951,
+            "median_exec_pips": -4.3999999999999595,
+            "median_per_pair_exec_pips": -7.599999999999829,
+            "exec_positive": 2,
+            "exec_negative": 6,
+            "exec_flat": 0,
+            "exec_n": 8
+          }
+        },
+        "5": {
+          "n": 3,
+          "to_15": {
+            "continuation": 2,
+            "reversal": 1,
+            "flat": 0,
+            "median_signed_usd_pips": 1.5250000000005537,
+            "median_abs_usd_pips": 1.874999999999516,
+            "median_exec_pips": 0.3999999999992898,
+            "median_per_pair_exec_pips": -0.10000000000038867,
+            "exec_positive": 2,
+            "exec_negative": 1,
+            "exec_flat": 0,
+            "exec_n": 3
+          },
+          "to_30": {
+            "continuation": 2,
+            "reversal": 1,
+            "flat": 0,
+            "median_signed_usd_pips": 8.324999999999605,
+            "median_abs_usd_pips": 8.324999999999605,
+            "median_exec_pips": 2.6999999999999247,
+            "median_per_pair_exec_pips": 2.6999999999999247,
+            "exec_positive": 2,
+            "exec_negative": 1,
+            "exec_flat": 0,
+            "exec_n": 3
+          },
+          "to_60": {
+            "continuation": 2,
+            "reversal": 1,
+            "flat": 0,
+            "median_signed_usd_pips": 1.5249999999988884,
+            "median_abs_usd_pips": 4.749999999998922,
+            "median_exec_pips": 2.949999999999342,
+            "median_per_pair_exec_pips": 5.650000000000199,
+            "exec_positive": 2,
+            "exec_negative": 1,
+            "exec_flat": 0,
+            "exec_n": 3
+          },
+          "to_120": {
+            "continuation": 1,
+            "reversal": 2,
+            "flat": 0,
+            "median_signed_usd_pips": 9.92499999999783,
+            "median_abs_usd_pips": 9.92499999999783,
+            "median_exec_pips": -2.0500000000001073,
+            "median_per_pair_exec_pips": -2.0500000000001073,
+            "exec_positive": 1,
+            "exec_negative": 2,
+            "exec_flat": 0,
+            "exec_n": 3
+          },
+          "to_240": {
+            "continuation": 2,
+            "reversal": 1,
+            "flat": 0,
+            "median_signed_usd_pips": 1.3499999999994072,
+            "median_abs_usd_pips": 16.049999999999677,
+            "median_exec_pips": 14.250000000000096,
+            "median_per_pair_exec_pips": 14.250000000000096,
+            "exec_positive": 2,
+            "exec_negative": 1,
+            "exec_flat": 0,
+            "exec_n": 3
+          }
+        },
+        "4": {
+          "n": 0,
+          "to_15": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_30": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_60": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_120": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_240": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          }
+        },
+        "3": {
+          "n": 0,
+          "to_15": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_30": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_60": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_120": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_240": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          }
+        }
+      }
+    },
+    "FOMC": {
+      "n": 8,
+      "agreement_dist": {
+        "6": 7,
+        "5": 1,
+        "4": 0,
+        "3": 0
+      },
+      "by_agreement": {
+        "6": {
+          "n": 7,
+          "to_15": {
+            "continuation": 5,
+            "reversal": 2,
+            "flat": 0,
+            "median_signed_usd_pips": 1.8250000000008537,
+            "median_abs_usd_pips": 5.149999999999322,
+            "median_exec_pips": 3.249999999999642,
+            "median_per_pair_exec_pips": 2.9000000000001247,
+            "exec_positive": 5,
+            "exec_negative": 2,
+            "exec_flat": 0,
+            "exec_n": 7
+          },
+          "to_30": {
+            "continuation": 5,
+            "reversal": 2,
+            "flat": 0,
+            "median_signed_usd_pips": 4.249999999998977,
+            "median_abs_usd_pips": 4.249999999998977,
+            "median_exec_pips": 1.9000000000002348,
+            "median_per_pair_exec_pips": 0.8500000000000174,
+            "exec_positive": 5,
+            "exec_negative": 2,
+            "exec_flat": 0,
+            "exec_n": 7
+          },
+          "to_60": {
+            "continuation": 5,
+            "reversal": 2,
+            "flat": 0,
+            "median_signed_usd_pips": 6.450000000000622,
+            "median_abs_usd_pips": 26.875000000000647,
+            "median_exec_pips": 9.399999999999409,
+            "median_per_pair_exec_pips": 6.849999999999912,
+            "exec_positive": 5,
+            "exec_negative": 2,
+            "exec_flat": 0,
+            "exec_n": 7
+          },
+          "to_120": {
+            "continuation": 5,
+            "reversal": 2,
+            "flat": 0,
+            "median_signed_usd_pips": 3.60000000000138,
+            "median_abs_usd_pips": 35.299999999999216,
+            "median_exec_pips": 13.94999999999924,
+            "median_per_pair_exec_pips": 13.599999999999724,
+            "exec_positive": 5,
+            "exec_negative": 2,
+            "exec_flat": 0,
+            "exec_n": 7
+          },
+          "to_240": {
+            "continuation": 5,
+            "reversal": 2,
+            "flat": 0,
+            "median_signed_usd_pips": 3.8000000000004697,
+            "median_abs_usd_pips": 31.70000000000117,
+            "median_exec_pips": 23.450000000001303,
+            "median_per_pair_exec_pips": 12.699999999999312,
+            "exec_positive": 4,
+            "exec_negative": 3,
+            "exec_flat": 0,
+            "exec_n": 7
+          }
+        },
+        "5": {
+          "n": 1,
+          "to_15": {
+            "continuation": 0,
+            "reversal": 1,
+            "flat": 0,
+            "median_signed_usd_pips": 4.65000000000011,
+            "median_abs_usd_pips": 4.65000000000011,
+            "median_exec_pips": -6.249999999999067,
+            "median_per_pair_exec_pips": -6.249999999999067,
+            "exec_positive": 0,
+            "exec_negative": 1,
+            "exec_flat": 0,
+            "exec_n": 1
+          },
+          "to_30": {
+            "continuation": 0,
+            "reversal": 1,
+            "flat": 0,
+            "median_signed_usd_pips": 6.899999999999684,
+            "median_abs_usd_pips": 6.899999999999684,
+            "median_exec_pips": -8.400000000000073,
+            "median_per_pair_exec_pips": -8.400000000000073,
+            "exec_positive": 0,
+            "exec_negative": 1,
+            "exec_flat": 0,
+            "exec_n": 1
+          },
+          "to_60": {
+            "continuation": 0,
+            "reversal": 1,
+            "flat": 0,
+            "median_signed_usd_pips": 36.57500000000083,
+            "median_abs_usd_pips": 36.57500000000083,
+            "median_exec_pips": -38.149999999999416,
+            "median_per_pair_exec_pips": -38.149999999999416,
+            "exec_positive": 0,
+            "exec_negative": 1,
+            "exec_flat": 0,
+            "exec_n": 1
+          },
+          "to_120": {
+            "continuation": 0,
+            "reversal": 1,
+            "flat": 0,
+            "median_signed_usd_pips": 49.09999999999988,
+            "median_abs_usd_pips": 49.09999999999988,
+            "median_exec_pips": -50.65000000000002,
+            "median_per_pair_exec_pips": -50.65000000000002,
+            "exec_positive": 0,
+            "exec_negative": 1,
+            "exec_flat": 0,
+            "exec_n": 1
+          },
+          "to_240": {
+            "continuation": 0,
+            "reversal": 1,
+            "flat": 0,
+            "median_signed_usd_pips": 44.775000000000496,
+            "median_abs_usd_pips": 44.775000000000496,
+            "median_exec_pips": -49.89999999999897,
+            "median_per_pair_exec_pips": -49.89999999999897,
+            "exec_positive": 0,
+            "exec_negative": 1,
+            "exec_flat": 0,
+            "exec_n": 1
+          }
+        },
+        "4": {
+          "n": 0,
+          "to_15": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_30": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_60": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_120": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_240": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          }
+        },
+        "3": {
+          "n": 0,
+          "to_15": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_30": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_60": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_120": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          },
+          "to_240": {
+            "continuation": 0,
+            "reversal": 0,
+            "flat": 0,
+            "median_signed_usd_pips": null,
+            "median_abs_usd_pips": null,
+            "median_exec_pips": null,
+            "median_per_pair_exec_pips": null,
+            "exec_positive": 0,
+            "exec_negative": 0,
+            "exec_flat": 0,
+            "exec_n": 0
+          }
+        }
+      }
+    }
+  },
+  "controls": {
+    "n": 458,
+    "summary": {
+      "n": 458,
+      "agreement_dist": {
+        "6": 197,
+        "5": 120,
+        "4": 91,
+        "3": 49
+      },
+      "by_agreement": {
+        "6": {
+          "n": 197,
+          "to_15": {
+            "continuation": 90,
+            "reversal": 106,
+            "flat": 1,
+            "median_signed_usd_pips": 0.12499999999970868,
+            "median_abs_usd_pips": 2.074999999999161,
+            "median_exec_pips": -1.7500000000003624,
+            "median_per_pair_exec_pips": -1.6999999999998128,
+            "exec_positive": 55,
+            "exec_negative": 142,
+            "exec_flat": 0,
+            "exec_n": 197
+          },
+          "to_30": {
+            "continuation": 105,
+            "reversal": 92,
+            "flat": 0,
+            "median_signed_usd_pips": 0.6750000000003364,
+            "median_abs_usd_pips": 3.0749999999990507,
+            "median_exec_pips": -1.0999999999994348,
+            "median_per_pair_exec_pips": -1.3999999999981139,
+            "exec_positive": 70,
+            "exec_negative": 126,
+            "exec_flat": 1,
+            "exec_n": 197
+          },
+          "to_60": {
+            "continuation": 89,
+            "reversal": 108,
+            "flat": 0,
+            "median_signed_usd_pips": 0.4750000000014465,
+            "median_abs_usd_pips": 5.349999999997923,
+            "median_exec_pips": -2.449999999999952,
+            "median_per_pair_exec_pips": -2.300000000000635,
+            "exec_positive": 71,
+            "exec_negative": 126,
+            "exec_flat": 0,
+            "exec_n": 197
+          },
+          "to_120": {
+            "continuation": 85,
+            "reversal": 111,
+            "flat": 1,
+            "median_signed_usd_pips": 0.024999999999897327,
+            "median_abs_usd_pips": 7.899999999999574,
+            "median_exec_pips": -3.3500000000008523,
+            "median_per_pair_exec_pips": -3.0000000000001137,
+            "exec_positive": 70,
+            "exec_negative": 126,
+            "exec_flat": 1,
+            "exec_n": 197
+          },
+          "to_240": {
+            "continuation": 81,
+            "reversal": 115,
+            "flat": 1,
+            "median_signed_usd_pips": 1.2750000000008588,
+            "median_abs_usd_pips": 10.687499999999662,
+            "median_exec_pips": -4.300000000000037,
+            "median_per_pair_exec_pips": -3.7999999999988043,
+            "exec_positive": 77,
+            "exec_negative": 119,
+            "exec_flat": 0,
+            "exec_n": 196
+          }
+        },
+        "5": {
+          "n": 120,
+          "to_15": {
+            "continuation": 60,
+            "reversal": 59,
+            "flat": 1,
+            "median_signed_usd_pips": 0.050000000000549605,
+            "median_abs_usd_pips": 1.6750000000004261,
+            "median_exec_pips": -1.6250000000003761,
+            "median_per_pair_exec_pips": -1.4999999999998348,
+            "exec_positive": 28,
+            "exec_negative": 91,
+            "exec_flat": 1,
+            "exec_n": 120
+          },
+          "to_30": {
+            "continuation": 55,
+            "reversal": 65,
+            "flat": 0,
+            "median_signed_usd_pips": -0.27499999999958114,
+            "median_abs_usd_pips": 3.7625000000004905,
+            "median_exec_pips": -1.9249999999994993,
+            "median_per_pair_exec_pips": -1.7000000000000348,
+            "exec_positive": 45,
+            "exec_negative": 74,
+            "exec_flat": 1,
+            "exec_n": 120
+          },
+          "to_60": {
+            "continuation": 63,
+            "reversal": 57,
+            "flat": 0,
+            "median_signed_usd_pips": -0.6875000000012843,
+            "median_abs_usd_pips": 5.8750000000006075,
+            "median_exec_pips": -1.4749999999993935,
+            "median_per_pair_exec_pips": -1.4999999999992797,
+            "exec_positive": 48,
+            "exec_negative": 72,
+            "exec_flat": 0,
+            "exec_n": 120
+          },
+          "to_120": {
+            "continuation": 63,
+            "reversal": 57,
+            "flat": 0,
+            "median_signed_usd_pips": -2.6000000000005463,
+            "median_abs_usd_pips": 8.412500000000435,
+            "median_exec_pips": -0.5999999999997674,
+            "median_per_pair_exec_pips": -1.7999999999984695,
+            "exec_positive": 57,
+            "exec_negative": 63,
+            "exec_flat": 0,
+            "exec_n": 120
+          },
+          "to_240": {
+            "continuation": 56,
+            "reversal": 64,
+            "flat": 0,
+            "median_signed_usd_pips": -1.5375000000009131,
+            "median_abs_usd_pips": 9.49999999999951,
+            "median_exec_pips": -3.224999999999756,
+            "median_per_pair_exec_pips": -3.2500000000002416,
+            "exec_positive": 49,
+            "exec_negative": 71,
+            "exec_flat": 0,
+            "exec_n": 120
+          }
+        },
+        "4": {
+          "n": 91,
+          "to_15": {
+            "continuation": 44,
+            "reversal": 47,
+            "flat": 0,
+            "median_signed_usd_pips": 0.2500000000005276,
+            "median_abs_usd_pips": 1.8500000000010175,
+            "median_exec_pips": -1.749999999999674,
+            "median_per_pair_exec_pips": -1.7000000000000348,
+            "exec_positive": 23,
+            "exec_negative": 67,
+            "exec_flat": 1,
+            "exec_n": 91
+          },
+          "to_30": {
+            "continuation": 40,
+            "reversal": 51,
+            "flat": 0,
+            "median_signed_usd_pips": 0.09999999999950049,
+            "median_abs_usd_pips": 3.0000000000012905,
+            "median_exec_pips": -2.3000000000000798,
+            "median_per_pair_exec_pips": -1.9500000000000073,
+            "exec_positive": 32,
+            "exec_negative": 59,
+            "exec_flat": 0,
+            "exec_n": 91
+          },
+          "to_60": {
+            "continuation": 45,
+            "reversal": 46,
+            "flat": 0,
+            "median_signed_usd_pips": -0.14999999999987246,
+            "median_abs_usd_pips": 4.049999999999887,
+            "median_exec_pips": -1.6500000000002624,
+            "median_per_pair_exec_pips": -2.100000000000435,
+            "exec_positive": 33,
+            "exec_negative": 58,
+            "exec_flat": 0,
+            "exec_n": 91
+          },
+          "to_120": {
+            "continuation": 38,
+            "reversal": 52,
+            "flat": 1,
+            "median_signed_usd_pips": 0.024999999999053557,
+            "median_abs_usd_pips": 6.249999999999867,
+            "median_exec_pips": -2.300000000000635,
+            "median_per_pair_exec_pips": -3.450000000000397,
+            "exec_positive": 31,
+            "exec_negative": 60,
+            "exec_flat": 0,
+            "exec_n": 91
+          },
+          "to_240": {
+            "continuation": 43,
+            "reversal": 48,
+            "flat": 0,
+            "median_signed_usd_pips": -0.10000000000176534,
+            "median_abs_usd_pips": 9.299999999999864,
+            "median_exec_pips": -2.000000000000335,
+            "median_per_pair_exec_pips": -4.300000000000415,
+            "exec_positive": 39,
+            "exec_negative": 52,
+            "exec_flat": 0,
+            "exec_n": 91
+          }
+        },
+        "3": {
+          "n": 49,
+          "to_15": {
+            "continuation": 26,
+            "reversal": 23,
+            "flat": 0,
+            "median_signed_usd_pips": -0.5250000000012189,
+            "median_abs_usd_pips": 1.8000000000001348,
+            "median_exec_pips": -1.1500000000008725,
+            "median_per_pair_exec_pips": -1.4500000000004176,
+            "exec_positive": 15,
+            "exec_negative": 34,
+            "exec_flat": 0,
+            "exec_n": 49
+          },
+          "to_30": {
+            "continuation": 25,
+            "reversal": 24,
+            "flat": 0,
+            "median_signed_usd_pips": -0.1250000000002638,
+            "median_abs_usd_pips": 3.649999999999487,
+            "median_exec_pips": -1.5999999999993797,
+            "median_per_pair_exec_pips": -1.2000000000000899,
+            "exec_positive": 17,
+            "exec_negative": 32,
+            "exec_flat": 0,
+            "exec_n": 49
+          },
+          "to_60": {
+            "continuation": 30,
+            "reversal": 19,
+            "flat": 0,
+            "median_signed_usd_pips": 0.24999999999830713,
+            "median_abs_usd_pips": 3.4250000000002334,
+            "median_exec_pips": -0.700000000000145,
+            "median_per_pair_exec_pips": -0.40000000000040004,
+            "exec_positive": 23,
+            "exec_negative": 26,
+            "exec_flat": 0,
+            "exec_n": 49
+          },
+          "to_120": {
+            "continuation": 32,
+            "reversal": 17,
+            "flat": 0,
+            "median_signed_usd_pips": 2.6249999999994333,
+            "median_abs_usd_pips": 7.47500000000012,
+            "median_exec_pips": 2.0500000000012175,
+            "median_per_pair_exec_pips": 0.30000000000085514,
+            "exec_positive": 28,
+            "exec_negative": 20,
+            "exec_flat": 1,
+            "exec_n": 49
+          },
+          "to_240": {
+            "continuation": 26,
+            "reversal": 22,
+            "flat": 1,
+            "median_signed_usd_pips": 3.9874999999998106,
+            "median_abs_usd_pips": 10.887500000000339,
+            "median_exec_pips": -0.2250000000009189,
+            "median_per_pair_exec_pips": -5.551115123125783e-13,
+            "exec_positive": 23,
+            "exec_negative": 25,
+            "exec_flat": 0,
+            "exec_n": 48
+          }
+        }
+      }
+    },
+    "primary_6of6": {
+      "n": 197,
+      "to_15": {
+        "n": 197,
+        "rate": 0.45685279187817257,
+        "ci_low": 0.38578680203045684,
+        "ci_high": 0.5228426395939086
+      },
+      "to_30": {
+        "n": 197,
+        "rate": 0.5329949238578681,
+        "ci_low": 0.4619289340101523,
+        "ci_high": 0.5989847715736041
+      },
+      "to_60": {
+        "n": 197,
+        "rate": 0.4517766497461929,
+        "ci_low": 0.38578680203045684,
+        "ci_high": 0.5228426395939086
+      }
+    }
+  },
+  "magnitude_tertiles_exploratory": {
+    "low": {
+      "n": 10,
+      "median_remaining_abs_5_to_60": 9.599999999999609
+    },
+    "mid": {
+      "n": 9,
+      "median_remaining_abs_5_to_60": 5.225000000000923
+    },
+    "high": {
+      "n": 10,
+      "median_remaining_abs_5_to_60": 6.887499999999602
+    }
+  },
+  "events": [
+    {
+      "macro_event_id": "usd_cpi_2025-09-11",
+      "family": "CPI",
+      "t0": "2025-09-11T12:30:00Z",
+      "D": "2025-09-11T12:35:00Z",
+      "feature_bar_start": "2025-09-11T12:30:00Z",
+      "feature_bar_end": "2025-09-11T12:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -32.049999999999024,
+        "GBP_USD": -21.650000000001945,
+        "USD_JPY": -40.20000000000152,
+        "AUD_USD": -12.499999999999734,
+        "USD_CAD": -14.250000000000096,
+        "USD_CHF": -17.74999999999971
+      },
+      "first5_median_usd_pips": -19.700000000000827,
+      "first5_abs_median_usd_pips": 19.700000000000827,
+      "first5_usd_sign": -1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.7000000000000348,
+        "GBP_USD": 1.9999999999997797,
+        "USD_JPY": 1.6000000000019554,
+        "AUD_USD": 1.40000000000029,
+        "USD_CAD": 1.7999999999984695,
+        "USD_CHF": 1.7000000000000348
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": 10.449999999999626,
+            "GBP_USD": 8.650000000001157,
+            "USD_JPY": 14.850000000001273,
+            "AUD_USD": 6.650000000000267,
+            "USD_CAD": 2.000000000002,
+            "USD_CHF": 6.9499999999989015
+          },
+          "median": 7.800000000000029,
+          "abs_median": 7.800000000000029
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 0.4999999999988347,
+            "GBP_USD": -1.6499999999997073,
+            "USD_JPY": 7.050000000000978,
+            "AUD_USD": -3.8999999999989043,
+            "USD_CAD": -9.099999999999664,
+            "USD_CHF": 3.549999999999942
+          },
+          "median": -0.5750000000004363,
+          "abs_median": 0.5750000000004363
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -9.300000000003195,
+            "GBP_USD": -0.44999999999850715,
+            "USD_JPY": 4.999999999998295,
+            "AUD_USD": -3.149999999999542,
+            "USD_CAD": -2.7500000000002522,
+            "USD_CHF": 2.7500000000002522
+          },
+          "median": -1.5999999999993797,
+          "abs_median": 1.5999999999993797
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -16.100000000003334,
+            "GBP_USD": -15.449999999999076,
+            "USD_JPY": -29.49999999999875,
+            "AUD_USD": -28.15000000000012,
+            "USD_CAD": -21.050000000000235,
+            "USD_CHF": -13.600000000000279
+          },
+          "median": -18.575000000001786,
+          "abs_median": 18.575000000001786
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -17.700000000000493,
+            "GBP_USD": -33.599999999998076,
+            "USD_JPY": -41.849999999999454,
+            "AUD_USD": -43.64999999999952,
+            "USD_CAD": -34.59999999999796,
+            "USD_CHF": -15.899999999999803
+          },
+          "median": -34.09999999999802,
+          "abs_median": 34.09999999999802
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": -12.199999999999989,
+            "GBP_USD": -10.40000000000152,
+            "USD_JPY": -16.500000000002046,
+            "AUD_USD": -8.00000000000023,
+            "USD_CAD": -3.8000000000004697,
+            "USD_CHF": -8.399999999999519
+          },
+          "median": -9.400000000000519
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -2.0999999999982144,
+            "GBP_USD": -0.40000000000040004,
+            "USD_JPY": -8.70000000000175,
+            "AUD_USD": 2.5999999999992696,
+            "USD_CAD": 7.200000000000539,
+            "USD_CHF": -5.1000000000001044
+          },
+          "median": -1.2499999999993072
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 7.7000000000015945,
+            "GBP_USD": -1.500000000000945,
+            "USD_JPY": -6.499999999999773,
+            "AUD_USD": 1.7999999999995797,
+            "USD_CAD": 0.9999999999998899,
+            "USD_CHF": -4.300000000000415
+          },
+          "median": -0.2500000000005276
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 14.500000000001734,
+            "GBP_USD": 13.499999999999623,
+            "USD_JPY": 27.79999999999916,
+            "AUD_USD": 26.800000000000157,
+            "USD_CAD": 19.299999999999873,
+            "USD_CHF": 11.999999999999789
+          },
+          "median": 16.9000000000008
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 16.100000000001113,
+            "GBP_USD": 31.599999999998296,
+            "USD_JPY": 40.29999999999916,
+            "AUD_USD": 42.29999999999956,
+            "USD_CAD": 32.79999999999949,
+            "USD_CHF": 14.300000000000423
+          },
+          "median": 32.199999999998894
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_cpi_2025-10-24",
+      "family": "CPI",
+      "t0": "2025-10-24T12:30:00Z",
+      "D": "2025-10-24T12:35:00Z",
+      "feature_bar_start": "2025-10-24T12:30:00Z",
+      "feature_bar_end": "2025-10-24T12:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -29.69999999999917,
+        "GBP_USD": -33.050000000001134,
+        "USD_JPY": -42.05000000000041,
+        "AUD_USD": -21.34999999999998,
+        "USD_CAD": -17.850000000001476,
+        "USD_CHF": -21.049999999999123
+      },
+      "first5_median_usd_pips": -25.524999999999576,
+      "first5_abs_median_usd_pips": 25.524999999999576,
+      "first5_usd_sign": -1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.80000000000069,
+        "GBP_USD": 1.8999999999991246,
+        "USD_JPY": 1.700000000002433,
+        "AUD_USD": 1.4999999999998348,
+        "USD_CAD": 1.7000000000000348,
+        "USD_CHF": 1.5999999999993797
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": 0.4000000000026205,
+            "GBP_USD": -5.549999999998612,
+            "USD_JPY": -2.200000000001978,
+            "AUD_USD": -2.60000000000038,
+            "USD_CAD": 3.00000000000189,
+            "USD_CHF": -1.9999999999997797
+          },
+          "median": -2.100000000000879,
+          "abs_median": 2.100000000000879
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 8.300000000001084,
+            "GBP_USD": -1.6499999999997073,
+            "USD_JPY": 22.84999999999968,
+            "AUD_USD": 4.849999999998467,
+            "USD_CAD": 10.250000000002757,
+            "USD_CHF": 3.950000000000342
+          },
+          "median": 6.5749999999997755,
+          "abs_median": 6.5749999999997755
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 9.149999999999991,
+            "GBP_USD": -3.249999999999087,
+            "USD_JPY": 32.84999999999627,
+            "AUD_USD": 6.599999999998829,
+            "USD_CAD": 10.200000000000209,
+            "USD_CHF": 3.4000000000000696
+          },
+          "median": 7.87499999999941,
+          "abs_median": 7.87499999999941
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 16.300000000000203,
+            "GBP_USD": 25.95000000000125,
+            "USD_JPY": 31.749999999999545,
+            "AUD_USD": 21.899999999999142,
+            "USD_CAD": 27.050000000001795,
+            "USD_CHF": 11.599999999999389
+          },
+          "median": 23.925000000000196,
+          "abs_median": 23.925000000000196
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 16.95000000000224,
+            "GBP_USD": 49.05000000000159,
+            "USD_JPY": 37.74999999999977,
+            "AUD_USD": 14.449999999999186,
+            "USD_CAD": 4.450000000000287,
+            "USD_CHF": 17.55000000000062
+          },
+          "median": 17.250000000001428,
+          "abs_median": 17.250000000001428
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": -2.100000000000435,
+            "GBP_USD": 3.5999999999991594,
+            "USD_JPY": 0.39999999999906777,
+            "AUD_USD": 1.2000000000000899,
+            "USD_CAD": -4.8000000000003595,
+            "USD_CHF": 0.2999999999997449
+          },
+          "median": 0.34999999999940634
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -9.999999999998899,
+            "GBP_USD": -0.1999999999990898,
+            "USD_JPY": -24.500000000000455,
+            "AUD_USD": -6.199999999999539,
+            "USD_CAD": -12.000000000000899,
+            "USD_CHF": -5.499999999999394
+          },
+          "median": -8.09999999999922
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -10.799999999999699,
+            "GBP_USD": 1.40000000000029,
+            "USD_JPY": -34.600000000000364,
+            "AUD_USD": -8.099999999999774,
+            "USD_CAD": -11.900000000000244,
+            "USD_CHF": -4.799999999999249
+          },
+          "median": -9.449999999999736
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -18.000000000000238,
+            "GBP_USD": -27.900000000000702,
+            "USD_JPY": -33.40000000000032,
+            "AUD_USD": -23.299999999999432,
+            "USD_CAD": -28.799999999999937,
+            "USD_CHF": -13.099999999999223
+          },
+          "median": -25.600000000000065
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -18.599999999999728,
+            "GBP_USD": -50.90000000000039,
+            "USD_JPY": -39.30000000000007,
+            "AUD_USD": -15.800000000000258,
+            "USD_CAD": -6.099999999999994,
+            "USD_CHF": -19.000000000000128
+          },
+          "median": -18.799999999999926
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_cpi_2025-12-18",
+      "family": "CPI",
+      "t0": "2025-12-18T13:30:00Z",
+      "D": "2025-12-18T13:35:00Z",
+      "feature_bar_start": "2025-12-18T13:30:00Z",
+      "feature_bar_end": "2025-12-18T13:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -10.449999999999626,
+        "GBP_USD": -5.299999999999194,
+        "USD_JPY": -7.5999999999964984,
+        "AUD_USD": -9.200000000000319,
+        "USD_CAD": -7.150000000000212,
+        "USD_CHF": -3.1500000000006523
+      },
+      "first5_median_usd_pips": -7.374999999998355,
+      "first5_abs_median_usd_pips": 7.374999999998355,
+      "first5_usd_sign": -1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.7000000000000348,
+        "GBP_USD": 2.100000000000435,
+        "USD_JPY": 1.8000000000000682,
+        "AUD_USD": 1.40000000000029,
+        "USD_CAD": 1.80000000000069,
+        "USD_CHF": 1.4999999999998348
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": -0.2999999999997449,
+            "GBP_USD": -5.4499999999979565,
+            "USD_JPY": -6.850000000002865,
+            "AUD_USD": -2.7999999999994696,
+            "USD_CAD": -0.24999999999941735,
+            "USD_CHF": -2.8999999999990145
+          },
+          "median": -2.849999999999242,
+          "abs_median": 2.849999999999242
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -7.6499999999990465,
+            "GBP_USD": -13.649999999998386,
+            "USD_JPY": -6.400000000002137,
+            "AUD_USD": -3.4000000000000696,
+            "USD_CAD": -0.9499999999995623,
+            "USD_CHF": -4.949999999999122
+          },
+          "median": -5.6750000000006295,
+          "abs_median": 5.6750000000006295
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 0.24999999999941735,
+            "GBP_USD": -6.550000000000722,
+            "USD_JPY": -26.200000000000045,
+            "AUD_USD": -4.549999999999832,
+            "USD_CAD": 0.4500000000007276,
+            "USD_CHF": -0.6999999999990347
+          },
+          "median": -2.6249999999994333,
+          "abs_median": 2.6249999999994333
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 15.800000000001369,
+            "GBP_USD": 20.500000000001073,
+            "USD_JPY": -0.9500000000002728,
+            "AUD_USD": 3.149999999999542,
+            "USD_CAD": -2.20000000000109,
+            "USD_CHF": 6.700000000000594
+          },
+          "median": 4.925000000000068,
+          "abs_median": 4.925000000000068
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 19.3500000000002,
+            "GBP_USD": 38.750000000000725,
+            "USD_JPY": -3.4500000000008413,
+            "AUD_USD": 12.349999999999861,
+            "USD_CAD": -0.10000000000065512,
+            "USD_CHF": 3.9500000000014523
+          },
+          "median": 8.150000000000656,
+          "abs_median": 8.150000000000656
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": -1.2999999999996348,
+            "GBP_USD": 3.4999999999985043,
+            "USD_JPY": 5.099999999998772,
+            "AUD_USD": 1.4999999999998348,
+            "USD_CAD": -1.5999999999993797,
+            "USD_CHF": 1.3999999999991797
+          },
+          "median": 1.4499999999995072
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 5.9000000000009045,
+            "GBP_USD": 11.499999999999844,
+            "USD_JPY": 4.800000000000182,
+            "AUD_USD": 1.9999999999997797,
+            "USD_CAD": -0.8000000000008001,
+            "USD_CHF": 3.4999999999996145
+          },
+          "median": 4.149999999999898
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -1.8999999999991246,
+            "GBP_USD": 4.599999999999049,
+            "USD_JPY": 24.500000000000455,
+            "AUD_USD": 3.1999999999998696,
+            "USD_CAD": -2.2999999999995246,
+            "USD_CHF": -0.8000000000008001
+          },
+          "median": 1.1999999999995348
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -17.499999999999183,
+            "GBP_USD": -22.500000000000853,
+            "USD_JPY": -0.7000000000005002,
+            "AUD_USD": -4.500000000000615,
+            "USD_CAD": 0.40000000000040004,
+            "USD_CHF": -8.099999999999774
+          },
+          "median": -6.300000000000194
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -20.999999999999908,
+            "GBP_USD": -40.800000000000836,
+            "USD_JPY": 1.8000000000000682,
+            "AUD_USD": -13.699999999999823,
+            "USD_CAD": -1.7000000000000348,
+            "USD_CHF": -5.399999999999849
+          },
+          "median": -9.549999999999837
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_cpi_2026-01-13",
+      "family": "CPI",
+      "t0": "2026-01-13T13:30:00Z",
+      "D": "2026-01-13T13:35:00Z",
+      "feature_bar_start": "2026-01-13T13:30:00Z",
+      "feature_bar_end": "2026-01-13T13:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -15.95000000000013,
+        "GBP_USD": -23.449999999998195,
+        "USD_JPY": -21.79999999999893,
+        "AUD_USD": -18.199999999999328,
+        "USD_CAD": -13.350000000000861,
+        "USD_CHF": -12.799999999999478
+      },
+      "first5_median_usd_pips": -17.07499999999973,
+      "first5_abs_median_usd_pips": 17.07499999999973,
+      "first5_usd_sign": -1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.7000000000000348,
+        "GBP_USD": 1.900000000001345,
+        "USD_JPY": 1.500000000001478,
+        "AUD_USD": 1.4999999999998348,
+        "USD_CAD": 1.900000000001345,
+        "USD_CHF": 1.60000000000049
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": 2.149999999998542,
+            "GBP_USD": 5.549999999998612,
+            "USD_JPY": 8.549999999996771,
+            "AUD_USD": 1.7999999999984695,
+            "USD_CAD": 1.6000000000016001,
+            "USD_CHF": 3.4999999999996145
+          },
+          "median": 2.8249999999990782,
+          "abs_median": 2.8249999999990782
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 0.5999999999994898,
+            "GBP_USD": 5.049999999999777,
+            "USD_JPY": 18.099999999998317,
+            "AUD_USD": 7.749999999999702,
+            "USD_CAD": 4.500000000000615,
+            "USD_CHF": 4.399999999998849
+          },
+          "median": 4.775000000000196,
+          "abs_median": 4.775000000000196
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 0.049999999998107114,
+            "GBP_USD": 10.200000000000209,
+            "USD_JPY": 14.099999999999113,
+            "AUD_USD": 4.249999999998977,
+            "USD_CAD": 5.299999999999194,
+            "USD_CHF": 1.3999999999991797
+          },
+          "median": 4.7749999999990855,
+          "abs_median": 4.7749999999990855
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 21.099999999998342,
+            "GBP_USD": 39.39999999999832,
+            "USD_JPY": 29.49999999999875,
+            "AUD_USD": 36.04999999999858,
+            "USD_CAD": 25.75000000000216,
+            "USD_CHF": 20.74999999999827
+          },
+          "median": 27.625000000000455,
+          "abs_median": 27.625000000000455
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 25.34999999999954,
+            "GBP_USD": 50.49999999999777,
+            "USD_JPY": 41.449999999997544,
+            "AUD_USD": 34.399999999998876,
+            "USD_CAD": 27.69999999999939,
+            "USD_CHF": 32.74999999999917
+          },
+          "median": 33.57499999999902,
+          "abs_median": 33.57499999999902
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": -3.8000000000004697,
+            "GBP_USD": -7.500000000000284,
+            "USD_JPY": -10.200000000000387,
+            "AUD_USD": -3.2999999999994145,
+            "USD_CAD": -3.5000000000007248,
+            "USD_CHF": -5.0000000000005596
+          },
+          "median": -4.400000000000515
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -2.2999999999995246,
+            "GBP_USD": -6.800000000000139,
+            "USD_JPY": -19.700000000000273,
+            "AUD_USD": -9.200000000000319,
+            "USD_CAD": -6.399999999999739,
+            "USD_CHF": -5.899999999999794
+          },
+          "median": -6.599999999999939
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -1.7000000000000348,
+            "GBP_USD": -12.100000000001554,
+            "USD_JPY": -15.700000000001069,
+            "AUD_USD": -5.699999999999594,
+            "USD_CAD": -7.099999999999884,
+            "USD_CHF": -2.9999999999996696
+          },
+          "median": -6.399999999999739
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -22.699999999999942,
+            "GBP_USD": -41.29999999999967,
+            "USD_JPY": -31.000000000000227,
+            "AUD_USD": -37.39999999999965,
+            "USD_CAD": -27.600000000000957,
+            "USD_CHF": -22.299999999999542
+          },
+          "median": -29.300000000000594
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -26.999999999999247,
+            "GBP_USD": -52.200000000000024,
+            "USD_JPY": -42.900000000000205,
+            "AUD_USD": -35.800000000000274,
+            "USD_CAD": -29.50000000000008,
+            "USD_CHF": -34.19999999999978
+          },
+          "median": -35.00000000000003
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_cpi_2026-02-13",
+      "family": "CPI",
+      "t0": "2026-02-13T13:30:00Z",
+      "D": "2026-02-13T13:35:00Z",
+      "feature_bar_start": "2026-02-13T13:30:00Z",
+      "feature_bar_end": "2026-02-13T13:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -15.899999999999803,
+        "GBP_USD": -14.54999999999984,
+        "USD_JPY": -23.799999999999955,
+        "AUD_USD": -20.000000000000018,
+        "USD_CAD": -18.34999999999809,
+        "USD_CHF": -9.250000000000647
+      },
+      "first5_median_usd_pips": -17.12499999999895,
+      "first5_abs_median_usd_pips": 17.12499999999895,
+      "first5_usd_sign": -1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.8999999999991246,
+        "GBP_USD": 2.1999999999988695,
+        "USD_JPY": 2.000000000001023,
+        "AUD_USD": 1.40000000000029,
+        "USD_CAD": 1.900000000001345,
+        "USD_CHF": 1.7000000000000348
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": 9.799999999999809,
+            "GBP_USD": 9.500000000000064,
+            "USD_JPY": 19.15000000000191,
+            "AUD_USD": 4.250000000001197,
+            "USD_CAD": -1.2999999999996348,
+            "USD_CHF": 10.200000000000209
+          },
+          "median": 9.649999999999936,
+          "abs_median": 9.649999999999936
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -0.05000000000032756,
+            "GBP_USD": -6.349999999999412,
+            "USD_JPY": 1.2000000000000455,
+            "AUD_USD": -1.6499999999997073,
+            "USD_CAD": -11.399999999999189,
+            "USD_CHF": 1.700000000001145
+          },
+          "median": -0.8500000000000174,
+          "abs_median": 0.8500000000000174
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 5.949999999999012,
+            "GBP_USD": -6.850000000002687,
+            "USD_JPY": -15.799999999998704,
+            "AUD_USD": -5.850000000000577,
+            "USD_CAD": -4.60000000000127,
+            "USD_CHF": 1.700000000001145
+          },
+          "median": -5.225000000000923,
+          "abs_median": 5.225000000000923
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 8.700000000001484,
+            "GBP_USD": -6.950000000001122,
+            "USD_JPY": -2.0499999999969987,
+            "AUD_USD": -2.4000000000001798,
+            "USD_CAD": 4.450000000000287,
+            "USD_CHF": 4.1999999999997595
+          },
+          "median": 1.0750000000013804,
+          "abs_median": 1.0750000000013804
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -3.5999999999991594,
+            "GBP_USD": -17.700000000000493,
+            "USD_JPY": -35.94999999999686,
+            "AUD_USD": -4.20000000000087,
+            "USD_CAD": -11.000000000001009,
+            "USD_CHF": -4.6000000000001595
+          },
+          "median": -7.800000000000584,
+          "abs_median": 7.800000000000584
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": -11.699999999998933,
+            "GBP_USD": -11.600000000000499,
+            "USD_JPY": -21.100000000001273,
+            "AUD_USD": -5.7000000000007045,
+            "USD_CAD": -0.6000000000017103,
+            "USD_CHF": -11.900000000000244
+          },
+          "median": -11.649999999999716
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -1.7000000000000348,
+            "GBP_USD": 4.3999999999999595,
+            "USD_JPY": -3.100000000000591,
+            "AUD_USD": 0.2999999999997449,
+            "USD_CAD": 9.599999999998499,
+            "USD_CHF": -3.3000000000005247
+          },
+          "median": -0.700000000000145
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -7.699999999999374,
+            "GBP_USD": 4.900000000001015,
+            "USD_JPY": 13.999999999998636,
+            "AUD_USD": 4.3999999999999595,
+            "USD_CAD": 2.6999999999999247,
+            "USD_CHF": -3.3000000000005247
+          },
+          "median": 3.549999999999942
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -10.499999999999954,
+            "GBP_USD": 4.900000000001015,
+            "USD_JPY": 0.1999999999981128,
+            "AUD_USD": 0.9999999999998899,
+            "USD_CAD": -6.40000000000196,
+            "USD_CHF": -5.800000000000249
+          },
+          "median": -2.8000000000010683
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 1.900000000001345,
+            "GBP_USD": 15.600000000000058,
+            "USD_JPY": 34.00000000000034,
+            "AUD_USD": 2.9000000000001247,
+            "USD_CAD": 9.099999999999664,
+            "USD_CHF": 2.9999999999996696
+          },
+          "median": 6.049999999999667
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_cpi_2026-03-11",
+      "family": "CPI",
+      "t0": "2026-03-11T12:30:00Z",
+      "D": "2026-03-11T12:35:00Z",
+      "feature_bar_start": "2026-03-11T12:30:00Z",
+      "feature_bar_end": "2026-03-11T12:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": 12.449999999999406,
+        "GBP_USD": 15.299999999998093,
+        "USD_JPY": 10.149999999998727,
+        "AUD_USD": 13.250000000000206,
+        "USD_CAD": 8.350000000001412,
+        "USD_CHF": 5.249999999999977
+      },
+      "first5_median_usd_pips": 11.299999999999066,
+      "first5_abs_median_usd_pips": 11.299999999999066,
+      "first5_usd_sign": 1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.6000000000016001,
+        "GBP_USD": 2.0999999999982144,
+        "USD_JPY": 2.000000000001023,
+        "AUD_USD": 1.4999999999998348,
+        "USD_CAD": 1.9999999999997797,
+        "USD_CHF": 1.5999999999993797
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": -2.2999999999995246,
+            "GBP_USD": 0.6000000000017103,
+            "USD_JPY": 0.6000000000028649,
+            "AUD_USD": -2.4000000000001798,
+            "USD_CAD": 2.649999999999597,
+            "USD_CHF": -0.900000000000345
+          },
+          "median": -0.14999999999931735,
+          "abs_median": 0.14999999999931735
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 6.150000000000322,
+            "GBP_USD": 15.600000000000058,
+            "USD_JPY": 10.050000000001091,
+            "AUD_USD": 5.999999999999339,
+            "USD_CAD": 18.35000000000031,
+            "USD_CHF": 7.8499999999992465
+          },
+          "median": 8.95000000000017,
+          "abs_median": 8.95000000000017
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 0.6499999999998174,
+            "GBP_USD": -2.7999999999983594,
+            "USD_JPY": 1.4000000000010004,
+            "AUD_USD": -4.300000000001525,
+            "USD_CAD": 18.050000000000566,
+            "USD_CHF": 3.1999999999998696
+          },
+          "median": 1.025000000000409,
+          "abs_median": 1.025000000000409
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -4.350000000001852,
+            "GBP_USD": -13.999999999998458,
+            "USD_JPY": 9.199999999998454,
+            "AUD_USD": -19.500000000001183,
+            "USD_CAD": 2.8500000000009074,
+            "USD_CHF": 0.05000000000032756
+          },
+          "median": -2.1500000000007624,
+          "abs_median": 2.1500000000007624
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 18.450000000000966,
+            "GBP_USD": 10.950000000000681,
+            "USD_JPY": 31.350000000000477,
+            "AUD_USD": 1.0999999999994348,
+            "USD_CAD": 25.450000000002415,
+            "USD_CHF": 15.14999999999933
+          },
+          "median": 16.800000000000146,
+          "abs_median": 16.800000000000146
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": -3.900000000001125,
+            "GBP_USD": -1.4999999999987246,
+            "USD_JPY": -1.300000000000523,
+            "AUD_USD": -3.9000000000000146,
+            "USD_CAD": 0.700000000000145,
+            "USD_CHF": -2.4000000000001798
+          },
+          "median": -1.9499999999994522
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 4.599999999999049,
+            "GBP_USD": 13.500000000001844,
+            "USD_JPY": 8.099999999998886,
+            "AUD_USD": 4.6000000000001595,
+            "USD_CAD": 16.40000000000086,
+            "USD_CHF": 6.199999999999539
+          },
+          "median": 7.1499999999992125
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -0.9000000000014552,
+            "GBP_USD": -4.799999999998139,
+            "USD_JPY": -0.5000000000023874,
+            "AUD_USD": -5.7000000000007045,
+            "USD_CAD": 16.100000000001113,
+            "USD_CHF": 1.7000000000000348
+          },
+          "median": -0.7000000000019213
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -6.00000000000156,
+            "GBP_USD": -15.899999999999803,
+            "USD_JPY": 7.299999999997908,
+            "AUD_USD": -20.800000000000818,
+            "USD_CAD": 0.8000000000008001,
+            "USD_CHF": -1.40000000000029
+          },
+          "median": -3.7000000000009248
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 16.799999999999038,
+            "GBP_USD": 8.900000000000574,
+            "USD_JPY": 29.49999999999875,
+            "AUD_USD": -0.2999999999997449,
+            "USD_CAD": 23.600000000001398,
+            "USD_CHF": 13.600000000000279
+          },
+          "median": 15.199999999999658
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_cpi_2026-04-10",
+      "family": "CPI",
+      "t0": "2026-04-10T12:30:00Z",
+      "D": "2026-04-10T12:35:00Z",
+      "feature_bar_start": "2026-04-10T12:30:00Z",
+      "feature_bar_end": "2026-04-10T12:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -6.9499999999989015,
+        "GBP_USD": -5.499999999998284,
+        "USD_JPY": -4.049999999998022,
+        "AUD_USD": -4.250000000000087,
+        "USD_CAD": 0.0,
+        "USD_CHF": -3.2500000000013074
+      },
+      "first5_median_usd_pips": -4.1499999999990544,
+      "first5_abs_median_usd_pips": 4.1499999999990544,
+      "first5_usd_sign": -1,
+      "agreement": 5,
+      "spreads_at_D": {
+        "EUR_USD": 1.7000000000000348,
+        "GBP_USD": 1.9999999999997797,
+        "USD_JPY": 1.9000000000005457,
+        "AUD_USD": 1.40000000000029,
+        "USD_CAD": 1.5999999999993797,
+        "USD_CHF": 1.7000000000000348
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": 3.8999999999989043,
+            "GBP_USD": -0.8999999999992347,
+            "USD_JPY": 2.400000000000091,
+            "AUD_USD": 0.7500000000004725,
+            "USD_CAD": -1.5999999999971593,
+            "USD_CHF": 3.3000000000005247
+          },
+          "median": 1.5750000000002817,
+          "abs_median": 1.5750000000002817
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 0.3500000000000725,
+            "GBP_USD": 0.24999999999941735,
+            "USD_JPY": 8.599999999998431,
+            "AUD_USD": 2.449999999999397,
+            "USD_CAD": 0.0,
+            "USD_CHF": 1.9999999999997797
+          },
+          "median": 1.174999999999926,
+          "abs_median": 1.174999999999926
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -12.100000000001554,
+            "GBP_USD": -16.249999999999876,
+            "USD_JPY": 3.499999999999659,
+            "AUD_USD": -7.650000000000157,
+            "USD_CAD": -12.550000000000061,
+            "USD_CHF": -18.249999999999655
+          },
+          "median": -12.325000000000808,
+          "abs_median": 12.325000000000808
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -13.950000000000351,
+            "GBP_USD": -16.300000000000203,
+            "USD_JPY": 5.099999999998772,
+            "AUD_USD": -12.400000000000189,
+            "USD_CAD": -19.399999999998307,
+            "USD_CHF": -23.050000000000015
+          },
+          "median": -15.125000000000277,
+          "abs_median": 15.125000000000277
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 0.1999999999990898,
+            "GBP_USD": 1.9999999999997797,
+            "USD_JPY": 21.19999999999891,
+            "AUD_USD": 6.500000000000394,
+            "USD_CAD": 11.650000000000826,
+            "USD_CHF": 11.450000000000626
+          },
+          "median": 8.97500000000051,
+          "abs_median": 8.97500000000051
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": -5.5000000000005045,
+            "GBP_USD": -1.100000000000545,
+            "USD_JPY": -4.300000000000637,
+            "AUD_USD": -2.100000000000435,
+            "USD_CAD": -0.10000000000065512,
+            "USD_CHF": -4.900000000001015
+          },
+          "median": -3.2000000000005357
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -1.9999999999997797,
+            "GBP_USD": -2.1999999999988695,
+            "USD_JPY": -10.3999999999985,
+            "AUD_USD": -3.9000000000000146,
+            "USD_CAD": -1.7000000000000348,
+            "USD_CHF": -3.6000000000002697
+          },
+          "median": -2.8999999999995696
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 10.499999999999954,
+            "GBP_USD": 14.400000000001079,
+            "USD_JPY": -5.19999999999925,
+            "AUD_USD": 6.300000000000194,
+            "USD_CAD": 10.900000000000354,
+            "USD_CHF": 16.69999999999949
+          },
+          "median": 10.700000000000154
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 12.300000000000644,
+            "GBP_USD": 14.300000000000423,
+            "USD_JPY": -6.89999999999884,
+            "AUD_USD": 10.999999999999899,
+            "USD_CAD": 17.599999999999838,
+            "USD_CHF": 21.399999999999196
+          },
+          "median": 13.300000000000534
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -1.80000000000069,
+            "GBP_USD": -3.9999999999995595,
+            "USD_JPY": -23.199999999999932,
+            "AUD_USD": -7.900000000000684,
+            "USD_CAD": -13.399999999998968,
+            "USD_CHF": -13.000000000000789
+          },
+          "median": -10.450000000000736
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_cpi_2026-05-12",
+      "family": "CPI",
+      "t0": "2026-05-12T12:30:00Z",
+      "D": "2026-05-12T12:35:00Z",
+      "feature_bar_start": "2026-05-12T12:30:00Z",
+      "feature_bar_end": "2026-05-12T12:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -3.5500000000010523,
+        "GBP_USD": -1.9999999999997797,
+        "USD_JPY": -1.2000000000000455,
+        "AUD_USD": -3.349999999999742,
+        "USD_CAD": 1.7500000000003624,
+        "USD_CHF": -0.0999999999995449
+      },
+      "first5_median_usd_pips": -1.5999999999999126,
+      "first5_abs_median_usd_pips": 1.5999999999999126,
+      "first5_usd_sign": -1,
+      "agreement": 5,
+      "spreads_at_D": {
+        "EUR_USD": 1.7000000000000348,
+        "GBP_USD": 1.9999999999997797,
+        "USD_JPY": 1.8000000000000682,
+        "AUD_USD": 1.40000000000029,
+        "USD_CAD": 1.900000000001345,
+        "USD_CHF": 1.40000000000029
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": -3.2999999999994145,
+            "GBP_USD": -5.999999999999339,
+            "USD_JPY": -1.650000000000773,
+            "AUD_USD": -2.7500000000002522,
+            "USD_CAD": 2.349999999999852,
+            "USD_CHF": -3.9999999999995595
+          },
+          "median": -3.0249999999998334,
+          "abs_median": 3.0249999999998334
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -3.8999999999989043,
+            "GBP_USD": -9.80000000000203,
+            "USD_JPY": -1.5499999999974534,
+            "AUD_USD": -6.450000000000067,
+            "USD_CAD": -3.8999999999989043,
+            "USD_CHF": -5.749999999999922
+          },
+          "median": -4.824999999999413,
+          "abs_median": 4.824999999999413
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 4.20000000000087,
+            "GBP_USD": 4.550000000000942,
+            "USD_JPY": 1.1500000000012278,
+            "AUD_USD": -1.40000000000029,
+            "USD_CAD": 8.850000000002467,
+            "USD_CHF": 4.649999999999377
+          },
+          "median": 4.375000000000906,
+          "abs_median": 4.375000000000906
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 10.750000000001592,
+            "GBP_USD": -0.700000000000145,
+            "USD_JPY": 3.2500000000027285,
+            "AUD_USD": -1.1499999999997623,
+            "USD_CAD": 4.300000000001525,
+            "USD_CHF": 7.399999999999629
+          },
+          "median": 3.7750000000021267,
+          "abs_median": 3.7750000000021267
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 7.80000000000225,
+            "GBP_USD": 4.550000000000942,
+            "USD_JPY": 13.299999999998136,
+            "AUD_USD": 2.100000000000435,
+            "USD_CAD": 6.349999999999412,
+            "USD_CHF": 7.3499999999993015
+          },
+          "median": 6.849999999999357,
+          "abs_median": 6.849999999999357
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": 1.5999999999993797,
+            "GBP_USD": 3.9999999999995595,
+            "USD_JPY": 0.0,
+            "AUD_USD": 1.3999999999991797,
+            "USD_CAD": -4.100000000000215,
+            "USD_CHF": 2.4999999999997247
+          },
+          "median": 1.4999999999992797
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 2.2999999999995246,
+            "GBP_USD": 7.900000000000684,
+            "USD_JPY": -0.10000000000047748,
+            "AUD_USD": 5.099999999998994,
+            "USD_CAD": 1.9999999999997797,
+            "USD_CHF": 4.300000000000415
+          },
+          "median": 3.2999999999999696
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -5.800000000000249,
+            "GBP_USD": -6.500000000000394,
+            "USD_JPY": -2.7999999999991587,
+            "AUD_USD": 0.0999999999995449,
+            "USD_CAD": -10.700000000001264,
+            "USD_CHF": -6.099999999999994
+          },
+          "median": -5.950000000000122
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -12.399999999999078,
+            "GBP_USD": -1.1999999999989797,
+            "USD_JPY": -4.800000000000182,
+            "AUD_USD": -0.20000000000020002,
+            "USD_CAD": -6.099999999999994,
+            "USD_CHF": -8.899999999999464
+          },
+          "median": -5.450000000000088
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -9.399999999999409,
+            "GBP_USD": -6.399999999999739,
+            "USD_JPY": -15.099999999998204,
+            "AUD_USD": -3.5000000000007248,
+            "USD_CAD": -8.20000000000043,
+            "USD_CHF": -8.699999999999264
+          },
+          "median": -8.449999999999847
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_cpi_2026-06-10",
+      "family": "CPI",
+      "t0": "2026-06-10T12:30:00Z",
+      "D": "2026-06-10T12:35:00Z",
+      "feature_bar_start": "2026-06-10T12:30:00Z",
+      "feature_bar_end": "2026-06-10T12:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -3.3500000000019625,
+        "GBP_USD": -2.000000000002,
+        "USD_JPY": -2.5500000000022283,
+        "AUD_USD": -3.3000000000005247,
+        "USD_CAD": 0.24999999999941735,
+        "USD_CHF": -4.500000000000615
+      },
+      "first5_median_usd_pips": -2.9250000000013765,
+      "first5_abs_median_usd_pips": 2.9250000000013765,
+      "first5_usd_sign": -1,
+      "agreement": 5,
+      "spreads_at_D": {
+        "EUR_USD": 1.500000000000945,
+        "GBP_USD": 1.9999999999997797,
+        "USD_JPY": 1.300000000000523,
+        "AUD_USD": 1.0999999999994348,
+        "USD_CAD": 1.8999999999991246,
+        "USD_CHF": 1.5999999999993797
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": -9.299999999998754,
+            "GBP_USD": -9.149999999997771,
+            "USD_JPY": -0.10000000000047748,
+            "AUD_USD": -4.3999999999999595,
+            "USD_CAD": -3.2500000000013074,
+            "USD_CHF": -7.749999999999702
+          },
+          "median": -6.0749999999998305,
+          "abs_median": 6.0749999999998305
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 1.500000000000945,
+            "GBP_USD": 4.00000000000178,
+            "USD_JPY": 4.300000000000637,
+            "AUD_USD": 3.900000000001125,
+            "USD_CAD": 7.950000000001012,
+            "USD_CHF": 0.05000000000032756
+          },
+          "median": 3.9500000000014523,
+          "abs_median": 3.9500000000014523
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -7.099999999997664,
+            "GBP_USD": -8.250000000000757,
+            "USD_JPY": 2.400000000000091,
+            "AUD_USD": -5.799999999999139,
+            "USD_CAD": -9.749999999999481,
+            "USD_CHF": -6.649999999999157
+          },
+          "median": -6.87499999999841,
+          "abs_median": 6.87499999999841
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -7.049999999999557,
+            "GBP_USD": -10.999999999998789,
+            "USD_JPY": 2.199999999999136,
+            "AUD_USD": -9.399999999999409,
+            "USD_CAD": -4.550000000000942,
+            "USD_CHF": -6.349999999999412
+          },
+          "median": -6.699999999999484,
+          "abs_median": 6.699999999999484
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -7.150000000000212,
+            "GBP_USD": -0.44999999999850715,
+            "USD_JPY": 7.850000000001955,
+            "AUD_USD": -8.549999999999391,
+            "USD_CAD": -1.1500000000008725,
+            "USD_CHF": -1.40000000000029
+          },
+          "median": -1.2750000000005812,
+          "abs_median": 1.2750000000005812
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": 7.699999999999374,
+            "GBP_USD": 7.299999999998974,
+            "USD_JPY": -1.3999999999981583,
+            "AUD_USD": 3.1999999999998696,
+            "USD_CAD": 1.40000000000029,
+            "USD_CHF": 6.200000000000649
+          },
+          "median": 4.7000000000002595
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -3.1000000000003247,
+            "GBP_USD": -6.00000000000156,
+            "USD_JPY": -5.699999999998795,
+            "AUD_USD": -5.1000000000001044,
+            "USD_CAD": -9.799999999999809,
+            "USD_CHF": -1.4999999999998348
+          },
+          "median": -5.39999999999945
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 5.499999999998284,
+            "GBP_USD": 6.299999999999084,
+            "USD_JPY": -3.700000000000614,
+            "AUD_USD": 4.6000000000001595,
+            "USD_CAD": 7.900000000000684,
+            "USD_CHF": 5.1000000000001044
+          },
+          "median": 5.299999999999194
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 5.499999999998284,
+            "GBP_USD": 9.099999999999664,
+            "USD_JPY": -3.6000000000001364,
+            "AUD_USD": 8.20000000000043,
+            "USD_CAD": 2.6999999999999247,
+            "USD_CHF": 4.899999999999904
+          },
+          "median": 5.199999999999094
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 5.599999999998939,
+            "GBP_USD": -1.40000000000029,
+            "USD_JPY": -9.199999999998454,
+            "AUD_USD": 7.400000000000739,
+            "USD_CAD": -0.700000000000145,
+            "USD_CHF": -0.0999999999995449
+          },
+          "median": -0.3999999999998449
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_cpi_2026-07-14",
+      "family": "CPI",
+      "t0": "2026-07-14T12:30:00Z",
+      "D": "2026-07-14T12:35:00Z",
+      "feature_bar_start": "2026-07-14T12:30:00Z",
+      "feature_bar_end": "2026-07-14T12:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -36.35000000000055,
+        "GBP_USD": -38.800000000001056,
+        "USD_JPY": -34.950000000003456,
+        "AUD_USD": -28.34999999999921,
+        "USD_CAD": -32.90000000000237,
+        "USD_CHF": -34.250000000000114
+      },
+      "first5_median_usd_pips": -34.600000000001785,
+      "first5_abs_median_usd_pips": 34.600000000001785,
+      "first5_usd_sign": -1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.80000000000069,
+        "GBP_USD": 1.9999999999997797,
+        "USD_JPY": 1.8999999999977035,
+        "AUD_USD": 1.4999999999998348,
+        "USD_CAD": 1.80000000000069,
+        "USD_CHF": 1.2999999999996348
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": -8.599999999998609,
+            "GBP_USD": -8.149999999997881,
+            "USD_JPY": -2.1500000000003183,
+            "AUD_USD": -6.950000000001122,
+            "USD_CAD": -7.850000000000357,
+            "USD_CHF": -7.200000000000539
+          },
+          "median": -7.525000000000448,
+          "abs_median": 7.525000000000448
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 3.3500000000019625,
+            "GBP_USD": 15.899999999999803,
+            "USD_JPY": 15.700000000001069,
+            "AUD_USD": 5.699999999999594,
+            "USD_CAD": 8.00000000000134,
+            "USD_CHF": 5.049999999999777
+          },
+          "median": 6.850000000000467,
+          "abs_median": 6.850000000000467
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -0.700000000000145,
+            "GBP_USD": 23.200000000000998,
+            "USD_JPY": 11.650000000003047,
+            "AUD_USD": -0.6000000000006,
+            "USD_CAD": -6.2499999999987566,
+            "USD_CHF": -2.549999999998942
+          },
+          "median": -0.6500000000003725,
+          "abs_median": 0.6500000000003725
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 5.100000000002325,
+            "GBP_USD": 25.900000000000922,
+            "USD_JPY": 23.40000000000373,
+            "AUD_USD": -5.350000000001742,
+            "USD_CAD": 2.80000000000058,
+            "USD_CHF": -0.8999999999992347
+          },
+          "median": 3.9500000000014523,
+          "abs_median": 3.9500000000014523
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 19.000000000000128,
+            "GBP_USD": 38.84999999999916,
+            "USD_JPY": 40.450000000001296,
+            "AUD_USD": -0.2500000000005276,
+            "USD_CAD": 1.6499999999997073,
+            "USD_CHF": 12.199999999999989
+          },
+          "median": 15.600000000000058,
+          "abs_median": 15.600000000000058
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": 6.900000000000794,
+            "GBP_USD": 6.299999999999084,
+            "USD_JPY": 0.30000000000143245,
+            "AUD_USD": 5.5000000000005045,
+            "USD_CAD": 6.099999999999994,
+            "USD_CHF": 5.7000000000007045
+          },
+          "median": 5.900000000000349
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -5.1000000000001044,
+            "GBP_USD": -17.799999999998928,
+            "USD_JPY": -17.399999999997817,
+            "AUD_USD": -7.099999999999884,
+            "USD_CAD": -9.799999999999809,
+            "USD_CHF": -6.500000000000394
+          },
+          "median": -8.449999999999847
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -0.9999999999998899,
+            "GBP_USD": -25.100000000000122,
+            "USD_JPY": -13.299999999998136,
+            "AUD_USD": -0.7999999999996898,
+            "USD_CAD": 4.500000000000615,
+            "USD_CHF": 1.2999999999996348
+          },
+          "median": -0.8999999999997899
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -6.800000000000139,
+            "GBP_USD": -27.800000000000047,
+            "USD_JPY": -25.0,
+            "AUD_USD": 4.00000000000067,
+            "USD_CAD": -4.60000000000127,
+            "USD_CHF": -0.49999999999994493
+          },
+          "median": -5.7000000000007045
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -20.700000000000163,
+            "GBP_USD": -40.800000000000836,
+            "USD_JPY": -42.09999999999923,
+            "AUD_USD": -1.2000000000000899,
+            "USD_CAD": -3.4000000000000696,
+            "USD_CHF": -13.600000000000279
+          },
+          "median": -17.15000000000022
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_empsit_2025-09-05",
+      "family": "EMPLOYMENT_SITUATION",
+      "t0": "2025-09-05T12:30:00Z",
+      "D": "2025-09-05T12:35:00Z",
+      "feature_bar_start": "2025-09-05T12:30:00Z",
+      "feature_bar_end": "2025-09-05T12:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -34.549999999999855,
+        "GBP_USD": -41.70000000000007,
+        "USD_JPY": -51.35000000000218,
+        "AUD_USD": -20.55000000000029,
+        "USD_CAD": 9.099999999999664,
+        "USD_CHF": -12.149999999999661
+      },
+      "first5_median_usd_pips": -27.55000000000007,
+      "first5_abs_median_usd_pips": 27.55000000000007,
+      "first5_usd_sign": -1,
+      "agreement": 5,
+      "spreads_at_D": {
+        "EUR_USD": 1.80000000000069,
+        "GBP_USD": 2.100000000000435,
+        "USD_JPY": 1.8000000000000682,
+        "AUD_USD": 1.100000000000545,
+        "USD_CAD": 1.9999999999997797,
+        "USD_CHF": 1.60000000000049
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": -0.9499999999995623,
+            "GBP_USD": 5.050000000001997,
+            "USD_JPY": -4.8499999999989996,
+            "AUD_USD": -2.7999999999994696,
+            "USD_CAD": 6.349999999999412,
+            "USD_CHF": -7.899999999999574
+          },
+          "median": -1.874999999999516,
+          "abs_median": 1.874999999999516
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -0.29999999999752447,
+            "GBP_USD": -0.8999999999992347,
+            "USD_JPY": -14.449999999999363,
+            "AUD_USD": -8.849999999999136,
+            "USD_CAD": 6.6000000000010495,
+            "USD_CHF": -7.899999999999574
+          },
+          "median": -4.399999999999404,
+          "abs_median": 4.399999999999404
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 13.250000000000206,
+            "GBP_USD": -1.5499999999990521,
+            "USD_JPY": -13.14999999999884,
+            "AUD_USD": -12.899999999999023,
+            "USD_CAD": 11.300000000000754,
+            "USD_CHF": -7.949999999998791
+          },
+          "median": -4.749999999998922,
+          "abs_median": 4.749999999998922
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 0.24999999999941735,
+            "GBP_USD": 0.1999999999990898,
+            "USD_JPY": -26.34999999999934,
+            "AUD_USD": 1.0500000000002174,
+            "USD_CAD": 32.849999999999824,
+            "USD_CHF": -23.799999999999375
+          },
+          "median": 0.22499999999925357,
+          "abs_median": 0.22499999999925357
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -17.199999999999438,
+            "GBP_USD": -14.899999999999913,
+            "USD_JPY": -54.94999999999948,
+            "AUD_USD": -3.6000000000002697,
+            "USD_CAD": 27.250000000000885,
+            "USD_CHF": -43.54999999999887
+          },
+          "median": -16.049999999999677,
+          "abs_median": 16.049999999999677
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": -0.8000000000008001,
+            "GBP_USD": -7.0000000000014495,
+            "USD_JPY": 3.300000000001546,
+            "AUD_USD": 1.5999999999993797,
+            "USD_CAD": -8.299999999998864,
+            "USD_CHF": 6.300000000000194
+          },
+          "median": 0.3999999999992898
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -1.40000000000029,
+            "GBP_USD": -0.9999999999998899,
+            "USD_JPY": 12.800000000001432,
+            "AUD_USD": 7.599999999999829,
+            "USD_CAD": -8.399999999999519,
+            "USD_CHF": 6.399999999999739
+          },
+          "median": 2.6999999999999247
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -15.000000000000568,
+            "GBP_USD": -0.5000000000010552,
+            "USD_JPY": 11.400000000000432,
+            "AUD_USD": 11.699999999998933,
+            "USD_CAD": -13.199999999999878,
+            "USD_CHF": 6.399999999999739
+          },
+          "median": 2.949999999999342
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -1.8999999999991246,
+            "GBP_USD": -2.20000000000109,
+            "USD_JPY": 24.600000000000932,
+            "AUD_USD": -2.300000000000635,
+            "USD_CAD": -34.79999999999927,
+            "USD_CHF": 22.299999999999542
+          },
+          "median": -2.0500000000001073
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 15.600000000000058,
+            "GBP_USD": 12.900000000000134,
+            "USD_JPY": 53.20000000000107,
+            "AUD_USD": 2.3999999999990695,
+            "USD_CAD": -29.09999999999968,
+            "USD_CHF": 41.999999999999815
+          },
+          "median": 14.250000000000096
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_empsit_2025-11-20",
+      "family": "EMPLOYMENT_SITUATION",
+      "t0": "2025-11-20T13:30:00Z",
+      "D": "2025-11-20T13:35:00Z",
+      "feature_bar_start": "2025-11-20T13:30:00Z",
+      "feature_bar_end": "2025-11-20T13:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -11.099999999999444,
+        "GBP_USD": -10.000000000001119,
+        "USD_JPY": -10.099999999999909,
+        "AUD_USD": -9.000000000000119,
+        "USD_CAD": -9.449999999999736,
+        "USD_CHF": -6.899999999998574
+      },
+      "first5_median_usd_pips": -9.725000000000428,
+      "first5_abs_median_usd_pips": 9.725000000000428,
+      "first5_usd_sign": -1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.6000000000016001,
+        "GBP_USD": 1.8999999999991246,
+        "USD_JPY": 2.1000000000015007,
+        "AUD_USD": 1.2999999999996348,
+        "USD_CAD": 1.9999999999997797,
+        "USD_CHF": 1.60000000000049
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": -3.149999999998432,
+            "GBP_USD": -12.350000000000971,
+            "USD_JPY": 1.4500000000026603,
+            "AUD_USD": -6.900000000000794,
+            "USD_CAD": -9.900000000000464,
+            "USD_CHF": -2.4500000000005073
+          },
+          "median": -5.024999999999613,
+          "abs_median": 5.024999999999613
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -2.1500000000007624,
+            "GBP_USD": -21.050000000000235,
+            "USD_JPY": 7.450000000002888,
+            "AUD_USD": -4.3999999999999595,
+            "USD_CAD": -6.049999999999667,
+            "USD_CHF": 1.6499999999997073
+          },
+          "median": -3.275000000000361,
+          "abs_median": 3.275000000000361
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -18.20000000000155,
+            "GBP_USD": -32.49999999999975,
+            "USD_JPY": 11.85000000000116,
+            "AUD_USD": -9.250000000000647,
+            "USD_CAD": -4.150000000000542,
+            "USD_CHF": -5.450000000001287
+          },
+          "median": -7.350000000000967,
+          "abs_median": 7.350000000000967
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -4.649999999999377,
+            "GBP_USD": -27.399999999999647,
+            "USD_JPY": 29.699999999999704,
+            "AUD_USD": 1.2499999999993072,
+            "USD_CAD": 3.6999999999998145,
+            "USD_CHF": 5.450000000000177
+          },
+          "median": 2.474999999999561,
+          "abs_median": 2.474999999999561
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -6.449999999997846,
+            "GBP_USD": 0.9999999999998899,
+            "USD_JPY": -3.649999999998954,
+            "AUD_USD": 39.89999999999938,
+            "USD_CAD": 45.100000000000136,
+            "USD_CHF": -8.650000000001157
+          },
+          "median": -1.324999999999532,
+          "abs_median": 1.324999999999532
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": 1.3999999999980695,
+            "GBP_USD": 10.399999999999299,
+            "USD_JPY": -3.4000000000020236,
+            "AUD_USD": 5.5000000000005045,
+            "USD_CAD": 8.00000000000134,
+            "USD_CHF": 0.900000000000345
+          },
+          "median": 3.449999999999287
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 0.4999999999988347,
+            "GBP_USD": 19.200000000001438,
+            "USD_JPY": -9.400000000002251,
+            "AUD_USD": 3.00000000000078,
+            "USD_CAD": 4.299999999999304,
+            "USD_CHF": -3.3000000000005247
+          },
+          "median": 1.7499999999998073
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 16.499999999999293,
+            "GBP_USD": 30.600000000000627,
+            "USD_JPY": -13.900000000001,
+            "AUD_USD": 7.800000000000029,
+            "USD_CAD": 2.100000000000435,
+            "USD_CHF": 3.8000000000004697
+          },
+          "median": 5.800000000000249
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 3.0999999999981043,
+            "GBP_USD": 25.500000000000522,
+            "USD_JPY": -31.60000000000025,
+            "AUD_USD": -2.5999999999992696,
+            "USD_CAD": -5.599999999998939,
+            "USD_CHF": -7.000000000000339
+          },
+          "median": -4.099999999999104
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 4.799999999998139,
+            "GBP_USD": -2.6999999999999247,
+            "USD_JPY": 1.999999999998181,
+            "AUD_USD": -41.09999999999947,
+            "USD_CAD": -46.99999999999926,
+            "USD_CHF": 7.099999999999884
+          },
+          "median": -0.35000000000087184
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_empsit_2025-12-16",
+      "family": "EMPLOYMENT_SITUATION",
+      "t0": "2025-12-16T13:30:00Z",
+      "D": "2025-12-16T13:35:00Z",
+      "feature_bar_start": "2025-12-16T13:30:00Z",
+      "feature_bar_end": "2025-12-16T13:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -9.399999999999409,
+        "GBP_USD": -4.850000000000687,
+        "USD_JPY": -2.3500000000012733,
+        "AUD_USD": -14.699999999998603,
+        "USD_CAD": -5.299999999999194,
+        "USD_CHF": -3.950000000000342
+      },
+      "first5_median_usd_pips": -5.074999999999941,
+      "first5_abs_median_usd_pips": 5.074999999999941,
+      "first5_usd_sign": -1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.900000000001345,
+        "GBP_USD": 1.9999999999997797,
+        "USD_JPY": 2.1000000000015007,
+        "AUD_USD": 1.4999999999998348,
+        "USD_CAD": 1.900000000001345,
+        "USD_CHF": 1.5999999999993797
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": 15.000000000000568,
+            "GBP_USD": 20.299999999997542,
+            "USD_JPY": 10.550000000000637,
+            "AUD_USD": 12.649999999998496,
+            "USD_CAD": 11.000000000001009,
+            "USD_CHF": 9.550000000000392
+          },
+          "median": 11.824999999999752,
+          "abs_median": 11.824999999999752
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 2.80000000000058,
+            "GBP_USD": 9.349999999999081,
+            "USD_JPY": -2.2499999999979536,
+            "AUD_USD": 5.099999999998994,
+            "USD_CAD": 5.899999999998684,
+            "USD_CHF": 6.000000000000449
+          },
+          "median": 5.499999999998839,
+          "abs_median": 5.499999999998839
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -4.699999999999704,
+            "GBP_USD": 2.3499999999976318,
+            "USD_JPY": 5.0499999999999545,
+            "AUD_USD": -1.80000000000069,
+            "USD_CAD": -13.300000000000534,
+            "USD_CHF": 1.0999999999994348
+          },
+          "median": -0.3500000000006276,
+          "abs_median": 0.3500000000006276
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -3.649999999999487,
+            "GBP_USD": 19.899999999999363,
+            "USD_JPY": -22.84999999999968,
+            "AUD_USD": 17.899999999999583,
+            "USD_CAD": 9.999999999998899,
+            "USD_CHF": 0.9999999999998899
+          },
+          "median": 5.499999999999394,
+          "abs_median": 5.499999999999394
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 5.00000000000167,
+            "GBP_USD": 0.9999999999998899,
+            "USD_JPY": -6.25,
+            "AUD_USD": 13.449999999999296,
+            "USD_CAD": -3.8500000000007972,
+            "USD_CHF": -1.9999999999997797
+          },
+          "median": -0.49999999999994493,
+          "abs_median": 0.49999999999994493
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": -16.700000000000603,
+            "GBP_USD": -22.199999999998887,
+            "USD_JPY": -12.400000000002365,
+            "AUD_USD": -13.999999999999568,
+            "USD_CAD": -12.800000000001699,
+            "USD_CHF": -10.999999999999899
+          },
+          "median": -13.400000000000635
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -4.60000000000127,
+            "GBP_USD": -11.200000000000099,
+            "USD_JPY": 0.39999999999906777,
+            "AUD_USD": -6.499999999999284,
+            "USD_CAD": -7.800000000000029,
+            "USD_CHF": -7.499999999999174
+          },
+          "median": -6.999999999999229
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 2.8999999999990145,
+            "GBP_USD": -4.299999999999304,
+            "USD_JPY": -6.800000000001205,
+            "AUD_USD": 0.40000000000040004,
+            "USD_CAD": 11.399999999999189,
+            "USD_CHF": -2.5999999999992696
+          },
+          "median": -1.0999999999994348
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 1.8999999999991246,
+            "GBP_USD": -21.799999999998487,
+            "USD_JPY": 21.09999999999843,
+            "AUD_USD": -19.299999999999873,
+            "USD_CAD": -11.800000000001809,
+            "USD_CHF": -2.4999999999997247
+          },
+          "median": -7.150000000000767
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -6.699999999999484,
+            "GBP_USD": -2.8999999999990145,
+            "USD_JPY": 4.399999999998272,
+            "AUD_USD": -14.799999999999258,
+            "USD_CAD": 1.9999999999997797,
+            "USD_CHF": 0.49999999999994493
+          },
+          "median": -1.1999999999995348
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_empsit_2026-01-09",
+      "family": "EMPLOYMENT_SITUATION",
+      "t0": "2026-01-09T13:30:00Z",
+      "D": "2026-01-09T13:35:00Z",
+      "feature_bar_start": "2026-01-09T13:30:00Z",
+      "feature_bar_end": "2026-01-09T13:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -7.999999999999119,
+        "GBP_USD": -19.450000000000855,
+        "USD_JPY": -9.950000000000614,
+        "AUD_USD": -10.250000000000536,
+        "USD_CAD": -6.050000000001887,
+        "USD_CHF": -2.449999999999397
+      },
+      "first5_median_usd_pips": -8.974999999999866,
+      "first5_abs_median_usd_pips": 8.974999999999866,
+      "first5_usd_sign": -1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.7999999999984695,
+        "GBP_USD": 2.100000000000435,
+        "USD_JPY": 1.999999999998181,
+        "AUD_USD": 1.40000000000029,
+        "USD_CAD": 1.900000000001345,
+        "USD_CHF": 1.7000000000000348
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": -5.050000000001997,
+            "GBP_USD": -4.900000000001015,
+            "USD_JPY": -8.050000000000068,
+            "AUD_USD": -13.900000000000023,
+            "USD_CAD": -8.599999999998609,
+            "USD_CHF": -5.899999999999794
+          },
+          "median": -6.974999999999931,
+          "abs_median": 6.974999999999931
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 6.399999999999739,
+            "GBP_USD": 4.149999999998322,
+            "USD_JPY": 0.04999999999881766,
+            "AUD_USD": -1.100000000000545,
+            "USD_CAD": 1.0000000000021103,
+            "USD_CHF": 2.9999999999996696
+          },
+          "median": 2.00000000000089,
+          "abs_median": 2.00000000000089
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 13.449999999999296,
+            "GBP_USD": 25.299999999999212,
+            "USD_JPY": 44.74999999999909,
+            "AUD_USD": 9.249999999999536,
+            "USD_CAD": 9.900000000000464,
+            "USD_CHF": 12.550000000000061
+          },
+          "median": 12.999999999999678,
+          "abs_median": 12.999999999999678
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 25.35000000000176,
+            "GBP_USD": 33.75000000000128,
+            "USD_JPY": 64.30000000000007,
+            "AUD_USD": 14.000000000000679,
+            "USD_CAD": 18.75000000000071,
+            "USD_CHF": 18.200000000000436
+          },
+          "median": 22.050000000001234,
+          "abs_median": 22.050000000001234
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 20.800000000000818,
+            "GBP_USD": 37.75000000000084,
+            "USD_JPY": 53.84999999999991,
+            "AUD_USD": 6.649999999999157,
+            "USD_CAD": 23.800000000000487,
+            "USD_CHF": 20.200000000000216
+          },
+          "median": 22.30000000000065,
+          "abs_median": 22.30000000000065
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": 3.300000000001635,
+            "GBP_USD": 2.80000000000058,
+            "USD_JPY": 6.30000000000166,
+            "AUD_USD": 12.499999999999734,
+            "USD_CAD": 6.800000000000139,
+            "USD_CHF": 4.300000000000415
+          },
+          "median": 5.300000000001037
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -8.099999999999774,
+            "GBP_USD": -6.099999999999994,
+            "USD_JPY": -1.8999999999977035,
+            "AUD_USD": -0.20000000000020002,
+            "USD_CAD": -2.80000000000058,
+            "USD_CHF": -4.6000000000001595
+          },
+          "median": -3.7000000000003697
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -15.199999999999658,
+            "GBP_USD": -27.29999999999899,
+            "USD_JPY": -46.599999999997976,
+            "AUD_USD": -10.599999999999499,
+            "USD_CAD": -11.799999999999589,
+            "USD_CHF": -14.100000000000223
+          },
+          "median": -14.649999999999942
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -27.099999999999902,
+            "GBP_USD": -35.70000000000073,
+            "USD_JPY": -65.99999999999966,
+            "AUD_USD": -15.300000000000313,
+            "USD_CAD": -20.599999999999508,
+            "USD_CHF": -19.799999999999816
+          },
+          "median": -23.849999999999703
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -22.499999999998632,
+            "GBP_USD": -39.89999999999938,
+            "USD_JPY": -55.79999999999927,
+            "AUD_USD": -8.00000000000023,
+            "USD_CAD": -25.500000000000522,
+            "USD_CHF": -21.700000000000053
+          },
+          "median": -23.999999999999577
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_empsit_2026-02-11",
+      "family": "EMPLOYMENT_SITUATION",
+      "t0": "2026-02-11T13:30:00Z",
+      "D": "2026-02-11T13:35:00Z",
+      "feature_bar_start": "2026-02-11T13:30:00Z",
+      "feature_bar_end": "2026-02-11T13:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": 54.44999999999922,
+        "GBP_USD": 58.549999999999436,
+        "USD_JPY": 96.0000000000008,
+        "AUD_USD": 18.9499999999998,
+        "USD_CAD": 27.999999999999137,
+        "USD_CHF": 41.30000000000078
+      },
+      "first5_median_usd_pips": 47.875,
+      "first5_abs_median_usd_pips": 47.875,
+      "first5_usd_sign": 1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.6000000000016001,
+        "GBP_USD": 1.9999999999997797,
+        "USD_JPY": 1.6999999999995907,
+        "AUD_USD": 1.40000000000029,
+        "USD_CAD": 1.9999999999997797,
+        "USD_CHF": 1.80000000000069
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": -19.399999999998307,
+            "GBP_USD": -22.000000000002018,
+            "USD_JPY": -101.80000000000007,
+            "AUD_USD": -12.900000000000134,
+            "USD_CAD": -5.499999999998284,
+            "USD_CHF": -13.550000000001061
+          },
+          "median": -16.474999999999685,
+          "abs_median": 16.474999999999685
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -14.750000000001151,
+            "GBP_USD": -17.249999999999766,
+            "USD_JPY": -62.5,
+            "AUD_USD": -25.650000000000393,
+            "USD_CAD": -9.649999999998826,
+            "USD_CHF": -7.650000000000157
+          },
+          "median": -16.00000000000046,
+          "abs_median": 16.00000000000046
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -17.20000000000166,
+            "GBP_USD": -27.900000000000702,
+            "USD_JPY": -59.39999999999941,
+            "AUD_USD": -30.70000000000017,
+            "USD_CAD": -16.699999999998383,
+            "USD_CHF": -2.6500000000007073
+          },
+          "median": -22.55000000000118,
+          "abs_median": 22.55000000000118
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -9.700000000001374,
+            "GBP_USD": -22.900000000001253,
+            "USD_JPY": -109.39999999999941,
+            "AUD_USD": -10.599999999999499,
+            "USD_CAD": 17.100000000001003,
+            "USD_CHF": 8.650000000000047
+          },
+          "median": -10.150000000000436,
+          "abs_median": 10.150000000000436
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -44.30000000000156,
+            "GBP_USD": -40.05000000000036,
+            "USD_JPY": -174.20000000000186,
+            "AUD_USD": -52.40000000000022,
+            "USD_CAD": -36.10000000000113,
+            "USD_CHF": -17.399999999999636
+          },
+          "median": -42.17500000000096,
+          "abs_median": 42.17500000000096
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": -20.999999999999908,
+            "GBP_USD": -24.300000000001543,
+            "USD_JPY": -104.80000000000018,
+            "AUD_USD": -14.300000000000423,
+            "USD_CAD": -7.499999999998064,
+            "USD_CHF": -15.200000000000768
+          },
+          "median": -18.10000000000034
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -16.40000000000086,
+            "GBP_USD": -19.100000000000783,
+            "USD_JPY": -64.30000000000007,
+            "AUD_USD": -27.000000000000355,
+            "USD_CAD": -11.599999999998278,
+            "USD_CHF": -9.400000000000519
+          },
+          "median": -17.75000000000082
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -18.800000000001038,
+            "GBP_USD": -30.000000000001137,
+            "USD_JPY": -61.000000000001364,
+            "AUD_USD": -32.10000000000046,
+            "USD_CAD": -18.799999999998818,
+            "USD_CHF": -4.20000000000087
+          },
+          "median": -24.400000000001086
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -11.300000000000754,
+            "GBP_USD": -24.900000000001032,
+            "USD_JPY": -111.19999999999948,
+            "AUD_USD": -11.999999999999789,
+            "USD_CAD": 15.200000000001879,
+            "USD_CHF": 6.899999999999684
+          },
+          "median": -11.650000000000272
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -45.90000000000094,
+            "GBP_USD": -42.10000000000047,
+            "USD_JPY": -176.00000000000193,
+            "AUD_USD": -53.80000000000051,
+            "USD_CAD": -38.000000000000256,
+            "USD_CHF": -19.000000000000128
+          },
+          "median": -44.0000000000007
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_empsit_2026-03-06",
+      "family": "EMPLOYMENT_SITUATION",
+      "t0": "2026-03-06T13:30:00Z",
+      "D": "2026-03-06T13:35:00Z",
+      "feature_bar_start": "2026-03-06T13:30:00Z",
+      "feature_bar_end": "2026-03-06T13:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -25.650000000001505,
+        "GBP_USD": -21.999999999999797,
+        "USD_JPY": -39.79999999999961,
+        "AUD_USD": -11.400000000000299,
+        "USD_CAD": -7.449999999997736,
+        "USD_CHF": -15.54999999999862
+      },
+      "first5_median_usd_pips": -18.77499999999921,
+      "first5_abs_median_usd_pips": 18.77499999999921,
+      "first5_usd_sign": -1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.8999999999991246,
+        "GBP_USD": 2.2999999999995246,
+        "USD_JPY": 2.1000000000015007,
+        "AUD_USD": 1.5999999999993797,
+        "USD_CAD": 1.900000000001345,
+        "USD_CHF": 1.7000000000000348
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": 0.05000000000032756,
+            "GBP_USD": 0.10000000000065512,
+            "USD_JPY": 5.249999999998067,
+            "AUD_USD": 5.450000000000177,
+            "USD_CAD": -15.300000000002534,
+            "USD_CHF": -4.950000000000232
+          },
+          "median": 0.07500000000049134,
+          "abs_median": 0.07500000000049134
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 35.050000000000914,
+            "GBP_USD": 38.35000000000033,
+            "USD_JPY": 38.14999999999884,
+            "AUD_USD": 36.10000000000002,
+            "USD_CAD": 4.199999999998649,
+            "USD_CHF": 14.449999999999186
+          },
+          "median": 35.57500000000047,
+          "abs_median": 35.57500000000047
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 32.450000000001644,
+            "GBP_USD": 37.350000000000435,
+            "USD_JPY": 51.64999999999793,
+            "AUD_USD": 29.449999999999754,
+            "USD_CAD": 13.449999999997075,
+            "USD_CHF": 9.949999999999681
+          },
+          "median": 30.9500000000007,
+          "abs_median": 30.9500000000007
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 14.199999999999768,
+            "GBP_USD": 22.299999999999542,
+            "USD_JPY": 27.549999999999386,
+            "AUD_USD": 9.949999999999681,
+            "USD_CAD": -17.000000000000348,
+            "USD_CHF": -7.500000000001394
+          },
+          "median": 12.074999999999726,
+          "abs_median": 12.074999999999726
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -5.399999999999849,
+            "GBP_USD": -13.149999999999551,
+            "USD_JPY": 25.300000000001432,
+            "AUD_USD": 4.449999999999177,
+            "USD_CAD": -35.80000000000138,
+            "USD_CHF": -27.650000000000173
+          },
+          "median": -9.2749999999997,
+          "abs_median": 9.2749999999997
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": -1.80000000000069,
+            "GBP_USD": -2.2999999999995246,
+            "USD_JPY": -7.30000000000075,
+            "AUD_USD": -6.899999999999684,
+            "USD_CAD": 13.399999999998968,
+            "USD_CHF": 3.3000000000005247
+          },
+          "median": -2.0500000000001073
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -36.89999999999971,
+            "GBP_USD": -40.49999999999887,
+            "USD_JPY": -39.90000000000009,
+            "AUD_USD": -37.4999999999992,
+            "USD_CAD": -6.200000000000649,
+            "USD_CHF": -15.999999999999348
+          },
+          "median": -37.19999999999945
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -34.09999999999913,
+            "GBP_USD": -39.59999999999963,
+            "USD_JPY": -53.39999999999918,
+            "AUD_USD": -30.799999999999716,
+            "USD_CAD": -15.199999999999658,
+            "USD_CHF": -11.599999999999389
+          },
+          "median": -32.44999999999942
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -16.100000000001113,
+            "GBP_USD": -24.599999999999067,
+            "USD_JPY": -29.50000000000159,
+            "AUD_USD": -11.499999999999844,
+            "USD_CAD": 14.999999999998348,
+            "USD_CHF": 5.9000000000009045
+          },
+          "median": -13.800000000000479
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 3.5999999999991594,
+            "GBP_USD": 11.000000000001009,
+            "USD_JPY": -27.299999999999613,
+            "AUD_USD": -5.999999999999339,
+            "USD_CAD": 33.90000000000004,
+            "USD_CHF": 26.000000000000465
+          },
+          "median": 7.300000000000084
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_empsit_2026-04-03",
+      "family": "EMPLOYMENT_SITUATION",
+      "t0": "2026-04-03T12:30:00Z",
+      "D": "2026-04-03T12:35:00Z",
+      "feature_bar_start": "2026-04-03T12:30:00Z",
+      "feature_bar_end": "2026-04-03T12:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": 14.500000000001734,
+        "GBP_USD": 22.899999999999032,
+        "USD_JPY": 8.500000000000796,
+        "AUD_USD": 8.549999999998281,
+        "USD_CAD": 8.20000000000043,
+        "USD_CHF": 11.300000000000754
+      },
+      "first5_median_usd_pips": 9.924999999999518,
+      "first5_abs_median_usd_pips": 9.924999999999518,
+      "first5_usd_sign": 1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.9999999999997797,
+        "GBP_USD": 2.3999999999979593,
+        "USD_JPY": 2.200000000001978,
+        "AUD_USD": 1.4999999999998348,
+        "USD_CAD": 2.100000000000435,
+        "USD_CHF": 2.00000000000089
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": -3.649999999999487,
+            "GBP_USD": -7.899999999998464,
+            "USD_JPY": -9.600000000000364,
+            "AUD_USD": -2.449999999999397,
+            "USD_CAD": -5.9000000000009045,
+            "USD_CHF": -1.500000000000945
+          },
+          "median": -4.775000000000196,
+          "abs_median": 4.775000000000196
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -2.500000000000835,
+            "GBP_USD": -1.7000000000000348,
+            "USD_JPY": -4.300000000000637,
+            "AUD_USD": 1.7000000000000348,
+            "USD_CAD": -0.9000000000014552,
+            "USD_CHF": -3.2500000000013074
+          },
+          "median": -2.100000000000435,
+          "abs_median": 2.100000000000435
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -2.5999999999992696,
+            "GBP_USD": -1.3499999999999623,
+            "USD_JPY": -10.599999999999454,
+            "AUD_USD": -0.7999999999985796,
+            "USD_CAD": -0.9000000000014552,
+            "USD_CHF": -6.350000000000522
+          },
+          "median": -1.974999999999616,
+          "abs_median": 1.974999999999616
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 2.049999999997887,
+            "GBP_USD": 2.5500000000011624,
+            "USD_JPY": -10.700000000002774,
+            "AUD_USD": 6.950000000001122,
+            "USD_CAD": 6.349999999999412,
+            "USD_CHF": -1.300000000000745
+          },
+          "median": 2.2999999999995246,
+          "abs_median": 2.2999999999995246
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 8.099999999999774,
+            "GBP_USD": 15.100000000001224,
+            "USD_JPY": -1.6000000000019554,
+            "AUD_USD": 8.500000000000174,
+            "USD_CAD": 3.249999999999087,
+            "USD_CHF": 6.299999999999084
+          },
+          "median": 7.199999999999429,
+          "abs_median": 7.199999999999429
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": -5.60000000000116,
+            "GBP_USD": -10.199999999997988,
+            "USD_JPY": -11.7999999999995,
+            "AUD_USD": -3.9999999999995595,
+            "USD_CAD": -7.900000000000684,
+            "USD_CHF": -3.4000000000000696
+          },
+          "median": -6.750000000000922
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -4.300000000001525,
+            "GBP_USD": -3.9999999999995595,
+            "USD_JPY": -6.399999999999295,
+            "AUD_USD": 0.2999999999997449,
+            "USD_CAD": -2.80000000000058,
+            "USD_CHF": -5.0000000000005596
+          },
+          "median": -4.150000000000542
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -4.3999999999999595,
+            "GBP_USD": -3.6999999999998145,
+            "USD_JPY": -12.399999999999523,
+            "AUD_USD": -2.2999999999995246,
+            "USD_CAD": -2.900000000001235,
+            "USD_CHF": -8.20000000000043
+          },
+          "median": -4.049999999999887
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 0.2999999999997449,
+            "GBP_USD": 0.20000000000131024,
+            "USD_JPY": -12.90000000000191,
+            "AUD_USD": 5.5000000000005045,
+            "USD_CAD": 4.199999999998649,
+            "USD_CHF": -3.1000000000003247
+          },
+          "median": 0.2500000000005276
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 5.999999999999339,
+            "GBP_USD": 12.500000000001954,
+            "USD_JPY": -3.6000000000001364,
+            "AUD_USD": 6.800000000000139,
+            "USD_CAD": 0.7999999999985796,
+            "USD_CHF": 4.3999999999999595
+          },
+          "median": 5.199999999999649
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_empsit_2026-05-08",
+      "family": "EMPLOYMENT_SITUATION",
+      "t0": "2026-05-08T12:30:00Z",
+      "D": "2026-05-08T12:35:00Z",
+      "feature_bar_start": "2026-05-08T12:30:00Z",
+      "feature_bar_end": "2026-05-08T12:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -11.399999999999189,
+        "GBP_USD": -10.399999999997078,
+        "USD_JPY": -17.500000000001137,
+        "AUD_USD": -14.649999999999386,
+        "USD_CAD": 25.29999999999699,
+        "USD_CHF": -10.900000000000354
+      },
+      "first5_median_usd_pips": -11.149999999999771,
+      "first5_abs_median_usd_pips": 11.149999999999771,
+      "first5_usd_sign": -1,
+      "agreement": 5,
+      "spreads_at_D": {
+        "EUR_USD": 1.7000000000000348,
+        "GBP_USD": 1.900000000001345,
+        "USD_JPY": 1.6000000000019554,
+        "AUD_USD": 1.2999999999996348,
+        "USD_CAD": 1.80000000000069,
+        "USD_CHF": 1.4999999999998348
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": 0.5999999999994898,
+            "GBP_USD": 3.0499999999977767,
+            "USD_JPY": 2.6499999999998636,
+            "AUD_USD": 1.300000000000745,
+            "USD_CAD": 1.7500000000003624,
+            "USD_CHF": -0.2999999999997449
+          },
+          "median": 1.5250000000005537,
+          "abs_median": 1.5250000000005537
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 3.549999999998832,
+            "GBP_USD": 9.999999999998899,
+            "USD_JPY": 8.199999999999363,
+            "AUD_USD": 8.449999999999847,
+            "USD_CAD": 10.00000000000334,
+            "USD_CHF": 2.8999999999990145
+          },
+          "median": 8.324999999999605,
+          "abs_median": 8.324999999999605
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -0.05000000000032756,
+            "GBP_USD": 3.0999999999981043,
+            "USD_JPY": -6.5500000000014325,
+            "AUD_USD": 4.499999999999504,
+            "USD_CAD": 16.900000000001913,
+            "USD_CHF": -0.4500000000007276
+          },
+          "median": 1.5249999999988884,
+          "abs_median": 1.5249999999988884
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 10.149999999997661,
+            "GBP_USD": 12.799999999999478,
+            "USD_JPY": 9.699999999997999,
+            "AUD_USD": 8.199999999999319,
+            "USD_CAD": 19.249999999999545,
+            "USD_CHF": 7.500000000000284
+          },
+          "median": 9.92499999999783,
+          "abs_median": 9.92499999999783
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 0.9999999999998899,
+            "GBP_USD": -3.1500000000006523,
+            "USD_JPY": 7.200000000000273,
+            "AUD_USD": 1.6999999999989246,
+            "USD_CAD": 4.0500000000021075,
+            "USD_CHF": -3.349999999999742
+          },
+          "median": 1.3499999999994072,
+          "abs_median": 1.3499999999994072
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": -2.20000000000109,
+            "GBP_USD": -4.999999999999449,
+            "USD_JPY": -4.400000000001114,
+            "AUD_USD": -2.6999999999999247,
+            "USD_CAD": -3.60000000000138,
+            "USD_CHF": -1.2000000000000899
+          },
+          "median": -3.1500000000006523
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -5.20000000000076,
+            "GBP_USD": -11.900000000000244,
+            "USD_JPY": -9.800000000001319,
+            "AUD_USD": -9.799999999999809,
+            "USD_CAD": -11.800000000001809,
+            "USD_CHF": -4.3999999999999595
+          },
+          "median": -9.800000000000564
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -1.6000000000016001,
+            "GBP_USD": -5.1000000000001044,
+            "USD_JPY": 4.900000000000659,
+            "AUD_USD": -5.799999999999139,
+            "USD_CAD": -18.60000000000195,
+            "USD_CHF": -0.9999999999998899
+          },
+          "median": -3.3500000000008523
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -11.799999999999589,
+            "GBP_USD": -14.800000000001479,
+            "USD_JPY": -11.299999999999955,
+            "AUD_USD": -9.500000000000064,
+            "USD_CAD": -20.999999999999908,
+            "USD_CHF": -9.000000000000119
+          },
+          "median": -11.549999999999772
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -2.60000000000149,
+            "GBP_USD": 1.2999999999996348,
+            "USD_JPY": -8.70000000000175,
+            "AUD_USD": -3.0999999999992145,
+            "USD_CAD": -5.800000000000249,
+            "USD_CHF": 1.7999999999995797
+          },
+          "median": -2.8500000000003523
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_empsit_2026-06-05",
+      "family": "EMPLOYMENT_SITUATION",
+      "t0": "2026-06-05T12:30:00Z",
+      "D": "2026-06-05T12:35:00Z",
+      "feature_bar_start": "2026-06-05T12:30:00Z",
+      "feature_bar_end": "2026-06-05T12:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": 20.150000000001,
+        "GBP_USD": 24.199999999998667,
+        "USD_JPY": 11.44999999999925,
+        "AUD_USD": 11.400000000000299,
+        "USD_CAD": -12.900000000000134,
+        "USD_CHF": 20.75000000000049
+      },
+      "first5_median_usd_pips": 15.800000000000125,
+      "first5_abs_median_usd_pips": 15.800000000000125,
+      "first5_usd_sign": 1,
+      "agreement": 5,
+      "spreads_at_D": {
+        "EUR_USD": 1.5999999999993797,
+        "GBP_USD": 2.0999999999982144,
+        "USD_JPY": 1.9000000000005457,
+        "AUD_USD": 1.3999999999991797,
+        "USD_CAD": 1.8999999999991246,
+        "USD_CHF": 1.4999999999998348
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": 7.799999999997809,
+            "GBP_USD": 8.650000000001157,
+            "USD_JPY": 2.250000000000796,
+            "AUD_USD": 4.549999999999832,
+            "USD_CAD": 9.050000000001557,
+            "USD_CHF": 6.549999999999612
+          },
+          "median": 7.17499999999871,
+          "abs_median": 7.17499999999871
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 28.49999999999797,
+            "GBP_USD": 35.35000000000288,
+            "USD_JPY": 20.39999999999793,
+            "AUD_USD": 24.249999999998995,
+            "USD_CAD": 19.449999999998635,
+            "USD_CHF": 24.449999999999193
+          },
+          "median": 24.349999999999092,
+          "abs_median": 24.349999999999092
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 30.399999999999316,
+            "GBP_USD": 33.60000000000252,
+            "USD_JPY": 15.299999999999159,
+            "AUD_USD": 27.74999999999972,
+            "USD_CAD": 16.599999999999948,
+            "USD_CHF": 23.899999999998922
+          },
+          "median": 25.82499999999932,
+          "abs_median": 25.82499999999932
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 59.149999999998926,
+            "GBP_USD": 57.10000000000104,
+            "USD_JPY": 17.99999999999784,
+            "AUD_USD": 58.24999999999969,
+            "USD_CAD": 43.550000000001084,
+            "USD_CHF": 38.999999999999034
+          },
+          "median": 50.32500000000106,
+          "abs_median": 50.32500000000106
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 88.29999999999671,
+            "GBP_USD": 92.20000000000006,
+            "USD_JPY": 28.549999999998477,
+            "AUD_USD": 74.60000000000022,
+            "USD_CAD": 65.45000000000023,
+            "USD_CHF": 51.29999999999857
+          },
+          "median": 70.02500000000023,
+          "abs_median": 70.02500000000023
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": 6.200000000000649,
+            "GBP_USD": 6.6000000000010495,
+            "USD_JPY": 0.6000000000000227,
+            "AUD_USD": 3.20000000000098,
+            "USD_CAD": 7.200000000000539,
+            "USD_CHF": 5.0000000000005596
+          },
+          "median": 5.6000000000006045
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 26.89999999999859,
+            "GBP_USD": 33.40000000000121,
+            "USD_JPY": 18.599999999997863,
+            "AUD_USD": 22.90000000000014,
+            "USD_CAD": 17.700000000000493,
+            "USD_CHF": 22.90000000000014
+          },
+          "median": 22.90000000000014
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 28.69999999999928,
+            "GBP_USD": 31.600000000000517,
+            "USD_JPY": 13.399999999998613,
+            "AUD_USD": 26.400000000000865,
+            "USD_CAD": 14.800000000001479,
+            "USD_CHF": 22.400000000000198
+          },
+          "median": 24.40000000000053
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 57.49999999999922,
+            "GBP_USD": 55.10000000000126,
+            "USD_JPY": 16.19999999999777,
+            "AUD_USD": 56.90000000000084,
+            "USD_CAD": 41.70000000000007,
+            "USD_CHF": 37.39999999999965
+          },
+          "median": 48.40000000000066
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 86.69999999999955,
+            "GBP_USD": 90.20000000000027,
+            "USD_JPY": 26.899999999997704,
+            "AUD_USD": 73.30000000000058,
+            "USD_CAD": 63.60000000000143,
+            "USD_CHF": 49.79999999999984
+          },
+          "median": 68.45000000000101
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_empsit_2026-07-02",
+      "family": "EMPLOYMENT_SITUATION",
+      "t0": "2026-07-02T12:30:00Z",
+      "D": "2026-07-02T12:35:00Z",
+      "feature_bar_start": "2026-07-02T12:30:00Z",
+      "feature_bar_end": "2026-07-02T12:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -50.200000000000244,
+        "GBP_USD": -58.09999999999871,
+        "USD_JPY": -84.74999999999966,
+        "AUD_USD": -38.25000000000078,
+        "USD_CAD": -40.35000000000011,
+        "USD_CHF": -42.49999999999976
+      },
+      "first5_median_usd_pips": -46.35,
+      "first5_abs_median_usd_pips": 46.35,
+      "first5_usd_sign": -1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.7000000000000348,
+        "GBP_USD": 2.20000000000109,
+        "USD_JPY": 2.1000000000015007,
+        "AUD_USD": 1.2999999999996348,
+        "USD_CAD": 1.500000000000945,
+        "USD_CHF": 1.5999999999993797
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": -21.74999999999816,
+            "GBP_USD": -17.300000000000093,
+            "USD_JPY": 5.850000000000932,
+            "AUD_USD": -9.549999999999281,
+            "USD_CAD": -24.250000000001215,
+            "USD_CHF": -18.050000000000566
+          },
+          "median": -17.67500000000033,
+          "abs_median": 17.67500000000033
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -1.6999999999978144,
+            "GBP_USD": -2.5999999999992696,
+            "USD_JPY": 32.94999999999959,
+            "AUD_USD": 5.399999999999849,
+            "USD_CAD": 0.14999999999876223,
+            "USD_CHF": 2.2999999999995246
+          },
+          "median": 1.2249999999991434,
+          "abs_median": 1.2249999999991434
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 8.650000000001157,
+            "GBP_USD": 0.14999999999876223,
+            "USD_JPY": 41.8500000000023,
+            "AUD_USD": 4.999999999999449,
+            "USD_CAD": 0.3500000000000725,
+            "USD_CHF": 6.800000000000139
+          },
+          "median": 5.899999999999794,
+          "abs_median": 5.899999999999794
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 7.150000000000212,
+            "GBP_USD": -8.099999999999774,
+            "USD_JPY": 35.350000000002524,
+            "AUD_USD": 0.5999999999994898,
+            "USD_CAD": 4.8000000000003595,
+            "USD_CHF": -1.60000000000049
+          },
+          "median": 2.6999999999999247,
+          "abs_median": 2.6999999999999247
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 13.200000000002099,
+            "GBP_USD": 10.099999999999554,
+            "USD_JPY": 36.949999999998795,
+            "AUD_USD": 6.650000000000267,
+            "USD_CAD": 7.399999999999629,
+            "USD_CHF": -1.2499999999993072
+          },
+          "median": 8.749999999999591,
+          "abs_median": 8.749999999999591
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": 20.100000000000673,
+            "GBP_USD": 15.199999999999658,
+            "USD_JPY": -7.699999999999818,
+            "AUD_USD": 8.299999999999974,
+            "USD_CAD": 22.599999999999287,
+            "USD_CHF": 16.5000000000004
+          },
+          "median": 15.85000000000003
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 0.0,
+            "GBP_USD": 0.4999999999988347,
+            "USD_JPY": -34.70000000000084,
+            "AUD_USD": -6.699999999999484,
+            "USD_CAD": -1.80000000000069,
+            "USD_CHF": -3.9000000000000146
+          },
+          "median": -2.8500000000003523
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -10.299999999998644,
+            "GBP_USD": -2.20000000000109,
+            "USD_JPY": -43.600000000000705,
+            "AUD_USD": -6.299999999999084,
+            "USD_CAD": -1.9999999999997797,
+            "USD_CHF": -8.399999999999519
+          },
+          "median": -7.3499999999993015
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -8.799999999999919,
+            "GBP_USD": 6.099999999999994,
+            "USD_JPY": -37.30000000000189,
+            "AUD_USD": -1.8999999999991246,
+            "USD_CAD": -6.500000000000394,
+            "USD_CHF": 0.10000000000065512
+          },
+          "median": -4.1999999999997595
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -14.799999999999258,
+            "GBP_USD": -12.099999999999334,
+            "USD_JPY": -38.80000000000052,
+            "AUD_USD": -7.999999999999119,
+            "USD_CAD": -9.00000000000123,
+            "USD_CHF": -0.2999999999997449
+          },
+          "median": -10.550000000000281
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_empsit_2026-08-07",
+      "family": "EMPLOYMENT_SITUATION",
+      "t0": "2026-08-07T12:30:00Z",
+      "D": "2026-08-07T12:35:00Z",
+      "feature_bar_start": "2026-08-07T12:30:00Z",
+      "feature_bar_end": "2026-08-07T12:35:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -44.1500000000028,
+        "GBP_USD": -48.65000000000119,
+        "USD_JPY": -152.69999999999868,
+        "AUD_USD": -32.400000000000205,
+        "USD_CAD": -52.350000000001,
+        "USD_CHF": -38.84999999999916
+      },
+      "first5_median_usd_pips": -46.400000000001995,
+      "first5_abs_median_usd_pips": 46.400000000001995,
+      "first5_usd_sign": -1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.5999999999993797,
+        "GBP_USD": 2.20000000000109,
+        "USD_JPY": 2.5000000000005684,
+        "AUD_USD": 1.40000000000029,
+        "USD_CAD": 2.100000000000435,
+        "USD_CHF": 1.60000000000049
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": -1.40000000000029,
+            "GBP_USD": -1.9500000000016726,
+            "USD_JPY": 43.39999999999691,
+            "AUD_USD": -1.2000000000000899,
+            "USD_CAD": 7.650000000001267,
+            "USD_CHF": -3.8000000000004697
+          },
+          "median": -1.30000000000019,
+          "abs_median": 1.30000000000019
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -0.4999999999988347,
+            "GBP_USD": -3.549999999998832,
+            "USD_JPY": 55.5499999999995,
+            "AUD_USD": 2.6999999999999247,
+            "USD_CAD": -1.4500000000006175,
+            "USD_CHF": 2.149999999999652
+          },
+          "median": 0.8250000000004087,
+          "abs_median": 0.8250000000004087
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 2.100000000000435,
+            "GBP_USD": -7.500000000000284,
+            "USD_JPY": 57.29999999999791,
+            "AUD_USD": 4.500000000000615,
+            "USD_CAD": 0.34999999999785203,
+            "USD_CHF": 4.3999999999999595
+          },
+          "median": 3.250000000000197,
+          "abs_median": 3.250000000000197
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 15.14999999999933,
+            "GBP_USD": 2.149999999998542,
+            "USD_JPY": 94.29999999999836,
+            "AUD_USD": 3.8500000000007972,
+            "USD_CAD": -12.200000000002209,
+            "USD_CHF": 8.449999999999847
+          },
+          "median": 6.150000000000322,
+          "abs_median": 6.150000000000322
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 9.750000000001702,
+            "GBP_USD": -2.900000000001235,
+            "USD_JPY": 53.600000000000136,
+            "AUD_USD": 5.800000000000249,
+            "USD_CAD": -14.049999999998786,
+            "USD_CHF": 6.450000000000067
+          },
+          "median": 6.125000000000158,
+          "abs_median": 6.125000000000158
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": -0.1999999999990898,
+            "GBP_USD": 0.0,
+            "USD_JPY": -45.50000000000125,
+            "AUD_USD": -0.20000000000020002,
+            "USD_CAD": -9.600000000000719,
+            "USD_CHF": 2.1999999999999797
+          },
+          "median": -0.1999999999996449
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -0.9999999999998899,
+            "GBP_USD": 1.5999999999993797,
+            "USD_JPY": -57.69999999999982,
+            "AUD_USD": -4.100000000000215,
+            "USD_CAD": -0.4999999999988347,
+            "USD_CHF": -3.7000000000009248
+          },
+          "median": -2.3500000000004073
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -3.6999999999998145,
+            "GBP_USD": 5.499999999998284,
+            "USD_JPY": -59.29999999999893,
+            "AUD_USD": -5.9000000000009045,
+            "USD_CAD": -2.2999999999995246,
+            "USD_CHF": -5.9000000000009045
+          },
+          "median": -4.8000000000003595
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -16.799999999999038,
+            "GBP_USD": -4.100000000000215,
+            "USD_JPY": -96.39999999999986,
+            "AUD_USD": -5.20000000000076,
+            "USD_CAD": 10.300000000000864,
+            "USD_CHF": -10.000000000000009
+          },
+          "median": -7.600000000000384
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -11.300000000000754,
+            "GBP_USD": 0.8999999999992347,
+            "USD_JPY": -55.60000000000116,
+            "AUD_USD": -7.200000000000539,
+            "USD_CAD": 12.099999999999334,
+            "USD_CHF": -8.00000000000023
+          },
+          "median": -7.600000000000384
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_fomc_statement_2025-09-17",
+      "family": "FOMC",
+      "t0": "2025-09-17T18:00:00Z",
+      "D": "2025-09-17T18:05:00Z",
+      "feature_bar_start": "2025-09-17T18:00:00Z",
+      "feature_bar_end": "2025-09-17T18:05:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -38.09999999999869,
+        "GBP_USD": -39.64999999999996,
+        "USD_JPY": -43.100000000004,
+        "AUD_USD": -29.549999999999297,
+        "USD_CAD": -25.800000000000267,
+        "USD_CHF": -23.549999999999958
+      },
+      "first5_median_usd_pips": -33.824999999998994,
+      "first5_abs_median_usd_pips": 33.824999999998994,
+      "first5_usd_sign": -1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.7999999999984695,
+        "GBP_USD": 1.8999999999991246,
+        "USD_JPY": 1.8000000000000682,
+        "AUD_USD": 1.3999999999991797,
+        "USD_CAD": 1.900000000001345,
+        "USD_CHF": 1.7000000000000348
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": -1.3499999999999623,
+            "GBP_USD": 9.600000000000719,
+            "USD_JPY": -4.44999999999709,
+            "AUD_USD": 10.649999999998716,
+            "USD_CAD": 5.00000000000167,
+            "USD_CHF": -5.749999999999922
+          },
+          "median": 1.8250000000008537,
+          "abs_median": 1.8250000000008537
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 3.450000000000397,
+            "GBP_USD": 13.199999999999878,
+            "USD_JPY": 12.20000000000141,
+            "AUD_USD": 8.500000000000174,
+            "USD_CAD": 1.6000000000016001,
+            "USD_CHF": 0.2999999999997449
+          },
+          "median": 5.975000000000286,
+          "abs_median": 5.975000000000286
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 58.00000000000027,
+            "GBP_USD": 67.80000000000008,
+            "USD_JPY": 89.70000000000482,
+            "AUD_USD": 42.94999999999938,
+            "USD_CAD": 35.550000000001965,
+            "USD_CHF": 41.05000000000025
+          },
+          "median": 50.474999999999824,
+          "abs_median": 50.474999999999824
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 67.74999999999976,
+            "GBP_USD": 70.45000000000189,
+            "USD_JPY": 96.25000000000341,
+            "AUD_USD": 40.09999999999847,
+            "USD_CAD": 36.800000000001276,
+            "USD_CHF": 39.799999999999834
+          },
+          "median": 53.924999999999116,
+          "abs_median": 53.924999999999116
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 76.15000000000148,
+            "GBP_USD": 79.59999999999967,
+            "USD_JPY": 112.90000000000191,
+            "AUD_USD": 45.59999999999897,
+            "USD_CAD": 37.75000000000084,
+            "USD_CHF": 44.899999999999935
+          },
+          "median": 60.87500000000023,
+          "abs_median": 60.87500000000023
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": -0.40000000000040004,
+            "GBP_USD": -11.499999999999844,
+            "USD_JPY": 2.7999999999991587,
+            "AUD_USD": -11.999999999999789,
+            "USD_CAD": -6.900000000000794,
+            "USD_CHF": 4.100000000000215
+          },
+          "median": -3.650000000000597
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -5.199999999998539,
+            "GBP_USD": -15.199999999999658,
+            "USD_JPY": -14.000000000001478,
+            "AUD_USD": -9.799999999999809,
+            "USD_CAD": -3.5000000000007248,
+            "USD_CHF": -1.9999999999997797
+          },
+          "median": -7.499999999999174
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -59.70000000000031,
+            "GBP_USD": -69.60000000000078,
+            "USD_JPY": -91.50000000000205,
+            "AUD_USD": -44.299999999999336,
+            "USD_CAD": -37.50000000000142,
+            "USD_CHF": -42.69999999999996
+          },
+          "median": -51.99999999999982
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -69.59999999999854,
+            "GBP_USD": -72.3000000000007,
+            "USD_JPY": -98.00000000000182,
+            "AUD_USD": -41.39999999999921,
+            "USD_CAD": -38.50000000000131,
+            "USD_CHF": -41.499999999999865
+          },
+          "median": -55.5499999999992
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -78.49999999999912,
+            "GBP_USD": -82.59999999999934,
+            "USD_JPY": -116.0000000000025,
+            "AUD_USD": -47.999999999999154,
+            "USD_CAD": -40.40000000000043,
+            "USD_CHF": -48.200000000000465
+          },
+          "median": -63.349999999999795
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_fomc_statement_2025-10-29",
+      "family": "FOMC",
+      "t0": "2025-10-29T18:00:00Z",
+      "D": "2025-10-29T18:05:00Z",
+      "feature_bar_start": "2025-10-29T18:00:00Z",
+      "feature_bar_end": "2025-10-29T18:05:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": 8.649999999998936,
+        "GBP_USD": 11.500000000002064,
+        "USD_JPY": 12.55000000000166,
+        "AUD_USD": 6.300000000000194,
+        "USD_CAD": 5.049999999999777,
+        "USD_CHF": 2.7999999999994696
+      },
+      "first5_median_usd_pips": 7.474999999999565,
+      "first5_abs_median_usd_pips": 7.474999999999565,
+      "first5_usd_sign": 1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.80000000000069,
+        "GBP_USD": 2.2999999999995246,
+        "USD_JPY": 1.6000000000019554,
+        "AUD_USD": 1.2999999999996348,
+        "USD_CAD": 1.8999999999991246,
+        "USD_CHF": 1.7000000000000348
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": 5.100000000002325,
+            "GBP_USD": 4.949999999999122,
+            "USD_JPY": 9.400000000002251,
+            "AUD_USD": 7.749999999999702,
+            "USD_CAD": 9.00000000000123,
+            "USD_CHF": 3.7500000000012523
+          },
+          "median": 6.425000000001013,
+          "abs_median": 6.425000000001013
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 1.6000000000016001,
+            "GBP_USD": 3.399999999997849,
+            "USD_JPY": 5.5499999999995,
+            "AUD_USD": 5.699999999999594,
+            "USD_CAD": 5.1000000000001044,
+            "USD_CHF": 1.7500000000003624
+          },
+          "median": 4.249999999998977,
+          "abs_median": 4.249999999998977
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 46.00000000000159,
+            "GBP_USD": 54.149999999997256,
+            "USD_JPY": 44.55000000000098,
+            "AUD_USD": 27.000000000000355,
+            "USD_CAD": 26.600000000001067,
+            "USD_CHF": 34.95000000000026
+          },
+          "median": 39.75000000000062,
+          "abs_median": 39.75000000000062
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 41.25000000000156,
+            "GBP_USD": 21.049999999998015,
+            "USD_JPY": 43.85000000000048,
+            "AUD_USD": 32.2,
+            "USD_CAD": 41.44999999999843,
+            "USD_CHF": 32.400000000000205
+          },
+          "median": 36.825000000000884,
+          "abs_median": 36.825000000000884
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 37.75000000000084,
+            "GBP_USD": 19.399999999998307,
+            "USD_JPY": 28.950000000000387,
+            "AUD_USD": 32.29999999999955,
+            "USD_CAD": 37.44999999999887,
+            "USD_CHF": 24.050000000001013
+          },
+          "median": 30.624999999999968,
+          "abs_median": 30.624999999999968
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": 3.2999999999994145,
+            "GBP_USD": 2.80000000000058,
+            "USD_JPY": 7.800000000000296,
+            "AUD_USD": 6.399999999999739,
+            "USD_CAD": 7.099999999999884,
+            "USD_CHF": 2.100000000000435
+          },
+          "median": 4.849999999999577
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -0.10000000000065512,
+            "GBP_USD": 1.2999999999996348,
+            "USD_JPY": 3.8999999999987267,
+            "AUD_USD": 4.3999999999999595,
+            "USD_CAD": 3.20000000000098,
+            "USD_CHF": 0.20000000000020002
+          },
+          "median": 2.2500000000003073
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 44.39999999999999,
+            "GBP_USD": 52.09999999999937,
+            "USD_JPY": 42.79999999999973,
+            "AUD_USD": 25.600000000000065,
+            "USD_CAD": 24.900000000001032,
+            "USD_CHF": 33.4000000000001
+          },
+          "median": 38.09999999999991
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 39.59999999999963,
+            "GBP_USD": 19.100000000000783,
+            "USD_JPY": 42.199999999999704,
+            "AUD_USD": 30.90000000000037,
+            "USD_CAD": 39.59999999999963,
+            "USD_CHF": 30.800000000000825
+          },
+          "median": 35.25
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 35.799999999999166,
+            "GBP_USD": 17.199999999999438,
+            "USD_JPY": 25.0,
+            "AUD_USD": 30.200000000000227,
+            "USD_CAD": 33.799999999999386,
+            "USD_CHF": 18.50000000000018
+          },
+          "median": 27.600000000000115
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_fomc_statement_2025-12-10",
+      "family": "FOMC",
+      "t0": "2025-12-10T19:00:00Z",
+      "D": "2025-12-10T19:05:00Z",
+      "feature_bar_start": "2025-12-10T19:00:00Z",
+      "feature_bar_end": "2025-12-10T19:05:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -12.74999999999693,
+        "GBP_USD": -13.900000000000023,
+        "USD_JPY": -14.599999999998658,
+        "AUD_USD": -9.950000000000792,
+        "USD_CAD": -9.600000000000719,
+        "USD_CHF": -8.850000000000247
+      },
+      "first5_median_usd_pips": -11.349999999998861,
+      "first5_abs_median_usd_pips": 11.349999999998861,
+      "first5_usd_sign": -1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.4999999999987246,
+        "GBP_USD": 2.100000000000435,
+        "USD_JPY": 1.6999999999995907,
+        "AUD_USD": 1.4999999999998348,
+        "USD_CAD": 1.7000000000000348,
+        "USD_CHF": 1.5999999999993797
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": -0.10000000000065512,
+            "GBP_USD": -4.60000000000127,
+            "USD_JPY": 6.349999999997635,
+            "AUD_USD": -5.950000000000122,
+            "USD_CAD": -4.699999999999704,
+            "USD_CHF": 0.9999999999998899
+          },
+          "median": -2.3500000000009624,
+          "abs_median": 2.3500000000009624
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 4.699999999999704,
+            "GBP_USD": 3.8999999999989043,
+            "USD_JPY": 17.149999999998045,
+            "AUD_USD": -2.1999999999988695,
+            "USD_CAD": 1.7500000000003624,
+            "USD_CHF": 4.750000000000032
+          },
+          "median": 4.299999999999304,
+          "abs_median": 4.299999999999304
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -9.149999999999991,
+            "GBP_USD": -15.54999999999973,
+            "USD_JPY": -1.5500000000031378,
+            "AUD_USD": -14.699999999999713,
+            "USD_CAD": -13.049999999998896,
+            "USD_CHF": -4.750000000000032
+          },
+          "median": -11.099999999999444,
+          "abs_median": 11.099999999999444
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -25.050000000002015,
+            "GBP_USD": -35.70000000000073,
+            "USD_JPY": -34.35000000000059,
+            "AUD_USD": -27.249999999999773,
+            "USD_CAD": -28.35000000000143,
+            "USD_CHF": -15.049999999999786
+          },
+          "median": -27.8000000000006,
+          "abs_median": 27.8000000000006
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -26.250000000000995,
+            "GBP_USD": -30.90000000000037,
+            "USD_JPY": -25.150000000002137,
+            "AUD_USD": -17.849999999999255,
+            "USD_CAD": -28.200000000000447,
+            "USD_CHF": -15.500000000000513
+          },
+          "median": -25.700000000001566,
+          "abs_median": 25.700000000001566
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": -1.4999999999987246,
+            "GBP_USD": 2.500000000000835,
+            "USD_JPY": -7.999999999998408,
+            "AUD_USD": 4.500000000000615,
+            "USD_CAD": 2.9999999999996696,
+            "USD_CHF": -2.5999999999992696
+          },
+          "median": 0.5000000000010552
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -6.299999999999084,
+            "GBP_USD": -5.999999999999339,
+            "USD_JPY": -18.799999999998818,
+            "AUD_USD": 0.700000000000145,
+            "USD_CAD": -3.5000000000007248,
+            "USD_CHF": -6.399999999999739
+          },
+          "median": -6.149999999999212
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 7.500000000000284,
+            "GBP_USD": 13.400000000001189,
+            "USD_JPY": -0.1999999999981128,
+            "AUD_USD": 13.300000000000534,
+            "USD_CAD": 11.299999999998533,
+            "USD_CHF": 3.3000000000005247
+          },
+          "median": 9.399999999999409
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 23.500000000000743,
+            "GBP_USD": 33.60000000000029,
+            "USD_JPY": 32.60000000000218,
+            "AUD_USD": 25.800000000000267,
+            "USD_CAD": 26.599999999998847,
+            "USD_CHF": 13.500000000000734
+          },
+          "median": 26.199999999999555
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 24.600000000001288,
+            "GBP_USD": 27.700000000001612,
+            "USD_JPY": 22.30000000000132,
+            "AUD_USD": 15.900000000000913,
+            "USD_CAD": 25.199999999998557,
+            "USD_CHF": 13.300000000000534
+          },
+          "median": 23.450000000001303
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_fomc_statement_2026-01-28",
+      "family": "FOMC",
+      "t0": "2026-01-28T19:00:00Z",
+      "D": "2026-01-28T19:05:00Z",
+      "feature_bar_start": "2026-01-28T19:00:00Z",
+      "feature_bar_end": "2026-01-28T19:05:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": 8.60000000000305,
+        "GBP_USD": 10.099999999999554,
+        "USD_JPY": 6.850000000000023,
+        "AUD_USD": 3.349999999999742,
+        "USD_CAD": 4.699999999999704,
+        "USD_CHF": 6.899999999999684
+      },
+      "first5_median_usd_pips": 6.8749999999998535,
+      "first5_abs_median_usd_pips": 6.8749999999998535,
+      "first5_usd_sign": 1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.7000000000000348,
+        "GBP_USD": 2.100000000000435,
+        "USD_JPY": 1.8000000000000682,
+        "AUD_USD": 1.40000000000029,
+        "USD_CAD": 1.5999999999993797,
+        "USD_CHF": 1.7000000000000348
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": 3.649999999999487,
+            "GBP_USD": -1.8999999999991246,
+            "USD_JPY": -10.3999999999985,
+            "AUD_USD": -5.1000000000001044,
+            "USD_CAD": -4.450000000000287,
+            "USD_CHF": 1.0500000000002174
+          },
+          "median": -3.174999999999706,
+          "abs_median": 3.174999999999706
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 10.149999999997661,
+            "GBP_USD": 7.3499999999993015,
+            "USD_JPY": 3.5499999999984766,
+            "AUD_USD": 0.9999999999998899,
+            "USD_CAD": 0.2999999999997449,
+            "USD_CHF": 4.650000000000487
+          },
+          "median": 4.099999999999482,
+          "abs_median": 4.099999999999482
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -26.850000000000485,
+            "GBP_USD": -26.900000000000812,
+            "USD_JPY": -42.45000000000232,
+            "AUD_USD": -20.449999999999633,
+            "USD_CAD": -27.200000000000557,
+            "USD_CHF": -18.199999999999328
+          },
+          "median": -26.875000000000647,
+          "abs_median": 26.875000000000647
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -32.05000000000124,
+            "GBP_USD": -32.44999999999942,
+            "USD_JPY": -53.249999999999886,
+            "AUD_USD": -38.34999999999921,
+            "USD_CAD": -38.14999999999902,
+            "USD_CHF": -27.399999999999647
+          },
+          "median": -35.299999999999216,
+          "abs_median": 35.299999999999216
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -42.30000000000178,
+            "GBP_USD": -36.95000000000004,
+            "USD_JPY": -49.500000000000455,
+            "AUD_USD": -49.05000000000048,
+            "USD_CAD": -34.35000000000077,
+            "USD_CHF": -34.95000000000026
+          },
+          "median": -39.62500000000091,
+          "abs_median": 39.62500000000091
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": 1.8999999999991246,
+            "GBP_USD": -3.900000000001125,
+            "USD_JPY": -12.199999999998568,
+            "AUD_USD": -6.500000000000394,
+            "USD_CAD": -6.299999999999084,
+            "USD_CHF": -0.5999999999994898
+          },
+          "median": -5.1000000000001044
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 8.399999999999519,
+            "GBP_USD": 5.299999999999194,
+            "USD_JPY": 1.8000000000000682,
+            "AUD_USD": -0.40000000000040004,
+            "USD_CAD": -1.3999999999980695,
+            "USD_CHF": 3.1000000000003247
+          },
+          "median": 2.4500000000001965
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -28.500000000000192,
+            "GBP_USD": -29.000000000001247,
+            "USD_JPY": -44.29999999999836,
+            "AUD_USD": -21.799999999999596,
+            "USD_CAD": -28.89999999999837,
+            "USD_CHF": -19.799999999999816
+          },
+          "median": -28.69999999999928
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -33.60000000000029,
+            "GBP_USD": -34.49999999999953,
+            "USD_JPY": -54.999999999998295,
+            "AUD_USD": -39.70000000000029,
+            "USD_CAD": -39.89999999999938,
+            "USD_CHF": -28.89999999999948
+          },
+          "median": -37.09999999999991
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -44.200000000000905,
+            "GBP_USD": -41.999999999999815,
+            "USD_JPY": -52.29999999999961,
+            "AUD_USD": -50.59999999999953,
+            "USD_CAD": -37.199999999999456,
+            "USD_CHF": -39.500000000000085
+          },
+          "median": -43.100000000000364
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_fomc_statement_2026-03-18",
+      "family": "FOMC",
+      "t0": "2026-03-18T18:00:00Z",
+      "D": "2026-03-18T18:05:00Z",
+      "feature_bar_start": "2026-03-18T18:00:00Z",
+      "feature_bar_end": "2026-03-18T18:05:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -3.300000000001635,
+        "GBP_USD": -6.950000000001122,
+        "USD_JPY": -6.749999999999545,
+        "AUD_USD": -3.5000000000007248,
+        "USD_CAD": 5.049999999999777,
+        "USD_CHF": -3.749999999999032
+      },
+      "first5_median_usd_pips": -3.6249999999998783,
+      "first5_abs_median_usd_pips": 3.6249999999998783,
+      "first5_usd_sign": -1,
+      "agreement": 5,
+      "spreads_at_D": {
+        "EUR_USD": 1.8999999999991246,
+        "GBP_USD": 1.8999999999991246,
+        "USD_JPY": 1.6999999999995907,
+        "AUD_USD": 1.4999999999998348,
+        "USD_CAD": 1.8999999999991246,
+        "USD_CHF": 1.60000000000049
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": 6.999999999999229,
+            "GBP_USD": 8.749999999999591,
+            "USD_JPY": 4.949999999999477,
+            "AUD_USD": 4.350000000000742,
+            "USD_CAD": 3.2999999999994145,
+            "USD_CHF": 2.6999999999999247
+          },
+          "median": 4.65000000000011,
+          "abs_median": 4.65000000000011
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 10.350000000001192,
+            "GBP_USD": 14.199999999999768,
+            "USD_JPY": 5.799999999999272,
+            "AUD_USD": 7.150000000000212,
+            "USD_CAD": 1.9500000000016726,
+            "USD_CHF": 6.649999999999157
+          },
+          "median": 6.899999999999684,
+          "abs_median": 6.899999999999684
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 43.29999999999945,
+            "GBP_USD": 55.79999999999918,
+            "USD_JPY": 39.50000000000102,
+            "AUD_USD": 33.650000000000624,
+            "USD_CAD": 16.799999999999038,
+            "USD_CHF": 26.149999999999228
+          },
+          "median": 36.57500000000083,
+          "abs_median": 36.57500000000083
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 50.95000000000071,
+            "GBP_USD": 68.0499999999995,
+            "USD_JPY": 49.04999999999973,
+            "AUD_USD": 49.15000000000003,
+            "USD_CAD": 24.54999999999874,
+            "USD_CHF": 32.49999999999975
+          },
+          "median": 49.09999999999988,
+          "abs_median": 49.09999999999988
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 52.5500000000001,
+            "GBP_USD": 75.70000000000076,
+            "USD_JPY": 39.54999999999984,
+            "AUD_USD": 50.00000000000115,
+            "USD_CAD": 22.249999999999215,
+            "USD_CHF": 29.799999999999827
+          },
+          "median": 44.775000000000496,
+          "abs_median": 44.775000000000496
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": -8.799999999999919,
+            "GBP_USD": -10.799999999999699,
+            "USD_JPY": -6.699999999997885,
+            "AUD_USD": -5.800000000000249,
+            "USD_CAD": -5.199999999998539,
+            "USD_CHF": -4.300000000000415
+          },
+          "median": -6.249999999999067
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -12.199999999999989,
+            "GBP_USD": -16.099999999998893,
+            "USD_JPY": -7.699999999999818,
+            "AUD_USD": -8.599999999999719,
+            "USD_CAD": -3.9999999999995595,
+            "USD_CHF": -8.20000000000043
+          },
+          "median": -8.400000000000073
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -44.99999999999948,
+            "GBP_USD": -57.79999999999896,
+            "USD_JPY": -41.29999999999825,
+            "AUD_USD": -35.00000000000058,
+            "USD_CAD": -18.700000000000383,
+            "USD_CHF": -27.7000000000005
+          },
+          "median": -38.149999999999416
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -52.69999999999886,
+            "GBP_USD": -69.99999999999895,
+            "USD_JPY": -50.7000000000005,
+            "AUD_USD": -50.59999999999953,
+            "USD_CAD": -26.399999999999757,
+            "USD_CHF": -34.10000000000024
+          },
+          "median": -50.65000000000002
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -58.499999999999105,
+            "GBP_USD": -80.29999999999981,
+            "USD_JPY": -45.39999999999793,
+            "AUD_USD": -54.4,
+            "USD_CAD": -26.89999999999859,
+            "USD_CHF": -38.099999999999795
+          },
+          "median": -49.89999999999897
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_fomc_statement_2026-04-29",
+      "family": "FOMC",
+      "t0": "2026-04-29T18:00:00Z",
+      "D": "2026-04-29T18:05:00Z",
+      "feature_bar_start": "2026-04-29T18:00:00Z",
+      "feature_bar_end": "2026-04-29T18:05:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": 6.800000000000139,
+        "GBP_USD": 8.399999999997299,
+        "USD_JPY": 10.899999999998045,
+        "AUD_USD": 9.200000000000319,
+        "USD_CAD": 9.449999999997516,
+        "USD_CHF": 8.650000000000047
+      },
+      "first5_median_usd_pips": 8.925000000000182,
+      "first5_abs_median_usd_pips": 8.925000000000182,
+      "first5_usd_sign": 1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.7000000000000348,
+        "GBP_USD": 1.80000000000069,
+        "USD_JPY": 1.8000000000000682,
+        "AUD_USD": 1.40000000000029,
+        "USD_CAD": 1.80000000000069,
+        "USD_CHF": 1.7000000000000348
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": 5.20000000000298,
+            "GBP_USD": 9.20000000000254,
+            "USD_JPY": 3.4500000000008413,
+            "AUD_USD": 11.400000000000299,
+            "USD_CAD": 5.900000000003125,
+            "USD_CHF": 6.4000000000008495
+          },
+          "median": 6.150000000001987,
+          "abs_median": 6.150000000001987
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 4.500000000002835,
+            "GBP_USD": 5.00000000000167,
+            "USD_JPY": -3.3999999999991815,
+            "AUD_USD": 7.400000000000739,
+            "USD_CAD": -0.3999999999981796,
+            "USD_CHF": 4.899999999999904
+          },
+          "median": 4.70000000000137,
+          "abs_median": 4.70000000000137
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 8.00000000000134,
+            "GBP_USD": 7.4000000000018495,
+            "USD_JPY": 2.6499999999998636,
+            "AUD_USD": 8.650000000000047,
+            "USD_CAD": 2.4500000000005073,
+            "USD_CHF": 5.499999999999394
+          },
+          "median": 6.450000000000622,
+          "abs_median": 6.450000000000622
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 3.9500000000014523,
+            "GBP_USD": 3.2500000000013074,
+            "USD_JPY": 6.099999999997863,
+            "AUD_USD": 5.499999999999394,
+            "USD_CAD": -1.2999999999996348,
+            "USD_CHF": 0.8500000000000174
+          },
+          "median": 3.60000000000138,
+          "abs_median": 3.60000000000138
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 5.299999999999194,
+            "GBP_USD": 2.300000000001745,
+            "USD_JPY": 8.199999999999363,
+            "AUD_USD": 8.650000000000047,
+            "USD_CAD": -0.9999999999976694,
+            "USD_CHF": -1.1499999999997623
+          },
+          "median": 3.8000000000004697,
+          "abs_median": 3.8000000000004697
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": 3.5000000000007248,
+            "GBP_USD": 7.300000000001194,
+            "USD_JPY": 1.700000000002433,
+            "AUD_USD": 9.899999999999354,
+            "USD_CAD": 4.100000000000215,
+            "USD_CHF": 4.8000000000003595
+          },
+          "median": 4.450000000000287
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 2.80000000000058,
+            "GBP_USD": 3.20000000000098,
+            "USD_JPY": -5.19999999999925,
+            "AUD_USD": 6.000000000000449,
+            "USD_CAD": -2.1999999999988695,
+            "USD_CHF": 3.4000000000000696
+          },
+          "median": 3.00000000000078
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 6.399999999999739,
+            "GBP_USD": 5.60000000000116,
+            "USD_JPY": 0.8000000000009777,
+            "AUD_USD": 7.300000000000084,
+            "USD_CAD": 0.700000000000145,
+            "USD_CHF": 3.9000000000000146
+          },
+          "median": 4.750000000000587
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 2.2999999999995246,
+            "GBP_USD": 1.40000000000029,
+            "USD_JPY": 4.500000000001592,
+            "AUD_USD": 4.100000000000215,
+            "USD_CAD": -2.9999999999996696,
+            "USD_CHF": -0.7999999999996898
+          },
+          "median": 1.8499999999999073
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 1.1999999999989797,
+            "GBP_USD": -4.299999999999304,
+            "USD_JPY": 2.3000000000024556,
+            "AUD_USD": 6.199999999999539,
+            "USD_CAD": -5.699999999999594,
+            "USD_CHF": -9.500000000000064
+          },
+          "median": -1.5500000000001624
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_fomc_statement_2026-06-17",
+      "family": "FOMC",
+      "t0": "2026-06-17T18:00:00Z",
+      "D": "2026-06-17T18:05:00Z",
+      "feature_bar_start": "2026-06-17T18:00:00Z",
+      "feature_bar_end": "2026-06-17T18:05:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": 41.45000000000287,
+        "GBP_USD": 44.200000000000905,
+        "USD_JPY": 22.90000000000134,
+        "AUD_USD": 29.29999999999877,
+        "USD_CAD": 25.74999999999772,
+        "USD_CHF": 33.10000000000035
+      },
+      "first5_median_usd_pips": 31.199999999999562,
+      "first5_abs_median_usd_pips": 31.199999999999562,
+      "first5_usd_sign": 1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.7000000000000348,
+        "GBP_USD": 2.500000000000835,
+        "USD_JPY": 1.9000000000005457,
+        "AUD_USD": 1.60000000000049,
+        "USD_CAD": 1.9999999999997797,
+        "USD_CHF": 1.5999999999993797
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": 9.599999999998499,
+            "GBP_USD": 5.949999999999012,
+            "USD_JPY": 2.2499999999979536,
+            "AUD_USD": 4.250000000001197,
+            "USD_CAD": 4.349999999999632,
+            "USD_CHF": 7.199999999999429
+          },
+          "median": 5.149999999999322,
+          "abs_median": 5.149999999999322
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 5.549999999998612,
+            "GBP_USD": 1.2499999999993072,
+            "USD_JPY": 3.7499999999965894,
+            "AUD_USD": 2.4000000000001798,
+            "USD_CAD": 3.4000000000000696,
+            "USD_CHF": 3.6999999999998145
+          },
+          "median": 3.549999999999942,
+          "abs_median": 3.549999999999942
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 15.54999999999751,
+            "GBP_USD": 18.449999999998745,
+            "USD_JPY": 6.649999999999068,
+            "AUD_USD": 3.8500000000007972,
+            "USD_CAD": 14.750000000001151,
+            "USD_CHF": 12.199999999999989
+          },
+          "median": 13.47500000000057,
+          "abs_median": 13.47500000000057
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 60.149999999996595,
+            "GBP_USD": 70.29999999999869,
+            "USD_JPY": 30.5499999999995,
+            "AUD_USD": 38.20000000000045,
+            "USD_CAD": 61.45000000000067,
+            "USD_CHF": 45.79999999999917
+          },
+          "median": 52.974999999997884,
+          "abs_median": 52.974999999997884
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 50.69999999999908,
+            "GBP_USD": 66.14999999999816,
+            "USD_JPY": 18.0499999999995,
+            "AUD_USD": 30.150000000001008,
+            "USD_CAD": 45.550000000000864,
+            "USD_CHF": 35.4500000000002
+          },
+          "median": 40.50000000000053,
+          "abs_median": 40.50000000000053
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": 7.999999999999119,
+            "GBP_USD": 3.6999999999998145,
+            "USD_JPY": 0.49999999999954525,
+            "AUD_USD": 2.7999999999994696,
+            "USD_CAD": 2.500000000000835,
+            "USD_CHF": 5.699999999999594
+          },
+          "median": 3.249999999999642
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 3.8000000000004697,
+            "GBP_USD": -0.9999999999998899,
+            "USD_JPY": 1.8999999999977035,
+            "AUD_USD": 0.9999999999998899,
+            "USD_CAD": 1.500000000000945,
+            "USD_CHF": 2.100000000000435
+          },
+          "median": 1.6999999999993243
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 13.900000000000023,
+            "GBP_USD": 16.199999999999548,
+            "USD_JPY": 4.800000000000182,
+            "AUD_USD": 2.4000000000001798,
+            "USD_CAD": 12.900000000000134,
+            "USD_CHF": 10.600000000000609
+          },
+          "median": 11.750000000000371
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 58.499999999999105,
+            "GBP_USD": 68.09999999999982,
+            "USD_JPY": 28.79999999999825,
+            "AUD_USD": 36.69999999999951,
+            "USD_CAD": 59.59999999999965,
+            "USD_CHF": 44.300000000000445
+          },
+          "median": 51.39999999999978
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 48.500000000000206,
+            "GBP_USD": 59.099999999998595,
+            "USD_JPY": 12.09999999999809,
+            "AUD_USD": 27.500000000000302,
+            "USD_CAD": 38.200000000001566,
+            "USD_CHF": 31.49999999999986
+          },
+          "median": 34.85000000000071
+        }
+      }
+    },
+    {
+      "macro_event_id": "usd_fomc_statement_2026-07-29",
+      "family": "FOMC",
+      "t0": "2026-07-29T18:00:00Z",
+      "D": "2026-07-29T18:05:00Z",
+      "feature_bar_start": "2026-07-29T18:00:00Z",
+      "feature_bar_end": "2026-07-29T18:05:00Z",
+      "pair_first5_usd_pips": {
+        "EUR_USD": -18.94999999999758,
+        "GBP_USD": -25.249999999998884,
+        "USD_JPY": -23.24999999999875,
+        "AUD_USD": -15.649999999999276,
+        "USD_CAD": -18.75000000000071,
+        "USD_CHF": -16.74999999999982
+      },
+      "first5_median_usd_pips": -18.849999999999145,
+      "first5_abs_median_usd_pips": 18.849999999999145,
+      "first5_usd_sign": -1,
+      "agreement": 6,
+      "spreads_at_D": {
+        "EUR_USD": 1.4999999999987246,
+        "GBP_USD": 2.4000000000001798,
+        "USD_JPY": 1.9000000000005457,
+        "AUD_USD": 1.4999999999998348,
+        "USD_CAD": 2.20000000000109,
+        "USD_CHF": 1.5999999999993797
+      },
+      "remaining_mid": {
+        "15": {
+          "pair": {
+            "EUR_USD": -12.850000000002026,
+            "GBP_USD": -8.150000000002322,
+            "USD_JPY": -6.100000000000705,
+            "AUD_USD": -7.750000000000812,
+            "USD_CAD": -9.549999999998171,
+            "USD_CHF": -11.249999999999316
+          },
+          "median": -8.850000000000247,
+          "abs_median": 8.850000000000247
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": -7.500000000000284,
+            "GBP_USD": -1.0000000000021103,
+            "USD_JPY": -1.9000000000005457,
+            "AUD_USD": -3.60000000000138,
+            "USD_CAD": -7.100000000002105,
+            "USD_CHF": -3.349999999999742
+          },
+          "median": -3.475000000000561,
+          "abs_median": 3.475000000000561
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": -37.000000000002586,
+            "GBP_USD": -35.30000000000033,
+            "USD_JPY": -25.150000000002137,
+            "AUD_USD": -33.70000000000095,
+            "USD_CAD": -33.050000000001134,
+            "USD_CHF": -29.249999999999552
+          },
+          "median": -33.37500000000104,
+          "abs_median": 33.37500000000104
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": -32.95000000000048,
+            "GBP_USD": -16.300000000000203,
+            "USD_JPY": -5.700000000001637,
+            "AUD_USD": 2.2999999999995246,
+            "USD_CAD": -15.649999999998165,
+            "USD_CHF": -25.49999999999941
+          },
+          "median": -15.974999999999184,
+          "abs_median": 15.974999999999184
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": -47.70000000000163,
+            "GBP_USD": -33.95000000000259,
+            "USD_JPY": -15.100000000001046,
+            "AUD_USD": 0.14999999999876223,
+            "USD_CAD": -29.449999999999754,
+            "USD_CHF": -36.10000000000002
+          },
+          "median": -31.70000000000117,
+          "abs_median": 31.70000000000117
+        }
+      },
+      "remaining_exec": {
+        "15": {
+          "pair": {
+            "EUR_USD": 11.300000000000754,
+            "GBP_USD": 6.00000000000156,
+            "USD_JPY": 4.300000000000637,
+            "AUD_USD": 6.300000000000194,
+            "USD_CAD": 7.599999999998719,
+            "USD_CHF": 9.700000000000264
+          },
+          "median": 6.949999999999457
+        },
+        "30": {
+          "pair": {
+            "EUR_USD": 5.999999999999339,
+            "GBP_USD": -1.1999999999989797,
+            "USD_JPY": 0.10000000000047748,
+            "AUD_USD": 2.100000000000435,
+            "USD_CAD": 5.1000000000001044,
+            "USD_CHF": 1.7000000000000348
+          },
+          "median": 1.9000000000002348
+        },
+        "60": {
+          "pair": {
+            "EUR_USD": 35.400000000000986,
+            "GBP_USD": 33.199999999999896,
+            "USD_JPY": 23.400000000000887,
+            "AUD_USD": 32.30000000000066,
+            "USD_CAD": 31.09999999999946,
+            "USD_CHF": 27.800000000000047
+          },
+          "median": 31.70000000000006
+        },
+        "120": {
+          "pair": {
+            "EUR_USD": 31.399999999999206,
+            "GBP_USD": 14.199999999999768,
+            "USD_JPY": 4.099999999999682,
+            "AUD_USD": -3.6999999999998145,
+            "USD_CAD": 13.699999999998713,
+            "USD_CHF": 24.000000000000686
+          },
+          "median": 13.94999999999924
+        },
+        "240": {
+          "pair": {
+            "EUR_USD": 44.800000000000395,
+            "GBP_USD": 27.800000000000047,
+            "USD_JPY": 11.699999999999022,
+            "AUD_USD": -2.9000000000001247,
+            "USD_CAD": 24.500000000000632,
+            "USD_CHF": 30.600000000000627
+          },
+          "median": 26.15000000000034
+        }
+      }
+    }
+  ],
+  "lookahead": {
+    "D": "T0+5m",
+    "feature": "T0 bar open\u2192close only",
+    "targets": "D close of T0 bar \u2192 close of bar completing at T0+H"
+  }
+}

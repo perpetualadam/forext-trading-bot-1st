@@ -1,0 +1,7 @@
+{
+  "FORWARD_CONSENSUS_COLLECTION_ENABLED": false,
+  "production_bot_integration": false,
+  "scheduler_enabled": false,
+  "background_scraping": false,
+  "notes": "Research-only. Collectors must refuse to run while this flag is false. observed_at_utc is our clock and must never be replaced by source_publication_utc."
+}

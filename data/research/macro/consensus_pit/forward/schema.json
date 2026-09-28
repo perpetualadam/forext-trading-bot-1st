@@ -1,0 +1,41 @@
+{
+  "record_type": "forward_consensus_snapshot",
+  "required_fields": [
+    "snapshot_id",
+    "macro_event_id",
+    "event_family",
+    "series_name",
+    "reference_period",
+    "expectation_type",
+    "forecast_value",
+    "unit",
+    "source_publisher",
+    "source_reference",
+    "source_publication_utc",
+    "source_updated_utc",
+    "observed_at_utc",
+    "official_release_utc",
+    "minutes_to_release",
+    "raw_artifact_hash",
+    "artifact_location",
+    "snapshot_sequence",
+    "pit_status",
+    "retrieval_method",
+    "notes"
+  ],
+  "rules": {
+    "observed_at_utc": "OUR collector clock. Never replaced by source_publication_utc.",
+    "immutability": "Never overwrite an earlier snapshot. Changed bytes => new snapshot_id and hash.",
+    "identical_bytes": "Dedupe content by SHA-256 while appending observation metadata.",
+    "final_pre_release_snapshot": "Latest valid snapshot with observed_at_utc < official_release_utc. Post-T0 observations must not become final consensus.",
+    "multi_source": "Never average Reuters/FactSet/Dow Jones/other providers.",
+    "hash": "SHA-256 of the artifact bytes actually observed, not of parsed values alone."
+  },
+  "designed_cadence_not_a_trading_rule": [
+    "T0-48h",
+    "T0-24h",
+    "T0-12h",
+    "T0-4h",
+    "T0-1h"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "FORWARD_CONSENSUS_COLLECTION_ENABLED": false,
+  "autonomous_external_collection": false,
+  "scheduler_enabled": false,
+  "production_bot_integration": false,
+  "notes": "Research-only prospective recorder. Manual ingest is allowed. Autonomous external collection is disabled. observed_at_utc is OUR clock."
+}

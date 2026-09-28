@@ -1,0 +1,7 @@
+OFFICIAL SOURCE EXCERPT (BLS Employment Situation schedule)
+URL: https://www.bls.gov/schedule/news_release/empsit.htm
+Retrieved during prospective recorder Stage 2.
+Table rows used:
+September 2026 | Oct. 02, 2026 | 08:30 AM
+October 2026 | Nov. 06, 2026 | 08:30 AM
+Timezone convention: America/New_York (BLS national news-release).

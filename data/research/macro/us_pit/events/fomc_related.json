@@ -1,0 +1,50 @@
+[
+  {
+    "macro_event_id": "usd_fomc_statement_2025-09-17",
+    "press_conference_url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20250917.htm",
+    "minutes_released": "2025-10-08",
+    "note": "Separate information events. Not merged into the statement timestamp."
+  },
+  {
+    "macro_event_id": "usd_fomc_statement_2025-10-29",
+    "press_conference_url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20251029.htm",
+    "minutes_released": "2025-11-19",
+    "note": "Separate information events. Not merged into the statement timestamp."
+  },
+  {
+    "macro_event_id": "usd_fomc_statement_2025-12-10",
+    "press_conference_url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20251210.htm",
+    "minutes_released": "2025-12-30",
+    "note": "Separate information events. Not merged into the statement timestamp."
+  },
+  {
+    "macro_event_id": "usd_fomc_statement_2026-01-28",
+    "press_conference_url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260128.htm",
+    "minutes_released": "2026-02-18",
+    "note": "Separate information events. Not merged into the statement timestamp."
+  },
+  {
+    "macro_event_id": "usd_fomc_statement_2026-03-18",
+    "press_conference_url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260318.htm",
+    "minutes_released": "2026-04-08",
+    "note": "Separate information events. Not merged into the statement timestamp."
+  },
+  {
+    "macro_event_id": "usd_fomc_statement_2026-04-29",
+    "press_conference_url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260429.htm",
+    "minutes_released": "2026-05-20",
+    "note": "Separate information events. Not merged into the statement timestamp."
+  },
+  {
+    "macro_event_id": "usd_fomc_statement_2026-06-17",
+    "press_conference_url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260617.htm",
+    "minutes_released": "2026-07-08",
+    "note": "Separate information events. Not merged into the statement timestamp."
+  },
+  {
+    "macro_event_id": "usd_fomc_statement_2026-07-29",
+    "press_conference_url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260729.htm",
+    "minutes_released": "2026-08-19",
+    "note": "Separate information events. Not merged into the statement timestamp."
+  }
+]

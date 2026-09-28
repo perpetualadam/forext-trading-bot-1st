@@ -1,0 +1,128 @@
+[
+  {
+    "macro_event_id": "usd_empsit_2026-10-02",
+    "event_family": "EMPLOYMENT_SITUATION",
+    "event_name": "The Employment Situation",
+    "reference_period": "2026-09",
+    "currency": "USD",
+    "country": "US",
+    "scheduled_release_local": "2026-10-02T08:30:00",
+    "scheduled_timezone": "America/New_York",
+    "scheduled_release_utc": "2026-10-02T12:30:00Z",
+    "observation_window_start_utc": "2026-09-30T12:30:00Z",
+    "observation_window_end_utc": "2026-10-02T12:30:00Z",
+    "official_source": "BLS",
+    "official_schedule_url": "https://www.bls.gov/schedule/news_release/empsit.htm",
+    "official_clock_basis": "BLS Employment Situation schedule table: Reference Month September 2026, Release Date Oct. 02, 2026, Release Time 08:30 AM. Timezone America/New_York is the BLS national news-release convention; conversion is DST-aware ZoneInfo, not hardcoded EDT/EST.",
+    "schedule_provenance": {
+      "schedule_row": {
+        "reference_month": "September 2026",
+        "release_date": "Oct. 02, 2026",
+        "release_time": "08:30 AM"
+      },
+      "verified_at_utc": "2026-09-28T21:35:10Z",
+      "t0_authority": "official_bls_or_fed_calendar"
+    },
+    "event_status": "PRE_WINDOW",
+    "armed": true,
+    "checkpoints": {
+      "T0-48h": "2026-09-30T12:30:00Z",
+      "T0-36h": "2026-10-01T00:30:00Z",
+      "T0-24h": "2026-10-01T12:30:00Z",
+      "T0-12h": "2026-10-02T00:30:00Z",
+      "T0-6h": "2026-10-02T06:30:00Z",
+      "T0-4h": "2026-10-02T08:30:00Z",
+      "T0-2h": "2026-10-02T10:30:00Z",
+      "T0-1h": "2026-10-02T11:30:00Z",
+      "T0-30m": "2026-10-02T12:00:00Z",
+      "T0-15m": "2026-10-02T12:15:00Z",
+      "T0-5m": "2026-10-02T12:25:00Z"
+    },
+    "checkpoint_association_rule": "latest_checkpoint_at_or_before_observed_at_utc. The observation keeps its genuine observed_at_utc; the timestamp is never rewritten to the checkpoint clock. Association interval is [checkpoint_utc, next_checkpoint_utc); the last pre-release interval is [T0-5m, T0). Post-T0 observations (observed_at_utc >= T0) are not pre-release and do not capture any pre-release checkpoint. CAPTURED if any qualifying pre-release observation associates to that checkpoint. DUE if now >= checkpoint_utc and now < next_boundary and not CAPTURED. MISSED_NOT_OBSERVED if now >= next_boundary and not CAPTURED. FUTURE if now < checkpoint_utc. Missed is not a zero forecast.",
+    "notes": "Stage 2 real prospective registration. Not the Stage 1 fixture."
+  },
+  {
+    "macro_event_id": "usd_cpi_2026-10-14",
+    "event_family": "CPI",
+    "event_name": "Consumer Price Index",
+    "reference_period": "2026-09",
+    "currency": "USD",
+    "country": "US",
+    "scheduled_release_local": "2026-10-14T08:30:00",
+    "scheduled_timezone": "America/New_York",
+    "scheduled_release_utc": "2026-10-14T12:30:00Z",
+    "observation_window_start_utc": "2026-10-12T12:30:00Z",
+    "observation_window_end_utc": "2026-10-14T12:30:00Z",
+    "official_source": "BLS",
+    "official_schedule_url": "https://www.bls.gov/schedule/news_release/cpi.htm",
+    "official_clock_basis": "BLS CPI schedule table: Reference Month September 2026, Release Date Oct. 14, 2026, Release Time 08:30 AM. Timezone America/New_York is the BLS national news-release convention; conversion is DST-aware ZoneInfo, not hardcoded EDT/EST.",
+    "schedule_provenance": {
+      "schedule_row": {
+        "reference_month": "September 2026",
+        "release_date": "Oct. 14, 2026",
+        "release_time": "08:30 AM"
+      },
+      "verified_at_utc": "2026-09-28T21:35:10Z",
+      "t0_authority": "official_bls_or_fed_calendar"
+    },
+    "event_status": "PRE_WINDOW",
+    "armed": true,
+    "checkpoints": {
+      "T0-48h": "2026-10-12T12:30:00Z",
+      "T0-36h": "2026-10-13T00:30:00Z",
+      "T0-24h": "2026-10-13T12:30:00Z",
+      "T0-12h": "2026-10-14T00:30:00Z",
+      "T0-6h": "2026-10-14T06:30:00Z",
+      "T0-4h": "2026-10-14T08:30:00Z",
+      "T0-2h": "2026-10-14T10:30:00Z",
+      "T0-1h": "2026-10-14T11:30:00Z",
+      "T0-30m": "2026-10-14T12:00:00Z",
+      "T0-15m": "2026-10-14T12:15:00Z",
+      "T0-5m": "2026-10-14T12:25:00Z"
+    },
+    "checkpoint_association_rule": "latest_checkpoint_at_or_before_observed_at_utc. The observation keeps its genuine observed_at_utc; the timestamp is never rewritten to the checkpoint clock. Association interval is [checkpoint_utc, next_checkpoint_utc); the last pre-release interval is [T0-5m, T0). Post-T0 observations (observed_at_utc >= T0) are not pre-release and do not capture any pre-release checkpoint. CAPTURED if any qualifying pre-release observation associates to that checkpoint. DUE if now >= checkpoint_utc and now < next_boundary and not CAPTURED. MISSED_NOT_OBSERVED if now >= next_boundary and not CAPTURED. FUTURE if now < checkpoint_utc. Missed is not a zero forecast.",
+    "notes": "Stage 2 real prospective registration. Not the Stage 1 fixture."
+  },
+  {
+    "macro_event_id": "usd_fomc_statement_2026-10-28",
+    "event_family": "FOMC",
+    "event_name": "FOMC statement/decision",
+    "reference_period": "2026-10-27/28",
+    "currency": "USD",
+    "country": "US",
+    "scheduled_release_local": "2026-10-28T14:00:00",
+    "scheduled_timezone": "America/New_York",
+    "scheduled_release_utc": "2026-10-28T18:00:00Z",
+    "observation_window_start_utc": "2026-10-26T18:00:00Z",
+    "observation_window_end_utc": "2026-10-28T18:00:00Z",
+    "official_source": "Federal Reserve Board",
+    "official_schedule_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+    "official_clock_basis": "Meeting dates October 27-28 from the official 2026 FOMC calendar (https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm). Statement clock 14:00 America/New_York from the Federal Reserve's own statement release line 'For release at 2:00 p.m.' printed on official FOMC statements (e.g. monetary20260916a1.pdf, 16 Sep 2026). The calendar page lists dates; the 2:00 p.m. clock is the Fed's published statement release time, not a third-party calendar.",
+    "schedule_provenance": {
+      "schedule_row": {
+        "meeting_dates": "October 27-28",
+        "statement_day": "2026-10-28",
+        "release_time": "2:00 p.m."
+      },
+      "verified_at_utc": "2026-09-28T21:35:10Z",
+      "t0_authority": "official_bls_or_fed_calendar"
+    },
+    "event_status": "PRE_WINDOW",
+    "armed": true,
+    "checkpoints": {
+      "T0-48h": "2026-10-26T18:00:00Z",
+      "T0-36h": "2026-10-27T06:00:00Z",
+      "T0-24h": "2026-10-27T18:00:00Z",
+      "T0-12h": "2026-10-28T06:00:00Z",
+      "T0-6h": "2026-10-28T12:00:00Z",
+      "T0-4h": "2026-10-28T14:00:00Z",
+      "T0-2h": "2026-10-28T16:00:00Z",
+      "T0-1h": "2026-10-28T17:00:00Z",
+      "T0-30m": "2026-10-28T17:30:00Z",
+      "T0-15m": "2026-10-28T17:45:00Z",
+      "T0-5m": "2026-10-28T17:55:00Z"
+    },
+    "checkpoint_association_rule": "latest_checkpoint_at_or_before_observed_at_utc. The observation keeps its genuine observed_at_utc; the timestamp is never rewritten to the checkpoint clock. Association interval is [checkpoint_utc, next_checkpoint_utc); the last pre-release interval is [T0-5m, T0). Post-T0 observations (observed_at_utc >= T0) are not pre-release and do not capture any pre-release checkpoint. CAPTURED if any qualifying pre-release observation associates to that checkpoint. DUE if now >= checkpoint_utc and now < next_boundary and not CAPTURED. MISSED_NOT_OBSERVED if now >= next_boundary and not CAPTURED. FUTURE if now < checkpoint_utc. Missed is not a zero forecast.",
+    "notes": "Stage 2 real prospective registration. Not the Stage 1 fixture."
+  }
+]

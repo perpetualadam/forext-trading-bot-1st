@@ -1,0 +1,274 @@
+[
+  {
+    "event_family": "CPI",
+    "release_date": "2025-09-11",
+    "reference_period": "2025-08",
+    "origin": "existing",
+    "filename": "cpi_09112025.official.txt",
+    "url": "https://www.bls.gov/news.release/archives/cpi_09112025.htm"
+  },
+  {
+    "event_family": "CPI",
+    "release_date": "2025-10-24",
+    "reference_period": "2025-09",
+    "origin": "existing",
+    "filename": "cpi_10242025.official.txt",
+    "url": "https://www.bls.gov/news.release/archives/cpi_10242025.htm"
+  },
+  {
+    "event_family": "CPI",
+    "release_date": null,
+    "reference_period": "2025-10",
+    "origin": "unpublished",
+    "filename": null,
+    "url": null
+  },
+  {
+    "event_family": "CPI",
+    "release_date": "2025-12-18",
+    "reference_period": "2025-11",
+    "origin": "existing",
+    "filename": "cpi_12182025.official.txt",
+    "url": "https://www.bls.gov/news.release/archives/cpi_12182025.htm"
+  },
+  {
+    "event_family": "CPI",
+    "release_date": "2026-01-13",
+    "reference_period": "2025-12",
+    "origin": "agent",
+    "filename": "cpi_01132026.htm",
+    "url": "https://www.bls.gov/news.release/archives/cpi_01132026.htm"
+  },
+  {
+    "event_family": "CPI",
+    "release_date": "2026-02-13",
+    "reference_period": "2026-01",
+    "origin": "agent",
+    "filename": "cpi_02132026.htm",
+    "url": "https://www.bls.gov/news.release/archives/cpi_02132026.htm"
+  },
+  {
+    "event_family": "CPI",
+    "release_date": "2026-03-11",
+    "reference_period": "2026-02",
+    "origin": "agent",
+    "filename": "cpi_03112026.htm",
+    "url": "https://www.bls.gov/news.release/archives/cpi_03112026.htm"
+  },
+  {
+    "event_family": "CPI",
+    "release_date": "2026-04-10",
+    "reference_period": "2026-03",
+    "origin": "agent",
+    "filename": "cpi_04102026.htm",
+    "url": "https://www.bls.gov/news.release/archives/cpi_04102026.htm"
+  },
+  {
+    "event_family": "CPI",
+    "release_date": "2026-05-12",
+    "reference_period": "2026-04",
+    "origin": "agent",
+    "filename": "cpi_05122026.htm",
+    "url": "https://www.bls.gov/news.release/archives/cpi_05122026.htm"
+  },
+  {
+    "event_family": "CPI",
+    "release_date": "2026-06-10",
+    "reference_period": "2026-05",
+    "origin": "agent",
+    "filename": "cpi_06102026.htm",
+    "url": "https://www.bls.gov/news.release/archives/cpi_06102026.htm"
+  },
+  {
+    "event_family": "CPI",
+    "release_date": "2026-07-14",
+    "reference_period": "2026-06",
+    "origin": "agent",
+    "filename": "cpi_07142026.htm",
+    "url": "https://www.bls.gov/news.release/archives/cpi_07142026.htm"
+  },
+  {
+    "event_family": "CPI",
+    "release_date": "2026-08-12",
+    "reference_period": "2026-07",
+    "origin": "blocked",
+    "filename": null,
+    "url": "https://www.bls.gov/news.release/archives/cpi_08122026.htm"
+  },
+  {
+    "event_family": "EMPLOYMENT_SITUATION",
+    "release_date": "2025-09-05",
+    "reference_period": "2025-08",
+    "origin": "existing",
+    "filename": "empsit_09052025.official.txt",
+    "url": "https://www.bls.gov/news.release/archives/empsit_09052025.htm"
+  },
+  {
+    "event_family": "EMPLOYMENT_SITUATION",
+    "release_date": null,
+    "reference_period": "2025-10",
+    "origin": "unpublished",
+    "filename": null,
+    "url": null
+  },
+  {
+    "event_family": "EMPLOYMENT_SITUATION",
+    "release_date": "2025-11-20",
+    "reference_period": "2025-09",
+    "origin": "existing",
+    "filename": "empsit_11202025.official.txt",
+    "url": "https://www.bls.gov/news.release/archives/empsit_11202025.htm"
+  },
+  {
+    "event_family": "EMPLOYMENT_SITUATION",
+    "release_date": "2025-12-16",
+    "reference_period": "2025-11",
+    "origin": "existing",
+    "filename": "empsit_12162025.official.txt",
+    "url": "https://www.bls.gov/news.release/archives/empsit_12162025.htm"
+  },
+  {
+    "event_family": "EMPLOYMENT_SITUATION",
+    "release_date": "2026-01-09",
+    "reference_period": "2025-12",
+    "origin": "agent",
+    "filename": "empsit_01092026.htm",
+    "url": "https://www.bls.gov/news.release/archives/empsit_01092026.htm"
+  },
+  {
+    "event_family": "EMPLOYMENT_SITUATION",
+    "release_date": "2026-02-11",
+    "reference_period": "2026-01",
+    "origin": "agent",
+    "filename": "empsit_02112026.htm",
+    "url": "https://www.bls.gov/news.release/archives/empsit_02112026.htm"
+  },
+  {
+    "event_family": "EMPLOYMENT_SITUATION",
+    "release_date": "2026-03-06",
+    "reference_period": "2026-02",
+    "origin": "agent",
+    "filename": "empsit_03062026.htm",
+    "url": "https://www.bls.gov/news.release/archives/empsit_03062026.htm"
+  },
+  {
+    "event_family": "EMPLOYMENT_SITUATION",
+    "release_date": "2026-04-03",
+    "reference_period": "2026-03",
+    "origin": "agent",
+    "filename": "empsit_04032026.htm",
+    "url": "https://www.bls.gov/news.release/archives/empsit_04032026.htm"
+  },
+  {
+    "event_family": "EMPLOYMENT_SITUATION",
+    "release_date": "2026-05-08",
+    "reference_period": "2026-04",
+    "origin": "agent",
+    "filename": "empsit_05082026.htm",
+    "url": "https://www.bls.gov/news.release/archives/empsit_05082026.htm"
+  },
+  {
+    "event_family": "EMPLOYMENT_SITUATION",
+    "release_date": "2026-06-05",
+    "reference_period": "2026-05",
+    "origin": "agent",
+    "filename": "empsit_06052026.htm",
+    "url": "https://www.bls.gov/news.release/archives/empsit_06052026.htm"
+  },
+  {
+    "event_family": "EMPLOYMENT_SITUATION",
+    "release_date": "2026-07-02",
+    "reference_period": "2026-06",
+    "origin": "agent",
+    "filename": "empsit_07022026.htm",
+    "url": "https://www.bls.gov/news.release/archives/empsit_07022026.htm"
+  },
+  {
+    "event_family": "EMPLOYMENT_SITUATION",
+    "release_date": "2026-08-07",
+    "reference_period": "2026-07",
+    "origin": "agent",
+    "filename": "empsit_08072026.htm",
+    "url": "https://www.bls.gov/news.release/archives/empsit_08072026.htm"
+  },
+  {
+    "event_family": "FOMC",
+    "release_date": "2025-09-17",
+    "reference_period": "2025-09-16/17",
+    "origin": "fomc",
+    "filename": "monetary20250917a.official.txt",
+    "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20250917a.htm",
+    "press_conference_url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20250917.htm",
+    "minutes_released": "2025-10-08"
+  },
+  {
+    "event_family": "FOMC",
+    "release_date": "2025-10-29",
+    "reference_period": "2025-10-28/29",
+    "origin": "fomc",
+    "filename": "monetary20251029a.official.txt",
+    "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm",
+    "press_conference_url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20251029.htm",
+    "minutes_released": "2025-11-19"
+  },
+  {
+    "event_family": "FOMC",
+    "release_date": "2025-12-10",
+    "reference_period": "2025-12-09/10",
+    "origin": "fomc",
+    "filename": "monetary20251210a.official.txt",
+    "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+    "press_conference_url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20251210.htm",
+    "minutes_released": "2025-12-30"
+  },
+  {
+    "event_family": "FOMC",
+    "release_date": "2026-01-28",
+    "reference_period": "2026-01-27/28",
+    "origin": "fomc",
+    "filename": "monetary20260128a.official.txt",
+    "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+    "press_conference_url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260128.htm",
+    "minutes_released": "2026-02-18"
+  },
+  {
+    "event_family": "FOMC",
+    "release_date": "2026-03-18",
+    "reference_period": "2026-03-17/18",
+    "origin": "fomc",
+    "filename": "monetary20260318a.official.txt",
+    "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260318a.htm",
+    "press_conference_url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260318.htm",
+    "minutes_released": "2026-04-08"
+  },
+  {
+    "event_family": "FOMC",
+    "release_date": "2026-04-29",
+    "reference_period": "2026-04-28/29",
+    "origin": "fomc",
+    "filename": "monetary20260429a.official.txt",
+    "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+    "press_conference_url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260429.htm",
+    "minutes_released": "2026-05-20"
+  },
+  {
+    "event_family": "FOMC",
+    "release_date": "2026-06-17",
+    "reference_period": "2026-06-16/17",
+    "origin": "fomc",
+    "filename": "monetary20260617a.official.txt",
+    "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260617a.htm",
+    "press_conference_url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260617.htm",
+    "minutes_released": "2026-07-08"
+  },
+  {
+    "event_family": "FOMC",
+    "release_date": "2026-07-29",
+    "reference_period": "2026-07-28/29",
+    "origin": "fomc",
+    "filename": "monetary20260729a.official.txt",
+    "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260729a.htm",
+    "press_conference_url": "https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260729.htm",
+    "minutes_released": "2026-08-19"
+  }
+]

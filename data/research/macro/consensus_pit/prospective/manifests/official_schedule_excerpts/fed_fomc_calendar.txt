@@ -1,0 +1,5 @@
+OFFICIAL SOURCE EXCERPT (Federal Reserve FOMC calendar + statement clock)
+Calendar URL: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm
+2026 FOMC Meetings: October 27-28 (next after September 15-16, which already has a statement).
+Statement clock: 2:00 p.m. America/New_York from Fed statement header 'For release at 2:00 p.m.' (example: monetary20260916a1.pdf, 16 Sep 2026).
+Not taken from an economic-calendar provider.

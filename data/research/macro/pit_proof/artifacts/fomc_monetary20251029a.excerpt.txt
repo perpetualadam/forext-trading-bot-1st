@@ -1,0 +1,6 @@
+SOURCE: https://www.federalreserve.gov/newsevents/pressreleases/monetary20251029a.htm
+RETRIEVED_FOR: macro_official_pit_stage1 proof sample
+DATE LINE: October 29, 2025
+RELEASE CLOCK: For release at 2:00 p.m. EDT
+DECISION: lower the target range for the federal funds rate by 1/4 percentage point to 3-3/4 to 4 percent.
+MINUTES (SEPARATE EVENT, released November 19, 2025)

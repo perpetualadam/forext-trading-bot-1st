@@ -1,0 +1,65 @@
+{
+  "enabled_default": false,
+  "sources": [
+    {
+      "source_name": "Reuters",
+      "source_type": "financial_newswire_survey",
+      "retrieval_method": "manual_or_licensed_feed",
+      "authentication_required": "unknown_desk_dependent",
+      "archival_permitted": "unknown",
+      "automation_permitted": "unknown",
+      "rate_limit_notes": "Do not scrape beyond robots/access controls. Some desks are paywalled.",
+      "timestamp_quality": "HIGH original UTC clock; MEDIUM when Updated lacks intra-day last-mod",
+      "known_limitations": "Same-day Updated without last-mod clock. Archiving today does not prove historical vintage.",
+      "enabled": false
+    },
+    {
+      "source_name": "FactSet Insight",
+      "source_type": "survey_median_blog",
+      "retrieval_method": "manual_public_page",
+      "authentication_required": false,
+      "archival_permitted": "unknown",
+      "automation_permitted": "unknown",
+      "rate_limit_notes": "Public marketing pages. Do not assume automated archival is permitted.",
+      "timestamp_quality": "MEDIUM date + Tomorrow; no UTC clock",
+      "known_limitations": "Small n. Often YoY NSA only. Live page can be edited. Delayed-release pages may keep original byline.",
+      "enabled": false
+    },
+    {
+      "source_name": "Dow Jones / IBTimes relay",
+      "source_type": "survey_relay",
+      "retrieval_method": "manual_public_page",
+      "authentication_required": false,
+      "archival_permitted": "unknown",
+      "automation_permitted": "unknown",
+      "rate_limit_notes": "Secondary publisher. Prefer primary DJ survey if licensed.",
+      "timestamp_quality": "HIGH when BST/UTC clock present",
+      "known_limitations": "Relay, not the DJ microdata file.",
+      "enabled": false
+    },
+    {
+      "source_name": "CME FedWatch contemporaneous citation",
+      "source_type": "market_implied_expectation",
+      "retrieval_method": "contemporaneous_citation_only",
+      "authentication_required": false,
+      "archival_permitted": "unknown",
+      "automation_permitted": "unknown",
+      "rate_limit_notes": "Do not reconstruct historical probabilities from today's live tool.",
+      "timestamp_quality": "Only as good as the citing article's clock",
+      "known_limitations": "Live tool is not a historical vintage.",
+      "enabled": false
+    },
+    {
+      "source_name": "Bloomberg",
+      "source_type": "financial_newswire",
+      "retrieval_method": "licensed_only",
+      "authentication_required": true,
+      "archival_permitted": "unknown",
+      "automation_permitted": "unknown",
+      "rate_limit_notes": "Paywall. No bypass.",
+      "timestamp_quality": "HIGH when accessible",
+      "known_limitations": "Not opened in Stage 1/2.",
+      "enabled": false
+    }
+  ]
+}

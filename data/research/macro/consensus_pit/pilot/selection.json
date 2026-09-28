@@ -1,0 +1,81 @@
+{
+  "selection_frozen_before_search": true,
+  "selection_rule": "From the 29 Stage-3 eligible PIT-approved archived events, within each family sort by scheduled_release_utc and pick (1) earliest T0, (2) T0 closest to the midpoint of that family's first and last T0 (tie-break: earlier T0), (3) latest T0. Calendar geometry only. Not conditioned on FX outcomes, surprise, or anticipated consensus availability.",
+  "window": {
+    "start": "2025-09-01T00:00:00Z",
+    "end": "2026-08-31T23:50:00Z"
+  },
+  "selected": [
+    {
+      "macro_event_id": "usd_cpi_2025-09-11",
+      "event_family": "CPI",
+      "slot": "earliest",
+      "scheduled_release_utc": "2025-09-11T12:30:00Z",
+      "reference_period": "2025-08"
+    },
+    {
+      "macro_event_id": "usd_cpi_2026-02-13",
+      "event_family": "CPI",
+      "slot": "midpoint",
+      "scheduled_release_utc": "2026-02-13T13:30:00Z",
+      "reference_period": "2026-01",
+      "midpoint_of_family_span_utc": "2026-02-11T12:30:00Z"
+    },
+    {
+      "macro_event_id": "usd_cpi_2026-07-14",
+      "event_family": "CPI",
+      "slot": "latest",
+      "scheduled_release_utc": "2026-07-14T12:30:00Z",
+      "reference_period": "2026-06"
+    },
+    {
+      "macro_event_id": "usd_empsit_2025-09-05",
+      "event_family": "EMPLOYMENT_SITUATION",
+      "slot": "earliest",
+      "scheduled_release_utc": "2025-09-05T12:30:00Z",
+      "reference_period": "2025-08"
+    },
+    {
+      "macro_event_id": "usd_empsit_2026-02-11",
+      "event_family": "EMPLOYMENT_SITUATION",
+      "slot": "midpoint",
+      "scheduled_release_utc": "2026-02-11T13:30:00Z",
+      "reference_period": "2026-01",
+      "midpoint_of_family_span_utc": "2026-02-20T12:30:00Z",
+      "notes": "Closest to midpoint; CES annual benchmark flag exists on the official archive. Kept because the selection rule is calendar-only."
+    },
+    {
+      "macro_event_id": "usd_empsit_2026-08-07",
+      "event_family": "EMPLOYMENT_SITUATION",
+      "slot": "latest",
+      "scheduled_release_utc": "2026-08-07T12:30:00Z",
+      "reference_period": "2026-07"
+    },
+    {
+      "macro_event_id": "usd_fomc_statement_2025-09-17",
+      "event_family": "FOMC",
+      "slot": "earliest",
+      "scheduled_release_utc": "2025-09-17T18:00:00Z",
+      "reference_period": "2025-09-16/17"
+    },
+    {
+      "macro_event_id": "usd_fomc_statement_2026-01-28",
+      "event_family": "FOMC",
+      "slot": "midpoint",
+      "scheduled_release_utc": "2026-01-28T19:00:00Z",
+      "reference_period": "2026-01-27/28",
+      "midpoint_of_family_span_utc": "2026-02-22T06:00:00Z",
+      "notes": "Jan 28 is 587h before midpoint vs Mar 18 at 588h after; earlier T0 also wins the documented tie-break."
+    },
+    {
+      "macro_event_id": "usd_fomc_statement_2026-07-29",
+      "event_family": "FOMC",
+      "slot": "latest",
+      "scheduled_release_utc": "2026-07-29T18:00:00Z",
+      "reference_period": "2026-07-28/29"
+    }
+  ],
+  "not_selected_reason": "All other eligible events in each family are neither the earliest, latest, nor closest-to-midpoint T0.",
+  "fx_outcomes_used": false,
+  "consensus_search_started": false
+}

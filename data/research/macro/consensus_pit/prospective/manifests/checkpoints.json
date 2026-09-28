@@ -1,0 +1,17 @@
+{
+  "frozen_before_outcomes": true,
+  "t0_is_pre_release_checkpoint": false,
+  "checkpoints": [
+    {"checkpoint_id": "T0-48h", "offset_minutes": 2880},
+    {"checkpoint_id": "T0-36h", "offset_minutes": 2160},
+    {"checkpoint_id": "T0-24h", "offset_minutes": 1440},
+    {"checkpoint_id": "T0-12h", "offset_minutes": 720},
+    {"checkpoint_id": "T0-6h", "offset_minutes": 360},
+    {"checkpoint_id": "T0-4h", "offset_minutes": 240},
+    {"checkpoint_id": "T0-2h", "offset_minutes": 120},
+    {"checkpoint_id": "T0-1h", "offset_minutes": 60},
+    {"checkpoint_id": "T0-30m", "offset_minutes": 30},
+    {"checkpoint_id": "T0-15m", "offset_minutes": 15},
+    {"checkpoint_id": "T0-5m", "offset_minutes": 5}
+  ]
+}

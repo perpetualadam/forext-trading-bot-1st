@@ -1,0 +1,8 @@
+﻿{
+    "interval_minutes":  5,
+    "arguments":  "-m reports.decision_quality.macro_prospective_cli collect-due",
+    "python_executable":  "C:\\Users\\Brian\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+    "task_name":  "ForexMacroProspectiveCollectDue",
+    "working_directory":  "C:\\Users\\Brian\\OneDrive\\Desktop\\Forext Trading Bot 1st",
+    "installed_utc":  "2026-09-28T21:58:24Z"
+}

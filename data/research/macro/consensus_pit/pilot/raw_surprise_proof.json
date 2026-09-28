@@ -1,0 +1,210 @@
+{
+  "surprise": [
+    {
+      "consensus_evidence_id": "ce_fomc_20250917_reuters_poll_decision",
+      "macro_event_id": "usd_fomc_statement_2025-09-17",
+      "series_name": "expected_policy_decision",
+      "expectation_type": "SURVEY_CONSENSUS",
+      "forecast_value": "cut_25bp",
+      "official_join_valid": true,
+      "raw_surprise_possible": true,
+      "surprise_raw": 0.0,
+      "notes": "Categorical survey mapped only via stored expected_change_bp. Probability distribution not collapsed.",
+      "official_actual": -25
+    },
+    {
+      "consensus_evidence_id": "ce_fomc_20260128_reuters_poll_hold",
+      "macro_event_id": "usd_fomc_statement_2026-01-28",
+      "series_name": "expected_policy_decision",
+      "expectation_type": "SURVEY_CONSENSUS",
+      "forecast_value": "hold",
+      "official_join_valid": true,
+      "raw_surprise_possible": true,
+      "surprise_raw": 0.0,
+      "notes": "Categorical survey mapped only via stored expected_change_bp. Probability distribution not collapsed.",
+      "official_actual": 0
+    },
+    {
+      "consensus_evidence_id": "ce_fomc_20260128_fxstreet_ff_futures",
+      "macro_event_id": "usd_fomc_statement_2026-01-28",
+      "series_name": "market_implied_cut_probability",
+      "expectation_type": "MARKET_IMPLIED_EXPECTATION",
+      "forecast_value": 0.03,
+      "official_join_valid": true,
+      "raw_surprise_possible": false,
+      "surprise_raw": null,
+      "notes": "Market-implied probability retained. Not converted to a scalar consensus rate change. No surprise_raw.",
+      "official_actual": 0
+    },
+    {
+      "consensus_evidence_id": "ce_empsit_20260807_dowjones_nfp",
+      "macro_event_id": "usd_empsit_2026-08-07",
+      "series_name": "nonfarm_payroll_change",
+      "expectation_type": "SURVEY_CONSENSUS",
+      "forecast_value": 83000,
+      "official_join_valid": true,
+      "raw_surprise_possible": true,
+      "surprise_raw": -106000.0,
+      "notes": "Pipeline proof only. No z-score. No FX join.",
+      "official_actual": -23000
+    },
+    {
+      "consensus_evidence_id": "ce_empsit_20260807_dowjones_urate",
+      "macro_event_id": "usd_empsit_2026-08-07",
+      "series_name": "unemployment_rate",
+      "expectation_type": "SURVEY_CONSENSUS",
+      "forecast_value": 4.2,
+      "official_join_valid": true,
+      "raw_surprise_possible": true,
+      "surprise_raw": -0.10000000000000053,
+      "notes": "Pipeline proof only. No z-score. No FX join.",
+      "official_actual": 4.1
+    },
+    {
+      "consensus_evidence_id": "ce_empsit_20260807_vanguard_nfp_individual",
+      "macro_event_id": "usd_empsit_2026-08-07",
+      "series_name": "nonfarm_payroll_change",
+      "expectation_type": "INDIVIDUAL_FORECAST",
+      "forecast_value": 18000,
+      "official_join_valid": true,
+      "raw_surprise_possible": false,
+      "surprise_raw": null,
+      "notes": "Joinable but individual forecast is not consensus; surprise not computed as consensus surprise.",
+      "official_actual": -23000
+    },
+    {
+      "consensus_evidence_id": "ce_fomc_20260729_factset_hold",
+      "macro_event_id": "usd_fomc_statement_2026-07-29",
+      "series_name": "expected_policy_decision",
+      "expectation_type": "SURVEY_CONSENSUS",
+      "forecast_value": "hold",
+      "official_join_valid": true,
+      "raw_surprise_possible": true,
+      "surprise_raw": 0.0,
+      "notes": "Categorical survey mapped only via stored expected_change_bp. Probability distribution not collapsed.",
+      "official_actual": 0
+    },
+    {
+      "consensus_evidence_id": "ce_fomc_20260729_fedwatch_hike_prob",
+      "macro_event_id": "usd_fomc_statement_2026-07-29",
+      "series_name": "market_implied_hike_probability",
+      "expectation_type": "MARKET_IMPLIED_EXPECTATION",
+      "forecast_value": 0.36,
+      "official_join_valid": true,
+      "raw_surprise_possible": false,
+      "surprise_raw": null,
+      "notes": "Market-implied probability retained. Not converted to a scalar consensus rate change. No surprise_raw.",
+      "official_actual": 0
+    }
+  ],
+  "coverage": [
+    {
+      "event": "usd_cpi_2025-09-11",
+      "family": "CPI",
+      "T0": "2025-09-11T12:30:00Z",
+      "sources_found": 2,
+      "PIT_safe_sources": 0,
+      "series_covered": "core_mom,core_yoy,headline_mom,headline_yoy",
+      "publication_time_proven": false,
+      "artifact_hashed": true,
+      "official_join_valid": false,
+      "raw_surprise_possible": false
+    },
+    {
+      "event": "usd_cpi_2026-02-13",
+      "family": "CPI",
+      "T0": "2026-02-13T13:30:00Z",
+      "sources_found": 2,
+      "PIT_safe_sources": 0,
+      "series_covered": "core_mom,core_yoy,headline_mom,headline_yoy",
+      "publication_time_proven": true,
+      "artifact_hashed": true,
+      "official_join_valid": false,
+      "raw_surprise_possible": false
+    },
+    {
+      "event": "usd_cpi_2026-07-14",
+      "family": "CPI",
+      "T0": "2026-07-14T12:30:00Z",
+      "sources_found": 2,
+      "PIT_safe_sources": 0,
+      "series_covered": "core_mom,core_yoy,headline_mom,headline_yoy",
+      "publication_time_proven": true,
+      "artifact_hashed": true,
+      "official_join_valid": false,
+      "raw_surprise_possible": false
+    },
+    {
+      "event": "usd_empsit_2025-09-05",
+      "family": "EMPLOYMENT_SITUATION",
+      "T0": "2025-09-05T12:30:00Z",
+      "sources_found": 2,
+      "PIT_safe_sources": 0,
+      "series_covered": "average_hourly_earnings_mom,average_hourly_earnings_yoy,nonfarm_payroll_change,unemployment_rate",
+      "publication_time_proven": true,
+      "artifact_hashed": true,
+      "official_join_valid": false,
+      "raw_surprise_possible": false
+    },
+    {
+      "event": "usd_empsit_2026-02-11",
+      "family": "EMPLOYMENT_SITUATION",
+      "T0": "2026-02-11T13:30:00Z",
+      "sources_found": 2,
+      "PIT_safe_sources": 0,
+      "series_covered": "nonfarm_payroll_change,unemployment_rate",
+      "publication_time_proven": true,
+      "artifact_hashed": true,
+      "official_join_valid": false,
+      "raw_surprise_possible": false
+    },
+    {
+      "event": "usd_empsit_2026-08-07",
+      "family": "EMPLOYMENT_SITUATION",
+      "T0": "2026-08-07T12:30:00Z",
+      "sources_found": 3,
+      "PIT_safe_sources": 1,
+      "series_covered": "average_hourly_earnings_yoy,nonfarm_payroll_change,unemployment_rate",
+      "publication_time_proven": true,
+      "artifact_hashed": true,
+      "official_join_valid": true,
+      "raw_surprise_possible": true
+    },
+    {
+      "event": "usd_fomc_statement_2025-09-17",
+      "family": "FOMC",
+      "T0": "2025-09-17T18:00:00Z",
+      "sources_found": 1,
+      "PIT_safe_sources": 1,
+      "series_covered": "expected_policy_decision",
+      "publication_time_proven": true,
+      "artifact_hashed": true,
+      "official_join_valid": true,
+      "raw_surprise_possible": true
+    },
+    {
+      "event": "usd_fomc_statement_2026-01-28",
+      "family": "FOMC",
+      "T0": "2026-01-28T19:00:00Z",
+      "sources_found": 2,
+      "PIT_safe_sources": 2,
+      "series_covered": "expected_policy_decision,market_implied_cut_probability",
+      "publication_time_proven": true,
+      "artifact_hashed": true,
+      "official_join_valid": true,
+      "raw_surprise_possible": true
+    },
+    {
+      "event": "usd_fomc_statement_2026-07-29",
+      "family": "FOMC",
+      "T0": "2026-07-29T18:00:00Z",
+      "sources_found": 1,
+      "PIT_safe_sources": 1,
+      "series_covered": "expected_policy_decision,market_implied_hike_probability",
+      "publication_time_proven": true,
+      "artifact_hashed": true,
+      "official_join_valid": true,
+      "raw_surprise_possible": true
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "event_id": "fixture_empsit_2026-10-02",
+  "t0": "2026-10-02T12:30:00Z",
+  "window_start": "2026-09-30T12:30:00Z",
+  "ingest_log": [
+    {
+      "checkpoint": "T0-48h",
+      "source_id": "fixture_provider_a",
+      "status": "ALREADY_EXISTS",
+      "hash": "180085b73edde55ac1033b772f1ca9bd9fc73674354da101cfbc435a079dd4a5"
+    },
+    {
+      "checkpoint": "T0-48h",
+      "source_id": "fixture_provider_b",
+      "status": "ALREADY_EXISTS",
+      "hash": "65cade0978dc94d1e09d70ec6f493872aeecf00ef44eae10904926897e8ba6eb"
+    },
+    {
+      "checkpoint": "T0-24h",
+      "source_id": "fixture_provider_a",
+      "status": "ALREADY_EXISTS",
+      "hash": "180085b73edde55ac1033b772f1ca9bd9fc73674354da101cfbc435a079dd4a5"
+    },
+    {
+      "checkpoint": "T0-24h",
+      "source_id": "fixture_provider_b",
+      "status": "ALREADY_EXISTS",
+      "hash": "e1945a4464b6b5d22a9c422f35b7daf543e094bebbe2feb0717ab0dc6c2b3435"
+    },
+    {
+      "checkpoint": "T0-6h",
+      "source_id": "fixture_provider_a",
+      "status": "ALREADY_EXISTS",
+      "hash": "9073937d319bf9264499a0a5f6b51c896484b8072c4bbe2ace4022e5d7b6bfaf"
+    },
+    {
+      "checkpoint": "T0-6h",
+      "source_id": "fixture_provider_b",
+      "status": "ALREADY_EXISTS",
+      "hash": "e1945a4464b6b5d22a9c422f35b7daf543e094bebbe2feb0717ab0dc6c2b3435"
+    },
+    {
+      "checkpoint": "T0-6h",
+      "source_id": "fixture_provider_c",
+      "status": "ALREADY_EXISTS",
+      "hash": "df8bf02ee4f0c7474d414e759d6f4a681d5df78922f6203a0335f9c12efe256c"
+    },
+    {
+      "checkpoint": "T0-1h",
+      "source_id": "fixture_provider_a",
+      "status": "ALREADY_EXISTS",
+      "hash": "42dd03c7555d5efbd201e7e82dd4c12307f33f1e3c4dd1b3865844a7ae123afb"
+    },
+    {
+      "checkpoint": "T0-1h",
+      "source_id": "fixture_provider_b",
+      "status": "ALREADY_EXISTS",
+      "hash": "e1945a4464b6b5d22a9c422f35b7daf543e094bebbe2feb0717ab0dc6c2b3435"
+    },
+    {
+      "checkpoint": "T0-1h",
+      "source_id": "fixture_provider_c",
+      "status": "ALREADY_EXISTS",
+      "hash": "df8bf02ee4f0c7474d414e759d6f4a681d5df78922f6203a0335f9c12efe256c"
+    },
+    {
+      "checkpoint": "T0-5m",
+      "source_id": "fixture_provider_a",
+      "status": "ALREADY_EXISTS",
+      "hash": "42dd03c7555d5efbd201e7e82dd4c12307f33f1e3c4dd1b3865844a7ae123afb"
+    },
+    {
+      "checkpoint": "T0-5m",
+      "source_id": "fixture_provider_b",
+      "status": "ALREADY_EXISTS",
+      "hash": "e1945a4464b6b5d22a9c422f35b7daf543e094bebbe2feb0717ab0dc6c2b3435"
+    },
+    {
+      "checkpoint": "T0-5m",
+      "source_id": "fixture_provider_c",
+      "status": "ALREADY_EXISTS",
+      "hash": "df8bf02ee4f0c7474d414e759d6f4a681d5df78922f6203a0335f9c12efe256c"
+    }
+  ],
+  "provider_a_hashes": [
+    [
+      "T0-48h",
+      "180085b73edde55ac1033b772f1ca9bd9fc73674354da101cfbc435a079dd4a5",
+      175000
+    ],
+    [
+      "T0-24h",
+      "180085b73edde55ac1033b772f1ca9bd9fc73674354da101cfbc435a079dd4a5",
+      175000
+    ],
+    [
+      "T0-6h",
+      "9073937d319bf9264499a0a5f6b51c896484b8072c4bbe2ace4022e5d7b6bfaf",
+      165000
+    ],
+    [
+      "T0-1h",
+      "42dd03c7555d5efbd201e7e82dd4c12307f33f1e3c4dd1b3865844a7ae123afb",
+      160000
+    ],
+    [
+      "T0-5m",
+      "42dd03c7555d5efbd201e7e82dd4c12307f33f1e3c4dd1b3865844a7ae123afb",
+      160000
+    ]
+  ],
+  "final_pre_release_a": {
+    "checkpoint_id": "T0-5m",
+    "observed_at_utc": "2026-10-02T12:25:00Z",
+    "forecast_value": 160000,
+    "hash": "42dd03c7555d5efbd201e7e82dd4c12307f33f1e3c4dd1b3865844a7ae123afb"
+  },
+  "final_unchanged_by_post_t0": true,
+  "post_t0_status": "ALREADY_EXISTS",
+  "post_t0_pit": null,
+  "first_print": 110000,
+  "surprise_a": {
+    "value_quality": "PRESENT",
+    "surprise_raw": -50000.0,
+    "actual": 110000,
+    "final_pre_release": 160000,
+    "source_id": "fixture_provider_a",
+    "observed_at_utc": "2026-10-02T12:25:00Z",
+    "notes": "derived field only. no FX research."
+  },
+  "n_observations": 19,
+  "n_artifacts": 13,
+  "collection_enabled": false
+}

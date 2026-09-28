@@ -1,0 +1,789 @@
+{
+  "raw_observations": 4001,
+  "obs_malformed": 0,
+  "out_malformed": 0,
+  "unique_opportunities": 929,
+  "joined_unique": 671,
+  "repeat_rate": 76.7808047988003,
+  "time_range": [
+    "2026-09-24T10:26:54.809816+00:00",
+    "2026-09-28T10:43:55.896197+00:00"
+  ],
+  "mature": {
+    "5": 670,
+    "15": 671,
+    "30": 670,
+    "60": 669,
+    "120": 663,
+    "240": 654
+  },
+  "by_symbol": {
+    "EUR_USD": 130,
+    "GBP_USD": 138,
+    "AUD_USD": 173,
+    "USD_CAD": 149,
+    "USD_CHF": 204,
+    "USD_JPY": 135
+  },
+  "by_date": {
+    "2026-09-24": 304,
+    "2026-09-25": 367,
+    "2026-09-27": 71,
+    "2026-09-28": 187
+  },
+  "earlier_n": 304,
+  "later_n": 367,
+  "earlier_date": "2026-09-24",
+  "later_date": "2026-09-25",
+  "by_date_scored": {
+    "2026-09-24": 304,
+    "2026-09-25": 367
+  },
+  "unscored_unique": 258,
+  "split_at": "labeled-session 2026-09-24 vs 2026-09-25",
+  "integrity": {
+    "production_stub_side": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 2,
+      "min": null,
+      "median": null,
+      "mean": null,
+      "max": null,
+      "constant": false,
+      "near_constant": false
+    },
+    "strategy_label": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 6,
+      "min": null,
+      "median": null,
+      "mean": null,
+      "max": null,
+      "constant": false,
+      "near_constant": false
+    },
+    "bid": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 1925,
+      "min": 0.70038,
+      "median": 1.13852,
+      "mean": 22.822061179705074,
+      "max": 159.022,
+      "constant": false,
+      "near_constant": false
+    },
+    "ask": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 1930,
+      "min": 0.70052,
+      "median": 1.1386,
+      "mean": 22.824652834291427,
+      "max": 159.037,
+      "constant": false,
+      "near_constant": false
+    },
+    "mid": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 737,
+      "min": 0.70043,
+      "median": 1.13857,
+      "mean": 22.823915806048486,
+      "max": 158.992,
+      "constant": false,
+      "near_constant": false
+    },
+    "spread": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 151,
+      "min": 5.999999999994898e-05,
+      "median": 0.000140000000000029,
+      "mean": 0.0025916545863533254,
+      "max": 0.07999999999998408,
+      "constant": false,
+      "near_constant": false
+    },
+    "pip_size": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 2,
+      "min": 0.0001,
+      "median": 0.0001,
+      "mean": 0.0014757560609847539,
+      "max": 0.01,
+      "constant": false,
+      "near_constant": false
+    },
+    "atr": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 889,
+      "min": 0.00011000000000000269,
+      "median": 0.0003346666666666461,
+      "mean": 0.011863627509789098,
+      "max": 0.16910000000000025,
+      "constant": false,
+      "near_constant": false
+    },
+    "atr_over_price": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 920,
+      "min": 8.364316647109999e-05,
+      "median": 0.000329474361223174,
+      "mean": 0.00034643701412539855,
+      "max": 0.001078567692719829,
+      "constant": false,
+      "near_constant": false
+    },
+    "sma_fast": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 914,
+      "min": 0.700777,
+      "median": 1.138588,
+      "mean": 22.82655144076481,
+      "max": 158.9336,
+      "constant": false,
+      "near_constant": false
+    },
+    "sma_slow": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 918,
+      "min": 0.7011309999999998,
+      "median": 1.1387465,
+      "mean": 22.82981651812047,
+      "max": 158.893,
+      "constant": false,
+      "near_constant": false
+    },
+    "sma_difference": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 921,
+      "min": -0.41932000000002745,
+      "median": 9.40000000000385e-05,
+      "mean": -0.003265077355661086,
+      "max": 0.2174799999999948,
+      "constant": false,
+      "near_constant": false
+    },
+    "sma_difference_over_atr": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 924,
+      "min": -6.518016194331218,
+      "median": 0.3197149643705191,
+      "mean": 0.43173982336880734,
+      "max": 6.477205882350834,
+      "constant": false,
+      "near_constant": false
+    },
+    "rsi": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 915,
+      "min": 2.3999999961600906,
+      "median": 50.34011208294209,
+      "mean": 50.48325931314982,
+      "max": 95.93901811439936,
+      "constant": false,
+      "near_constant": false
+    },
+    "macd": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 932,
+      "min": -0.2069870184186584,
+      "median": 8.937528584773702e-06,
+      "mean": -0.0031365602674938036,
+      "max": 0.1116664530531466,
+      "constant": false,
+      "near_constant": false
+    },
+    "macd_signal": {
+      "available": 0,
+      "missing": 0,
+      "not_computed": 4001,
+      "unique": 0,
+      "min": null,
+      "median": null,
+      "mean": null,
+      "max": null,
+      "constant": false,
+      "near_constant": false
+    },
+    "adx": {
+      "available": 0,
+      "missing": 0,
+      "not_computed": 4001,
+      "unique": 0,
+      "min": null,
+      "median": null,
+      "mean": null,
+      "max": null,
+      "constant": false,
+      "near_constant": false
+    },
+    "bollinger_position": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 933,
+      "min": -0.4994928406117027,
+      "median": 0.5558943044537458,
+      "mean": 0.5341771640879882,
+      "max": 1.5835716184200146,
+      "constant": false,
+      "near_constant": false
+    },
+    "ret_1": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 909,
+      "min": -0.0034409504910191124,
+      "median": 0.00011304863917716013,
+      "mean": -4.3029709542937533e-07,
+      "max": 0.0018960994525547559,
+      "constant": false,
+      "near_constant": false
+    },
+    "ret_5": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 909,
+      "min": -0.0034409504910191627,
+      "median": 0.00011304863917711897,
+      "mean": -4.302970954306007e-07,
+      "max": 0.0018960994525548207,
+      "constant": false,
+      "near_constant": false
+    },
+    "ret_15": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 910,
+      "min": -0.005250460288235656,
+      "median": 0.0,
+      "mean": -1.9498954500699134e-05,
+      "max": 0.002481460353679355,
+      "constant": false,
+      "near_constant": false
+    },
+    "ret_30": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 911,
+      "min": -0.004896668233261873,
+      "median": -1.4258622902135213e-05,
+      "mean": -1.5700830800048496e-05,
+      "max": 0.0026745119015778823,
+      "constant": false,
+      "near_constant": false
+    },
+    "hour_utc": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 24,
+      "min": 0.0,
+      "median": 12.0,
+      "mean": 11.53411647088228,
+      "max": 23.0,
+      "constant": false,
+      "near_constant": false
+    },
+    "day_of_week": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 4,
+      "min": 0.0,
+      "median": 3.0,
+      "mean": 3.0092476880779806,
+      "max": 6.0,
+      "constant": false,
+      "near_constant": false
+    },
+    "usd_direction": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 2,
+      "min": null,
+      "median": null,
+      "mean": null,
+      "max": null,
+      "constant": false,
+      "near_constant": false
+    },
+    "broker_backed_position_count": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 5,
+      "min": 0.0,
+      "median": 3.0,
+      "mean": 2.7083229192701825,
+      "max": 4.0,
+      "constant": false,
+      "near_constant": false
+    },
+    "gross_portfolio_exposure": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 281,
+      "min": 97.1782,
+      "median": 97.2097,
+      "mean": 97.20354278930267,
+      "max": 97.2139,
+      "constant": false,
+      "near_constant": false
+    },
+    "same_usd_direction_count": {
+      "available": 4001,
+      "missing": 0,
+      "not_computed": 0,
+      "unique": 4,
+      "min": 0.0,
+      "median": 2.0,
+      "mean": 1.7735566108472882,
+      "max": 3.0,
+      "constant": false,
+      "near_constant": false
+    }
+  },
+  "ret_1_vs_ret_5": {
+    "n": 929,
+    "exact_equal": 0,
+    "exact_equal_rate": 0.0,
+    "abs_diff_le_1e18": 0.011840688912809472,
+    "abs_diff_le_1e12": 1.0,
+    "diff_mean": 2.269209471610875e-19,
+    "diff_median": -2.710505431213761e-18,
+    "diff_min": -1.1039888621333649e-16,
+    "diff_max": 1.1034467610471221e-16,
+    "corr": 1.0000000000000002,
+    "construction_note": "bot_loop ret_1 = close.pct_change()[-1]; ret_5 uses 1 M5 bar lookback"
+  },
+  "q_zero_unique": 671,
+  "rl_actions": {
+    "SKIP": 206,
+    "SELL": 229,
+    "BUY": 236
+  },
+  "n_features": 24,
+  "n_comparisons": 288,
+  "prod_join": {
+    "status": "SKIP",
+    "dump_trades": 1614,
+    "dump_first": "2026-03-25T13:40:32.248474",
+    "dump_last": "2026-09-24T09:10:23.734926",
+    "v2_first": "2026-09-24T10:26:54.809816+00:00",
+    "reason": "live trade dump last timestamp is before V2 observation start; populations are not the same and cannot be joined reliably"
+  },
+  "cuts": {
+    "atr_over_price": [
+      0.00030240279757828695,
+      0.0003949933901525681,
+      0.00044120342724593507
+    ],
+    "spread_pips": [
+      1.2999999999996348,
+      1.40000000000029,
+      1.5999999999993797
+    ],
+    "spread_over_atr": [
+      0.25560206329716745,
+      0.37736123220001716,
+      0.44129244757845865
+    ],
+    "sma_difference_over_atr": [
+      -1.8984945841056784,
+      -0.1873760085869653,
+      2.6370000606857773
+    ],
+    "rsi": [
+      40.152002395579466,
+      49.18803179663101,
+      58.06949132115525
+    ],
+    "macd_over_atr": [
+      -0.4287519588013783,
+      -0.06167020019599369,
+      0.3398467515069028
+    ],
+    "bollinger_position": [
+      0.21618115942820854,
+      0.4583789835383075,
+      0.7201366685431035
+    ],
+    "ret_1": [
+      -0.00024659056497622345,
+      0.00010877250263319205,
+      0.00022839469017504888
+    ],
+    "ret_15": [
+      -0.0002719262269744068,
+      -8.17994156974327e-06,
+      0.00026893525148759354
+    ],
+    "ret_30": [
+      -0.00040533557592971955,
+      -4.831151266169866e-05,
+      0.00039484507376354107
+    ],
+    "gross_portfolio_exposure": [
+      97.2111,
+      97.21205,
+      97.2128
+    ],
+    "same_usd_direction_count": [
+      2.0,
+      2.0,
+      2.0
+    ]
+  },
+  "hypotheses": [
+    {
+      "feature": "atr_over_price",
+      "hypothesis": "higher atr_over_price vs lower atr_over_price",
+      "sample_size": 411,
+      "horizons": "60 primary; also computed 5-240",
+      "earlier": "BUY Q4-Q1 hit=+0.026 mean=-0.30 n=76/76; SELL hit=+0.197",
+      "later": "BUY Q4-Q1 hit=-0.146 mean=-6.39 n=166/93; SELL hit=+0.271",
+      "stability": "DESCRIPTIVE CANDIDATE - UNSTABLE",
+      "effect": "pooled BUY Q4-Q1 hit=-0.081 mean=-3.70 n=242/169",
+      "classification": "DESCRIPTIVE CANDIDATE - UNSTABLE"
+    },
+    {
+      "feature": "spread_pips",
+      "hypothesis": "higher spread_pips vs lower spread_pips",
+      "sample_size": 410,
+      "horizons": "60 primary; also computed 5-240",
+      "earlier": "BUY Q4-Q1 hit=-0.015 mean=-0.37 n=108/69; SELL hit=-0.161",
+      "later": "BUY Q4-Q1 hit=+0.044 mean=-2.85 n=138/95; SELL hit=-0.006",
+      "stability": "NO APPARENT INFORMATION",
+      "effect": "pooled BUY Q4-Q1 hit=+0.018 mean=-1.81 n=246/164",
+      "classification": "NO APPARENT INFORMATION"
+    },
+    {
+      "feature": "spread_over_atr",
+      "hypothesis": "higher spread_over_atr vs lower spread_over_atr",
+      "sample_size": 411,
+      "horizons": "60 primary; also computed 5-240",
+      "earlier": "BUY Q4-Q1 hit=-0.100 mean=-0.68 n=76/75; SELL hit=-0.221",
+      "later": "BUY Q4-Q1 hit=+0.228 mean=+6.13 n=101/159; SELL hit=-0.377",
+      "stability": "DESCRIPTIVE CANDIDATE - UNSTABLE",
+      "effect": "pooled BUY Q4-Q1 hit=+0.093 mean=+3.21 n=177/234",
+      "classification": "DESCRIPTIVE CANDIDATE - UNSTABLE"
+    },
+    {
+      "feature": "sma_difference_over_atr",
+      "hypothesis": "higher sma_difference_over_atr vs lower sma_difference_over_atr",
+      "sample_size": 257,
+      "horizons": "60 primary; also computed 5-240",
+      "earlier": "BUY Q4-Q1 hit=+0.197 mean=+0.22 n=76/76; SELL hit=-0.105",
+      "later": "BUY Q4-Q1 hit=-0.057 mean=-5.16 n=27/78; SELL hit=+0.124",
+      "stability": "INSUFFICIENT SAMPLE",
+      "effect": "pooled BUY Q4-Q1 hit=+0.079 mean=-1.42 n=103/154",
+      "classification": "INSUFFICIENT SAMPLE"
+    },
+    {
+      "feature": "rsi",
+      "hypothesis": "higher rsi vs lower rsi",
+      "sample_size": 364,
+      "horizons": "60 primary; also computed 5-240",
+      "earlier": "BUY Q4-Q1 hit=-0.395 mean=-9.74 n=76/76; SELL hit=+0.421",
+      "later": "BUY Q4-Q1 hit=-0.228 mean=-3.40 n=93/119; SELL hit=+0.137",
+      "stability": "DESCRIPTIVE CANDIDATE - REPEATED",
+      "effect": "pooled BUY Q4-Q1 hit=-0.302 mean=-6.16 n=169/195",
+      "classification": "DESCRIPTIVE CANDIDATE - REPEATED"
+    },
+    {
+      "feature": "macd_over_atr",
+      "hypothesis": "higher macd_over_atr vs lower macd_over_atr",
+      "sample_size": 339,
+      "horizons": "60 primary; also computed 5-240",
+      "earlier": "BUY Q4-Q1 hit=-0.079 mean=-5.56 n=76/76; SELL hit=+0.211",
+      "later": "BUY Q4-Q1 hit=-0.054 mean=+1.32 n=76/111; SELL hit=-0.079",
+      "stability": "NO APPARENT INFORMATION",
+      "effect": "pooled BUY Q4-Q1 hit=-0.069 mean=-1.87 n=152/187",
+      "classification": "NO APPARENT INFORMATION"
+    },
+    {
+      "feature": "bollinger_position",
+      "hypothesis": "higher bollinger_position vs lower bollinger_position",
+      "sample_size": 357,
+      "horizons": "60 primary; also computed 5-240",
+      "earlier": "BUY Q4-Q1 hit=-0.105 mean=-5.74 n=76/76; SELL hit=+0.197",
+      "later": "BUY Q4-Q1 hit=-0.102 mean=-2.38 n=69/136; SELL hit=+0.064",
+      "stability": "DESCRIPTIVE CANDIDATE - REPEATED",
+      "effect": "pooled BUY Q4-Q1 hit=-0.106 mean=-3.79 n=145/212",
+      "classification": "DESCRIPTIVE CANDIDATE - REPEATED"
+    },
+    {
+      "feature": "ret_1",
+      "hypothesis": "higher ret_1 vs lower ret_1",
+      "sample_size": 319,
+      "horizons": "60 primary; also computed 5-240",
+      "earlier": "BUY Q4-Q1 hit=-0.224 mean=-3.31 n=76/76; SELL hit=+0.263",
+      "later": "BUY Q4-Q1 hit=-0.073 mean=-3.29 n=79/88; SELL hit=+0.003",
+      "stability": "NO APPARENT INFORMATION",
+      "effect": "pooled BUY Q4-Q1 hit=-0.146 mean=-3.35 n=155/164",
+      "classification": "NO APPARENT INFORMATION"
+    },
+    {
+      "feature": "ret_15",
+      "hypothesis": "higher ret_15 vs lower ret_15",
+      "sample_size": 356,
+      "horizons": "60 primary; also computed 5-240",
+      "earlier": "BUY Q4-Q1 hit=-0.259 mean=-5.48 n=76/75; SELL hit=+0.230",
+      "later": "BUY Q4-Q1 hit=-0.099 mean=-3.18 n=100/105; SELL hit=+0.085",
+      "stability": "DESCRIPTIVE CANDIDATE - REPEATED",
+      "effect": "pooled BUY Q4-Q1 hit=-0.167 mean=-4.19 n=176/180",
+      "classification": "DESCRIPTIVE CANDIDATE - REPEATED"
+    },
+    {
+      "feature": "ret_30",
+      "hypothesis": "higher ret_30 vs lower ret_30",
+      "sample_size": 323,
+      "horizons": "60 primary; also computed 5-240",
+      "earlier": "BUY Q4-Q1 hit=-0.368 mean=-8.04 n=76/76; SELL hit=+0.329",
+      "later": "BUY Q4-Q1 hit=-0.183 mean=-4.40 n=80/91; SELL hit=+0.038",
+      "stability": "DESCRIPTIVE CANDIDATE - REPEATED",
+      "effect": "pooled BUY Q4-Q1 hit=-0.272 mean=-6.14 n=156/167",
+      "classification": "DESCRIPTIVE CANDIDATE - REPEATED"
+    },
+    {
+      "feature": "gross_portfolio_exposure",
+      "hypothesis": "higher gross_portfolio_exposure vs lower gross_portfolio_exposure",
+      "sample_size": 449,
+      "horizons": "60 primary; also computed 5-240",
+      "earlier": "BUY Q4-Q1 hit=-0.269 mean=-3.78 n=88/59; SELL hit=-0.013",
+      "later": "BUY Q4-Q1 hit=-0.303 mean=-6.00 n=291/11; SELL hit=+0.478",
+      "stability": "INSUFFICIENT SAMPLE",
+      "effect": "pooled BUY Q4-Q1 hit=-0.189 mean=-2.08 n=379/70",
+      "classification": "INSUFFICIENT SAMPLE"
+    },
+    {
+      "feature": "same_usd_direction_count",
+      "hypothesis": "higher same_usd_direction_count vs lower same_usd_direction_count",
+      "sample_size": 669,
+      "horizons": "60 primary; also computed 5-240",
+      "earlier": "BUY Q4-Q1 hit=-0.460 mean=-0.60 n=302/1; SELL hit=-0.325",
+      "later": "BUY Q4-Q1 hit=n/a mean=n/a n=366/0; SELL hit=n/a",
+      "stability": "INSUFFICIENT SAMPLE",
+      "effect": "pooled BUY Q4-Q1 hit=-0.458 mean=+0.05 n=668/1",
+      "classification": "INSUFFICIENT SAMPLE"
+    }
+  ],
+  "stub_eval": {
+    "BUY": {
+      "5": {
+        "n": 360,
+        "hit": 0.3333333333333333,
+        "mean": -1.5294444444444746
+      },
+      "15": {
+        "n": 360,
+        "hit": 0.38333333333333336,
+        "mean": -1.368333333333345
+      },
+      "30": {
+        "n": 360,
+        "hit": 0.41944444444444445,
+        "mean": -1.099722222222255
+      },
+      "60": {
+        "n": 358,
+        "hit": 0.5139664804469274,
+        "mean": -0.44441340782121636
+      },
+      "120": {
+        "n": 358,
+        "hit": 0.5670391061452514,
+        "mean": 1.4583798882681105
+      },
+      "240": {
+        "n": 357,
+        "hit": 0.5098039215686274,
+        "mean": 1.456022408963595
+      }
+    },
+    "SELL": {
+      "5": {
+        "n": 310,
+        "hit": 0.27741935483870966,
+        "mean": -1.535483870967692
+      },
+      "15": {
+        "n": 311,
+        "hit": 0.3215434083601286,
+        "mean": -1.402250803858522
+      },
+      "30": {
+        "n": 310,
+        "hit": 0.35161290322580646,
+        "mean": -1.5574193548387318
+      },
+      "60": {
+        "n": 311,
+        "hit": 0.37942122186495175,
+        "mean": -1.7954983922829446
+      },
+      "120": {
+        "n": 305,
+        "hit": 0.39672131147540984,
+        "mean": -0.7186885245901868
+      },
+      "240": {
+        "n": 297,
+        "hit": 0.4377104377104377,
+        "mean": 3.3084175084175387
+      }
+    }
+  },
+  "rl_counterfactual": {
+    "agreed": {
+      "5": {
+        "n": 238,
+        "hit": 0.2857142857142857,
+        "mean": -1.7100840336134693
+      },
+      "15": {
+        "n": 239,
+        "hit": 0.30962343096234307,
+        "mean": -1.961087866108768
+      },
+      "30": {
+        "n": 239,
+        "hit": 0.36401673640167365,
+        "mean": -1.9037656903766274
+      },
+      "60": {
+        "n": 239,
+        "hit": 0.45188284518828453,
+        "mean": -1.2401673640166686
+      },
+      "120": {
+        "n": 236,
+        "hit": 0.5338983050847458,
+        "mean": 1.1665254237288076
+      },
+      "240": {
+        "n": 231,
+        "hit": 0.47619047619047616,
+        "mean": 3.2796536796537468
+      }
+    },
+    "vetoed": {
+      "5": {
+        "n": 432,
+        "hit": 0.3194444444444444,
+        "mean": -1.4342592592592354
+      },
+      "15": {
+        "n": 432,
+        "hit": 0.37962962962962965,
+        "mean": -1.0648148148148355
+      },
+      "30": {
+        "n": 431,
+        "hit": 0.4013921113689095,
+        "mean": -0.9830626450116119
+      },
+      "60": {
+        "n": 430,
+        "hit": 0.4511627906976744,
+        "mean": -0.9793023255814126
+      },
+      "120": {
+        "n": 427,
+        "hit": 0.4637002341920375,
+        "mean": 0.06463700234186864
+      },
+      "240": {
+        "n": 423,
+        "hit": 0.47754137115839246,
+        "mean": 1.7607565011820256
+      }
+    }
+  },
+  "mfe_audit": {
+    "5": {
+      "buy_mfe_n": 670,
+      "buy_mae_n": 670,
+      "buy_mfe_median": 0.49999999999994493,
+      "buy_mae_median": 3.0500000000011074,
+      "buy_mfe_mean": 1.537462686567229,
+      "buy_mae_mean": 4.001641791044894
+    },
+    "15": {
+      "buy_mfe_n": 671,
+      "buy_mae_n": 671,
+      "buy_mfe_median": 1.4999999999998348,
+      "buy_mae_median": 4.100000000000215,
+      "buy_mfe_mean": 2.615648286140138,
+      "buy_mae_mean": 5.51818181818194
+    },
+    "30": {
+      "buy_mfe_n": 670,
+      "buy_mae_n": 670,
+      "buy_mfe_median": 2.60000000000038,
+      "buy_mae_median": 5.149999999999877,
+      "buy_mfe_mean": 3.9698507462687065,
+      "buy_mae_mean": 6.969552238806076
+    },
+    "60": {
+      "buy_mfe_n": 669,
+      "buy_mae_n": 669,
+      "buy_mfe_median": 4.20000000000087,
+      "buy_mae_median": 6.6000000000010495,
+      "buy_mfe_mean": 5.827503736920821,
+      "buy_mae_mean": 8.706576980568144
+    },
+    "120": {
+      "buy_mfe_n": 663,
+      "buy_mae_n": 663,
+      "buy_mfe_median": 6.800000000000139,
+      "buy_mae_median": 7.999999999999119,
+      "buy_mfe_mean": 8.212066365007582,
+      "buy_mae_mean": 10.91055806938173
+    },
+    "240": {
+      "buy_mfe_n": 654,
+      "buy_mae_n": 654,
+      "buy_mfe_median": 9.599999999999053,
+      "buy_mae_median": 10.85000000000058,
+      "buy_mfe_mean": 11.13363914373092,
+      "buy_mae_mean": 14.975993883792132
+    }
+  }
+}
