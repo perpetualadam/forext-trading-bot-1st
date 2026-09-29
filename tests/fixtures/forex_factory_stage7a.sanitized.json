@@ -1,0 +1,64 @@
+{
+  "kind": "FF_CALENDAR_SANITIZED_FIXTURE",
+  "stage": "7A",
+  "rows": [
+    {
+      "title": "Non-Farm Employment Change",
+      "country": "USD",
+      "date": "10-02-2026",
+      "time": "8:30am",
+      "impact": "High",
+      "forecast": "51K",
+      "previous": "22K",
+      "actual": ""
+    },
+    {
+      "title": "Unemployment Rate",
+      "country": "USD",
+      "date": "10-02-2026",
+      "time": "8:30am",
+      "impact": "High",
+      "forecast": "4.3%",
+      "previous": "4.3%",
+      "actual": ""
+    },
+    {
+      "title": "Average Hourly Earnings m/m",
+      "country": "USD",
+      "date": "10-02-2026",
+      "time": "8:30am",
+      "impact": "Medium",
+      "forecast": "0.3%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "title": "Average Hourly Earnings y/y",
+      "country": "USD",
+      "date": "10-02-2026",
+      "time": "8:30am",
+      "impact": "Medium",
+      "forecast": "",
+      "previous": "3.7%",
+      "actual": ""
+    },
+    {
+      "title": "ADP Non-Farm Employment Change",
+      "country": "USD",
+      "date": "10-01-2026",
+      "time": "8:15am",
+      "impact": "High",
+      "forecast": "40K",
+      "previous": "38K"
+    },
+    {
+      "title": "Non-Farm Employment Change",
+      "country": "GBP",
+      "date": "10-02-2026",
+      "time": "7:00am",
+      "impact": "High",
+      "forecast": "1K",
+      "previous": "2K"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "kind": "FF_CALENDAR_SANITIZED_RESPONSE",
+  "stage": "7A",
+  "provider": "forex_factory",
+  "official_export_host": "nfs.faireconomy.media",
+  "official_export_path": "/ff_calendar_thisweek.json",
+  "probe_started_at_utc": "2026-09-29T21:23:03Z",
+  "observed_at_utc": "2026-09-29T21:23:03Z",
+  "observed_at_clock_role": "LOCAL_COLLECTION_TIME_ONLY",
+  "http_status": 403,
+  "credential_required": false,
+  "official_export_status": "IDENTIFIED_WEEKLY_JSON",
+  "returned_field_names": [],
+  "records_returned": 0,
+  "identified_targets": [],
+  "rows": [],
+  "real_checkpoint_created": false,
+  "response_header_names": [
+    "cache-control",
+    "cf-ray",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "expires",
+    "referrer-policy",
+    "server",
+    "vary",
+    "x-frame-options"
+  ],
+  "permissions": {
+    "automated_retrieval": "NOT_CONFIRMED",
+    "local_private_retention": "NOT_CONFIRMED",
+    "redistribution": "RESTRICTED"
+  }
+}
