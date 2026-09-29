@@ -1,0 +1,13 @@
+{
+  "kind": "TE_CALENDAR_SANITIZED_RESPONSE",
+  "source_id": "trading_economics",
+  "product": "ECONOMIC_CALENDAR",
+  "documented_url": "https://api.tradingeconomics.com/calendar/country/united%20states/2026-10-02/2026-10-02?f=json&values=true",
+  "auth": "Authorization header",
+  "retrieved_note": "Single authorized Stage 6A request. HTTP 403 ACCESS_DENIED. Response body was not retained as calendar JSON because authentication/entitlement failed. No retry.",
+  "http_status": 403,
+  "result": "ACCESS_DENIED",
+  "row_count": 0,
+  "rows": [],
+  "credential_redacted": true
+}

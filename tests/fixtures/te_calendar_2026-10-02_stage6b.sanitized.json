@@ -1,0 +1,102 @@
+{
+  "kind": "TE_CALENDAR_SANITIZED_FIXTURE",
+  "stage": "6B",
+  "rows": [
+    {
+      "CalendarId": "uk1",
+      "Country": "United Kingdom",
+      "Category": "Labour",
+      "Event": "Non Farm Payrolls",
+      "Date": "2026-10-02T06:00:00",
+      "Forecast": "1",
+      "TEForecast": "2"
+    },
+    {
+      "CalendarId": "261002001",
+      "Country": "United States",
+      "Category": "Labour",
+      "Event": "Non Farm Payrolls",
+      "Date": "2026-10-02T12:30:00",
+      "Reference": "Sep 2026",
+      "ReferenceDate": "2026-09-01T00:00:00",
+      "Source": "Bureau of Labor Statistics",
+      "Actual": null,
+      "Previous": "22",
+      "Forecast": "51",
+      "TEForecast": "48",
+      "Importance": 3,
+      "LastUpdate": "2026-09-20T11:00:00",
+      "Revised": "19",
+      "Currency": "USD",
+      "Unit": "K",
+      "Ticker": "NFP TCH",
+      "Symbol": "UNITEDSTA"
+    },
+    {
+      "CalendarId": "261002002",
+      "Country": "United States",
+      "Category": "Labour",
+      "Event": "Unemployment Rate",
+      "Date": "2026-10-02T12:30:00",
+      "Reference": "Sep 2026",
+      "Source": "Bureau of Labor Statistics",
+      "Actual": null,
+      "Previous": "4.3",
+      "Forecast": "4.3",
+      "TEForecast": "4.2",
+      "Importance": 3,
+      "LastUpdate": "2026-09-20T11:00:00",
+      "Revised": null,
+      "Currency": "USD",
+      "Unit": "%",
+      "Ticker": "USURTOT",
+      "Symbol": "UNITEDSTA"
+    },
+    {
+      "CalendarId": "261002003",
+      "Country": "United States",
+      "Category": "Labour",
+      "Event": "Average Hourly Earnings MoM",
+      "Date": "2026-10-02T12:30:00",
+      "Reference": "Sep 2026",
+      "Forecast": "0.3",
+      "TEForecast": "0.3",
+      "Importance": 2,
+      "LastUpdate": "2026-09-20T11:00:00",
+      "Unit": "%",
+      "Ticker": "AHE MoM"
+    },
+    {
+      "CalendarId": "261002004",
+      "Country": "United States",
+      "Category": "Labour",
+      "Event": "Average Hourly Earnings YoY",
+      "Date": "2026-10-02T12:30:00",
+      "Reference": "Sep 2026",
+      "Forecast": "",
+      "TEForecast": "3.8",
+      "Importance": 2,
+      "LastUpdate": "2026-09-20T11:00:00",
+      "Unit": "%",
+      "Ticker": "AHE YoY"
+    },
+    {
+      "CalendarId": "261002099",
+      "Country": "United States",
+      "Category": "Labour",
+      "Event": "ADP Employment Change",
+      "Date": "2026-10-02T12:15:00",
+      "Forecast": "40",
+      "TEForecast": "42"
+    },
+    {
+      "CalendarId": "jp1",
+      "Country": "Japan",
+      "Category": "Labour",
+      "Event": "Unemployment Rate",
+      "Date": "2026-10-02T23:30:00",
+      "Forecast": "2.5",
+      "TEForecast": "2.4"
+    }
+  ]
+}

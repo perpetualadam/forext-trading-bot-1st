@@ -1,0 +1,25 @@
+{
+  "kind": "TE_CALENDAR_SANITIZED_RESPONSE",
+  "stage": "6B",
+  "source_id": "trading_economics",
+  "product": "ECONOMIC_CALENDAR",
+  "request_host": "api.tradingeconomics.com",
+  "request_path": "/calendar/country/All/2026-10-02/2026-10-02",
+  "query_parameter_names": [
+    "c",
+    "f"
+  ],
+  "authentication_method": "c query parameter",
+  "probe_timestamp_utc": "2026-09-29T04:37:51Z",
+  "observed_at_utc": "2026-09-29T04:37:51Z",
+  "observed_at_clock_role": "LOCAL_COLLECTION_TIME_ONLY",
+  "http_status": 403,
+  "result": "ACCESS_DENIED",
+  "raw_row_count": 0,
+  "us_events_returned": 0,
+  "us_event_summaries": [],
+  "identified_targets": [],
+  "us_rows": [],
+  "real_checkpoint_created": false,
+  "credential_redacted": true
+}

@@ -1,0 +1,45 @@
+{
+  "kind": "TE_CALENDAR_STAGE6B_PROBE",
+  "stage": "6B",
+  "live": true,
+  "target_country": "United States",
+  "target_date": "2026-10-02",
+  "request_host": "api.tradingeconomics.com",
+  "request_path": "/calendar/country/All/2026-10-02/2026-10-02",
+  "query_parameter_names": [
+    "c",
+    "f"
+  ],
+  "authentication_method": "c query parameter",
+  "stage_6a_audit": {
+    "scheme": "https",
+    "host": "api.tradingeconomics.com",
+    "path": "/calendar/country/united%20states/2026-10-02/2026-10-02",
+    "query_parameter_names": [
+      "f",
+      "values"
+    ],
+    "authentication_placement": "Authorization header",
+    "output_format_parameter": "f=json",
+    "documented_pattern_match": "NO",
+    "discrepancy": "Authorization header instead of documented c query parameter; path /calendar/country/united%20states/{date}/{date} instead of documented /calendar/country/All/{date}/{date}; extra values=true query parameter"
+  },
+  "credential_configured": true,
+  "request_count": 1,
+  "entered_observations": false,
+  "real_checkpoint_created": false,
+  "http_status": 403,
+  "authentication": "FAILED",
+  "calendar_access": "NOT_CONFIRMED",
+  "result": "ACCESS_DENIED",
+  "us_events_returned": 0,
+  "observed_at_utc": "2026-09-29T04:37:51Z",
+  "observed_at_clock_role": "LOCAL_COLLECTION_TIME_ONLY",
+  "forecast_field_semantics": "SURVEY_CONSENSUS",
+  "teforecast_field_semantics": "PROVIDER_FORECAST",
+  "lastupdate_semantics": "SOURCE_UPDATED_UTC",
+  "archival_permission": "NOT_CONFIRMED",
+  "artifact_path": "data/research/macro/consensus_pit/prospective/probes/te_calendar_2026-10-02_stage6b.sanitized.json",
+  "artifact_sha256": "99d235cdd551687d36c97e3877381300866f575fe15e7f3c35526fd7cad84224",
+  "credential_in_artifact": false
+}

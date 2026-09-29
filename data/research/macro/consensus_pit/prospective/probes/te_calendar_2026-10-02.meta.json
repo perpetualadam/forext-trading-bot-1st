@@ -1,0 +1,18 @@
+{
+  "kind": "TE_CALENDAR_CAPABILITY_PROBE",
+  "stage": "6A",
+  "live": true,
+  "target_country": "united states",
+  "target_date": "2026-10-02",
+  "documented_url": "https://api.tradingeconomics.com/calendar/country/united%20states/2026-10-02/2026-10-02?f=json&values=true",
+  "auth": "Authorization header",
+  "credential_configured": true,
+  "request_count": 1,
+  "entered_observations": false,
+  "http_status": 403,
+  "result": "ACCESS_DENIED",
+  "artifact_path": "data\\research\\macro\\consensus_pit\\prospective\\probes\\te_calendar_2026-10-02.sanitized.json",
+  "artifact_sha256": "5eb58fb4713738708b28cca487a922afe6837af4e1288d29b7744b2b664af68a",
+  "credential_in_artifact": false,
+  "us_events_returned": 0
+}

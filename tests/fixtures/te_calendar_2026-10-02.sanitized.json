@@ -1,0 +1,74 @@
+{
+  "kind": "TE_CALENDAR_SANITIZED_RESPONSE",
+  "source_id": "trading_economics",
+  "product": "ECONOMIC_CALENDAR",
+  "documented_url": "https://api.tradingeconomics.com/calendar/country/united%20states/2026-10-02/2026-10-02?f=json&values=true",
+  "rows": [
+    {
+      "CalendarId": "nfp1",
+      "Country": "United States",
+      "Category": "Labour",
+      "Event": "Non Farm Payrolls",
+      "Date": "2026-10-02T12:30:00",
+      "Reference": "Sep 2026",
+      "Actual": null,
+      "Previous": "50",
+      "Revised": null,
+      "Forecast": "51",
+      "TEForecast": "48",
+      "ForecastValue": 51.0,
+      "TEForecastValue": 48.0,
+      "Importance": 3,
+      "LastUpdate": "2026-09-29T00:00:00",
+      "Source": "Bureau of Labor Statistics",
+      "Unit": "K",
+      "Ticker": "NFP TCH"
+    },
+    {
+      "CalendarId": "ur1",
+      "Country": "United States",
+      "Category": "Labour",
+      "Event": "Unemployment Rate",
+      "Date": "2026-10-02T12:30:00",
+      "Reference": "Sep 2026",
+      "Actual": null,
+      "Previous": "4.3",
+      "Forecast": "4.3",
+      "TEForecast": "4.3",
+      "Importance": 3,
+      "LastUpdate": "2026-09-29T00:00:00",
+      "Unit": "%"
+    },
+    {
+      "CalendarId": "ahem",
+      "Country": "United States",
+      "Category": "Labour",
+      "Event": "Average Hourly Earnings MoM",
+      "Date": "2026-10-02T12:30:00",
+      "Reference": "Sep 2026",
+      "Forecast": "0.3",
+      "TEForecast": "0.3",
+      "Importance": 2,
+      "Unit": "%"
+    },
+    {
+      "CalendarId": "ahey",
+      "Country": "United States",
+      "Category": "Labour",
+      "Event": "Average Hourly Earnings YoY",
+      "Date": "2026-10-02T12:30:00",
+      "Reference": "Sep 2026",
+      "Forecast": "3.7",
+      "TEForecast": "3.8",
+      "Importance": 2,
+      "Unit": "%"
+    },
+    {
+      "CalendarId": "adp1",
+      "Country": "United States",
+      "Event": "ADP Employment Change",
+      "Forecast": "40",
+      "TEForecast": "42"
+    }
+  ]
+}
