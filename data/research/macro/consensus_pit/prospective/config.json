@@ -2,8 +2,9 @@
   "FORWARD_CONSENSUS_COLLECTION_ENABLED": false,
   "autonomous_external_collection": false,
   "OFFICIAL_BLS_FIRST_PRINT_ENABLED": false,
+  "TRADING_ECONOMICS_ADAPTER_CURRENTLY_LIVE": false,
   "scheduler_enabled": true,
   "windows_task_installed": false,
   "production_bot_integration": false,
-  "notes": "Research-only prospective recorder. collect-due may run. Autonomous external collection is disabled. Official BLS first-print auto-fetch is disabled. Data root is MACRO_PROSPECTIVE_DATA_DIR or repository-relative. Windows Scheduled Task is an OS adapter, not application logic."
+  "notes": "Research-only prospective recorder. collect-due may run. Autonomous external collection is disabled. Official BLS first-print auto-fetch is disabled. Trading Economics is operationally retired after subscription cancellation. Data root is MACRO_PROSPECTIVE_DATA_DIR or repository-relative. Windows Scheduled Task is an OS adapter, not application logic."
 }

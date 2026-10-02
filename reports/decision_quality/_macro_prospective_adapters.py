@@ -63,7 +63,11 @@ SOURCE_AUDIT = (
         "programmatic_retrieval_supported": True,
         "local_artifact_retention_permitted": "UNKNOWN",
         "autonomous_status": "disabled",
-        "reason": "API exists in prior research harness. TRADING_ECONOMICS_API_KEY is not configured. Archival/redistribution permission is not established. Calendar consensus is TE-specific, not Reuters/FactSet.",
+        "currently_live": False,
+        "operational_status": "OPERATIONAL_RETIRED_SUBSCRIPTION_CANCELLED",
+        "approved_consensus_provider": False,
+        "role": "CONSENSUS_PROVIDER",
+        "reason": "API exists in prior research harness. Subscription cancelled. Adapter preserved for historical reproducibility. Not an active future consensus provider. Calendar consensus is TE-specific, not Reuters/FactSet.",
     },
     {
         "source_id": "econoday",
@@ -159,7 +163,10 @@ SOURCE_AUDIT = (
         "programmatic_retrieval_supported": "PARTIAL (direct GET historically 403)",
         "local_artifact_retention_permitted": "UNKNOWN for bulk scrape; official public releases are citable",
         "autonomous_status": "disabled",
-        "reason": "Official actuals only. Not consensus. Adapter implemented DISABLED. Never fetch before T0.",
+        "currently_live": False,
+        "approved_consensus_provider": False,
+        "role": "OFFICIAL_ACTUAL_PROVIDER",
+        "reason": "Official actuals only. Not consensus. Adapter implemented DISABLED. Never fetch before T0. Do not classify BLS as a market-consensus provider.",
     },
     {
         "source_id": "frb_official",
@@ -436,6 +443,9 @@ class BaseAdapter:
 class TradingEconomicsAdapter(BaseAdapter):
     source_id = "trading_economics"
     requires_credential_env = TE_KEY_ENV
+
+    def currently_live(self) -> bool:
+        return False
 
     def supports(self, event: dict) -> bool:
         return event.get("event_family") in {"CPI", "EMPLOYMENT_SITUATION", "FOMC"}

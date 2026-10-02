@@ -1,0 +1,200 @@
+{
+  "candidates": [
+    {
+      "path": "C:\\Users\\Brian\\Videos\\Screen Recordings\\Screen Recording 2026-10-02 120027.mp4",
+      "filename": "Screen Recording 2026-10-02 120027.mp4",
+      "found": true,
+      "sha256": "ab81dfae114b767f2c1645eaf70ae42b1a69e9ff70a31a22d10e5d468f72bb04",
+      "observed_at_utc": "2026-10-02T11:00:27Z",
+      "classification": "T0-90m_SUPPLEMENTARY",
+      "bytes": 3297108,
+      "timestamp_basis": "Windows filesystem creation time (st_ctime) truncated to UTC seconds; same Stage 8-10 provenance rule. Filename is corroboration only."
+    },
+    {
+      "path": "C:\\Users\\Brian\\Videos\\Recording 2026-10-02 120030.mp4",
+      "filename": "Recording 2026-10-02 120030.mp4",
+      "found": true,
+      "sha256": "ab81dfae114b767f2c1645eaf70ae42b1a69e9ff70a31a22d10e5d468f72bb04",
+      "observed_at_utc": "2026-10-02T11:00:33Z",
+      "classification": "T0-90m_SUPPLEMENTARY",
+      "bytes": 3297108,
+      "timestamp_basis": "Windows filesystem creation time (st_ctime) truncated to UTC seconds; same Stage 8-10 provenance rule. Filename is corroboration only."
+    },
+    {
+      "path": "C:\\Users\\Brian\\Videos\\Screen Recordings\\Screen Recording 2026-10-02 123044.mp4",
+      "filename": "Screen Recording 2026-10-02 123044.mp4",
+      "found": true,
+      "sha256": "b87160e17204ad0ca18fcffcde7a407ae5ddbf921078899dcb86f3d984c7f69c",
+      "observed_at_utc": "2026-10-02T11:30:44Z",
+      "classification": "T0-1h",
+      "bytes": 1851337,
+      "timestamp_basis": "Windows filesystem creation time (st_ctime) truncated to UTC seconds; same Stage 8-10 provenance rule. Filename is corroboration only."
+    },
+    {
+      "path": "C:\\Users\\Brian\\Videos\\Recording 2026-10-02 123047.mp4",
+      "filename": "Recording 2026-10-02 123047.mp4",
+      "found": true,
+      "sha256": "b87160e17204ad0ca18fcffcde7a407ae5ddbf921078899dcb86f3d984c7f69c",
+      "observed_at_utc": "2026-10-02T11:30:50Z",
+      "classification": "T0-1h",
+      "bytes": 1851337,
+      "timestamp_basis": "Windows filesystem creation time (st_ctime) truncated to UTC seconds; same Stage 8-10 provenance rule. Filename is corroboration only."
+    },
+    {
+      "path": "C:\\Users\\Brian\\Videos\\Screen Recordings\\Screen Recording 2026-10-02 130031.mp4",
+      "filename": "Screen Recording 2026-10-02 130031.mp4",
+      "found": true,
+      "sha256": "c13e0c0e1c723f5fc4bcf78ea474d7edfa567ddd825d79758c8da4e46c3f847c",
+      "observed_at_utc": "2026-10-02T12:00:31Z",
+      "classification": "T0-30m",
+      "bytes": 4336411,
+      "timestamp_basis": "Windows filesystem creation time (st_ctime) truncated to UTC seconds; same Stage 8-10 provenance rule. Filename is corroboration only."
+    },
+    {
+      "path": "C:\\Users\\Brian\\Videos\\Recording 2026-10-02 130034.mp4",
+      "filename": "Recording 2026-10-02 130034.mp4",
+      "found": true,
+      "sha256": "c13e0c0e1c723f5fc4bcf78ea474d7edfa567ddd825d79758c8da4e46c3f847c",
+      "observed_at_utc": "2026-10-02T12:00:36Z",
+      "classification": "T0-30m",
+      "bytes": 4336411,
+      "timestamp_basis": "Windows filesystem creation time (st_ctime) truncated to UTC seconds; same Stage 8-10 provenance rule. Filename is corroboration only."
+    },
+    {
+      "path": "C:\\Users\\Brian\\Videos\\Screen Recordings\\Screen Recording 2026-10-02 131635.mp4",
+      "filename": "Screen Recording 2026-10-02 131635.mp4",
+      "found": true,
+      "sha256": "7d695e89f923816f0d60a59c2919a91fe90488a0237dffe202cd40d3f5f34196",
+      "observed_at_utc": "2026-10-02T12:16:36Z",
+      "classification": "T0-15m",
+      "bytes": 3316651,
+      "timestamp_basis": "Windows filesystem creation time (st_ctime) truncated to UTC seconds; same Stage 8-10 provenance rule. Filename is corroboration only."
+    },
+    {
+      "path": "C:\\Users\\Brian\\Videos\\Recording 2026-10-02 131638.mp4",
+      "filename": "Recording 2026-10-02 131638.mp4",
+      "found": true,
+      "sha256": "7d695e89f923816f0d60a59c2919a91fe90488a0237dffe202cd40d3f5f34196",
+      "observed_at_utc": "2026-10-02T12:16:41Z",
+      "classification": "T0-15m",
+      "bytes": 3316651,
+      "timestamp_basis": "Windows filesystem creation time (st_ctime) truncated to UTC seconds; same Stage 8-10 provenance rule. Filename is corroboration only."
+    },
+    {
+      "path": "C:\\Users\\Brian\\Videos\\Screen Recordings\\Screen Recording 2026-10-02 133048.mp4",
+      "filename": "Screen Recording 2026-10-02 133048.mp4",
+      "found": true,
+      "sha256": "a88e97bae1520c19a2242c553be5159669f84958fb0103ded0270f6b23eb1f7c",
+      "observed_at_utc": "2026-10-02T12:30:48Z",
+      "classification": "POST_T0_CORROBORATION",
+      "bytes": 1599560,
+      "timestamp_basis": "Windows filesystem creation time (st_ctime) truncated to UTC seconds; same Stage 8-10 provenance rule. Filename is corroboration only."
+    },
+    {
+      "path": "C:\\Users\\Brian\\Videos\\Recording 2026-10-02 133051.mp4",
+      "filename": "Recording 2026-10-02 133051.mp4",
+      "found": true,
+      "sha256": "a88e97bae1520c19a2242c553be5159669f84958fb0103ded0270f6b23eb1f7c",
+      "observed_at_utc": "2026-10-02T12:30:54Z",
+      "classification": "POST_T0_CORROBORATION",
+      "bytes": 1599560,
+      "timestamp_basis": "Windows filesystem creation time (st_ctime) truncated to UTC seconds; same Stage 8-10 provenance rule. Filename is corroboration only."
+    }
+  ],
+  "created_checkpoints": [],
+  "skipped": [
+    {
+      "checkpoint_id": "T0-1h",
+      "reason": "already captured"
+    },
+    {
+      "checkpoint_id": "T0-30m",
+      "reason": "already captured"
+    },
+    {
+      "checkpoint_id": "T0-15m",
+      "reason": "already captured"
+    },
+    {
+      "checkpoint_id": "T0-5m",
+      "reason": "T-5m screenshot not found in Stage 8-10 evidence locations; timestamp provenance cannot be established"
+    }
+  ],
+  "supplementary": [
+    {
+      "label": "T0-90m_SUPPLEMENTARY",
+      "filename": "Screen Recording 2026-10-02 120027.mp4",
+      "imported_path": "data/research/macro/consensus_pit/prospective/evidence/Screen Recording 2026-10-02 120027.mp4",
+      "sha256": "ab81dfae114b767f2c1645eaf70ae42b1a69e9ff70a31a22d10e5d468f72bb04",
+      "observed_at_utc": "2026-10-02T11:00:27Z",
+      "observation_created": false
+    },
+    {
+      "label": "POST_T0_CORROBORATION",
+      "filename": "Screen Recording 2026-10-02 133048.mp4",
+      "imported_path": "data/research/macro/consensus_pit/prospective/evidence/Screen Recording 2026-10-02 133048.mp4",
+      "sha256": "a88e97bae1520c19a2242c553be5159669f84958fb0103ded0270f6b23eb1f7c",
+      "observed_at_utc": "2026-10-02T12:30:48Z",
+      "observation_created": false
+    }
+  ],
+  "official_first_print_gate": {
+    "ready": false,
+    "official_source_verified": false,
+    "requests": 0,
+    "captured": false,
+    "reasons": [
+      "OFFICIAL_BLS_FIRST_PRINT_ENABLED is false",
+      "bls_official.enabled is false",
+      "bls_official.automation_class is UNSUPPORTED",
+      "bls_official.automated_collection_permitted is unknown",
+      "OfficialBlsFirstPrintAdapter.is_enabled also requires FORWARD_CONSENSUS_COLLECTION_ENABLED",
+      "OfficialBlsFirstPrintAdapter.parse_bls_first_print extracts only NFP, not unemployment/AHE",
+      "adapter URL is generic current-page https://www.bls.gov/news.release/empsit.htm, not a date-bound 2026-10-02 archive identity",
+      "Stage 4 recorded direct BLS GET historically 403; no approved retry/bypass",
+      "Stage 11 must not enable FORWARD, TE, or FF to unlock the adapter"
+    ],
+    "bls_enabled": false,
+    "bls_class": "UNSUPPORTED",
+    "forward_enabled": false,
+    "bls_flag": false,
+    "adapter_url": "https://www.bls.gov/news.release/empsit.htm"
+  },
+  "strict_final_surprise": {
+    "available": false,
+    "reason": "strict final-consensus surprise requires a genuine T-5m observation; later/earlier vintages are not substituted",
+    "nfp": null,
+    "unemployment_pp": null,
+    "ahe_mom_pp": null,
+    "ahe_yoy_pp": null
+  },
+  "priors": {
+    "T0-48h": {
+      "observation_id": "5c4d0dd6-0605-48ff-b7cf-ee0e1e1f793a",
+      "observed_at_utc": "2026-09-30T12:31:17Z",
+      "raw_artifact_sha256": "6309ca5ce92533f911d09c86d2af8b5158a4f920c41b563b1ccceb16a7b80936",
+      "forecast_value": 90000,
+      "logical_id": "FORECASTER|usd_empsit_2026-10-02|T0-48h|trading_economics|nonfarm_payroll_change|SURVEY_CONSENSUS|2026-09-30T12:31:17Z",
+      "ahe_yoy_consensus": null,
+      "ahe_yoy_quality": "NOT_AVAILABLE"
+    },
+    "T0-24h": {
+      "observation_id": "00a6ca6c-3598-47b0-8d4e-c9a2268a584d",
+      "observed_at_utc": "2026-10-01T12:30:43Z",
+      "raw_artifact_sha256": "443aeb9614102cd134bee8659459e4ce97880ff64fca85a1ec3ace658c719adb",
+      "forecast_value": 90000,
+      "logical_id": "FORECASTER|usd_empsit_2026-10-02|T0-24h|trading_economics|nonfarm_payroll_change|SURVEY_CONSENSUS|2026-10-01T12:30:43Z",
+      "ahe_yoy_consensus": null,
+      "ahe_yoy_quality": "NOT_AVAILABLE"
+    },
+    "T0-12h": {
+      "observation_id": "f9005e2c-da26-4b09-b804-bcc5fb6f01a3",
+      "observed_at_utc": "2026-10-02T00:30:36Z",
+      "raw_artifact_sha256": "73999531537053a2fe16fa7cc0bb4244fdad3ebcb5bc40324c818a1f8efff595",
+      "forecast_value": 90000,
+      "logical_id": "FORECASTER|usd_empsit_2026-10-02|T0-12h|trading_economics|nonfarm_payroll_change|SURVEY_CONSENSUS|2026-10-02T00:30:36Z",
+      "ahe_yoy_consensus": 3.2,
+      "ahe_yoy_quality": "PRESENT"
+    }
+  }
+}

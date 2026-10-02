@@ -34,5 +34,41 @@
       "reference_period": "2026-09"
     },
     "raw_artifact_hash": "73999531537053a2fe16fa7cc0bb4244fdad3ebcb5bc40324c818a1f8efff595"
+  },
+  "FORECASTER|usd_empsit_2026-10-02|T0-1h|trading_economics|nonfarm_payroll_change|SURVEY_CONSENSUS|2026-10-02T11:30:44Z": {
+    "observation_id": "a97c1f9f-99ad-4282-869b-0ce55382e155",
+    "payload_key": {
+      "raw_artifact_hash": "b87160e17204ad0ca18fcffcde7a407ae5ddbf921078899dcb86f3d984c7f69c",
+      "forecast_value": 90000,
+      "unit": "persons",
+      "value_quality": "PRESENT",
+      "seasonal_adjustment": "SA",
+      "reference_period": "2026-09"
+    },
+    "raw_artifact_hash": "b87160e17204ad0ca18fcffcde7a407ae5ddbf921078899dcb86f3d984c7f69c"
+  },
+  "FORECASTER|usd_empsit_2026-10-02|T0-30m|trading_economics|nonfarm_payroll_change|SURVEY_CONSENSUS|2026-10-02T12:00:31Z": {
+    "observation_id": "68bfafca-a7c6-498d-9d82-3d9bcad21ba0",
+    "payload_key": {
+      "raw_artifact_hash": "c13e0c0e1c723f5fc4bcf78ea474d7edfa567ddd825d79758c8da4e46c3f847c",
+      "forecast_value": 90000,
+      "unit": "persons",
+      "value_quality": "PRESENT",
+      "seasonal_adjustment": "SA",
+      "reference_period": "2026-09"
+    },
+    "raw_artifact_hash": "c13e0c0e1c723f5fc4bcf78ea474d7edfa567ddd825d79758c8da4e46c3f847c"
+  },
+  "FORECASTER|usd_empsit_2026-10-02|T0-15m|trading_economics|nonfarm_payroll_change|SURVEY_CONSENSUS|2026-10-02T12:16:36Z": {
+    "observation_id": "0abe6a01-d465-4282-ad95-ddfdd5e4bfb5",
+    "payload_key": {
+      "raw_artifact_hash": "7d695e89f923816f0d60a59c2919a91fe90488a0237dffe202cd40d3f5f34196",
+      "forecast_value": 90000,
+      "unit": "persons",
+      "value_quality": "PRESENT",
+      "seasonal_adjustment": "SA",
+      "reference_period": "2026-09"
+    },
+    "raw_artifact_hash": "7d695e89f923816f0d60a59c2919a91fe90488a0237dffe202cd40d3f5f34196"
   }
 }

@@ -23,7 +23,7 @@
       "verified_at_utc": "2026-09-28T21:35:10Z",
       "t0_authority": "official_bls_or_fed_calendar"
     },
-    "event_status": "FINAL_PRE_RELEASE_CAPTURED",
+    "event_status": "RELEASE_PENDING",
     "armed": true,
     "checkpoints": {
       "T0-48h": "2026-09-30T12:30:00Z",
@@ -81,6 +81,10 @@
       "T0-5m": "2026-10-14T12:25:00Z"
     },
     "checkpoint_association_rule": "latest_checkpoint_at_or_before_observed_at_utc. The observation keeps its genuine observed_at_utc; the timestamp is never rewritten to the checkpoint clock. Association interval is [checkpoint_utc, next_checkpoint_utc); the last pre-release interval is [T0-5m, T0). Post-T0 observations (observed_at_utc >= T0) are not pre-release and do not capture any pre-release checkpoint. CAPTURED if any qualifying pre-release observation associates to that checkpoint. DUE if now >= checkpoint_utc and now < next_boundary and not CAPTURED. MISSED_NOT_OBSERVED if now >= next_boundary and not CAPTURED. FUTURE if now < checkpoint_utc. Missed is not a zero forecast.",
+    "consensus_provider_id": null,
+    "consensus_provider_status": "PROVIDER_PENDING",
+    "automated_collection": "DISABLED",
+    "manual_collection": "WAITING_FOR_APPROVED_PROVIDER",
     "notes": "Stage 2 real prospective registration. Not the Stage 1 fixture."
   },
   {

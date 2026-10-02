@@ -386,7 +386,7 @@ def test_no_fake_observations_in_real_registry_and_no_trading_authority():
     obs_path = REAL_ROOT / "observations" / "observations.jsonl"
     text = obs_path.read_text(encoding="utf-8") if obs_path.exists() else ""
     rows = [json.loads(ln) for ln in text.splitlines() if ln.strip()]
-    assert {r["associated_checkpoint_id"] for r in rows} <= {"T0-48h", "T0-24h", "T0-12h"}
+    assert {r["associated_checkpoint_id"] for r in rows} <= {"T0-48h", "T0-24h", "T0-12h", "T0-1h", "T0-30m", "T0-15m"}
     for row in rows:
         assert row["macro_event_id"] == "usd_empsit_2026-10-02"
         assert row["expectation_type"] == "SURVEY_CONSENSUS"

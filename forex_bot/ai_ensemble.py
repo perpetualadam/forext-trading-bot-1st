@@ -35,6 +35,23 @@ def _quant_stub_vote(payload: dict[str, Any]) -> dict[str, Any]:
     Deterministic filter from trend (MA cross) + momentum + ATR presence.
     Expects ``ma_fast`` / ``ma_slow`` (or ``sma_*``) and ``returns`` / ``atr`` when possible.
     """
+    from forex_bot.decision_skip_log import (
+        QUANT_ATR_NOT_OK,
+        QUANT_M5_MOVE_BELOW_THRESHOLD,
+        QUANT_MA_INVALID,
+        QUANT_MA_NAN,
+        QUANT_MA_NOT_CLEAR,
+        QUANT_SIGNAL_PASS,
+        log_quant_pre_sizing,
+        ma_relationship,
+    )
+
+    symbol = payload.get("symbol")
+    timeframe = payload.get("timeframe")
+    bar_time = payload.get("m5_bar_time")
+    if bar_time is None:
+        bar_time = payload.get("bar_time")
+
     price = float(payload.get("price") or 0.0)
     sma_fast = payload.get("sma_fast")
     if sma_fast is None:
@@ -46,6 +63,7 @@ def _quant_stub_vote(payload: dict[str, Any]) -> dict[str, Any]:
         sma_fast = float(sma_fast if sma_fast is not None else price)
         sma_slow = float(sma_slow if sma_slow is not None else price)
     except (TypeError, ValueError):
+        log_quant_pre_sizing(reason=QUANT_MA_INVALID, symbol=symbol, timeframe=timeframe, bar_time=bar_time)
         return {"allow": False, "confidence": 0.0, "direction": None}
 
     returns = float(payload.get("returns") or 0.0)
@@ -55,17 +73,36 @@ def _quant_stub_vote(payload: dict[str, Any]) -> dict[str, Any]:
         atr = 0.0
 
     if math.isnan(sma_fast) or math.isnan(sma_slow):
+        log_quant_pre_sizing(
+            reason=QUANT_MA_NAN,
+            symbol=symbol,
+            timeframe=timeframe,
+            bar_time=bar_time,
+            sma_fast=sma_fast,
+            sma_slow=sma_slow,
+        )
         return {"allow": False, "confidence": 0.0, "direction": None}
 
     eps = max(0.0, _env_float("STUB_SMA_EPSILON", 1e-6))
     mom_thr = max(0.0, _env_float("STUB_MOMENTUM_THRESHOLD", 0.0001))
     conf_scale = max(1e-12, _env_float("STUB_CONFIDENCE_SCALE", 1000.0))
+    relationship = ma_relationship(sma_fast, sma_slow, eps)
 
     if sma_fast > sma_slow + eps:
         direction = "BUY"
     elif sma_fast < sma_slow - eps:
         direction = "SELL"
     else:
+        log_quant_pre_sizing(
+            reason=QUANT_MA_NOT_CLEAR,
+            symbol=symbol,
+            timeframe=timeframe,
+            bar_time=bar_time,
+            sma_fast=sma_fast,
+            sma_slow=sma_slow,
+            eps=eps,
+            relationship=relationship,
+        )
         return {"allow": False, "confidence": 0.0, "direction": None}
 
     momentum_strength = abs(returns)
@@ -74,6 +111,43 @@ def _quant_stub_vote(payload: dict[str, Any]) -> dict[str, Any]:
 
     confidence = min(1.0, max(0.0, momentum_strength * conf_scale))
 
+    if not allow:
+        if not (momentum_strength > mom_thr):
+            reason = QUANT_M5_MOVE_BELOW_THRESHOLD
+            comparison = "abs(m5_pct_change)<=threshold"
+        else:
+            reason = QUANT_ATR_NOT_OK
+            comparison = "atr<=0_or_nan"
+        log_quant_pre_sizing(
+            reason=reason,
+            symbol=symbol,
+            timeframe=timeframe,
+            bar_time=bar_time,
+            sma_fast=sma_fast,
+            sma_slow=sma_slow,
+            eps=eps,
+            relationship=relationship,
+            direction=direction,
+            move=momentum_strength,
+            threshold=mom_thr,
+            comparison=comparison,
+        )
+        return {"allow": allow, "confidence": confidence, "direction": direction}
+
+    log_quant_pre_sizing(
+        reason=QUANT_SIGNAL_PASS,
+        symbol=symbol,
+        timeframe=timeframe,
+        bar_time=bar_time,
+        sma_fast=sma_fast,
+        sma_slow=sma_slow,
+        eps=eps,
+        relationship=relationship,
+        direction=direction,
+        move=momentum_strength,
+        threshold=mom_thr,
+        comparison="abs(m5_pct_change)>threshold and atr>0",
+    )
     return {"allow": allow, "confidence": confidence, "direction": direction}
 
 

@@ -120,6 +120,86 @@ def cmd_collect_due(args) -> int:
     return int(summary.get("exit_code") or 0)
 
 
+def cmd_official_first_print_recover(args) -> int:
+    if args.event_id != "usd_empsit_2026-10-02":
+        raise SystemExit("Stage 12 one-shot recovery is limited to usd_empsit_2026-10-02")
+    if args.provider != "bls_official":
+        raise SystemExit("canonical first print must be bls_official")
+    _FP_PATH = Path(__file__).with_name("_macro_prospective_firstprint_stage12.py")
+    _FP_SPEC = importlib.util.spec_from_file_location("macro_stage12_cli", _FP_PATH)
+    FP = importlib.util.module_from_spec(_FP_SPEC)
+    assert _FP_SPEC is not None and _FP_SPEC.loader is not None
+    _FP_SPEC.loader.exec_module(FP)
+    rec = _recorder(args.root)
+    try:
+        out = FP.recover(rec=rec, live=bool(args.live))
+    except FP.RecoveryClosed as exc:
+        sys.stdout.write(json.dumps({"status": "CLOSED", "reason": str(exc), "first_print_record_created": False}, indent=2) + "\n")
+        return 1
+    sys.stdout.write(json.dumps({"status": out.get("status"), "first_print_record_created": out.get("first_print_record_created"), "source_url": out.get("source_url"), "raw_sha256": out.get("raw_sha256"), "bls_http_requests": out.get("bls_http_requests"), "identity": out.get("identity")}, indent=2, default=str) + "\n")
+    return 0 if out.get("status") in {"RECORDED", "ALREADY_EXISTS", "NOT_PROVEN"} else 1
+
+
+def _stage13():
+    path = Path(__file__).with_name("_macro_prospective_evidence_intake_stage13.py")
+    spec = importlib.util.spec_from_file_location("macro_stage13_cli", path)
+    mod = importlib.util.module_from_spec(spec)
+    assert spec is not None and spec.loader is not None
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def _load_components_json(raw: str | None) -> dict | None:
+    if not raw:
+        return None
+    path = Path(raw)
+    if path.exists():
+        return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(raw)
+
+
+def cmd_evidence_intake(args) -> int:
+    S13 = _stage13()
+    rec = _recorder(args.root)
+    try:
+        out = S13.intake(
+            rec=rec,
+            event_id=args.event_id,
+            checkpoint=args.checkpoint,
+            source_file=args.file,
+            dry_run=bool(args.dry_run),
+            displayed=_load_components_json(getattr(args, "components_json", None)),
+            provider_id=getattr(args, "provider_id", None),
+        )
+    except S13.IntakeClosed as exc:
+        sys.stdout.write("EVIDENCE INTAKE FAILED\n%s\n" % exc)
+        return 1
+    sys.stdout.write(S13.format_receipt(out))
+    return 0
+
+
+def cmd_evidence_ingest_values(args) -> int:
+    S13 = _stage13()
+    rec = _recorder(args.root)
+    displayed = _load_components_json(args.components_json)
+    if displayed is None:
+        raise SystemExit("--components-json is required for value ingest")
+    try:
+        out = S13.ingest_values(
+            rec=rec,
+            event_id=args.event_id,
+            checkpoint=args.checkpoint,
+            evidence_ref=args.evidence_id,
+            displayed=displayed,
+            provider_id=args.provider_id,
+        )
+    except S13.IntakeClosed as exc:
+        sys.stdout.write("VALUE INGEST FAILED\n%s\n" % exc)
+        return 1
+    sys.stdout.write(json.dumps(out, indent=2, default=str) + "\n")
+    return 0
+
+
 def cmd_register_official(args) -> int:
     rec = _recorder(args.root)
     now = rec.now()
@@ -161,6 +241,32 @@ def build_parser() -> argparse.ArgumentParser:
 
     r = sub.add_parser("register-official", help="Register next official CPI/Employment/FOMC events already verified from BLS/Fed.")
     r.set_defaults(func=cmd_register_official)
+
+    fp = sub.add_parser(
+        "official-first-print-recover",
+        help="One-shot official BLS first-print recovery. Does not enable autonomous collection.",
+    )
+    fp.add_argument("--event-id", default="usd_empsit_2026-10-02", dest="event_id")
+    fp.add_argument("--provider", default="bls_official")
+    fp.add_argument("--live", action="store_true", help="Perform the bounded official BLS GET. Default is refuse.")
+    fp.set_defaults(func=cmd_official_first_print_recover)
+
+    ev = sub.add_parser("evidence-intake", help="Archive a local screenshot/video. Zero external requests.")
+    ev.add_argument("--event-id", required=True, dest="event_id")
+    ev.add_argument("--checkpoint", required=True)
+    ev.add_argument("--file", required=True, dest="file")
+    ev.add_argument("--dry-run", action="store_true")
+    ev.add_argument("--components-json", default=None, dest="components_json", help="Optional Phase B values after evidence is secured")
+    ev.add_argument("--provider-id", default=None, dest="provider_id", help="Required before value ingest. No TE default.")
+    ev.set_defaults(func=cmd_evidence_intake)
+
+    evb = sub.add_parser("evidence-ingest-values", help="Ingest operator-transcribed values against secured evidence.")
+    evb.add_argument("--event-id", required=True, dest="event_id")
+    evb.add_argument("--checkpoint", required=True)
+    evb.add_argument("--evidence-id", required=True, dest="evidence_id")
+    evb.add_argument("--components-json", required=True, dest="components_json")
+    evb.add_argument("--provider-id", required=True, dest="provider_id", help="Explicit approved consensus provider. No TE default.")
+    evb.set_defaults(func=cmd_evidence_ingest_values)
 
     i = sub.add_parser("ingest", help="Manual ingest. observed_at_utc is generated now; backdating is refused.")
     i.add_argument("--event", required=True, dest="event")

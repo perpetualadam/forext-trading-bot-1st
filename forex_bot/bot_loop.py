@@ -85,6 +85,11 @@ from forex_bot.state import (
     set_pricing_snapshot,
     state as state_dict,
 )
+from forex_bot.decision_skip_log import (
+    NO_STRATEGY_SELECTED,
+    STRATEGY_INACTIVE,
+    log_strategy_pre_sizing_skip,
+)
 from forex_bot.strategy_meta import select_strategy, seq_model, strategies
 from forex_bot.entry_geometry import (
     fetch_entry_pricing,
@@ -623,9 +628,23 @@ async def evaluate(symbol: str) -> None:
 
     strategy_name, lookback, horizon = select_strategy(symbol, df_route)
     if strategy_name is None:
+        log_strategy_pre_sizing_skip(
+            symbol=symbol,
+            reason=NO_STRATEGY_SELECTED,
+            selected=None,
+            lookback=lookback,
+            horizon=horizon,
+        )
         return
     strat = strategies[strategy_name]
     if not strat.active:
+        log_strategy_pre_sizing_skip(
+            symbol=symbol,
+            reason=STRATEGY_INACTIVE,
+            selected=strategy_name,
+            lookback=lookback,
+            horizon=horizon,
+        )
         return
 
     df = compute_indicators(raw, lookback=lookback)
@@ -659,6 +678,8 @@ async def evaluate(symbol: str) -> None:
             "sma_slow": ma_slow,
             "returns": ret_1,
             "atr": atr_v,
+            "timeframe": "M5",
+            "m5_bar_time": _m5_bar_time(raw),
         },
         symbol,
     )

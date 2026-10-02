@@ -974,6 +974,11 @@ class ProspectiveRecorder:
             "autonomous_collection": "OFF" if not self.collection_enabled() else "ON",
             "forward_consensus_collection_enabled": self.collection_enabled(),
             "trading_authority": "NONE",
+            "consensus_provider": event.get("consensus_provider_id") or "NONE_APPROVED",
+            "provider_status": event.get("consensus_provider_status") or "PROVIDER_PENDING",
+            "automated_collection": event.get("automated_collection") or "DISABLED",
+            "manual_collection": event.get("manual_collection") or "WAITING_FOR_APPROVED_PROVIDER",
+            "trading_economics_currently_live": False,
         }
 
     def status_payload(self, now: datetime | None = None) -> dict:
@@ -1035,12 +1040,33 @@ class ProspectiveRecorder:
                     "%s %s" % (nxt["scheduled_release_local"], nxt["scheduled_timezone"]),
                     "WINDOW OPENS:",
                     nxt["observation_window_start_utc"],
+                    "NEXT_EVENT_T48H_SCHEDULED_UTC:",
+                    ((nxt.get("checkpoints") or [{}])[0].get("checkpoint_utc") if nxt.get("checkpoints") else None) or (nxt.get("observation_window_start_utc") or "NONE"),
+                    "NEXT_EVENT_T48H_IS_OPEN:",
+                    "YES" if any(r.get("checkpoint_id") == "T0-48h" and r.get("status") == "DUE" for r in (nxt.get("checkpoints") or [])) else "NO",
+                    "NEXT_EVENT_T48H_STATUS:",
+                    next(
+                        (
+                            "NOT_YET_DUE" if r.get("status") == "FUTURE" else r.get("status")
+                            for r in (nxt.get("checkpoints") or [])
+                            if r.get("checkpoint_id") == "T0-48h"
+                        ),
+                        "UNKNOWN",
+                    ),
                     "WINDOW STATE:",
                     nxt["window_state"],
                     "TIME TO T0:",
                     nxt["time_to_t0"],
                     "ARMED:",
                     "YES" if nxt.get("armed") else "NO",
+                    "CONSENSUS_PROVIDER:",
+                    nxt.get("consensus_provider") or "NONE_APPROVED",
+                    "PROVIDER_STATUS:",
+                    nxt.get("provider_status") or "PROVIDER_PENDING",
+                    "CPI_AUTOMATED_COLLECTION:",
+                    nxt.get("automated_collection") or "DISABLED",
+                    "CPI_MANUAL_COLLECTION_STATUS:",
+                    nxt.get("manual_collection") or "WAITING_FOR_APPROVED_PROVIDER",
                     "",
                     "CHECKPOINTS:",
                 ]

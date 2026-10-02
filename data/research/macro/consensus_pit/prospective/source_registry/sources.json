@@ -101,7 +101,11 @@
       "consensus_semantics_quality": "calendar forecast is not a named survey median",
       "rate_limit_notes": "Unknown. Fail closed.",
       "known_limitations": "Calendar forecast must stay provider-specific.",
-      "notes": "Not auto-enabled."
+      "notes": "Not auto-enabled. Subscription cancelled. Historical observations remain valid.",
+      "operational_status": "OPERATIONAL_RETIRED_SUBSCRIPTION_CANCELLED",
+      "currently_live": false,
+      "approved_consensus_provider": false,
+      "role": "CONSENSUS_PROVIDER"
     },
     {
       "source_id": "fixture_provider_a",
