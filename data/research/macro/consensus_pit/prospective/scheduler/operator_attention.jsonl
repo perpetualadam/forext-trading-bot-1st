@@ -1,0 +1,4 @@
+{"kind": "MANUAL_FORECAST_CAPTURE_REQUIRED", "utc": "2026-09-30T12:30:01Z", "macro_event_id": "usd_empsit_2026-10-02", "checkpoint_id": "T0-48h", "checkpoint_utc": "2026-09-30T12:30:00Z"}
+{"kind": "MANUAL_FORECAST_CAPTURE_REQUIRED", "utc": "2026-10-01T00:30:01Z", "macro_event_id": "usd_empsit_2026-10-02", "checkpoint_id": "T0-36h", "checkpoint_utc": "2026-10-01T00:30:00Z"}
+{"kind": "MANUAL_FORECAST_CAPTURE_REQUIRED", "utc": "2026-10-01T12:30:01Z", "macro_event_id": "usd_empsit_2026-10-02", "checkpoint_id": "T0-24h", "checkpoint_utc": "2026-10-01T12:30:00Z"}
+{"kind": "MANUAL_FORECAST_CAPTURE_REQUIRED", "utc": "2026-10-02T00:30:02Z", "macro_event_id": "usd_empsit_2026-10-02", "checkpoint_id": "T0-12h", "checkpoint_utc": "2026-10-02T00:30:00Z"}

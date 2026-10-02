@@ -333,7 +333,15 @@ def test_probe_and_prewindow_do_not_enter_real_or_tmp_observations(tmp_path):
 
 def test_real_registry_and_observations_unchanged_no_trading_imports():
     obs = (REAL_ROOT / "observations" / "observations.jsonl").read_text(encoding="utf-8") if (REAL_ROOT / "observations" / "observations.jsonl").exists() else ""
-    assert obs.strip() == ""
+    rows = [json.loads(ln) for ln in obs.splitlines() if ln.strip()]
+    assert {r["associated_checkpoint_id"] for r in rows} <= {"T0-48h", "T0-24h", "T0-12h"}
+    for row in rows:
+        assert row["macro_event_id"] == "usd_empsit_2026-10-02"
+        assert row["expectation_type"] == "SURVEY_CONSENSUS"
+        assert row["retrieval_method"] == "manual"
+        assert row["pre_release"] is True
+        assert "DRY-RUN FIXTURE" not in (row.get("notes") or "")
+    assert not any(r.get("associated_checkpoint_id") == "T0-36h" for r in rows)
     events = json.loads((REAL_ROOT / "events" / "events.json").read_text(encoding="utf-8"))
     assert [e["macro_event_id"] for e in events] == [
         "usd_empsit_2026-10-02",

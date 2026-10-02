@@ -227,7 +227,12 @@ def test_autonomous_disabled_real_registry_observations_unchanged():
         "usd_fomc_statement_2026-10-28",
     ]
     obs = (REAL_ROOT / "observations" / "observations.jsonl").read_text(encoding="utf-8")
-    assert obs.strip() == ""
+    rows = [json.loads(ln) for ln in obs.splitlines() if ln.strip()]
+    assert {r["associated_checkpoint_id"] for r in rows} <= {"T0-48h", "T0-24h", "T0-12h"}
+    for row in rows:
+        assert row["macro_event_id"] == "usd_empsit_2026-10-02"
+        assert row["expectation_type"] == "SURVEY_CONSENSUS"
+        assert row["retrieval_method"] == "manual"
     src = rec.source_by_id("trading_economics")
     assert src["enabled"] is False
     assert src.get("automation_class") != "APPROVED_AUTOMATION_READY"

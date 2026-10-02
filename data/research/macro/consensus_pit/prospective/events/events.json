@@ -23,7 +23,7 @@
       "verified_at_utc": "2026-09-28T21:35:10Z",
       "t0_authority": "official_bls_or_fed_calendar"
     },
-    "event_status": "PRE_WINDOW",
+    "event_status": "FINAL_PRE_RELEASE_CAPTURED",
     "armed": true,
     "checkpoints": {
       "T0-48h": "2026-09-30T12:30:00Z",

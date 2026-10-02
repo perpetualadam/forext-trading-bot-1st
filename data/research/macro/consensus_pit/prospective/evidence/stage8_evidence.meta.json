@@ -1,0 +1,13 @@
+{
+  "original_operator_filename": "20260930-1230-50.1109214.mp4",
+  "found_filename": "Screen Recording 2026-09-30 133117.mp4",
+  "source_path": "C:\\Users\\Brian\\Videos\\Screen Recordings\\Screen Recording 2026-09-30 133117.mp4",
+  "imported_path": "data/research/macro/consensus_pit/prospective/evidence/Screen Recording 2026-09-30 133117.mp4",
+  "sha256": "6309ca5ce92533f911d09c86d2af8b5158a4f920c41b563b1ccceb16a7b80936",
+  "bytes": 19270291,
+  "observed_at_utc": "2026-09-30T12:31:17Z",
+  "evidence_timestamp_basis": "Windows filesystem creation time (st_ctime) truncated to UTC seconds; agrees with filename Screen Recording 2026-09-30 133117.mp4 as 13:31:17 BST and CreationTimeUtc 2026-09-30T12:31:17Z. Media Created displays 13:30 local. The operator-supplied name 20260930-1230-50.1109214.mp4 was not present.",
+  "checkpoint_id": "T0-48h",
+  "collection_method": "MANUAL_SCREEN_OBSERVATION",
+  "provider": "Trading Economics"
+}

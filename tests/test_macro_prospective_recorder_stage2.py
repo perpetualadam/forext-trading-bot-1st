@@ -385,7 +385,13 @@ def test_status_and_due_are_local_only(tmp_path, monkeypatch):
 def test_no_fake_observations_in_real_registry_and_no_trading_authority():
     obs_path = REAL_ROOT / "observations" / "observations.jsonl"
     text = obs_path.read_text(encoding="utf-8") if obs_path.exists() else ""
-    assert text.strip() == ""
+    rows = [json.loads(ln) for ln in text.splitlines() if ln.strip()]
+    assert {r["associated_checkpoint_id"] for r in rows} <= {"T0-48h", "T0-24h", "T0-12h"}
+    for row in rows:
+        assert row["macro_event_id"] == "usd_empsit_2026-10-02"
+        assert row["expectation_type"] == "SURVEY_CONSENSUS"
+        assert row["retrieval_method"] == "manual"
+        assert "DRY-RUN FIXTURE" not in (row.get("notes") or "")
     events = json.loads((REAL_ROOT / "events" / "events.json").read_text(encoding="utf-8") or "[]")
     for ev in events:
         assert not str(ev.get("macro_event_id", "")).startswith("fixture_")

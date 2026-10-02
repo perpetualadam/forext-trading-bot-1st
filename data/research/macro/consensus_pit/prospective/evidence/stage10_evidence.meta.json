@@ -1,0 +1,59 @@
+{
+  "checkpoint_id": "T0-12h",
+  "collection_method": "MANUAL_SCREEN_OBSERVATION",
+  "provider": "Trading Economics",
+  "candidates": [
+    {
+      "path": "C:\\Users\\Brian\\Videos\\Screen Recordings\\Screen Recording 2026-10-02 013036.mp4",
+      "filename": "Screen Recording 2026-10-02 013036.mp4",
+      "found": true,
+      "sha256": "73999531537053a2fe16fa7cc0bb4244fdad3ebcb5bc40324c818a1f8efff595",
+      "observed_at_utc": "2026-10-02T00:30:36Z",
+      "valid_for_t12h": true,
+      "bytes": 12058492,
+      "timestamp_basis": "Windows filesystem creation time (st_ctime) truncated to UTC seconds; same Stage 8/9 provenance rule. Filename is corroboration only."
+    },
+    {
+      "path": "C:\\Users\\Brian\\Videos\\Recording 2026-10-02 013041.mp4",
+      "filename": "Recording 2026-10-02 013041.mp4",
+      "found": true,
+      "sha256": "73999531537053a2fe16fa7cc0bb4244fdad3ebcb5bc40324c818a1f8efff595",
+      "observed_at_utc": "2026-10-02T00:30:43Z",
+      "valid_for_t12h": true,
+      "bytes": 12058492,
+      "timestamp_basis": "Windows filesystem creation time (st_ctime) truncated to UTC seconds; same Stage 8/9 provenance rule. Filename is corroboration only."
+    }
+  ],
+  "canonical_filename": "Screen Recording 2026-10-02 013036.mp4",
+  "canonical_source_path": "C:\\Users\\Brian\\Videos\\Screen Recordings\\Screen Recording 2026-10-02 013036.mp4",
+  "imported_path": "data/research/macro/consensus_pit/prospective/evidence/Screen Recording 2026-10-02 013036.mp4",
+  "sha256": "73999531537053a2fe16fa7cc0bb4244fdad3ebcb5bc40324c818a1f8efff595",
+  "observed_at_utc": "2026-10-02T00:30:36Z",
+  "evidence_timestamp_basis": "Windows filesystem creation time (st_ctime) truncated to UTC seconds; same Stage 8/9 provenance rule. Filename is corroboration only.",
+  "selection_reason": "Earliest candidate whose Stage 8/9 filesystem-ctime UTC second is >= 2026-10-02T00:30:00Z and associates to T0-12h. Upload filename 20261002-0030-19.7514577.mp4 was not used.",
+  "supplementary_not_ingested": [
+    {
+      "filename": "Recording 2026-10-02 013041.mp4",
+      "sha256": "73999531537053a2fe16fa7cc0bb4244fdad3ebcb5bc40324c818a1f8efff595",
+      "observed_at_utc": "2026-10-02T00:30:43Z"
+    }
+  ],
+  "t48_fingerprint_before": {
+    "observation_id": "5c4d0dd6-0605-48ff-b7cf-ee0e1e1f793a",
+    "observed_at_utc": "2026-09-30T12:31:17Z",
+    "raw_artifact_sha256": "6309ca5ce92533f911d09c86d2af8b5158a4f920c41b563b1ccceb16a7b80936",
+    "forecast_value": 90000,
+    "logical_id": "FORECASTER|usd_empsit_2026-10-02|T0-48h|trading_economics|nonfarm_payroll_change|SURVEY_CONSENSUS|2026-09-30T12:31:17Z",
+    "ahe_yoy_consensus": null,
+    "ahe_yoy_quality": "NOT_AVAILABLE"
+  },
+  "t24_fingerprint_before": {
+    "observation_id": "00a6ca6c-3598-47b0-8d4e-c9a2268a584d",
+    "observed_at_utc": "2026-10-01T12:30:43Z",
+    "raw_artifact_sha256": "443aeb9614102cd134bee8659459e4ce97880ff64fca85a1ec3ace658c719adb",
+    "forecast_value": 90000,
+    "logical_id": "FORECASTER|usd_empsit_2026-10-02|T0-24h|trading_economics|nonfarm_payroll_change|SURVEY_CONSENSUS|2026-10-01T12:30:43Z",
+    "ahe_yoy_consensus": null,
+    "ahe_yoy_quality": "NOT_AVAILABLE"
+  }
+}
