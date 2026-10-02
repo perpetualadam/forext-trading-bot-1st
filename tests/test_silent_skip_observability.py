@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import logging
 import math
 import pandas as pd
@@ -238,8 +239,7 @@ def test_selected_strategy_still_returned_when_active(restore_strategy_state):
     assert strategies[name].active is True
 
 
-@pytest.mark.asyncio
-async def test_evaluate_strategy_none_does_not_reach_sizing(monkeypatch, caplog, restore_strategy_state):
+def test_evaluate_strategy_none_does_not_reach_sizing(monkeypatch, caplog, restore_strategy_state):
     from forex_bot.bot_loop import evaluate
 
     idx = pd.date_range("2026-10-01", periods=80, freq="5min", tz="UTC")
@@ -272,14 +272,13 @@ async def test_evaluate_strategy_none_does_not_reach_sizing(monkeypatch, caplog,
     monkeypatch.setattr("forex_bot.bot_loop.select_strategy", lambda *_a, **_k: (None, 50, "legacy"))
     monkeypatch.setattr("forex_bot.bot_loop.position_sizing", _size)
     with caplog.at_level(logging.INFO, logger="forex_bot.decision_skip_log"):
-        await evaluate("EUR_USD")
+        asyncio.run(evaluate("EUR_USD"))
     assert sized["n"] == 0
     assert NO_STRATEGY_SELECTED in _messages(caplog)
     assert QUANT_SIGNAL_PASS not in _messages(caplog)
 
 
-@pytest.mark.asyncio
-async def test_evaluate_quant_reject_does_not_reach_sizing(monkeypatch, caplog, restore_strategy_state):
+def test_evaluate_quant_reject_does_not_reach_sizing(monkeypatch, caplog, restore_strategy_state):
     from forex_bot.bot_loop import evaluate
 
     idx = pd.date_range("2026-10-01", periods=80, freq="5min", tz="UTC")
@@ -313,7 +312,7 @@ async def test_evaluate_quant_reject_does_not_reach_sizing(monkeypatch, caplog, 
     monkeypatch.setattr("forex_bot.bot_loop.volatility_ok", lambda *_a, **_k: True)
     monkeypatch.setattr("forex_bot.bot_loop.position_sizing", _size)
     with caplog.at_level(logging.INFO, logger="forex_bot.decision_skip_log"):
-        await evaluate("EUR_USD")
+        asyncio.run(evaluate("EUR_USD"))
     assert sized["n"] == 0
     text = _messages(caplog)
     assert QUANT_SIGNAL_PASS not in text
@@ -323,8 +322,7 @@ async def test_evaluate_quant_reject_does_not_reach_sizing(monkeypatch, caplog, 
     )
 
 
-@pytest.mark.asyncio
-async def test_evaluate_quant_pass_reaches_sizing(monkeypatch, caplog, restore_strategy_state):
+def test_evaluate_quant_pass_reaches_sizing(monkeypatch, caplog, restore_strategy_state):
     from forex_bot.ai_ensemble import AIEnsemble, LocalLLM
     from forex_bot.bot_loop import evaluate
     from forex_bot.indicators import compute_indicators as real_indicators
@@ -374,7 +372,7 @@ async def test_evaluate_quant_pass_reaches_sizing(monkeypatch, caplog, restore_s
     monkeypatch.setattr("forex_bot.bot_loop.rl_agent.decide", lambda *_a, **_k: "BUY")
     monkeypatch.setattr("forex_bot.bot_loop.position_sizing", _size)
     with caplog.at_level(logging.INFO, logger="forex_bot.decision_skip_log"):
-        await evaluate("EUR_USD")
+        asyncio.run(evaluate("EUR_USD"))
     text = _messages(caplog)
     assert QUANT_SIGNAL_PASS in text
     assert QUANT_MA_NOT_CLEAR not in text
