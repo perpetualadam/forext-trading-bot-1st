@@ -1,0 +1,19 @@
+{
+  "broker_native_stops": "not cancelled, replaced, or treated as software stops",
+  "candle_failure_handling": "None, empty, incomplete, and acquisition exceptions become a missing decision frame",
+  "management_order": [
+    "load decision candles without aborting the symbol",
+    "look up the local position",
+    "manage an existing position with its own quote and close checks",
+    "refuse a new entry when the decision frame is missing or invalid",
+    "keep the broker provenance gate in front of order reservation"
+  ],
+  "position_lookup": "get_position always runs after the candle attempt unless the lookup itself fails",
+  "production_files": [
+    "forex_bot/bot_loop.py",
+    "forex_bot/decision_skip_log.py",
+    "forex_bot/oanda_exec.py"
+  ],
+  "runtime_error_policy": "RuntimeError from fetch still propagates from evaluate so programming errors stay visible; _cycle_symbols records it and continues to later instruments",
+  "shared_state": "CycleIntegrityError stops the remaining symbols in the cycle"
+}

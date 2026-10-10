@@ -1,0 +1,9 @@
+{
+  "classification": "DEPLOYMENT_REVIEW_FAILED_REPAIRS_REQUIRED",
+  "deployment_approved": false,
+  "protocol_hash": "539cdc083f83393a79d254d21385edc6c48e88eb0f085d4549df9fdd6d431bc0",
+  "reason": "No pinned revision contains the repair. A build from this tree would ship mixed uncommitted stages.",
+  "stage": "G.6",
+  "trading_approved": false,
+  "trust_boundary": "TRUST_BOUNDARY_PARTIAL"
+}

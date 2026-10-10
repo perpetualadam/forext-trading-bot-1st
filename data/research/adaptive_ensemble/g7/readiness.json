@@ -1,0 +1,18 @@
+{
+  "classification": "PROVENANCE_REPAIRED_SNAPSHOT_VERIFIED_REVIEW_REQUIRED",
+  "deployment_approved": false,
+  "trading_approved": false,
+  "image_built": false,
+  "snapshot_tool": "g7_snapshot_v1",
+  "snapshot_path": "data/research/adaptive_ensemble/g7/source_snapshot.tar",
+  "manifest_path": "data/research/adaptive_ensemble/g7/manifest.json",
+  "manifest_sha256": "ba8eb86d887b44dd44314c6a45c776639bf11bb27f0e92ba2ce24978c3206989",
+  "file_count": 190,
+  "payload_bytes": 1430744,
+  "tar_bytes": 1576960,
+  "provenance_version": "market_provenance_v2",
+  "git_head": "f6c4f40ae6b7614379347ed45141ecd5a3d33642",
+  "working_tree_dirty": true,
+  "independent_verify": "verified",
+  "next_action": "Independent review of the pinned source snapshot and a future deployment package. Do not deploy."
+}

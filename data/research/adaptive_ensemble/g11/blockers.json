@@ -1,0 +1,11 @@
+{
+  "blockers": [
+    "No image has been shown to be a safe rollback target. The only local bot image is the one already running, and its internal files were not read.",
+    "The running image was created on 2026-10-08, before the local provenance and management-continuity repairs. Rolling back to it would not restore those repairs.",
+    "The historical unsafe image is excluded and is not present locally.",
+    "Docker build-context behaviour was not verified by the daemon.",
+    "The live PostgreSQL database was not inspected.",
+    "The current Dockerfile still copies the whole forex_bot package.",
+    "Operator deployment approval was not requested and is not granted."
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "archive_sha256": "ba6f8c3659a599bba1a1b322384ae462dc4d43e8de5a73b7f1001ecca606c948",
+  "archive_size": 111919104,
+  "config_digest": "bb08aef307c6f9915789e1d56e3a4276881372b2a6be6358919d6cf6432313a6",
+  "config_env_names_only": [
+    "GPG_KEY",
+    "LANG",
+    "PATH",
+    "PIP_DEFAULT_TIMEOUT",
+    "PIP_DISABLE_PIP_VERSION_CHECK",
+    "PIP_RETRIES",
+    "PYTHONDONTWRITEBYTECODE",
+    "PYTHONUNBUFFERED",
+    "PYTHON_SHA256",
+    "PYTHON_VERSION"
+  ],
+  "config_values_stored": false,
+  "expected_image_id": "sha256:a905781d872d4a83706c716baa8be6e08c4abef26b2d9f9510a118c2c3039d25",
+  "image_id": "sha256:a905781d872d4a83706c716baa8be6e08c4abef26b2d9f9510a118c2c3039d25",
+  "layer_count": 9,
+  "path": "C:\\Users\\Brian\\AppData\\Local\\Temp\\forex-bot-g12-forensics\\image_save.tar",
+  "rechecked_sha256": "ba6f8c3659a599bba1a1b322384ae462dc4d43e8de5a73b7f1001ecca606c948",
+  "rechecked_size": 111919104,
+  "regular_file": true,
+  "verified_at_utc": "2026-10-10T09:27:13.350207+00:00",
+  "verifier": "tests/g12_1_verify.py"
+}

@@ -1,0 +1,15 @@
+{
+  "executed": false,
+  "steps": [
+    "Obtain a separate operator decision. This review is not that decision.",
+    "Create a pinned source snapshot of the reviewed tree. Do not build from an unnamed dirty tree.",
+    "Keep the mounted live-safety file blocked and the six strategies inactive.",
+    "Record the running image digest before any build. Do not build in this stage.",
+    "Build a candidate image only in a later approved stage and do not start it.",
+    "Run the isolated provenance and close tests against that image.",
+    "Verify the image digest.",
+    "Confirm no database migration is required.",
+    "Prepare rollback to a known-safe image, not to HEAD and not to an unidentified historical image.",
+    "Stop for explicit deployment approval."
+  ]
+}

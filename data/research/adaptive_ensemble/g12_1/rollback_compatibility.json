@@ -1,0 +1,11 @@
+{
+  "candidate_classification": "ROLLBACK_CANDIDATE_PARTIALLY_VERIFIED",
+  "candidate_image": "sha256:a905781d872d4a83706c716baa8be6e08c4abef26b2d9f9510a118c2c3039d25",
+  "database_py_matches_g7_and_g10": true,
+  "live_database": "LIVE_DATABASE_COMPATIBILITY_UNVERIFIED",
+  "rollback_procedure": "ROLLBACK_PROCEDURE_UNVERIFIED",
+  "safe_rollback_verified": false,
+  "startup_can_execute_ddl_text": true,
+  "startup_rewrites_mounted_safety_json": true,
+  "verified_at_utc": "2026-10-10T09:27:13.350207+00:00"
+}

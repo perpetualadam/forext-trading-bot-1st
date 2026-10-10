@@ -71,6 +71,8 @@ def assert_broker_order_allowed(*, execution_kind: str | None = None, action: st
     """
     Fail closed: paper / window_paper / simulated context must never submit broker orders,
     even if EXECUTION_MODE is live_broker (off-window learning uses the same process).
+    New live exposure also requires the durable default-deny authorisation gate.
+    Protective closes are not blocked by that gate.
     """
     from forex_bot.execution import ExecutionMode, get_execution_mode, is_paper_like_kind
 
@@ -84,6 +86,9 @@ def assert_broker_order_allowed(*, execution_kind: str | None = None, action: st
         raise RuntimeError(f"refusing broker {action}: EXECUTION_MODE=paper")
     if not use_oanda_live():
         raise RuntimeError(f"broker execution not enabled for {action}")
+    from forex_bot.live_safety import assert_new_live_exposure_allowed
+
+    assert_new_live_exposure_allowed(action=action)
 
 
 def use_oanda_live() -> bool:
@@ -400,8 +405,16 @@ def _place_market_order_sync(symbol: str, position_units: float, position_direct
         raise RuntimeError("OANDA_ACCOUNT_ID missing")
 
     instrument = oanda_instrument(symbol)
-    units_s = _abs_units_decimal(position_units)
     d = (position_direction or "").upper().strip()
+    if d not in ("BUY", "SELL"):
+        raise RuntimeError("protective close withheld: uncertain position direction")
+    try:
+        units_f = float(position_units)
+    except (TypeError, ValueError) as exc:
+        raise RuntimeError("protective close withheld: uncertain position size") from exc
+    if not math.isfinite(units_f) or units_f == 0:
+        raise RuntimeError("protective close withheld: uncertain position size")
+    units_s = _abs_units_decimal(units_f)
     if d == "BUY":
         close_req = PositionCloseRequest(longUnits=units_s)
     else:
@@ -444,8 +457,14 @@ def _place_market_order_open_sync(
     client_order_id: str,
     stop_loss: float | None = None,
     take_profit: float | None = None,
+    entry_quote: Any | None = None,
 ) -> tuple[float, float, str, float, float | None]:
     """Place MARKET order to open; returns (fill_price, abs_units, fill_tx_id, pl, fill_time)."""
+    from forex_bot.live_safety import assert_new_live_exposure_allowed
+    from forex_bot.market_provenance import require_order_quote
+
+    assert_new_live_exposure_allowed(action="open")
+    require_order_quote(entry_quote, symbol)
     api = get_api()
     if api is None:
         raise RuntimeError("OANDA API client unavailable (token / build_api)")
@@ -481,6 +500,7 @@ def _place_market_order_open_sync(
         stopLossOnFill=sl_on_fill,
         takeProfitOnFill=tp_on_fill,
     )
+    assert_new_live_exposure_allowed(action="open")
     r = oanda_orders.OrderCreate(accountID=account_id, data=mo.data)
     logger.info("[ORDER SENT] MARKET open %s units=%s", instrument, units_int)
     try:
@@ -530,9 +550,13 @@ async def execute_oanda_market_open(
     stop_loss: float | None = None,
     take_profit: float | None = None,
     execution_kind: str = "live",
+    entry_quote: Any | None = None,
 ) -> tuple[float, float, str, float, float | None]:
     """Broker-confirmed open: (fill_price, abs_units, fill_tx_id, pl, fill_time_epoch|None)."""
+    from forex_bot.market_provenance import require_order_quote
+
     assert_broker_order_allowed(execution_kind=execution_kind, action="open")
+    require_order_quote(entry_quote, symbol)
     if not _access_token():
         raise RuntimeError("OANDA_ACCESS_TOKEN or OANDA_API_KEY missing")
     result = await asyncio.to_thread(
@@ -543,6 +567,7 @@ async def execute_oanda_market_open(
         client_order_id,
         stop_loss,
         take_profit,
+        entry_quote,
     )
     if isinstance(result, tuple) and len(result) == 4:
         return (*result, None)

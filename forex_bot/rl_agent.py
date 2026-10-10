@@ -18,6 +18,7 @@ class RLAgent:
         self.q: dict[str, dict[str, float]] = {}
         self.alpha = alpha
         self.epsilon = epsilon
+        self.persisted_ok = False
 
     def _ensure_state(self, state: str) -> dict[str, float]:
         if state not in self.q:
@@ -25,7 +26,15 @@ class RLAgent:
         return self.q[state]
 
     def decide(self, state: str) -> str:
+        from forex_bot.decision_repair.flags import rl_require_state_enabled
+
+        if rl_require_state_enabled() and not self.persisted_ok:
+            return "UNAVAILABLE"
         table = self._ensure_state(state)
+        if rl_require_state_enabled():
+            best = max(table.values())
+            candidates = sorted(a for a, v in table.items() if v == best)
+            return candidates[0]
         if random.random() < self.epsilon:
             return random.choice(_ACTIONS)
         best = max(table.values())

@@ -52,6 +52,9 @@ def load_ohlcv_csv(path: str | Path) -> pd.DataFrame:
         raise ValueError("CSV has NaN in OHLC after parse (check numeric columns)")
 
     out = out.drop_duplicates(subset=["time"], keep="last").sort_values("time").reset_index(drop=True)
+    from forex_bot.market_provenance import bind_imported_frame
+
+    bind_imported_frame(out, source=f"csv:{p.name}")
     logger.info("Loaded OHLCV CSV %s: %s rows (%s → %s)", p.name, len(out), out["time"].iloc[0], out["time"].iloc[-1])
     return out
 

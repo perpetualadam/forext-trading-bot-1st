@@ -1,0 +1,15 @@
+{
+  "candidate_build": "not_executed",
+  "current_image_identity": "not_inspected",
+  "database_migration": false,
+  "head_rollback_removes_provenance_gate": true,
+  "historical_image_not_a_rollback_target": true,
+  "revision_contains_repair": false,
+  "rollback_target": "none_verified",
+  "source_revision": "f6c4f40ae6b7614379347ed45141ecd5a3d33642",
+  "unresolved": [
+    "working tree is uncommitted and mixes stages A through G.5",
+    "image copy includes forex_bot/research",
+    "running image digest was not read"
+  ]
+}

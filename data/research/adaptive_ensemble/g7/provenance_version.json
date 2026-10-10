@@ -1,0 +1,17 @@
+{
+  "previous_version": "market_provenance_v1",
+  "previous_coverage": "last candle time and mid OHLC only",
+  "current_version": "market_provenance_v2",
+  "current_coverage": "every row of the raw columns present at acquisition, including timestamps, OHLC, bid/ask, volume, completeness, row count and row order",
+  "canonical_form": "sha256 of version, row count, column list, then index|col=cell lines",
+  "missing_value": "missing",
+  "nan": "nan",
+  "infinity": "posinf or neginf",
+  "old_seal_result": "old_provenance_version",
+  "old_seal_is_not_accepted": true,
+  "caller_supplied_digest_is_not_a_seal": true,
+  "live_seal_persisted_across_restart": false,
+  "derived_columns_allowed": true,
+  "protected_column_added_after_seal": "unexpected_protected_column",
+  "protected_column_removed": "missing_protected_column"
+}

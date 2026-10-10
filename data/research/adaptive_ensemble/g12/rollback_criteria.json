@@ -1,0 +1,20 @@
+{
+  "candidate_image": "sha256:a905781d872d4a83706c716baa8be6e08c4abef26b2d9f9510a118c2c3039d25",
+  "classification_before_filesystem_read": "ROLLBACK_CANDIDATE_UNVERIFIED",
+  "rejected_image": "sha256:a19a2208fcf30f8fa1cf61442cf021dec6d99d809b6907836c834922bfe3e2a5",
+  "required_before_verified": [
+    "immutable image id",
+    "safety-critical file bytes from the merged filesystem",
+    "fail-closed startup in those bytes",
+    "live-order gate in those bytes",
+    "strategy inactivity in those bytes",
+    "broker mutation inventory from those bytes",
+    "runtime configuration compatibility",
+    "live database compatibility",
+    "mounted state compatibility",
+    "explicit missing protections",
+    "a separately reviewed rollback procedure"
+  ],
+  "established_now": ["immutable image id"],
+  "safe_rollback_verified": false
+}

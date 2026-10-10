@@ -1,0 +1,17 @@
+{
+  "commands": [
+    "python -m ruff check forex_bot/market_provenance.py forex_bot/research/adaptive_ensemble/g7_snapshot.py tests/test_market_provenance_g7.py tests/test_g7_snapshot.py tests/test_market_provenance_g6.py",
+    "python -m mypy forex_bot/market_provenance.py forex_bot/research --ignore-missing-imports",
+    "python -m pytest tests/test_market_provenance_g7.py tests/test_g7_snapshot.py tests/test_market_provenance_g6.py tests/test_market_provenance_g5.py tests/test_live_safety_repair.py tests/test_decision_repair.py tests/test_decision_repair_f1.py tests/test_decision_repair_f2.py tests/test_adaptive_ensemble_stage_g.py tests/test_adaptive_ensemble_stage_g1.py tests/test_adaptive_ensemble_stage_g2.py tests/test_adaptive_ensemble_stage_g3.py tests/test_adaptive_ensemble_stage_g4.py tests/test_execution_safety.py tests/test_execution_headroom.py tests/test_entry_execution_geometry.py tests/test_logic_fixes.py tests/test_live_position_management.py tests/test_broker_exit_accounting.py tests/test_ohlcv_off_event_loop.py -q --tb=line"
+  ],
+  "ruff": "passed",
+  "mypy": "40 source files, no issues",
+  "pytest_passed": 338,
+  "pytest_failed": 0,
+  "pytest_skipped": 0,
+  "pytest_warnings": 1,
+  "warning": "pre-existing datetime.utcnow deprecation in bot_loop.py",
+  "scope": "scoped stage suite, not full-project verification",
+  "broker_calls": 0,
+  "docker_commands": 0
+}

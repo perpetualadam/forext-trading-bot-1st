@@ -1,0 +1,19 @@
+{
+  "broker_requests": 0,
+  "classification": "VALIDATION_RUNNER_READY_DATA_PENDING",
+  "complete_common_sessions": 27,
+  "conversion_status": "ok",
+  "definition_hash": "bb352b0e4d320a6d6a94764c8e1fdd96a283a8889f4311597aeb75ccba56ef65",
+  "duration_status": "INSUFFICIENT_INDEPENDENT_DURATION",
+  "models_retuned": false,
+  "package_hash": "05b56d1ed7736025e86a9e3f94fb44bb49ea6208718aab7af9cfde6977a6c201",
+  "policy_hash": "6ea84361d6fec3e1743fce2c238940d9f2fda50b78b1d5e305d07d18650d29d4",
+  "redownload_recommended": false,
+  "remaining_to_40": 13,
+  "stage": "G.4",
+  "stage_g_assessment_unchanged": "EXPLORATORY_NO_CREDIBLE_EDGE",
+  "strategy_evaluation_performed": false,
+  "thirty_trade_gate": "NOT_YET_EVALUATED",
+  "unresolved_gaps": 0,
+  "validation_started": false
+}

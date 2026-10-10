@@ -1,0 +1,733 @@
+{
+  "label": "EXPERIMENTAL_HEURISTIC_OFFLINE",
+  "not_original_bot": true,
+  "strategies": {
+    "scalp": {
+      "classification": "NO_CREDIBLE_EDGE",
+      "heldout_isolated": {
+        "closes": 1452,
+        "net_gbp": -0.5787670629907498,
+        "costs_gbp": 0.3887524728942714,
+        "profit_factor": 0.6125910253311977,
+        "max_dd_gbp": 0.1776480174499966,
+        "win_rate": 0.2396694214876033,
+        "by_pair": {
+          "EUR_USD": {
+            "n": 239,
+            "net": -0.11910833799388494,
+            "win_rate": 0.24267782426778242
+          },
+          "GBP_USD": {
+            "n": 372,
+            "net": -0.09234537477416893,
+            "win_rate": 0.25806451612903225
+          },
+          "USD_JPY": {
+            "n": 66,
+            "net": -0.038848038999635265,
+            "win_rate": 0.24242424242424243
+          },
+          "AUD_USD": {
+            "n": 133,
+            "net": -0.06849299517283057,
+            "win_rate": 0.2706766917293233
+          },
+          "USD_CAD": {
+            "n": 487,
+            "net": -0.17248180014084086,
+            "win_rate": 0.2135523613963039
+          },
+          "USD_CHF": {
+            "n": 155,
+            "net": -0.08749051590938921,
+            "win_rate": 0.24516129032258063
+          }
+        },
+        "exit_reasons": {
+          "take_profit": 321,
+          "stop_loss": 1097,
+          "weekend_flatten": 34
+        },
+        "size_infeasible": 0
+      },
+      "heldout_conservative_net": -0.9262593869528879,
+      "heldout_severe_net": -1.3568142217841446,
+      "validation_net": -0.7650131910676714,
+      "development_net": -0.6217753236280107,
+      "portfolio_heldout_base": {
+        "n": 611,
+        "net_gbp": -0.2589989879960092,
+        "wins": 135
+      },
+      "top_pair_share": 0.29801592241540115,
+      "label": "EXPERIMENTAL_HEURISTIC_OFFLINE"
+    },
+    "trend": {
+      "classification": "NO_CREDIBLE_EDGE",
+      "heldout_isolated": {
+        "closes": 1453,
+        "net_gbp": -0.5807941593196427,
+        "costs_gbp": 0.389095177324033,
+        "profit_factor": 0.611785533364518,
+        "max_dd_gbp": 0.1776989397081934,
+        "win_rate": 0.23950447350309703,
+        "by_pair": {
+          "EUR_USD": {
+            "n": 240,
+            "net": -0.1208828536498588,
+            "win_rate": 0.24166666666666667
+          },
+          "GBP_USD": {
+            "n": 372,
+            "net": -0.09254703318889312,
+            "win_rate": 0.25806451612903225
+          },
+          "USD_JPY": {
+            "n": 66,
+            "net": -0.038848038999635265,
+            "win_rate": 0.24242424242424243
+          },
+          "AUD_USD": {
+            "n": 133,
+            "net": -0.06849299517283057,
+            "win_rate": 0.2706766917293233
+          },
+          "USD_CAD": {
+            "n": 487,
+            "net": -0.17253272239903586,
+            "win_rate": 0.2135523613963039
+          },
+          "USD_CHF": {
+            "n": 155,
+            "net": -0.08749051590938921,
+            "win_rate": 0.24516129032258063
+          }
+        },
+        "exit_reasons": {
+          "take_profit": 321,
+          "stop_loss": 1098,
+          "weekend_flatten": 34
+        },
+        "size_infeasible": 0
+      },
+      "heldout_conservative_net": -0.9278901816378395,
+      "heldout_severe_net": -1.361436726507347,
+      "validation_net": -0.7725903354417802,
+      "development_net": -0.618959218033948,
+      "portfolio_heldout_base": {
+        "n": 410,
+        "net_gbp": -0.16706883074334006,
+        "wins": 93
+      },
+      "top_pair_share": 0.2970634597998456,
+      "label": "EXPERIMENTAL_HEURISTIC_OFFLINE"
+    },
+    "mean_reversion": {
+      "classification": "NO_CREDIBLE_EDGE",
+      "heldout_isolated": {
+        "closes": 924,
+        "net_gbp": -0.07785316096363461,
+        "costs_gbp": 0.22811334222329072,
+        "profit_factor": 0.9104353834144432,
+        "max_dd_gbp": 0.07247784321617701,
+        "win_rate": 0.2911255411255411,
+        "by_pair": {
+          "EUR_USD": {
+            "n": 161,
+            "net": -0.01775680019997169,
+            "win_rate": 0.2981366459627329
+          },
+          "GBP_USD": {
+            "n": 247,
+            "net": -0.03995384574085011,
+            "win_rate": 0.27125506072874495
+          },
+          "USD_JPY": {
+            "n": 37,
+            "net": 0.053162006234101916,
+            "win_rate": 0.4864864864864865
+          },
+          "AUD_USD": {
+            "n": 86,
+            "net": 0.019980561883983828,
+            "win_rate": 0.38372093023255816
+          },
+          "USD_CAD": {
+            "n": 294,
+            "net": -0.0704347020283782,
+            "win_rate": 0.25170068027210885
+          },
+          "USD_CHF": {
+            "n": 99,
+            "net": -0.022850381112520343,
+            "win_rate": 0.29292929292929293
+          }
+        },
+        "exit_reasons": {
+          "stop_loss": 646,
+          "take_profit": 248,
+          "weekend_flatten": 30
+        },
+        "size_infeasible": 0
+      },
+      "heldout_conservative_net": -0.29086806742653604,
+      "heldout_severe_net": -0.5936572299136911,
+      "validation_net": -0.18261073763357627,
+      "development_net": -0.288495867972042,
+      "portfolio_heldout_base": {
+        "n": 253,
+        "net_gbp": -0.03877893499584982,
+        "wins": 64
+      },
+      "top_pair_share": 0.3142466187542676,
+      "label": "EXPERIMENTAL_HEURISTIC_OFFLINE"
+    },
+    "swing_trend": {
+      "classification": "NO_CREDIBLE_EDGE",
+      "heldout_isolated": {
+        "closes": 1189,
+        "net_gbp": -0.4542175919809986,
+        "costs_gbp": 0.2749836542574643,
+        "profit_factor": 0.6167404832822855,
+        "max_dd_gbp": 0.12124744637796425,
+        "win_rate": 0.248107653490328,
+        "by_pair": {
+          "EUR_USD": {
+            "n": 209,
+            "net": -0.09282526672609846,
+            "win_rate": 0.23923444976076555
+          },
+          "GBP_USD": {
+            "n": 325,
+            "net": -0.073925043873307,
+            "win_rate": 0.26153846153846155
+          },
+          "USD_JPY": {
+            "n": 49,
+            "net": -0.045083536191577664,
+            "win_rate": 0.2653061224489796
+          },
+          "AUD_USD": {
+            "n": 107,
+            "net": -0.09035925575643698,
+            "win_rate": 0.21495327102803738
+          },
+          "USD_CAD": {
+            "n": 383,
+            "net": -0.1108282455722603,
+            "win_rate": 0.2349869451697128
+          },
+          "USD_CHF": {
+            "n": 116,
+            "net": -0.04119624386131817,
+            "win_rate": 0.29310344827586204
+          }
+        },
+        "exit_reasons": {
+          "stop_loss": 885,
+          "take_profit": 265,
+          "weekend_flatten": 39
+        },
+        "size_infeasible": 0
+      },
+      "heldout_conservative_net": -0.7303971550277463,
+      "heldout_severe_net": -1.0643314914214377,
+      "validation_net": -0.815042571245185,
+      "development_net": -0.5748201482283606,
+      "portfolio_heldout_base": {
+        "n": 174,
+        "net_gbp": -0.06441346027666847,
+        "wins": 45
+      },
+      "top_pair_share": 0.2439981355387411,
+      "label": "EXPERIMENTAL_HEURISTIC_OFFLINE"
+    },
+    "swing_mean_reversion": {
+      "classification": "NO_CREDIBLE_EDGE",
+      "heldout_isolated": {
+        "closes": 840,
+        "net_gbp": -0.08219517169411009,
+        "costs_gbp": 0.18041424639436673,
+        "profit_factor": 0.8893481422556575,
+        "max_dd_gbp": 0.07314948469834803,
+        "win_rate": 0.29404761904761906,
+        "by_pair": {
+          "EUR_USD": {
+            "n": 148,
+            "net": -0.018360511821752388,
+            "win_rate": 0.2972972972972973
+          },
+          "GBP_USD": {
+            "n": 227,
+            "net": -0.020957103250161768,
+            "win_rate": 0.29515418502202645
+          },
+          "USD_JPY": {
+            "n": 39,
+            "net": -0.00680896189775285,
+            "win_rate": 0.28205128205128205
+          },
+          "AUD_USD": {
+            "n": 66,
+            "net": 0.03925333361631854,
+            "win_rate": 0.42424242424242425
+          },
+          "USD_CAD": {
+            "n": 291,
+            "net": -0.07098101318981302,
+            "win_rate": 0.25773195876288657
+          },
+          "USD_CHF": {
+            "n": 69,
+            "net": -0.0043409151509486025,
+            "win_rate": 0.3188405797101449
+          }
+        },
+        "exit_reasons": {
+          "stop_loss": 587,
+          "take_profit": 231,
+          "weekend_flatten": 22
+        },
+        "size_infeasible": 0
+      },
+      "heldout_conservative_net": -0.3087741512232349,
+      "heldout_severe_net": -0.5402649988241874,
+      "validation_net": -0.23001394529581998,
+      "development_net": -0.22266331116597288,
+      "portfolio_heldout_base": {
+        "n": 91,
+        "net_gbp": -0.021766322830494164,
+        "wins": 23
+      },
+      "top_pair_share": 0.44169384534652617,
+      "label": "EXPERIMENTAL_HEURISTIC_OFFLINE"
+    },
+    "swing_breakout": {
+      "classification": "NO_CREDIBLE_EDGE",
+      "heldout_isolated": {
+        "closes": 716,
+        "net_gbp": -0.24281277704009738,
+        "costs_gbp": 0.14687752653128475,
+        "profit_factor": 0.643108206641175,
+        "max_dd_gbp": 0.08477522465631182,
+        "win_rate": 0.2527932960893855,
+        "by_pair": {
+          "EUR_USD": {
+            "n": 132,
+            "net": -0.055000773996913215,
+            "win_rate": 0.24242424242424243
+          },
+          "GBP_USD": {
+            "n": 197,
+            "net": -0.026207566364468988,
+            "win_rate": 0.29441624365482233
+          },
+          "USD_JPY": {
+            "n": 33,
+            "net": -0.006569895052846168,
+            "win_rate": 0.3333333333333333
+          },
+          "AUD_USD": {
+            "n": 42,
+            "net": -0.046343340824112386,
+            "win_rate": 0.16666666666666666
+          },
+          "USD_CAD": {
+            "n": 246,
+            "net": -0.0808872351440127,
+            "win_rate": 0.22357723577235772
+          },
+          "USD_CHF": {
+            "n": 66,
+            "net": -0.027803965657743925,
+            "win_rate": 0.2727272727272727
+          }
+        },
+        "exit_reasons": {
+          "stop_loss": 528,
+          "take_profit": 167,
+          "weekend_flatten": 21
+        },
+        "size_infeasible": 0
+      },
+      "heldout_conservative_net": -0.33338569433466,
+      "heldout_severe_net": -0.5125572379690154,
+      "validation_net": -0.42047538005377216,
+      "development_net": -0.41149372796742506,
+      "portfolio_heldout_base": {
+        "n": 27,
+        "net_gbp": -0.0011997468785685515,
+        "wins": 9
+      },
+      "top_pair_share": 0.3331259422590238,
+      "label": "EXPERIMENTAL_HEURISTIC_OFFLINE"
+    }
+  },
+  "portfolio_heldout": {
+    "base": {
+      "label": "EXPERIMENTAL_HEURISTIC_OFFLINE",
+      "not_original_bot": true,
+      "signals_or_traces": {
+        "INSUFFICIENT_DATA": 1584,
+        "NO_SIGNAL": 556326,
+        "SPREAD_REJECT": 257147,
+        "SHADOW_ENTRY": 1569,
+        "CONCURRENT_LIMIT": 24257,
+        "QUANT_REJECT": 10446,
+        "ALREADY_OPEN": 45991,
+        "SHADOW_EXIT": 1566,
+        "USD_CONCENTRATION": 1210,
+        "SESSION_REJECT": 1944,
+        "STALE_DATA": 678
+      },
+      "entries": 1569,
+      "closes": 1566,
+      "win_rate": 0.23563218390804597,
+      "gross_gbp": -0.1638828000887764,
+      "costs_gbp": 0.38834348363215393,
+      "net_gbp": -0.5522262837209303,
+      "profit_factor": 0.6147982405549447,
+      "avg_win": 0.0023885539830534657,
+      "avg_loss": -0.0011976630772495063,
+      "max_dd_gbp": 0.562943395749997,
+      "max_consecutive_losses": 28,
+      "open_at_end": 3,
+      "equity_gbp": 96.59777371627942,
+      "start_nav_gbp": 97.15,
+      "net_pct_start_nav": -0.005684264371805767,
+      "avg_hold_seconds": 8750.95785440613,
+      "exposure_time_frac": 1.2895940376037491,
+      "mean_units": 1.8030592734225621,
+      "min_units": 1.0,
+      "size_infeasible": 0,
+      "by_pair": {
+        "GBP_USD": {
+          "n": 416,
+          "net_gbp": -0.11333161365651558,
+          "wins": 100
+        },
+        "EUR_USD": {
+          "n": 221,
+          "net_gbp": -0.16149116269365857,
+          "wins": 37
+        },
+        "USD_CAD": {
+          "n": 694,
+          "net_gbp": -0.18350048196432492,
+          "wins": 168
+        },
+        "USD_CHF": {
+          "n": 69,
+          "net_gbp": -0.04076785809470482,
+          "wins": 16
+        },
+        "USD_JPY": {
+          "n": 59,
+          "net_gbp": -0.02048291367892293,
+          "wins": 18
+        },
+        "AUD_USD": {
+          "n": 107,
+          "net_gbp": -0.032652253632804176,
+          "wins": 30
+        }
+      },
+      "by_strategy": {
+        "mean_reversion": {
+          "n": 253,
+          "net_gbp": -0.03877893499584982,
+          "wins": 64
+        },
+        "scalp": {
+          "n": 611,
+          "net_gbp": -0.2589989879960092,
+          "wins": 135
+        },
+        "trend": {
+          "n": 410,
+          "net_gbp": -0.16706883074334006,
+          "wins": 93
+        },
+        "swing_trend": {
+          "n": 174,
+          "net_gbp": -0.06441346027666847,
+          "wins": 45
+        },
+        "swing_mean_reversion": {
+          "n": 91,
+          "net_gbp": -0.021766322830494164,
+          "wins": 23
+        },
+        "swing_breakout": {
+          "n": 27,
+          "net_gbp": -0.0011997468785685515,
+          "wins": 9
+        }
+      },
+      "exit_reasons": {
+        "stop_loss": 1185,
+        "take_profit": 353,
+        "weekend_flatten": 28
+      },
+      "uncertainty": {
+        "n": 1566,
+        "mean": -0.00035263491936202455,
+        "std": 0.0017153160513680855,
+        "ci95": [
+          -0.0004417320753749712,
+          -0.0002647698209781909
+        ],
+        "method": "iid_bootstrap_anti_conservative",
+        "dependence_note": "Overlapping trades and USD-correlated pairs are not independent."
+      },
+      "evidence_tag": "SAMPLED",
+      "period": "heldout",
+      "scenario": "base",
+      "mode": "portfolio"
+    },
+    "conservative": {
+      "label": "EXPERIMENTAL_HEURISTIC_OFFLINE",
+      "not_original_bot": true,
+      "signals_or_traces": {
+        "INSUFFICIENT_DATA": 1584,
+        "NO_SIGNAL": 558066,
+        "SPREAD_REJECT": 257488,
+        "SHADOW_ENTRY": 1724,
+        "CONCURRENT_LIMIT": 23986,
+        "QUANT_REJECT": 10447,
+        "SHADOW_EXIT": 1722,
+        "ALREADY_OPEN": 43957,
+        "USD_CONCENTRATION": 1278,
+        "SESSION_REJECT": 1944,
+        "STALE_DATA": 678
+      },
+      "entries": 1724,
+      "closes": 1722,
+      "win_rate": 0.20789779326364694,
+      "gross_gbp": -0.04764817750543954,
+      "costs_gbp": 0.7539560076049053,
+      "net_gbp": -0.8016041851103456,
+      "profit_factor": 0.5137905124589125,
+      "avg_win": 0.002366135440872385,
+      "avg_loss": -0.001208710170779076,
+      "max_dd_gbp": 0.8029666005464691,
+      "max_consecutive_losses": 28,
+      "open_at_end": 2,
+      "equity_gbp": 96.34839581488927,
+      "start_nav_gbp": 97.15,
+      "net_pct_start_nav": -0.008251201081938709,
+      "avg_hold_seconds": 7622.299651567944,
+      "exposure_time_frac": 1.235164586979843,
+      "mean_units": 1.8016241299303943,
+      "min_units": 1.0,
+      "size_infeasible": 0,
+      "by_pair": {
+        "GBP_USD": {
+          "n": 468,
+          "net_gbp": -0.18611539596519655,
+          "wins": 92
+        },
+        "EUR_USD": {
+          "n": 215,
+          "net_gbp": -0.12455835613598348,
+          "wins": 45
+        },
+        "USD_CAD": {
+          "n": 755,
+          "net_gbp": -0.26850389788112505,
+          "wins": 161
+        },
+        "AUD_USD": {
+          "n": 126,
+          "net_gbp": -0.10078729942945276,
+          "wins": 27
+        },
+        "USD_CHF": {
+          "n": 94,
+          "net_gbp": -0.08355390093258694,
+          "wins": 17
+        },
+        "USD_JPY": {
+          "n": 64,
+          "net_gbp": -0.03808533476600036,
+          "wins": 16
+        }
+      },
+      "by_strategy": {
+        "mean_reversion": {
+          "n": 280,
+          "net_gbp": -0.05524759246713351,
+          "wins": 67
+        },
+        "scalp": {
+          "n": 661,
+          "net_gbp": -0.3620874397790387,
+          "wins": 133
+        },
+        "trend": {
+          "n": 437,
+          "net_gbp": -0.24302046274421915,
+          "wins": 86
+        },
+        "swing_trend": {
+          "n": 204,
+          "net_gbp": -0.10370938348025546,
+          "wins": 40
+        },
+        "swing_breakout": {
+          "n": 26,
+          "net_gbp": 0.002664283681137577,
+          "wins": 8
+        },
+        "swing_mean_reversion": {
+          "n": 114,
+          "net_gbp": -0.040203590320836424,
+          "wins": 24
+        }
+      },
+      "exit_reasons": {
+        "stop_loss": 1352,
+        "take_profit": 335,
+        "weekend_flatten": 35
+      },
+      "uncertainty": {
+        "n": 1722,
+        "mean": -0.00046550765685850497,
+        "std": 0.001639010745337428,
+        "ci95": [
+          -0.0005441081932326938,
+          -0.0003961220298246142
+        ],
+        "method": "iid_bootstrap_anti_conservative",
+        "dependence_note": "Overlapping trades and USD-correlated pairs are not independent."
+      },
+      "evidence_tag": "SAMPLED",
+      "period": "heldout",
+      "scenario": "conservative",
+      "mode": "portfolio"
+    },
+    "severe": {
+      "label": "EXPERIMENTAL_HEURISTIC_OFFLINE",
+      "not_original_bot": true,
+      "signals_or_traces": {
+        "INSUFFICIENT_DATA": 1584,
+        "NO_SIGNAL": 559606,
+        "SPREAD_REJECT": 258693,
+        "SHADOW_ENTRY": 2099,
+        "CONCURRENT_LIMIT": 23286,
+        "QUANT_REJECT": 10472,
+        "SHADOW_EXIT": 2097,
+        "ALREADY_OPEN": 41251,
+        "USD_CONCENTRATION": 1539,
+        "SESSION_REJECT": 1944,
+        "STALE_DATA": 678
+      },
+      "entries": 2099,
+      "closes": 2097,
+      "win_rate": 0.15116833571769195,
+      "gross_gbp": -0.1011028665025086,
+      "costs_gbp": 1.3211810108832895,
+      "net_gbp": -1.4222838773857982,
+      "profit_factor": 0.35338367928099357,
+      "avg_win": 0.002452036049534378,
+      "avg_loss": -0.0012357187107237056,
+      "max_dd_gbp": 1.4232704434677714,
+      "max_consecutive_losses": 37,
+      "open_at_end": 2,
+      "equity_gbp": 95.72771612261428,
+      "start_nav_gbp": 97.15,
+      "net_pct_start_nav": -0.014640081084774041,
+      "avg_hold_seconds": 5873.676680972819,
+      "exposure_time_frac": 1.1590819264863643,
+      "mean_units": 1.8151500714626012,
+      "min_units": 1.0,
+      "size_infeasible": 0,
+      "by_pair": {
+        "GBP_USD": {
+          "n": 544,
+          "net_gbp": -0.27114033267253046,
+          "wins": 91
+        },
+        "EUR_USD": {
+          "n": 268,
+          "net_gbp": -0.21975798279045922,
+          "wins": 41
+        },
+        "USD_CAD": {
+          "n": 946,
+          "net_gbp": -0.5311853612722092,
+          "wins": 132
+        },
+        "AUD_USD": {
+          "n": 156,
+          "net_gbp": -0.22749586880136152,
+          "wins": 20
+        },
+        "USD_CHF": {
+          "n": 114,
+          "net_gbp": -0.1084165030891573,
+          "wins": 21
+        },
+        "USD_JPY": {
+          "n": 69,
+          "net_gbp": -0.06428782876008109,
+          "wins": 12
+        }
+      },
+      "by_strategy": {
+        "mean_reversion": {
+          "n": 316,
+          "net_gbp": -0.13865034046903357,
+          "wins": 60
+        },
+        "scalp": {
+          "n": 789,
+          "net_gbp": -0.6077665863520534,
+          "wins": 109
+        },
+        "trend": {
+          "n": 571,
+          "net_gbp": -0.4175911500101372,
+          "wins": 82
+        },
+        "swing_trend": {
+          "n": 257,
+          "net_gbp": -0.17564275707547114,
+          "wins": 37
+        },
+        "swing_breakout": {
+          "n": 24,
+          "net_gbp": -0.004201750266548227,
+          "wins": 5
+        },
+        "swing_mean_reversion": {
+          "n": 140,
+          "net_gbp": -0.07843129321255607,
+          "wins": 24
+        }
+      },
+      "exit_reasons": {
+        "stop_loss": 1769,
+        "take_profit": 297,
+        "weekend_flatten": 31
+      },
+      "uncertainty": {
+        "n": 2097,
+        "mean": -0.0006782469610804951,
+        "std": 0.001555422861654439,
+        "ci95": [
+          -0.0007464133604667286,
+          -0.0006113446317309805
+        ],
+        "method": "iid_bootstrap_anti_conservative",
+        "dependence_note": "Overlapping trades and USD-correlated pairs are not independent."
+      },
+      "evidence_tag": "SAMPLED",
+      "period": "heldout",
+      "scenario": "severe",
+      "mode": "portfolio"
+    }
+  },
+  "overall_decision": "STOP_EXPERIMENTAL_STRATEGY_FAMILY",
+  "exploratory": true
+}

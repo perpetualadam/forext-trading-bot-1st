@@ -1,0 +1,11 @@
+{
+  "git_revision": "f6c4f40ae6b7614379347ed45141ecd5a3d33642",
+  "protocol_hash": "539cdc083f83393a79d254d21385edc6c48e88eb0f085d4549df9fdd6d431bc0",
+  "protocol_hash_verified": true,
+  "protocol_id": "stage_g_adaptive_ensemble_v1",
+  "stage_g_artifacts_preserved": {
+    "assessment.json": "3bc892971202f28e7e58f72144871d9694dbaded5c6dfa425ec8cd11fa6d2c9c",
+    "evaluation_results.json": "c4d0cfc754ce1cd8fb32c57912462cf73f7ec9772c4153bcc609da0d998d2dd9",
+    "protocol_v1.json": "c2da7b8b90e2fc6a8eb015c5e94981c88de6fa2820e2d11580b0f3f9d062ea56"
+  }
+}

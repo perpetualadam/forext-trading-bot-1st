@@ -1,0 +1,14 @@
+{
+  "production_source_files": [],
+  "dockerfile": "unchanged",
+  "dockerignore": "unchanged",
+  "tests": ["tests/test_g10_snapshot.py"],
+  "audit_tools": [
+    "forex_bot/research/adaptive_ensemble/g10_snapshot.py",
+    "forex_bot/research/adaptive_ensemble/g10_verify.py",
+    "forex_bot/research/adaptive_ensemble/g10_audit.py"
+  ],
+  "research_artifacts": "data/research/adaptive_ensemble/g10/",
+  "running_production": "unchanged",
+  "frozen_g7_archive": "unchanged"
+}

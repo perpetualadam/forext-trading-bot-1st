@@ -1,0 +1,21 @@
+{
+  "broker_orders_submitted": false,
+  "broker_requests": 0,
+  "consensus_forecast_modified": false,
+  "deployment_performed": false,
+  "docker_commands_issued": false,
+  "g3_normalised_verified": true,
+  "g3_raw_verified": true,
+  "g4_package_hash": "05b56d1ed7736025e86a9e3f94fb44bb49ea6208718aab7af9cfde6977a6c201",
+  "g4_policy_hash": "6ea84361d6fec3e1743fce2c238940d9f2fda50b78b1d5e305d07d18650d29d4",
+  "git_revision": "f6c4f40ae6b7614379347ed45141ecd5a3d33642",
+  "live_database_writes": false,
+  "live_order_authorisation_changed": false,
+  "porcelain_count": 66,
+  "protocol_hash": "539cdc083f83393a79d254d21385edc6c48e88eb0f085d4549df9fdd6d431bc0",
+  "protocol_verified": true,
+  "running_container_changed": false,
+  "running_image_identity": "not_inspected_no_operational_probe",
+  "stage": "G.6",
+  "strategies_activated": false
+}

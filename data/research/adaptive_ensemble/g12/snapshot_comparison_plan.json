@@ -1,0 +1,16 @@
+{
+  "image_bytes": "not_inspected",
+  "pins": {
+    "g7_archive": "0ee97accd2d4a8297a053eb26c5138324192ab5b1f700214acf091d0f6487f82",
+    "g10_archive": "d0317de858a00b194bc44408932ad6508eec411fe0179b0196175a2985b12277",
+    "git_head": "f6c4f40ae6b7614379347ed45141ecd5a3d33642"
+  },
+  "git_head_is_not_the_image": true,
+  "reason": "HEAD does not contain forex_bot/live_safety.py or forex_bot/market_provenance.py. Those files exist only in the dirty tree and in the later G.7 and G.10 archives.",
+  "files_that_differ_between_g7_and_g10": [
+    "forex_bot/bot_loop.py",
+    "forex_bot/oanda_exec.py",
+    "forex_bot/decision_skip_log.py"
+  ],
+  "after_approval": "Hash the final merged image paths and compare each hash with the G.7 pin, the G.10 pin, and neither."
+}

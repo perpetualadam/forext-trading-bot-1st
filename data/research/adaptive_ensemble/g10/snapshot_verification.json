@@ -1,0 +1,20 @@
+{
+  "archive_sha256": "d0317de858a00b194bc44408932ad6508eec411fe0179b0196175a2985b12277",
+  "file_count": 196,
+  "format": "ustar",
+  "independent_verification": true,
+  "manifest_sha256": "93c73c21bd6f144e7d656be74128a771c3274025c0e88b8a052ffbc742f417cf",
+  "operational_state_included": false,
+  "payload_bytes": 1502270,
+  "regeneration_identical": true,
+  "repair_markers": {
+    "assertion_reraise": true,
+    "contain_candle_exception": true,
+    "cycle_integrity_error": true,
+    "early_return_removed": true,
+    "management_continued": false,
+    "present": true
+  },
+  "sensitive_files_included": false,
+  "snapshot_id": "stage_g10_consolidated_source_v1"
+}

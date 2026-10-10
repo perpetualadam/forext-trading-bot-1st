@@ -49,6 +49,10 @@ class Strategy:
         self.name = name
         self.pnl: list[float] = []
         self.active = True
+        self.disable_reason: str | None = None
+        self.changed_at_utc: str | None = None
+        self.loaded_from_durable: bool = False
+        self.authorised_for_live: bool = False
 
     def update_pnl(self, pnl: float) -> None:
         self.pnl.append(pnl)
@@ -153,6 +157,14 @@ def select_strategy(symbol: str, routing_df: pd.DataFrame) -> tuple[str | None, 
     scalp_lb = _env_int("SCALP_LOOKBACK", 50)
     swing_lb = _env_int("SWING_LOOKBACK", 100)
     default_lb = _env_int("DEFAULT_INDICATOR_LOOKBACK", 50)
+
+    from forex_bot.decision_repair.flags import deterministic_select_enabled
+
+    if deterministic_select_enabled():
+        from forex_bot.decision_repair.selection import select_deterministic
+
+        result = select_deterministic(symbol, routing_df, persist=True)
+        return result.selected, result.lookback, result.horizon
 
     if not hybrid_enabled(symbol):
         name = select_strategy_legacy()

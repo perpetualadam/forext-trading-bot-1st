@@ -1,0 +1,14 @@
+{
+  "current_source": {
+    "missing_safety_state": "BLOCKED default_deny_no_durable_state",
+    "persisted_allowed": "ignored until operator action",
+    "strategies": "six names, inactive by default"
+  },
+  "running_image": {
+    "fail_closed_proven_from_image_bytes": false,
+    "historical_association": "same image id as the Stage A fail-closed build",
+    "management_continuity": "not in this image; the repair is local and undeployed",
+    "provenance": "not in this image; market_provenance_v2 is local and undeployed"
+  },
+  "rollback_restores_current_repairs": false
+}

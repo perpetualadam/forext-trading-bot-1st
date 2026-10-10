@@ -1,0 +1,18 @@
+{
+  "cache_handling": "set_pricing_snapshot downgrades seals to CACHED_UNVERIFIED",
+  "candle_transformation": "mid OHLC retained; provenance stays on frame.attrs",
+  "indicator_construction": "uses the fetched frame; does not mint live provenance",
+  "order_boundary": "_place_market_order_open_sync requires a sealed pricing quote after live auth",
+  "production_price_acquisition": "fetch_ohlcv then fetch_entry_pricing",
+  "provenance_loss_points": [
+    "copying a frame without attrs drops the seal and is rejected",
+    "mutating OHLC after the seal fails the content hash",
+    "storing a quote in the process cache downgrades it"
+  ],
+  "risk_controls": "unchanged and still required after provenance",
+  "strategy_decisions": "broker branch rejects a frame that is not sealed live",
+  "unverified_paths": [
+    "same-process code can call bind_live_frame; a label or file cannot",
+    "off-window simulate scoring of an injected frame cannot submit an order"
+  ]
+}

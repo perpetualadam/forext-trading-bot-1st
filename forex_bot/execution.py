@@ -133,15 +133,11 @@ def execution_mode_explicit() -> bool:
 
 
 def pre_trade_entry_allowed() -> bool:
-    """Single combined gate for **new** risk: kill switch / halt + reconcile policy.
+    """Single combined gate for **new** risk: kill switch / halt + reconcile + live auth.
 
     :mod:`forex_bot.operational_state` derives labels from this path; do not gate on those labels.
     """
-    if not trading_allowed():
-        return False
-    from forex_bot.reconciliation import new_entries_allowed_by_reconcile
-
-    return new_entries_allowed_by_reconcile()
+    return pre_trade_entry_blocked_reason() is None
 
 
 def pre_trade_entry_blocked_reason() -> str | None:
@@ -149,6 +145,51 @@ def pre_trade_entry_blocked_reason() -> str | None:
         return "halt_runtime"
     if kill_switch_env_active():
         return "kill_switch_env"
+    from forex_bot.live_safety import live_open_blocked_reason
+
+    auth_block = live_open_blocked_reason()
+    if auth_block:
+        return auth_block
+    from forex_bot.decision_repair.flags import account_risk_enabled
+
+    if account_risk_enabled():
+        from forex_bot.decision_repair.account_risk import block_reason
+        from forex_bot.state import state as app_state
+
+        nav = app_state.get("broker_nav")
+        try:
+            equity = float(nav) if nav is not None else None
+        except (TypeError, ValueError):
+            equity = None
+        if "broker_unrealised_pl" in app_state:
+            raw_upl = app_state.get("broker_unrealised_pl")
+            try:
+                unrealised = float(raw_upl) if raw_upl is not None else None
+            except (TypeError, ValueError):
+                unrealised = None
+        else:
+            unrealised = None
+        risk_block = block_reason(equity=equity, unrealised=unrealised)
+        if risk_block:
+            return risk_block
+        from forex_bot.decision_repair.exposure import (
+            block_reason_for_snapshot,
+            snapshot_from_broker_view,
+        )
+
+        if "broker_positions" not in app_state or "broker_pending_orders" not in app_state:
+            return "exposure_snapshot_missing"
+        snap = snapshot_from_broker_view(
+            nav=equity,
+            unrealised=unrealised if unrealised is not None else 0.0,
+            positions=list(app_state.get("broker_positions") or []),
+            pending_orders=list(app_state.get("broker_pending_orders") or []),
+            reconcile_status=str(app_state.get("broker_reconcile_status") or "unknown"),
+            stale=bool(app_state.get("broker_exposure_stale")),
+        )
+        exp_block = block_reason_for_snapshot(snap)
+        if exp_block:
+            return exp_block
     from forex_bot.reconciliation import reconcile_entry_blocked_reason
 
     return reconcile_entry_blocked_reason()

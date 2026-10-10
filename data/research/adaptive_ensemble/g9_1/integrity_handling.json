@@ -1,0 +1,7 @@
+{
+  "ambiguous_case": "A programming bug inside fetch_ohlcv that raises RuntimeError is treated as candles unavailable, because that call cannot expose whether the error was a client failure or an internal bug. It is not treated as shared-state corruption.",
+  "assertion_error": "re-raised",
+  "cycle_integrity_error": "re-raised and stops later symbols",
+  "position_book_runtimeerror": "symbol-local management_unavailable; no guessed close",
+  "programming_error_after_candles": "still propagates from evaluate"
+}

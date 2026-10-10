@@ -412,7 +412,9 @@ def fetch_ohlcv_range(
         return None
     df = pd.DataFrame(rows)
     df = df.drop_duplicates(subset=["time"], keep="last").sort_values("time").reset_index(drop=True)
-    return df
+    from forex_bot.market_provenance import bind_historical_frame
+
+    return bind_historical_frame(df, instrument=oanda_instrument(symbol), host=official_rest_host())
 
 
 def _optional_price(block: dict[str, Any] | None, key: str) -> float | None:
@@ -484,7 +486,10 @@ def fetch_ohlcv(
         ohlcv.append(row)
     if not ohlcv:
         return None
-    return pd.DataFrame(ohlcv)
+    frame = pd.DataFrame(ohlcv)
+    from forex_bot.market_provenance import CANDLE_ENDPOINT, bind_live_frame
+
+    return bind_live_frame(frame, instrument=inst, host=official_rest_host(), endpoint=CANDLE_ENDPOINT)
 
 
 def _parse_pricing_px(raw: Any) -> float | None:
@@ -563,7 +568,7 @@ def fetch_pricing_snapshot(
             tradeable = status not in ("non-tradeable", "nontradeable", "invalid")
         else:
             tradeable = bool(tradeable_flag)
-        out[inst] = ManageQuote(
+        quote = ManageQuote(
             instrument=inst,
             bid=_parse_pricing_px(bid0),
             ask=_parse_pricing_px(ask0),
@@ -571,5 +576,13 @@ def fetch_pricing_snapshot(
             closeout_ask=_parse_pricing_px(p.get("closeoutAsk")),
             time_epoch=_to_epoch(p.get("time")),
             tradeable=tradeable,
+        )
+        from forex_bot.market_provenance import PRICING_ENDPOINT, bind_live_quote
+
+        out[inst] = bind_live_quote(
+            quote,
+            instrument=inst,
+            host=official_rest_host(),
+            endpoint=PRICING_ENDPOINT,
         )
     return out

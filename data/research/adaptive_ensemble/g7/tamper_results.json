@@ -1,0 +1,11 @@
+{
+  "consistent_wrong_hash": "modified_file",
+  "dockerfile": "modified_file",
+  "duplicate_path": "duplicate_path",
+  "manifest_entry": "manifest_hash_mismatch",
+  "missing_file": "missing_file",
+  "modified_file": "modified_file",
+  "path_traversal": "unsafe_path",
+  "secret_path": "secret_path",
+  "unexpected_file": "unexpected_file"
+}

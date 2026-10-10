@@ -1,0 +1,20 @@
+{
+  "changes": [
+    {
+      "class": "NON_BEHAVIOURAL_INFRASTRUCTURE",
+      "item": "isolation.FORBIDDEN expanded with oanda_client and oanda_candles_read"
+    },
+    {
+      "class": "BEHAVIOURAL_REPAIR_REQUIRES_REBASELINE",
+      "item": "WeightStateV2 fail-closed persistence"
+    },
+    {
+      "class": "NON_BEHAVIOURAL_INFRASTRUCTURE",
+      "item": "timestamped GBP conversion interface"
+    },
+    {
+      "class": "RESEARCH_MODEL_CHANGE_FORBIDDEN_IN_G1",
+      "item": "Stage G quote_to_gbp / WeightState.load / evaluate warmup left unchanged"
+    }
+  ]
+}

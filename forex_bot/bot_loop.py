@@ -22,6 +22,7 @@ from forex_bot.execution import (
     pre_trade_entry_blocked_reason,
 )
 from forex_bot.indicators import compute_indicators
+from forex_bot.live_manage import ManageQuote
 from forex_bot.nn_pred import compute_nn_pred
 import forex_bot.oanda_exec as oanda_exec
 from forex_bot.oanda_client import (
@@ -86,8 +87,39 @@ from forex_bot.state import (
     state as state_dict,
 )
 from forex_bot.decision_skip_log import (
+    CANDLE_ACQUISITION_FAILED,
+    CANDLE_INTERNAL_ERROR,
+    CANDLE_PARSING_FAILED,
+    CYCLE_INTEGRITY_FAILED,
+    DECISION_CANDLES_EMPTY,
+    DECISION_CANDLES_FETCH_FAILED,
+    DECISION_CANDLES_MISSING,
+    DECISION_CANDLES_UNVERIFIED,
+    ENTRY_SKIPPED_NO_VALID_CANDLES,
+    INSTRUMENT_CYCLE_FAILED,
+    LIVE_ORDER_AUTH_BLOCKED,
+    MANAGEMENT_CONTINUED_WITHOUT_CANDLES,
+    MANAGEMENT_QUOTE_STALE,
+    MANAGEMENT_QUOTE_UNAVAILABLE,
+    MANAGEMENT_UNAVAILABLE,
+    MARKET_SESSION_CLOSED,
+    NO_OHLCV,
     NO_STRATEGY_SELECTED,
+    POSITION_ALREADY_OPEN,
+    PROTECTIVE_CLOSE_FAILED,
+    PROTECTIVE_CLOSE_UNCONFIRMED,
+    QUANT_AI_REJECTED,
+    RECONCILE_OR_PRETRADE_BLOCKED,
+    RL_DIRECTION_MISMATCH,
+    RL_SKIP,
+    RL_STATE_UNAVAILABLE,
+    SIZING_BELOW_MIN,
+    STALE_OR_INVALID_DATA,
     STRATEGY_INACTIVE,
+    STRATEGY_NOT_AUTHORISED,
+    VOLATILITY_UNSAFE,
+    WEEKEND_FLATTEN,
+    log_decision_skip,
     log_strategy_pre_sizing_skip,
 )
 from forex_bot.strategy_meta import select_strategy, seq_model, strategies
@@ -118,6 +150,67 @@ from forex_bot.trading import (
 logger = logging.getLogger(__name__)
 
 rl_agent = RLAgent()
+
+
+def _safe_audit(**fields: object) -> None:
+    """Merge into the current evaluation session, or append a standalone record."""
+    try:
+        from forex_bot.decision_repair.audit import current_audit
+        from forex_bot.live_safety import live_order_auth_state
+
+        cur = current_audit()
+        payload = {k: v for k, v in fields.items() if v is not None}
+        if "live_order_auth_state" not in payload:
+            payload["live_order_auth_state"] = live_order_auth_state()
+        if cur is not None:
+            cur.update(**payload)
+            return
+        from forex_bot.decision_repair.flags import audit_enabled
+        from forex_bot.decision_repair.audit import append_record_safe, empty_record
+
+        if not audit_enabled():
+            return
+        rec = empty_record(symbol=str(fields.get("symbol") or ""))
+        rec.update(payload)
+        append_record_safe(rec)
+    except Exception:
+        logger.exception("decision audit append failed (ignored)")
+
+
+def _audit_reject(reason: str, *, stage: str) -> None:
+    try:
+        from forex_bot.decision_repair.audit import reject_current
+
+        reject_current(reason, stage=stage)
+    except Exception:
+        logger.exception("decision audit reject stamp failed (ignored)")
+
+
+def _audit_close(*, outcome: str, trigger: str, evidence: str = "NOT_EVALUATED") -> None:
+    """Never blocks a protective close."""
+    try:
+        from forex_bot.decision_repair.audit import current_audit
+
+        cur = current_audit()
+        if cur is None:
+            return
+        cur.note_close(outcome=outcome, trigger=trigger, evidence=evidence)
+    except Exception:
+        logger.exception("decision audit close stamp failed (ignored; close not blocked)")
+
+
+def _permit_new_exposure_or_block() -> bool:
+    """Fail closed for new exposure when the audit flag is on and the write fails."""
+    try:
+        from forex_bot.decision_repair.audit import current_audit
+
+        cur = current_audit()
+        if cur is None:
+            return True
+        return bool(cur.permit_new_exposure())
+    except Exception:
+        logger.exception("decision audit new-exposure persist failed (blocked)")
+        return False
 portfolio = PortfolioEngine()
 
 _last_performance_log_ts: float = 0.0
@@ -345,32 +438,233 @@ def _observe_v2_shadow_candidate(
     )
 
 
+class CycleIntegrityError(RuntimeError):
+    """Shared-state failure. Stop the rest of this symbol cycle."""
+
+
+def _record_candle_failure(symbol: str, reason: str) -> None:
+    """Record a decision-candle failure without logging broker payloads."""
+    logger.warning("%s: %s", symbol, reason)
+    log_decision_skip(symbol=symbol, reason=reason, stage="data")
+    if reason == DECISION_CANDLES_UNVERIFIED:
+        log_decision_skip(symbol=symbol, reason=STALE_OR_INVALID_DATA, stage="data")
+        return
+    if reason != NO_OHLCV:
+        log_decision_skip(symbol=symbol, reason=NO_OHLCV, stage="data")
+
+
+def _skip_new_entry_without_candles(symbol: str, audit_reason: str = NO_OHLCV) -> None:
+    log_decision_skip(symbol=symbol, reason=ENTRY_SKIPPED_NO_VALID_CANDLES, stage="data")
+    log_decision_skip(symbol=symbol, reason=audit_reason, stage="data")
+
+
+def _candle_exception_kind(exc: BaseException) -> str:
+    """Classify a candle-boundary failure. Integrity errors are not passed here."""
+    from forex_bot.market_provenance import ProvenanceRejected
+
+    if isinstance(exc, ProvenanceRejected):
+        return CANDLE_INTERNAL_ERROR
+    if isinstance(exc, (ValueError, KeyError, TypeError, ArithmeticError)):
+        return CANDLE_PARSING_FAILED
+    if isinstance(exc, RuntimeError):
+        return CANDLE_INTERNAL_ERROR
+    return CANDLE_ACQUISITION_FAILED
+
+
+def _contain_candle_exception(symbol: str, exc: BaseException) -> tuple[None, str]:
+    """Candles are unavailable. This does not decide whether a position can be managed."""
+    kind = _candle_exception_kind(exc)
+    logger.warning("%s: %s (%s)", symbol, kind, type(exc).__name__)
+    log_decision_skip(symbol=symbol, reason=kind, stage="data")
+    _record_candle_failure(symbol, DECISION_CANDLES_FETCH_FAILED)
+    return None, NO_OHLCV
+
+
+async def _load_decision_candles(symbol: str, count: int):
+    """Load the decision frame. Acquisition failure returns None and never fabricates bars.
+
+    The second value is the audit reason that must stay last when no entry is made.
+    ``CycleIntegrityError`` is the only acquisition-call failure that stops the cycle.
+    """
+    try:
+        raw = await asyncio.to_thread(fetch_ohlcv, symbol, "M5", count)
+    except CycleIntegrityError:
+        raise
+    except AssertionError:
+        raise
+    except Exception as exc:  # noqa: BLE001 — candle failures must not skip position management
+        return _contain_candle_exception(symbol, exc)
+    try:
+        if raw is None:
+            _record_candle_failure(symbol, DECISION_CANDLES_MISSING)
+            return None, NO_OHLCV
+        if bool(getattr(raw, "empty", True)):
+            _record_candle_failure(symbol, DECISION_CANDLES_EMPTY)
+            return None, NO_OHLCV
+        if "close" not in raw.columns or bool(raw["close"].isna().iloc[-1]):
+            logger.warning("Incomplete OHLCV for %s", symbol)
+            _record_candle_failure(symbol, DECISION_CANDLES_UNVERIFIED)
+            return None, STALE_OR_INVALID_DATA
+    except CycleIntegrityError:
+        raise
+    except AssertionError:
+        raise
+    except Exception:  # noqa: BLE001 — a malformed frame is unverified, not a cycle abort
+        logger.warning("%s: decision candle frame could not be validated", symbol)
+        _record_candle_failure(symbol, DECISION_CANDLES_UNVERIFIED)
+        return None, STALE_OR_INVALID_DATA
+    return raw, None
+
+
+def _normalise_instrument(value: object) -> str:
+    return str(value or "").replace("/", "_").replace("-", "_").upper()
+
+
+def _screen_manage_quote(
+    symbol: str, quote: ManageQuote | None
+) -> tuple[ManageQuote | None, str | None]:
+    """Check instrument identity and bid/ask. Freshness stays in resolve_broker_manage_price."""
+    if quote is None:
+        return None, MANAGEMENT_QUOTE_UNAVAILABLE
+    if _normalise_instrument(getattr(quote, "instrument", "")) != _normalise_instrument(symbol):
+        return None, MANAGEMENT_QUOTE_UNAVAILABLE
+    bid = getattr(quote, "bid", None)
+    ask = getattr(quote, "ask", None)
+    if bid is not None or ask is not None:
+        try:
+            bid_f = float(bid) if bid is not None else None
+            ask_f = float(ask) if ask is not None else None
+        except (TypeError, ValueError):
+            return None, MANAGEMENT_QUOTE_UNAVAILABLE
+        if (
+            bid_f is None
+            or ask_f is None
+            or not math.isfinite(bid_f)
+            or not math.isfinite(ask_f)
+            or bid_f <= 0
+            or ask_f <= 0
+            or bid_f > ask_f
+        ):
+            return None, MANAGEMENT_QUOTE_UNAVAILABLE
+    from forex_bot.live_manage import MANAGE_PRICE_STALE_SEC, quote_age_sec
+
+    age = quote_age_sec(quote)
+    if age is not None and age > float(MANAGE_PRICE_STALE_SEC):
+        return quote, MANAGEMENT_QUOTE_STALE
+    return quote, None
+
+
+def _position_close_identity(pos: Position) -> tuple[str, float] | None:
+    side = str(getattr(pos, "direction", "") or "").upper().strip()
+    if side not in ("BUY", "SELL"):
+        return None
+    try:
+        units = float(pos.units)
+    except (TypeError, ValueError):
+        return None
+    if not math.isfinite(units) or units <= 0:
+        return None
+    return side, units
+
+
+def _close_exception_reason(exc: BaseException) -> str:
+    text = str(exc).lower()
+    if isinstance(exc, TimeoutError) or "timed out" in text or "timeout" in text:
+        return PROTECTIVE_CLOSE_UNCONFIRMED
+    return PROTECTIVE_CLOSE_FAILED
+
+
+async def _cycle_symbols(symbols) -> None:
+    """Run one symbol at a time. An isolated failure does not skip the remaining names."""
+    for symbol in symbols:
+        try:
+            await evaluate(symbol)
+        except CycleIntegrityError:
+            logger.exception("instrument cycle integrity failure on %s", symbol)
+            log_decision_skip(symbol=symbol, reason=CYCLE_INTEGRITY_FAILED, stage="cycle")
+            log_decision_skip(
+                symbol=symbol,
+                reason=INSTRUMENT_CYCLE_FAILED,
+                stage="cycle",
+                detail="integrity",
+            )
+            raise
+        except Exception:
+            logger.exception("instrument_cycle_failed %s", symbol)
+            log_decision_skip(symbol=symbol, reason=INSTRUMENT_CYCLE_FAILED, stage="cycle")
+
+
 async def evaluate(symbol: str) -> None:
+    """Evaluate one symbol. Audit session is best-effort except fail-closed new exposure."""
+    from forex_bot.decision_repair.audit import EvaluationAudit
+
+    session = EvaluationAudit.start(symbol)
+    try:
+        await _evaluate_impl(symbol)
+    except Exception:
+        session.note_error("UNEXPECTED_EVALUATION_ERROR")
+        raise
+    finally:
+        session.finish()
+
+
+async def _evaluate_impl(symbol: str) -> None:
     """Evaluate: manage open positions (TP/SL) or open new risk-based positions (hybrid + AI + RL)."""
     ohlcv_count = _env_int("HYBRID_OHLCV_COUNT", 200)
-    raw = await asyncio.to_thread(fetch_ohlcv, symbol, "M5", ohlcv_count)
-    if raw is None or raw.empty:
-        logger.warning("No OHLCV for %s", symbol)
-        return
+    raw, candle_audit = await _load_decision_candles(symbol, ohlcv_count)
+    price = None
+    if raw is not None:
+        try:
+            from forex_bot.decision_repair.audit import candle_fingerprint
+
+            last = raw.iloc[-1]
+            _safe_audit(
+                candle_time=str(last["time"]) if "time" in raw.columns else "NOT_EVALUATED",
+                candle_fingerprint=candle_fingerprint(
+                    {k: last[k] for k in ("time", "open", "high", "low", "close") if k in raw.columns}
+                ),
+            )
+        except Exception:
+            logger.exception("decision audit candle stamp failed (ignored)")
+        try:
+            _persist_v2_shadow_market_m5(symbol, raw)
+        except Exception:
+            logger.exception("[V2 SHADOW] market persist failed (ignored)")
+        price = float(raw["close"].iloc[-1])
+        record_mid(symbol, price)
+
     try:
-        _persist_v2_shadow_market_m5(symbol, raw)
+        pos = get_position(symbol)
+    except CycleIntegrityError:
+        raise
     except Exception:
-        logger.exception("[V2 SHADOW] market persist failed (ignored)")
-
-    price = float(raw["close"].iloc[-1])
-    record_mid(symbol, price)
-
-    pos = get_position(symbol)
+        logger.exception("%s: position state unavailable", symbol)
+        log_decision_skip(symbol=symbol, reason=MANAGEMENT_UNAVAILABLE, stage="position")
+        log_decision_skip(
+            symbol=symbol,
+            reason=INSTRUMENT_CYCLE_FAILED,
+            stage="position",
+            detail="position_state_unavailable",
+        )
+        return
+    if raw is None and pos is not None:
+        log_decision_skip(symbol=symbol, reason=MANAGEMENT_CONTINUED_WITHOUT_CANDLES, stage="position")
+    if raw is None and pos is None:
+        _skip_new_entry_without_candles(symbol, candle_audit or NO_OHLCV)
+        return
     weekend_flat = flatten_for_weekend()
     # Session / weekend-flatten gates block *new entries* only — always manage open risk first.
     if pos is None and (not in_active_session(symbol) or weekend_flat):
         if weekend_flat:
             logger.info("%s: skip new open — weekend flatten window (before Friday FX close)", symbol)
+            log_decision_skip(symbol=symbol, reason=WEEKEND_FLATTEN, stage="session")
         else:
             alert(f"{symbol}: Market closed, skipping trade")
+            log_decision_skip(symbol=symbol, reason=MARKET_SESSION_CLOSED, stage="session")
         return
 
     if pos:
+        log_decision_skip(symbol=symbol, reason=POSITION_ALREADY_OPEN, stage="position")
         from forex_bot.live_manage import (
             PRICE_SOURCE_PAPER_CANDLE,
             broker_sl_tp_hit,
@@ -380,19 +674,33 @@ async def evaluate(symbol: str) -> None:
         )
 
         m5_close = price
-        m5_time = _m5_bar_time(raw)
+        m5_time = _m5_bar_time(raw) if raw is not None else ""
         quote = None
+        quote_diag = None
         if is_broker_backed(pos):
-            snap = pricing_snapshot()
-            quote = snap.get(pos.symbol) or snap.get(symbol)
+            try:
+                snap = pricing_snapshot()
+            except CycleIntegrityError:
+                raise
+            except Exception:
+                logger.exception("%s: management quote lookup failed", symbol)
+                snap = {}
+            quote = snap.get(pos.symbol) or snap.get(symbol) if isinstance(snap, dict) else None
+            quote, quote_diag = _screen_manage_quote(symbol, quote)
+            if quote_diag == MANAGEMENT_QUOTE_STALE:
+                log_decision_skip(symbol=symbol, reason=MANAGEMENT_QUOTE_STALE, stage="position")
+            elif quote_diag == MANAGEMENT_QUOTE_UNAVAILABLE:
+                log_decision_skip(symbol=symbol, reason=MANAGEMENT_QUOTE_UNAVAILABLE, stage="position")
             manage_price, price_source = resolve_broker_manage_price(quote, pos.direction)
         else:
             manage_price = m5_close
             price_source = PRICE_SOURCE_PAPER_CANDLE
+            if manage_price is None:
+                log_decision_skip(symbol=symbol, reason=MANAGEMENT_QUOTE_UNAVAILABLE, stage="position")
 
         log_px = manage_price if manage_price is not None else m5_close
-        if _position_log_enabled():
-            _log_open_position_line(symbol, pos, log_px)
+        if _position_log_enabled() and log_px is not None:
+            _log_open_position_line(symbol, pos, float(log_px))
 
         current_pips = None
         if manage_price is not None:
@@ -403,7 +711,8 @@ async def evaluate(symbol: str) -> None:
                 seed_position_mfe(
                     pos, manage_price, raw, include_partial_entry_bar=False
                 )
-                raise_mfe_from_post_entry_ohlcv(pos, raw)
+                if raw is not None:
+                    raise_mfe_from_post_entry_ohlcv(pos, raw)
             else:
                 seed_position_mfe(pos, manage_price, raw)
             pp = apply_profit_protection(pos, manage_price, ohlcv=raw)
@@ -464,6 +773,18 @@ async def evaluate(symbol: str) -> None:
             alert(f"{symbol}: Weekend flatten — closing before Friday FX close (avoid weekend gap)")
 
         if close_hit or weekend_flat or protect_hit:
+            if _position_close_identity(pos) is None:
+                logger.error(
+                    "%s: protective close withheld — position side or size is uncertain",
+                    symbol,
+                )
+                log_decision_skip(
+                    symbol=symbol,
+                    reason=PROTECTIVE_CLOSE_FAILED,
+                    stage="position",
+                    detail="uncertain_position",
+                )
+                return
             mh = _min_position_hold_sec()
             if (
                 close_hit
@@ -478,6 +799,7 @@ async def evaluate(symbol: str) -> None:
                     mh,
                     time.time() - float(pos.open_time),
                 )
+                _audit_reject("POSITION_MIN_HOLD", stage="position")
                 return
             fill_path = close_fill_path(symbol, pos.execution_kind)
             if fill_path == "abort_broker_disabled":
@@ -488,15 +810,28 @@ async def evaluate(symbol: str) -> None:
                     f"EXECUTION_MODE/USE_OANDA_LIVE is not sending orders (fail closed)"
                 )
                 logger.error("%s: live close aborted — broker orders disabled", symbol)
+                _audit_reject("CLOSE_BROKER_DISABLED", stage="position")
                 return
 
             spr_c: float | None
             slp_c: float | None
             impact_amt: float
-            exit_price_exec: float
+            exit_price_exec: float | None
             lat_ms: int
 
             if fill_path == "simulate":
+                if raw is None or price is None:
+                    logger.error(
+                        "%s: paper close not priced — decision candles unavailable",
+                        symbol,
+                    )
+                    log_decision_skip(
+                        symbol=symbol,
+                        reason=MANAGEMENT_QUOTE_UNAVAILABLE,
+                        stage="position",
+                    )
+                    _audit_reject("CLOSE_UNPRICED", stage="position")
+                    return
                 # SIMULATION CONTROL START
                 lat_ms = await apply_latency()
                 route_lb = _env_int("HYBRID_ROUTE_LOOKBACK", 60)
@@ -520,18 +855,37 @@ async def evaluate(symbol: str) -> None:
                 lat_ms = 0
                 spr_c, slp_c = None, None
                 impact_amt = 0.0
-                exit_price_exec = float(price)
-                pnl = calculate_pnl(pos, exit_price_exec)
-                if fill_path == "broker":
+                if price is None:
+                    if fill_path != "broker":
+                        logger.error(
+                            "%s: protective close not priced — management price unavailable",
+                            symbol,
+                        )
+                        log_decision_skip(
+                            symbol=symbol,
+                            reason=MANAGEMENT_QUOTE_UNAVAILABLE,
+                            stage="position",
+                        )
+                        _audit_reject("CLOSE_UNPRICED", stage="position")
+                        return
+                    exit_price_exec = None
+                    pnl = 0.0
                     alert(
-                        f"[EXECUTION] BROKER_CLOSE {symbol} current={price:.5f} "
-                        f"source={price_source} (PositionClose)"
+                        f"[EXECUTION] BROKER_CLOSE {symbol} source={price_source} (PositionClose)"
                     )
                 else:
-                    alert(
-                        f"[EXECUTION] MID {symbol} close mid={price:.5f} "
-                        f"(paper/window_paper; no broker order)"
-                    )
+                    exit_price_exec = float(price)
+                    pnl = calculate_pnl(pos, exit_price_exec)
+                    if fill_path == "broker":
+                        alert(
+                            f"[EXECUTION] BROKER_CLOSE {symbol} current={float(price):.5f} "
+                            f"source={price_source} (PositionClose)"
+                        )
+                    else:
+                        alert(
+                            f"[EXECUTION] MID {symbol} close mid={float(price):.5f} "
+                            f"(paper/window_paper; no broker order)"
+                        )
 
             if protect_hit:
                 mark_protection_close_attempt(pos)
@@ -553,7 +907,7 @@ async def evaluate(symbol: str) -> None:
                     broker_id=str(getattr(pos, "broker_order_id", "") or ""),
                     reason=close_reason,
                     entry=float(pos.entry_price),
-                    current_price=float(price),
+                    current_price=None if price is None else float(price),
                     price_source=price_source if pos else PRICE_SOURCE_PAPER_CANDLE,
                     sl=float(pos.stop_loss),
                     tp=float(pos.take_profit),
@@ -576,6 +930,8 @@ async def evaluate(symbol: str) -> None:
                 )
             except Exception:
                 logger.exception("%s: trade diagnostics snapshot failed (ignored)", symbol)
+            _audit_close(outcome="CLOSE_INTENT", trigger=close_reason, evidence="NOT_EVALUATED")
+            _audit_close(outcome="CLOSE_SUBMISSION_ATTEMPTED", trigger=close_reason, evidence="NOT_EVALUATED")
             try:
                 pnl = await execute_trade(
                     pos.symbol,
@@ -593,10 +949,39 @@ async def evaluate(symbol: str) -> None:
                     diagnostics=diagnostics,
                 )
             except Exception as exc:
-                logger.exception("%s: close execution/logging failed: %s", symbol, exc)
+                close_diag = _close_exception_reason(exc)
+                logger.exception("%s: close execution/logging failed (%s)", symbol, close_diag)
+                log_decision_skip(symbol=symbol, reason=close_diag, stage="position")
+                _audit_reject("CLOSE_FAILED", stage="position")
+                _audit_close(
+                    outcome="CLOSE_UNCONFIRMED" if close_diag == PROTECTIVE_CLOSE_UNCONFIRMED else "CLOSE_FAILED",
+                    trigger=close_reason,
+                    evidence="execute_trade_exception",
+                )
                 return
             close_position(symbol)
+            if fill_path == "broker":
+                _audit_close(
+                    outcome="CLOSE_ACKNOWLEDGED",
+                    trigger=close_reason,
+                    evidence="execute_trade_returned",
+                )
+            else:
+                _audit_close(outcome="CLOSE_EXECUTED", trigger=close_reason, evidence="local_fill")
             rl_agent.update(pos.rl_state, pos.direction, pnl)
+            try:
+                from forex_bot.decision_repair.flags import rl_persist_enabled
+                from forex_bot.decision_repair.rl_store import RLStore, research_path
+
+                if rl_persist_enabled():
+                    RLStore(research_path()).save(
+                        rl_agent.q,
+                        alpha=rl_agent.alpha,
+                        epsilon=rl_agent.epsilon,
+                        mode="training",
+                    )
+            except Exception:
+                logger.exception("RL persist failed (ignored; live gate unchanged)")
             logger.info(
                 "[CLOSE] %s | Dir=%s | Units=%.4f | PnL=%.5f | entry=%.5f exit=%.5f | "
                 "state=%s | reason=%s",
@@ -605,10 +990,14 @@ async def evaluate(symbol: str) -> None:
                 pos.units,
                 pnl,
                 pos.entry_price,
-                exit_price_exec,
+                exit_price_exec if exit_price_exec is not None else float("nan"),
                 pos.rl_state,
                 close_reason,
             )
+        return
+
+    if raw is None or price is None:
+        _skip_new_entry_without_candles(symbol, candle_audit or NO_OHLCV)
         return
 
     from forex_bot.broker_exit import broker_exit_open_blocked_reason
@@ -616,17 +1005,64 @@ async def evaluate(symbol: str) -> None:
     pending_exit = broker_exit_open_blocked_reason(symbol)
     if pending_exit:
         logger.warning("%s: new entry blocked — %s", symbol, pending_exit)
+        log_decision_skip(
+            symbol=symbol, reason=RECONCILE_OR_PRETRADE_BLOCKED, stage="pretrade", detail=pending_exit
+        )
         return
 
     blocked = pre_trade_entry_blocked_reason()
     if blocked:
         logger.warning("%s: new entry blocked — %s", symbol, blocked)
+        skip_code = (
+            LIVE_ORDER_AUTH_BLOCKED
+            if str(blocked).startswith("live_order_auth")
+            else RECONCILE_OR_PRETRADE_BLOCKED
+        )
+        log_decision_skip(symbol=symbol, reason=skip_code, stage="pretrade", detail=blocked)
         return
 
     route_lookback = _env_int("HYBRID_ROUTE_LOOKBACK", 60)
     df_route = compute_indicators(raw, lookback=route_lookback)
 
     strategy_name, lookback, horizon = select_strategy(symbol, df_route)
+    try:
+        from forex_bot.decision_repair.flags import deterministic_select_enabled
+        from forex_bot.decision_repair.selection import last_selection
+
+        sel = last_selection() if deterministic_select_enabled() else None
+    except Exception:
+        sel = None
+    _safe_audit(
+        symbol=symbol,
+        selected_strategy=strategy_name,
+        selection_policy_version=(
+            sel.policy_version
+            if sel is not None
+            else (
+                "deterministic_v1_unvalidated"
+                if (os.getenv("DECISION_REPAIR_DETERMINISTIC_SELECT") or "").strip()
+                else "legacy_random"
+            )
+        ),
+        candidates=[c.name for c in sel.candidates] if sel is not None else "NOT_EVALUATED",
+        candidate_eligibility=(
+            [
+                {
+                    "name": c.name,
+                    "eligible": c.eligible,
+                    "active": c.active,
+                    "reason": c.reject_reason,
+                }
+                for c in sel.candidates
+            ]
+            if sel is not None
+            else "NOT_EVALUATED"
+        ),
+        strategy_activation_state=(
+            "active" if strategy_name and strategies[strategy_name].active else "inactive"
+        ),
+        final_decision="pending",
+    )
     if strategy_name is None:
         log_strategy_pre_sizing_skip(
             symbol=symbol,
@@ -646,10 +1082,32 @@ async def evaluate(symbol: str) -> None:
             horizon=horizon,
         )
         return
+    from forex_bot.live_safety import live_safety_initialised
 
-    df = compute_indicators(raw, lookback=lookback)
+    if live_safety_initialised() and not bool(getattr(strat, "authorised_for_live", False)):
+        log_strategy_pre_sizing_skip(
+            symbol=symbol,
+            reason=STRATEGY_NOT_AUTHORISED,
+            selected=strategy_name,
+            lookback=lookback,
+            horizon=horizon,
+        )
+        return
+
+    try:
+        df = compute_indicators(raw, lookback=lookback)
+    except Exception:
+        logger.exception("%s: indicator calculation failed", symbol)
+        log_decision_skip(symbol=symbol, reason=STALE_OR_INVALID_DATA, stage="quant")
+        _audit_reject("INDICATOR_CALCULATION_FAILURE", stage="quant")
+        return
+    if df is None or getattr(df, "empty", True):
+        log_decision_skip(symbol=symbol, reason=STALE_OR_INVALID_DATA, stage="quant")
+        _audit_reject("INDICATOR_CALCULATION_FAILURE", stage="quant")
+        return
     if not volatility_ok(df):
         alert(f"{symbol}: Volatility outside safe range, skipping trade")
+        log_decision_skip(symbol=symbol, reason=VOLATILITY_UNSAFE, stage="quant")
         return
 
     price = float(df["close"].iloc[-1])
@@ -683,7 +1141,27 @@ async def evaluate(symbol: str) -> None:
         },
         symbol,
     )
+    if not isinstance(ai_decision, dict) or "allow" not in ai_decision:
+        log_decision_skip(
+            symbol=symbol,
+            reason=QUANT_AI_REJECTED,
+            stage="quant_ai",
+            strategy=strategy_name,
+        )
+        _safe_audit(ai_vote="UNAVAILABLE", ai_model_id="UNAVAILABLE")
+        return
+    _safe_audit(
+        ai_vote=ai_decision.get("direction") or "UNAVAILABLE",
+        ai_confidence=ai_decision.get("confidence"),
+        ai_model_id=str(ai_decision.get("model") or "ensemble"),
+    )
     if not ai_decision["allow"]:
+        log_decision_skip(
+            symbol=symbol,
+            reason=QUANT_AI_REJECTED,
+            stage="quant_ai",
+            strategy=strategy_name,
+        )
         return
 
     trend_v = float(df["trend"].iloc[-1])
@@ -699,6 +1177,22 @@ async def evaluate(symbol: str) -> None:
     if direction not in ("BUY", "SELL"):
         direction = "BUY"
     rl_action = rl_agent.decide(state)
+    _safe_audit(
+        rl_action=rl_action,
+        rl_state_fingerprint=state,
+        rl_model_id="tabular_q_v1",
+    )
+    if rl_action == "UNAVAILABLE":
+        logger.info("%s: RL state unavailable — blocking decision", symbol)
+        log_decision_skip(symbol=symbol, reason=RL_STATE_UNAVAILABLE, stage="rl", state=state)
+        _safe_audit(
+            symbol=symbol,
+            selected_strategy=strategy_name,
+            rl_action="UNAVAILABLE",
+            final_decision="reject",
+            rejection_reasons=[RL_STATE_UNAVAILABLE],
+        )
+        return
     try:
         _observe_v2_shadow_candidate(
             symbol=symbol,
@@ -717,6 +1211,7 @@ async def evaluate(symbol: str) -> None:
         logger.exception("[V2 SHADOW] observe failed (ignored)")
     if rl_action == "SKIP":
         logger.info("%s: RL decided to skip trade (state=%s)", symbol, state)
+        log_decision_skip(symbol=symbol, reason=RL_SKIP, stage="rl", state=state)
         return
     if rl_action in ("BUY", "SELL") and rl_action != direction:
         logger.info(
@@ -725,6 +1220,13 @@ async def evaluate(symbol: str) -> None:
             rl_action,
             direction,
             state,
+        )
+        log_decision_skip(
+            symbol=symbol,
+            reason=RL_DIRECTION_MISMATCH,
+            stage="rl",
+            rl=rl_action,
+            ai=direction,
         )
         return
     confidence = float(ai_decision.get("confidence", 0.6))
@@ -750,6 +1252,7 @@ async def evaluate(symbol: str) -> None:
                 symbol,
                 balance,
             )
+            log_decision_skip(symbol=symbol, reason=SIZING_BELOW_MIN, stage="sizing")
             return
         logger.info(
             "[SIZE] %s units=%.0f notional≈%.2f USD (per-trade %.2f%% of NAV %.2f; "
@@ -774,12 +1277,14 @@ async def evaluate(symbol: str) -> None:
     # MICRO_STRATEGY / LOT_SIZE HOOK END
 
     if units < 1e-6:
+        log_decision_skip(symbol=symbol, reason=SIZING_BELOW_MIN, stage="sizing")
         return
 
     if pre_close_adjustment(symbol):
         alert(f"{symbol}: Near session close, reducing position size by 50%")
         units *= 0.5
         if units < 1.0:
+            _audit_reject(SIZING_BELOW_MIN, stage="sizing")
             return
 
     alert(
@@ -798,6 +1303,7 @@ async def evaluate(symbol: str) -> None:
             f"(set EXECUTION_MODE=live_broker or paper_broker; fail closed, no local live fill)"
         )
         logger.error("%s: live open aborted — broker orders disabled", symbol)
+        _audit_reject("BROKER_ORDERS_DISABLED", stage="pretrade")
         return
     use_live_fill = fill_path == "broker"
     if use_live_fill:
@@ -811,6 +1317,7 @@ async def evaluate(symbol: str) -> None:
         skip_why = paper_open_blocked_reason(symbol)
         if skip_why:
             logger.warning("[PAPER SKIP] %s | %s", symbol, skip_why)
+            _audit_reject("PAPER_OPEN_BLOCKED", stage="pretrade")
             return
 
     use_sim_layers = fill_path == "simulate"
@@ -854,6 +1361,7 @@ async def evaluate(symbol: str) -> None:
         )
         alert(msg)
         logger.warning("%s", msg)
+        _audit_reject("NOTIONAL_CAP", stage="risk")
         return
     logger.info(
         "%s",
@@ -879,6 +1387,7 @@ async def evaluate(symbol: str) -> None:
             f"Configured cap: {cap_amt:.2f} ({cap_pct * 100:.2f}% of equity {eq:.2f})\n"
             f"Rejection reason: projected stop risk exceeds MAX_PORTFOLIO_RISK_PCT"
         )
+        _audit_reject("PORTFOLIO_RISK_CAP", stage="risk")
         return
 
     usd_dir_decision = usd_direction_guard_decision(symbol, direction)
@@ -886,24 +1395,37 @@ async def evaluate(symbol: str) -> None:
         msg = format_usd_direction_skip(usd_dir_decision)
         alert(msg)
         logger.warning("%s", msg)
+        _audit_reject("USD_DIRECTION_GUARD", stage="risk")
         return
 
     entry_price: float
     spread_amt: float
     slip_amt: float
-    impact_amt: float
     position_units: float = float(units)
 
     broker_oid = ""
     client_order_id = ""
     fill_ts: float | None = None
     if fill_path == "broker":
+        from forex_bot.market_provenance import decision_frame_rejection
+
+        frame_reason = decision_frame_rejection(raw, symbol)
+        if frame_reason:
+            logger.warning("%s: refuse broker open — market provenance %s", symbol, frame_reason)
+            log_decision_skip(
+                symbol=symbol,
+                reason=STALE_OR_INVALID_DATA,
+                stage="provenance",
+                detail=frame_reason,
+            )
+            return
         if is_paper_like_kind(exec_kind):
             logger.error(
                 "%s: refuse broker open — fill_path=broker but exec_kind=%s",
                 symbol,
                 exec_kind,
             )
+            _audit_reject("BROKER_KIND_MISMATCH", stage="broker")
             return
         client_order_id = generate_client_order_id()
         t_reserve = time.perf_counter()
@@ -915,6 +1437,7 @@ async def evaluate(symbol: str) -> None:
             metadata={"mid": float(price), "strategy": strategy_name},
         ):
             logger.warning("%s: idempotent skip — duplicate client_order_id or DB conflict", symbol)
+            _audit_reject("IDEMPOTENT_SKIP", stage="broker")
             return
         t_sent = time.perf_counter()
         # Live/paper_broker: attach SL/TP to a fresh executable bid/ask, not M5 mid.
@@ -922,6 +1445,7 @@ async def evaluate(symbol: str) -> None:
         if not live_broker_geometry_required(fill_path):
             mark_order_failed_or_cancelled(client_order_id)
             logger.error("%s: refuse broker open — fill_path=%s is not broker", symbol, fill_path)
+            _audit_reject("FILL_PATH_NOT_BROKER", stage="broker")
             return
         fetched = fetch_entry_pricing(symbol)
         if fetched.skip_reason is not None:
@@ -929,6 +1453,12 @@ async def evaluate(symbol: str) -> None:
             msg = format_entry_geometry_skip(symbol, direction, fetched.skip_reason)
             logger.warning("%s", msg)
             alert(msg)
+            log_decision_skip(
+                symbol=symbol,
+                reason=STALE_OR_INVALID_DATA,
+                stage="entry_geometry",
+                detail=fetched.skip_reason,
+            )
             return
         geom, skip_reason = resolve_live_entry_geometry(
             symbol,
@@ -948,16 +1478,34 @@ async def evaluate(symbol: str) -> None:
             )
             logger.warning("%s", msg)
             alert(msg)
+            log_decision_skip(
+                symbol=symbol,
+                reason=STALE_OR_INVALID_DATA,
+                stage="entry_geometry",
+                detail=skip_reason,
+            )
             return
         if geom is None:
             mark_order_failed_or_cancelled(client_order_id)
             msg = format_entry_geometry_skip(symbol, direction, "unknown")
             logger.warning("%s", msg)
             alert(msg)
+            log_decision_skip(symbol=symbol, reason=STALE_OR_INVALID_DATA, stage="entry_geometry")
             return
         logger.info("%s", format_entry_geometry_line(geom))
         broker_sl = float(geom.sl)
         broker_tp = float(geom.tp)
+        if not _permit_new_exposure_or_block():
+            mark_order_failed_or_cancelled(client_order_id)
+            logger.error("%s: new exposure blocked — required audit write failed", symbol)
+            _audit_reject("AUDIT_WRITE_FAILED", stage="audit")
+            return
+        _safe_audit(
+            client_order_id=client_order_id,
+            order_intent_id=client_order_id,
+            submission_status="attempted",
+            path="new_entry",
+        )
         try:
             fill_price, filled_u, oid, _pl, fill_ts = await oanda_exec.execute_oanda_market_open(
                 symbol,
@@ -967,22 +1515,37 @@ async def evaluate(symbol: str) -> None:
                 stop_loss=broker_sl,
                 take_profit=broker_tp,
                 execution_kind=exec_kind,
+                entry_quote=fetched.quote,
             )
         except oanda_exec.OrderCreateCancelled as exc:
             record_fill_failure()
             mark_order_failed_or_cancelled(client_order_id)
             logger.warning("%s", exc)
+            _audit_reject("BROKER_SUBMISSION_CANCELLED", stage="broker")
+            _safe_audit(order_submitted=True, broker_ack=False, submission_status="cancelled")
             return
         except oanda_exec.OrderCreateOutcomeError as exc:
             record_fill_failure()
             mark_order_failed_or_cancelled(client_order_id)
             logger.warning("[ORDER FAILED] %s open: %s", symbol, exc)
+            _audit_reject("BROKER_SUBMISSION_FAILED", stage="broker")
+            _safe_audit(order_submitted=True, broker_ack=False, submission_status="failed")
             return
         except Exception as exc:
             record_fill_failure()
             mark_order_failed_or_cancelled(client_order_id)
             logger.warning("[ORDER FAILED] %s open: %s", symbol, exc)
+            _audit_reject("BROKER_SUBMISSION_FAILED", stage="broker")
+            _safe_audit(order_submitted=True, broker_ack=False, submission_status="failed")
             return
+        _safe_audit(
+            order_submitted=True,
+            broker_ack=True,
+            submission_status="acknowledged",
+            broker_request_id=str(oid or ""),
+            client_order_id=client_order_id,
+            final_decision="order_ack",
+        )
         t_fill = time.perf_counter()
         entry_price = float(fill_price)
         spread_amt = 0.0
@@ -1034,6 +1597,11 @@ async def evaluate(symbol: str) -> None:
             f"[EXECUTION] BROKER_FILL {symbol} open fill={entry_price:.5f} units≈{filled_u:.4f} id={oid} cid={client_order_id}"
         )
     elif use_sim_layers:
+        if not _permit_new_exposure_or_block():
+            logger.error("%s: new exposure blocked — required audit write failed", symbol)
+            _audit_reject("AUDIT_WRITE_FAILED", stage="audit")
+            return
+        _safe_audit(submission_status="internal_open", order_submitted=False, simulated=True)
         # SIMULATION CONTROL START
         lat_ms = await apply_latency()
         mid_impact, impact_amt = apply_market_impact(units, price, direction)
@@ -1046,6 +1614,11 @@ async def evaluate(symbol: str) -> None:
         )
         # SIMULATION CONTROL END
     else:
+        if not _permit_new_exposure_or_block():
+            logger.error("%s: new exposure blocked — required audit write failed", symbol)
+            _audit_reject("AUDIT_WRITE_FAILED", stage="audit")
+            return
+        _safe_audit(submission_status="internal_open", order_submitted=False, simulated=True)
         entry_price = float(price)
         spread_amt = 0.0
         slip_amt = 0.0
@@ -1123,12 +1696,28 @@ async def evaluate(symbol: str) -> None:
 
 
 def evolve() -> None:
+    from forex_bot.decision_repair.flags import health_enabled
+
+    if health_enabled():
+        from forex_bot.decision_repair.health import record_evaluation
+
+        record_evaluation(
+            pnl_by_name={name: list(strat.pnl) for name, strat in strategies.items()},
+            operator_disabled={name: not bool(strat.active) for name, strat in strategies.items()},
+        )
+        return
     for name, strat in strategies.items():
         if len(strat.pnl) < 20:
             continue
         if strat.sharpe() < 0:
             strat.active = False
             logger.info("Strategy disabled (sharpe < 0): %s", name)
+            try:
+                from forex_bot.live_safety import persist_evolve_disable
+
+                persist_evolve_disable(name, sample_count=len(strat.pnl), sharpe=float(strat.sharpe()))
+            except Exception:
+                logger.exception("persist evolve disable failed for %s (strategy remains inactive)", name)
 
 
 def daily_report() -> None:
@@ -1157,8 +1746,7 @@ async def run_bot() -> None:
             # Reconciliation runs in app.reconciliation_loop only (avoid concurrent mutation).
             await asyncio.to_thread(fetch_account_summary)
             await asyncio.to_thread(_refresh_pricing_snapshot)
-            for s in Config.SYMBOLS:
-                await evaluate(s)
+            await _cycle_symbols(Config.SYMBOLS)
             state_dict["last_bot_cycle_utc"] = datetime.now(timezone.utc).isoformat()
             record_operational_transition_if_changed()
             portfolio.update(

@@ -1,0 +1,18 @@
+{
+  "classification": "MANAGEMENT_DEFECT_CONFIRMED_REPAIR_REQUIRED",
+  "missing_candles_block_new_entries": true,
+  "missing_candles_skip_existing_position_management": true,
+  "scope": "the failed symbol when fetch returns None or an empty frame; a raised fetch aborts the rest of that cycle because evaluate re-raises into run_bot",
+  "software_profit_protection": "not reached for the failed symbol",
+  "emergency_or_weekend_flatten": "not reached for the failed symbol, including when a position exists and the weekend flag is set",
+  "broker_native_stops": "unchanged at the broker; broker_sl_tp_hit stays false and no cancel is sent",
+  "independent_management_loop": false,
+  "pricing_snapshot_refreshed_before_symbol_loop": true,
+  "fresh_manage_quote_when_candles_exist": "monitoring runs and does not close merely because the quote is fresh",
+  "stale_manage_quote_when_candles_exist": "software stop and profit protection do not fire; weekend flatten can still request a close because the trigger is the clock",
+  "repeated_failures": "each later cycle tries candles again and skips management until a frame arrives",
+  "synthetic_fallback": false,
+  "m5_used_as_broker_manage_quote": false,
+  "repair_implemented": false,
+  "proposed_repair": "On a missing, empty, or failed candle fetch, run the existing-position management block from the pricing snapshot and do not open a new entry. Keep a stale broker quote from authorising a software stop or profit-protection close. Do not invent candles. Catch a fetch exception per symbol so later symbols are still managed. This is a trading-behaviour change and was not applied."
+}

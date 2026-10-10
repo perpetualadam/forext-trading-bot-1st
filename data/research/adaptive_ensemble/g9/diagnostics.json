@@ -1,0 +1,22 @@
+{
+  "audit_compatibility": {
+    "incomplete_explicit_reason": "STALE_OR_INVALID_DATA",
+    "missing_or_empty_explicit_reason": "NO_OHLCV"
+  },
+  "close_success_rule": "a position is removed only after execute_trade returns",
+  "rate_limit": "existing decision-skip interval",
+  "reasons": [
+    "decision_candles_missing",
+    "decision_candles_empty",
+    "decision_candles_fetch_failed",
+    "decision_candles_unverified",
+    "entry_skipped_no_valid_candles",
+    "management_continued_without_candles",
+    "management_quote_unavailable",
+    "management_quote_stale",
+    "protective_close_failed",
+    "protective_close_unconfirmed",
+    "instrument_cycle_failed"
+  ],
+  "secrets": "exception text from candle fetch is not logged; only the exception class name is logged"
+}

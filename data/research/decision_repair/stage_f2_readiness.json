@@ -1,0 +1,20 @@
+{
+  "stage": "F.2",
+  "git_revision": "f6c4f40ae6b7614379347ed45141ecd5a3d33642",
+  "classification": "ENGINEERING_READY_FOR_DEPLOYMENT_REVIEW",
+  "engineering_implementation_readiness": "READY",
+  "safe_deployment_readiness": "REVIEW REQUIRED",
+  "trading_strategy_readiness": "NOT APPROVED",
+  "risk_schema_version": 2,
+  "audit_schema_version": 3,
+  "selection_policy": "deterministic_rotate_v2_unvalidated",
+  "cursor_schema_version": 1,
+  "exposure_schema_version": 1,
+  "canonical_event_order": "broker_time_utc, broker_seq (missing last), event_id",
+  "nav_vs_realised": "separate_streams_not_reconstructed_from_each_other",
+  "cross_process_lock": false,
+  "toctou": "process_local_reservation_only_fresh_snapshot_required",
+  "historical_q_table": "permanently_unavailable",
+  "flags_default": "OFF",
+  "deployed": false
+}

@@ -1,0 +1,7 @@
+{
+  "classification": "MANAGEMENT_REPAIR_VERIFIED_SNAPSHOT_REVIEW_REQUIRED",
+  "deployed": false,
+  "next_action": "Create and independently review a new pinned source snapshot that contains the G.9 management repair and the G.8 build-context hardening. Do not deploy from the G.7 archive.",
+  "repair_implemented": true,
+  "trading_authorised": false
+}

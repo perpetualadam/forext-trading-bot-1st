@@ -1,0 +1,127 @@
+{
+  "cases": [
+    {
+      "expected_negative": -0.7412898443291327,
+      "expected_positive": 0.7407407407407407,
+      "negative_gbp": -0.7412898443291327,
+      "negative_path": [
+        "pnl_in_USD",
+        "USD->GBP via GBP_USD bid"
+      ],
+      "negative_status": "ok",
+      "negative_uses_bid": true,
+      "pair": "EUR_USD",
+      "positive_gbp": 0.7407407407407407,
+      "positive_path": [
+        "pnl_in_USD",
+        "USD->GBP via GBP_USD ask"
+      ],
+      "positive_status": "ok",
+      "positive_uses_ask": true
+    },
+    {
+      "expected_negative": -0.7412898443291327,
+      "expected_positive": 0.7407407407407407,
+      "negative_gbp": -0.7412898443291327,
+      "negative_path": [
+        "pnl_in_USD",
+        "USD->GBP via GBP_USD bid"
+      ],
+      "negative_status": "ok",
+      "negative_uses_bid": true,
+      "pair": "GBP_USD",
+      "positive_gbp": 0.7407407407407407,
+      "positive_path": [
+        "pnl_in_USD",
+        "USD->GBP via GBP_USD ask"
+      ],
+      "positive_status": "ok",
+      "positive_uses_ask": true
+    },
+    {
+      "expected_negative": -0.7412898443291327,
+      "expected_positive": 0.7407407407407407,
+      "negative_gbp": -0.7412898443291327,
+      "negative_path": [
+        "pnl_in_USD",
+        "USD->GBP via GBP_USD bid"
+      ],
+      "negative_status": "ok",
+      "negative_uses_bid": true,
+      "pair": "AUD_USD",
+      "positive_gbp": 0.7407407407407407,
+      "positive_path": [
+        "pnl_in_USD",
+        "USD->GBP via GBP_USD ask"
+      ],
+      "positive_status": "ok",
+      "positive_uses_ask": true
+    },
+    {
+      "expected_negative": -0.00494522911493751,
+      "expected_positive": 0.0049382716049382715,
+      "negative_gbp": -0.00494522911493751,
+      "negative_path": [
+        "pnl_in_JPY",
+        "JPY->USD via USD_JPY bid",
+        "USD->GBP via GBP_USD bid"
+      ],
+      "negative_status": "ok",
+      "negative_uses_bid": true,
+      "pair": "USD_JPY",
+      "positive_gbp": 0.0049382716049382715,
+      "positive_path": [
+        "pnl_in_JPY",
+        "JPY->USD via USD_JPY ask",
+        "USD->GBP via GBP_USD ask"
+      ],
+      "positive_status": "ok",
+      "positive_uses_ask": true
+    },
+    {
+      "expected_negative": -0.5454671407867054,
+      "expected_positive": 0.5446623093681916,
+      "negative_gbp": -0.5454671407867054,
+      "negative_path": [
+        "pnl_in_CAD",
+        "CAD->USD via USD_CAD bid",
+        "USD->GBP via GBP_USD bid"
+      ],
+      "negative_status": "ok",
+      "negative_uses_bid": true,
+      "pair": "USD_CAD",
+      "positive_gbp": 0.5446623093681916,
+      "positive_path": [
+        "pnl_in_CAD",
+        "CAD->USD via USD_CAD ask",
+        "USD->GBP via GBP_USD ask"
+      ],
+      "positive_status": "ok",
+      "positive_uses_ask": true
+    },
+    {
+      "expected_negative": -0.927772020436962,
+      "expected_positive": 0.9259259259259258,
+      "negative_gbp": -0.927772020436962,
+      "negative_path": [
+        "pnl_in_CHF",
+        "CHF->USD via USD_CHF bid",
+        "USD->GBP via GBP_USD bid"
+      ],
+      "negative_status": "ok",
+      "negative_uses_bid": true,
+      "pair": "USD_CHF",
+      "positive_gbp": 0.9259259259259258,
+      "positive_path": [
+        "pnl_in_CHF",
+        "CHF->USD via USD_CHF ask",
+        "USD->GBP via GBP_USD ask"
+      ],
+      "positive_status": "ok",
+      "positive_uses_ask": true
+    }
+  ],
+  "nominal_quote_amount": 1.0,
+  "passed": true,
+  "strategy_pnl": false
+}

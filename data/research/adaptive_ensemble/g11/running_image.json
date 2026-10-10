@@ -1,0 +1,13 @@
+{
+  "confidence": "high_for_id_low_for_internal_bytes",
+  "created": "2026-10-08T22:24:01.773111643Z",
+  "historical_stage_a_id_match": true,
+  "image_id": "sha256:a905781d872d4a83706c716baa8be6e08c4abef26b2d9f9510a118c2c3039d25",
+  "internal_files_read": false,
+  "layers": 9,
+  "limitation": "RepoDigests repeats the local image id. It is not a registry distribution digest. The tag latest is mutable.",
+  "registry_digest": null,
+  "repo_digests_field": ["forexttradingbot1st-bot@sha256:a905781d872d4a83706c716baa8be6e08c4abef26b2d9f9510a118c2c3039d25"],
+  "tag": "forexttradingbot1st-bot:latest",
+  "unsafe_image_present": false
+}

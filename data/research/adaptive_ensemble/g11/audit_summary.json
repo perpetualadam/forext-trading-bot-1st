@@ -1,0 +1,101 @@
+{
+  "candidate": {
+    "classification": "ROLLBACK_CANDIDATE_PARTIALLY_VERIFIED",
+    "contents_proven": false,
+    "image_id": "sha256:a905781d872d4a83706c716baa8be6e08c4abef26b2d9f9510a118c2c3039d25",
+    "management_in_image": false,
+    "provenance_in_image": false,
+    "reason": "identity matches the running Oct 8 image; file bytes inside the image were not extracted"
+  },
+  "classification": "READ_ONLY_AUDIT_COMPLETE_ROLLBACK_UNVERIFIED",
+  "database_live_inspected": false,
+  "docker_context": "DOCKER_CONTEXT_DAEMON_UNVERIFIED",
+  "g10_manifest": "93c73c21bd6f144e7d656be74128a771c3274025c0e88b8a052ffbc742f417cf",
+  "hashes": {
+    "dockerfile": "f8d537d84c8ab004c5fc2cbdc5ef58e8141f5ca66a13be6cc5eac38c7c7006a6",
+    "dockerignore": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+    "g10_archive": "d0317de858a00b194bc44408932ad6508eec411fe0179b0196175a2985b12277",
+    "g7_archive": "0ee97accd2d4a8297a053eb26c5138324192ab5b1f700214acf091d0f6487f82"
+  },
+  "inspected_at_utc": "2026-10-09T21:45:59.792401+00:00",
+  "mutations": [
+    {
+      "authorisation": "assert_new_live_exposure_allowed before request",
+      "endpoint": "/v3/accounts/{id}/orders",
+      "exposure": "increases",
+      "function": "_place_market_order_open_sync",
+      "marker": "oanda_orders.OrderCreate",
+      "method": "POST",
+      "provenance": "require_order_quote before request",
+      "purpose": "new market exposure"
+    },
+    {
+      "authorisation": "close action is not a new-exposure gate",
+      "endpoint": "/v3/accounts/{id}/positions/{instrument}/close",
+      "exposure": "reduces",
+      "function": "_place_market_order_sync",
+      "marker": "oanda_positions.PositionClose",
+      "method": "PUT",
+      "provenance": "entry seal not required",
+      "purpose": "risk-reducing close"
+    }
+  ],
+  "rollback": "NO_VERIFIED_ROLLBACK_TARGET",
+  "running": {
+    "command": [
+      "uvicorn",
+      "forex_bot.app:app",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000"
+    ],
+    "confidence": "high_for_identity_not_for_image_bytes",
+    "container_id": "5fcbcff7173eee98f6228b901fab96fd24474038852ef1f4cc3fbccd138edd32",
+    "created": "2026-10-08T22:24:38.050789775Z",
+    "credential_names_empty": [
+      "OANDA_API_KEY",
+      "OPENAI_API_KEY",
+      "TELEGRAM_TOKEN"
+    ],
+    "credential_names_present": [
+      "OANDA_ACCESS_TOKEN",
+      "OANDA_ACCOUNT_ID",
+      "POSTGRES_PASS",
+      "TELEGRAM_BOT_TOKEN"
+    ],
+    "entrypoint": null,
+    "evidence": "current",
+    "image_created": "2026-10-08T22:24:01.773111643Z",
+    "image_id": "sha256:a905781d872d4a83706c716baa8be6e08c4abef26b2d9f9510a118c2c3039d25",
+    "inspected_at_utc": "2026-10-09T21:45:59.792401+00:00",
+    "local_id_reference": "forexttradingbot1st-bot@sha256:a905781d872d4a83706c716baa8be6e08c4abef26b2d9f9510a118c2c3039d25",
+    "mounts": [
+      {
+        "destination": "/app/data/ops",
+        "type": "bind",
+        "writable": true
+      },
+      {
+        "destination": "/app/data/research/v2_shadow",
+        "type": "bind",
+        "writable": true
+      }
+    ],
+    "name": "forexttradingbot1st-bot-1",
+    "network": "forexttradingbot1st_default",
+    "repository_digest": null,
+    "restart_policy": "no",
+    "started": "2026-10-08T22:24:39.830615859Z",
+    "state": "running",
+    "tag": "forexttradingbot1st-bot:latest",
+    "values_stored": false,
+    "workdir": "/app"
+  },
+  "snapshot_drift": [],
+  "unsafe": {
+    "classification": "ROLLBACK_CANDIDATE_REJECTED",
+    "image_id": "sha256:a19a2208fcf30f8fa1cf61442cf021dec6d99d809b6907836c834922bfe3e2a5",
+    "present_locally": false
+  }
+}

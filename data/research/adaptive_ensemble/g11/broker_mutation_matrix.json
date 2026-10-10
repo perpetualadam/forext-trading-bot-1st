@@ -1,0 +1,31 @@
+{
+  "mutations": [
+    {
+      "authorisation": "assert_new_live_exposure_allowed before the request, then again immediately before OrderCreate",
+      "endpoint": "POST /v3/accounts/{id}/orders",
+      "exposure": "increases",
+      "function": "_place_market_order_open_sync",
+      "method": "POST",
+      "provenance": "require_order_quote",
+      "purpose": "new market exposure, OPEN_ONLY, FOK",
+      "timeout": "request exception becomes an order outcome and is not retried as a second open"
+    },
+    {
+      "authorisation": "paper-like kinds are refused; close does not require effective ALLOWED",
+      "endpoint": "PUT /v3/accounts/{id}/positions/{instrument}/close",
+      "exposure": "reduces",
+      "function": "_place_market_order_sync",
+      "method": "PUT",
+      "provenance": "entry seal not required",
+      "purpose": "protective position close",
+      "timeout": "exception becomes RuntimeError; the caller must not treat it as a confirmed close"
+    }
+  ],
+  "reads": [
+    "GET pending orders via OrdersPending",
+    "GET trade details via TradeDetails",
+    "GET transaction details via TransactionDetails"
+  ],
+  "absent": ["OrderCancel request", "OrderReplace request", "TradeClose request"],
+  "broker_contacted": false
+}

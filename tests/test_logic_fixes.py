@@ -172,7 +172,7 @@ def test_oanda_close_uses_reduce_only():
     assert captured["data"] == {"longUnits": "10"}
 
 
-def test_oanda_open_attaches_sl_tp():
+def test_oanda_open_attaches_sl_tp(allow_live_order_create):
     from forex_bot import oanda_exec
 
     captured: dict = {}
@@ -193,6 +193,8 @@ def test_oanda_open_attaches_sl_tp():
         patch.object(oanda_exec, "get_api", return_value=FakeAPI()),
         patch.object(oanda_exec, "_account_id", return_value="ACC"),
     ):
+        from forex_bot.market_provenance import mint_live_quote
+
         fp, uf, oid, _pl, _fill_ts = oanda_exec._place_market_order_open_sync(
             "EUR_USD",
             10.0,
@@ -200,6 +202,7 @@ def test_oanda_open_attaches_sl_tp():
             "cid-1",
             stop_loss=1.0980,
             take_profit=1.1040,
+            entry_quote=mint_live_quote("EUR_USD"),
         )
     assert fp == 1.1
     assert uf == 10.0

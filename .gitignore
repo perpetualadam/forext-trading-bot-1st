@@ -5,6 +5,8 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 .pytest_cache/
+data/ops/*.json
+data/ops/*.json.tmp
 .cursor/
 
 # Local research caches over GitHub's 100 MB file limit / 50 MB warning

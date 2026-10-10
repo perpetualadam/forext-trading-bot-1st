@@ -1,0 +1,1338 @@
+{
+  "accounting_fixture": {
+    "entry": 1.0960361079406276,
+    "exit_i": 95,
+    "exit_px": 1.097022142779353,
+    "pnl_gbp": 0.7303961768336232,
+    "pnl_quote": 0.9860348387253914,
+    "reconcile_ok": true,
+    "why": "take_profit"
+  },
+  "assessment_note": "Do not treat Sep 2025\u2013Aug 2026 as unseen.",
+  "frozen_utc": "2026-10-09T06:24:17+00:00",
+  "historical_eur_usd": {
+    "costs": {
+      "base": {
+        "deterministic_rotation": {
+          "abstention_rate": 0.9787,
+          "abstentions": 2439,
+          "decisions": 2492,
+          "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+          "exits": {
+            "stop_loss": 29,
+            "take_profit": 19,
+            "time_exit": 5
+          },
+          "final_nav": 95.62381,
+          "financing": "UNAVAILABLE",
+          "gbp_fx_label": "ESTIMATE",
+          "gross_pnl_gbp": 27.261905,
+          "halted": "max_drawdown",
+          "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+          "max_drawdown": 5.534127,
+          "n_bars": 29828,
+          "net_pnl_gbp": -1.37619,
+          "per_regime": {
+            "high_vol_transition": {
+              "n": 6.0,
+              "net": -2.0854497354488646
+            },
+            "low_vol_consolidation": {
+              "n": 1.0,
+              "net": -0.2563492063490647
+            },
+            "trending": {
+              "n": 44.0,
+              "net": 0.493650793650833
+            },
+            "uncertain": {
+              "n": 2.0,
+              "net": 0.47195767195777977
+            }
+          },
+          "profit_factor": 0.9039,
+          "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+          "trade_count": 53,
+          "win_rate": 0.4151
+        },
+        "dynamic_exp_weights": {
+          "abstention_rate": 0.9792,
+          "abstentions": 2443,
+          "decisions": 2495,
+          "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+          "exits": {
+            "stop_loss": 27,
+            "take_profit": 20,
+            "time_exit": 5
+          },
+          "final_nav": 98.158201,
+          "financing": "UNAVAILABLE",
+          "gbp_fx_label": "ESTIMATE",
+          "gross_pnl_gbp": 25.571958,
+          "halted": "max_drawdown",
+          "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+          "max_drawdown": 5.465873,
+          "n_bars": 29828,
+          "net_pnl_gbp": 1.158201,
+          "per_regime": {
+            "high_vol_transition": {
+              "n": 5.0,
+              "net": -0.14576719576719893
+            },
+            "low_vol_consolidation": {
+              "n": 2.0,
+              "net": -0.28862433862431447
+            },
+            "trending": {
+              "n": 42.0,
+              "net": 0.7703703703703182
+            },
+            "uncertain": {
+              "n": 3.0,
+              "net": 0.8222222222223454
+            }
+          },
+          "profit_factor": 1.0949,
+          "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+          "trade_count": 52,
+          "win_rate": 0.4423
+        },
+        "equal_weight_vote": {
+          "abstention_rate": 0.988,
+          "abstentions": 2465,
+          "decisions": 2495,
+          "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+          "exits": {
+            "stop_loss": 18,
+            "take_profit": 10,
+            "time_exit": 2
+          },
+          "final_nav": 95.215608,
+          "financing": "UNAVAILABLE",
+          "gbp_fx_label": "ESTIMATE",
+          "gross_pnl_gbp": 14.903968,
+          "halted": null,
+          "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+          "max_drawdown": 4.64127,
+          "n_bars": 29828,
+          "net_pnl_gbp": -1.784392,
+          "per_regime": {
+            "high_vol_transition": {
+              "n": 7.0,
+              "net": -1.5910052910061976
+            },
+            "low_vol_consolidation": {
+              "n": 1.0,
+              "net": 0.4656084656078034
+            },
+            "trending": {
+              "n": 22.0,
+              "net": -0.6589947089967825
+            }
+          },
+          "profit_factor": 0.7862,
+          "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+          "trade_count": 30,
+          "win_rate": 0.3333
+        },
+        "no_trade": {
+          "abstention_rate": 1.0,
+          "abstentions": 2486,
+          "decisions": 2486,
+          "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+          "exits": {},
+          "final_nav": 97.0,
+          "financing": "UNAVAILABLE",
+          "gbp_fx_label": "ESTIMATE",
+          "gross_pnl_gbp": 0.0,
+          "halted": null,
+          "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+          "max_drawdown": 0.0,
+          "n_bars": 29828,
+          "net_pnl_gbp": 0.0,
+          "per_regime": {},
+          "profit_factor": 0.0,
+          "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+          "trade_count": 0,
+          "win_rate": null
+        },
+        "regime_selection": {
+          "abstention_rate": 0.9728,
+          "abstentions": 2435,
+          "decisions": 2503,
+          "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+          "exits": {
+            "stop_loss": 42,
+            "take_profit": 24,
+            "time_exit": 2
+          },
+          "final_nav": 92.639947,
+          "financing": "UNAVAILABLE",
+          "gbp_fx_label": "ESTIMATE",
+          "gross_pnl_gbp": 33.972751,
+          "halted": "max_drawdown",
+          "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+          "max_drawdown": 5.290741,
+          "n_bars": 29828,
+          "net_pnl_gbp": -4.360053,
+          "per_regime": {
+            "high_vol_transition": {
+              "n": 3.0,
+              "net": -0.706878306877792
+            },
+            "trending": {
+              "n": 65.0,
+              "net": -3.653174603173899
+            }
+          },
+          "profit_factor": 0.7725,
+          "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+          "trade_count": 68,
+          "win_rate": 0.3676
+        },
+        "single_proxy_trend": {
+          "abstention_rate": 0.9633,
+          "abstentions": 2413,
+          "decisions": 2505,
+          "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+          "exits": {
+            "stop_loss": 54,
+            "take_profit": 33,
+            "time_exit": 5
+          },
+          "final_nav": 94.026455,
+          "financing": "UNAVAILABLE",
+          "gbp_fx_label": "ESTIMATE",
+          "gross_pnl_gbp": 44.888889,
+          "halted": "max_drawdown",
+          "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+          "max_drawdown": 5.552646,
+          "n_bars": 29828,
+          "net_pnl_gbp": -2.973545,
+          "per_regime": {
+            "high_vol_transition": {
+              "n": 7.0,
+              "net": 1.515873015872843
+            },
+            "low_vol_consolidation": {
+              "n": 1.0,
+              "net": 0.4539682539679619
+            },
+            "trending": {
+              "n": 80.0,
+              "net": -4.71084656084804
+            },
+            "uncertain": {
+              "n": 4.0,
+              "net": -0.23253968254023077
+            }
+          },
+          "profit_factor": 0.8757,
+          "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+          "trade_count": 92,
+          "win_rate": 0.3913
+        }
+      },
+      "conservative": {
+        "deterministic_rotation": {
+          "abstention_rate": 0.99,
+          "abstentions": 2465,
+          "decisions": 2490,
+          "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+          "exits": {
+            "stop_loss": 15,
+            "take_profit": 7,
+            "time_exit": 3
+          },
+          "final_nav": 94.729762,
+          "financing": "UNAVAILABLE",
+          "gbp_fx_label": "ESTIMATE",
+          "gross_pnl_gbp": 14.65754,
+          "halted": "max_drawdown",
+          "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+          "max_drawdown": 5.060847,
+          "n_bars": 29828,
+          "net_pnl_gbp": -2.270238,
+          "per_regime": {
+            "high_vol_transition": {
+              "n": 2.0,
+              "net": 0.3526455026454985
+            },
+            "trending": {
+              "n": 23.0,
+              "net": -2.622883597883857
+            }
+          },
+          "profit_factor": 0.7318,
+          "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+          "trade_count": 25,
+          "win_rate": 0.36
+        },
+        "dynamic_exp_weights": {
+          "abstention_rate": 0.9936,
+          "abstentions": 2474,
+          "decisions": 2490,
+          "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+          "exits": {
+            "stop_loss": 12,
+            "take_profit": 3,
+            "time_exit": 1
+          },
+          "final_nav": 93.289286,
+          "financing": "UNAVAILABLE",
+          "gbp_fx_label": "ESTIMATE",
+          "gross_pnl_gbp": 8.909921,
+          "halted": "max_drawdown",
+          "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+          "max_drawdown": 4.992063,
+          "n_bars": 29828,
+          "net_pnl_gbp": -3.710714,
+          "per_regime": {
+            "high_vol_transition": {
+              "n": 2.0,
+              "net": -1.4793650793647144
+            },
+            "low_vol_consolidation": {
+              "n": 1.0,
+              "net": -0.34365079365042506
+            },
+            "trending": {
+              "n": 12.0,
+              "net": -1.4464285714275738
+            },
+            "uncertain": {
+              "n": 1.0,
+              "net": -0.441269841269983
+            }
+          },
+          "profit_factor": 0.412,
+          "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+          "trade_count": 16,
+          "win_rate": 0.25
+        },
+        "equal_weight_vote": {
+          "abstention_rate": 0.9932,
+          "abstentions": 2472,
+          "decisions": 2489,
+          "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+          "exits": {
+            "stop_loss": 12,
+            "take_profit": 5
+          },
+          "final_nav": 95.36746,
+          "financing": "UNAVAILABLE",
+          "gbp_fx_label": "ESTIMATE",
+          "gross_pnl_gbp": 8.718254,
+          "halted": null,
+          "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+          "max_drawdown": 3.304762,
+          "n_bars": 29828,
+          "net_pnl_gbp": -1.63254,
+          "per_regime": {
+            "high_vol_transition": {
+              "n": 3.0,
+              "net": 1.425925925925399
+            },
+            "trending": {
+              "n": 14.0,
+              "net": -3.0584656084670696
+            }
+          },
+          "profit_factor": 0.6846,
+          "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+          "trade_count": 17,
+          "win_rate": 0.2941
+        },
+        "no_trade": {
+          "abstention_rate": 1.0,
+          "abstentions": 2486,
+          "decisions": 2486,
+          "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+          "exits": {},
+          "final_nav": 97.0,
+          "financing": "UNAVAILABLE",
+          "gbp_fx_label": "ESTIMATE",
+          "gross_pnl_gbp": 0.0,
+          "halted": null,
+          "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+          "max_drawdown": 0.0,
+          "n_bars": 29828,
+          "net_pnl_gbp": 0.0,
+          "per_regime": {},
+          "profit_factor": 0.0,
+          "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+          "trade_count": 0,
+          "win_rate": null
+        },
+        "regime_selection": {
+          "abstention_rate": 0.9791,
+          "abstentions": 2441,
+          "decisions": 2493,
+          "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+          "exits": {
+            "stop_loss": 32,
+            "take_profit": 17,
+            "time_exit": 3
+          },
+          "final_nav": 92.580291,
+          "financing": "UNAVAILABLE",
+          "gbp_fx_label": "ESTIMATE",
+          "gross_pnl_gbp": 27.744577,
+          "halted": "max_drawdown",
+          "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+          "max_drawdown": 4.925265,
+          "n_bars": 29828,
+          "net_pnl_gbp": -4.419709,
+          "per_regime": {
+            "trending": {
+              "n": 52.0,
+              "net": -4.419708994710216
+            }
+          },
+          "profit_factor": 0.7252,
+          "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+          "trade_count": 52,
+          "win_rate": 0.3462
+        },
+        "single_proxy_trend": {
+          "abstention_rate": 0.9736,
+          "abstentions": 2432,
+          "decisions": 2498,
+          "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+          "exits": {
+            "stop_loss": 39,
+            "take_profit": 22,
+            "time_exit": 5
+          },
+          "final_nav": 92.253439,
+          "financing": "UNAVAILABLE",
+          "gbp_fx_label": "ESTIMATE",
+          "gross_pnl_gbp": 34.883069,
+          "halted": "max_drawdown",
+          "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+          "max_drawdown": 5.252116,
+          "n_bars": 29828,
+          "net_pnl_gbp": -4.746561,
+          "per_regime": {
+            "high_vol_transition": {
+              "n": 10.0,
+              "net": 0.6861111111107951
+            },
+            "trending": {
+              "n": 56.0,
+              "net": -5.43267195767266
+            }
+          },
+          "profit_factor": 0.7605,
+          "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+          "trade_count": 66,
+          "win_rate": 0.3636
+        }
+      },
+      "severe": {
+        "deterministic_rotation": {
+          "abstention_rate": 0.9871,
+          "abstentions": 2450,
+          "decisions": 2482,
+          "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+          "exits": {
+            "stop_loss": 15,
+            "take_profit": 10,
+            "time_exit": 7
+          },
+          "final_nav": 94.339947,
+          "financing": "UNAVAILABLE",
+          "gbp_fx_label": "ESTIMATE",
+          "gross_pnl_gbp": 22.645238,
+          "halted": "max_drawdown",
+          "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+          "max_drawdown": 5.103704,
+          "n_bars": 29828,
+          "net_pnl_gbp": -2.660053,
+          "per_regime": {
+            "high_vol_transition": {
+              "n": 14.0,
+              "net": -3.804497354497595
+            },
+            "trending": {
+              "n": 18.0,
+              "net": 1.1444444444435544
+            }
+          },
+          "profit_factor": 0.7898,
+          "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+          "trade_count": 32,
+          "win_rate": 0.4062
+        },
+        "dynamic_exp_weights": {
+          "abstention_rate": 0.9964,
+          "abstentions": 2480,
+          "decisions": 2489,
+          "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+          "exits": {
+            "stop_loss": 7,
+            "take_profit": 1,
+            "time_exit": 1
+          },
+          "final_nav": 93.283862,
+          "financing": "UNAVAILABLE",
+          "gbp_fx_label": "ESTIMATE",
+          "gross_pnl_gbp": 6.150529,
+          "halted": "max_drawdown",
+          "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+          "max_drawdown": 4.933333,
+          "n_bars": 29828,
+          "net_pnl_gbp": -3.716138,
+          "per_regime": {
+            "high_vol_transition": {
+              "n": 3.0,
+              "net": -2.2777777777783905
+            },
+            "trending": {
+              "n": 6.0,
+              "net": -1.4383597883590489
+            }
+          },
+          "profit_factor": 0.2467,
+          "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+          "trade_count": 9,
+          "win_rate": 0.2222
+        },
+        "equal_weight_vote": {
+          "abstention_rate": 0.9988,
+          "abstentions": 2483,
+          "decisions": 2486,
+          "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+          "exits": {
+            "stop_loss": 1,
+            "take_profit": 2
+          },
+          "final_nav": 98.215608,
+          "financing": "UNAVAILABLE",
+          "gbp_fx_label": "ESTIMATE",
+          "gross_pnl_gbp": 2.737831,
+          "halted": null,
+          "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+          "max_drawdown": 0.761111,
+          "n_bars": 29828,
+          "net_pnl_gbp": 1.215608,
+          "per_regime": {
+            "high_vol_transition": {
+              "n": 1.0,
+              "net": 1.1629629629628513
+            },
+            "trending": {
+              "n": 2.0,
+              "net": 0.052645502645506825
+            }
+          },
+          "profit_factor": 2.5971,
+          "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+          "trade_count": 3,
+          "win_rate": 0.6667
+        },
+        "no_trade": {
+          "abstention_rate": 1.0,
+          "abstentions": 2486,
+          "decisions": 2486,
+          "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+          "exits": {},
+          "final_nav": 97.0,
+          "financing": "UNAVAILABLE",
+          "gbp_fx_label": "ESTIMATE",
+          "gross_pnl_gbp": 0.0,
+          "halted": null,
+          "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+          "max_drawdown": 0.0,
+          "n_bars": 29828,
+          "net_pnl_gbp": 0.0,
+          "per_regime": {},
+          "profit_factor": 0.0,
+          "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+          "trade_count": 0,
+          "win_rate": null
+        },
+        "regime_selection": {
+          "abstention_rate": 0.994,
+          "abstentions": 2470,
+          "decisions": 2485,
+          "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+          "exits": {
+            "stop_loss": 10,
+            "take_profit": 3,
+            "time_exit": 2
+          },
+          "final_nav": 92.131217,
+          "financing": "UNAVAILABLE",
+          "gbp_fx_label": "ESTIMATE",
+          "gross_pnl_gbp": 10.914286,
+          "halted": "max_drawdown",
+          "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+          "max_drawdown": 4.868783,
+          "n_bars": 29828,
+          "net_pnl_gbp": -4.868783,
+          "per_regime": {
+            "high_vol_transition": {
+              "n": 1.0,
+              "net": -0.8650793650796281
+            },
+            "trending": {
+              "n": 14.0,
+              "net": -4.003703703702958
+            }
+          },
+          "profit_factor": 0.383,
+          "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+          "trade_count": 15,
+          "win_rate": 0.2667
+        },
+        "single_proxy_trend": {
+          "abstention_rate": 0.9956,
+          "abstentions": 2476,
+          "decisions": 2487,
+          "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+          "exits": {
+            "stop_loss": 9,
+            "take_profit": 2
+          },
+          "final_nav": 92.07037,
+          "financing": "UNAVAILABLE",
+          "gbp_fx_label": "ESTIMATE",
+          "gross_pnl_gbp": 8.324339,
+          "halted": "max_drawdown",
+          "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+          "max_drawdown": 4.92963,
+          "n_bars": 29828,
+          "net_pnl_gbp": -4.92963,
+          "per_regime": {
+            "high_vol_transition": {
+              "n": 3.0,
+              "net": -2.3992063492062887
+            },
+            "trending": {
+              "n": 8.0,
+              "net": -2.53042328042274
+            }
+          },
+          "profit_factor": 0.2561,
+          "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+          "trade_count": 11,
+          "win_rate": 0.1818
+        }
+      }
+    },
+    "genuine_fresh_holdout": false,
+    "remainder_hi": 74570,
+    "remainder_lo": 44742,
+    "rows": 74572,
+    "status": "PREVIOUSLY_EXAMINED_EXPLORATORY"
+  },
+  "integrity_hash": "539cdc083f83393a79d254d21385edc6c48e88eb0f085d4549df9fdd6d431bc0",
+  "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+  "protocol_id": "stage_g_adaptive_ensemble_v1",
+  "protocol_version": "1",
+  "synthetic": {
+    "ablation_no_cost_filter": {
+      "deterministic_rotation": {
+        "abstention_rate": 0.125,
+        "abstentions": 4,
+        "decisions": 32,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {
+          "stop_loss": 15,
+          "take_profit": 12,
+          "time_exit": 1
+        },
+        "final_nav": 98.257997,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 18.671088,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 2.7569,
+        "n_bars": 278,
+        "net_pnl_gbp": 1.257997,
+        "per_regime": {
+          "trending": {
+            "n": 26.0,
+            "net": 2.3798643272223936
+          },
+          "uncertain": {
+            "n": 2.0,
+            "net": -1.1218675192468683
+          }
+        },
+        "profit_factor": 1.1445,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 28,
+        "win_rate": 0.4643
+      },
+      "dynamic_exp_weights": {
+        "abstention_rate": 0.129,
+        "abstentions": 4,
+        "decisions": 31,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {
+          "stop_loss": 15,
+          "take_profit": 11,
+          "time_exit": 1
+        },
+        "final_nav": 96.954401,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 18.0779,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 3.556021,
+        "n_bars": 278,
+        "net_pnl_gbp": -0.045599,
+        "per_regime": {
+          "trending": {
+            "n": 25.0,
+            "net": 1.0762684483069778
+          },
+          "uncertain": {
+            "n": 2.0,
+            "net": -1.1218675192468683
+          }
+        },
+        "profit_factor": 0.995,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 27,
+        "win_rate": 0.4444
+      },
+      "equal_weight_vote": {
+        "abstention_rate": 1.0,
+        "abstentions": 23,
+        "decisions": 23,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {},
+        "final_nav": 97.0,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 0.0,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 0.0,
+        "n_bars": 278,
+        "net_pnl_gbp": 0.0,
+        "per_regime": {},
+        "profit_factor": 0.0,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 0,
+        "win_rate": null
+      },
+      "no_trade": {
+        "abstention_rate": 1.0,
+        "abstentions": 23,
+        "decisions": 23,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {},
+        "final_nav": 97.0,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 0.0,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 0.0,
+        "n_bars": 278,
+        "net_pnl_gbp": 0.0,
+        "per_regime": {},
+        "profit_factor": 0.0,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 0,
+        "win_rate": null
+      },
+      "regime_selection": {
+        "abstention_rate": 0.2,
+        "abstentions": 6,
+        "decisions": 30,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {
+          "stop_loss": 11,
+          "take_profit": 12,
+          "time_exit": 1
+        },
+        "final_nav": 100.104514,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 16.489053,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 2.396653,
+        "n_bars": 278,
+        "net_pnl_gbp": 3.104514,
+        "per_regime": {
+          "trending": {
+            "n": 24.0,
+            "net": 3.104513638758138
+          }
+        },
+        "profit_factor": 1.4639,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 24,
+        "win_rate": 0.5417
+      },
+      "single_proxy_trend": {
+        "abstention_rate": 0.1034,
+        "abstentions": 3,
+        "decisions": 29,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {
+          "stop_loss": 14,
+          "take_profit": 11,
+          "time_exit": 1
+        },
+        "final_nav": 97.803874,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 17.569116,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 2.396653,
+        "n_bars": 278,
+        "net_pnl_gbp": 0.803874,
+        "per_regime": {
+          "trending": {
+            "n": 24.0,
+            "net": 1.9257417931151506
+          },
+          "uncertain": {
+            "n": 2.0,
+            "net": -1.1218675192468683
+          }
+        },
+        "profit_factor": 1.0959,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 26,
+        "win_rate": 0.4615
+      }
+    },
+    "base": {
+      "deterministic_rotation": {
+        "abstention_rate": 0.125,
+        "abstentions": 4,
+        "decisions": 32,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {
+          "stop_loss": 15,
+          "take_profit": 12,
+          "time_exit": 1
+        },
+        "final_nav": 98.257997,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 18.671088,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 2.7569,
+        "n_bars": 278,
+        "net_pnl_gbp": 1.257997,
+        "per_regime": {
+          "trending": {
+            "n": 26.0,
+            "net": 2.3798643272223936
+          },
+          "uncertain": {
+            "n": 2.0,
+            "net": -1.1218675192468683
+          }
+        },
+        "profit_factor": 1.1445,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 28,
+        "win_rate": 0.4643
+      },
+      "dynamic_exp_weights": {
+        "abstention_rate": 0.129,
+        "abstentions": 4,
+        "decisions": 31,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {
+          "stop_loss": 15,
+          "take_profit": 11,
+          "time_exit": 1
+        },
+        "final_nav": 96.954401,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 18.0779,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 3.556021,
+        "n_bars": 278,
+        "net_pnl_gbp": -0.045599,
+        "per_regime": {
+          "trending": {
+            "n": 25.0,
+            "net": 1.0762684483069778
+          },
+          "uncertain": {
+            "n": 2.0,
+            "net": -1.1218675192468683
+          }
+        },
+        "profit_factor": 0.995,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 27,
+        "win_rate": 0.4444
+      },
+      "equal_weight_vote": {
+        "abstention_rate": 1.0,
+        "abstentions": 23,
+        "decisions": 23,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {},
+        "final_nav": 97.0,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 0.0,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 0.0,
+        "n_bars": 278,
+        "net_pnl_gbp": 0.0,
+        "per_regime": {},
+        "profit_factor": 0.0,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 0,
+        "win_rate": null
+      },
+      "no_trade": {
+        "abstention_rate": 1.0,
+        "abstentions": 23,
+        "decisions": 23,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {},
+        "final_nav": 97.0,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 0.0,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 0.0,
+        "n_bars": 278,
+        "net_pnl_gbp": 0.0,
+        "per_regime": {},
+        "profit_factor": 0.0,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 0,
+        "win_rate": null
+      },
+      "regime_selection": {
+        "abstention_rate": 0.2,
+        "abstentions": 6,
+        "decisions": 30,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {
+          "stop_loss": 11,
+          "take_profit": 12,
+          "time_exit": 1
+        },
+        "final_nav": 100.104514,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 16.489053,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 2.396653,
+        "n_bars": 278,
+        "net_pnl_gbp": 3.104514,
+        "per_regime": {
+          "trending": {
+            "n": 24.0,
+            "net": 3.104513638758138
+          }
+        },
+        "profit_factor": 1.4639,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 24,
+        "win_rate": 0.5417
+      },
+      "single_proxy_trend": {
+        "abstention_rate": 0.1034,
+        "abstentions": 3,
+        "decisions": 29,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {
+          "stop_loss": 14,
+          "take_profit": 11,
+          "time_exit": 1
+        },
+        "final_nav": 97.803874,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 17.569116,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 2.396653,
+        "n_bars": 278,
+        "net_pnl_gbp": 0.803874,
+        "per_regime": {
+          "trending": {
+            "n": 24.0,
+            "net": 1.9257417931151506
+          },
+          "uncertain": {
+            "n": 2.0,
+            "net": -1.1218675192468683
+          }
+        },
+        "profit_factor": 1.0959,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 26,
+        "win_rate": 0.4615
+      }
+    },
+    "conservative": {
+      "deterministic_rotation": {
+        "abstention_rate": 0.1613,
+        "abstentions": 5,
+        "decisions": 31,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {
+          "stop_loss": 16,
+          "take_profit": 9,
+          "time_exit": 1
+        },
+        "final_nav": 94.735149,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 17.234653,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 3.029991,
+        "n_bars": 278,
+        "net_pnl_gbp": -2.264851,
+        "per_regime": {
+          "trending": {
+            "n": 24.0,
+            "net": -1.1429838687199771
+          },
+          "uncertain": {
+            "n": 2.0,
+            "net": -1.1218675192468683
+          }
+        },
+        "profit_factor": 0.7677,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 26,
+        "win_rate": 0.3462
+      },
+      "dynamic_exp_weights": {
+        "abstention_rate": 0.2581,
+        "abstentions": 8,
+        "decisions": 31,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {
+          "stop_loss": 15,
+          "take_profit": 7,
+          "time_exit": 1
+        },
+        "final_nav": 93.478245,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 15.177879,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 4.228487,
+        "n_bars": 278,
+        "net_pnl_gbp": -3.521755,
+        "per_regime": {
+          "trending": {
+            "n": 21.0,
+            "net": -2.3998876851551008
+          },
+          "uncertain": {
+            "n": 2.0,
+            "net": -1.1218675192468683
+          }
+        },
+        "profit_factor": 0.6233,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 23,
+        "win_rate": 0.3043
+      },
+      "equal_weight_vote": {
+        "abstention_rate": 1.0,
+        "abstentions": 23,
+        "decisions": 23,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {},
+        "final_nav": 97.0,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 0.0,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 0.0,
+        "n_bars": 278,
+        "net_pnl_gbp": 0.0,
+        "per_regime": {},
+        "profit_factor": 0.0,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 0,
+        "win_rate": null
+      },
+      "no_trade": {
+        "abstention_rate": 1.0,
+        "abstentions": 23,
+        "decisions": 23,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {},
+        "final_nav": 97.0,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 0.0,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 0.0,
+        "n_bars": 278,
+        "net_pnl_gbp": 0.0,
+        "per_regime": {},
+        "profit_factor": 0.0,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 0,
+        "win_rate": null
+      },
+      "regime_selection": {
+        "abstention_rate": 0.2963,
+        "abstentions": 8,
+        "decisions": 27,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {
+          "stop_loss": 9,
+          "take_profit": 9,
+          "time_exit": 1
+        },
+        "final_nav": 97.99905,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 13.407308,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 3.32868,
+        "n_bars": 278,
+        "net_pnl_gbp": 0.99905,
+        "per_regime": {
+          "trending": {
+            "n": 19.0,
+            "net": 0.9990498951936196
+          }
+        },
+        "profit_factor": 1.161,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 19,
+        "win_rate": 0.4737
+      },
+      "single_proxy_trend": {
+        "abstention_rate": 0.1923,
+        "abstentions": 5,
+        "decisions": 26,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {
+          "stop_loss": 12,
+          "take_profit": 8,
+          "time_exit": 1
+        },
+        "final_nav": 95.698411,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 14.48737,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 3.32868,
+        "n_bars": 278,
+        "net_pnl_gbp": -1.301589,
+        "per_regime": {
+          "trending": {
+            "n": 19.0,
+            "net": -0.17972195044936856
+          },
+          "uncertain": {
+            "n": 2.0,
+            "net": -1.1218675192468683
+          }
+        },
+        "profit_factor": 0.8351,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 21,
+        "win_rate": 0.381
+      }
+    },
+    "severe": {
+      "deterministic_rotation": {
+        "abstention_rate": 0.2,
+        "abstentions": 6,
+        "decisions": 30,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {
+          "stop_loss": 15,
+          "take_profit": 7,
+          "time_exit": 2
+        },
+        "final_nav": 93.745131,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 15.572868,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 3.693925,
+        "n_bars": 278,
+        "net_pnl_gbp": -3.254869,
+        "per_regime": {
+          "trending": {
+            "n": 22.0,
+            "net": -2.133001317168315
+          },
+          "uncertain": {
+            "n": 2.0,
+            "net": -1.1218675192468683
+          }
+        },
+        "profit_factor": 0.6542,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 24,
+        "win_rate": 0.3333
+      },
+      "dynamic_exp_weights": {
+        "abstention_rate": 0.4194,
+        "abstentions": 13,
+        "decisions": 31,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {
+          "stop_loss": 13,
+          "take_profit": 4,
+          "time_exit": 1
+        },
+        "final_nav": 91.690527,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 11.504805,
+        "halted": "max_drawdown",
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 5.309473,
+        "n_bars": 278,
+        "net_pnl_gbp": -5.309473,
+        "per_regime": {
+          "trending": {
+            "n": 16.0,
+            "net": -4.187605874670539
+          },
+          "uncertain": {
+            "n": 2.0,
+            "net": -1.1218675192468683
+          }
+        },
+        "profit_factor": 0.3685,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 18,
+        "win_rate": 0.2222
+      },
+      "equal_weight_vote": {
+        "abstention_rate": 1.0,
+        "abstentions": 23,
+        "decisions": 23,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {},
+        "final_nav": 97.0,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 0.0,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 0.0,
+        "n_bars": 278,
+        "net_pnl_gbp": 0.0,
+        "per_regime": {},
+        "profit_factor": 0.0,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 0,
+        "win_rate": null
+      },
+      "no_trade": {
+        "abstention_rate": 1.0,
+        "abstentions": 23,
+        "decisions": 23,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {},
+        "final_nav": 97.0,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 0.0,
+        "halted": null,
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 0.0,
+        "n_bars": 278,
+        "net_pnl_gbp": 0.0,
+        "per_regime": {},
+        "profit_factor": 0.0,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 0,
+        "win_rate": null
+      },
+      "regime_selection": {
+        "abstention_rate": 0.3235,
+        "abstentions": 11,
+        "decisions": 34,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {
+          "stop_loss": 16,
+          "take_profit": 7
+        },
+        "final_nav": 92.788485,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 15.400467,
+        "halted": "max_drawdown",
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 5.411222,
+        "n_bars": 278,
+        "net_pnl_gbp": -4.211515,
+        "per_regime": {
+          "trending": {
+            "n": 23.0,
+            "net": -4.211514615513138
+          }
+        },
+        "profit_factor": 0.5705,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 23,
+        "win_rate": 0.3043
+      },
+      "single_proxy_trend": {
+        "abstention_rate": 0.2727,
+        "abstentions": 9,
+        "decisions": 33,
+        "evidence_class": "PREVIOUSLY_EXAMINED_EXPLORATORY",
+        "exits": {
+          "stop_loss": 17,
+          "take_profit": 7
+        },
+        "final_nav": 92.213578,
+        "financing": "UNAVAILABLE",
+        "gbp_fx_label": "ESTIMATE",
+        "gross_pnl_gbp": 16.069481,
+        "halted": "max_drawdown",
+        "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+        "max_drawdown": 4.857376,
+        "n_bars": 278,
+        "net_pnl_gbp": -4.786422,
+        "per_regime": {
+          "trending": {
+            "n": 22.0,
+            "net": -3.6645547432708385
+          },
+          "uncertain": {
+            "n": 2.0,
+            "net": -1.1218675192468683
+          }
+        },
+        "profit_factor": 0.541,
+        "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+        "trade_count": 24,
+        "win_rate": 0.2917
+      }
+    }
+  }
+}

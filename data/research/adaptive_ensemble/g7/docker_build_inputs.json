@@ -1,0 +1,10 @@
+{
+  "dockerfile_copy": ["requirements.txt", "forex_bot/", "main.py"],
+  "dockerignore": [".git", ".gitignore", "__pycache__", "*.py[cod]", "*.egg-info", ".venv", "venv", ".env", "*.md", ".pytest_cache", ".cursor"],
+  "data_directory_dockerignored": false,
+  "env_file_dockerignored": true,
+  "image_built": false,
+  "running_image_digest_verified": false,
+  "rollback_target_verified": false,
+  "build_context_note": "A future docker build would send data/ to the daemon because it is not ignored, even though the Dockerfile does not COPY it. That includes research candle archives and the live safety state file. This is an outstanding packaging blocker. Those files are not in the G.7 source snapshot."
+}

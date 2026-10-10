@@ -1,0 +1,16 @@
+{
+  "pending": [
+    {
+      "candidate_id": "proxy_trend_ma_slope_v1",
+      "pnl": 0.04135023460346595,
+      "ready_i": 359
+    }
+  ],
+  "updates": 26,
+  "version": "exp_weights_v1",
+  "weights": {
+    "proxy_atr_expansion_breakout_v1": 1.0,
+    "proxy_rsi_mean_reversion_v1": 1.0,
+    "proxy_trend_ma_slope_v1": 0.4064060173565609
+  }
+}

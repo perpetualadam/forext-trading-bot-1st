@@ -1,0 +1,39 @@
+{
+  "classification": "SOURCE_SNAPSHOT_VERIFIED_ALLOWLIST_READY_REVIEW_REQUIRED",
+  "image_build_authorised": false,
+  "deployment_authorised": false,
+  "areas": {
+    "source_snapshot_identity": "Verified",
+    "archive_integrity": "Verified",
+    "independent_verification": "Verified",
+    "production_dependency_closure": "Verified",
+    "production_source_allowlist": "Verified",
+    "research_code_exclusion": "Partially verified",
+    "secret_exclusion": "Verified",
+    "operational_state_exclusion": "Verified",
+    "build_context_safety": "Partially verified",
+    "symlink_reparse_point_safety": "Partially verified",
+    "startup_fail_closed_behaviour": "Verified",
+    "new_order_authorisation": "Verified",
+    "candle_provenance": "Verified",
+    "existing_position_management": "Verified",
+    "protective_close_accounting": "Verified",
+    "multi_instrument_exception_isolation": "Verified",
+    "running_image_identity": "Unverified",
+    "rollback_image_identity": "Unverified",
+    "runtime_configuration_compatibility": "Unverified",
+    "live_database_compatibility": "Unverified",
+    "deployment_procedure": "Unverified",
+    "post_deployment_verification": "Unverified",
+    "full_suite_test_coverage": "Partially verified",
+    "operator_approval": "Unverified"
+  },
+  "notes": {
+    "production_source_allowlist": "The proposal is closed and excludes research. The Dockerfile still copies forex_bot/ and was not edited.",
+    "research_code_exclusion": "Excluded from the proposed image allowlist. Still present in the reviewed snapshot and in the current Dockerfile COPY.",
+    "build_context_safety": "Local dockerignore matcher only. The Docker daemon was not started.",
+    "symlink_reparse_point_safety": "No links in forex_bot or the repository root. data/ and .git were not fully enumerated.",
+    "full_suite_test_coverage": "508 scoped tests passed. The entire repository suite was not run.",
+    "rollback": "sha256:a19a2208fcf30f8fa1cf61442cf021dec6d99d809b6907836c834922bfe3e2a5 must not be a rollback target. No current running image digest was read."
+  }
+}

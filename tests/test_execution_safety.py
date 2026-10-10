@@ -52,7 +52,14 @@ def test_paper_mode_cannot_assert_broker_even_with_live_kind(monkeypatch):
         assert_broker_order_allowed(execution_kind="live", action="open")
 
 
-def test_live_kind_can_assert_broker_when_live_broker(monkeypatch):
+def test_live_kind_is_blocked_until_authorised(monkeypatch):
+    monkeypatch.setenv("EXECUTION_MODE", "live_broker")
+    monkeypatch.setenv("USE_OANDA_LIVE", "true")
+    with pytest.raises(RuntimeError, match="LIVE_ORDER_AUTH"):
+        assert_broker_order_allowed(execution_kind="live", action="open")
+
+
+def test_live_kind_can_assert_broker_when_authorised(monkeypatch, allow_live_order_create):
     monkeypatch.setenv("EXECUTION_MODE", "live_broker")
     monkeypatch.setenv("USE_OANDA_LIVE", "true")
     assert_broker_order_allowed(execution_kind="live", action="open")
@@ -101,7 +108,7 @@ def test_paper_mode_open_never_calls_sync_place(monkeypatch):
     assert called["n"] == 0
 
 
-def test_live_open_reaches_sync_place_and_keeps_ids(monkeypatch):
+def test_live_open_reaches_sync_place_and_keeps_ids(monkeypatch, allow_live_order_create):
     monkeypatch.setenv("EXECUTION_MODE", "live_broker")
     monkeypatch.setenv("OANDA_ACCESS_TOKEN", "tok")
 
@@ -110,9 +117,16 @@ def test_live_open_reaches_sync_place_and_keeps_ids(monkeypatch):
 
     monkeypatch.setattr("forex_bot.oanda_exec._place_market_order_open_sync", fake_place)
 
+    from forex_bot.market_provenance import mint_live_quote
+
     async def _run():
         return await execute_oanda_market_open(
-            "EUR_USD", 2.0, "SELL", "cid-live-1", execution_kind="live"
+            "EUR_USD",
+            2.0,
+            "SELL",
+            "cid-live-1",
+            execution_kind="live",
+            entry_quote=mint_live_quote("EUR_USD"),
         )
 
     fp, uf, oid, _pl, _ts = asyncio.run(_run())

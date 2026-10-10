@@ -1,0 +1,13 @@
+{
+  "change": "Contain candle-boundary Exception except CycleIntegrityError and AssertionError. Record candle_acquisition_failed, candle_parsing_failed, or candle_internal_error, then continue to position management.",
+  "not_changed": [
+    "PositionClose side selection",
+    "90 second quote limit",
+    "live-order authorisation",
+    "broker-native stops"
+  ],
+  "production_files": [
+    "forex_bot/bot_loop.py",
+    "forex_bot/decision_skip_log.py"
+  ]
+}

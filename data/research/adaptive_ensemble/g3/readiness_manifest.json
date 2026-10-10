@@ -1,0 +1,14 @@
+{
+  "classification": "FRESH_DATA_ACQUIRED_INSUFFICIENT_DURATION",
+  "complete_trading_days": 29,
+  "duration_status": "INSUFFICIENT_INDEPENDENT_DURATION",
+  "environment": "live",
+  "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+  "models_retuned": false,
+  "quality_status": "WARN",
+  "requests": 36,
+  "stage_g_assessment_unchanged": "EXPLORATORY_NO_CREDIBLE_EDGE",
+  "strategy_outcomes_inspected": false,
+  "thirty_trade_gate": "NOT_YET_EVALUATED",
+  "validation_started": false
+}

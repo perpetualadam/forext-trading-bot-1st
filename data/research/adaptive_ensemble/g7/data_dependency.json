@@ -1,0 +1,30 @@
+{
+  "decision_window": "fetch_ohlcv default HYBRID_OHLCV_COUNT 200 M5 bars",
+  "protected_surface": "every acquired row, not a fixed tail",
+  "reason": "compute_indicators copies the frame and runs rolling and ewm calculations over the whole series. ATR uses the previous close. A change to any earlier OHLC value can change the last indicator row.",
+  "route_lookback_default": 60,
+  "indicator_windows": "scaled from lookback and the full bar count; MACD ewm starts at the first row",
+  "acquired_columns": [
+    "time",
+    "open",
+    "high",
+    "low",
+    "close",
+    "complete",
+    "bid_open",
+    "bid_high",
+    "bid_low",
+    "bid_close",
+    "ask_open",
+    "ask_high",
+    "ask_low",
+    "ask_close",
+    "volume"
+  ],
+  "price_basis": "mid OHLC is the trading frame; bid and ask buckets are retained on the same rows",
+  "incomplete_candles": "dropped before the frame exists; the remaining complete flag is sealed",
+  "order_quote": "separate fresh pricing snapshot; bid for SELL and ask for BUY; not the M5 close",
+  "derived_columns_not_sealed": ["ma_fast", "ma_slow", "rsi", "macd", "boll_up", "boll_down", "atr", "trend", "volatility"],
+  "external_features_on_live_entry_path": "none identified beyond the acquired candle frame and the separate order quote",
+  "management_prices": "cached bid/ask closeout quotes, independent of the candle seal"
+}

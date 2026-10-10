@@ -1,0 +1,20 @@
+{
+  "command": ["uvicorn", "forex_bot.app:app", "--host", "0.0.0.0", "--port", "8000"],
+  "container_id": "5fcbcff7173eee98f6228b901fab96fd24474038852ef1f4cc3fbccd138edd32",
+  "container_name": "forexttradingbot1st-bot-1",
+  "created": "2026-10-08T22:24:38.050789775Z",
+  "evidence": "current docker inspect and docker image history",
+  "history_application_layers": [
+    {"created_by": "COPY forex_bot ./forex_bot", "size_reported": "2.82MB", "created": "2026-10-08T22:24:01Z"},
+    {"created_by": "COPY main.py .", "size_reported": "12.3kB", "created": "2026-10-08T22:24:01Z"}
+  ],
+  "history_layer_ids": "missing",
+  "image_created": "2026-10-08T22:24:01.773111643Z",
+  "image_id": "sha256:a905781d872d4a83706c716baa8be6e08c4abef26b2d9f9510a118c2c3039d25",
+  "image_id_unchanged_from_g11": true,
+  "image_size_bytes": 111899777,
+  "registry_digest": null,
+  "restart_policy": "no",
+  "state": "running",
+  "tag": "forexttradingbot1st-bot:latest"
+}

@@ -1,0 +1,16 @@
+{
+  "g9_1_tests": 13,
+  "mypy_bot_loop": "clean",
+  "mypy_decision_skip_log": "clean",
+  "mypy_oanda_exec_preexisting": 5,
+  "previous_scoped_count": 488,
+  "pytest_failed": 0,
+  "pytest_passed": 501,
+  "pytest_skipped": 0,
+  "pytest_warnings": 2,
+  "ruff_new_findings": 0,
+  "ruff_preexisting_bot_loop": 14,
+  "ruff_preexisting_decision_skip_log": 9,
+  "ruff_preexisting_oanda_exec_unchanged": 8,
+  "scope": "scoped regression, not the full repository"
+}

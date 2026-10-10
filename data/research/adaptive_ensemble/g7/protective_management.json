@@ -1,0 +1,13 @@
+{
+  "position_monitoring": "unchanged; management still runs when a position exists and candles were fetched",
+  "cached_bid_ask": "cache downgrade keeps prices and removes the live seal",
+  "broker_native_sl_tp": "broker_sl_tp_hit remains false; no cancel endpoint added",
+  "software_profit_protection": "still a risk-reducing PositionClose",
+  "risk_reducing_close": "PositionClose does not require the candle seal; longUnits closes long and shortUnits closes short",
+  "failed_close": "transport failure still raises",
+  "stale_manage_quote": "quote older than 90 seconds returns UNAVAILABLE and no M5 fallback",
+  "missing_candle_behaviour": "pre-existing: if raw is None or empty, _evaluate_impl returns before the if pos management block. Not redesigned in G.7.",
+  "restart_authorisation": "persisted ALLOWED is ignored; effective state stays BLOCKED",
+  "strategies": "all six remain inactive",
+  "regressions": "none observed in the scoped suite"
+}

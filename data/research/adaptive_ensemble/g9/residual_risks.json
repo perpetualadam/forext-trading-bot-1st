@@ -1,0 +1,12 @@
+{
+  "close_unit_rounding": "The existing minimum of 1 rounded unit on PositionClose was not redesigned.",
+  "deployment": "not authorised",
+  "dockerfile_still_copies_forex_bot": "The image allowlist was not changed in G.9.",
+  "dockerignore_not_daemon_verified": "The local matcher is not Docker daemon proof.",
+  "g7_snapshot_outdated": "A later stage must pin a new source snapshot that contains this repair and the G.8 dockerignore hardening.",
+  "no_independent_management_loop": "Management still runs inside the symbol cycle, after the contained candle attempt.",
+  "paper_close_without_candles": "A simulated close still needs a decision frame to price ATR and is withheld instead of fabricated.",
+  "running_image_digest_unverified": "No container was inspected or restarted.",
+  "runtime_error_during_fetch": "A RuntimeError from fetch aborts that symbol before management and is recorded; later symbols continue.",
+  "same_process_provenance": "bind_live_frame remains an in-process seal, not a process boundary."
+}

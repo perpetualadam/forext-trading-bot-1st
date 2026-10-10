@@ -1,0 +1,11 @@
+{
+  "production_candle_mint": "forex_bot.oanda_client.fetch_ohlcv calls bind_live_frame only after a successful InstrumentsCandles response",
+  "production_quote_mint": "forex_bot.oanda_client.fetch_pricing_snapshot calls bind_live_quote only after a successful pricing response",
+  "research_synthetic": "runner.synthetic_market calls bind_synthetic_frame and cannot become OANDA_LIVE_VERIFIED by a label",
+  "label_parser": "provenance_from_label raises caller_supplied_label",
+  "unsealed_constructor": "Provenance(OANDA_LIVE_VERIFIED) without the private seal raises spoofed_live_classification",
+  "in_process_helpers": ["bind_live_frame", "bind_live_quote", "mint_live_quote"],
+  "same_process_limitation": "Any code already running in the process can call the mint helpers. Python module visibility is not a security boundary. The digest binds the frame to that local acquisition event. It does not cryptographically prove the broker sent the bytes.",
+  "stronger_isolation": "A separate acquisition process would be a future architecture change. It is not implemented in G.7.",
+  "hostname_instrument_or_price_string_does_not_mint_a_seal": true
+}

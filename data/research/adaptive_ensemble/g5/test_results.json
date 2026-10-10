@@ -1,0 +1,30 @@
+{
+  "commands": [
+    {
+      "command": "python -m pytest tests/test_market_provenance_g5.py tests/test_adaptive_ensemble_stage_g.py tests/test_adaptive_ensemble_stage_g1.py tests/test_adaptive_ensemble_stage_g2.py tests/test_adaptive_ensemble_stage_g3.py tests/test_adaptive_ensemble_stage_g4.py tests/test_decision_repair.py tests/test_decision_repair_f1.py tests/test_decision_repair_f2.py tests/test_live_safety_repair.py tests/test_execution_safety.py tests/test_execution_headroom.py tests/test_logic_fixes.py tests/test_entry_execution_geometry.py tests/test_v2_shadow_market.py tests/test_live_position_management.py tests/test_ohlcv_off_event_loop.py -q --tb=line",
+      "passed": 320,
+      "failed": 0,
+      "skipped": 0,
+      "warnings": 1
+    },
+    {
+      "command": "python -m ruff check forex_bot/market_provenance.py forex_bot/research/adaptive_ensemble/g5_audit.py forex_bot/research/adaptive_ensemble/runner.py tests/test_market_provenance_g5.py",
+      "result": "All checks passed"
+    },
+    {
+      "command": "python -m mypy forex_bot/research --ignore-missing-imports",
+      "result": "Success: no issues found in 37 source files"
+    },
+    {
+      "command": "python -m mypy forex_bot/market_provenance.py --ignore-missing-imports --follow-imports=silent",
+      "result": "Success: no issues found in 1 source file"
+    }
+  ],
+  "stage_g5_tests": 13,
+  "stage_g_through_g4_and_f_live_safety_including_g5": 172,
+  "additional_execution_and_market_tests_included": 148,
+  "stage_g_through_g4_regressions": "none",
+  "stage_f_and_live_safety_regressions": "none",
+  "broker_orders_submitted": false,
+  "network_calls": 0
+}

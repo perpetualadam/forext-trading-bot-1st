@@ -1,0 +1,9 @@
+{
+  "deployment": "not authorised",
+  "dockerfile_copies_forex_bot": true,
+  "dockerignore_not_daemon_verified": true,
+  "fetch_internal_runtimeerror": "Contained as candles unavailable. A true shared-state failure must be raised as CycleIntegrityError to stop the cycle.",
+  "g7_snapshot_outdated": "Does not contain G.8 hardening, G.9 management repair, or this boundary repair.",
+  "running_image_unverified": true,
+  "same_process_provenance": true
+}

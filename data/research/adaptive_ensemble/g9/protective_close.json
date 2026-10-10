@@ -1,0 +1,12 @@
+{
+  "broker_native_protection": "left in place; broker_sl_tp_hit remains false",
+  "failed_close": "close_position is not called",
+  "long_close": "longUnits of the verified open units",
+  "missing_candle_seal": "does not block PositionClose",
+  "missing_entry_quote_seal": "does not block PositionClose",
+  "open_only": "not present on PositionClose",
+  "short_close": "shortUnits of the verified open units",
+  "uncertain_direction_or_size": "no request is sent",
+  "unconfirmed_timeout": "one request, no retry, position remains open locally",
+  "weekend_flatten": "evaluated for an existing broker position without decision candles"
+}

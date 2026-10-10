@@ -1,0 +1,35 @@
+{
+  "broker_api_calls": 0,
+  "broker_orders_submitted": false,
+  "consensus_forecast_modified": false,
+  "deployment_performed": false,
+  "docker_commands_issued": false,
+  "durable_live_order_authorisation_observed": "BLOCKED",
+  "durable_strategies_observed_active": false,
+  "g3_normalised_verified": true,
+  "g3_raw_verified": true,
+  "g4": {
+    "broker_requests": 0,
+    "classification": "VALIDATION_RUNNER_READY_DATA_PENDING",
+    "complete_common_sessions": 27,
+    "package_hash": "05b56d1ed7736025e86a9e3f94fb44bb49ea6208718aab7af9cfde6977a6c201",
+    "package_verified": true,
+    "policy_hash": "6ea84361d6fec3e1743fce2c238940d9f2fda50b78b1d5e305d07d18650d29d4",
+    "policy_verified": true,
+    "remaining_to_40": 13,
+    "strategy_evaluation_performed": false,
+    "validation_started": false
+  },
+  "git": {
+    "porcelain_count": 66,
+    "revision": "f6c4f40ae6b7614379347ed45141ecd5a3d33642"
+  },
+  "live_database_writes": false,
+  "live_order_authorisation_changed": false,
+  "note": "Observation of data/ops/live_safety_state.json was read-only.",
+  "protocol_hash": "539cdc083f83393a79d254d21385edc6c48e88eb0f085d4549df9fdd6d431bc0",
+  "protocol_verified": true,
+  "running_container_changed": false,
+  "stage": "G.5",
+  "strategies_activated": false
+}

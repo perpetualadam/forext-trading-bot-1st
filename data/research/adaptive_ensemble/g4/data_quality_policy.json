@@ -1,0 +1,74 @@
+{
+  "actions_ignore_trade_outcome": true,
+  "change_class": "BEHAVIOURAL_EVALUATION_SPEC_REQUIRES_NEW_BASELINE",
+  "definition_hash": "bb352b0e4d320a6d6a94764c8e1fdd96a283a8889f4311597aeb75ccba56ef65",
+  "integrity_hash": "6ea84361d6fec3e1743fce2c238940d9f2fda50b78b1d5e305d07d18650d29d4",
+  "max_source_omission_minutes": 60,
+  "modifies_stage_g_protocol": false,
+  "no_interpolation": true,
+  "no_mid_replacement": true,
+  "policy_id": "stage_g4_data_quality_policy_v1",
+  "rules": [
+    {
+      "action": "ACCEPT",
+      "condition": "expected_weekend_closure"
+    },
+    {
+      "action": "QUARANTINE_INTERVAL",
+      "condition": "source_omission_at_most_60_minutes"
+    },
+    {
+      "action": "SKIP_SESSION",
+      "condition": "unresolved_or_longer_gap"
+    },
+    {
+      "action": "STOP_EVALUATION",
+      "condition": "pagination_or_normalisation_defect"
+    },
+    {
+      "action": "STOP_EVALUATION",
+      "condition": "missing_bid_ask"
+    },
+    {
+      "action": "STOP_EVALUATION",
+      "condition": "invalid_spread"
+    },
+    {
+      "action": "NO_TRADE",
+      "condition": "price_jump_gt_1pct"
+    },
+    {
+      "action": "STOP_EVALUATION",
+      "condition": "incomplete_candle_in_evaluation_set"
+    },
+    {
+      "action": "NO_TRADE",
+      "condition": "stale_or_missing_conversion"
+    },
+    {
+      "action": "NO_TRADE",
+      "condition": "insufficient_warmup"
+    },
+    {
+      "action": "QUARANTINE_INTERVAL",
+      "condition": "gap_during_open_position_source_omission"
+    },
+    {
+      "action": "NO_TRADE",
+      "condition": "gap_immediately_before_entry"
+    },
+    {
+      "action": "QUARANTINE_INTERVAL",
+      "condition": "gap_at_stop_or_target"
+    },
+    {
+      "action": "SKIP_SESSION",
+      "condition": "partial_session"
+    },
+    {
+      "action": "STOP_EVALUATION",
+      "condition": "provider_data_anomaly"
+    }
+  ],
+  "stop_fill": "next observed executable open; never an unobserved stop price inside a hole"
+}

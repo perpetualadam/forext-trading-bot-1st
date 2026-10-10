@@ -1,0 +1,21 @@
+{
+  "candidates": [
+    {
+      "classification": "ROLLBACK_CANDIDATE_PARTIALLY_VERIFIED",
+      "image_id": "sha256:a905781d872d4a83706c716baa8be6e08c4abef26b2d9f9510a118c2c3039d25",
+      "management_continuity_proven": false,
+      "provenance_proven": false,
+      "reason": "This is the image already running. Its id matches the historical Stage A identifier. Its bytes were not extracted, and it was created before the local G.5-G.10 repairs."
+    },
+    {
+      "classification": "ROLLBACK_CANDIDATE_REJECTED",
+      "image_id": "sha256:a19a2208fcf30f8fa1cf61442cf021dec6d99d809b6907836c834922bfe3e2a5",
+      "present_locally": false,
+      "reason": "Historical unsafe image. Absent locally and excluded by policy."
+    }
+  ],
+  "images_inspected": 11,
+  "bot_images_present": 1,
+  "result": "NO_VERIFIED_ROLLBACK_TARGET",
+  "rollback_executed": false
+}

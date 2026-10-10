@@ -1,0 +1,9 @@
+{
+  "account_id_recorded": false,
+  "broker_calls_before_this_function": false,
+  "environment": "live",
+  "host": "api-fxtrade.oanda.com",
+  "protocol_hash_verified": true,
+  "read_only_isolation": "standalone_urllib_candle_path_only",
+  "token_recorded": false
+}

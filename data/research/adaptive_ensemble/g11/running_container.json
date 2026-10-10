@@ -1,0 +1,19 @@
+{
+  "command": ["uvicorn", "forex_bot.app:app", "--host", "0.0.0.0", "--port", "8000"],
+  "confidence": "high",
+  "container_id": "5fcbcff7173eee98f6228b901fab96fd24474038852ef1f4cc3fbccd138edd32",
+  "created": "2026-10-08T22:24:38.050789775Z",
+  "entrypoint": null,
+  "evidence": "current docker inspect",
+  "image_id": "sha256:a905781d872d4a83706c716baa8be6e08c4abef26b2d9f9510a118c2c3039d25",
+  "mounts": [
+    {"destination": "/app/data/ops", "type": "bind", "writable": true},
+    {"destination": "/app/data/research/v2_shadow", "type": "bind", "writable": true}
+  ],
+  "name": "forexttradingbot1st-bot-1",
+  "network": "forexttradingbot1st_default",
+  "restart_policy": "no",
+  "started": "2026-10-08T22:24:39.830615859Z",
+  "state": "running",
+  "workdir": "/app"
+}

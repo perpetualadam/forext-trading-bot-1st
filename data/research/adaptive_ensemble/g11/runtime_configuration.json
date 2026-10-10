@@ -1,0 +1,34 @@
+{
+  "command_matches_dockerfile": true,
+  "credential_injection": "compose environment interpolation; values were not stored",
+  "credential_names_empty": ["OANDA_API_KEY", "OPENAI_API_KEY", "TELEGRAM_TOKEN"],
+  "credential_names_present": ["OANDA_ACCESS_TOKEN", "OANDA_ACCOUNT_ID", "POSTGRES_PASS", "TELEGRAM_BOT_TOKEN"],
+  "database_container": {
+    "id": "d3a477f60fb52f7ba2679f6044bbdb122c5638c3472dd9804e2633a7c13117ca",
+    "image": "sha256:20edbde7749f822887a1a022ad526fde0a47d6b2be9a8364433605cf65099416",
+    "name": "forexttradingbot1st-db-1",
+    "restart_policy": "no",
+    "state": "running",
+    "volume": "forexttradingbot1st_pgdata",
+    "volume_destination": "/var/lib/postgresql/data"
+  },
+  "mounts": {
+    "data_ops": "required for durable fail-closed authorisation; writable bind",
+    "v2_shadow": "optional observational archive; writable bind; not required for the order gate"
+  },
+  "operational_names_present": [
+    "EXECUTION_MODE",
+    "PAPER_TRADING",
+    "USE_OANDA_LIVE",
+    "LIVE_SAFETY_STATE_PATH",
+    "TRADING_MODE",
+    "POSTGRES_HOST",
+    "POSTGRES_DB",
+    "POSTGRES_USER",
+    "POSTGRES_PORT",
+    "V2_SHADOW_ENABLED"
+  ],
+  "restart_policy": "no",
+  "values_stored": false,
+  "workdir": "/app"
+}

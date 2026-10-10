@@ -1,0 +1,7 @@
+{
+  "final_valid_without_position": "no new entry while weekend flatten is on",
+  "first_timeout": "existing position managed; later symbols run",
+  "integrity_stop": "CycleIntegrityError processes only the failing symbol",
+  "middle_parse": "existing position managed; later symbols run",
+  "simultaneous_failures": "each existing position still managed"
+}

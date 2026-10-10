@@ -1,0 +1,71 @@
+{
+  "controls": {
+    "bot_imports_provenance": false,
+    "client_imports_provenance": false,
+    "close_calls_authorisation": false,
+    "contain_candle_exception_defined": false,
+    "cycle_integrity_error_defined": false,
+    "database_called_from_app": true,
+    "database_executes_ddl": true,
+    "empty_candle_return_before_later_manage_calls": [
+      {
+        "function": "evaluate",
+        "later_manage_or_position_calls": [
+          "Position",
+          "resolve_broker_manage_price",
+          "format_manage_price_line"
+        ],
+        "returns_on_empty_raw": true
+      }
+    ],
+    "initialise_persists_state": true,
+    "initialise_sets_blocked": true,
+    "missing_state_blocked_constant": true,
+    "mutation_calls": [
+      {
+        "call": "oanda_positions.PositionClose",
+        "function": "_place_market_order_sync"
+      },
+      {
+        "call": "oanda_orders.OrderCreate",
+        "function": "_place_market_order_open_sync"
+      }
+    ],
+    "open_gate_before_order_create": true,
+    "order_cancel_present": false,
+    "order_replace_present": false,
+    "persisted_allowed_ignored_constant": true,
+    "protective_close_withheld_constant": false,
+    "require_order_quote_called": false,
+    "startup_calls_initialise_fail_closed": true,
+    "static_inspection_proves_runtime": false,
+    "trade_close_present": false
+  },
+  "paths": [
+    {
+      "audit_call_present": true,
+      "authorisation_before_call": false,
+      "broker_operation": "oanda_positions.PositionClose",
+      "endpoint_literals": [],
+      "exception_handler_present": true,
+      "exposure": "reducing",
+      "function": "_place_market_order_sync",
+      "http_method_literal": "unseen",
+      "module": "forex_bot/oanda_exec.py",
+      "timeout_keyword_present": false
+    },
+    {
+      "audit_call_present": true,
+      "authorisation_before_call": true,
+      "broker_operation": "oanda_orders.OrderCreate",
+      "endpoint_literals": [],
+      "exception_handler_present": true,
+      "exposure": "increasing",
+      "function": "_place_market_order_open_sync",
+      "http_method_literal": "unseen",
+      "module": "forex_bot/oanda_exec.py",
+      "timeout_keyword_present": false
+    }
+  ],
+  "verified_at_utc": "2026-10-10T09:27:13.350207+00:00"
+}

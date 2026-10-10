@@ -1,0 +1,103 @@
+{
+  "baselines": [
+    "no_trade",
+    "single_proxy_trend",
+    "deterministic_rotation",
+    "equal_weight_vote",
+    "regime_selection",
+    "dynamic_exp_weights"
+  ],
+  "candidate_notes": "These are new Stage G research hypotheses, not reconstructions of the original AI/RL bot and not retunes of the rejected Stage E heuristic family.",
+  "candidates": [
+    "proxy_trend_ma_slope_v1",
+    "proxy_rsi_mean_reversion_v1",
+    "proxy_atr_expansion_breakout_v1"
+  ],
+  "cost_scenarios": [
+    "base",
+    "conservative",
+    "severe"
+  ],
+  "data_provenance": "data/historical/*_M5.csv Stage E inventory Sep 2025\u2013Aug 2026",
+  "decision_rules": {
+    "EXPLORATORY_NO_CREDIBLE_EDGE": "Adaptive methods do not beat no-trade and rotation after severe costs.",
+    "EXPLORATORY_PROMISING_REQUIRES_FRESH_VALIDATION": "Exploratory remainder looks better but data is previously examined.",
+    "RESEARCH_BLOCKED_DATA_OR_SAFETY": "Leakage, accounting, or isolation defect.",
+    "RESEARCH_INFRASTRUCTURE_ONLY": "Insufficient fidelity or no genuine holdout for a trading claim."
+  },
+  "development_fraction": 0.4,
+  "execution": {
+    "daily_loss_halt_pct": 0.02,
+    "decision_stride": 12,
+    "fill": "next_bar_executable_bid_ask",
+    "financing": "UNAVAILABLE",
+    "gbp_fx_label": "ESTIMATE",
+    "gbp_usd_fx": 1.35,
+    "max_dd_halt_pct": 0.05,
+    "max_hold_bars": 24,
+    "same_bar_sl_tp": "conservative_skip_if_ambiguous",
+    "sl_atr": 1.5,
+    "start_nav_gbp": 97.0,
+    "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+    "tp_atr": 2.0,
+    "units": 1000.0
+  },
+  "frozen_utc": "2026-10-09T06:24:17+00:00",
+  "genuine_fresh_holdout": false,
+  "hypotheses": {
+    "H1_regime": "Trend proxies may be more suitable in persistent directional regimes; this is untested.",
+    "H2_vote": "Requiring agreement among distinct proxies may reduce conflicting trades.",
+    "H3_weights": "Delayed exponential weights may down-weight recently costly proxies.",
+    "H4_no_trade": "Abstaining when regime is uncertain or spread/ATR is high may cut cost drag."
+  },
+  "integrity_hash": "539cdc083f83393a79d254d21385edc6c48e88eb0f085d4549df9fdd6d431bc0",
+  "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+  "metrics": [
+    "trade_count",
+    "gross_pnl_gbp",
+    "net_pnl_gbp",
+    "profit_factor",
+    "win_rate",
+    "max_drawdown",
+    "abstention_rate",
+    "exposure_bars",
+    "turnover"
+  ],
+  "min_trades_for_comparison": 30,
+  "original_ai_rl_fidelity": "ORIGINAL_DECISION_NOT_REPRODUCIBLE",
+  "original_strategies": "KEEP_DISABLED",
+  "pairs": [
+    "EUR_USD",
+    "GBP_USD",
+    "USD_JPY",
+    "AUD_USD",
+    "USD_CAD",
+    "USD_CHF"
+  ],
+  "previously_examined_period": "2025-09-01/2026-08-31",
+  "previously_examined_remainder_fraction": 0.4,
+  "protocol_id": "stage_g_adaptive_ensemble_v1",
+  "remainder_label": "PREVIOUSLY_EXAMINED_NOT_UNSEEN",
+  "research_question": "Does a market-aware adaptive selection or ensemble approach improve net, risk-adjusted outcomes over simple, prespecified benchmarks after realistic costs, without relying on hindsight or excessive model complexity?",
+  "secondary_questions": [
+    "Which regime features are computable without look-ahead?",
+    "Does voting improve decision quality versus a single proxy?",
+    "Do delayed-outcome exponential weights outperform equal weights?",
+    "Does NO TRADE reduce low-quality exposure?",
+    "Are any apparent gains concentrated in one pair or short window?",
+    "Are improvements robust to severe costs?",
+    "Does extra complexity justify itself versus rotation or no-trade?"
+  ],
+  "stage_e_family": "STOP_EXPERIMENTAL_STRATEGY_FAMILY",
+  "status": "FROZEN",
+  "stop_conditions": [
+    "No genuine unseen future period exists; do not claim final holdout validation.",
+    "Do not retune after viewing remainder results.",
+    "A system with zero trades is not profitable.",
+    "Sign flip under severe costs rejects an edge claim."
+  ],
+  "timeframe": "M5 completed bars",
+  "uncertainty": "block-bootstrap of trade P&L is not claimed; overlapping holds are dependent",
+  "validation_fraction": 0.2,
+  "version": "1"
+}

@@ -1,0 +1,17 @@
+{
+  "proposal_status": "NOT_APPROVED",
+  "reason": "86 copied modules are UNKNOWN to the static startup walk, including decision_quality, shadow, csv_ohlcv, backtest, oanda_candles_read, and live_safety_preflight. A reduced image that omitted them is not approved.",
+  "dockerfile_changed": false,
+  "image_built": false,
+  "research_left_in_repository": true,
+  "proposed_future_allowlist_when_unknowns_are_resolved": [
+    "Dockerfile",
+    ".dockerignore",
+    "docker-compose.yml",
+    "main.py",
+    "requirements.txt",
+    ".env.example",
+    "forex_bot modules classified PRODUCTION_REQUIRED"
+  ],
+  "do_not_exclude_yet": ["forex_bot/research/", "forex_bot/decision_quality/", "forex_bot/shadow/", "modules classified UNKNOWN"]
+}

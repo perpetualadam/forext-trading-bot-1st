@@ -1,0 +1,9 @@
+{
+  "blocked_authorisation": "direct OrderCreate raises LIVE_ORDER_AUTH and sends nothing",
+  "close_does_not_enable_entries": "authorisation remains BLOCKED after a mocked close",
+  "missing_empty_exception_incomplete": "zero new-entry evaluations and zero order requests",
+  "missing_provenance": "blocked",
+  "stale_acquisition": "blocked",
+  "synthetic_historical_replayed_cached": "decision_frame_rejection blocks the broker path before order reservation",
+  "tampered_frame": "blocked"
+}

@@ -1,0 +1,18 @@
+{
+  "authorised": false,
+  "broker_calls": 0,
+  "docker": false,
+  "dry_run": true,
+  "evaluation_started": false,
+  "live_trading": false,
+  "net_pnl_gbp": null,
+  "reasons": [
+    "INSUFFICIENT_INDEPENDENT_DURATION",
+    "AUTHORISATION_REQUIRED"
+  ],
+  "refused": true,
+  "runner": "independent_validation_runner_v1",
+  "signals_evaluated": false,
+  "strategy_evaluation_performed": false,
+  "trades": null
+}

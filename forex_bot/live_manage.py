@@ -27,6 +27,7 @@ class ManageQuote:
     closeout_ask: float | None = None
     time_epoch: float | None = None
     tradeable: bool = True
+    provenance: Any = None
 
 
 def closeout_manage_price(quote: ManageQuote | None, direction: str) -> float | None:

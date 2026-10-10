@@ -1,0 +1,12 @@
+{
+  "risks": [
+    "Same-process code can still call bind_live_frame or mint_live_quote. The seal is local integrity, not broker authentication.",
+    "Dockerfile still copies the whole forex_bot package, including research and UNKNOWN modules.",
+    "data/ is not in .dockerignore.",
+    "Running image digest and a safe rollback target were not inspected.",
+    "A missing candle response still returns before position management. This is pre-existing and was not redesigned.",
+    "The Git HEAD is not the snapshot identity because the working tree is dirty.",
+    "Protective PositionClose remains independent of the new-entry candle seal.",
+    "No deployment and no trading authorisation is granted by this stage."
+  ]
+}

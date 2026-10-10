@@ -1,0 +1,11 @@
+{
+  "broker_api_calls_made": false,
+  "complete_trading_days_after_cutoff": 0,
+  "date_range": null,
+  "new_data_acquired": false,
+  "pairs": [],
+  "provenance_classification": "INDEPENDENCE_NOT_ESTABLISHED",
+  "raw_hashes": {},
+  "reason": "DATA_SOURCE_REQUIRES_OPERATOR_APPROVAL",
+  "source": null
+}

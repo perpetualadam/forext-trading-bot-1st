@@ -1,0 +1,23 @@
+{
+  "context_root": ".",
+  "dockerfile_copy": ["requirements.txt", "forex_bot/", "main.py"],
+  "dockerfile_add": [],
+  "matcher": "g8_dockerignore.py approximates documented Docker pattern rules. It was not executed by a Docker daemon.",
+  "rows": [
+    {"path": ".env", "class": "SECRET", "image_copy": false, "context_before": "ignored", "context_after": "ignored", "could_contain_secrets": true, "rule": ".env", "runtime": "environment or secret store, not the image"},
+    {"path": ".env.* except .env.example", "class": "SECRET", "image_copy": false, "context_before": "exposed", "context_after": "ignored", "could_contain_secrets": true, "rule": ".env.* then !.env.example", "runtime": "none"},
+    {"path": ".env.example", "class": "TEMPLATE", "image_copy": false, "context_before": "sent", "context_after": "sent", "could_contain_secrets": "example database password length 8; live token fields empty", "rule": "!.env.example", "runtime": "template only"},
+    {"path": "credentials and private keys", "class": "SECRET", "image_copy": false, "context_before": "exposed if present", "context_after": "ignored", "could_contain_secrets": true, "rule": "*.pem *.key id_rsa credentials.json", "runtime": "none"},
+    {"path": "data/", "class": "OPERATIONAL_AND_RESEARCH", "image_copy": false, "context_before": "sent to the daemon", "context_after": "ignored", "could_contain_secrets": "live safety state and research archives", "rule": "/data and /data/**", "runtime": "compose bind mounts ./data/ops and ./data/research/v2_shadow"},
+    {"path": "data/ops/live_safety_state.json", "class": "OPERATIONAL_STATE", "image_copy": false, "context_before": "sent", "context_after": "ignored", "could_contain_secrets": false, "rule": "covered by /data", "runtime": "LIVE_SAFETY_STATE_PATH volume; missing file fails closed"},
+    {"path": "G.3 raw and normalised candles", "class": "RESEARCH_DATASET", "image_copy": false, "context_before": "sent", "context_after": "ignored", "could_contain_secrets": false, "rule": "covered by /data", "runtime": "not required to start"},
+    {"path": "G.7 source_snapshot.tar", "class": "SNAPSHOT", "image_copy": false, "context_before": "sent", "context_after": "ignored", "could_contain_secrets": false, "rule": "/data and *.tar", "runtime": "not required to start"},
+    {"path": ".git/", "class": "VCS", "image_copy": false, "context_before": "ignored", "context_after": "ignored", "could_contain_secrets": true, "rule": ".git", "runtime": "none"},
+    {"path": "virtualenvs and bytecode", "class": "GENERATED", "image_copy": false, "context_before": "partially ignored", "context_after": "ignored", "could_contain_secrets": false, "rule": ".venv venv __pycache__ *.py[cod]", "runtime": "image installs requirements.txt"},
+    {"path": "logs backups sqlite zip", "class": "GENERATED", "image_copy": false, "context_before": "exposed", "context_after": "ignored", "could_contain_secrets": true, "rule": "*.log *.bak *.sqlite *.zip *.tar", "runtime": "none"},
+    {"path": "tests/ and reports/", "class": "TEST_AND_REPORT", "image_copy": false, "context_before": "sent", "context_after": "ignored", "could_contain_secrets": false, "rule": "/tests /reports", "runtime": "not required to start"},
+    {"path": "docker-compose.yml", "class": "DEPLOY_CONFIG", "image_copy": false, "context_before": "sent", "context_after": "ignored", "could_contain_secrets": "database password interpolation", "rule": "docker-compose.yml", "runtime": "compose CLI reads the host file; the image does not"},
+    {"path": "main.py requirements.txt Dockerfile forex_bot/", "class": "PRODUCTION_SOURCE", "image_copy": true, "context_before": "sent and copied", "context_after": "sent and copied", "could_contain_secrets": false, "rule": "not ignored", "runtime": "uvicorn forex_bot.app:app"}
+  ],
+  "residual": "A symlink stored at an included path can still point at an excluded file. The local matcher does not follow links, and Docker daemon behaviour was not executed."
+}

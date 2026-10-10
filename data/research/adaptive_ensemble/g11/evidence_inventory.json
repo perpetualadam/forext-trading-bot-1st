@@ -1,0 +1,11 @@
+{
+  "items": [
+    {"source": "docker inspect", "field": "Id", "observation": "running bot container id", "evidence": "current", "confidence": "high"},
+    {"source": "docker image inspect", "field": "Id", "observation": "running image id equals the historical Stage A id", "evidence": "current", "confidence": "high"},
+    {"source": "docker image inspect", "field": "RepoDigests", "observation": "local id reference, not a registry digest", "evidence": "current", "confidence": "high"},
+    {"source": "docker image inspect", "field": "Created", "observation": "2026-10-08T22:24:01Z, before the local G.10 snapshot", "evidence": "current", "confidence": "high"},
+    {"source": "docker image inspect", "field": "missing unsafe id", "observation": "unsafe image is not local", "evidence": "current", "confidence": "high"},
+    {"source": "image filesystem", "field": "member hashes", "observation": "not extracted", "evidence": "absent", "confidence": "none"}
+  ],
+  "secrets_stored": false
+}

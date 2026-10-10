@@ -1,0 +1,24 @@
+{
+  "broker_api_calls_made": false,
+  "classification": "VALIDATION_ENGINEERING_READY_APPROVAL_PENDING",
+  "complete_trading_days_after_cutoff": 0,
+  "gbp_conversion": "GBP_CONVERSION_UNVERIFIED",
+  "git_revision": "f6c4f40ae6b7614379347ed45141ecd5a3d33642",
+  "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+  "new_data_acquired": false,
+  "preserved_hashes": {
+    "assessment.json": "3bc892971202f28e7e58f72144871d9694dbaded5c6dfa425ec8cd11fa6d2c9c",
+    "evaluation_results.json": "c4d0cfc754ce1cd8fb32c57912462cf73f7ec9772c4153bcc609da0d998d2dd9",
+    "g1_readiness": "13553a9e9d476b3ea39521c7fc9634b0aa3c3ffecd4c065b3fdb784c12612f16",
+    "protocol_v1.json": "c2da7b8b90e2fc6a8eb015c5e94981c88de6fa2820e2d11580b0f3f9d062ea56"
+  },
+  "protocol_hash_verified": true,
+  "simulator_change_class": "BEHAVIOURAL_REPAIR_REQUIRES_REBASELINE",
+  "simulator_version": "adaptive_simulator_v2",
+  "stage": "G.2",
+  "stage_g1_classification_unchanged": "VALIDATION_INFRASTRUCTURE_READY_DATA_PENDING",
+  "stage_g_assessment_unchanged": "EXPLORATORY_NO_CREDIBLE_EDGE",
+  "strategy_comparisons_on_new_data": false,
+  "validation_started": false,
+  "warmup_bars_v2": 120
+}

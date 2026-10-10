@@ -506,6 +506,18 @@ def cmd_system() -> CommandReply:
     ops = operational_state_payload()
     reco = get_reconciliation_snapshot()
     orders = orders_summary()
+    from forex_bot.live_safety import live_safety_snapshot
+
+    safety = live_safety_snapshot()
+    strat_lines = []
+    for row in safety.get("strategies") or []:
+        strat_lines.append(
+            f"{row.get('name')} active={row.get('active')} auth={row.get('authorised_for_live')} "
+            f"n={row.get('pnl_n')} sharpe={row.get('sharpe')} "
+            f"reason={row.get('disable_reason') or 'none'} "
+            f"changed={row.get('changed_at_utc') or 'n/a'} "
+            f"durable={row.get('loaded_from_durable')}"
+        )
     text = (
         "⚙️ System\n"
         f"phase={state.get('lifespan_phase')}  bot={state.get('bot_status')}\n"
@@ -514,12 +526,21 @@ def cmd_system() -> CommandReply:
         f"broker_orders={broker_orders_enabled()}  paper={effective_paper_trading()}\n"
         f"trading_allowed={trading_allowed()}  pre_trade={pre_trade_entry_allowed()}  "
         f"blocked={pre_trade_entry_blocked_reason() or 'none'}\n"
+        f"live_order_auth={safety.get('effective_runtime_authorisation') or safety.get('live_order_authorisation')}  "
+        f"reason={safety.get('effective_runtime_authorisation_reason') or safety.get('live_order_authorisation_reason')}  "
+        f"persisted={safety.get('persisted_authorisation')}  "
+        f"open_block={safety.get('live_order_blocked_reason') or 'none'}\n"
+        f"strategy_state init={safety.get('strategy_state_initialised')}  "
+        f"valid={safety.get('strategy_state_valid')}  "
+        f"durable={safety.get('strategy_state_loaded_from_durable')}\n"
         f"halt={is_trading_halted_runtime()}  kill_switch={kill_switch_env_active()}\n"
         f"reconcile_gate={reconcile_gate_enforced()}  "
         f"new_entries_by_reconcile={new_entries_allowed_by_reconcile()}  "
-        f"stale={reco.get('reconcile_stale')}  age_s={reco.get('age_seconds_since_reconcile')}\n"
+        f"stale={reco.get('reconcile_stale')}  age_s={reco.get('age_seconds_since_reconcile')}  "
+        f"last_ok={reco.get('last_success_utc') or reco.get('last_run_utc') or 'n/a'}\n"
         f"orders={orders.get('order_count')} {orders.get('by_status')}\n"
-        f"open_positions={len(posmod.positions)}  last_cycle={state.get('last_bot_cycle_utc') or 'n/a'}"
+        f"open_positions={len(posmod.positions)}  last_cycle={state.get('last_bot_cycle_utc') or 'n/a'}\n"
+        + ("\n".join(strat_lines) if strat_lines else "strategies=none")
     )
     return CommandReply(text)
 

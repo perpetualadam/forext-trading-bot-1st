@@ -1,0 +1,710 @@
+{
+  "complete_trading_days": 29,
+  "conversion": {
+    "samples": [
+      {
+        "negative_path": [
+          "pnl_in_USD",
+          "USD->GBP via GBP_USD bid"
+        ],
+        "negative_status": "ok",
+        "pair": "EUR_USD",
+        "positive_path": [
+          "pnl_in_USD",
+          "USD->GBP via GBP_USD ask"
+        ],
+        "positive_status": "ok"
+      },
+      {
+        "negative_path": [
+          "pnl_in_USD",
+          "USD->GBP via GBP_USD bid"
+        ],
+        "negative_status": "ok",
+        "pair": "GBP_USD",
+        "positive_path": [
+          "pnl_in_USD",
+          "USD->GBP via GBP_USD ask"
+        ],
+        "positive_status": "ok"
+      },
+      {
+        "negative_path": [
+          "pnl_in_JPY",
+          "JPY->USD via USD_JPY bid",
+          "USD->GBP via GBP_USD bid"
+        ],
+        "negative_status": "ok",
+        "pair": "USD_JPY",
+        "positive_path": [
+          "pnl_in_JPY",
+          "JPY->USD via USD_JPY ask",
+          "USD->GBP via GBP_USD ask"
+        ],
+        "positive_status": "ok"
+      },
+      {
+        "negative_path": [
+          "pnl_in_CAD",
+          "CAD->USD via USD_CAD bid",
+          "USD->GBP via GBP_USD bid"
+        ],
+        "negative_status": "ok",
+        "pair": "USD_CAD",
+        "positive_path": [
+          "pnl_in_CAD",
+          "CAD->USD via USD_CAD ask",
+          "USD->GBP via GBP_USD ask"
+        ],
+        "positive_status": "ok"
+      },
+      {
+        "negative_path": [
+          "pnl_in_CHF",
+          "CHF->USD via USD_CHF bid",
+          "USD->GBP via GBP_USD bid"
+        ],
+        "negative_status": "ok",
+        "pair": "USD_CHF",
+        "positive_path": [
+          "pnl_in_CHF",
+          "CHF->USD via USD_CHF ask",
+          "USD->GBP via GBP_USD ask"
+        ],
+        "positive_status": "ok"
+      },
+      {
+        "negative_path": [
+          "pnl_in_USD",
+          "USD->GBP via GBP_USD bid"
+        ],
+        "negative_status": "ok",
+        "pair": "AUD_USD",
+        "positive_path": [
+          "pnl_in_USD",
+          "USD->GBP via GBP_USD ask"
+        ],
+        "positive_status": "ok"
+      }
+    ],
+    "status": "ok"
+  },
+  "duration_status": "INSUFFICIENT_INDEPENDENT_DURATION",
+  "environment": "live",
+  "errors": [],
+  "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+  "models_retuned": false,
+  "quality": [
+    {
+      "bid_ask": true,
+      "complete_trading_days_after_cutoff": 29,
+      "conflicts_quarantined": 0,
+      "dst_odd_spacing": 0,
+      "duplicate_timestamps": 0,
+      "duration_status": "INSUFFICIENT_INDEPENDENT_DURATION",
+      "incomplete_candles": 0,
+      "incomplete_excluded": 0,
+      "independence_label": "POTENTIALLY_INDEPENDENT",
+      "interpolated_bid_ask": false,
+      "issues": [
+        {
+          "code": "unexpected_gaps",
+          "n": 3
+        }
+      ],
+      "ohlc_invalid": 0,
+      "overlap_stage_eg": {
+        "new_after_n": 8146,
+        "overlap_n": 0
+      },
+      "pair": "AUD_USD",
+      "path": "data/research/adaptive_ensemble/g3/normalized/AUD_USD_M5.csv",
+      "price_jumps_gt_1pct": 0,
+      "promoted_to_validation_ready": false,
+      "rows": 8146,
+      "sha256": "d75312decbb4c72858621a0b5a9af6103f72b01593ae26e9df4ef19a06104583",
+      "spread_invalid": 0,
+      "status": "WARN",
+      "timestamp_convention": "UTC",
+      "unexpected_gaps": 3,
+      "warmup_ok": true,
+      "weekend_or_closure_gaps": 5
+    },
+    {
+      "bid_ask": true,
+      "complete_trading_days_after_cutoff": 29,
+      "conflicts_quarantined": 0,
+      "dst_odd_spacing": 0,
+      "duplicate_timestamps": 0,
+      "duration_status": "INSUFFICIENT_INDEPENDENT_DURATION",
+      "incomplete_candles": 0,
+      "incomplete_excluded": 0,
+      "independence_label": "POTENTIALLY_INDEPENDENT",
+      "interpolated_bid_ask": false,
+      "issues": [
+        {
+          "code": "unexpected_gaps",
+          "n": 1
+        }
+      ],
+      "ohlc_invalid": 0,
+      "overlap_stage_eg": {
+        "new_after_n": 8148,
+        "overlap_n": 0
+      },
+      "pair": "EUR_USD",
+      "path": "data/research/adaptive_ensemble/g3/normalized/EUR_USD_M5.csv",
+      "price_jumps_gt_1pct": 0,
+      "promoted_to_validation_ready": false,
+      "rows": 8148,
+      "sha256": "c9016c8443ecc44fd0cf6ed5acb44656eae09ee3ef5b7d9fe9a334152c764b14",
+      "spread_invalid": 0,
+      "status": "WARN",
+      "timestamp_convention": "UTC",
+      "unexpected_gaps": 1,
+      "warmup_ok": true,
+      "weekend_or_closure_gaps": 5
+    },
+    {
+      "bid_ask": true,
+      "complete_trading_days_after_cutoff": 29,
+      "conflicts_quarantined": 0,
+      "dst_odd_spacing": 0,
+      "duplicate_timestamps": 0,
+      "duration_status": "INSUFFICIENT_INDEPENDENT_DURATION",
+      "incomplete_candles": 0,
+      "incomplete_excluded": 0,
+      "independence_label": "POTENTIALLY_INDEPENDENT",
+      "interpolated_bid_ask": false,
+      "issues": [
+        {
+          "code": "unexpected_gaps",
+          "n": 1
+        }
+      ],
+      "ohlc_invalid": 0,
+      "overlap_stage_eg": {
+        "new_after_n": 8148,
+        "overlap_n": 0
+      },
+      "pair": "GBP_USD",
+      "path": "data/research/adaptive_ensemble/g3/normalized/GBP_USD_M5.csv",
+      "price_jumps_gt_1pct": 0,
+      "promoted_to_validation_ready": false,
+      "rows": 8148,
+      "sha256": "272c7ff448ff91f587946c8b7a4335bacd04ae488c95f066e4a29cfec700c4f6",
+      "spread_invalid": 0,
+      "status": "WARN",
+      "timestamp_convention": "UTC",
+      "unexpected_gaps": 1,
+      "warmup_ok": true,
+      "weekend_or_closure_gaps": 5
+    },
+    {
+      "bid_ask": true,
+      "complete_trading_days_after_cutoff": 29,
+      "conflicts_quarantined": 0,
+      "dst_odd_spacing": 0,
+      "duplicate_timestamps": 0,
+      "duration_status": "INSUFFICIENT_INDEPENDENT_DURATION",
+      "incomplete_candles": 0,
+      "incomplete_excluded": 0,
+      "independence_label": "POTENTIALLY_INDEPENDENT",
+      "interpolated_bid_ask": false,
+      "issues": [
+        {
+          "code": "unexpected_gaps",
+          "n": 2
+        }
+      ],
+      "ohlc_invalid": 0,
+      "overlap_stage_eg": {
+        "new_after_n": 8147,
+        "overlap_n": 0
+      },
+      "pair": "USD_CAD",
+      "path": "data/research/adaptive_ensemble/g3/normalized/USD_CAD_M5.csv",
+      "price_jumps_gt_1pct": 0,
+      "promoted_to_validation_ready": false,
+      "rows": 8147,
+      "sha256": "e8fd5cf2acd20c481167d5ef5d0b77b7beaed9c190a8832c1291ffdee4475743",
+      "spread_invalid": 0,
+      "status": "WARN",
+      "timestamp_convention": "UTC",
+      "unexpected_gaps": 2,
+      "warmup_ok": true,
+      "weekend_or_closure_gaps": 5
+    },
+    {
+      "bid_ask": true,
+      "complete_trading_days_after_cutoff": 29,
+      "conflicts_quarantined": 0,
+      "dst_odd_spacing": 0,
+      "duplicate_timestamps": 0,
+      "duration_status": "INSUFFICIENT_INDEPENDENT_DURATION",
+      "incomplete_candles": 0,
+      "incomplete_excluded": 0,
+      "independence_label": "POTENTIALLY_INDEPENDENT",
+      "interpolated_bid_ask": false,
+      "issues": [
+        {
+          "code": "unexpected_gaps",
+          "n": 17
+        }
+      ],
+      "ohlc_invalid": 0,
+      "overlap_stage_eg": {
+        "new_after_n": 8123,
+        "overlap_n": 0
+      },
+      "pair": "USD_CHF",
+      "path": "data/research/adaptive_ensemble/g3/normalized/USD_CHF_M5.csv",
+      "price_jumps_gt_1pct": 0,
+      "promoted_to_validation_ready": false,
+      "rows": 8123,
+      "sha256": "7119ac28e67faaa24246c2bf9e0b8a863092328fa64b0694b4132e6835ea249f",
+      "spread_invalid": 0,
+      "status": "WARN",
+      "timestamp_convention": "UTC",
+      "unexpected_gaps": 17,
+      "warmup_ok": true,
+      "weekend_or_closure_gaps": 5
+    },
+    {
+      "bid_ask": true,
+      "complete_trading_days_after_cutoff": 29,
+      "conflicts_quarantined": 0,
+      "dst_odd_spacing": 0,
+      "duplicate_timestamps": 0,
+      "duration_status": "INSUFFICIENT_INDEPENDENT_DURATION",
+      "incomplete_candles": 0,
+      "incomplete_excluded": 0,
+      "independence_label": "POTENTIALLY_INDEPENDENT",
+      "interpolated_bid_ask": false,
+      "issues": [
+        {
+          "code": "unexpected_gaps",
+          "n": 6
+        }
+      ],
+      "ohlc_invalid": 0,
+      "overlap_stage_eg": {
+        "new_after_n": 8141,
+        "overlap_n": 0
+      },
+      "pair": "USD_JPY",
+      "path": "data/research/adaptive_ensemble/g3/normalized/USD_JPY_M5.csv",
+      "price_jumps_gt_1pct": 0,
+      "promoted_to_validation_ready": false,
+      "rows": 8141,
+      "sha256": "542a307964b9a365d28ca923905b5be6595c136261d52e92c154d0d29b35fd42",
+      "spread_invalid": 0,
+      "status": "WARN",
+      "timestamp_convention": "UTC",
+      "unexpected_gaps": 6,
+      "warmup_ok": true,
+      "weekend_or_closure_gaps": 5
+    }
+  ],
+  "raw_pages": [
+    {
+      "candles": 1439,
+      "first": "2026-09-01T00:00:00.000000000Z",
+      "instrument": "AUD_USD",
+      "last": "2026-09-07T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/AUD_USD/page_000.json",
+      "retrieved_utc": "2026-10-09T07:11:11+00:00",
+      "sha256": "3ced51f27031de732039800c2c92af81443c6aff7ddc36671003e313aa97dce1",
+      "status": 200,
+      "url_path": "/v3/instruments/AUD_USD/candles"
+    },
+    {
+      "candles": 1440,
+      "first": "2026-09-08T00:00:00.000000000Z",
+      "instrument": "AUD_USD",
+      "last": "2026-09-14T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/AUD_USD/page_001.json",
+      "retrieved_utc": "2026-10-09T07:11:12+00:00",
+      "sha256": "ea7fcad05c9903924cbb2464cbe062503eac1e7d4a92fe4172fc923d29feab2e",
+      "status": 200,
+      "url_path": "/v3/instruments/AUD_USD/candles"
+    },
+    {
+      "candles": 1439,
+      "first": "2026-09-15T00:00:00.000000000Z",
+      "instrument": "AUD_USD",
+      "last": "2026-09-21T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/AUD_USD/page_002.json",
+      "retrieved_utc": "2026-10-09T07:11:14+00:00",
+      "sha256": "b9f310ce34e9b4947d95c6c5a27e40a225b78120cca098f4954d71ccccaa7d98",
+      "status": 200,
+      "url_path": "/v3/instruments/AUD_USD/candles"
+    },
+    {
+      "candles": 1440,
+      "first": "2026-09-22T00:00:00.000000000Z",
+      "instrument": "AUD_USD",
+      "last": "2026-09-28T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/AUD_USD/page_003.json",
+      "retrieved_utc": "2026-10-09T07:11:15+00:00",
+      "sha256": "60d8f9a852d2a257925a8fd5d78e2c41ee769025fa28e42b29bc23ac53c18d8f",
+      "status": 200,
+      "url_path": "/v3/instruments/AUD_USD/candles"
+    },
+    {
+      "candles": 1440,
+      "first": "2026-09-29T00:00:00.000000000Z",
+      "instrument": "AUD_USD",
+      "last": "2026-10-05T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/AUD_USD/page_004.json",
+      "retrieved_utc": "2026-10-09T07:11:16+00:00",
+      "sha256": "5c542774cb804d10ba73a5d0750962a330b091eb40eda75100d1dc4466b7cd72",
+      "status": 200,
+      "url_path": "/v3/instruments/AUD_USD/candles"
+    },
+    {
+      "candles": 948,
+      "first": "2026-10-06T00:00:00.000000000Z",
+      "instrument": "AUD_USD",
+      "last": "2026-10-09T07:00:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/AUD_USD/page_005.json",
+      "retrieved_utc": "2026-10-09T07:11:17+00:00",
+      "sha256": "9304fe47322a4c01a341e0d1fff614e0bc152cb9b73eeb41e2ab6191568edc8b",
+      "status": 200,
+      "url_path": "/v3/instruments/AUD_USD/candles"
+    },
+    {
+      "candles": 1440,
+      "first": "2026-09-01T00:00:00.000000000Z",
+      "instrument": "EUR_USD",
+      "last": "2026-09-07T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/EUR_USD/page_000.json",
+      "retrieved_utc": "2026-10-09T07:11:19+00:00",
+      "sha256": "7021bc697e83d4ea00c4a866459407f0cd3a59477413a2bbb3e56876c244e832",
+      "status": 200,
+      "url_path": "/v3/instruments/EUR_USD/candles"
+    },
+    {
+      "candles": 1440,
+      "first": "2026-09-08T00:00:00.000000000Z",
+      "instrument": "EUR_USD",
+      "last": "2026-09-14T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/EUR_USD/page_001.json",
+      "retrieved_utc": "2026-10-09T07:11:20+00:00",
+      "sha256": "c1c5adddc3d866f78690f8d817d841cd9ad798205d1488fe149a60f3f0b4ae65",
+      "status": 200,
+      "url_path": "/v3/instruments/EUR_USD/candles"
+    },
+    {
+      "candles": 1440,
+      "first": "2026-09-15T00:00:00.000000000Z",
+      "instrument": "EUR_USD",
+      "last": "2026-09-21T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/EUR_USD/page_002.json",
+      "retrieved_utc": "2026-10-09T07:11:21+00:00",
+      "sha256": "c50d999a703623c29525ff3e0baebb910e2dced51885702526a2e4ab8623ffb7",
+      "status": 200,
+      "url_path": "/v3/instruments/EUR_USD/candles"
+    },
+    {
+      "candles": 1440,
+      "first": "2026-09-22T00:00:00.000000000Z",
+      "instrument": "EUR_USD",
+      "last": "2026-09-28T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/EUR_USD/page_003.json",
+      "retrieved_utc": "2026-10-09T07:11:22+00:00",
+      "sha256": "47d8acc5255cd29e0dbd9045b67f1ab2e6330bb2181abc4f963dc7eb149d48b1",
+      "status": 200,
+      "url_path": "/v3/instruments/EUR_USD/candles"
+    },
+    {
+      "candles": 1439,
+      "first": "2026-09-29T00:00:00.000000000Z",
+      "instrument": "EUR_USD",
+      "last": "2026-10-05T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/EUR_USD/page_004.json",
+      "retrieved_utc": "2026-10-09T07:11:24+00:00",
+      "sha256": "201a23c8919137952a112ddf752a943bc042ab2fe786b6af9622af89ffd8e869",
+      "status": 200,
+      "url_path": "/v3/instruments/EUR_USD/candles"
+    },
+    {
+      "candles": 949,
+      "first": "2026-10-06T00:00:00.000000000Z",
+      "instrument": "EUR_USD",
+      "last": "2026-10-09T07:00:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/EUR_USD/page_005.json",
+      "retrieved_utc": "2026-10-09T07:11:25+00:00",
+      "sha256": "877514772503d9235dd9fa685c3ce612faa69405437cc9359d0ba3465d92a525",
+      "status": 200,
+      "url_path": "/v3/instruments/EUR_USD/candles"
+    },
+    {
+      "candles": 1440,
+      "first": "2026-09-01T00:00:00.000000000Z",
+      "instrument": "GBP_USD",
+      "last": "2026-09-07T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/GBP_USD/page_000.json",
+      "retrieved_utc": "2026-10-09T07:11:26+00:00",
+      "sha256": "22fc04723be294cc990b2898cf141d1d05b3310aafd22bcb69968be216b66de1",
+      "status": 200,
+      "url_path": "/v3/instruments/GBP_USD/candles"
+    },
+    {
+      "candles": 1440,
+      "first": "2026-09-08T00:00:00.000000000Z",
+      "instrument": "GBP_USD",
+      "last": "2026-09-14T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/GBP_USD/page_001.json",
+      "retrieved_utc": "2026-10-09T07:11:28+00:00",
+      "sha256": "f9e068f13b66a9b20f5136177d08155f8aec9197e1fd3f0a887606f99c42e978",
+      "status": 200,
+      "url_path": "/v3/instruments/GBP_USD/candles"
+    },
+    {
+      "candles": 1440,
+      "first": "2026-09-15T00:00:00.000000000Z",
+      "instrument": "GBP_USD",
+      "last": "2026-09-21T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/GBP_USD/page_002.json",
+      "retrieved_utc": "2026-10-09T07:11:29+00:00",
+      "sha256": "36e98b8649de1cb41e509ad4fad9b4b64826829c413ffc036b0d2739f1a27266",
+      "status": 200,
+      "url_path": "/v3/instruments/GBP_USD/candles"
+    },
+    {
+      "candles": 1440,
+      "first": "2026-09-22T00:00:00.000000000Z",
+      "instrument": "GBP_USD",
+      "last": "2026-09-28T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/GBP_USD/page_003.json",
+      "retrieved_utc": "2026-10-09T07:11:30+00:00",
+      "sha256": "c877b141d0953d89b4ea01049d5957ad088821cb6c25feb7ccbfca1c5e9158af",
+      "status": 200,
+      "url_path": "/v3/instruments/GBP_USD/candles"
+    },
+    {
+      "candles": 1440,
+      "first": "2026-09-29T00:00:00.000000000Z",
+      "instrument": "GBP_USD",
+      "last": "2026-10-05T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/GBP_USD/page_004.json",
+      "retrieved_utc": "2026-10-09T07:11:32+00:00",
+      "sha256": "2266f941e629d020d7f92cf9c61e4838855ed2b5e3e2b83191a98b98286ddcb8",
+      "status": 200,
+      "url_path": "/v3/instruments/GBP_USD/candles"
+    },
+    {
+      "candles": 948,
+      "first": "2026-10-06T00:00:00.000000000Z",
+      "instrument": "GBP_USD",
+      "last": "2026-10-09T07:00:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/GBP_USD/page_005.json",
+      "retrieved_utc": "2026-10-09T07:11:33+00:00",
+      "sha256": "c56f9279e3969a7c42067cf4521f8dd215d94acb8fe80f01d51ea35696397cb9",
+      "status": 200,
+      "url_path": "/v3/instruments/GBP_USD/candles"
+    },
+    {
+      "candles": 1438,
+      "first": "2026-09-01T00:00:00.000000000Z",
+      "instrument": "USD_CAD",
+      "last": "2026-09-07T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CAD/page_000.json",
+      "retrieved_utc": "2026-10-09T07:11:34+00:00",
+      "sha256": "0427296fc7ad8acab9be9c25a033bc81923ff4e1eca5484854a305a941dd4fc0",
+      "status": 200,
+      "url_path": "/v3/instruments/USD_CAD/candles"
+    },
+    {
+      "candles": 1440,
+      "first": "2026-09-08T00:00:00.000000000Z",
+      "instrument": "USD_CAD",
+      "last": "2026-09-14T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CAD/page_001.json",
+      "retrieved_utc": "2026-10-09T07:11:36+00:00",
+      "sha256": "3e667d4baa8c03ddda561ae16ac23ff09da31171a4538fc848bf33296f456310",
+      "status": 200,
+      "url_path": "/v3/instruments/USD_CAD/candles"
+    },
+    {
+      "candles": 1440,
+      "first": "2026-09-15T00:00:00.000000000Z",
+      "instrument": "USD_CAD",
+      "last": "2026-09-21T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CAD/page_002.json",
+      "retrieved_utc": "2026-10-09T07:11:37+00:00",
+      "sha256": "9f2ac926c0094a4aa6ffa0b084c1c09e8afa6702261551a067df8633fabd5d6e",
+      "status": 200,
+      "url_path": "/v3/instruments/USD_CAD/candles"
+    },
+    {
+      "candles": 1440,
+      "first": "2026-09-22T00:00:00.000000000Z",
+      "instrument": "USD_CAD",
+      "last": "2026-09-28T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CAD/page_003.json",
+      "retrieved_utc": "2026-10-09T07:11:38+00:00",
+      "sha256": "d28c68f0e8008beb4e7a11672ce8ebe9c75b9730453384c38abb65afe7d48c19",
+      "status": 200,
+      "url_path": "/v3/instruments/USD_CAD/candles"
+    },
+    {
+      "candles": 1440,
+      "first": "2026-09-29T00:00:00.000000000Z",
+      "instrument": "USD_CAD",
+      "last": "2026-10-05T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CAD/page_004.json",
+      "retrieved_utc": "2026-10-09T07:11:39+00:00",
+      "sha256": "612954995327de343eb551aba9a98da254c549eeb6edf63fe780e78bc8b9acde",
+      "status": 200,
+      "url_path": "/v3/instruments/USD_CAD/candles"
+    },
+    {
+      "candles": 949,
+      "first": "2026-10-06T00:00:00.000000000Z",
+      "instrument": "USD_CAD",
+      "last": "2026-10-09T07:00:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CAD/page_005.json",
+      "retrieved_utc": "2026-10-09T07:11:41+00:00",
+      "sha256": "0649be7d56d82a443abe61472d5ee7cd5722bcc9dffe1d406b9500439a7b4ae5",
+      "status": 200,
+      "url_path": "/v3/instruments/USD_CAD/candles"
+    },
+    {
+      "candles": 1433,
+      "first": "2026-09-01T00:00:00.000000000Z",
+      "instrument": "USD_CHF",
+      "last": "2026-09-07T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CHF/page_000.json",
+      "retrieved_utc": "2026-10-09T07:11:42+00:00",
+      "sha256": "dcf523ec497d5e892e430fe33457b047bb7a0bbcebbf9333cd7319405e2fb0ba",
+      "status": 200,
+      "url_path": "/v3/instruments/USD_CHF/candles"
+    },
+    {
+      "candles": 1436,
+      "first": "2026-09-08T00:00:00.000000000Z",
+      "instrument": "USD_CHF",
+      "last": "2026-09-14T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CHF/page_001.json",
+      "retrieved_utc": "2026-10-09T07:11:43+00:00",
+      "sha256": "336202d0838e2009146942fbcd00bbfa4249b9d0f10135cfdf7834863bbb1227",
+      "status": 200,
+      "url_path": "/v3/instruments/USD_CHF/candles"
+    },
+    {
+      "candles": 1436,
+      "first": "2026-09-15T00:00:00.000000000Z",
+      "instrument": "USD_CHF",
+      "last": "2026-09-21T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CHF/page_002.json",
+      "retrieved_utc": "2026-10-09T07:11:44+00:00",
+      "sha256": "842b7d5de385a63be2e2e753715a44fc632b1492b3baae8537175d82d81c51be",
+      "status": 200,
+      "url_path": "/v3/instruments/USD_CHF/candles"
+    },
+    {
+      "candles": 1436,
+      "first": "2026-09-22T00:00:00.000000000Z",
+      "instrument": "USD_CHF",
+      "last": "2026-09-28T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CHF/page_003.json",
+      "retrieved_utc": "2026-10-09T07:11:46+00:00",
+      "sha256": "21a5e2d5e8912cf875c5c4642adbefaac0dc0b5360f1da564408499df966fc09",
+      "status": 200,
+      "url_path": "/v3/instruments/USD_CHF/candles"
+    },
+    {
+      "candles": 1434,
+      "first": "2026-09-29T00:00:00.000000000Z",
+      "instrument": "USD_CHF",
+      "last": "2026-10-05T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CHF/page_004.json",
+      "retrieved_utc": "2026-10-09T07:11:47+00:00",
+      "sha256": "80d4c1189da99ee7d10aa850e53bfab7269abe38a1378e76e6b503f0047d3776",
+      "status": 200,
+      "url_path": "/v3/instruments/USD_CHF/candles"
+    },
+    {
+      "candles": 948,
+      "first": "2026-10-06T00:00:00.000000000Z",
+      "instrument": "USD_CHF",
+      "last": "2026-10-09T07:00:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CHF/page_005.json",
+      "retrieved_utc": "2026-10-09T07:11:48+00:00",
+      "sha256": "54f8a4d9c5992332edc7434ae9465ba9b273ae7a152bdfbcfe68eacaff1b5b95",
+      "status": 200,
+      "url_path": "/v3/instruments/USD_CHF/candles"
+    },
+    {
+      "candles": 1440,
+      "first": "2026-09-01T00:00:00.000000000Z",
+      "instrument": "USD_JPY",
+      "last": "2026-09-07T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_JPY/page_000.json",
+      "retrieved_utc": "2026-10-09T07:11:50+00:00",
+      "sha256": "8ef7f4c31f7610c5d66e492c6fd34b5f40275d560b64b7d6106910630373cdf8",
+      "status": 200,
+      "url_path": "/v3/instruments/USD_JPY/candles"
+    },
+    {
+      "candles": 1437,
+      "first": "2026-09-08T00:00:00.000000000Z",
+      "instrument": "USD_JPY",
+      "last": "2026-09-14T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_JPY/page_001.json",
+      "retrieved_utc": "2026-10-09T07:11:51+00:00",
+      "sha256": "3a5e6a84f2150e737d24d7badbb666529a55eeb6bd1839412a3073de524085e5",
+      "status": 200,
+      "url_path": "/v3/instruments/USD_JPY/candles"
+    },
+    {
+      "candles": 1437,
+      "first": "2026-09-15T00:00:00.000000000Z",
+      "instrument": "USD_JPY",
+      "last": "2026-09-21T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_JPY/page_002.json",
+      "retrieved_utc": "2026-10-09T07:11:52+00:00",
+      "sha256": "5fc2bf5fa46a39fccfa56f351eece0401e50037f3ee979be487af43a02ebfd71",
+      "status": 200,
+      "url_path": "/v3/instruments/USD_JPY/candles"
+    },
+    {
+      "candles": 1440,
+      "first": "2026-09-22T00:00:00.000000000Z",
+      "instrument": "USD_JPY",
+      "last": "2026-09-28T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_JPY/page_003.json",
+      "retrieved_utc": "2026-10-09T07:11:53+00:00",
+      "sha256": "1686e0d1d87a745a368cd2324873f9ccaed2ec925a9cbe45f04af487009be53b",
+      "status": 200,
+      "url_path": "/v3/instruments/USD_JPY/candles"
+    },
+    {
+      "candles": 1438,
+      "first": "2026-09-29T00:00:00.000000000Z",
+      "instrument": "USD_JPY",
+      "last": "2026-10-05T23:55:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_JPY/page_004.json",
+      "retrieved_utc": "2026-10-09T07:11:55+00:00",
+      "sha256": "ab834a28e0999a3ca69a0571eaa4a92f89d86745ad582323d88e5ae06d851108",
+      "status": 200,
+      "url_path": "/v3/instruments/USD_JPY/candles"
+    },
+    {
+      "candles": 949,
+      "first": "2026-10-06T00:00:00.000000000Z",
+      "instrument": "USD_JPY",
+      "last": "2026-10-09T07:00:00.000000000Z",
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_JPY/page_005.json",
+      "retrieved_utc": "2026-10-09T07:11:56+00:00",
+      "sha256": "c538f000b85bb0ac3f88bef5b4947f2cea6f3083810e9744036cc85cebe15da3",
+      "status": 200,
+      "url_path": "/v3/instruments/USD_JPY/candles"
+    }
+  ],
+  "raw_set_sha256": "f584893ba27e4c3f9dbbe102906ca91dc1f05799cf5d9f330a6cd591bf22b756",
+  "requests": 36,
+  "strategy_outcomes_inspected": false
+}

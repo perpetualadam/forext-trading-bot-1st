@@ -1,0 +1,14 @@
+{
+  "blocking": [],
+  "files_scanned": 196,
+  "findings": [
+    {
+      "blocking": false,
+      "category": "example_database_password",
+      "detail": "len=8",
+      "path": ".env.example",
+      "template": true
+    }
+  ],
+  "values_printed": false
+}

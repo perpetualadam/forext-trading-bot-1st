@@ -1,0 +1,1136 @@
+[
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot",
+    "path": "forex_bot/__init__.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.ai_ensemble",
+    "path": "forex_bot/ai_ensemble.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.alerts",
+    "path": "forex_bot/alerts.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.analytics",
+    "path": "forex_bot/analytics.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.anthropic_voter",
+    "path": "forex_bot/anthropic_voter.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.app",
+    "path": "forex_bot/app.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.backtest",
+    "path": "forex_bot/backtest.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.bot_loop",
+    "path": "forex_bot/bot_loop.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.broker_exit",
+    "path": "forex_bot/broker_exit.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.config",
+    "path": "forex_bot/config.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.csv_ohlcv",
+    "path": "forex_bot/csv_ohlcv.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.database",
+    "path": "forex_bot/database.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality",
+    "path": "forex_bot/decision_quality/__init__.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.__main__",
+    "path": "forex_bot/decision_quality/__main__.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.breakdowns",
+    "path": "forex_bot/decision_quality/breakdowns.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.checkpoint",
+    "path": "forex_bot/decision_quality/checkpoint.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.cross_pair",
+    "path": "forex_bot/decision_quality/cross_pair.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.data",
+    "path": "forex_bot/decision_quality/data.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.download_history",
+    "path": "forex_bot/decision_quality/download_history.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.ema_retracement",
+    "path": "forex_bot/decision_quality/ema_retracement.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.engine",
+    "path": "forex_bot/decision_quality/engine.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.event_discovery",
+    "path": "forex_bot/decision_quality/event_discovery.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.execution_sim",
+    "path": "forex_bot/decision_quality/execution_sim.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.fast_cache",
+    "path": "forex_bot/decision_quality/fast_cache.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.feature_discovery",
+    "path": "forex_bot/decision_quality/feature_discovery.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.fibonacci_retracement",
+    "path": "forex_bot/decision_quality/fibonacci_retracement.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.filters",
+    "path": "forex_bot/decision_quality/filters.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.forensics",
+    "path": "forex_bot/decision_quality/forensics.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.history_cache",
+    "path": "forex_bot/decision_quality/history_cache.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.invariants",
+    "path": "forex_bot/decision_quality/invariants.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.isolation",
+    "path": "forex_bot/decision_quality/isolation.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.live_path",
+    "path": "forex_bot/decision_quality/live_path.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.live_trades",
+    "path": "forex_bot/decision_quality/live_trades.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.m1_path",
+    "path": "forex_bot/decision_quality/m1_path.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.macro_first_print",
+    "path": "forex_bot/decision_quality/macro_first_print/__init__.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.macro_first_print.__main__",
+    "path": "forex_bot/decision_quality/macro_first_print/__main__.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.macro_first_print.alfred",
+    "path": "forex_bot/decision_quality/macro_first_print/alfred.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.macro_first_print.build",
+    "path": "forex_bot/decision_quality/macro_first_print/build.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.macro_first_print.catalog",
+    "path": "forex_bot/decision_quality/macro_first_print/catalog.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.macro_first_print.fetch",
+    "path": "forex_bot/decision_quality/macro_first_print/fetch.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.macro_first_print.htmlutil",
+    "path": "forex_bot/decision_quality/macro_first_print/htmlutil.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.macro_first_print.parse_common",
+    "path": "forex_bot/decision_quality/macro_first_print/parse_common.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.macro_first_print.parse_cpi",
+    "path": "forex_bot/decision_quality/macro_first_print/parse_cpi.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.macro_first_print.parse_empsit",
+    "path": "forex_bot/decision_quality/macro_first_print/parse_empsit.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.macro_first_print.schema",
+    "path": "forex_bot/decision_quality/macro_first_print/schema.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.macro_first_print.store",
+    "path": "forex_bot/decision_quality/macro_first_print/store.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.macro_first_print.validate",
+    "path": "forex_bot/decision_quality/macro_first_print/validate.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.momentum_m5_dedup",
+    "path": "forex_bot/decision_quality/momentum_m5_dedup.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.outcomes",
+    "path": "forex_bot/decision_quality/outcomes.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.reports",
+    "path": "forex_bot/decision_quality/reports.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.research_features",
+    "path": "forex_bot/decision_quality/research_features.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.runner",
+    "path": "forex_bot/decision_quality/runner.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.schedule",
+    "path": "forex_bot/decision_quality/schedule.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.sessions",
+    "path": "forex_bot/decision_quality/sessions.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.signal",
+    "path": "forex_bot/decision_quality/signal.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.snapshot",
+    "path": "forex_bot/decision_quality/snapshot.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.spread_volume",
+    "path": "forex_bot/decision_quality/spread_volume.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.stub_components",
+    "path": "forex_bot/decision_quality/stub_components.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.trading_economics",
+    "path": "forex_bot/decision_quality/trading_economics/__init__.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.trading_economics.__main__",
+    "path": "forex_bot/decision_quality/trading_economics/__main__.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.trading_economics.client",
+    "path": "forex_bot/decision_quality/trading_economics/client.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.trading_economics.compare",
+    "path": "forex_bot/decision_quality/trading_economics/compare.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.trading_economics.download",
+    "path": "forex_bot/decision_quality/trading_economics/download.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.trading_economics.events",
+    "path": "forex_bot/decision_quality/trading_economics/events.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.trading_economics.schema",
+    "path": "forex_bot/decision_quality/trading_economics/schema.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.trading_economics.store",
+    "path": "forex_bot/decision_quality/trading_economics/store.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.trading_economics.surprise",
+    "path": "forex_bot/decision_quality/trading_economics/surprise.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.trading_economics.timestamps",
+    "path": "forex_bot/decision_quality/trading_economics/timestamps.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.trading_economics.validate",
+    "path": "forex_bot/decision_quality/trading_economics/validate.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.decision_quality.walk_forward",
+    "path": "forex_bot/decision_quality/walk_forward.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.decision_repair",
+    "path": "forex_bot/decision_repair/__init__.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.decision_repair.account_risk",
+    "path": "forex_bot/decision_repair/account_risk.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.decision_repair.audit",
+    "path": "forex_bot/decision_repair/audit.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.decision_repair.exposure",
+    "path": "forex_bot/decision_repair/exposure.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.decision_repair.flags",
+    "path": "forex_bot/decision_repair/flags.py"
+  },
+  {
+    "classification": "TEST_ONLY",
+    "evidence": "imported by decision-repair tests; not by the production startup closure",
+    "module": "forex_bot.decision_repair.harness",
+    "path": "forex_bot/decision_repair/harness.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.decision_repair.health",
+    "path": "forex_bot/decision_repair/health.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.decision_repair.rl_store",
+    "path": "forex_bot/decision_repair/rl_store.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.decision_repair.selection",
+    "path": "forex_bot/decision_repair/selection.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.decision_skip_log",
+    "path": "forex_bot/decision_skip_log.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.entry_geometry",
+    "path": "forex_bot/entry_geometry.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.execution",
+    "path": "forex_bot/execution.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.execution_metrics",
+    "path": "forex_bot/execution_metrics.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.experiment",
+    "path": "forex_bot/experiment.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.indicators",
+    "path": "forex_bot/indicators.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.live_manage",
+    "path": "forex_bot/live_manage.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.live_safety",
+    "path": "forex_bot/live_safety.py"
+  },
+  {
+    "classification": "OPTIONAL_OPERATIONAL_TOOL",
+    "evidence": "operator writer for durable blocked state; startup uses live_safety.initialise_fail_closed",
+    "module": "forex_bot.live_safety_preflight",
+    "path": "forex_bot/live_safety_preflight.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.log_config",
+    "path": "forex_bot/log_config.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.log_redact",
+    "path": "forex_bot/log_redact.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.market_provenance",
+    "path": "forex_bot/market_provenance.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.nn_pred",
+    "path": "forex_bot/nn_pred.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.oanda_candles_read",
+    "path": "forex_bot/oanda_candles_read.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.oanda_client",
+    "path": "forex_bot/oanda_client.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.oanda_exec",
+    "path": "forex_bot/oanda_exec.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.oanda_rate_limit",
+    "path": "forex_bot/oanda_rate_limit.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.openai_voter",
+    "path": "forex_bot/openai_voter.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.operational_events",
+    "path": "forex_bot/operational_events.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.operational_state",
+    "path": "forex_bot/operational_state.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.orders",
+    "path": "forex_bot/orders.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.portfolio",
+    "path": "forex_bot/portfolio.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.portfolio_exposure",
+    "path": "forex_bot/portfolio_exposure.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.positions",
+    "path": "forex_bot/positions.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.profit_protection",
+    "path": "forex_bot/profit_protection.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.reconciliation",
+    "path": "forex_bot/reconciliation.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research",
+    "path": "forex_bot/research/__init__.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble",
+    "path": "forex_bot/research/adaptive_ensemble/__init__.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.accounting",
+    "path": "forex_bot/research/adaptive_ensemble/accounting.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.audit",
+    "path": "forex_bot/research/adaptive_ensemble/audit.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.candidates",
+    "path": "forex_bot/research/adaptive_ensemble/candidates.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.conversion",
+    "path": "forex_bot/research/adaptive_ensemble/conversion.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.evaluate",
+    "path": "forex_bot/research/adaptive_ensemble/evaluate.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.features",
+    "path": "forex_bot/research/adaptive_ensemble/features.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g10_audit",
+    "path": "forex_bot/research/adaptive_ensemble/g10_audit.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g10_snapshot",
+    "path": "forex_bot/research/adaptive_ensemble/g10_snapshot.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g10_verify",
+    "path": "forex_bot/research/adaptive_ensemble/g10_verify.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g1_freeze",
+    "path": "forex_bot/research/adaptive_ensemble/g1_freeze.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g1_runner",
+    "path": "forex_bot/research/adaptive_ensemble/g1_runner.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g2_runner",
+    "path": "forex_bot/research/adaptive_ensemble/g2_runner.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g3_acquire",
+    "path": "forex_bot/research/adaptive_ensemble/g3_acquire.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g3_convert",
+    "path": "forex_bot/research/adaptive_ensemble/g3_convert.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g4_convert_audit",
+    "path": "forex_bot/research/adaptive_ensemble/g4_convert_audit.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g4_gaps",
+    "path": "forex_bot/research/adaptive_ensemble/g4_gaps.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g4_integrity",
+    "path": "forex_bot/research/adaptive_ensemble/g4_integrity.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g4_policy",
+    "path": "forex_bot/research/adaptive_ensemble/g4_policy.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g4_prepare",
+    "path": "forex_bot/research/adaptive_ensemble/g4_prepare.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g4_sessions",
+    "path": "forex_bot/research/adaptive_ensemble/g4_sessions.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g5_audit",
+    "path": "forex_bot/research/adaptive_ensemble/g5_audit.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g6_review",
+    "path": "forex_bot/research/adaptive_ensemble/g6_review.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g7_snapshot",
+    "path": "forex_bot/research/adaptive_ensemble/g7_snapshot.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g8_audit",
+    "path": "forex_bot/research/adaptive_ensemble/g8_audit.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g8_dependencies",
+    "path": "forex_bot/research/adaptive_ensemble/g8_dependencies.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.g8_dockerignore",
+    "path": "forex_bot/research/adaptive_ensemble/g8_dockerignore.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.importer",
+    "path": "forex_bot/research/adaptive_ensemble/importer.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.isolation",
+    "path": "forex_bot/research/adaptive_ensemble/isolation.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.models",
+    "path": "forex_bot/research/adaptive_ensemble/models.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.oanda_readonly",
+    "path": "forex_bot/research/adaptive_ensemble/oanda_readonly.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.portfolio",
+    "path": "forex_bot/research/adaptive_ensemble/portfolio.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.portfolio_v2",
+    "path": "forex_bot/research/adaptive_ensemble/portfolio_v2.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.protocol",
+    "path": "forex_bot/research/adaptive_ensemble/protocol.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.provenance",
+    "path": "forex_bot/research/adaptive_ensemble/provenance.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.quality",
+    "path": "forex_bot/research/adaptive_ensemble/quality.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.quality_gates",
+    "path": "forex_bot/research/adaptive_ensemble/quality_gates.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.runner",
+    "path": "forex_bot/research/adaptive_ensemble/runner.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.simulate",
+    "path": "forex_bot/research/adaptive_ensemble/simulate.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.simulator_v2",
+    "path": "forex_bot/research/adaptive_ensemble/simulator_v2.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.source_audit",
+    "path": "forex_bot/research/adaptive_ensemble/source_audit.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.state_v2",
+    "path": "forex_bot/research/adaptive_ensemble/state_v2.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.validation_runner",
+    "path": "forex_bot/research/adaptive_ensemble/validation_runner.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.research.adaptive_ensemble.validation_spec",
+    "path": "forex_bot/research/adaptive_ensemble/validation_spec.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.rl_agent",
+    "path": "forex_bot/rl_agent.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.session_rules",
+    "path": "forex_bot/session_rules.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow",
+    "path": "forex_bot/shadow/__init__.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.accounting",
+    "path": "forex_bot/shadow/accounting.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.assess",
+    "path": "forex_bot/shadow/assess.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.classify",
+    "path": "forex_bot/shadow/classify.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.compare",
+    "path": "forex_bot/shadow/compare.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.config",
+    "path": "forex_bot/shadow/config.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.cost_model",
+    "path": "forex_bot/shadow/cost_model.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.diagnose",
+    "path": "forex_bot/shadow/diagnose.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.engine",
+    "path": "forex_bot/shadow/engine.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.fidelity",
+    "path": "forex_bot/shadow/fidelity.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.manifest",
+    "path": "forex_bot/shadow/manifest.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.original",
+    "path": "forex_bot/shadow/original.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.pipeline",
+    "path": "forex_bot/shadow/pipeline.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.protocol",
+    "path": "forex_bot/shadow/protocol.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.reasons",
+    "path": "forex_bot/shadow/reasons.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.replay",
+    "path": "forex_bot/shadow/replay.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.risk",
+    "path": "forex_bot/shadow/risk.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.signals",
+    "path": "forex_bot/shadow/signals.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.store",
+    "path": "forex_bot/shadow/store.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.shadow.tracks",
+    "path": "forex_bot/shadow/tracks.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.state",
+    "path": "forex_bot/state.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.strategy_meta",
+    "path": "forex_bot/strategy_meta.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.symbols",
+    "path": "forex_bot/symbols.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.telegram_cloud",
+    "path": "forex_bot/telegram_cloud.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.telegram_commands",
+    "path": "forex_bot/telegram_commands.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.telegram_control",
+    "path": "forex_bot/telegram_control.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.trade_diagnostics",
+    "path": "forex_bot/trade_diagnostics.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.trading",
+    "path": "forex_bot/trading.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.v2_shadow",
+    "path": "forex_bot/v2_shadow/__init__.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.v2_shadow.contract",
+    "path": "forex_bot/v2_shadow/contract.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.v2_shadow.decide",
+    "path": "forex_bot/v2_shadow/decide.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.v2_shadow.isolation",
+    "path": "forex_bot/v2_shadow/isolation.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.v2_shadow.market",
+    "path": "forex_bot/v2_shadow/market.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.v2_shadow.observe",
+    "path": "forex_bot/v2_shadow/observe.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.v2_shadow.score",
+    "path": "forex_bot/v2_shadow/score.py"
+  },
+  {
+    "classification": "RESEARCH_ONLY",
+    "evidence": "no import edge from the production startup closure",
+    "module": "forex_bot.v2_shadow.score_offline",
+    "path": "forex_bot/v2_shadow/score_offline.py"
+  },
+  {
+    "classification": "PRODUCTION_REQUIRED",
+    "evidence": "static import reachable from forex_bot.app, forex_bot.bot_loop, or main",
+    "module": "forex_bot.v2_shadow.store",
+    "path": "forex_bot/v2_shadow/store.py"
+  }
+]

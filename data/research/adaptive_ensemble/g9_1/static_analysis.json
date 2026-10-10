@@ -1,0 +1,10 @@
+{
+  "mypy_command": "python -m mypy forex_bot/bot_loop.py forex_bot/decision_skip_log.py --ignore-missing-imports --follow-imports=silent",
+  "new_findings": [],
+  "preexisting_not_claimed_fixed": [
+    "bot_loop import order and NaN checks",
+    "decision_skip_log percent format and broad excepts",
+    "oanda_exec fill parsing"
+  ],
+  "ruff_command": "python -m ruff check forex_bot/bot_loop.py forex_bot/decision_skip_log.py tests/test_g9_1_candle_exceptions.py tests/test_decision_repair_f1.py"
+}

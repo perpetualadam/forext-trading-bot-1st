@@ -1,0 +1,21 @@
+{
+  "conversion": "GBP_CONVERSION_UNVERIFIED",
+  "duration_status": "INSUFFICIENT_INDEPENDENT_DURATION",
+  "gates": {
+    "30-trade minimum": "NOT_EVALUATED",
+    "40 trading days": "FAIL",
+    "Bid/ask quality": "WARN",
+    "GBP conversion": "FAIL",
+    "Independent data": "FAIL",
+    "Live isolation": "PASS",
+    "Model freeze": "PASS",
+    "Model-state integrity": "PASS",
+    "Multi-pair accounting": "WARN",
+    "No leakage": "PASS",
+    "Protocol integrity": "PASS",
+    "Simulator correctness": "PASS",
+    "Source authorisation": "FAIL"
+  },
+  "multi_pair": "MULTI_PAIR_ACCOUNTING_ENGINE_PRESENT_VALIDATION_NOT_READY",
+  "trade_count_gate": "NOT_YET_EVALUATED"
+}

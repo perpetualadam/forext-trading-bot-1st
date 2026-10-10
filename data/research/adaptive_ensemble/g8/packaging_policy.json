@@ -1,0 +1,28 @@
+{
+  "status": "REVIEW",
+  "minimal_image_approved": false,
+  "reason": "The 86 previously unknown modules are classified, and none is on the startup import path. The Dockerfile still copies all of forex_bot, including research. No reduced image was assembled.",
+  "required_in_a_future_image": [
+    "Dockerfile",
+    "main.py",
+    "requirements.txt",
+    "forex_bot.app",
+    "forex_bot.bot_loop",
+    "forex_bot.live_safety",
+    "forex_bot.market_provenance",
+    "forex_bot.oanda_client",
+    "forex_bot.oanda_exec",
+    "forex_bot.live_manage",
+    "modules statically reachable from forex_bot.app"
+  ],
+  "optional_operator_tool": ["forex_bot/live_safety_preflight.py"],
+  "test_only": ["forex_bot/decision_repair/harness.py"],
+  "research_exclusion_candidate": "forex_bot/research, forex_bot/decision_quality, forex_bot/shadow, forex_bot/backtest.py, forex_bot/csv_ohlcv.py, forex_bot/oanda_candles_read.py, and the two unreached v2_shadow helpers",
+  "do_not_copy": [".env", "data/", "live_safety_state.json", "G.3 archives", "snapshot archives", "tests"],
+  "runtime_volume": "./data/ops mounted at /app/data/ops",
+  "startup_default": "missing or corrupt state file keeps effective authorisation BLOCKED and strategies inactive",
+  "dockerfile_change": "not made",
+  "dockerignore_changed": true,
+  "requirements_pinning": "requirements.txt is copied as it exists; this stage did not add a new lock file",
+  "dockerignore_verification": "local pattern matcher plus temporary-path tests; not a daemon build"
+}

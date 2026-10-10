@@ -1,0 +1,26 @@
+{
+  "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+  "paper_trading_scheduled": false,
+  "live_trading_authorised": false,
+  "requires_for_any_future_paper_only_stage": [
+    "frozen feature definitions",
+    "frozen candidate strategies",
+    "frozen model versions",
+    "frozen costs",
+    "frozen risk assumptions",
+    "decision logging",
+    "data-quality monitoring",
+    "reproducible model state",
+    "separate paper-trading controls",
+    "no connection to live broker execution",
+    "explicit human approval",
+    "genuinely unseen future data after 2026-08-31"
+  ],
+  "forbidden_now": [
+    "Docker restart or rebuild",
+    "live-order authorisation",
+    "strategy activation",
+    "OANDA mutations",
+    "Consensus Forecast changes"
+  ]
+}

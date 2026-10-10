@@ -1,0 +1,7 @@
+{
+  "historical_rate_series": "UNAVAILABLE",
+  "independent_validation": "blocked until timestamped conversion quotes exist",
+  "stage_g_method": "fixed gbp_usd=1.35 divisor",
+  "status": "GBP_CONVERSION_UNVERIFIED",
+  "usd_jpy_stage_g": "incorrect if used: JPY P&L divided by 1.35"
+}

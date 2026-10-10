@@ -1,0 +1,22 @@
+{
+  "auth_reason": "operator_preflight_blocked",
+  "auth_state": "BLOCKED",
+  "auth_updated_at_utc": "2026-10-08T22:24:23.529484+00:00",
+  "dockerfile_sha256": "f8d537d84c8ab004c5fc2cbdc5ef58e8141f5ca66a13be6cc5eac38c7c7006a6",
+  "dockerignore_sha256": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+  "g10_allowlist_drift": [],
+  "g10_archive_sha256": "d0317de858a00b194bc44408932ad6508eec411fe0179b0196175a2985b12277",
+  "g10_manifest_sha256": "93c73c21bd6f144e7d656be74128a771c3274025c0e88b8a052ffbc742f417cf",
+  "g3_normalised_verified": true,
+  "g3_raw_verified": true,
+  "g4_package_verified": true,
+  "g4_policy_verified": true,
+  "g7_archive_sha256": "0ee97accd2d4a8297a053eb26c5138324192ab5b1f700214acf091d0f6487f82",
+  "g7_manifest_sha256": "ba8eb86d887b44dd44314c6a45c776639bf11bb27f0e92ba2ce24978c3206989",
+  "git_head": "f6c4f40ae6b7614379347ed45141ecd5a3d33642",
+  "porcelain_count": 66,
+  "protocol_sha256": "539cdc083f83393a79d254d21385edc6c48e88eb0f085d4549df9fdd6d431bc0",
+  "strategies_active": [],
+  "strategies_recorded": 6,
+  "working_tree_cleaned": false
+}

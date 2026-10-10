@@ -1,0 +1,15 @@
+{
+  "method": "static import walk from forex_bot.app and forex_bot.bot_loop, including function-level imports",
+  "counts": {
+    "PRODUCTION_REQUIRED": 62,
+    "PRODUCTION_DEPENDENCY": 3,
+    "RESEARCH_ONLY": 39,
+    "UNKNOWN": 86,
+    "TEST_ONLY": 0,
+    "SECRET_OR_SENSITIVE": 0
+  },
+  "tests_in_snapshot": false,
+  "research_package_imported_by_app": false,
+  "unknown_blocks_reduced_image_approval": true,
+  "full_lists": "snapshot_context.json"
+}

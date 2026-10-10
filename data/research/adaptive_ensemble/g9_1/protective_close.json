@@ -1,0 +1,10 @@
+{
+  "authorisation_after_close": "BLOCKED",
+  "entry_provenance_required_for_close": false,
+  "failed_or_timeout": "not marked closed and not retried",
+  "long_units": "longUnits",
+  "missing_candles": "do not block a valid broker flatten",
+  "open_only_on_close": false,
+  "runtimeerror_candles": "do not block a valid broker flatten",
+  "short_units": "shortUnits"
+}

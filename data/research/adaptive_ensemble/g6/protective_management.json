@@ -1,0 +1,13 @@
+{
+  "broker_native_sl_tp_cancelled_when_provenance_missing": false,
+  "cache_downgrade_removes_prices": false,
+  "emergency_close_units": "longUnits or shortUnits of the existing side",
+  "local_sl_tp_hit_for_broker_positions": false,
+  "missing_candles_skip_the_whole_cycle": "pre_existing_early_return",
+  "pending_order_cancel_endpoint": "not_present",
+  "position_monitoring_uses_cached_bid_ask": true,
+  "profit_protection_close_uses_position_close": true,
+  "restart_restores_live_authorisation": false,
+  "stale_manage_quote_suppresses_software_close": true,
+  "trailing_stop_replace_endpoint": "not_present"
+}

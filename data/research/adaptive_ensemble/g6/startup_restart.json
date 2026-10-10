@@ -1,0 +1,10 @@
+{
+  "cache_not_restored_as_live": true,
+  "effective_authorisation_on_start": "BLOCKED",
+  "observed_durable_strategies_active": false,
+  "persisted_allowed_ignored": true,
+  "provenance_not_restored_from_disk": true,
+  "research_import_does_not_authorise": true,
+  "strategies_loaded_from_durable_file": true,
+  "synthetic_fallback_on_candle_failure": false
+}

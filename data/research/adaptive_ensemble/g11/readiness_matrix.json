@@ -1,0 +1,30 @@
+{
+  "areas": {
+    "g10_source_identity": "VERIFIED",
+    "frozen_snapshot_integrity": "VERIFIED",
+    "production_allowlist": "VERIFIED",
+    "proposed_dockerfile_patch": "PARTIALLY_VERIFIED",
+    "actual_docker_build_context_semantics": "UNVERIFIED",
+    "running_container_identity": "VERIFIED",
+    "running_image_identity": "VERIFIED",
+    "restart_policy": "VERIFIED",
+    "runtime_mounts": "VERIFIED",
+    "environment_compatibility": "PARTIALLY_VERIFIED",
+    "credential_injection": "PARTIALLY_VERIFIED",
+    "database_schema_compatibility": "UNVERIFIED",
+    "database_rollback_compatibility": "UNVERIFIED",
+    "startup_fail_closed_behaviour": "PARTIALLY_VERIFIED",
+    "strategy_inactivity": "VERIFIED",
+    "broker_new_order_authorisation": "VERIFIED",
+    "candle_provenance": "PARTIALLY_VERIFIED",
+    "existing_position_management": "PARTIALLY_VERIFIED",
+    "protective_closes": "VERIFIED",
+    "multi_instrument_isolation": "VERIFIED",
+    "safe_rollback_target": "BLOCKED",
+    "rollback_procedure": "UNVERIFIED",
+    "full_suite_testing": "PARTIALLY_VERIFIED",
+    "operator_deployment_approval": "UNVERIFIED"
+  },
+  "classification": "READ_ONLY_AUDIT_COMPLETE_ROLLBACK_UNVERIFIED",
+  "deployment_authorised": false
+}

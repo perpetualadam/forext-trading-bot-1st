@@ -1,0 +1,10 @@
+{
+  "pending": [],
+  "updates": 27,
+  "version": "exp_weights_v1",
+  "weights": {
+    "proxy_atr_expansion_breakout_v1": 1.0,
+    "proxy_rsi_mean_reversion_v1": 1.0,
+    "proxy_trend_ma_slope_v1": 0.07620517804877078
+  }
+}

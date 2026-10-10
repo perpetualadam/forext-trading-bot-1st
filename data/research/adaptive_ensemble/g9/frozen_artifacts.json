@@ -1,0 +1,12 @@
+{
+  "dockerfile_modified": false,
+  "dockerignore_expected": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+  "dockerignore_sha256": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+  "g7_archive_sha256": "0ee97accd2d4a8297a053eb26c5138324192ab5b1f700214acf091d0f6487f82",
+  "g7_expected_archive": "0ee97accd2d4a8297a053eb26c5138324192ab5b1f700214acf091d0f6487f82",
+  "g7_expected_manifest": "ba8eb86d887b44dd44314c6a45c776639bf11bb27f0e92ba2ce24978c3206989",
+  "g7_manifest_sha256": "ba8eb86d887b44dd44314c6a45c776639bf11bb27f0e92ba2ce24978c3206989",
+  "reason": "The G.9 working tree changes bot_loop and oanda_exec. The pinned G.7 archive still contains the pre-repair source.",
+  "snapshot_is_current_deployment_candidate": false,
+  "snapshot_regenerated": false
+}

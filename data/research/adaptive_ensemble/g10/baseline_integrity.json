@@ -1,0 +1,23 @@
+{
+  "expected_head_matches": true,
+  "git_head": "f6c4f40ae6b7614379347ed45141ecd5a3d33642",
+  "live_order_authorisation": {
+    "active_strategies": [],
+    "reason": "operator_preflight_blocked",
+    "state": "BLOCKED",
+    "strategy_count": 6,
+    "updated_at_utc": "2026-10-08T22:24:23.529484+00:00"
+  },
+  "porcelain_count": 59,
+  "porcelain_prefix_counts": {
+    ".env.example": 1,
+    ".gitignore": 1,
+    "data": 6,
+    "docker-compose.yml": 1,
+    "dockerignore": 1,
+    "forex_bot": 20,
+    "forex_direction_audit_bundle.zip": 1,
+    "tests": 28
+  },
+  "working_tree_dirty": true
+}

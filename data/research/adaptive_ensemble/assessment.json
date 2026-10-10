@@ -1,0 +1,18 @@
+{
+  "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+  "protocol_id": "stage_g_adaptive_ensemble_v1",
+  "protocol_version": "1",
+  "integrity_hash": "539cdc083f83393a79d254d21385edc6c48e88eb0f085d4549df9fdd6d431bc0",
+  "genuine_fresh_holdout": false,
+  "original_ai_rl": "ORIGINAL_DECISION_NOT_REPRODUCIBLE",
+  "assessment": "EXPLORATORY_NO_CREDIBLE_EDGE",
+  "rationale": [
+    "No data after 2026-08-31; Sep 2025–Aug 2026 is previously examined Stage E data.",
+    "Original AI/RL decisions remain ORIGINAL_DECISION_NOT_REPRODUCIBLE.",
+    "On EUR_USD remainder, no-trade net is 0. Adaptive models are net negative under conservative and severe costs except a 3-trade vote (below min_trades_for_comparison=30).",
+    "Dynamic weights +1.16 GBP at base costs sign-flips under conservative/severe costs and hits max-drawdown halt.",
+    "A zero-trade system is not declared profitable. Tiny GBP P&L on 1000 units and £97 simulated NAV is not economically meaningful.",
+    "Financing UNAVAILABLE. GBP FX 1.35 is ESTIMATE."
+  ],
+  "next_action": "Collect genuinely unseen post-2026-08-31 candles under a frozen protocol; do not deploy, paper-trade, or activate strategies."
+}

@@ -1,0 +1,150 @@
+{
+  "pairs": [
+    {
+      "bid_ask": true,
+      "dst_odd_spacing": 0,
+      "duplicate_timestamps": 0,
+      "incomplete_candles": 0,
+      "interpolated_bid_ask": false,
+      "issues": [
+        {
+          "code": "unexpected_gaps",
+          "n": 21
+        }
+      ],
+      "ohlc_invalid": 0,
+      "pair": "EUR_USD",
+      "price_jumps_gt_1pct": 0,
+      "rows": 74572,
+      "spread_invalid": 0,
+      "status": "WARN",
+      "timestamp_convention": "UTC",
+      "unexpected_gaps": 21,
+      "warmup_ok": true,
+      "weekend_or_closure_gaps": 52
+    },
+    {
+      "bid_ask": true,
+      "dst_odd_spacing": 0,
+      "duplicate_timestamps": 0,
+      "incomplete_candles": 0,
+      "interpolated_bid_ask": false,
+      "issues": [
+        {
+          "code": "unexpected_gaps",
+          "n": 35
+        }
+      ],
+      "ohlc_invalid": 0,
+      "pair": "GBP_USD",
+      "price_jumps_gt_1pct": 0,
+      "rows": 74555,
+      "spread_invalid": 0,
+      "status": "WARN",
+      "timestamp_convention": "UTC",
+      "unexpected_gaps": 35,
+      "warmup_ok": true,
+      "weekend_or_closure_gaps": 52
+    },
+    {
+      "bid_ask": true,
+      "dst_odd_spacing": 0,
+      "duplicate_timestamps": 0,
+      "incomplete_candles": 0,
+      "interpolated_bid_ask": false,
+      "issues": [
+        {
+          "code": "unexpected_gaps",
+          "n": 33
+        },
+        {
+          "code": "price_jump_gt_1pct",
+          "n": 3
+        }
+      ],
+      "ohlc_invalid": 0,
+      "pair": "USD_JPY",
+      "price_jumps_gt_1pct": 3,
+      "rows": 74557,
+      "spread_invalid": 0,
+      "status": "WARN",
+      "timestamp_convention": "UTC",
+      "unexpected_gaps": 33,
+      "warmup_ok": true,
+      "weekend_or_closure_gaps": 52
+    },
+    {
+      "bid_ask": true,
+      "dst_odd_spacing": 0,
+      "duplicate_timestamps": 0,
+      "incomplete_candles": 0,
+      "interpolated_bid_ask": false,
+      "issues": [
+        {
+          "code": "unexpected_gaps",
+          "n": 29
+        },
+        {
+          "code": "price_jump_gt_1pct",
+          "n": 1
+        }
+      ],
+      "ohlc_invalid": 0,
+      "pair": "AUD_USD",
+      "price_jumps_gt_1pct": 1,
+      "rows": 74563,
+      "spread_invalid": 0,
+      "status": "WARN",
+      "timestamp_convention": "UTC",
+      "unexpected_gaps": 29,
+      "warmup_ok": true,
+      "weekend_or_closure_gaps": 52
+    },
+    {
+      "bid_ask": true,
+      "dst_odd_spacing": 0,
+      "duplicate_timestamps": 0,
+      "incomplete_candles": 0,
+      "interpolated_bid_ask": false,
+      "issues": [
+        {
+          "code": "unexpected_gaps",
+          "n": 30
+        }
+      ],
+      "ohlc_invalid": 0,
+      "pair": "USD_CAD",
+      "price_jumps_gt_1pct": 0,
+      "rows": 74560,
+      "spread_invalid": 0,
+      "status": "WARN",
+      "timestamp_convention": "UTC",
+      "unexpected_gaps": 30,
+      "warmup_ok": true,
+      "weekend_or_closure_gaps": 52
+    },
+    {
+      "bid_ask": true,
+      "dst_odd_spacing": 0,
+      "duplicate_timestamps": 0,
+      "incomplete_candles": 0,
+      "interpolated_bid_ask": false,
+      "issues": [
+        {
+          "code": "unexpected_gaps",
+          "n": 64
+        }
+      ],
+      "ohlc_invalid": 0,
+      "pair": "USD_CHF",
+      "price_jumps_gt_1pct": 0,
+      "rows": 74514,
+      "spread_invalid": 0,
+      "status": "WARN",
+      "timestamp_convention": "UTC",
+      "unexpected_gaps": 64,
+      "warmup_ok": true,
+      "weekend_or_closure_gaps": 52
+    }
+  ]
+}

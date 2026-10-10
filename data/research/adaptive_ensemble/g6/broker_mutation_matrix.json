@@ -1,0 +1,76 @@
+{
+  "paths": [
+    {
+      "authorisation_gate": "assert_new_live_exposure_allowed before and again immediately before request",
+      "broker_endpoint": "POST /v3/accounts/{id}/orders (OrderCreate MARKET OPEN_ONLY)",
+      "bypass_risk": "same-process call of bind_live_frame can mint a seal",
+      "caller": "bot_loop broker branch",
+      "effect": "new_exposure",
+      "entry_point": "execute_oanda_market_open / _place_market_order_open_sync",
+      "provenance_gate": "decision frame seal, then require_order_quote",
+      "reachable_in_deployed_config": true,
+      "review_result": "reviewed_fail_closed_for_unsealed_data",
+      "risk_controls": "strategy inactive, preflight, risk latch, exposure, pending reservation, geometry"
+    },
+    {
+      "authorisation_gate": "broker mode required; new-exposure auth is not applied to close",
+      "broker_endpoint": "PUT /v3/accounts/{id}/positions/{instrument}/close",
+      "bypass_risk": "does not create the opposite position",
+      "caller": "trading.execute_trade when execution_kind is live",
+      "effect": "risk_reducing_close",
+      "entry_point": "execute_oanda_market_close / _place_market_order_sync",
+      "provenance_gate": "not required",
+      "reachable_in_deployed_config": true,
+      "review_result": "reviewed_not_blocked_by_entry_provenance",
+      "risk_controls": "longUnits closes a long; shortUnits closes a short; failure raises"
+    },
+    {
+      "authorisation_gate": "same as new exposure",
+      "broker_endpoint": "same OrderCreate",
+      "bypass_risk": "no later replace endpoint exists",
+      "caller": "bot_loop via execute_oanda_market_open",
+      "effect": "protective_orders_attached_at_entry",
+      "entry_point": "stopLossOnFill / takeProfitOnFill on the opening market order",
+      "provenance_gate": "same as new exposure",
+      "reachable_in_deployed_config": true,
+      "review_result": "reviewed_with_entry",
+      "risk_controls": "geometry clearance"
+    },
+    {
+      "authorisation_gate": "not applicable",
+      "broker_endpoint": "none",
+      "bypass_risk": "missing provenance does not cancel broker-native SL/TP",
+      "caller": "bot_loop manage branch",
+      "effect": "local_detection_disabled",
+      "entry_point": "broker_sl_tp_hit",
+      "provenance_gate": "not applicable",
+      "reachable_in_deployed_config": true,
+      "review_result": "reviewed_no_cancel",
+      "risk_controls": "OANDA remains authoritative for hard SL/TP"
+    },
+    {
+      "authorisation_gate": "not applicable",
+      "broker_endpoint": "none (GET OrdersPending only)",
+      "bypass_risk": "none found",
+      "caller": "reconcile_positions_log_only",
+      "effect": "local_status_update",
+      "entry_point": "_reconcile_pending_orders",
+      "provenance_gate": "not applicable",
+      "reachable_in_deployed_config": true,
+      "review_result": "reviewed_read_only",
+      "risk_controls": "does not send OrderCancel"
+    },
+    {
+      "authorisation_gate": "not an order",
+      "broker_endpoint": "GET candles or GET pricing",
+      "bypass_risk": "history helper is not the order function",
+      "caller": "bot_loop, entry geometry, decision-quality history",
+      "effect": "read",
+      "entry_point": "fetch_ohlcv / fetch_pricing_snapshot / live_instruments_candles_request",
+      "provenance_gate": "live fetch seals; historical range stamps historical; raw history helper returns an unsealed dict",
+      "reachable_in_deployed_config": true,
+      "review_result": "reviewed_not_a_mutation",
+      "risk_controls": "unsealed frames fail the open gate"
+    }
+  ]
+}

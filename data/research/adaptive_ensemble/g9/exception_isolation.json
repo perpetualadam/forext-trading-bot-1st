@@ -1,0 +1,9 @@
+{
+  "close_failure": "the failed symbol is not marked closed; other symbols still close when their own checks pass",
+  "first_symbol_candle_failure": "that symbol blocks new entries and still manages an existing position; later symbols run",
+  "middle_symbol_failure": "later symbols still run",
+  "programming_error": "recorded as instrument_cycle_failed and does not skip later symbols",
+  "repeated_outages": "no synthetic frame is bound and no mid price is recorded",
+  "reservation_policy": "candle failure returns before order reservation; a close timeout is not retried",
+  "shared_state_failure": "CycleIntegrityError stops the rest of the cycle"
+}

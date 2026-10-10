@@ -1,0 +1,15 @@
+{
+  "dockerfile": "unchanged",
+  "dockerignore": "unchanged",
+  "g7_snapshot": "unchanged",
+  "new_snapshot": "not created",
+  "production": [
+    "forex_bot/bot_loop.py",
+    "forex_bot/decision_skip_log.py"
+  ],
+  "research_artifacts": "data/research/adaptive_ensemble/g9_1/",
+  "tests": [
+    "tests/test_g9_1_candle_exceptions.py",
+    "tests/test_decision_repair_f1.py"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "links": [],
+  "scanned_entries": 417,
+  "unsafe_links_in_snapshot_input": [],
+  "windows_reparse_limitation": "GetFileAttributesW reparse bit is checked for forex_bot and the repository root. Junctions inside skipped data/ and .git are not enumerated. A reparse point that is not also a Python symlink can still be invisible to pathlib.is_symlink."
+}

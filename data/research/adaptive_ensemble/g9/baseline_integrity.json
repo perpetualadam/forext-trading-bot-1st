@@ -1,0 +1,22 @@
+{
+  "baseline_status": "INTACT",
+  "dockerignore_sha256": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+  "g3_normalised_verified": true,
+  "g3_raw_verified": true,
+  "g4_package_hash": "05b56d1ed7736025e86a9e3f94fb44bb49ea6208718aab7af9cfde6977a6c201",
+  "g4_package_verified": true,
+  "g4_policy_hash": "6ea84361d6fec3e1743fce2c238940d9f2fda50b78b1d5e305d07d18650d29d4",
+  "g4_policy_verified": true,
+  "g7_archive_sha256": "0ee97accd2d4a8297a053eb26c5138324192ab5b1f700214acf091d0f6487f82",
+  "g7_manifest_sha256": "ba8eb86d887b44dd44314c6a45c776639bf11bb27f0e92ba2ce24978c3206989",
+  "git_head": "f6c4f40ae6b7614379347ed45141ecd5a3d33642",
+  "live_order_authorisation": "BLOCKED",
+  "live_order_reason": "operator_preflight_blocked",
+  "live_order_timestamp": "2026-10-08T22:24:23.529484+00:00",
+  "protocol_hash": "539cdc083f83393a79d254d21385edc6c48e88eb0f085d4549df9fdd6d431bc0",
+  "protocol_verified": true,
+  "stage": "G.9",
+  "strategies_active": [],
+  "strategy_count": 6,
+  "working_tree": "dirty_before_g9_and_remains_dirty"
+}

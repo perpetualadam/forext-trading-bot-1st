@@ -1,0 +1,12 @@
+{
+  "affected_position_management": "skipped before G.9.1",
+  "client_fact": "fetch_ohlcv already converts request exceptions, including RuntimeError, into None",
+  "escaping_cases": [
+    "ProvenanceRejected during sealing",
+    "RuntimeError raised outside the request try",
+    "a wrapper or test double that raises RuntimeError"
+  ],
+  "later_symbols_continued": true,
+  "no_new_entry": true,
+  "pre_repair": "RuntimeError from fetch_ohlcv was re-raised before get_position"
+}

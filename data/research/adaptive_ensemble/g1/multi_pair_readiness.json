@@ -1,0 +1,21 @@
+{
+  "capital_allocation": "NOT_IMPLEMENTED_equal_units_only",
+  "cross_pair_clock_alignment": "helper_only",
+  "deterministic_tie_break": "protocol pair list then candidate id",
+  "missing_pair_data": "skip pair; do not invent bars",
+  "optimiser": "none",
+  "pairs_supported_inventory": [
+    "EUR_USD",
+    "GBP_USD",
+    "USD_JPY",
+    "AUD_USD",
+    "USD_CAD",
+    "USD_CHF"
+  ],
+  "pending_candidate_ordering": "protocol pair list",
+  "portfolio_nav": "blocked_on_GBP_CONVERSION_UNVERIFIED",
+  "portfolio_risk_constraints": "scaffolding_caps_only",
+  "reason": "Architecture stubs exist, but six-pair evaluation cannot be reported: no independent post-2026-08-31 dataset, conversion rates unverified, and portfolio caps are unvalidated research scaffolding.",
+  "shared_currency_exposure": "usd_sign_cap_unvalidated",
+  "status": "MULTI_PAIR_VALIDATION_NOT_READY"
+}

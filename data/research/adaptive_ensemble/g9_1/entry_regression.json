@@ -1,0 +1,6 @@
+{
+  "direct_open": "LIVE_ORDER_AUTH",
+  "risk_latch_reset": false,
+  "synthetic_fallback": 0,
+  "unusable_candles": "no select_strategy and no order request"
+}

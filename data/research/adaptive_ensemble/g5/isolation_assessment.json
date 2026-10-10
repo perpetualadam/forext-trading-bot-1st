@@ -1,0 +1,8 @@
+{
+  "g3_classification": "OANDA_HISTORICAL_VERIFIED",
+  "g4_runner": "offline_default_refusing",
+  "holdout_strategy_evaluation_performed": false,
+  "production_path_overlap": "none through directory scan",
+  "research_artifacts_g3_g4_modified": false,
+  "synthetic_fixture_storage": "research helper output and tests; not a production loader input"
+}

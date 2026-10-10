@@ -1,0 +1,9 @@
+{
+  "allowlist_status": "PROPOSED_NOT_APPLIED",
+  "dockerfile_modified": false,
+  "dockerignore_modified": false,
+  "image_build_authorised": false,
+  "proposed_image_excludes_research_source": true,
+  "reviewed_snapshot_includes_research_source": true,
+  "snapshot_id": "stage_g10_consolidated_source_v1"
+}

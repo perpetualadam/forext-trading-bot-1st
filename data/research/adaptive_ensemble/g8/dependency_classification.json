@@ -1,0 +1,444 @@
+{
+  "approval_reason": "classifications are evidence for a later image; the Dockerfile still copies the whole package and no reduced image was assembled",
+  "counts": {
+    "OPTIONAL_OPERATIONAL_TOOL": 1,
+    "RESEARCH_ONLY": 84,
+    "TEST_ONLY": 1
+  },
+  "dynamic_import_sites": [],
+  "minimal_production_set_approved": false,
+  "previously_unknown": 86,
+  "rows": [
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline history or CSV path; no production startup import and no order-create call",
+      "path": "forex_bot/backtest.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline history or CSV path; no production startup import and no order-create call",
+      "path": "forex_bot/csv_ohlcv.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/__init__.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/__main__.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/breakdowns.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/checkpoint.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/cross_pair.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/data.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/download_history.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/ema_retracement.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/engine.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/event_discovery.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/execution_sim.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/fast_cache.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/feature_discovery.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/fibonacci_retracement.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/filters.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/forensics.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/history_cache.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/invariants.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/isolation.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/live_path.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/live_trades.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/m1_path.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/macro_first_print/__init__.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/macro_first_print/__main__.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/macro_first_print/alfred.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/macro_first_print/build.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/macro_first_print/catalog.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/macro_first_print/fetch.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/macro_first_print/htmlutil.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/macro_first_print/parse_common.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/macro_first_print/parse_cpi.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/macro_first_print/parse_empsit.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/macro_first_print/schema.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/macro_first_print/store.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/macro_first_print/validate.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/momentum_m5_dedup.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/outcomes.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/reports.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/research_features.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/runner.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/schedule.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/sessions.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/signal.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/snapshot.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/spread_volume.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/stub_components.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/trading_economics/__init__.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/trading_economics/__main__.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/trading_economics/client.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/trading_economics/compare.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/trading_economics/download.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/trading_economics/env.template"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/trading_economics/events.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/trading_economics/schema.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/trading_economics/store.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/trading_economics/surprise.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/trading_economics/timestamps.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/trading_economics/validate.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/decision_quality/walk_forward.py"
+    },
+    {
+      "classification": "TEST_ONLY",
+      "evidence": "imported by decision-repair tests; not imported by app, bot_loop, execution, or oanda_exec",
+      "path": "forex_bot/decision_repair/harness.py"
+    },
+    {
+      "classification": "OPTIONAL_OPERATIONAL_TOOL",
+      "evidence": "operator writer for the durable blocked file; process start uses live_safety.initialise_fail_closed and denies when that file is absent",
+      "path": "forex_bot/live_safety_preflight.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline history or CSV path; no production startup import and no order-create call",
+      "path": "forex_bot/oanda_candles_read.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/__init__.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/accounting.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/assess.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/classify.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/compare.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/config.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/cost_model.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/diagnose.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/engine.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/fidelity.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/manifest.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/original.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/pipeline.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/protocol.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/reasons.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/replay.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/risk.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/signals.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/store.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "offline package; no import edge from the production startup closure",
+      "path": "forex_bot/shadow/tracks.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "not imported by forex_bot.v2_shadow package initialisation or by bot_loop",
+      "path": "forex_bot/v2_shadow/isolation.py"
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "evidence": "not imported by forex_bot.v2_shadow package initialisation or by bot_loop",
+      "path": "forex_bot/v2_shadow/score_offline.py"
+    }
+  ],
+  "unresolved": []
+}

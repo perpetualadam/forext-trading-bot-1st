@@ -1,0 +1,450 @@
+{
+  "dockerfile_still_copies_entire_package": true,
+  "file_count": 63,
+  "files": [
+    {
+      "path": ".dockerignore",
+      "reason": "image entry or build instruction",
+      "safety_critical": false,
+      "sha256": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+      "size": 709
+    },
+    {
+      "path": "Dockerfile",
+      "reason": "image entry or build instruction",
+      "safety_critical": false,
+      "sha256": "f8d537d84c8ab004c5fc2cbdc5ef58e8141f5ca66a13be6cc5eac38c7c7006a6",
+      "size": 627
+    },
+    {
+      "path": "forex_bot/__init__.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "27173dbbe12ac6f8fb8c269bb2c90dde7ecb2beb01e4343c0d1c9cf7bee18378",
+      "size": 77
+    },
+    {
+      "path": "forex_bot/ai_ensemble.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "2893d1a0b7a5ac9aa54407e5a15d6670f8addfd895c339f013cdaab205db0bbc",
+      "size": 12406
+    },
+    {
+      "path": "forex_bot/alerts.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "c126cae63f96d10a6fafd80e5370caec5a6231cf1cf977f7ef52caf67767da21",
+      "size": 6143
+    },
+    {
+      "path": "forex_bot/analytics.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "c2c5e9b5ea4b405bf61a9a560eec0768607a9fa7a593dfc732fe5794abe34523",
+      "size": 2888
+    },
+    {
+      "path": "forex_bot/anthropic_voter.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "54bd35c89f925d1181ff7689c12b10172dac8dbec4b91588cdc4caedd2d25c9b",
+      "size": 3570
+    },
+    {
+      "path": "forex_bot/app.py",
+      "reason": "startup closure",
+      "safety_critical": true,
+      "sha256": "77888f0fa40b5a2935913be6d9b8770c1df0aa204d21c72537cef9e01ac0f70d",
+      "size": 19303
+    },
+    {
+      "path": "forex_bot/bot_loop.py",
+      "reason": "startup closure",
+      "safety_critical": true,
+      "sha256": "dcc8ed35f1f1ec9eb4d53e3439ebf46f80868c55aba4ec6ec64ad29fbe9f9128",
+      "size": 67209
+    },
+    {
+      "path": "forex_bot/broker_exit.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "d9920eed6160c5f26e1db7ee34095488b3457755e5dbf21cffbeda08eb798c12",
+      "size": 23434
+    },
+    {
+      "path": "forex_bot/config.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "13db72c668f60a8a50bf148789070c29cb941be748a51b298bd7bcb2971f99fd",
+      "size": 2421
+    },
+    {
+      "path": "forex_bot/database.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "98ed215c0a7e7f21ecf938172a45805a3f1b456c5cf49e8d0a8ea9f0d5cbce72",
+      "size": 24889
+    },
+    {
+      "path": "forex_bot/decision_repair/__init__.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "a5ef6e838f2bc9c467a7a92a6423f76df7aedaacdc7cab6ab91c47676960cd11",
+      "size": 662
+    },
+    {
+      "path": "forex_bot/decision_repair/account_risk.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "3030d1a7abaa31ea6bed9c81c7d010402c5f43c2c494f24a8b49790bb3015be8",
+      "size": 13729
+    },
+    {
+      "path": "forex_bot/decision_repair/audit.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "0b744e11e679469de95c73626d6ac50c4cef0aa674778002081f2c9ed6cf4481",
+      "size": 9977
+    },
+    {
+      "path": "forex_bot/decision_repair/exposure.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "f289bbf69cee18744e8fb957a31d89e7b295559ac47f0ad9ce2baaaebc5b3c12",
+      "size": 8305
+    },
+    {
+      "path": "forex_bot/decision_repair/flags.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "08d8e5b958f92656100b834abf1d850efcd8c46e3c8fa3dacd8d63bcdf8b3423",
+      "size": 779
+    },
+    {
+      "path": "forex_bot/decision_repair/health.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "2b5e0e485694aaa8c12d00d836fce9bfb1226b304041e402dcd1e060ea8886e5",
+      "size": 5432
+    },
+    {
+      "path": "forex_bot/decision_repair/rl_store.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "bea6c72fbd105a7445884f86d0009cfdbe83457e5bcc728cfd34d1dc12e28714",
+      "size": 6144
+    },
+    {
+      "path": "forex_bot/decision_repair/selection.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "ed4fbfcf2d6e01571b3e6ffdef0337899cb5473d3175fe268a574e0b1621812a",
+      "size": 8518
+    },
+    {
+      "path": "forex_bot/decision_skip_log.py",
+      "reason": "startup closure",
+      "safety_critical": true,
+      "sha256": "be0f1798e2386062a0a85d3eb4dcb1aedb8c3f844141e0547b4ef2760cc500fa",
+      "size": 7953
+    },
+    {
+      "path": "forex_bot/entry_geometry.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "2de81213403d2092fab201a4704bb10ae85bdc861c9c854bac6e385e406e204c",
+      "size": 19811
+    },
+    {
+      "path": "forex_bot/execution.py",
+      "reason": "startup closure",
+      "safety_critical": true,
+      "sha256": "6602e363171e3aac4bc4b597ddb805c454c7ca40f7d1fe3fddf542f6a1ab86e2",
+      "size": 8653
+    },
+    {
+      "path": "forex_bot/execution_metrics.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "7b806b41c205a4e7e14fc248a52008116179202ec1c30f9f559b1019888c66ec",
+      "size": 2417
+    },
+    {
+      "path": "forex_bot/experiment.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "be71ed6f3b19b73777d4a16026df40f0b3ba23df313215585a736ad178e4166a",
+      "size": 2173
+    },
+    {
+      "path": "forex_bot/indicators.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "64fe62a7e5fd997b7ea3ecc69b0bbc09ce5d0bc8ede18180a8bd16b209c52fe9",
+      "size": 3539
+    },
+    {
+      "path": "forex_bot/live_manage.py",
+      "reason": "startup closure",
+      "safety_critical": true,
+      "sha256": "60d87b8665620743467832758032857e975d32da15322307a0c331009cc7b25d",
+      "size": 5066
+    },
+    {
+      "path": "forex_bot/live_safety.py",
+      "reason": "startup closure",
+      "safety_critical": true,
+      "sha256": "6e59666960dfec0ff379343c8973e389363faaab49278d9806c160a18ebe8f4f",
+      "size": 17795
+    },
+    {
+      "path": "forex_bot/log_config.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "9ab9445a8ff9518409dc6653331d41f1d1369f0e29e84d561f97de9e993b06f1",
+      "size": 800
+    },
+    {
+      "path": "forex_bot/log_redact.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "362e98cac0ed8f9ba406ebe1574f19a8004ac3cde19e2a6738e32daa7675edff",
+      "size": 1921
+    },
+    {
+      "path": "forex_bot/market_provenance.py",
+      "reason": "startup closure",
+      "safety_critical": true,
+      "sha256": "efcae1c71df010ce221f734c7f48008f36b12e1b78c83c7fe11b5a671cb3775f",
+      "size": 14782
+    },
+    {
+      "path": "forex_bot/nn_pred.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "09f1adf5be0e53009094331c7acff0e1c0a1677a9f0ccfa4e30cd149ec38fce8",
+      "size": 1138
+    },
+    {
+      "path": "forex_bot/oanda_client.py",
+      "reason": "startup closure",
+      "safety_critical": true,
+      "sha256": "6d7d5d2b6ce1c228af0629c3e2a8b674b02965c57d1a3ed41c3b4015e531ca2b",
+      "size": 20382
+    },
+    {
+      "path": "forex_bot/oanda_exec.py",
+      "reason": "startup closure",
+      "safety_critical": true,
+      "sha256": "f4beb250d81852d8ee4f22af06ab33194c6b4ba1bf6f9b1a6b5d11d3b7b265c8",
+      "size": 24707
+    },
+    {
+      "path": "forex_bot/oanda_rate_limit.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "a4c68c1ec51f3aafe3eb01d66f7380eff8730b3ef5318d57f60fd1f9db6ae7e1",
+      "size": 1534
+    },
+    {
+      "path": "forex_bot/openai_voter.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "8cc5d5def6264e10503fb512e972abaaa9812542a91f4fc7858ea51deb93bef8",
+      "size": 4796
+    },
+    {
+      "path": "forex_bot/operational_events.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "0ce0d9d69d62bc7f16ff4aefa0c0909e9cae8f6a05ac4d530d9ee3f8dd27d6c1",
+      "size": 4959
+    },
+    {
+      "path": "forex_bot/operational_state.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "dbbf734d5882453f603c950c3d819f728fcb93e68a4e8bd037c51b923de3a3ab",
+      "size": 4097
+    },
+    {
+      "path": "forex_bot/orders.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "30bafb8bf6fde1ad061641e8db01b1a79932d6a1a74dcc3e6f59a591f42b1525",
+      "size": 6729
+    },
+    {
+      "path": "forex_bot/portfolio.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "8d736bfbad9bb9a1a78577b64c76e25ee39d016dd4a5ea3f213e1d0aa5c2412c",
+      "size": 704
+    },
+    {
+      "path": "forex_bot/portfolio_exposure.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "0949a084722697c80cdda5da8c1b7e69ea47dc19c5f718b1f43668a0bb5ae4b4",
+      "size": 13326
+    },
+    {
+      "path": "forex_bot/positions.py",
+      "reason": "startup closure",
+      "safety_critical": true,
+      "sha256": "e63ac07e6677ae5707a2a75888bcd5c39df5957ab34547659546e8546d537f2a",
+      "size": 7212
+    },
+    {
+      "path": "forex_bot/profit_protection.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "d57dfce057eb8e5bd318fd6a1bb4f36a979c45e6d4cd664a51fdbc6a7f09b51f",
+      "size": 24418
+    },
+    {
+      "path": "forex_bot/reconciliation.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "295686792ab017cfc8dfba8fd0add6b2b66a3008304ade141e899af7e86e776b",
+      "size": 32632
+    },
+    {
+      "path": "forex_bot/rl_agent.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "912280b9854208b7359b2e264adfdf5b1b454e88afd7b5b5fc3cc0f635091e4e",
+      "size": 1726
+    },
+    {
+      "path": "forex_bot/session_rules.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "90023457126ee98a1b02739b188132278d078c24bf5b04f12dec166ea57a4202",
+      "size": 17661
+    },
+    {
+      "path": "forex_bot/state.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "03dab7d2b3d9292e2adc3b8753b5b2e256a9a18d67ce30b92ece778735ff3201",
+      "size": 3530
+    },
+    {
+      "path": "forex_bot/strategy_meta.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "daffe8ab64cc40016bc337b78da048f10b06314e477f56380bd28f2848995ed1",
+      "size": 6553
+    },
+    {
+      "path": "forex_bot/symbols.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "e5f97cb0684ef470a3e5a0d04f3ad05e37d64a493c8f82c60c031096b8460e8f",
+      "size": 2797
+    },
+    {
+      "path": "forex_bot/telegram_cloud.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "8a6f64fd6e9358aaf860489c72bd5790340b4ff2cfc8cd6d26c8fb52d2c0e42f",
+      "size": 12401
+    },
+    {
+      "path": "forex_bot/telegram_commands.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "e06c08735493f8a5b8aba601d23eaeb06a837b657133d6cb1bc6b9f5ccb741d2",
+      "size": 3712
+    },
+    {
+      "path": "forex_bot/telegram_control.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "270f2b48bbbc1c50b1bb89ae338716803c5e2772fada3b1aa39153fb8b300014",
+      "size": 43273
+    },
+    {
+      "path": "forex_bot/trade_diagnostics.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "0417191e0f052675a91afec52099a9732ae4b1754849c865b9602988eafd8bea",
+      "size": 6647
+    },
+    {
+      "path": "forex_bot/trading.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "5ac3981690fe9536edaedfd35a933d17fc37a1e4a77c5c3e9b47517db6300fc7",
+      "size": 19115
+    },
+    {
+      "path": "forex_bot/v2_shadow/__init__.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "87240471697d4a3844a84147a1d83cec480e01b20a77791783bc89f30b867a1b",
+      "size": 893
+    },
+    {
+      "path": "forex_bot/v2_shadow/contract.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "6d03cc74333df91c26281d8b85333f93a71f5a4958923cdb6158f77ff0076e7f",
+      "size": 4181
+    },
+    {
+      "path": "forex_bot/v2_shadow/decide.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "fe865efbc4dcae770c52e101884f291d84678a882b842a3da1ea95ee128f028b",
+      "size": 820
+    },
+    {
+      "path": "forex_bot/v2_shadow/market.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "8c82f24dd56de547b8be6cfeb4a2e76a9b2b1d09cd513fb367964e069660ddaa",
+      "size": 11489
+    },
+    {
+      "path": "forex_bot/v2_shadow/observe.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "155793de59624000f559d672599226fc41376cf6c13010230284ef54bc52e421",
+      "size": 9328
+    },
+    {
+      "path": "forex_bot/v2_shadow/score.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "0d9eacbff92033ea7a7a4c65a9e36b9d8489c77e101ea97446473fef44f8189d",
+      "size": 7637
+    },
+    {
+      "path": "forex_bot/v2_shadow/store.py",
+      "reason": "startup closure",
+      "safety_critical": false,
+      "sha256": "3186249fd2d2444938231da16b9ffc2fcd7b1ec94de7c37c736d45170e5f4615",
+      "size": 12212
+    },
+    {
+      "path": "main.py",
+      "reason": "image entry or build instruction",
+      "safety_critical": true,
+      "sha256": "4711818ad85b12d1be94e13a08182ff60881416302a84a573fe18f37a043d3eb",
+      "size": 585
+    },
+    {
+      "path": "requirements.txt",
+      "reason": "image entry or build instruction",
+      "safety_critical": false,
+      "sha256": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a",
+      "size": 174
+    }
+  ],
+  "image_build_authorised": false,
+  "missing_safety_modules": [],
+  "status": "PROPOSED_NOT_APPLIED"
+}

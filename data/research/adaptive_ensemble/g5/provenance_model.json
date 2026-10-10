@@ -1,0 +1,11 @@
+{
+  "cached_record": "not live",
+  "eligibility": "only a sealed OANDA_LIVE_VERIFIED record may continue to existing safety checks",
+  "historical_record": "not live",
+  "limits": "in-process calls to the acquisition helper are not distinguishable from the fetch functions",
+  "missing_provenance": "rejected",
+  "model_version": "market_provenance_v1",
+  "spoofed_label": "rejected",
+  "synthetic_record": "not live",
+  "trusted_boundary": "successful response inside fetch_ohlcv and fetch_pricing_snapshot"
+}

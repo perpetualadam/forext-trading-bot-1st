@@ -1,0 +1,21 @@
+{
+  "expected_statements": [
+    "CREATE TABLE IF NOT EXISTS trades",
+    "ALTER TABLE trades ADD COLUMN IF NOT EXISTS trading_mode",
+    "ALTER TABLE trades ADD COLUMN IF NOT EXISTS execution_kind",
+    "ALTER TABLE trades ADD COLUMN IF NOT EXISTS diagnostics",
+    "CREATE TABLE IF NOT EXISTS reconcile_metadata",
+    "CREATE TABLE IF NOT EXISTS operational_event_log",
+    "CREATE TABLE IF NOT EXISTS exec_orders",
+    "ALTER TABLE exec_orders ADD COLUMN IF NOT EXISTS filled_units",
+    "CREATE TABLE IF NOT EXISTS broker_exit_ledger",
+    "CREATE TABLE IF NOT EXISTS broker_exit_pending"
+  ],
+  "live_database_inspected": false,
+  "migration_tool": "none; DDL runs inside get_connection and commits",
+  "new_tables_from_g5_to_g10": [],
+  "safety_state_store": "JSON file on the data/ops bind mount, not PostgreSQL",
+  "startup_write": "first database connection commits CREATE/ALTER IF NOT EXISTS; live-safety startup rewrites the mounted JSON as BLOCKED",
+  "status": "UNVERIFIED",
+  "rollback_note": "Additive IF NOT EXISTS statements do not prove the live database matches the Oct 8 image. No query was run."
+}

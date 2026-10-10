@@ -1,0 +1,5 @@
+{
+  "classification": "CANDLE_EXCEPTION_BOUNDARY_VERIFIED_SNAPSHOT_REQUIRED",
+  "deployed": false,
+  "next_action": "Create and independently review one pinned source snapshot that contains the G.7 provenance repair, the G.8 dockerignore hardening, the G.9 management repair, and this G.9.1 exception boundary. Do not deploy."
+}

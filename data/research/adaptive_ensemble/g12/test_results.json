@@ -1,0 +1,9 @@
+{
+  "command": "python -m pytest tests/test_g12_forensics.py plus the scoped Stage A, G.5-G.11 suite",
+  "failed": 0,
+  "image_filesystem_used": false,
+  "passed": 520,
+  "ruff_g12": "clean",
+  "skipped": 0,
+  "warnings": 2
+}

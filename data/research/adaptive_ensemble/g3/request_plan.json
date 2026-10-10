@@ -1,0 +1,51 @@
+{
+  "account_endpoints": false,
+  "end": "2026-10-09T07:05:00+00:00",
+  "endpoint": "GET /v3/instruments/{instrument}/candles",
+  "environment": "live",
+  "estimated_requests": 36,
+  "granularity": "M5",
+  "host": "api-fxtrade.oanda.com",
+  "instruments": [
+    "AUD_USD",
+    "EUR_USD",
+    "GBP_USD",
+    "USD_CAD",
+    "USD_CHF",
+    "USD_JPY"
+  ],
+  "max_candles_documented": 5000,
+  "max_retries": 2,
+  "min_interval_sec": 1.0,
+  "price": "MBA",
+  "redirects": "blocked",
+  "start": "2026-09-01T00:00:00+00:00",
+  "timeout_sec": 20.0,
+  "window_days": 7,
+  "windows": [
+    [
+      "2026-09-01T00:00:00+00:00",
+      "2026-09-08T00:00:00+00:00"
+    ],
+    [
+      "2026-09-08T00:00:00+00:00",
+      "2026-09-15T00:00:00+00:00"
+    ],
+    [
+      "2026-09-15T00:00:00+00:00",
+      "2026-09-22T00:00:00+00:00"
+    ],
+    [
+      "2026-09-22T00:00:00+00:00",
+      "2026-09-29T00:00:00+00:00"
+    ],
+    [
+      "2026-09-29T00:00:00+00:00",
+      "2026-10-06T00:00:00+00:00"
+    ],
+    [
+      "2026-10-06T00:00:00+00:00",
+      "2026-10-09T07:05:00+00:00"
+    ]
+  ]
+}

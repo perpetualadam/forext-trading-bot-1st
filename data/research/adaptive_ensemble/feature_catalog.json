@@ -1,0 +1,46 @@
+{
+  "correlations": {
+    "note": "single-pair exploratory runs only",
+    "status": "NOT_EVALUATED"
+  },
+  "economic_events": {
+    "status": "UNAVAILABLE"
+  },
+  "execution_costs": {
+    "lookback": "bid/ask half-spread / ATR",
+    "timestamp": "bar i"
+  },
+  "market_regime": {
+    "definition": "Rule labels from slope, ATR rank, RSI, compression at bar i",
+    "leakage_test": "prefix vs full frame",
+    "lookback": "50 MA + 100 ATR mean + 14 RSI",
+    "missing": "uncertain",
+    "normalisation": "none",
+    "timestamp": "completed bar i inclusive",
+    "version": "stage_g_features_v1"
+  },
+  "market_structure": {
+    "lookback": "prior 20-bar high/low excluding current",
+    "timestamp": "bar i"
+  },
+  "momentum": {
+    "lookback": "RSI14",
+    "timestamp": "bar i"
+  },
+  "multi_timeframe": {
+    "lookback": "previous completed UTC hour only",
+    "timestamp": "bar i"
+  },
+  "sessions": {
+    "lookback": "UTC hour buckets; DST via UTC not local TZ",
+    "timestamp": "bar i"
+  },
+  "trend": {
+    "lookback": "MA20-MA50 slope over 5 bars",
+    "timestamp": "bar i"
+  },
+  "volatility": {
+    "lookback": "ATR14 and ATR/ATR100",
+    "timestamp": "bar i"
+  }
+}

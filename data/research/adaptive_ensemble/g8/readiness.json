@@ -1,0 +1,10 @@
+{
+  "classification": "BUILD_CONTEXT_HARDENED_MANAGEMENT_REPAIR_REQUIRED",
+  "snapshot_classification": "SNAPSHOT_INDEPENDENTLY_VERIFIED",
+  "management_classification": "MANAGEMENT_DEFECT_CONFIRMED_REPAIR_REQUIRED",
+  "deployment_approved": false,
+  "trading_approved": false,
+  "image_built": false,
+  "minimal_source_set_approved": false,
+  "next_action": "Narrowly repair position management so a failed candle fetch cannot skip risk-reducing management, then pin a new snapshot. Do not deploy."
+}

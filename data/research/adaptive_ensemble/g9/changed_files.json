@@ -1,0 +1,17 @@
+{
+  "dockerfile": "unchanged",
+  "dockerignore": "unchanged",
+  "new_snapshot": "not created",
+  "production": [
+    "forex_bot/bot_loop.py",
+    "forex_bot/decision_skip_log.py",
+    "forex_bot/oanda_exec.py"
+  ],
+  "research_artifacts": "data/research/adaptive_ensemble/g9/",
+  "running_production": "unchanged",
+  "tests": [
+    "tests/test_g9_management.py",
+    "tests/test_g8_missing_candles.py",
+    "tests/test_market_provenance_g7.py"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "dockerignore": "unchanged",
+  "dockerfile": "unchanged",
+  "production_source": [],
+  "research_artifacts": "data/research/adaptive_ensemble/g11/",
+  "running_production": "unchanged",
+  "tests": ["tests/test_g11_audit.py", "tests/g11_audit_helpers.py"]
+}

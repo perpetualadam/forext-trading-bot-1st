@@ -1,0 +1,12 @@
+{
+  "blockers": [
+    "Missing candle acquisition skips risk-reducing management for that symbol, and a fetch exception skips later symbols in the cycle.",
+    "Dockerfile still copies research and offline modules.",
+    "Reduced production source set is classified but not approved or assembled.",
+    "Local .dockerignore matcher is not a Docker daemon proof.",
+    "Symlinks at included paths can still expose excluded targets.",
+    "Running image digest and rollback target are unverified.",
+    "Same-process provenance minting remains a local integrity seal, not broker authentication.",
+    ".env.example contains an example database password assignment of length 8."
+  ]
+}

@@ -1,11 +1,54 @@
+# Stage G.8 build-context exclusions.
+# These rules decide what a future docker build may upload.
+# They do not remove runtime volume mounts from docker-compose.yml.
+# The local matcher in g8_dockerignore.py approximates documented pattern rules.
+# It is not a Docker daemon.
+
 .git
 .gitignore
+.gitattributes
+.github
+
 __pycache__
 *.py[cod]
 *.egg-info
+.mypy_cache
+.pytest_cache
+.ruff_cache
+.coverage
+htmlcov
 .venv
 venv
+
 .env
-*.md
-.pytest_cache
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+credentials.json
+
+/data
+/data/**
+*.sqlite
+*.sqlite3
+*.db
+*.log
+*.bak
+*.zip
+*.tar
+*.gz
+*~
+
 .cursor
+.idea
+.vscode
+*.swp
+
+*.md
+/tests
+/tests/**
+/reports
+/reports/**
+docker-compose.yml

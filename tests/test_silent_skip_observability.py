@@ -243,7 +243,7 @@ def test_evaluate_strategy_none_does_not_reach_sizing(monkeypatch, caplog, resto
     from forex_bot.bot_loop import evaluate
 
     idx = pd.date_range("2026-10-01", periods=80, freq="5min", tz="UTC")
-    close = pd.Series(1.10 + (pd.Series(range(80)) * 0.0001), index=idx)
+    close = pd.Series([1.10 + (i * 0.0001) for i in range(80)], index=idx)
     raw = pd.DataFrame(
         {
             "time": idx,

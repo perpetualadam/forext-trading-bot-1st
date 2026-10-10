@@ -1,0 +1,260 @@
+{
+  "conversion_failures": {
+    "AUD_USD": [],
+    "EUR_USD": [],
+    "GBP_USD": [],
+    "USD_CAD": [],
+    "USD_CHF": [],
+    "USD_JPY": []
+  },
+  "digest_sha256": "d955e1c18c315fe6e62d5dd887e1d45364823afd8a6b31ea6ae85e4a5ac83e2b",
+  "estimated_rate_used": false,
+  "full_portfolio_pnl_reconciliation": false,
+  "max_quote_age_hours": 0.08333333333333333,
+  "missing_examples": [],
+  "negative_pnl": "cover the debit at the bid",
+  "nominal_quote_amount": 1.0,
+  "per_pair": {
+    "AUD_USD": {
+      "audited": 8146,
+      "bad_arithmetic": 0,
+      "coverage_pct": 100.0,
+      "missing": 0,
+      "ok": 8146,
+      "stale": 0,
+      "weekend_allowance": 0
+    },
+    "EUR_USD": {
+      "audited": 8148,
+      "bad_arithmetic": 0,
+      "coverage_pct": 100.0,
+      "missing": 0,
+      "ok": 8148,
+      "stale": 0,
+      "weekend_allowance": 0
+    },
+    "GBP_USD": {
+      "audited": 8148,
+      "bad_arithmetic": 0,
+      "coverage_pct": 100.0,
+      "missing": 0,
+      "ok": 8148,
+      "stale": 0,
+      "weekend_allowance": 0
+    },
+    "USD_CAD": {
+      "audited": 8147,
+      "bad_arithmetic": 0,
+      "coverage_pct": 100.0,
+      "missing": 0,
+      "ok": 8147,
+      "stale": 0,
+      "weekend_allowance": 0
+    },
+    "USD_CHF": {
+      "audited": 8123,
+      "bad_arithmetic": 0,
+      "coverage_pct": 100.0,
+      "missing": 0,
+      "ok": 8123,
+      "stale": 0,
+      "weekend_allowance": 0
+    },
+    "USD_JPY": {
+      "audited": 8141,
+      "bad_arithmetic": 0,
+      "coverage_pct": 100.0,
+      "missing": 0,
+      "ok": 8141,
+      "stale": 0,
+      "weekend_allowance": 0
+    }
+  },
+  "positive_pnl": "buy the next currency at the ask",
+  "routes": {
+    "CAD": "USD_CAD then GBP_USD",
+    "CHF": "USD_CHF then GBP_USD",
+    "JPY": "USD_JPY then GBP_USD",
+    "USD": "GBP_USD"
+  },
+  "session_coverage": [
+    {
+      "bars": 1512,
+      "coverage_pct": 100.0,
+      "ok": 1512,
+      "session": "2026-09-01"
+    },
+    {
+      "bars": 1728,
+      "coverage_pct": 100.0,
+      "ok": 1728,
+      "session": "2026-09-02"
+    },
+    {
+      "bars": 1728,
+      "coverage_pct": 100.0,
+      "ok": 1728,
+      "session": "2026-09-03"
+    },
+    {
+      "bars": 1728,
+      "coverage_pct": 100.0,
+      "ok": 1728,
+      "session": "2026-09-04"
+    },
+    {
+      "bars": 1719,
+      "coverage_pct": 100.0,
+      "ok": 1719,
+      "session": "2026-09-07"
+    },
+    {
+      "bars": 1727,
+      "coverage_pct": 100.0,
+      "ok": 1727,
+      "session": "2026-09-08"
+    },
+    {
+      "bars": 1725,
+      "coverage_pct": 100.0,
+      "ok": 1725,
+      "session": "2026-09-09"
+    },
+    {
+      "bars": 1726,
+      "coverage_pct": 100.0,
+      "ok": 1726,
+      "session": "2026-09-10"
+    },
+    {
+      "bars": 1728,
+      "coverage_pct": 100.0,
+      "ok": 1728,
+      "session": "2026-09-11"
+    },
+    {
+      "bars": 1726,
+      "coverage_pct": 100.0,
+      "ok": 1726,
+      "session": "2026-09-14"
+    },
+    {
+      "bars": 1728,
+      "coverage_pct": 100.0,
+      "ok": 1728,
+      "session": "2026-09-15"
+    },
+    {
+      "bars": 1728,
+      "coverage_pct": 100.0,
+      "ok": 1728,
+      "session": "2026-09-16"
+    },
+    {
+      "bars": 1728,
+      "coverage_pct": 100.0,
+      "ok": 1728,
+      "session": "2026-09-17"
+    },
+    {
+      "bars": 1728,
+      "coverage_pct": 100.0,
+      "ok": 1728,
+      "session": "2026-09-18"
+    },
+    {
+      "bars": 1720,
+      "coverage_pct": 100.0,
+      "ok": 1720,
+      "session": "2026-09-21"
+    },
+    {
+      "bars": 1728,
+      "coverage_pct": 100.0,
+      "ok": 1728,
+      "session": "2026-09-22"
+    },
+    {
+      "bars": 1727,
+      "coverage_pct": 100.0,
+      "ok": 1727,
+      "session": "2026-09-23"
+    },
+    {
+      "bars": 1728,
+      "coverage_pct": 100.0,
+      "ok": 1728,
+      "session": "2026-09-24"
+    },
+    {
+      "bars": 1727,
+      "coverage_pct": 100.0,
+      "ok": 1727,
+      "session": "2026-09-25"
+    },
+    {
+      "bars": 1726,
+      "coverage_pct": 100.0,
+      "ok": 1726,
+      "session": "2026-09-28"
+    },
+    {
+      "bars": 1728,
+      "coverage_pct": 100.0,
+      "ok": 1728,
+      "session": "2026-09-29"
+    },
+    {
+      "bars": 1728,
+      "coverage_pct": 100.0,
+      "ok": 1728,
+      "session": "2026-09-30"
+    },
+    {
+      "bars": 1727,
+      "coverage_pct": 100.0,
+      "ok": 1727,
+      "session": "2026-10-01"
+    },
+    {
+      "bars": 1728,
+      "coverage_pct": 100.0,
+      "ok": 1728,
+      "session": "2026-10-02"
+    },
+    {
+      "bars": 1720,
+      "coverage_pct": 100.0,
+      "ok": 1720,
+      "session": "2026-10-05"
+    },
+    {
+      "bars": 1728,
+      "coverage_pct": 100.0,
+      "ok": 1728,
+      "session": "2026-10-06"
+    },
+    {
+      "bars": 1726,
+      "coverage_pct": 100.0,
+      "ok": 1726,
+      "session": "2026-10-07"
+    },
+    {
+      "bars": 1727,
+      "coverage_pct": 100.0,
+      "ok": 1727,
+      "session": "2026-10-08"
+    },
+    {
+      "bars": 726,
+      "coverage_pct": 100.0,
+      "ok": 726,
+      "session": "2026-10-09"
+    }
+  ],
+  "stale_examples": [],
+  "status": "ok",
+  "strategy_pnl": false,
+  "timestamps_audited": 48853
+}

@@ -1,0 +1,9 @@
+{
+  "current_copy": ["requirements.txt", "forex_bot/", "main.py"],
+  "daemon_semantics": "DOCKER_CONTEXT_DAEMON_UNVERIFIED",
+  "local_matcher": "g8_dockerignore last-match rules, not a daemon upload",
+  "research_would_enter_current_image": true,
+  "reason": "COPY forex_bot/ includes research source. .dockerignore does not exclude forex_bot/research/.",
+  "proposed_allowlist_count": 63,
+  "proposed_patch_applied": false
+}

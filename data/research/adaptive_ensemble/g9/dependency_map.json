@@ -1,0 +1,43 @@
+{
+  "entry_only": [
+    "decision candle frame",
+    "decision_frame_rejection on the broker fill path",
+    "sealed entry quote via require_order_quote",
+    "active authorised strategy",
+    "effective live-order authorisation",
+    "risk, exposure, and pending-order checks",
+    "OrderCreate OPEN_ONLY"
+  ],
+  "existing_position_state": [
+    "local get_position",
+    "direction must be BUY or SELL",
+    "units must be finite and non-zero before a close is sent"
+  ],
+  "management_pricing": [
+    "broker positions use resolve_broker_manage_price",
+    "90 second freshness limit unchanged",
+    "instrument identity, finite positive bid/ask, and non-inverted bid/ask are checked first",
+    "no M5 close fallback for broker management",
+    "paper management still uses the decision close only when that frame exists"
+  ],
+  "new_exposure_authorisation": [
+    "assert_new_live_exposure_allowed remains before OrderCreate",
+    "PositionClose does not require a candle seal or an entry-quote seal",
+    "a protective close does not change live-order authorisation"
+  ],
+  "protective_close": [
+    "PositionClose longUnits for BUY and shortUnits for SELL",
+    "weekend flatten is time-triggered and does not need a decision candle",
+    "a missing management quote does not block a broker PositionClose",
+    "paper or mid closes without a price are not marked successful",
+    "close exceptions do not call close_position and are not retried"
+  ],
+  "symbol_cycle": [
+    "run_bot refreshes the pricing snapshot once",
+    "_cycle_symbols calls evaluate per instrument",
+    "_load_decision_candles fetches M5 candles inside a contained helper",
+    "get_position runs even when the decision frame is missing",
+    "existing positions enter the management branch before any new-entry gate",
+    "new entries require a usable frame and then the existing provenance, risk, and authorisation gates"
+  ]
+}

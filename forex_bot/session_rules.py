@@ -66,13 +66,9 @@ def in_active_session_at(symbol: str, at_utc: datetime) -> bool:
         return False
     sessions = _session_windows(symbol)
     for start, end in sessions:
-        s = datetime.strptime(start, "%H:%M").replace(
-            year=now_utc.year, month=now_utc.month, day=now_utc.day
-        )
-        e = datetime.strptime(end, "%H:%M").replace(
-            year=now_utc.year, month=now_utc.month, day=now_utc.day
-        )
-        if s <= now_utc <= e:
+        s = datetime.strptime(start, "%H:%M").time()
+        e = datetime.strptime(end, "%H:%M").time()
+        if _in_hhmm_window(s, e, now_utc.time()):
             return True
     return False
 
@@ -187,10 +183,16 @@ def _parse_hhmm_utc(value: str, fallback: str) -> time:
 
 
 def _in_hhmm_window(start: time, end: time, now: time) -> bool:
-    """Inclusive bounds; if ``start > end``, the window crosses midnight in that clock."""
-    if start <= end:
-        return start <= now <= end
-    return now >= start or now <= end
+    """Inclusive HH:MM bounds (seconds in the end minute still count as inside).
+
+    If ``start > end``, the window crosses midnight in that clock.
+    """
+    now_m = time(now.hour, now.minute)
+    start_m = time(start.hour, start.minute)
+    end_m = time(end.hour, end.minute)
+    if start_m <= end_m:
+        return start_m <= now_m <= end_m
+    return now_m >= start_m or now_m <= end_m
 
 
 def _in_utc_hhmm_window(start: time, end: time, now: time) -> bool:

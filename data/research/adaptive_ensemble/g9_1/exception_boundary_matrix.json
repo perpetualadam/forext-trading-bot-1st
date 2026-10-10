@@ -1,0 +1,136 @@
+{
+  "rows": [
+    {
+      "block_entries": true,
+      "candles_usable": false,
+      "cause": "transport",
+      "exception": "TimeoutError / ConnectionError / OSError",
+      "handling": "fetch_ohlcv returns None; loader records candle_acquisition_failed",
+      "management": "continues",
+      "origin": "requests or oandapy inside _oanda_request",
+      "other_symbols": true,
+      "scope": "symbol-local"
+    },
+    {
+      "block_entries": true,
+      "candles_usable": false,
+      "cause": "broker response",
+      "exception": "V20Error and other request Exception",
+      "handling": "fetch_ohlcv catches Exception and returns None",
+      "management": "continues",
+      "origin": "_oanda_request",
+      "other_symbols": true,
+      "scope": "symbol-local"
+    },
+    {
+      "block_entries": true,
+      "candles_usable": false,
+      "cause": "client or broker failure",
+      "exception": "RuntimeError from api.request",
+      "handling": "caught inside fetch_ohlcv and returned as None",
+      "management": "continues",
+      "origin": "fetch_ohlcv request try",
+      "other_symbols": true,
+      "scope": "symbol-local"
+    },
+    {
+      "block_entries": true,
+      "candles_usable": false,
+      "cause": "acquisition boundary",
+      "exception": "RuntimeError escaping fetch_ohlcv",
+      "handling": "loader records candle_internal_error and does not re-raise",
+      "management": "continues after G.9.1",
+      "origin": "constructor, frame build, or caller wrapper",
+      "other_symbols": true,
+      "scope": "symbol-local"
+    },
+    {
+      "block_entries": true,
+      "candles_usable": false,
+      "cause": "unverified candles",
+      "exception": "ProvenanceRejected",
+      "handling": "RuntimeError subclass contained only at the candle boundary",
+      "management": "continues",
+      "origin": "market_provenance seal",
+      "other_symbols": true,
+      "scope": "symbol-local"
+    },
+    {
+      "block_entries": true,
+      "candles_usable": false,
+      "cause": "malformed payload",
+      "exception": "ValueError / KeyError / TypeError",
+      "handling": "candle_parsing_failed",
+      "management": "continues",
+      "origin": "parse or frame validation",
+      "other_symbols": true,
+      "scope": "symbol-local"
+    },
+    {
+      "block_entries": true,
+      "candles_usable": false,
+      "cause": "no usable decision bars",
+      "exception": "empty, None, incomplete frame",
+      "handling": "existing G.9 reasons, terminal NO_OHLCV or STALE_OR_INVALID_DATA",
+      "management": "continues",
+      "origin": "_load_decision_candles",
+      "other_symbols": true,
+      "scope": "symbol-local"
+    },
+    {
+      "block_entries": true,
+      "candles_usable": false,
+      "cause": "system integrity",
+      "exception": "CycleIntegrityError",
+      "handling": "re-raised; cycle_integrity_failed",
+      "management": "stops for the remaining cycle",
+      "origin": "shared book or latch",
+      "other_symbols": false,
+      "scope": "system-wide"
+    },
+    {
+      "block_entries": true,
+      "candles_usable": false,
+      "cause": "broken assumption",
+      "exception": "AssertionError",
+      "handling": "re-raised",
+      "management": "not treated as an outage",
+      "origin": "programming assertion",
+      "other_symbols": false,
+      "scope": "fail closed at the caller"
+    },
+    {
+      "block_entries": true,
+      "candles_usable": "already loaded",
+      "cause": "programming or later gate",
+      "exception": "RuntimeError after candles load",
+      "handling": "evaluate records UNEXPECTED_EVALUATION_ERROR and _cycle_symbols continues",
+      "management": "already had its chance",
+      "origin": "indicators, strategy, or entry path",
+      "other_symbols": true,
+      "scope": "symbol-local unless CycleIntegrityError"
+    },
+    {
+      "block_entries": true,
+      "candles_usable": "irrelevant",
+      "cause": "book unreadable",
+      "exception": "position lookup Exception",
+      "handling": "management_unavailable",
+      "management": "unavailable; no guessed close",
+      "origin": "get_position",
+      "other_symbols": true,
+      "scope": "symbol-local"
+    },
+    {
+      "block_entries": true,
+      "candles_usable": "irrelevant",
+      "cause": "broker close",
+      "exception": "close TimeoutError or RuntimeError",
+      "handling": "no retry and no local removal",
+      "management": "close not confirmed",
+      "origin": "execute_trade / PositionClose",
+      "other_symbols": true,
+      "scope": "symbol-local"
+    }
+  ]
+}

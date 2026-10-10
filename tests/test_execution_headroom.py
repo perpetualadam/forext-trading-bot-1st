@@ -326,7 +326,7 @@ def test_bot_loop_uses_same_snapshot_and_skip_before_ordercreate():
     import forex_bot.bot_loop as bot_loop
     from forex_bot import entry_geometry as eg
 
-    src = inspect.getsource(bot_loop.evaluate)
+    src = inspect.getsource(bot_loop._evaluate_impl)
     broker = src.split('if fill_path == "broker":', 1)[-1]
     assert broker.find("fetch_entry_pricing") < broker.find("resolve_live_entry_geometry")
     assert broker.find("if skip_reason is not None") < broker.find("execute_oanda_market_open")
@@ -353,7 +353,7 @@ def test_paper_and_management_paths_unchanged():
     assert "PRICE_SOURCE_M5_MID" not in inspect.getsource(eg.resolve_live_entry_geometry)
     assert "weekend" not in inspect.getsource(eg.resolve_live_entry_geometry)
     assert "usd_direction" not in inspect.getsource(eg.resolve_live_entry_geometry)
-    broker = inspect.getsource(bot_loop.evaluate).split('if fill_path == "broker":', 1)[-1]
+    broker = inspect.getsource(bot_loop._evaluate_impl).split('if fill_path == "broker":', 1)[-1]
     assert "fetch_entry_pricing" in broker
     assert broker.count("fetch_pricing_snapshot") == 0
 
@@ -468,12 +468,20 @@ def _open_with_api(response_or_exc, calls: list):
         patch("forex_bot.oanda_exec._account_id", return_value="ACC"),
         patch("forex_bot.oanda_rate_limit.acquire_oanda_rest_slot", lambda: None),
     ):
+        from forex_bot.market_provenance import mint_live_quote
+
         return _place_market_order_open_sync(
-            "EUR_USD", 2.0, "BUY", "cid-x", stop_loss=1.09900, take_profit=1.10200
+            "EUR_USD",
+            2.0,
+            "BUY",
+            "cid-x",
+            stop_loss=1.09900,
+            take_profit=1.10200,
+            entry_quote=mint_live_quote("EUR_USD"),
         )
 
 
-def test_ordercreate_fill_is_exactly_one_request():
+def test_ordercreate_fill_is_exactly_one_request(allow_live_order_create):
     calls: list = []
     fp, uf, oid, _pl, _ts = _open_with_api(_fill_response(), calls)
     assert len(calls) == 1
@@ -481,35 +489,35 @@ def test_ordercreate_fill_is_exactly_one_request():
     assert oid == "11"
 
 
-def test_ordercreate_cancel_is_exactly_one_request_no_second_attempt():
+def test_ordercreate_cancel_is_exactly_one_request_no_second_attempt(allow_live_order_create):
     calls: list = []
     with pytest.raises(OrderCreateCancelled):
         _open_with_api(_cancel_response(), calls)
     assert len(calls) == 1
 
 
-def test_ordercreate_malformed_is_exactly_one_request():
+def test_ordercreate_malformed_is_exactly_one_request(allow_live_order_create):
     calls: list = []
     with pytest.raises(OrderCreateMalformed):
         _open_with_api({"lastTransactionID": "1"}, calls)
     assert len(calls) == 1
 
 
-def test_ordercreate_ambiguous_timeout_is_exactly_one_request():
+def test_ordercreate_ambiguous_timeout_is_exactly_one_request(allow_live_order_create):
     calls: list = []
     with pytest.raises(OrderCreateAmbiguous):
         _open_with_api(TimeoutError("read timed out"), calls)
     assert len(calls) == 1
 
 
-def test_ordercreate_rejected_is_exactly_one_request():
+def test_ordercreate_rejected_is_exactly_one_request(allow_live_order_create):
     calls: list = []
     with pytest.raises(OrderCreateRejected):
         _open_with_api(V20Error(400, '{"errorMessage":"rejected"}'), calls)
     assert len(calls) == 1
 
 
-def test_async_open_cancel_does_not_look_like_fill(monkeypatch):
+def test_async_open_cancel_does_not_look_like_fill(monkeypatch, allow_live_order_create):
     monkeypatch.setenv("EXECUTION_MODE", "live_broker")
     monkeypatch.setenv("OANDA_ACCESS_TOKEN", "tok")
 
@@ -524,8 +532,15 @@ def test_async_open_cancel_does_not_look_like_fill(monkeypatch):
     monkeypatch.setattr("forex_bot.oanda_exec._place_market_order_open_sync", fake_place)
 
     async def _run():
+        from forex_bot.market_provenance import mint_live_quote
+
         return await __import__("forex_bot.oanda_exec", fromlist=["execute_oanda_market_open"]).execute_oanda_market_open(
-            "EUR_USD", 2.0, "BUY", "cid-x", execution_kind="live"
+            "EUR_USD",
+            2.0,
+            "BUY",
+            "cid-x",
+            execution_kind="live",
+            entry_quote=mint_live_quote("EUR_USD"),
         )
 
     with pytest.raises(OrderCreateCancelled):

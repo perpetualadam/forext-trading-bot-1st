@@ -1,0 +1,57 @@
+{
+  "kind": "STAGE_E_LOCAL_EVALUATION_MANIFEST",
+  "not_a_preregistration": true,
+  "label": "EXPERIMENTAL_HEURISTIC_OFFLINE",
+  "created_utc": "2026-10-08T23:41:53.198533+00:00",
+  "git_head": "f6c4f40ae6b7614379347ed45141ecd5a3d33642",
+  "source_hashes": {
+    "signals.py": "50e51518e342589a3dc4b09d25356ba521166c056a027c5c3efb1fafa9ceb799",
+    "config.py": "67047032091e9819ef73b6389f87092a20e95397957f6df4f5f2ab40b2803a31",
+    "cost_model.py": "f2d23865224c2706dc3510a1aa34b8bbac3a7c05b06605753359bc3939c49da9",
+    "accounting.py": "0bda91c6829910061fd98123b654a62496945838362049ea543839917f808db3",
+    "engine.py": "ec7f75269b9b2d1673717810f8a9bddbd5637e3150985104cb1da35dad9fc598",
+    "risk.py": "66ee796e841ea6877527c30d6c90a2708775aa676107e406231cc00fd1f1b6a2",
+    "assess.py": "81f4b6a37412cfaed5aeb5a1ddab6f630ecd23d2433b7bacc57314dba0c38232",
+    "classify.py": "3fec1ef6b21d3fa1b99003f5d90a81ca2119d6b4e2ac005cb7be65e4313e20be",
+    "diagnose.py": "aa93388803aa84a83c044942c7b46cda653e0284c9df4fc4aa8139131327effc",
+    "replay.py": "3e3ff6ae4d3560269a528c752931be61557821b7ca230ae55106bb3d46e875dd",
+    "protocol.py": "05481118b5abc906f60e908a2ce1ebb45f884a1f4bfb824d9e762dd1771ca686"
+  },
+  "combined_rules_hash": "2c8ad023bc8faf14d021f228e3098d7ae8800ea536b0abc523843e341c36c89e",
+  "dataset_hashes": {
+    "AUD_USD_M5.csv": "e639a1f817e4b91973ccfea0ee0c8c3dd5279c722ea665c531ad309b359165e0",
+    "EUR_USD_M5.csv": "3ae3c4d061792353b94b8d2be73684f950362f135d47926d1bc8c11a24791091",
+    "GBP_USD_M5.csv": "ac3ddba51b75f493a08a5ea57e9926e38a5a85b06797de53803e6cd4f8b00d58",
+    "USD_CAD_M5.csv": "a88eb2c440691bd5893a8317b64e6beaf87bb6f3c93b0c6e6a4cd16e53aa9c60",
+    "USD_CHF_M5.csv": "3901a2d50a63ef5ca4d10858145cca7fd70d20d24420761e1b7d2d09f2a127bc",
+    "USD_JPY_M5.csv": "e1b0d3491f873723967315d74e3bd5b707474814a294be4ed50a26e1b8c9805c"
+  },
+  "methodology": {
+    "cadence": "M5 completed bars",
+    "fill": "next-bar open; bid/ask when present",
+    "collision": "stop-loss wins; gap through stop at quote-open",
+    "splits": {
+      "development": "2025-09-01 .. 2026-01-31 UTC",
+      "validation": "2026-02-01 .. 2026-04-30 UTC",
+      "heldout": "2026-05-01 .. 2026-08-31 UTC"
+    },
+    "cost_scenarios": [
+      "base",
+      "conservative",
+      "severe"
+    ],
+    "start_nav_gbp": 97.15,
+    "notional_pct": 0.02,
+    "classification_thresholds": {
+      "min_heldout_trades": 50,
+      "min_profit_factor": 1.2,
+      "max_dd_frac_of_nav": 0.05,
+      "require_validation_positive": true,
+      "require_conservative_positive": true,
+      "severe_net_floor_frac": -0.02,
+      "max_single_pair_abs_share": 0.7
+    },
+    "no_tuning_on_heldout": true
+  },
+  "contamination_note": "These M5 files were used in decision_quality research. Stage C/D heuristics were not grid-searched on this corpus, but the period overlaps live trading and prior research. Held-out is chronological only."
+}

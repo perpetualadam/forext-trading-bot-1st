@@ -1,0 +1,35 @@
+{
+  "allowlist_excluded_by_matcher": [],
+  "compose_bind_mounts_not_removed": [
+    "data/ops",
+    "data/research/v2_shadow"
+  ],
+  "context_root": ".",
+  "daemon_verified": false,
+  "dockerfile_copy": [
+    "requirements.txt",
+    "forex_bot/",
+    "main.py"
+  ],
+  "matcher": "g8_dockerignore.context_excluded",
+  "probe_mismatches": [],
+  "probes": {
+    ".env": true,
+    ".env.example": false,
+    ".env.local": true,
+    ".git/config": true,
+    "credentials.json": true,
+    "data/ops/live_safety_state.json": true,
+    "data/research/adaptive_ensemble/g10/source_snapshot.tar": true,
+    "data/research/adaptive_ensemble/g3/normalised/EUR_USD_M5.csv": true,
+    "data/research/adaptive_ensemble/g7/source_snapshot.tar": true,
+    "docker-compose.yml": true,
+    "forex_bot/bot_loop.py": false,
+    "forex_bot/live_safety.py": false,
+    "id_rsa": true,
+    "main.py": false,
+    "requirements.txt": false,
+    "secrets/token.pem": true,
+    "tests/test_g10_snapshot.py": true
+  }
+}

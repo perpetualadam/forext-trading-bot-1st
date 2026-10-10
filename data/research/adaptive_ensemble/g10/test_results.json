@@ -1,0 +1,18 @@
+{
+  "command": "python -m pytest tests/test_g10_snapshot.py tests/test_g9_1_candle_exceptions.py tests/test_g9_management.py tests/test_g8_missing_candles.py tests/test_g8_packaging.py tests/test_g7_snapshot.py tests/test_market_provenance_g7.py tests/test_market_provenance_g6.py tests/test_market_provenance_g5.py tests/test_decision_repair_f1.py tests/test_decision_repair_f2.py tests/test_decision_repair.py tests/test_live_safety_repair.py tests/test_execution_safety.py tests/test_execution_headroom.py tests/test_entry_execution_geometry.py tests/test_live_position_management.py tests/test_broker_exit_accounting.py tests/test_logic_fixes.py tests/test_ohlcv_off_event_loop.py tests/test_profit_protection.py tests/test_operational_state.py tests/test_reconcile_conflict.py tests/test_notional_cap.py tests/test_usd_direction_guard.py tests/test_adaptive_ensemble_stage_g.py tests/test_adaptive_ensemble_stage_g1.py tests/test_adaptive_ensemble_stage_g2.py tests/test_adaptive_ensemble_stage_g3.py tests/test_adaptive_ensemble_stage_g4.py tests/test_silent_skip_observability.py tests/test_live_execution_manager.py -q --tb=line",
+  "failed": 0,
+  "passed": 508,
+  "skipped": 0,
+  "warnings": 2,
+  "official_archive_sha256_after_tests": "d0317de858a00b194bc44408932ad6508eec411fe0179b0196175a2985b12277",
+  "archive_rewritten_by_tests": false,
+  "ruff_preexisting": {
+    "forex_bot/bot_loop.py": 14,
+    "forex_bot/decision_skip_log.py": 9,
+    "forex_bot/oanda_exec.py": 8
+  },
+  "ruff_new_findings": 0,
+  "mypy_bot_loop_and_decision_skip_log": "clean",
+  "mypy_oanda_exec_preexisting": 5,
+  "mypy_g10_modules": "clean"
+}

@@ -1,0 +1,11 @@
+{
+  "bid_ask_mutation_invalidates_quote": true,
+  "cached_quote_downgraded": true,
+  "caller_supplied_label_rejected": true,
+  "classification": "TRUST_BOUNDARY_PARTIAL",
+  "earlier_candle_mutation_invalidates_seal": false,
+  "last_bar_only_fingerprint": true,
+  "malicious_in_process_code": "not a claimed boundary",
+  "same_process_limitation": "public acquisition helpers can mint a live seal without an HTTP response",
+  "seal_creation": "bind_live_frame and bind_live_quote after a successful response, or by a direct in-process call"
+}

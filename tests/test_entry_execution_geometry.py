@@ -438,7 +438,7 @@ def test_geometry_log_lines_contain_required_fields():
 def test_bot_loop_open_has_single_ordercreate_and_no_retry_loop():
     import forex_bot.bot_loop as bot_loop
 
-    src = inspect.getsource(bot_loop.evaluate)
+    src = inspect.getsource(bot_loop._evaluate_impl)
     assert src.count("execute_oanda_market_open") == 1
     assert "for _retry" not in src
     assert "while True" not in src.split("if fill_path == \"broker\":", 1)[-1][:2500]
@@ -719,7 +719,7 @@ def test_no_m5_fallback_on_live_broker_entry():
     import forex_bot.bot_loop as bot_loop
     from forex_bot import entry_geometry as eg
 
-    src = inspect.getsource(bot_loop.evaluate)
+    src = inspect.getsource(bot_loop._evaluate_impl)
     broker = src.split('if fill_path == "broker":', 1)[-1]
     assert "fetch_entry_pricing" in broker
     assert "PRICE_SOURCE_M5_MID" not in broker[:4500]
@@ -738,7 +738,7 @@ def test_paper_window_paper_simulated_backtest_paths_unchanged():
     assert live_broker_geometry_required("backtest") is False
     import forex_bot.bot_loop as bot_loop
 
-    src = inspect.getsource(bot_loop.evaluate)
+    src = inspect.getsource(bot_loop._evaluate_impl)
     sim_branch = src.split("elif use_sim_layers:", 1)[-1]
     assert "fetch_entry_pricing" not in sim_branch.split("else:", 1)[0]
     assert "resolve_live_entry_geometry" not in sim_branch.split("else:", 1)[0]

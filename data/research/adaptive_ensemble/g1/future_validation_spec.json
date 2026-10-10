@@ -1,0 +1,102 @@
+{
+  "conditions_required_before_validation_may_begin": [
+    "Operator-approved read-only data source or local files with timestamps after 2026-08-31T23:50:00Z",
+    "Provenance hashes and quality PASS",
+    "Independence label POTENTIALLY_INDEPENDENT and not exposed to model selection",
+    "Timestamped GBP conversion quotes covering the window",
+    "exp_weights_v2 run identity",
+    "Explicit human approval of a separate stage",
+    "No live broker execution connection"
+  ],
+  "contamination_policy": "timestamps <= 2026-08-31T23:50:00Z are PREVIOUSLY_EXAMINED; later data that influenced G/G.1 design is NEWLY_ACQUIRED_BUT_EXPOSED",
+  "cost_scenarios": [
+    "base",
+    "conservative",
+    "severe"
+  ],
+  "current_independent_data": "insufficient",
+  "data_acquisition_source": "DATA_SOURCE_REQUIRES_OPERATOR_APPROVAL until operator authorises a read-only feed",
+  "data_quality_requirements": [
+    "UTC chronological unique timestamps",
+    "bid<=ask and valid OHLC",
+    "no incomplete bars in the evaluation set",
+    "no interpolated executable quotes",
+    "gaps classified weekend vs unexpected"
+  ],
+  "do_not_reduce_sample_to_fit_existing_data": true,
+  "failure_conditions": [
+    "quality FAIL on any evaluation pair",
+    "MODEL_STATE_INVALID or INCOMPATIBLE during a restart",
+    "conversion unverified for a pair that traded",
+    "overlap with Stage E/G timestamps labelled as independent",
+    "any parameter change after seeing validation data"
+  ],
+  "frozen_candidate_ids": [
+    "proxy_trend_ma_slope_v1",
+    "proxy_rsi_mean_reversion_v1",
+    "proxy_atr_expansion_breakout_v1"
+  ],
+  "frozen_ensemble_parameters": {
+    "decision_stride": 12,
+    "dynamic_eta": 0.15,
+    "state_schema_for_new_runs": "exp_weights_v2",
+    "vote_min_agree": 2,
+    "weight_bounds": [
+      0.05,
+      5.0
+    ]
+  },
+  "frozen_execution_assumptions": {
+    "daily_loss_halt_pct": 0.02,
+    "decision_stride": 12,
+    "fill": "next_bar_executable_bid_ask",
+    "financing": "UNAVAILABLE",
+    "gbp_fx_label": "ESTIMATE",
+    "gbp_usd_fx": 1.35,
+    "max_dd_halt_pct": 0.05,
+    "max_hold_bars": 24,
+    "same_bar_sl_tp": "conservative_skip_if_ambiguous",
+    "sl_atr": 1.5,
+    "start_nav_gbp": 97.0,
+    "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+    "tp_atr": 2.0,
+    "units": 1000.0
+  },
+  "frozen_feature_definitions": "stage_g_features_v1",
+  "gbp_conversion": "timestamped RateTable required; else GBP_CONVERSION_UNVERIFIED and evaluation incomplete",
+  "minimum_evaluation_duration": "40 complete FX trading days after 2026-08-31T23:50:00Z",
+  "minimum_trade_count": 30,
+  "minimum_warmup_history_bars": 120,
+  "missing_data_policy": "do not interpolate; skip decision; record reason; stop pair if unexpected gap invalidates the feature window",
+  "model_manifest_hash": "96b8afd347b443e59bd5c4e2f1bde5d22d50e46be56a0ea3d12252f09cbce6c2",
+  "model_state_recovery_policy": "fresh equal weights only at first decision of a new run_id; restarts fail closed",
+  "no_trade_benchmark": true,
+  "paper_trading": false,
+  "primary_metrics": [
+    "net_pnl_gbp",
+    "max_drawdown",
+    "profit_factor",
+    "abstention_rate"
+  ],
+  "protocol_amendments": "new spec version required; never overwrite this spec after a validation run begins",
+  "protocol_hash": "539cdc083f83393a79d254d21385edc6c48e88eb0f085d4549df9fdd6d431bc0",
+  "protocol_id": "stage_g_adaptive_ensemble_v1",
+  "scheduled": false,
+  "secondary_metrics": [
+    "gross_pnl_gbp",
+    "win_rate",
+    "trade_count",
+    "per_pair",
+    "per_regime",
+    "cost_sensitivity"
+  ],
+  "spec_id": "stage_g1_future_validation_spec_v1",
+  "statistical_uncertainty": "time-series block resampling of non-overlapping trade exits; no independent-trade p-values",
+  "status": "FROZEN_NOT_STARTED",
+  "stop_conditions": [
+    "Insufficient independent data",
+    "Quality or conversion failure",
+    "No-trade remains the better benchmark after severe costs",
+    "Sign flip under severe costs"
+  ]
+}

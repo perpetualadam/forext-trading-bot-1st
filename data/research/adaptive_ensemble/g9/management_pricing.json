@@ -1,0 +1,10 @@
+{
+  "cached_price_as_entry": "not permitted; new entries still require the sealed entry quote",
+  "fresh_quote": "eligible for software profit protection",
+  "freshness_limit_sec": 90,
+  "invalid_bid_ask": "inverted, non-finite, non-positive, or wrong-instrument quotes are unavailable",
+  "m5_fallback": "not used as a live management quote",
+  "missing_quote": "software protection is suppressed; a time-triggered broker flatten can still close",
+  "paper_without_candles": "a simulated close is not priced and is not marked successful",
+  "stale_quote": "older than 90 seconds is unavailable for software stop and profit protection"
+}

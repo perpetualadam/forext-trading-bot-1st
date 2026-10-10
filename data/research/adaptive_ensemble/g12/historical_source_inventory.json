@@ -1,0 +1,247 @@
+{
+  "note": "These hashes are archive pins, not image bytes.",
+  "files": [
+    {
+      "path": "forex_bot/live_safety.py",
+      "g7": {
+        "sha256": "6e59666960dfec0ff379343c8973e389363faaab49278d9806c160a18ebe8f4f",
+        "has_fail_closed": true,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "g10": {
+        "sha256": "6e59666960dfec0ff379343c8973e389363faaab49278d9806c160a18ebe8f4f",
+        "has_fail_closed": true,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "pins_match": true,
+      "image_sha256": null,
+      "image_bytes": "not_inspected"
+    },
+    {
+      "path": "forex_bot/app.py",
+      "g7": {
+        "sha256": "77888f0fa40b5a2935913be6d9b8770c1df0aa204d21c72537cef9e01ac0f70d",
+        "has_fail_closed": true,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "g10": {
+        "sha256": "77888f0fa40b5a2935913be6d9b8770c1df0aa204d21c72537cef9e01ac0f70d",
+        "has_fail_closed": true,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "pins_match": true,
+      "image_sha256": null,
+      "image_bytes": "not_inspected"
+    },
+    {
+      "path": "forex_bot/bot_loop.py",
+      "g7": {
+        "sha256": "561740250ce8930a5b2aadde3cbb61591384dc38548664ef990ab1d5051c4467",
+        "has_fail_closed": false,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "g10": {
+        "sha256": "dcc8ed35f1f1ec9eb4d53e3439ebf46f80868c55aba4ec6ec64ad29fbe9f9128",
+        "has_fail_closed": false,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": true,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "pins_match": false,
+      "image_sha256": null,
+      "image_bytes": "not_inspected"
+    },
+    {
+      "path": "forex_bot/market_provenance.py",
+      "g7": {
+        "sha256": "efcae1c71df010ce221f734c7f48008f36b12e1b78c83c7fe11b5a671cb3775f",
+        "has_fail_closed": false,
+        "has_provenance_v2": true,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "g10": {
+        "sha256": "efcae1c71df010ce221f734c7f48008f36b12e1b78c83c7fe11b5a671cb3775f",
+        "has_fail_closed": false,
+        "has_provenance_v2": true,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "pins_match": true,
+      "image_sha256": null,
+      "image_bytes": "not_inspected"
+    },
+    {
+      "path": "forex_bot/oanda_exec.py",
+      "g7": {
+        "sha256": "51ea7a2cbb19e8faa5120438347bf71a67021f197c30d1ac08074ca9b1cc6e14",
+        "has_fail_closed": false,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": true,
+        "has_order_create": true
+      },
+      "g10": {
+        "sha256": "f4beb250d81852d8ee4f22af06ab33194c6b4ba1bf6f9b1a6b5d11d3b7b265c8",
+        "has_fail_closed": false,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": true,
+        "has_order_create": true
+      },
+      "pins_match": false,
+      "image_sha256": null,
+      "image_bytes": "not_inspected"
+    },
+    {
+      "path": "forex_bot/oanda_client.py",
+      "g7": {
+        "sha256": "6d7d5d2b6ce1c228af0629c3e2a8b674b02965c57d1a3ed41c3b4015e531ca2b",
+        "has_fail_closed": false,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "g10": {
+        "sha256": "6d7d5d2b6ce1c228af0629c3e2a8b674b02965c57d1a3ed41c3b4015e531ca2b",
+        "has_fail_closed": false,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "pins_match": true,
+      "image_sha256": null,
+      "image_bytes": "not_inspected"
+    },
+    {
+      "path": "forex_bot/live_manage.py",
+      "g7": {
+        "sha256": "60d87b8665620743467832758032857e975d32da15322307a0c331009cc7b25d",
+        "has_fail_closed": false,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "g10": {
+        "sha256": "60d87b8665620743467832758032857e975d32da15322307a0c331009cc7b25d",
+        "has_fail_closed": false,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "pins_match": true,
+      "image_sha256": null,
+      "image_bytes": "not_inspected"
+    },
+    {
+      "path": "forex_bot/database.py",
+      "g7": {
+        "sha256": "98ed215c0a7e7f21ecf938172a45805a3f1b456c5cf49e8d0a8ea9f0d5cbce72",
+        "has_fail_closed": false,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "g10": {
+        "sha256": "98ed215c0a7e7f21ecf938172a45805a3f1b456c5cf49e8d0a8ea9f0d5cbce72",
+        "has_fail_closed": false,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "pins_match": true,
+      "image_sha256": null,
+      "image_bytes": "not_inspected"
+    },
+    {
+      "path": "forex_bot/decision_skip_log.py",
+      "g7": {
+        "sha256": "30e3bde7342f0fd9ebeec57fb9b10dce87f30310f0913dfbb5492f04467d992f",
+        "has_fail_closed": false,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "g10": {
+        "sha256": "be0f1798e2386062a0a85d3eb4dcb1aedb8c3f844141e0547b4ef2760cc500fa",
+        "has_fail_closed": false,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "pins_match": false,
+      "image_sha256": null,
+      "image_bytes": "not_inspected"
+    },
+    {
+      "path": "main.py",
+      "g7": {
+        "sha256": "4711818ad85b12d1be94e13a08182ff60881416302a84a573fe18f37a043d3eb",
+        "has_fail_closed": false,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "g10": {
+        "sha256": "4711818ad85b12d1be94e13a08182ff60881416302a84a573fe18f37a043d3eb",
+        "has_fail_closed": false,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "pins_match": true,
+      "image_sha256": null,
+      "image_bytes": "not_inspected"
+    },
+    {
+      "path": "Dockerfile",
+      "g7": {
+        "sha256": "f8d537d84c8ab004c5fc2cbdc5ef58e8141f5ca66a13be6cc5eac38c7c7006a6",
+        "has_fail_closed": false,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "g10": {
+        "sha256": "f8d537d84c8ab004c5fc2cbdc5ef58e8141f5ca66a13be6cc5eac38c7c7006a6",
+        "has_fail_closed": false,
+        "has_provenance_v2": false,
+        "has_candle_exception_boundary": false,
+        "has_position_close": false,
+        "has_order_create": false
+      },
+      "pins_match": true,
+      "image_sha256": null,
+      "image_bytes": "not_inspected"
+    }
+  ]
+}

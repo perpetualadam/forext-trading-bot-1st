@@ -1,0 +1,24 @@
+{
+  "added_reasons": [
+    "candle_acquisition_failed",
+    "candle_parsing_failed",
+    "candle_internal_error",
+    "management_unavailable",
+    "cycle_integrity_failed"
+  ],
+  "close_confirmation": "local position is removed only after execute_trade returns",
+  "preserved": [
+    "decision_candles_missing",
+    "decision_candles_empty",
+    "decision_candles_fetch_failed",
+    "decision_candles_unverified",
+    "entry_skipped_no_valid_candles",
+    "management_continued_without_candles",
+    "management_quote_unavailable",
+    "management_quote_stale",
+    "protective_close_failed",
+    "protective_close_unconfirmed",
+    "instrument_cycle_failed"
+  ],
+  "secrets": "exception class name only"
+}

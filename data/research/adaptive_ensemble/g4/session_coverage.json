@@ -1,0 +1,1805 @@
+{
+  "blocked_sessions": 0,
+  "candidate_sessions": 29,
+  "common": [
+    {
+      "by_pair": {
+        "AUD_USD": "PARTIAL_BOUNDARY",
+        "EUR_USD": "PARTIAL_BOUNDARY",
+        "GBP_USD": "PARTIAL_BOUNDARY",
+        "USD_CAD": "PARTIAL_BOUNDARY",
+        "USD_CHF": "PARTIAL_BOUNDARY",
+        "USD_JPY": "PARTIAL_BOUNDARY"
+      },
+      "session": "2026-09-01",
+      "status": "PARTIAL_BOUNDARY"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-02",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-03",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-04",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-07",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-08",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-09",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-10",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-11",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-14",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-15",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-16",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-17",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-18",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-21",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-22",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-23",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-24",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-25",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-28",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-29",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-09-30",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-10-01",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-10-02",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-10-05",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-10-06",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-10-07",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "COMPLETE",
+        "EUR_USD": "COMPLETE",
+        "GBP_USD": "COMPLETE",
+        "USD_CAD": "COMPLETE",
+        "USD_CHF": "COMPLETE",
+        "USD_JPY": "COMPLETE"
+      },
+      "session": "2026-10-08",
+      "status": "COMPLETE"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "PARTIAL_BOUNDARY",
+        "EUR_USD": "PARTIAL_BOUNDARY",
+        "GBP_USD": "PARTIAL_BOUNDARY",
+        "USD_CAD": "PARTIAL_BOUNDARY",
+        "USD_CHF": "PARTIAL_BOUNDARY",
+        "USD_JPY": "PARTIAL_BOUNDARY"
+      },
+      "session": "2026-10-09",
+      "status": "PARTIAL_BOUNDARY"
+    }
+  ],
+  "complete_by_pair": {
+    "AUD_USD": 27,
+    "EUR_USD": 27,
+    "GBP_USD": 27,
+    "USD_CAD": 27,
+    "USD_CHF": 27,
+    "USD_JPY": 27
+  },
+  "complete_common_sessions": 27,
+  "convention_id": "fx_trading_day_ny1700_v1",
+  "definition": {
+    "boundary": "17:00 local, exclusive end",
+    "complete_rule": "A weekday session is COMPLETE only when the acquisition window covers [start, end), no blocking gap intersects the session, bid/ask on returned bars is valid, and every returned bar has a fresh side-aware GBP quote. A source omission of at most 60 minutes is quarantined and does not by itself reject the session.",
+    "convention_id": "fx_trading_day_ny1700_v1",
+    "dst": "America/New_York rules. 17:00 is 21:00 UTC in EDT and 22:00 UTC in EST.",
+    "integrity_hash": "bb352b0e4d320a6d6a94764c8e1fdd96a283a8889f4311597aeb75ccba56ef65",
+    "minimum_complete_common_sessions": 40,
+    "monday_open": "Sunday 17:00 America/New_York",
+    "not_288_bars": true,
+    "not_a_weekday_count": true,
+    "partial_rule": "The first and last sessions are PARTIAL_BOUNDARY when the download does not cover them.",
+    "status": "CLARIFICATION_NOT_IN_FROZEN_STAGE_G_PROTOCOL",
+    "stored_as": "UTC",
+    "threshold_was_not_reduced": true,
+    "timezone": "America/New_York",
+    "weekend_close": "Friday 17:00 America/New_York"
+  },
+  "definition_hash": "bb352b0e4d320a6d6a94764c8e1fdd96a283a8889f4311597aeb75ccba56ef65",
+  "duration_status": "INSUFFICIENT_INDEPENDENT_DURATION",
+  "expected_closures": [
+    "2026-09-05",
+    "2026-09-06",
+    "2026-09-12",
+    "2026-09-13",
+    "2026-09-19",
+    "2026-09-20",
+    "2026-09-26",
+    "2026-09-27",
+    "2026-10-03",
+    "2026-10-04"
+  ],
+  "partial_sessions": 2,
+  "per_pair": {
+    "AUD_USD": [
+      {
+        "bars": 252,
+        "end": "2026-09-01T21:00:00+00:00",
+        "reason": "acquisition_window",
+        "session": "2026-09-01",
+        "start": "2026-08-31T21:00:00+00:00",
+        "status": "PARTIAL_BOUNDARY"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-02T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-02",
+        "start": "2026-09-01T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-03T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-03",
+        "start": "2026-09-02T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-04T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-04",
+        "start": "2026-09-03T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 287,
+        "end": "2026-09-07T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-07",
+        "start": "2026-09-06T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-08T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-08",
+        "start": "2026-09-07T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-09T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-09",
+        "start": "2026-09-08T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-10T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-10",
+        "start": "2026-09-09T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-11T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-11",
+        "start": "2026-09-10T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-14T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-14",
+        "start": "2026-09-13T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-15T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-15",
+        "start": "2026-09-14T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-16T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-16",
+        "start": "2026-09-15T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-17T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-17",
+        "start": "2026-09-16T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-18T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-18",
+        "start": "2026-09-17T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 287,
+        "end": "2026-09-21T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-21",
+        "start": "2026-09-20T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-22T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-22",
+        "start": "2026-09-21T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-23T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-23",
+        "start": "2026-09-22T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-24T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-24",
+        "start": "2026-09-23T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-25T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-25",
+        "start": "2026-09-24T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-28T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-28",
+        "start": "2026-09-27T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-29T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-29",
+        "start": "2026-09-28T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-30T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-30",
+        "start": "2026-09-29T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-01T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-01",
+        "start": "2026-09-30T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-02T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-02",
+        "start": "2026-10-01T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-05T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-05",
+        "start": "2026-10-04T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-06T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-06",
+        "start": "2026-10-05T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-07T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-07",
+        "start": "2026-10-06T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 287,
+        "end": "2026-10-08T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-08",
+        "start": "2026-10-07T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 121,
+        "end": "2026-10-09T21:00:00+00:00",
+        "reason": "acquisition_window",
+        "session": "2026-10-09",
+        "start": "2026-10-08T21:00:00+00:00",
+        "status": "PARTIAL_BOUNDARY"
+      }
+    ],
+    "EUR_USD": [
+      {
+        "bars": 252,
+        "end": "2026-09-01T21:00:00+00:00",
+        "reason": "acquisition_window",
+        "session": "2026-09-01",
+        "start": "2026-08-31T21:00:00+00:00",
+        "status": "PARTIAL_BOUNDARY"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-02T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-02",
+        "start": "2026-09-01T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-03T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-03",
+        "start": "2026-09-02T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-04T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-04",
+        "start": "2026-09-03T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-07T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-07",
+        "start": "2026-09-06T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-08T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-08",
+        "start": "2026-09-07T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-09T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-09",
+        "start": "2026-09-08T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-10T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-10",
+        "start": "2026-09-09T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-11T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-11",
+        "start": "2026-09-10T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-14T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-14",
+        "start": "2026-09-13T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-15T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-15",
+        "start": "2026-09-14T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-16T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-16",
+        "start": "2026-09-15T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-17T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-17",
+        "start": "2026-09-16T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-18T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-18",
+        "start": "2026-09-17T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-21T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-21",
+        "start": "2026-09-20T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-22T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-22",
+        "start": "2026-09-21T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-23T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-23",
+        "start": "2026-09-22T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-24T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-24",
+        "start": "2026-09-23T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-25T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-25",
+        "start": "2026-09-24T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-28T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-28",
+        "start": "2026-09-27T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-29T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-29",
+        "start": "2026-09-28T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-30T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-30",
+        "start": "2026-09-29T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-01T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-01",
+        "start": "2026-09-30T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-02T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-02",
+        "start": "2026-10-01T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 287,
+        "end": "2026-10-05T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-05",
+        "start": "2026-10-04T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-06T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-06",
+        "start": "2026-10-05T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-07T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-07",
+        "start": "2026-10-06T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-08T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-08",
+        "start": "2026-10-07T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 121,
+        "end": "2026-10-09T21:00:00+00:00",
+        "reason": "acquisition_window",
+        "session": "2026-10-09",
+        "start": "2026-10-08T21:00:00+00:00",
+        "status": "PARTIAL_BOUNDARY"
+      }
+    ],
+    "GBP_USD": [
+      {
+        "bars": 252,
+        "end": "2026-09-01T21:00:00+00:00",
+        "reason": "acquisition_window",
+        "session": "2026-09-01",
+        "start": "2026-08-31T21:00:00+00:00",
+        "status": "PARTIAL_BOUNDARY"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-02T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-02",
+        "start": "2026-09-01T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-03T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-03",
+        "start": "2026-09-02T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-04T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-04",
+        "start": "2026-09-03T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-07T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-07",
+        "start": "2026-09-06T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-08T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-08",
+        "start": "2026-09-07T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-09T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-09",
+        "start": "2026-09-08T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-10T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-10",
+        "start": "2026-09-09T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-11T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-11",
+        "start": "2026-09-10T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-14T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-14",
+        "start": "2026-09-13T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-15T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-15",
+        "start": "2026-09-14T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-16T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-16",
+        "start": "2026-09-15T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-17T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-17",
+        "start": "2026-09-16T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-18T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-18",
+        "start": "2026-09-17T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-21T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-21",
+        "start": "2026-09-20T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-22T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-22",
+        "start": "2026-09-21T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-23T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-23",
+        "start": "2026-09-22T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-24T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-24",
+        "start": "2026-09-23T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-25T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-25",
+        "start": "2026-09-24T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-28T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-28",
+        "start": "2026-09-27T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-29T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-29",
+        "start": "2026-09-28T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-30T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-30",
+        "start": "2026-09-29T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-01T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-01",
+        "start": "2026-09-30T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-02T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-02",
+        "start": "2026-10-01T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-05T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-05",
+        "start": "2026-10-04T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-06T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-06",
+        "start": "2026-10-05T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 287,
+        "end": "2026-10-07T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-07",
+        "start": "2026-10-06T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-08T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-08",
+        "start": "2026-10-07T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 121,
+        "end": "2026-10-09T21:00:00+00:00",
+        "reason": "acquisition_window",
+        "session": "2026-10-09",
+        "start": "2026-10-08T21:00:00+00:00",
+        "status": "PARTIAL_BOUNDARY"
+      }
+    ],
+    "USD_CAD": [
+      {
+        "bars": 252,
+        "end": "2026-09-01T21:00:00+00:00",
+        "reason": "acquisition_window",
+        "session": "2026-09-01",
+        "start": "2026-08-31T21:00:00+00:00",
+        "status": "PARTIAL_BOUNDARY"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-02T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-02",
+        "start": "2026-09-01T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-03T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-03",
+        "start": "2026-09-02T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-04T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-04",
+        "start": "2026-09-03T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 287,
+        "end": "2026-09-07T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-07",
+        "start": "2026-09-06T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 287,
+        "end": "2026-09-08T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-08",
+        "start": "2026-09-07T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-09T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-09",
+        "start": "2026-09-08T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-10T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-10",
+        "start": "2026-09-09T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-11T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-11",
+        "start": "2026-09-10T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-14T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-14",
+        "start": "2026-09-13T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-15T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-15",
+        "start": "2026-09-14T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-16T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-16",
+        "start": "2026-09-15T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-17T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-17",
+        "start": "2026-09-16T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-18T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-18",
+        "start": "2026-09-17T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-21T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-21",
+        "start": "2026-09-20T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-22T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-22",
+        "start": "2026-09-21T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-23T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-23",
+        "start": "2026-09-22T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-24T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-24",
+        "start": "2026-09-23T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-25T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-25",
+        "start": "2026-09-24T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-28T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-28",
+        "start": "2026-09-27T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-29T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-29",
+        "start": "2026-09-28T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-30T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-30",
+        "start": "2026-09-29T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-01T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-01",
+        "start": "2026-09-30T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-02T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-02",
+        "start": "2026-10-01T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-05T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-05",
+        "start": "2026-10-04T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-06T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-06",
+        "start": "2026-10-05T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-07T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-07",
+        "start": "2026-10-06T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-08T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-08",
+        "start": "2026-10-07T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 121,
+        "end": "2026-10-09T21:00:00+00:00",
+        "reason": "acquisition_window",
+        "session": "2026-10-09",
+        "start": "2026-10-08T21:00:00+00:00",
+        "status": "PARTIAL_BOUNDARY"
+      }
+    ],
+    "USD_CHF": [
+      {
+        "bars": 252,
+        "end": "2026-09-01T21:00:00+00:00",
+        "reason": "acquisition_window",
+        "session": "2026-09-01",
+        "start": "2026-08-31T21:00:00+00:00",
+        "status": "PARTIAL_BOUNDARY"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-02T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-02",
+        "start": "2026-09-01T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-03T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-03",
+        "start": "2026-09-02T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-04T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-04",
+        "start": "2026-09-03T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 281,
+        "end": "2026-09-07T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-07",
+        "start": "2026-09-06T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-08T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-08",
+        "start": "2026-09-07T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 286,
+        "end": "2026-09-09T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-09",
+        "start": "2026-09-08T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 286,
+        "end": "2026-09-10T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-10",
+        "start": "2026-09-09T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-11T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-11",
+        "start": "2026-09-10T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-14T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-14",
+        "start": "2026-09-13T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-15T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-15",
+        "start": "2026-09-14T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-16T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-16",
+        "start": "2026-09-15T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-17T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-17",
+        "start": "2026-09-16T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-18T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-18",
+        "start": "2026-09-17T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 284,
+        "end": "2026-09-21T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-21",
+        "start": "2026-09-20T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-22T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-22",
+        "start": "2026-09-21T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 287,
+        "end": "2026-09-23T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-23",
+        "start": "2026-09-22T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-24T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-24",
+        "start": "2026-09-23T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 287,
+        "end": "2026-09-25T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-25",
+        "start": "2026-09-24T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 286,
+        "end": "2026-09-28T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-28",
+        "start": "2026-09-27T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-29T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-29",
+        "start": "2026-09-28T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-30T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-30",
+        "start": "2026-09-29T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 287,
+        "end": "2026-10-01T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-01",
+        "start": "2026-09-30T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-02T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-02",
+        "start": "2026-10-01T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 283,
+        "end": "2026-10-05T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-05",
+        "start": "2026-10-04T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-06T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-06",
+        "start": "2026-10-05T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 287,
+        "end": "2026-10-07T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-07",
+        "start": "2026-10-06T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-08T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-08",
+        "start": "2026-10-07T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 121,
+        "end": "2026-10-09T21:00:00+00:00",
+        "reason": "acquisition_window",
+        "session": "2026-10-09",
+        "start": "2026-10-08T21:00:00+00:00",
+        "status": "PARTIAL_BOUNDARY"
+      }
+    ],
+    "USD_JPY": [
+      {
+        "bars": 252,
+        "end": "2026-09-01T21:00:00+00:00",
+        "reason": "acquisition_window",
+        "session": "2026-09-01",
+        "start": "2026-08-31T21:00:00+00:00",
+        "status": "PARTIAL_BOUNDARY"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-02T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-02",
+        "start": "2026-09-01T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-03T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-03",
+        "start": "2026-09-02T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-04T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-04",
+        "start": "2026-09-03T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-07T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-07",
+        "start": "2026-09-06T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-08T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-08",
+        "start": "2026-09-07T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 287,
+        "end": "2026-09-09T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-09",
+        "start": "2026-09-08T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-10T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-10",
+        "start": "2026-09-09T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-11T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-11",
+        "start": "2026-09-10T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 286,
+        "end": "2026-09-14T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-14",
+        "start": "2026-09-13T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-15T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-15",
+        "start": "2026-09-14T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-16T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-16",
+        "start": "2026-09-15T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-17T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-17",
+        "start": "2026-09-16T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-18T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-18",
+        "start": "2026-09-17T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 285,
+        "end": "2026-09-21T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-21",
+        "start": "2026-09-20T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-22T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-22",
+        "start": "2026-09-21T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-23T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-23",
+        "start": "2026-09-22T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-24T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-24",
+        "start": "2026-09-23T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-25T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-25",
+        "start": "2026-09-24T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-28T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-28",
+        "start": "2026-09-27T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-29T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-29",
+        "start": "2026-09-28T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-09-30T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-09-30",
+        "start": "2026-09-29T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-01T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-01",
+        "start": "2026-09-30T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-02T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-02",
+        "start": "2026-10-01T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 286,
+        "end": "2026-10-05T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-05",
+        "start": "2026-10-04T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-06T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-06",
+        "start": "2026-10-05T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-07T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-07",
+        "start": "2026-10-06T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 288,
+        "end": "2026-10-08T21:00:00+00:00",
+        "reason": "covered",
+        "session": "2026-10-08",
+        "start": "2026-10-07T21:00:00+00:00",
+        "status": "COMPLETE"
+      },
+      {
+        "bars": 121,
+        "end": "2026-10-09T21:00:00+00:00",
+        "reason": "acquisition_window",
+        "session": "2026-10-09",
+        "start": "2026-10-08T21:00:00+00:00",
+        "status": "PARTIAL_BOUNDARY"
+      }
+    ]
+  },
+  "remaining_to_40": 13,
+  "required_complete_sessions": 40,
+  "threshold_reduced": false
+}

@@ -78,7 +78,15 @@ def last_mid(symbol: str) -> float | None:
 
 
 def set_pricing_snapshot(quotes: dict[str, Any], fetched_at: float | None = None) -> None:
-    state["pricing_snapshot"] = dict(quotes or {})
+    """Store a cycle snapshot. Cached quotes are not live-verified for new orders."""
+    from forex_bot.market_provenance import downgrade_cached
+
+    stored: dict[str, Any] = {}
+    for key, quote in dict(quotes or {}).items():
+        if hasattr(quote, "provenance"):
+            downgrade_cached(quote)
+        stored[key] = quote
+    state["pricing_snapshot"] = stored
     state["pricing_snapshot_ts"] = float(fetched_at if fetched_at is not None else time.time())
 
 

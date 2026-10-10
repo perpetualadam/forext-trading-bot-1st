@@ -1,0 +1,11 @@
+{
+  "candle_exception": "evaluate re-raised, and run_bot aborted the remaining symbols in that cycle",
+  "classification_before_repair": "MANAGEMENT_DEFECT_CONFIRMED_REPAIR_REQUIRED",
+  "effect_on_existing_positions": "monitoring, software protection, weekend flatten, and emergency management were skipped",
+  "effect_on_other_instruments": "one unhandled fetch exception skipped later instruments",
+  "empty_candle": "early return, position lookup skipped",
+  "evidence": "Stage G.8 source order and the updated G.8/G.9 isolated tests",
+  "g9_regression": "tests/test_g8_missing_candles.py::test_candle_failure_still_manages_existing_position now fails if that early return returns",
+  "missing_candle": "early return, position lookup skipped",
+  "original_failure_path": "bot_loop._evaluate_impl returned when fetch_ohlcv returned None or an empty frame, and before get_position"
+}

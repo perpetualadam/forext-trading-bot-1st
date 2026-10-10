@@ -1,0 +1,5 @@
+{
+  "cause": "The G.9 loader treated every RuntimeError from the candle call as fatal to that symbol, even though ProvenanceRejected and other acquisition failures do not mean the position book is corrupt.",
+  "integrity_exception": "CycleIntegrityError remains fatal for the rest of the cycle.",
+  "not_the_cause": "Ordinary HTTP failures. Those already return None inside fetch_ohlcv."
+}

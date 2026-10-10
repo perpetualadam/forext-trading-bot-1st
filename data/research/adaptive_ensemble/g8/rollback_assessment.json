@@ -1,0 +1,14 @@
+{
+  "running_image_digest_verified": false,
+  "reason": "No Docker inspection was run. Containers were not restarted.",
+  "stage_a_safe_image_reverified": false,
+  "historical_safe_digest_not_used_as_proof": "sha256:a905781d872d4a83706c716baa8be6e08c4abef26b2d9f9510a118c2c3039d25",
+  "unsafe_historical_image_excluded": "sha256:a19a2208fcf30f8fa1cf61442cf021dec6d99d809b6907836c834922bfe3e2a5",
+  "rollback_executed": false,
+  "configuration_compatibility": "unverified against the running image",
+  "state_compatibility": "durable authorisation is BLOCKED; a rollback must not treat a persisted ALLOWED file as effective permission",
+  "database_migrations": "none in this stage",
+  "rollback_could_remove_provenance_gate": true,
+  "rollback_could_restore_authorisation_if_an_old_process_honours_persisted_ALLOWED": "unverified; current process start ignores persisted ALLOWED",
+  "procedure_status": "not approved and not executed"
+}

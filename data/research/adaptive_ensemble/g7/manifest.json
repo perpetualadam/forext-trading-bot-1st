@@ -1,0 +1,1188 @@
+{
+  "excluded": [
+    {
+      "path": ".env",
+      "reason": "secret_dotenv"
+    },
+    {
+      "path": ".git/",
+      "reason": "vcs"
+    },
+    {
+      "path": "data/",
+      "reason": "research_archives_live_safety_state_and_snapshot_output"
+    },
+    {
+      "path": "data/ops/live_safety_state.json",
+      "reason": "live_safety_state"
+    },
+    {
+      "path": "data/research/adaptive_ensemble/g7/",
+      "reason": "snapshot_output_not_source"
+    },
+    {
+      "path": "tests/",
+      "reason": "test_only_not_in_dockerfile_copy"
+    },
+    {
+      "path": ".mypy_cache/",
+      "reason": "generated"
+    },
+    {
+      "path": ".pytest_cache/",
+      "reason": "generated"
+    },
+    {
+      "path": "__pycache__/",
+      "reason": "generated"
+    }
+  ],
+  "files": [
+    {
+      "classification": "PRODUCTION_DEPENDENCY",
+      "path": ".dockerignore",
+      "sha256": "725746bd161489a3aa7d81aaa22c5c1cb269a4dbe1c1a70cc3f71ed90bf77c32",
+      "size": 103
+    },
+    {
+      "classification": "PRODUCTION_DEPENDENCY",
+      "path": ".env.example",
+      "sha256": "2cd05192fd9eb8554eec302e9b190ccb41720f4a4ce85928a14f77d255984bdb",
+      "size": 17045
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "Dockerfile",
+      "sha256": "f8d537d84c8ab004c5fc2cbdc5ef58e8141f5ca66a13be6cc5eac38c7c7006a6",
+      "size": 627
+    },
+    {
+      "classification": "PRODUCTION_DEPENDENCY",
+      "path": "docker-compose.yml",
+      "sha256": "f0a374774c35b4c63dce23a837572886d1d53331fec388044bc5887367980179",
+      "size": 10920
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/__init__.py",
+      "sha256": "27173dbbe12ac6f8fb8c269bb2c90dde7ecb2beb01e4343c0d1c9cf7bee18378",
+      "size": 77
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/ai_ensemble.py",
+      "sha256": "2893d1a0b7a5ac9aa54407e5a15d6670f8addfd895c339f013cdaab205db0bbc",
+      "size": 12406
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/alerts.py",
+      "sha256": "c126cae63f96d10a6fafd80e5370caec5a6231cf1cf977f7ef52caf67767da21",
+      "size": 6143
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/analytics.py",
+      "sha256": "c2c5e9b5ea4b405bf61a9a560eec0768607a9fa7a593dfc732fe5794abe34523",
+      "size": 2888
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/anthropic_voter.py",
+      "sha256": "54bd35c89f925d1181ff7689c12b10172dac8dbec4b91588cdc4caedd2d25c9b",
+      "size": 3570
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/app.py",
+      "sha256": "77888f0fa40b5a2935913be6d9b8770c1df0aa204d21c72537cef9e01ac0f70d",
+      "size": 19303
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/backtest.py",
+      "sha256": "f1f2791a26ae579d62547626af7acbcec805e57d2c8ec582960ec0ac38f06b5d",
+      "size": 28532
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/bot_loop.py",
+      "sha256": "561740250ce8930a5b2aadde3cbb61591384dc38548664ef990ab1d5051c4467",
+      "size": 56692
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/broker_exit.py",
+      "sha256": "d9920eed6160c5f26e1db7ee34095488b3457755e5dbf21cffbeda08eb798c12",
+      "size": 23434
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/config.py",
+      "sha256": "13db72c668f60a8a50bf148789070c29cb941be748a51b298bd7bcb2971f99fd",
+      "size": 2421
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/csv_ohlcv.py",
+      "sha256": "e8a720617e107179e7713a2cca202fae115d27b0dac1d56569865b61f176ad49",
+      "size": 2771
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/database.py",
+      "sha256": "98ed215c0a7e7f21ecf938172a45805a3f1b456c5cf49e8d0a8ea9f0d5cbce72",
+      "size": 24889
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/__init__.py",
+      "sha256": "063acf90d1006e38cb818083e7830f699099fe5fa77d98d8e6857d3c4ec8c34d",
+      "size": 353
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/__main__.py",
+      "sha256": "a524f9980020d351dca1277cf6e8750ca16d8befe682616df6da129945f28ca0",
+      "size": 2568
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/breakdowns.py",
+      "sha256": "1b8ab6a8e55f93c8fb2247af95c4caf7b7a9a3ac02f71bbe18a7ab14555bfcba",
+      "size": 3094
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/checkpoint.py",
+      "sha256": "41837e3084359f309206fbf37735b59a384202f77a44ca3b821d574ffd5ea29d",
+      "size": 13196
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/cross_pair.py",
+      "sha256": "37504afc8aa360a19c9c36cc2b5c1085822cd66b1f9fde3f16815600c385ecd5",
+      "size": 3791
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/data.py",
+      "sha256": "10501061bcb428677661700c649614886feb1b2b7022e3309c8857f4243d5e96",
+      "size": 4107
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/download_history.py",
+      "sha256": "6a151899c74406e02928ae4a14fbe8e98ce8d9897ecb3352899870bc737626d1",
+      "size": 9186
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/ema_retracement.py",
+      "sha256": "e391562bfc33608adcea7977a676885644815595d816b402d4384a8a8aba544f",
+      "size": 25111
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/engine.py",
+      "sha256": "c4f049d8d37d20ab6aa9feac0f18c82639c2ab01bf0a6b3ed27109f42ea2dd1f",
+      "size": 7381
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/event_discovery.py",
+      "sha256": "c02d96d71f5e0af16e35043731a11dfbb2d24ea76efb7656ebc60881eae2d0f3",
+      "size": 7980
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/execution_sim.py",
+      "sha256": "7ce28bab86bd311da8cb81f5d273978d0ca5819da3dc365e6b657ebccabc6aeb",
+      "size": 2924
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/fast_cache.py",
+      "sha256": "483fb36b37bb9872fd09378070f2aebc709f1ed0d1fb1068c6893cb3b62ea6c7",
+      "size": 14472
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/feature_discovery.py",
+      "sha256": "fd8d2cb3fb7d36c555f20bf573270c542f05dd9270945ce3064bd38255f8babc",
+      "size": 16993
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/fibonacci_retracement.py",
+      "sha256": "5ed059c4979e677346f4dd77e5ae9679a9c901b9c3378cb7defac1366cc1e50e",
+      "size": 10444
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/filters.py",
+      "sha256": "54b03193271ce26bbe6235b3e7315f8807e23fae6d50b09c4876380922002d88",
+      "size": 3906
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/forensics.py",
+      "sha256": "9dc2a7767f433a3e697ce2382aaedb3694768f65eca18e5e15cdfd43cd2ebedf",
+      "size": 6825
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/history_cache.py",
+      "sha256": "c42c0758a69ae44260f555ac06b92880133432216188ff904ce4f95e9fb9615d",
+      "size": 15763
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/invariants.py",
+      "sha256": "ccedb761c79155a937a4ae4ae9e1b2c7699f74522a5eab7b0bd34f535f543804",
+      "size": 2789
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/isolation.py",
+      "sha256": "2fc9c439e998c034be9e2a2657bb76f82b57f95d4e3a3cf0262f69b93e76e7de",
+      "size": 2514
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/live_path.py",
+      "sha256": "6275fba49bf20d6f577a30bcec2421e5904ed8ef414851906c5103567aece215",
+      "size": 2386
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/live_trades.py",
+      "sha256": "8f2d2c2d14d1dd2874cc6b9ebc82013ef7a8412887811b8f8a7db092ee50a9fc",
+      "size": 2032
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/m1_path.py",
+      "sha256": "74eff88962ee4f64df06aec6769bc4986d84636a4605f04b603dc5db62109d64",
+      "size": 11088
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/macro_first_print/__init__.py",
+      "sha256": "2d2ab1de2ce0e447f98f1ca955ee1155d9bfbedba044e749000696e82587fd7c",
+      "size": 687
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/macro_first_print/__main__.py",
+      "sha256": "6b0df286359f66ddbe6f1f66477fee492457a11dc7f14623e46abb70780d70ea",
+      "size": 241
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/macro_first_print/alfred.py",
+      "sha256": "826b67b1694a45ce31379728baf77f6d44275290adbafbdb52e407d1fb2e0516",
+      "size": 1385
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/macro_first_print/build.py",
+      "sha256": "b0efae170da66dd3a1d393d48ac89321da04641208de24654fd3a26ad96c34d7",
+      "size": 8667
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/macro_first_print/catalog.py",
+      "sha256": "8391c7ec6b0cf15f01e8231a4e52c422b905515683fe2c334150eb1efb32bde5",
+      "size": 4870
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/macro_first_print/fetch.py",
+      "sha256": "d9aa3e1b7fc64c0bb65643ac8aae4eab7e25aef16a83346201fb3765bdfa171b",
+      "size": 1136
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/macro_first_print/htmlutil.py",
+      "sha256": "8284c65eabcf6eb217e5d6962724ac3aec1680ca21864bf9933ad48168780dca",
+      "size": 869
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/macro_first_print/parse_common.py",
+      "sha256": "c9efcf7c6babc5f2bf1f9952329d9c42cf3e6b97166badd4444a2f2d79e922e5",
+      "size": 3323
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/macro_first_print/parse_cpi.py",
+      "sha256": "d8bcefda4ceb8ae9d7979bb24eb511e311e2fe702629683ab933001b7647f179",
+      "size": 6492
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/macro_first_print/parse_empsit.py",
+      "sha256": "ba3934df6e8738cba9b5b1e7ea5a0ce1e472c53996ebf2a163988822f01dc681",
+      "size": 5105
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/macro_first_print/schema.py",
+      "sha256": "58cad47b21ae793c2e5ea31a82efd9407b6de97d13fb11d5802a7dcc16efe4da",
+      "size": 1600
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/macro_first_print/store.py",
+      "sha256": "c25ed2c89facb4cc50ca71bbb22f19ecc11f2428ed85c1429df5050995f39116",
+      "size": 5890
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/macro_first_print/validate.py",
+      "sha256": "bed7c122b7b2b0dd7b73652e9bb7bc9b1c02653f94f5e9f4b252a57191b5fab2",
+      "size": 8157
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/momentum_m5_dedup.py",
+      "sha256": "dcb29db2f8d649caf99ea7818e0f1434dcf8d9034b7cd4c44199d5f9ca2c98fe",
+      "size": 21860
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/outcomes.py",
+      "sha256": "c1aa56dcfb72ed6c467b13d573fedaa7e2a5cfdcf599ba97bf20e84d0d8418cf",
+      "size": 11112
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/reports.py",
+      "sha256": "6e31df4f48579eeeeab3ad91dd02d6a61299a9b709514ffc762b313d026f353f",
+      "size": 12397
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/research_features.py",
+      "sha256": "f4ab98167d577a14303a6220cc1ba52481fc103735d327ac7199b8a3e99f5210",
+      "size": 8595
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/runner.py",
+      "sha256": "7e7d54a9bc5812404bb852dddb17c11ea602e26f62b9029781e274c1719adbbb",
+      "size": 10777
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/schedule.py",
+      "sha256": "e4a0e8e3c1058a16fefadf3742d7b81f7cc3f014f0e94e6941a0c1f73d48f419",
+      "size": 31554
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/sessions.py",
+      "sha256": "70ac27bf12cee517147f19a0a6f3fcc114c84ff27fde73b764c7489dfbe6aaaf",
+      "size": 1362
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/signal.py",
+      "sha256": "b0d5b8207195ad9fd469d7aa61e20f7ad347053c115b0181bdfc72a2463f4134",
+      "size": 9022
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/snapshot.py",
+      "sha256": "1241db34e8a1a252cd415bafdf0e903c83d0eeffe74c86c89bdc4aade3c3fb27",
+      "size": 1914
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/spread_volume.py",
+      "sha256": "0d55a0c5c00b70708a3b905bf4e65b9ceabac2c77d5626763420291972cebf98",
+      "size": 3917
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/stub_components.py",
+      "sha256": "f767808abbe884618c464faeda6949a670ee0778f270b501da8f59c0d654bf0d",
+      "size": 10022
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/trading_economics/__init__.py",
+      "sha256": "68cb4cedab1d9f3cc7026caed841da3c643eb9e11e0abddc6d396c40c0b35c0a",
+      "size": 801
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/trading_economics/__main__.py",
+      "sha256": "12158fab9d4bb2f2c8fe2c9d3c4f305a0fe5eb9aceb52aa226570f4ea8c87a17",
+      "size": 246
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/trading_economics/client.py",
+      "sha256": "6c8996952cdb1d9d4edc670cb5228422e4690e6875438ea4a7ebb43fc96170b6",
+      "size": 5144
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/trading_economics/compare.py",
+      "sha256": "11cb93b7b47b2ff17c42b5eeeeea16c8c0c02e432432bfc9d23fe59594342972",
+      "size": 2095
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/trading_economics/download.py",
+      "sha256": "255c740fd18f8364677aabe3e8e11fea51c22e669e9bd8d3358f72f700f398a1",
+      "size": 8020
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/trading_economics/env.template",
+      "sha256": "aafb4714995d09e76d4df83bf53593c98099e0417c1852101c1949b579b2f57d",
+      "size": 379
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/trading_economics/events.py",
+      "sha256": "a9ee48ea81371a5b1be5ece9aa12f97dbe7eb9d049f22538a2e538c3b6e6f906",
+      "size": 5867
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/trading_economics/schema.py",
+      "sha256": "89cdb3f785e0e74601a785dc35a0533193cf769285181d391be1c4303153d2d5",
+      "size": 5103
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/trading_economics/store.py",
+      "sha256": "a7b9e9c1a0a52d04c633f2f86185385f3946e9d0eebdbd88e844bc47e9f71896",
+      "size": 3052
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/trading_economics/surprise.py",
+      "sha256": "7434f2862ccb722521d391192f3a80ea129b4adcde085d2ec17af8c1b9a116c7",
+      "size": 4399
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/trading_economics/timestamps.py",
+      "sha256": "5f562da626f96c87b1cb5f36f4e51806802ac4542ec3351c521d969ece32ac2a",
+      "size": 3540
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/trading_economics/validate.py",
+      "sha256": "0b79e7cc1b6b4580980c3ddace26b86df610eca807865d6aeab2567113cb30b4",
+      "size": 10501
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_quality/walk_forward.py",
+      "sha256": "c49bc8eed8d3367442c379dc303c57912dae1620861e028bbf54aae412df5c36",
+      "size": 2490
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/decision_repair/__init__.py",
+      "sha256": "a5ef6e838f2bc9c467a7a92a6423f76df7aedaacdc7cab6ab91c47676960cd11",
+      "size": 662
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/decision_repair/account_risk.py",
+      "sha256": "3030d1a7abaa31ea6bed9c81c7d010402c5f43c2c494f24a8b49790bb3015be8",
+      "size": 13729
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/decision_repair/audit.py",
+      "sha256": "0b744e11e679469de95c73626d6ac50c4cef0aa674778002081f2c9ed6cf4481",
+      "size": 9977
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/decision_repair/exposure.py",
+      "sha256": "f289bbf69cee18744e8fb957a31d89e7b295559ac47f0ad9ce2baaaebc5b3c12",
+      "size": 8305
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/decision_repair/flags.py",
+      "sha256": "08d8e5b958f92656100b834abf1d850efcd8c46e3c8fa3dacd8d63bcdf8b3423",
+      "size": 779
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/decision_repair/harness.py",
+      "sha256": "9f37be7bfb4ceda826b531fe043532a8b35c25befc1aa6c5fed6bd938ca90970",
+      "size": 1859
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/decision_repair/health.py",
+      "sha256": "2b5e0e485694aaa8c12d00d836fce9bfb1226b304041e402dcd1e060ea8886e5",
+      "size": 5432
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/decision_repair/rl_store.py",
+      "sha256": "bea6c72fbd105a7445884f86d0009cfdbe83457e5bcc728cfd34d1dc12e28714",
+      "size": 6144
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/decision_repair/selection.py",
+      "sha256": "ed4fbfcf2d6e01571b3e6ffdef0337899cb5473d3175fe268a574e0b1621812a",
+      "size": 8518
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/decision_skip_log.py",
+      "sha256": "30e3bde7342f0fd9ebeec57fb9b10dce87f30310f0913dfbb5492f04467d992f",
+      "size": 7035
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/entry_geometry.py",
+      "sha256": "2de81213403d2092fab201a4704bb10ae85bdc861c9c854bac6e385e406e204c",
+      "size": 19811
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/execution.py",
+      "sha256": "6602e363171e3aac4bc4b597ddb805c454c7ca40f7d1fe3fddf542f6a1ab86e2",
+      "size": 8653
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/execution_metrics.py",
+      "sha256": "7b806b41c205a4e7e14fc248a52008116179202ec1c30f9f559b1019888c66ec",
+      "size": 2417
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/experiment.py",
+      "sha256": "be71ed6f3b19b73777d4a16026df40f0b3ba23df313215585a736ad178e4166a",
+      "size": 2173
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/indicators.py",
+      "sha256": "64fe62a7e5fd997b7ea3ecc69b0bbc09ce5d0bc8ede18180a8bd16b209c52fe9",
+      "size": 3539
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/live_manage.py",
+      "sha256": "60d87b8665620743467832758032857e975d32da15322307a0c331009cc7b25d",
+      "size": 5066
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/live_safety.py",
+      "sha256": "6e59666960dfec0ff379343c8973e389363faaab49278d9806c160a18ebe8f4f",
+      "size": 17795
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/live_safety_preflight.py",
+      "sha256": "87720817e3dcc38736ffabbbd267b5995d95ef1e9798258ce6b845a09f7c3785",
+      "size": 5562
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/log_config.py",
+      "sha256": "9ab9445a8ff9518409dc6653331d41f1d1369f0e29e84d561f97de9e993b06f1",
+      "size": 800
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/log_redact.py",
+      "sha256": "362e98cac0ed8f9ba406ebe1574f19a8004ac3cde19e2a6738e32daa7675edff",
+      "size": 1921
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/market_provenance.py",
+      "sha256": "efcae1c71df010ce221f734c7f48008f36b12e1b78c83c7fe11b5a671cb3775f",
+      "size": 14782
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/nn_pred.py",
+      "sha256": "09f1adf5be0e53009094331c7acff0e1c0a1677a9f0ccfa4e30cd149ec38fce8",
+      "size": 1138
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/oanda_candles_read.py",
+      "sha256": "a4017e7152ec53a4018306e7cf9a3c2222089072ab1ad44a4bc0bd7b4e3b0bd8",
+      "size": 4872
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/oanda_client.py",
+      "sha256": "6d7d5d2b6ce1c228af0629c3e2a8b674b02965c57d1a3ed41c3b4015e531ca2b",
+      "size": 20382
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/oanda_exec.py",
+      "sha256": "51ea7a2cbb19e8faa5120438347bf71a67021f197c30d1ac08074ca9b1cc6e14",
+      "size": 24281
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/oanda_rate_limit.py",
+      "sha256": "a4c68c1ec51f3aafe3eb01d66f7380eff8730b3ef5318d57f60fd1f9db6ae7e1",
+      "size": 1534
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/openai_voter.py",
+      "sha256": "8cc5d5def6264e10503fb512e972abaaa9812542a91f4fc7858ea51deb93bef8",
+      "size": 4796
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/operational_events.py",
+      "sha256": "0ce0d9d69d62bc7f16ff4aefa0c0909e9cae8f6a05ac4d530d9ee3f8dd27d6c1",
+      "size": 4959
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/operational_state.py",
+      "sha256": "dbbf734d5882453f603c950c3d819f728fcb93e68a4e8bd037c51b923de3a3ab",
+      "size": 4097
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/orders.py",
+      "sha256": "30bafb8bf6fde1ad061641e8db01b1a79932d6a1a74dcc3e6f59a591f42b1525",
+      "size": 6729
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/portfolio.py",
+      "sha256": "8d736bfbad9bb9a1a78577b64c76e25ee39d016dd4a5ea3f213e1d0aa5c2412c",
+      "size": 704
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/portfolio_exposure.py",
+      "sha256": "0949a084722697c80cdda5da8c1b7e69ea47dc19c5f718b1f43668a0bb5ae4b4",
+      "size": 13326
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/positions.py",
+      "sha256": "e63ac07e6677ae5707a2a75888bcd5c39df5957ab34547659546e8546d537f2a",
+      "size": 7212
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/profit_protection.py",
+      "sha256": "d57dfce057eb8e5bd318fd6a1bb4f36a979c45e6d4cd664a51fdbc6a7f09b51f",
+      "size": 24418
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/reconciliation.py",
+      "sha256": "295686792ab017cfc8dfba8fd0add6b2b66a3008304ade141e899af7e86e776b",
+      "size": 32632
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/__init__.py",
+      "sha256": "62fcbc1afc9d809358af85258b4b9d4c068d8b86494c619ffcab7920181cf375",
+      "size": 74
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/__init__.py",
+      "sha256": "7e92594173a43daca626cae05ecf1b59f60a9368454c5c5e8fb4f3db2c7c0b64",
+      "size": 542
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/accounting.py",
+      "sha256": "f90432f7ee9528497648e9ff60ea877b96b6c87ac206e7a1fd2d4f38fb3ec16b",
+      "size": 7825
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/audit.py",
+      "sha256": "b1e8bc2b43209e064649743f43dc141fc7c7666d04bc12bf5f790ccda267841b",
+      "size": 1790
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/candidates.py",
+      "sha256": "834bd598b721460c086c95ed668cbeb5a8ae3fcf9db5ace24e2c2d67e65d3e36",
+      "size": 4928
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/conversion.py",
+      "sha256": "7be616f47d762c1000b7846d133d0034f160e10f3047b4f125dfbafcee3ba575",
+      "size": 5659
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/evaluate.py",
+      "sha256": "69d7b27d26299679923b7599ec607e76b81f8b28bd9fc008618e29fb7ac224b6",
+      "size": 7750
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/features.py",
+      "sha256": "44776ab86185bfa0149e0855ea7c30410d6bfe69557a26af492d07e4abf24f7e",
+      "size": 8129
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/g1_freeze.py",
+      "sha256": "0a86b310005981be8407fafb3511c8fccbf36320fcbdc532ba2fa1403b5e668b",
+      "size": 4642
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/g1_runner.py",
+      "sha256": "8b2c3eb0cbab289268de6df6a7a572c0f0760e51442a12337c3724fe338ede2f",
+      "size": 4553
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/g2_runner.py",
+      "sha256": "383d743b08ba17624d035f419f601ccfd823f7bbc1f248fc2f8f1baffa40c8ba",
+      "size": 5904
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/g3_acquire.py",
+      "sha256": "a46313319867464d956fc9e33616f5412559a958bce9d422bb607e4c717235e1",
+      "size": 13144
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/g3_convert.py",
+      "sha256": "8d1bcd28526ad4693c36cc51853d291c12f4aab1d3c80527762240b64acb6679",
+      "size": 2850
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/g4_convert_audit.py",
+      "sha256": "a8629f8ecd94be80aba6cd0b9622ec82ee405e68e7f97a0793cc155a7479561a",
+      "size": 10774
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/g4_gaps.py",
+      "sha256": "d040c0b57faf4ae42f39f27d501e017a38fd035407bd6468b3164e9017dc82c6",
+      "size": 10613
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/g4_integrity.py",
+      "sha256": "5a9d07d35a526612332be8aa05293bf12d6f53f3eba44b40fee5d4621efc96a4",
+      "size": 5005
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/g4_policy.py",
+      "sha256": "808a17df9b5aaa52c0fb87fd6d1cb45483af25c370755d82c3d9657c94539a08",
+      "size": 3916
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/g4_prepare.py",
+      "sha256": "e01e3ef24253772a26dcea57adf4b9d32b8487ce3766bd12d83714a785355ea0",
+      "size": 5968
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/g4_sessions.py",
+      "sha256": "764981df2074de49b79c69fd154b8f6db2155b338704c4ab6b69e5fcfa6cc13a",
+      "size": 7497
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/g5_audit.py",
+      "sha256": "e9c8251c1ef5bf6e6e8d4822a0b2427a12a12103f26f697e33a10054a6c9d867",
+      "size": 12313
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/g6_review.py",
+      "sha256": "117c8884384f2499e804ec2bbaf4fbf1052eef64c35986beacbf9aebd39b8d6d",
+      "size": 12963
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/g7_snapshot.py",
+      "sha256": "a43270fc08a17b1d72aaf3e928818a17c450a8f8a9b10fc391ad2ecb624827ee",
+      "size": 12174
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/importer.py",
+      "sha256": "b75125b24fb85d53f524b32f51c73019cb5352ff17acb0f1199a59af4dae2917",
+      "size": 3160
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/isolation.py",
+      "sha256": "bc0c9af34d1131a4a2ca2f847cefb3ed38e57607ff248773e73c9ecb642519ba",
+      "size": 1245
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/models.py",
+      "sha256": "be91e4ee6824a0c4791866a497fc5729b9711fb4b0feec3f91a73f239e34ee83",
+      "size": 8171
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/oanda_readonly.py",
+      "sha256": "a41c660afa3669f9ccdf77c69a7a438a9f831a021f48691df0966ad1a4daa6cd",
+      "size": 7857
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/portfolio.py",
+      "sha256": "c311f603834735e2763c538fcc57acf64b123e289ff094d248ecab764edddfab",
+      "size": 3305
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/portfolio_v2.py",
+      "sha256": "ccf4b10c19b7bbd1147d21cc03fb5f94cbe4fb093680af16b8511cf693b6fba3",
+      "size": 10135
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/protocol.py",
+      "sha256": "1538c7121c40b7f48ff8b2ecf6284880ad6b4ec88e752857af32623c2cd3475b",
+      "size": 6265
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/provenance.py",
+      "sha256": "f151c9b4ef67ac4ae7de3116750bf6555b0df98a4c523a51fe9bf9231b365570",
+      "size": 3161
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/quality.py",
+      "sha256": "ff3ec38330f538c19b3bb81b5c8805e5f61e228bb750439d8e6be937c2e4bf1c",
+      "size": 5304
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/quality_gates.py",
+      "sha256": "9cc92e9740c0f414b9b5c37fdb684ddb5324b272af36d7438d7582e39e6e9ae9",
+      "size": 2605
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/runner.py",
+      "sha256": "94b600342a02e69b1c17723d36ef1844b561679a911bc475a427603c70651523",
+      "size": 4866
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/simulate.py",
+      "sha256": "43075421a6f91cb53c745c8feb09e6f01d02492d22516ead142497a9e09d80a3",
+      "size": 3300
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/simulator_v2.py",
+      "sha256": "630eb67cb9769788aa2c9b29d924e515fb2bd927293de08537f73e905f67e7bb",
+      "size": 6048
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/source_audit.py",
+      "sha256": "e57e1f8a39067c29958c33b7f648b2a2181d963aaa483bd50780259b2ed765c6",
+      "size": 3401
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/state_v2.py",
+      "sha256": "da52797cba800be21076394d4b8bd4aad34aed2f48150954ab47cfcf08aae2c7",
+      "size": 8311
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/validation_runner.py",
+      "sha256": "24f1885bad66a69f8185c6553e887d3ab170557fb9cc2b7387795eb4c5d05002",
+      "size": 4900
+    },
+    {
+      "classification": "RESEARCH_ONLY",
+      "path": "forex_bot/research/adaptive_ensemble/validation_spec.py",
+      "sha256": "c1a57e212180754fde998bb557f0eab193d19e21f2cb05193fc4bca1f43656e7",
+      "size": 4328
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/rl_agent.py",
+      "sha256": "912280b9854208b7359b2e264adfdf5b1b454e88afd7b5b5fc3cc0f635091e4e",
+      "size": 1726
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/session_rules.py",
+      "sha256": "90023457126ee98a1b02739b188132278d078c24bf5b04f12dec166ea57a4202",
+      "size": 17661
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/__init__.py",
+      "sha256": "d88abf95d97c75122375ef01e1edcb144b9bc174836688cdb134786bb9003363",
+      "size": 713
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/accounting.py",
+      "sha256": "0bda91c6829910061fd98123b654a62496945838362049ea543839917f808db3",
+      "size": 6948
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/assess.py",
+      "sha256": "81f4b6a37412cfaed5aeb5a1ddab6f630ecd23d2433b7bacc57314dba0c38232",
+      "size": 16809
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/classify.py",
+      "sha256": "3fec1ef6b21d3fa1b99003f5d90a81ca2119d6b4e2ac005cb7be65e4313e20be",
+      "size": 2089
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/compare.py",
+      "sha256": "d8b9f4845e501e7d100afb192bd5833c4d1af784d2514dbd989eca4f6a080dab",
+      "size": 3363
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/config.py",
+      "sha256": "67047032091e9819ef73b6389f87092a20e95397957f6df4f5f2ab40b2803a31",
+      "size": 2385
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/cost_model.py",
+      "sha256": "f2d23865224c2706dc3510a1aa34b8bbac3a7c05b06605753359bc3939c49da9",
+      "size": 3267
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/diagnose.py",
+      "sha256": "aa93388803aa84a83c044942c7b46cda653e0284c9df4fc4aa8139131327effc",
+      "size": 6078
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/engine.py",
+      "sha256": "ec7f75269b9b2d1673717810f8a9bddbd5637e3150985104cb1da35dad9fc598",
+      "size": 33461
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/fidelity.py",
+      "sha256": "bb8eb46b292b645694bb137704eb129e5d366421499eb1874db6796870121e2e",
+      "size": 3492
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/manifest.py",
+      "sha256": "edb96b2b9a839494f4c7af5212f7c64c1b85e02c95d09d50a2bcafb8f96224e2",
+      "size": 3519
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/original.py",
+      "sha256": "d7cf7a59fc1217ca4dcf33c0643d51dbc8eaa44229da42301938f96904950cb9",
+      "size": 9001
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/pipeline.py",
+      "sha256": "eae008e9516ca2b165846d95ba78ce975a27cff76cf418d90af96d742ec9cc69",
+      "size": 1725
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/protocol.py",
+      "sha256": "05481118b5abc906f60e908a2ce1ebb45f884a1f4bfb824d9e762dd1771ca686",
+      "size": 3606
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/reasons.py",
+      "sha256": "18cac873c0c963816d1dc9d68f9c8dad06d79c9e076536243c493faff2960d56",
+      "size": 1325
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/replay.py",
+      "sha256": "3e3ff6ae4d3560269a528c752931be61557821b7ca230ae55106bb3d46e875dd",
+      "size": 3319
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/risk.py",
+      "sha256": "66ee796e841ea6877527c30d6c90a2708775aa676107e406231cc00fd1f1b6a2",
+      "size": 2000
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/signals.py",
+      "sha256": "50e51518e342589a3dc4b09d25356ba521166c056a027c5c3efb1fafa9ceb799",
+      "size": 8029
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/store.py",
+      "sha256": "4136fbe49337f932142ef0b8f10a2cc1beafb7fcbd84b351d1430e3f343bf0eb",
+      "size": 2338
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/shadow/tracks.py",
+      "sha256": "d998ad57263384e9f8ef80e99d769e658890153cad7a2375a1f115fb59c6b760",
+      "size": 699
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/state.py",
+      "sha256": "03dab7d2b3d9292e2adc3b8753b5b2e256a9a18d67ce30b92ece778735ff3201",
+      "size": 3530
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/strategy_meta.py",
+      "sha256": "daffe8ab64cc40016bc337b78da048f10b06314e477f56380bd28f2848995ed1",
+      "size": 6553
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/symbols.py",
+      "sha256": "e5f97cb0684ef470a3e5a0d04f3ad05e37d64a493c8f82c60c031096b8460e8f",
+      "size": 2797
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/telegram_cloud.py",
+      "sha256": "8a6f64fd6e9358aaf860489c72bd5790340b4ff2cfc8cd6d26c8fb52d2c0e42f",
+      "size": 12401
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/telegram_commands.py",
+      "sha256": "e06c08735493f8a5b8aba601d23eaeb06a837b657133d6cb1bc6b9f5ccb741d2",
+      "size": 3712
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/telegram_control.py",
+      "sha256": "270f2b48bbbc1c50b1bb89ae338716803c5e2772fada3b1aa39153fb8b300014",
+      "size": 43273
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/trade_diagnostics.py",
+      "sha256": "0417191e0f052675a91afec52099a9732ae4b1754849c865b9602988eafd8bea",
+      "size": 6647
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/trading.py",
+      "sha256": "5ac3981690fe9536edaedfd35a933d17fc37a1e4a77c5c3e9b47517db6300fc7",
+      "size": 19115
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/v2_shadow/__init__.py",
+      "sha256": "87240471697d4a3844a84147a1d83cec480e01b20a77791783bc89f30b867a1b",
+      "size": 893
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/v2_shadow/contract.py",
+      "sha256": "6d03cc74333df91c26281d8b85333f93a71f5a4958923cdb6158f77ff0076e7f",
+      "size": 4181
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/v2_shadow/decide.py",
+      "sha256": "fe865efbc4dcae770c52e101884f291d84678a882b842a3da1ea95ee128f028b",
+      "size": 820
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/v2_shadow/isolation.py",
+      "sha256": "6d45b90ec1e01139e9ce880df818a260bc7ea1757176081aff9c0f9ea6093f0f",
+      "size": 2027
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/v2_shadow/market.py",
+      "sha256": "8c82f24dd56de547b8be6cfeb4a2e76a9b2b1d09cd513fb367964e069660ddaa",
+      "size": 11489
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/v2_shadow/observe.py",
+      "sha256": "155793de59624000f559d672599226fc41376cf6c13010230284ef54bc52e421",
+      "size": 9328
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/v2_shadow/score.py",
+      "sha256": "0d9eacbff92033ea7a7a4c65a9e36b9d8489c77e101ea97446473fef44f8189d",
+      "size": 7637
+    },
+    {
+      "classification": "UNKNOWN",
+      "path": "forex_bot/v2_shadow/score_offline.py",
+      "sha256": "fe4242fced0766d24a2c366fbbd9c904f14e9131ad40a23ad83f82a88af3e66c",
+      "size": 15088
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "forex_bot/v2_shadow/store.py",
+      "sha256": "3186249fd2d2444938231da16b9ffc2fcd7b1ec94de7c37c736d45170e5f4615",
+      "size": 12212
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "main.py",
+      "sha256": "4711818ad85b12d1be94e13a08182ff60881416302a84a573fe18f37a043d3eb",
+      "size": 585
+    },
+    {
+      "classification": "PRODUCTION_REQUIRED",
+      "path": "requirements.txt",
+      "sha256": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a",
+      "size": 174
+    }
+  ],
+  "g4_package_hash": "05b56d1ed7736025e86a9e3f94fb44bb49ea6208718aab7af9cfde6977a6c201",
+  "g4_policy_hash": "6ea84361d6fec3e1743fce2c238940d9f2fda50b78b1d5e305d07d18650d29d4",
+  "manifest_sha256": "ba8eb86d887b44dd44314c6a45c776639bf11bb27f0e92ba2ce24978c3206989",
+  "protocol_hash": "539cdc083f83393a79d254d21385edc6c48e88eb0f085d4549df9fdd6d431bc0",
+  "provenance_version": "market_provenance_v2",
+  "snapshot_tool": "g7_snapshot_v1"
+}

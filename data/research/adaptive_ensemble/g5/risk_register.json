@@ -1,0 +1,20 @@
+{
+  "fallback_price_providers": [
+    "fetch_ohlcv returns None on failure",
+    "fetch_entry_pricing has no M5 fallback",
+    "manage path does not fall back to M5 close"
+  ],
+  "production_reachable_unsafe_paths": [],
+  "remediation_status": "fail_closed_gate_local_undeployed",
+  "replay_mechanisms": [
+    "forex_bot.shadow.replay"
+  ],
+  "severity_before_gate": "a substituted frame was indistinguishable from a live fetch",
+  "shared_storage_risks": [
+    "decision_quality rglob can see data/research for offline inventory",
+    "production fetch_ohlcv does not scan directories"
+  ],
+  "synthetic_generators": [
+    "research.adaptive_ensemble.runner.synthetic_market"
+  ]
+}

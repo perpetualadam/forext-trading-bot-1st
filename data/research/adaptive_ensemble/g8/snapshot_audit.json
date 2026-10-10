@@ -1,0 +1,41 @@
+{
+  "archive_format": "ustar",
+  "archive_sha256": "0ee97accd2d4a8297a053eb26c5138324192ab5b1f700214acf091d0f6487f82",
+  "classification": "SNAPSHOT_INDEPENDENTLY_VERIFIED",
+  "duplicates": [],
+  "executable_members": [],
+  "git_head_is_not_snapshot_identity": true,
+  "hash_mismatches": [],
+  "manifest_sha256": "ba8eb86d887b44dd44314c6a45c776639bf11bb27f0e92ba2ce24978c3206989",
+  "manifest_sha256_field": "ba8eb86d887b44dd44314c6a45c776639bf11bb27f0e92ba2ce24978c3206989",
+  "member_count": 190,
+  "missing": [],
+  "ordered": true,
+  "safety": {
+    "close_failure_raises": true,
+    "decision_frame_check": true,
+    "management_module": true,
+    "missing_candle_returns_before_position_block": true,
+    "order_gate_before_create": true,
+    "process_start_block": true,
+    "protective_close": true,
+    "provenance_v2": true,
+    "sealed_entry_quote": true,
+    "startup_fail_closed": true,
+    "strategy_deactivation": true
+  },
+  "sensitive": [
+    {
+      "finding": "example_database_password:len=8",
+      "path": ".env.example"
+    },
+    {
+      "finding": "compose_references_database_password_interpolation",
+      "path": "docker-compose.yml"
+    }
+  ],
+  "sensitive_disclosed": true,
+  "unexpected": [],
+  "unexpected_types": [],
+  "unsafe_paths": []
+}

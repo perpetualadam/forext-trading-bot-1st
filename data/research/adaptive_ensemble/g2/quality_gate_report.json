@@ -1,0 +1,71 @@
+{
+  "duration": "INSUFFICIENT_INDEPENDENT_DURATION",
+  "pairs": [
+    {
+      "bid_ask": true,
+      "complete_trading_days_after_cutoff": 0,
+      "independence_label": "PREVIOUSLY_EXAMINED",
+      "pair": "EUR_USD",
+      "promoted_to_validation_ready": false,
+      "rows": 74572,
+      "status": "WARN",
+      "unexpected_gaps": 21,
+      "warmup_ok_v2": true
+    },
+    {
+      "bid_ask": true,
+      "complete_trading_days_after_cutoff": 0,
+      "independence_label": "PREVIOUSLY_EXAMINED",
+      "pair": "GBP_USD",
+      "promoted_to_validation_ready": false,
+      "rows": 74555,
+      "status": "WARN",
+      "unexpected_gaps": 35,
+      "warmup_ok_v2": true
+    },
+    {
+      "bid_ask": true,
+      "complete_trading_days_after_cutoff": 0,
+      "independence_label": "PREVIOUSLY_EXAMINED",
+      "pair": "USD_JPY",
+      "promoted_to_validation_ready": false,
+      "rows": 74557,
+      "status": "WARN",
+      "unexpected_gaps": 33,
+      "warmup_ok_v2": true
+    },
+    {
+      "bid_ask": true,
+      "complete_trading_days_after_cutoff": 0,
+      "independence_label": "PREVIOUSLY_EXAMINED",
+      "pair": "AUD_USD",
+      "promoted_to_validation_ready": false,
+      "rows": 74563,
+      "status": "WARN",
+      "unexpected_gaps": 29,
+      "warmup_ok_v2": true
+    },
+    {
+      "bid_ask": true,
+      "complete_trading_days_after_cutoff": 0,
+      "independence_label": "PREVIOUSLY_EXAMINED",
+      "pair": "USD_CAD",
+      "promoted_to_validation_ready": false,
+      "rows": 74560,
+      "status": "WARN",
+      "unexpected_gaps": 30,
+      "warmup_ok_v2": true
+    },
+    {
+      "bid_ask": true,
+      "complete_trading_days_after_cutoff": 0,
+      "independence_label": "PREVIOUSLY_EXAMINED",
+      "pair": "USD_CHF",
+      "promoted_to_validation_ready": false,
+      "rows": 74514,
+      "status": "WARN",
+      "unexpected_gaps": 64,
+      "warmup_ok_v2": true
+    }
+  ]
+}

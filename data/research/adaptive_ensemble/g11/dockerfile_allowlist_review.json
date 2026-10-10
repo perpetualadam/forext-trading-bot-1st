@@ -1,0 +1,16 @@
+{
+  "allowlist_count": 63,
+  "closure_resolved": true,
+  "dockerfile_sha256": "f8d537d84c8ab004c5fc2cbdc5ef58e8141f5ca66a13be6cc5eac38c7c7006a6",
+  "patch_applied": false,
+  "patch_copies_research": false,
+  "patch_missing_allowlist_files": [],
+  "patch_note": "The review patch emits COPY main.py twice. The second line is redundant and was not applied.",
+  "required_init_files_present": [
+    "forex_bot/__init__.py",
+    "forex_bot/decision_repair/__init__.py",
+    "forex_bot/v2_shadow/__init__.py"
+  ],
+  "snapshot_drift": [],
+  "trace": "allowlist hashes match the frozen G.10 manifest and the current working tree"
+}

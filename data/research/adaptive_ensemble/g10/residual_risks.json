@@ -1,0 +1,14 @@
+{
+  "risks": [
+    "The Dockerfile still copies the whole forex_bot package. A build performed from the current Dockerfile would not use the proposed allowlist.",
+    "Docker daemon interpretation of .dockerignore was not tested.",
+    "The running container image digest was not read and is unverified.",
+    "No rollback image was verified. The historical unsafe image must not be used as a rollback target.",
+    "docker-compose.yml still bind-mounts data/ops and data/research/v2_shadow. Excluding data/ from the build context does not remove those mounts.",
+    "Static import analysis found no dynamic imports. A future string-loaded plugin would not be visible to this closure.",
+    "Windows reparse points inside data/ and .git were not enumerated.",
+    ".env.example contains an example database password. Only its length, 8, is recorded. It is not a live token and it is not in the proposed image allowlist.",
+    "The reviewed snapshot includes research source so the candidate can be audited. That inclusion is not permission to copy research into an image.",
+    "The scoped suite is 508 tests. Paths outside that suite were not re-run."
+  ]
+}

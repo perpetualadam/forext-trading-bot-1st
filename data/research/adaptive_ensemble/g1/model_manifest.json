@@ -1,0 +1,115 @@
+{
+  "candidate_ids": [
+    "proxy_trend_ma_slope_v1",
+    "proxy_rsi_mean_reversion_v1",
+    "proxy_atr_expansion_breakout_v1"
+  ],
+  "candidate_versions": {
+    "proxy_atr_expansion_breakout_v1": "1",
+    "proxy_rsi_mean_reversion_v1": "1",
+    "proxy_trend_ma_slope_v1": "1"
+  },
+  "code_file_sha256": {
+    "candidates.py": "834bd598b721460c086c95ed668cbeb5a8ae3fcf9db5ace24e2c2d67e65d3e36",
+    "evaluate.py": "69d7b27d26299679923b7599ec607e76b81f8b28bd9fc008618e29fb7ac224b6",
+    "features.py": "44776ab86185bfa0149e0855ea7c30410d6bfe69557a26af492d07e4abf24f7e",
+    "models.py": "be91e4ee6824a0c4791866a497fc5729b9711fb4b0feec3f91a73f239e34ee83",
+    "protocol.py": "1538c7121c40b7f48ff8b2ecf6284880ad6b4ec88e752857af32623c2cd3475b",
+    "simulate.py": "43075421a6f91cb53c745c8feb09e6f01d02492d22516ead142497a9e09d80a3"
+  },
+  "dependencies": {
+    "numpy": "2.2.2",
+    "pandas": "2.2.3"
+  },
+  "dynamic_weight_eta": 0.15,
+  "dynamic_weight_schema_stage_g": "exp_weights_v1",
+  "execution_assumptions": {
+    "daily_loss_halt_pct": 0.02,
+    "decision_stride": 12,
+    "fill": "next_bar_executable_bid_ask",
+    "financing": "UNAVAILABLE",
+    "gbp_fx_label": "ESTIMATE",
+    "gbp_usd_fx": 1.35,
+    "max_dd_halt_pct": 0.05,
+    "max_hold_bars": 24,
+    "same_bar_sl_tp": "conservative_skip_if_ambiguous",
+    "sl_atr": 1.5,
+    "start_nav_gbp": 97.0,
+    "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE",
+    "tp_atr": 2.0,
+    "units": 1000.0
+  },
+  "feature_version": "stage_g_features_v1",
+  "frozen_utc": "2026-10-09T06:38:14+00:00",
+  "g1_repair_layer": {
+    "change_class": "BEHAVIOURAL_REPAIR_REQUIRES_REBASELINE",
+    "dynamic_weight_schema": "exp_weights_v2",
+    "files": {
+      "accounting.py": "f90432f7ee9528497648e9ff60ea877b96b6c87ac206e7a1fd2d4f38fb3ec16b",
+      "conversion.py": "5aba7ea7e111b6a07998e8dc11e35e4cf5e3f7ef8034537997e583f461b86115",
+      "importer.py": "b75125b24fb85d53f524b32f51c73019cb5352ff17acb0f1199a59af4dae2917",
+      "portfolio.py": "c311f603834735e2763c538fcc57acf64b123e289ff094d248ecab764edddfab",
+      "provenance.py": "f151c9b4ef67ac4ae7de3116750bf6555b0df98a4c523a51fe9bf9231b365570",
+      "quality.py": "ff3ec38330f538c19b3bb81b5c8805e5f61e228bb750439d8e6be937c2e4bf1c",
+      "state_v2.py": "da52797cba800be21076394d4b8bd4aad34aed2f48150954ab47cfcf08aae2c7"
+    },
+    "inherits_stage_g_historical_results": false,
+    "note": "v2 fail-closed state and conversion interface; Stage G v1 silent reset preserved."
+  },
+  "git_revision_at_g1": "f6c4f40ae6b7614379347ed45141ecd5a3d33642",
+  "initial_weights": {
+    "proxy_atr_expansion_breakout_v1": 1.0,
+    "proxy_rsi_mean_reversion_v1": 1.0,
+    "proxy_trend_ma_slope_v1": 1.0
+  },
+  "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+  "manifest_id": "stage_g_model_package_v1",
+  "no_trade_rules": [
+    "no eligible candidate",
+    "regime uncertain/unsuitable",
+    "signal conflict",
+    "spread_excessive",
+    "missing features"
+  ],
+  "protocol_hash": "539cdc083f83393a79d254d21385edc6c48e88eb0f085d4549df9fdd6d431bc0",
+  "protocol_id": "stage_g_adaptive_ensemble_v1",
+  "protocol_version": "1",
+  "python": "3.13.5",
+  "regime_map": {
+    "breakout": "proxy_atr_expansion_breakout_v1",
+    "high_vol_transition": "proxy_atr_expansion_breakout_v1",
+    "low_vol_consolidation": null,
+    "ranging": "proxy_rsi_mean_reversion_v1",
+    "trending": "proxy_trend_ma_slope_v1",
+    "uncertain": null
+  },
+  "risk_assumptions": {
+    "daily_loss_halt_pct": 0.02,
+    "financing": "UNAVAILABLE",
+    "max_dd_halt_pct": 0.05,
+    "start_nav_gbp": 97.0,
+    "start_nav_label": "SIMULATION_ASSUMPTION_NOT_BROKER_BALANCE"
+  },
+  "slippage_atr": {
+    "ablation_no_cost_filter": 0.0,
+    "base": 0.0,
+    "conservative": 0.25,
+    "severe": 0.5
+  },
+  "spread_atr_filters": {
+    "ablation_no_cost_filter": 99.0,
+    "base": 0.35,
+    "conservative": 0.25,
+    "severe": 0.15
+  },
+  "stage_g_findings_immutable": {
+    "assessment": "EXPLORATORY_NO_CREDIBLE_EDGE",
+    "retune": false
+  },
+  "vote_min_agree": 2,
+  "vote_use_confidence": false,
+  "weight_bounds": [
+    0.05,
+    5.0
+  ]
+}

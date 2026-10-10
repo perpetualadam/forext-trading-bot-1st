@@ -153,6 +153,8 @@ services:
       HYBRID_OHLCV_COUNT: ${HYBRID_OHLCV_COUNT:-}
       TZ: ${TZ:-Europe/London}
       FX_SESSION_ALWAYS: ${FX_SESSION_ALWAYS:-}
+      LIVE_SAFETY_STATE_PATH: ${LIVE_SAFETY_STATE_PATH:-/app/data/ops/live_safety_state.json}
+      DECISION_SKIP_LOG_INTERVAL_SEC: ${DECISION_SKIP_LOG_INTERVAL_SEC:-}
       LIVE_TIMEZONE: ${LIVE_TIMEZONE:-auto}
       LIVE_WINDOW_LOG: ${LIVE_WINDOW_LOG:-1}
       LIVE_EUR_USD_START: ${LIVE_EUR_USD_START:-}
@@ -197,6 +199,8 @@ services:
     volumes:
       # V2 shadow JSONL must survive container recreate/rebuild. Observe-only.
       - ./data/research/v2_shadow:/app/data/research/v2_shadow
+      # Fail-closed live-order authorisation + strategy activation (JSON; no DB migration).
+      - ./data/ops:/app/data/ops
     depends_on:
       db:
         condition: service_healthy

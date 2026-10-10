@@ -1,0 +1,47 @@
+{
+  "git_head": "f6c4f40ae6b7614379347ed45141ecd5a3d33642",
+  "working_tree_dirty": true,
+  "porcelain_count": 53,
+  "protocol_hash": "539cdc083f83393a79d254d21385edc6c48e88eb0f085d4549df9fdd6d431bc0",
+  "protocol_verified": true,
+  "g3_raw_set_sha256": "f584893ba27e4c3f9dbbe102906ca91dc1f05799cf5d9f330a6cd591bf22b756",
+  "g3_raw_verified": true,
+  "g3_normalised": [
+    {
+      "path": "data/research/adaptive_ensemble/g3/normalized/AUD_USD_M5.csv",
+      "sha256": "d75312decbb4c72858621a0b5a9af6103f72b01593ae26e9df4ef19a06104583"
+    },
+    {
+      "path": "data/research/adaptive_ensemble/g3/normalized/EUR_USD_M5.csv",
+      "sha256": "c9016c8443ecc44fd0cf6ed5acb44656eae09ee3ef5b7d9fe9a334152c764b14"
+    },
+    {
+      "path": "data/research/adaptive_ensemble/g3/normalized/GBP_USD_M5.csv",
+      "sha256": "272c7ff448ff91f587946c8b7a4335bacd04ae488c95f066e4a29cfec700c4f6"
+    },
+    {
+      "path": "data/research/adaptive_ensemble/g3/normalized/USD_CAD_M5.csv",
+      "sha256": "e8fd5cf2acd20c481167d5ef5d0b77b7beaed9c190a8832c1291ffdee4475743"
+    },
+    {
+      "path": "data/research/adaptive_ensemble/g3/normalized/USD_CHF_M5.csv",
+      "sha256": "7119ac28e67faaa24246c2bf9e0b8a863092328fa64b0694b4132e6835ea249f"
+    },
+    {
+      "path": "data/research/adaptive_ensemble/g3/normalized/USD_JPY_M5.csv",
+      "sha256": "542a307964b9a365d28ca923905b5be6595c136261d52e92c154d0d29b35fd42"
+    }
+  ],
+  "g3_normalised_verified": true,
+  "g4_policy_hash": "6ea84361d6fec3e1743fce2c238940d9f2fda50b78b1d5e305d07d18650d29d4",
+  "g4_package_hash": "05b56d1ed7736025e86a9e3f94fb44bb49ea6208718aab7af9cfde6977a6c201",
+  "g4_verified": true,
+  "g6_classification": "DEPLOYMENT_REVIEW_FAILED_REPAIRS_REQUIRED",
+  "frozen_artifacts_preserved": true,
+  "durable_auth_state": "BLOCKED",
+  "durable_auth_reason": "operator_preflight_blocked",
+  "durable_auth_updated_at_utc": "2026-10-08T22:24:23.529484+00:00",
+  "strategies_active": [],
+  "docker_commands_issued": false,
+  "broker_requests": 0
+}

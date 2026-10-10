@@ -1,0 +1,22 @@
+{
+  "commands": [
+    {
+      "command": "python -m ruff check forex_bot/research/adaptive_ensemble/g6_review.py tests/test_market_provenance_g6.py",
+      "result": "All checks passed"
+    },
+    {
+      "command": "python -m mypy forex_bot/research --ignore-missing-imports",
+      "result": "Success: no issues found in 38 source files"
+    },
+    {
+      "command": "python -m pytest tests/test_market_provenance_g6.py tests/test_market_provenance_g5.py tests/test_live_safety_repair.py tests/test_decision_repair.py tests/test_decision_repair_f1.py tests/test_decision_repair_f2.py tests/test_adaptive_ensemble_stage_g.py tests/test_adaptive_ensemble_stage_g1.py tests/test_adaptive_ensemble_stage_g2.py tests/test_adaptive_ensemble_stage_g3.py tests/test_adaptive_ensemble_stage_g4.py tests/test_execution_safety.py tests/test_execution_headroom.py tests/test_live_position_management.py tests/test_broker_exit_accounting.py -q --tb=line",
+      "passed": 267,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "stage_g6_tests": 8,
+  "coverage_limitation": "Scoped to the review, provenance, live-safety, decision-repair, research, order, and position-management tests. Not a full-project run.",
+  "broker_requests": 0,
+  "docker_commands": 0
+}

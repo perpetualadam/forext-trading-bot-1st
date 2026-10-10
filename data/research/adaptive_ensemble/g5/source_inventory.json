@@ -1,0 +1,114 @@
+{
+  "sources": [
+    {
+      "freshness_verification": "acquisition_age_and_last_bar_age",
+      "order_path_reachable": true,
+      "production_reachable": true,
+      "provenance_verification": "sealed_at_successful_response",
+      "risk_classification": "PRODUCTION_REACHABLE_BLOCKED",
+      "source_classification": "OANDA_LIVE_VERIFIED",
+      "source_name": "OANDA InstrumentsCandles via fetch_ohlcv",
+      "trading_decision_reachable": true,
+      "verification": "verified_code_path"
+    },
+    {
+      "freshness_verification": "acquisition_monotonic_age",
+      "order_path_reachable": true,
+      "production_reachable": true,
+      "provenance_verification": "sealed_at_successful_response",
+      "risk_classification": "PRODUCTION_REACHABLE_BLOCKED",
+      "source_classification": "OANDA_LIVE_VERIFIED",
+      "source_name": "OANDA PricingInfo via fetch_pricing_snapshot",
+      "trading_decision_reachable": false,
+      "verification": "verified_code_path"
+    },
+    {
+      "freshness_verification": "not_eligible",
+      "order_path_reachable": false,
+      "production_reachable": false,
+      "provenance_verification": "stamped_historical_not_live",
+      "risk_classification": "SAFE_RESEARCH_ONLY",
+      "source_classification": "OANDA_HISTORICAL_VERIFIED",
+      "source_name": "OANDA historical range via fetch_ohlcv_range",
+      "trading_decision_reachable": false,
+      "verification": "verified_code_path"
+    },
+    {
+      "freshness_verification": "not_eligible",
+      "order_path_reachable": false,
+      "production_reachable": false,
+      "provenance_verification": "stamped_imported",
+      "risk_classification": "SAFE_RESEARCH_ONLY",
+      "source_classification": "IMPORTED_UNVERIFIED",
+      "source_name": "CSV load_ohlcv_csv",
+      "trading_decision_reachable": false,
+      "verification": "verified_code_path"
+    },
+    {
+      "freshness_verification": "manage_path_keeps_90s_last_change_check",
+      "order_path_reachable": false,
+      "production_reachable": true,
+      "provenance_verification": "downgraded_on_store",
+      "risk_classification": "PRODUCTION_REACHABLE_BLOCKED",
+      "source_classification": "CACHED_UNVERIFIED",
+      "source_name": "process pricing snapshot cache",
+      "trading_decision_reachable": false,
+      "verification": "verified_code_path"
+    },
+    {
+      "freshness_verification": "not_eligible",
+      "order_path_reachable": false,
+      "production_reachable": false,
+      "provenance_verification": "stamped_synthetic",
+      "risk_classification": "SAFE_RESEARCH_ONLY",
+      "source_classification": "SYNTHETIC_TEST",
+      "source_name": "research synthetic_market",
+      "trading_decision_reachable": false,
+      "verification": "verified_code_path"
+    },
+    {
+      "freshness_verification": "not_eligible",
+      "order_path_reachable": false,
+      "production_reachable": false,
+      "provenance_verification": "file_is_not_a_live_seal",
+      "risk_classification": "SAFE_RESEARCH_ONLY",
+      "source_classification": "OANDA_HISTORICAL_VERIFIED",
+      "source_name": "Stage G.3 normalised candles",
+      "trading_decision_reachable": false,
+      "verification": "verified_code_path"
+    },
+    {
+      "freshness_verification": "not_eligible",
+      "order_path_reachable": false,
+      "production_reachable": false,
+      "provenance_verification": "opt_in_disconnected_loader",
+      "risk_classification": "SAFE_RESEARCH_ONLY",
+      "source_classification": "REPLAYED_DATA",
+      "source_name": "shadow replay CSV",
+      "trading_decision_reachable": false,
+      "verification": "verified_code_path"
+    },
+    {
+      "freshness_verification": "not_eligible",
+      "order_path_reachable": false,
+      "production_reachable": false,
+      "provenance_verification": "offline_inventory_only",
+      "risk_classification": "SAFE_RESEARCH_ONLY",
+      "source_classification": "IMPORTED_UNVERIFIED",
+      "source_name": "decision_quality recursive CSV scan",
+      "trading_decision_reachable": false,
+      "verification": "verified_not_on_order_path"
+    },
+    {
+      "freshness_verification": "rejected",
+      "order_path_reachable": false,
+      "production_reachable": true,
+      "provenance_verification": "no_object_is_minted",
+      "risk_classification": "PRODUCTION_REACHABLE_BLOCKED",
+      "source_classification": "UNKNOWN",
+      "source_name": "missing or failed broker response",
+      "trading_decision_reachable": false,
+      "verification": "verified_code_path"
+    }
+  ]
+}

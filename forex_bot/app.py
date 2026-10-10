@@ -175,6 +175,7 @@ def _system_snapshot() -> dict[str, Any]:
     from forex_bot.execution_metrics import snapshot as execution_metrics_snapshot
     from forex_bot.orders import orders_summary
     from forex_bot.portfolio_exposure import exposure_snapshot
+    from forex_bot.live_safety import live_safety_snapshot
     from forex_bot.reconciliation import (
         get_reconciliation_snapshot,
         new_entries_allowed_by_reconcile,
@@ -205,6 +206,7 @@ def _system_snapshot() -> dict[str, Any]:
         "symbols": list(Config.SYMBOLS),
         "live_windows": live_windows_status(),
         "oanda_account": last_account_summary() or None,
+        **live_safety_snapshot(),
         **operational_state_payload(),
         **operational_events_payload(),
     }
@@ -245,6 +247,11 @@ def _serialize_trades(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     _ = app
+    from forex_bot.log_config import configure_forex_bot_logging
+    from forex_bot.live_safety import initialise_fail_closed
+
+    configure_forex_bot_logging()
+    initialise_fail_closed()  # fail-closed JSON; never auto-allows live orders
     set_lifespan_phase("starting")
     get_connection()
     from forex_bot.orders import load_open_orders_from_db_into_memory

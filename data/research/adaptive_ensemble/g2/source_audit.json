@@ -1,0 +1,66 @@
+{
+  "approval_required": true,
+  "broker_api_calls_made": false,
+  "credential_environment_reason": "Practice vs live cannot be verified without reading secret token/account values; not attempted.",
+  "credential_environment_verified": false,
+  "credentials_read": false,
+  "label": "EXPERIMENTAL_ADAPTIVE_ENSEMBLE_OFFLINE",
+  "proposed_request_if_approved": {
+    "completion": "parse_candles_payload keeps complete=true candles only",
+    "helper": "forex_bot.oanda_candles_read.live_instruments_candles_request",
+    "instruments": [
+      "EUR_USD",
+      "GBP_USD",
+      "USD_JPY",
+      "AUD_USD",
+      "USD_CAD",
+      "USD_CHF"
+    ],
+    "invoked_in_g2": false,
+    "method": "GET",
+    "not_requested": [
+      "POST orders",
+      "PUT/PATCH trades",
+      "account configuration",
+      "position close",
+      "order cancel/replace"
+    ],
+    "pagination": "from/to windows; OANDA_MAX_CANDLES_PER_REQUEST example 5000, helper default delay 0.6s/page",
+    "params": {
+      "from": "2026-08-31T23:50:00.000000000Z",
+      "granularity": "M5",
+      "price": "MBA",
+      "to": "BOUNDED_OPERATOR_CHOSEN_UTC_END"
+    },
+    "path": "/v3/instruments/{instrument}/candles",
+    "purpose": "completed M5 bid/ask OHLC after Stage E/G window for later independent validation",
+    "rate_limit": "process-wide oanda_rate_limit default 10 rps, official ceiling 120 rps"
+  },
+  "public_credential_free_source": [],
+  "sources": [
+    {
+      "class": "local_files_already_present",
+      "independent": false,
+      "path": "data/historical/*_M5.csv"
+    },
+    {
+      "auth_required": true,
+      "bid_ask": "price=MBA requests mid+bid+ask when the account is entitled",
+      "can_alter_account_state": "not_demonstrated_in_helper; helper constructs InstrumentsCandles only",
+      "class": "configured_broker_market_data",
+      "demonstrably_order_mutating": false,
+      "endpoint": "GET /v3/instruments/{instrument}/candles",
+      "http_method": "GET",
+      "practice_or_live": "UNKNOWN_without_reading_secrets",
+      "read_only_guarantee": "Helper uses oandapyV20 InstrumentsCandles. This stage does not treat GET as automatically safe. No request was sent.",
+      "remaining_concerns": [
+        "Token may be live or practice and is likely the production bot token.",
+        "Rate limiter is process-wide and shared with order paths if called in-process.",
+        "Must not be invoked from the live bot container."
+      ],
+      "shared_with_production": "UNKNOWN_without_reading_secrets",
+      "status": "DATA_SOURCE_REQUIRES_OPERATOR_APPROVAL"
+    }
+  ],
+  "status": "DATA_SOURCE_REQUIRES_OPERATOR_APPROVAL"
+}

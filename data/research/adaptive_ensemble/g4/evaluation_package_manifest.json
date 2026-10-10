@@ -1,0 +1,36 @@
+{
+  "clarified_g4": [
+    "fx_trading_day_ny1700_v1",
+    "stage_g4_data_quality_policy_v1",
+    "full_timestamp_side_aware_conversion_audit"
+  ],
+  "default_authorised": false,
+  "definition_hash": "bb352b0e4d320a6d6a94764c8e1fdd96a283a8889f4311597aeb75ccba56ef65",
+  "frozen_from_stage_g": [
+    "candidate_ids",
+    "regime_rules",
+    "vote_min_agree",
+    "dynamic_eta",
+    "weight_bounds",
+    "cost_scenarios",
+    "no_trade_benchmark",
+    "minimum_trades_30"
+  ],
+  "inherits_stage_g_historical_pnl": false,
+  "integrity_hash": "05b56d1ed7736025e86a9e3f94fb44bb49ea6208718aab7af9cfde6977a6c201",
+  "live_trading": false,
+  "minimum_complete_sessions": 40,
+  "minimum_trades": 30,
+  "minimum_trades_status": "NOT_YET_EVALUATED",
+  "not_byte_identical_to_stage_g": true,
+  "package_id": "independent_validation_package_v1",
+  "paper_trading": false,
+  "policy_change_class": "BEHAVIOURAL_EVALUATION_SPEC_REQUIRES_NEW_BASELINE",
+  "policy_hash": "6ea84361d6fec3e1743fce2c238940d9f2fda50b78b1d5e305d07d18650d29d4",
+  "protocol_hash": "539cdc083f83393a79d254d21385edc6c48e88eb0f085d4549df9fdd6d431bc0",
+  "repaired_g1": "exp_weights_v2",
+  "repaired_g2": "adaptive_simulator_v2",
+  "runner_id": "independent_validation_runner_v1",
+  "simulator_change_class": "BEHAVIOURAL_REPAIR_REQUIRES_REBASELINE",
+  "weight_change_class": "BEHAVIOURAL_REPAIR_REQUIRES_REBASELINE"
+}

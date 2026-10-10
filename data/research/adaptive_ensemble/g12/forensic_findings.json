@@ -1,0 +1,13 @@
+{
+  "archive_deleted": false,
+  "archive_path": "C:\\Users\\Brian\\AppData\\Local\\Temp\\forex-bot-g12-forensics\\image_save.tar",
+  "archive_sha256": "ba6f8c3659a599bba1a1b322384ae462dc4d43e8de5a73b7f1001ecca606c948",
+  "classification": "IMAGE_FORENSICS_COMPLETE_ROLLBACK_PARTIAL",
+  "credential_values_stored": false,
+  "image_id": "sha256:a905781d872d4a83706c716baa8be6e08c4abef26b2d9f9510a118c2c3039d25",
+  "layers_verified": 9,
+  "rollback_classification": "ROLLBACK_CANDIDATE_PARTIALLY_VERIFIED",
+  "safe_rollback_verified": false,
+  "save_bytes": 111919104,
+  "save_outside_onedrive": true
+}

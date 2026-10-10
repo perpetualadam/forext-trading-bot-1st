@@ -1,0 +1,12 @@
+{
+  "emergency_halt": "blocks new entries and does not block flatten",
+  "failed_close": "local position kept",
+  "fresh_quote": "profit protection can close",
+  "long": "managed and closed on the long side",
+  "missing_quote": "time-triggered broker flatten can still close",
+  "no_position": "no order",
+  "short": "managed and closed on the short side",
+  "stale_quote": "software protection stays off",
+  "timeout": "one attempt, not confirmed",
+  "weekend_flatten": "reachable without candles"
+}

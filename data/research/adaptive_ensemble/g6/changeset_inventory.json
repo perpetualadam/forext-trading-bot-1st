@@ -1,0 +1,35 @@
+{
+  "dockerfile_copy": [
+    "requirements.txt",
+    "forex_bot/",
+    "main.py"
+  ],
+  "dockerignore_excludes_research": false,
+  "head_contains_g5_gate": false,
+  "reproducible_revision": false,
+  "tracked_modifications": {
+    "docker-compose.yml": "stage_a_live_safety_volume",
+    "forex_bot/app.py": "stage_a_startup_fail_closed",
+    "forex_bot/bot_loop.py": "stage_f_decision_logging_and_stage_g5_frame_gate",
+    "forex_bot/csv_ohlcv.py": "stage_g5_imported_stamp",
+    "forex_bot/decision_skip_log.py": "stage_f_skip_log",
+    "forex_bot/execution.py": "stage_a_and_stage_f_entry_gate",
+    "forex_bot/live_manage.py": "stage_g5_quote_field",
+    "forex_bot/oanda_client.py": "stage_g5_acquisition_seals",
+    "forex_bot/oanda_exec.py": "stage_a_close_exemption_and_stage_g5_open_quote_gate",
+    "forex_bot/rl_agent.py": "stage_f_state_requirement",
+    "forex_bot/session_rules.py": "session_window_inclusive_minute",
+    "forex_bot/state.py": "stage_g5_cache_downgrade",
+    "forex_bot/strategy_meta.py": "stage_a_and_stage_f_selection",
+    "forex_bot/telegram_control.py": "stage_a_read_only_safety_snapshot"
+  },
+  "untracked_packages": {
+    "forex_bot/decision_repair/": "stage_f",
+    "forex_bot/live_safety.py": "stage_a",
+    "forex_bot/live_safety_preflight.py": "stage_a",
+    "forex_bot/log_config.py": "stage_a_logging",
+    "forex_bot/market_provenance.py": "stage_g5",
+    "forex_bot/research/": "stage_g_through_g5_not_imported_by_app_startup",
+    "forex_bot/shadow/": "stage_e_shadow"
+  }
+}

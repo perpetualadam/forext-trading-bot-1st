@@ -1,0 +1,17 @@
+{
+  "commands": [
+    "docker version",
+    "docker ps -a --no-trunc",
+    "docker image ls -a --no-trunc --digests",
+    "docker inspect <bot-container>",
+    "docker image inspect <bot-image>",
+    "docker inspect <db-container>",
+    "docker image inspect <unsafe-digest>"
+  ],
+  "daemon_version": "29.1.3",
+  "evidence": "current",
+  "excluded_commands": ["docker exec", "docker run", "docker build", "docker compose", "docker start", "docker stop"],
+  "other_containers_not_inspected": 3,
+  "selection_evidence": "compose project label forexttradingbot1st and service bot",
+  "values_stored": false
+}

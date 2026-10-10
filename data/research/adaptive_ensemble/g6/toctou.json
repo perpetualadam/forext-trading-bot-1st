@@ -1,0 +1,8 @@
+{
+  "auth_rechecked_immediately_before_ordercreate": true,
+  "cross_process_account_concurrency": "not solved by a process-local seal",
+  "frame_checked_before_order_reservation": true,
+  "frame_not_rechecked_at_ordercreate": true,
+  "multiple_replicas": "compose comment says single worker; seal does not coordinate processes",
+  "quote_rechecked_inside_order_function": true
+}
