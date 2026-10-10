@@ -1,0 +1,10 @@
+# Frozen research hashes were taken from the Windows working tree.
+# Check out text as CRLF so Linux CI hashes the same bytes.
+* text=auto eol=crlf
+*.tar binary
+*.zip binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.pkl binary

@@ -487,7 +487,10 @@ def test_bot_loop_discards_v2_return_and_swallows_errors():
     assert "_observe_v2_shadow_candidate(" in src
     assert "_persist_v2_shadow_market_m5(" in src
     assert 'except Exception:\n        logger.exception("[V2 SHADOW] observe failed (ignored)")' in src
-    assert 'except Exception:\n        logger.exception("[V2 SHADOW] market persist failed (ignored)")' in src
+    assert (
+        'except Exception:\n            logger.exception("[V2 SHADOW] market persist failed (ignored)")'
+        in src
+    )
     helper = src.split("def _observe_v2_shadow_candidate", 1)[1].split("async def evaluate", 1)[0]
     assert "return maybe_observe_candidate" not in helper
     assert "direction =" not in helper

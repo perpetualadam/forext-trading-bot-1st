@@ -205,9 +205,12 @@ def test_recorder_introduces_zero_additional_broker_requests():
     assert oanda.count('params = {"granularity": granularity, "count": count, "price": "MBA"}') == 1
     assert "price\": \"MBA\"" in oanda
     loop = Path("forex_bot/bot_loop.py").read_text(encoding="utf-8")
-    assert loop.count("fetch_ohlcv, symbol, \"M5\", ohlcv_count") == 1
+    assert loop.count('await asyncio.to_thread(fetch_ohlcv, symbol, "M5", count)') == 1
     assert "_persist_v2_shadow_market_m5(symbol, raw)" in loop
-    assert 'except Exception:\n        logger.exception("[V2 SHADOW] market persist failed (ignored)")' in loop
+    assert (
+        'except Exception:\n            logger.exception("[V2 SHADOW] market persist failed (ignored)")'
+        in loop
+    )
 
 
 def test_fetch_ohlcv_mba_keeps_mid_and_skips_forming(monkeypatch):
