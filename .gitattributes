@@ -8,3 +8,9 @@
 *.jpeg binary
 *.webp binary
 *.pkl binary
+forex_bot/alerts.py text eol=lf
+forex_bot/analytics.py text eol=lf
+forex_bot/bot_loop.py text eol=lf
+forex_bot/entry_geometry.py text eol=lf
+forex_bot/indicators.py text eol=lf
+forex_bot/oanda_exec.py text eol=lf
