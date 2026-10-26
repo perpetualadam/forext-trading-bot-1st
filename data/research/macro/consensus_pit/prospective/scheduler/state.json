@@ -1,6 +1,6 @@
 {
-  "last_run_utc": "2026-10-26T14:35:01Z",
-  "last_success_utc": "2026-10-26T14:35:01Z",
+  "last_run_utc": "2026-10-26T18:55:02Z",
+  "last_success_utc": "2026-10-26T18:55:02Z",
   "processed": {
     "usd_empsit_2026-10-02|T0-48h": {
       "status": "CHECKPOINT_DUE",
@@ -2528,6 +2528,126 @@
       "checkpoint_id": "T0-5m",
       "checkpoint_utc": "2026-10-14T12:25:00Z",
       "processing_started_utc": "2026-10-14T12:25:01Z",
+      "observed_at_utc": null,
+      "adapters": [
+        {
+          "source_id": "trading_economics",
+          "considered": true,
+          "allowed": false,
+          "reason": "GLOBAL_FLAG_FALSE"
+        },
+        {
+          "source_id": "bls_official",
+          "considered": true,
+          "allowed": false,
+          "reason": "SOURCE_DISABLED"
+        },
+        {
+          "source_id": "manual_operator",
+          "considered": true,
+          "allowed": false,
+          "reason": "GLOBAL_FLAG_FALSE"
+        },
+        {
+          "source_id": "reuters",
+          "considered": true,
+          "allowed": false,
+          "reason": "GLOBAL_FLAG_FALSE"
+        },
+        {
+          "source_id": "factset_insight",
+          "considered": true,
+          "allowed": false,
+          "reason": "GLOBAL_FLAG_FALSE"
+        },
+        {
+          "source_id": "dow_jones",
+          "considered": true,
+          "allowed": false,
+          "reason": "GLOBAL_FLAG_FALSE"
+        },
+        {
+          "source_id": "bloomberg",
+          "considered": true,
+          "allowed": false,
+          "reason": "GLOBAL_FLAG_FALSE"
+        },
+        {
+          "source_id": "fixture_provider_a",
+          "considered": true,
+          "allowed": false,
+          "reason": "GLOBAL_FLAG_FALSE"
+        },
+        {
+          "source_id": "fixture_provider_b",
+          "considered": true,
+          "allowed": false,
+          "reason": "GLOBAL_FLAG_FALSE"
+        },
+        {
+          "source_id": "fixture_provider_c",
+          "considered": true,
+          "allowed": false,
+          "reason": "GLOBAL_FLAG_FALSE"
+        },
+        {
+          "source_id": "fixture_calendar",
+          "considered": true,
+          "allowed": false,
+          "reason": "GLOBAL_FLAG_FALSE"
+        },
+        {
+          "source_id": "frb_official",
+          "considered": true,
+          "allowed": false,
+          "reason": "GLOBAL_FLAG_FALSE"
+        },
+        {
+          "source_id": "econoday",
+          "considered": true,
+          "allowed": false,
+          "reason": "GLOBAL_FLAG_FALSE"
+        },
+        {
+          "source_id": "cme_fedwatch",
+          "considered": true,
+          "allowed": false,
+          "reason": "GLOBAL_FLAG_FALSE"
+        },
+        {
+          "source_id": "fxstreet",
+          "considered": true,
+          "allowed": false,
+          "reason": "GLOBAL_FLAG_FALSE"
+        },
+        {
+          "source_id": "fxmacrodata",
+          "considered": true,
+          "allowed": false,
+          "reason": "GLOBAL_FLAG_FALSE"
+        },
+        {
+          "source_id": "search_engine_snippets",
+          "considered": true,
+          "allowed": false,
+          "reason": "GLOBAL_FLAG_FALSE"
+        },
+        {
+          "source_id": "fred_alfred",
+          "considered": true,
+          "allowed": false,
+          "reason": "GLOBAL_FLAG_FALSE"
+        }
+      ],
+      "result": "NO_ENABLED_SOURCE",
+      "observation": "NO_OBSERVATION_RECORDED"
+    },
+    "usd_fomc_statement_2026-10-28|T0-48h": {
+      "status": "CHECKPOINT_DUE",
+      "macro_event_id": "usd_fomc_statement_2026-10-28",
+      "checkpoint_id": "T0-48h",
+      "checkpoint_utc": "2026-10-26T18:00:00Z",
+      "processing_started_utc": "2026-10-26T18:00:02Z",
       "observed_at_utc": null,
       "adapters": [
         {

@@ -9,6 +9,12 @@ data/ops/*.json
 data/ops/*.json.tmp
 .cursor/
 
+# Local generated archive exports
+/forex_bot.zip
+/forext-trading-bot-1.zip
+/tests.zip
+/data/research/adaptive_ensemble/r77-to-r87.zip
+
 # Local research caches over GitHub's 100 MB file limit / 50 MB warning
 data/research/quant_features/*.pkl
 data/historical/m1/*.csv
