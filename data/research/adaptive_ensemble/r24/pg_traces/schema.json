@@ -1,0 +1,19 @@
+{
+  "pid": 14396,
+  "role": "schema",
+  "ok": true,
+  "tables": [
+    "broker_exit_ledger",
+    "broker_exit_pending",
+    "exec_orders",
+    "operational_event_log",
+    "reconcile_metadata",
+    "trades"
+  ],
+  "fail_closed": false,
+  "route_refusals": [],
+  "socket_blocks": [],
+  "dns_blocks": 0,
+  "dotenv_stubs": 1,
+  "real_broker_calls": 0
+}

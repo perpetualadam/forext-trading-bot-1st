@@ -1,0 +1,9 @@
+{
+  "socket_barrier": "raising socket subclass",
+  "dns_barrier": "raising name lookup",
+  "families_not_permitted": ["AF_INET", "AF_INET6", "AF_UNIX"],
+  "blocked_constructor_attempts": {"r15": 1, "regression": 5, "r10": 5, "r11": 4, "r12": 2, "r13": 3, "r14": 1},
+  "dotenv_stub_calls_per_suite": 1,
+  "network_successes": 0,
+  "dns_successes": 0
+}

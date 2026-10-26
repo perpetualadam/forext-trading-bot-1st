@@ -1,0 +1,185 @@
+{
+  "retries_performed_in_d21": 0,
+  "conditions": [
+    {
+      "id": "F01",
+      "trigger": "Registry hostname mismatch",
+      "required_response": "STOP",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F02",
+      "trigger": "Unexpected authentication requirement",
+      "required_response": "STOP and require separate approval",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F03",
+      "trigger": "TLS verification failure",
+      "required_response": "STOP",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F04",
+      "trigger": "Unapproved redirect",
+      "required_response": "STOP",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F05",
+      "trigger": "Unexpected network destination",
+      "required_response": "STOP",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F06",
+      "trigger": "Response exceeds approved size",
+      "required_response": "STOP",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F07",
+      "trigger": "Unsupported content type",
+      "required_response": "STOP",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F08",
+      "trigger": "Malformed JSON",
+      "required_response": "STOP",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F09",
+      "trigger": "Missing index digest",
+      "required_response": "STOP",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F10",
+      "trigger": "Index digest mismatch",
+      "required_response": "STOP",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F11",
+      "trigger": "Missing linux/amd64 descriptor",
+      "required_response": "STOP",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F12",
+      "trigger": "Missing linux/arm64 descriptor",
+      "required_response": "STOP",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F13",
+      "trigger": "Duplicate or ambiguous descriptors",
+      "required_response": "STOP",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F14",
+      "trigger": "Platform manifest digest mismatch",
+      "required_response": "STOP",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F15",
+      "trigger": "Unexpected blob download requirement",
+      "required_response": "STOP",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F16",
+      "trigger": "Rate limit or repeated server errors",
+      "required_response": "STOP",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F17",
+      "trigger": "Incomplete evidence capture",
+      "required_response": "STOP",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F18",
+      "trigger": "Any attempted Docker execution",
+      "required_response": "STOP and classify as a scope violation",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F19",
+      "trigger": "Any attempted image pull",
+      "required_response": "STOP and classify as a scope violation",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    },
+    {
+      "id": "F20",
+      "trigger": "Any production access",
+      "required_response": "STOP and classify as a scope violation",
+      "retry_allowed": false,
+      "further_approval_required": true,
+      "evidence_to_preserve": "request path, status, and any bytes already received, without treating them as verified",
+      "classification": "VERIFICATION_STOPPED"
+    }
+  ]
+}

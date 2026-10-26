@@ -1,0 +1,65 @@
+{
+  "commands_executed": [
+    "git rev-parse HEAD",
+    "git branch --show-current",
+    "git status --short -- protected files",
+    "Python standard-library HTTPS client"
+  ],
+  "network_request_count": 3,
+  "request_methods": [
+    "GET"
+  ],
+  "request_hosts": [
+    "auth.docker.io",
+    "registry-1.docker.io"
+  ],
+  "request_paths": [
+    "/v2/library/python/blobs/sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+    "/token",
+    "/v2/library/python/blobs/sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524"
+  ],
+  "http_statuses": [
+    401,
+    200,
+    307
+  ],
+  "third_request_log_note": "The 307 was raised by the redirect handler before the original request logger stored it. The record was completed from that control flow. The Location value was not stored.",
+  "files_created_before_log": [
+    "01_baseline_integrity.json",
+    "02_approval_scope.json",
+    "03_local_oci_revalidation.json",
+    "04_network_boundary.json",
+    "05_request_budget.json",
+    "06_authentication_result.json",
+    "07_amd64_request.json",
+    "08_amd64_response_metadata.json",
+    "10_amd64_config_verification.json",
+    "11_arm64_request.json",
+    "12_arm64_response_metadata.json",
+    "14_arm64_config_verification.json",
+    "15_amd64_config_metadata.json",
+    "16_arm64_config_metadata.json",
+    "17_config_comparison.json",
+    "18_runtime_evidence_matrix.json",
+    "19_failure_register.json",
+    "20_gate_a_verdict.json",
+    "21_gate_b_verdict.json",
+    "22_gate_c_verdict.json",
+    "23_gate_d_verdict.json",
+    "24_gate_e_verdict.json",
+    "25_gate_f_verdict.json",
+    "26_gate_g_verdict.json",
+    "27_gate_h_verdict.json",
+    "28_gate_i_verdict.json",
+    "29_gate_j_verdict.json",
+    "30_source_integrity_after.json"
+  ],
+  "files_modified_outside_d24": [],
+  "missing_evidence": [
+    "one or both config blobs"
+  ],
+  "stop": "redirect status 307",
+  "classification": "D24_BLOCKED_REGISTRY_RESPONSE",
+  "docker_commands": 0,
+  "prohibited_operations_observed": false
+}

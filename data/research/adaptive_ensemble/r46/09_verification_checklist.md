@@ -1,0 +1,18 @@
+# R.46 minimum verification checklist
+
+Priority order. No account identifier, credential, or transaction history is requested. Nothing here was queried.
+
+| Priority | Fact still required | Redacted product document | Redacted ticket or instrument screenshot | Public pages already reviewed | Later read-only API, only if separately authorised |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Eligible instrument identifiers for the six names on this spread-betting account | Yes, if the document lists them | Yes, if the ticket shows the symbol that can be selected | No. Only EUR/USD is named in marketing. | A tradable-instruments read could answer it. Not approved now. |
+| 2 | Stake-to-units representation on the v20 ticket | Yes, if it defines the size field | Yes. This is the preferred next evidence. | No. Pages use units and do not define GBP per point. | An instrument or account-instruments field could name the size unit. Not approved now. |
+| 3 | Minimum size and increment | Yes, if printed | Yes, if the ticket shows the step | Not found in R.45 | Same unapproved read |
+| 4 | Pip distance, point distance, and GBP value of one pip at a stated size | Yes, if defined | Yes, if the ticket shows P&L for a known move | Pip arithmetic in examples is not a contract | A pricing or instrument display might show it. A price history download is not the check. |
+| 5 | GBP conversion method and the markup that applies to this product | Yes, if the charge schedule names v20 spread betting | A fill ticket can show the rate used, without a history export | Candidate only: 1.0% on v20 and v20 MT4, and a separate 0.5% financing example | A single redacted conversion field. Not approved now. |
+| 6 | Per-instrument margin rate and retail or professional category | Yes, if the schedule names the account type | A ticket margin figure is one trade, not the schedule | Class caps only. The forex card did not render. | A margin-rate field. Not approved now. |
+| 7 | Margin closeout and NAV field names on this account | The v20 100% description, if the document applies it to spread betting | A screen can show the dial label without being stored as a new balance history | Candidate v20 rule. OANDA One 50% stays excluded unless a later screen contradicts v20. | Summary fields for closeout, read once, not stored as an identifier. Not approved now. |
+| 8 | Stop distance, slippage, and guaranteed-stop premium | Yes, if the product terms include them | Yes. The public text says the distance is on the ticket. | Conflict between the CFD guaranteed-stop page and the spread-betting page | Not approved now |
+| 9 | Financing posting, admin fee, and weekend triple as applied to this account | Yes, if the schedule matches the v20 daily rule | One financing line can show currency and sign. It cannot supply a historical rate series. | Formula and Wednesday rule are candidates. The rate was not retrieved. | Not approved now. No rate is inserted from today's page. |
+| 10 | Currency of fill `pl` and of a financing posting | Yes, if the field dictionary says account currency | Yes, if the ticket labels the money as GBP | The charges page says realised P&L is converted into the home currency. The field name in an API payload was not confirmed for this account. | One redacted fill schema. Not approved now. |
+
+A document or screenshot used later must have account numbers, personal details, and transaction identifiers removed before it is stored. A single labelled margin or P&L example may be kept only if a later stage authorises storing that financial figure. This checklist does not authorise that storage beyond the historical £97.15 snapshot already recorded in the R.46 profile.

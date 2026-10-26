@@ -1,0 +1,98 @@
+{
+  "stage": "G.14.9",
+  "mode": "read_only",
+  "classification_rule": "BASELINE_INTEGRITY_BLOCKED only for an unexpected frozen-artifact mismatch",
+  "result": "MATCH",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "head_match": true,
+  "branch_match": true,
+  "working_tree": "dirty_from_earlier_stages",
+  "working_tree_action": "not reset, cleaned, stashed, or committed",
+  "porcelain_line_count": 40,
+  "porcelain": [
+    " M Dockerfile",
+    " M data/research/macro/consensus_pit/prospective/scheduler/audit.jsonl",
+    " M data/research/macro/consensus_pit/prospective/scheduler/state.json",
+    " M tests/test_g10_snapshot.py",
+    " M tests/test_g11_audit.py",
+    " M tests/test_macro_prospective_recorder_stage2.py",
+    "?? data/research/adaptive_ensemble/g13/",
+    "?? data/research/adaptive_ensemble/g13_1/",
+    "?? data/research/adaptive_ensemble/g14/",
+    "?? data/research/adaptive_ensemble/g14_1/",
+    "?? data/research/adaptive_ensemble/g14_2/",
+    "?? data/research/adaptive_ensemble/g14_3/",
+    "?? data/research/adaptive_ensemble/g14_4/",
+    "?? data/research/adaptive_ensemble/g14_5/",
+    "?? data/research/adaptive_ensemble/g14_6/",
+    "?? data/research/adaptive_ensemble/g14_7/",
+    "?? data/research/adaptive_ensemble/g14_8/",
+    "?? tests/g13_1_baseline.py",
+    "?? tests/g13_packaging.py",
+    "?? tests/g13_publish.py",
+    "?? tests/g14_1_run_stage.py",
+    "?? tests/g14_1_stage.py",
+    "?? tests/g14_1_verify.py",
+    "?? tests/g14_3_supply.py",
+    "?? tests/g14_4_acquire.py",
+    "?? tests/g14_4_inventory.py",
+    "?? tests/g14_4_verify.py",
+    "?? tests/g14_5_audit.py",
+    "?? tests/g14_7_fs.py",
+    "?? tests/g14_7_transport.py",
+    "?? tests/test_g13_1_mutations.py",
+    "?? tests/test_g13_packaging.py",
+    "?? tests/test_g14_1_staging.py",
+    "?? tests/test_g14_3_supply.py",
+    "?? tests/test_g14_4_wheelhouse.py",
+    "?? tests/test_g14_5_security.py",
+    "?? tests/test_g14_6_security.py",
+    "?? tests/test_g14_7_integration.py",
+    "?? tests/test_g14_8_filesystem.py",
+    "?? tests/test_g14_context.py"
+  ],
+  "hashes": {
+    "dockerfile": {
+      "expected": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+      "actual": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+      "match": true
+    },
+    "dockerignore": {
+      "expected": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+      "actual": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+      "match": true
+    },
+    "g10_allowlist": {
+      "expected": "b2d0f66f8a696da5488072720f6d8de7ceccfd8c847d54327d4cfff2e10eb7b4",
+      "actual": "b2d0f66f8a696da5488072720f6d8de7ceccfd8c847d54327d4cfff2e10eb7b4",
+      "match": true
+    },
+    "g10_archive": {
+      "expected": "d0317de858a00b194bc44408932ad6508eec411fe0179b0196175a2985b12277",
+      "actual": "d0317de858a00b194bc44408932ad6508eec411fe0179b0196175a2985b12277",
+      "match": true
+    },
+    "g10_canonical_manifest": {
+      "method": "canonical JSON digest excluding the manifest_sha256 field",
+      "expected": "93c73c21bd6f144e7d656be74128a771c3274025c0e88b8a052ffbc742f417cf",
+      "actual": "93c73c21bd6f144e7d656be74128a771c3274025c0e88b8a052ffbc742f417cf",
+      "match": true
+    },
+    "g7_archive": {
+      "expected": "0ee97accd2d4a8297a053eb26c5138324192ab5b1f700214acf091d0f6487f82",
+      "actual": "0ee97accd2d4a8297a053eb26c5138324192ab5b1f700214acf091d0f6487f82",
+      "match": true
+    },
+    "g7_canonical_manifest": {
+      "method": "canonical JSON digest excluding the manifest_sha256 field",
+      "expected": "ba8eb86d887b44dd44314c6a45c776639bf11bb27f0e92ba2ce24978c3206989",
+      "actual": "ba8eb86d887b44dd44314c6a45c776639bf11bb27f0e92ba2ce24978c3206989",
+      "match": true
+    }
+  },
+  "unexpected_frozen_changes": false,
+  "docker_commands": false,
+  "network_requests": false,
+  "source_modified_by_this_stage": false
+}

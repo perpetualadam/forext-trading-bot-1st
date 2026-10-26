@@ -1,0 +1,5 @@
+{
+  "gate": "B",
+  "result": "PASS",
+  "meaning": "Declarations recorded. Platform remains TARGET_PLATFORM_UNSPECIFIED."
+}

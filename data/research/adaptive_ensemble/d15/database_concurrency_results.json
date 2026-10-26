@@ -1,0 +1,8 @@
+{
+  "evidence": "ACTUAL_CONCURRENT_SOURCE_ISOLATED",
+  "result": "PASS",
+  "borrower_counter": false,
+  "B01-B06": "one connection; connect failure publishes nothing; SQL failure closes the unpublished connection and cursor",
+  "B07-B19": "release waits; stopped worker adds no query and no connection; closed objects are not reused",
+  "B20-B24": "successful lifespan retains the connection; failed startup releases it; network empty"
+}

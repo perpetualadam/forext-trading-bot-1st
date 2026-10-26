@@ -1,0 +1,17 @@
+{
+  "stage": "G.14.5",
+  "cases_against_the_real_helpers": [
+    "import has no network client",
+    "acquisition source has no pip environment filter",
+    "acquisition source has no redirect or artifact-host policy",
+    "named pip and proxy variables are absent from the acquisition helper",
+    "inventory accepts a direct URL requirement",
+    "inventory accepts a VCS requirement",
+    "inventory drops an environment marker",
+    "verifier accepts non-zip bytes when the hash matches",
+    "verifier still rejects a false completion claim",
+    "verifier still rejects a missing manifest dependency edge",
+    "destination guard allows an empty external directory and does not lstat links"
+  ],
+  "not_claimed": "These tests do not show that a live download, redirect, or zip bomb would be rejected. The missing controls were not simulated as if they existed."
+}

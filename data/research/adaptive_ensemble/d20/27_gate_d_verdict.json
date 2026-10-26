@@ -1,0 +1,5 @@
+{
+  "gate": "D",
+  "result": "PASS",
+  "meaning": "Both architecture profiles are UNKNOWN beyond the declared Python minor and the approved reference."
+}

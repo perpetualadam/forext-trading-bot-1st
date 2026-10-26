@@ -1,0 +1,23 @@
+{
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "working_tree": "dirty before D.22",
+  "head_identifies_working_tree_bytes": false,
+  "d22_directory_at_start": "absent",
+  "classification": "D22_BLOCKED_BASELINE_INTEGRITY",
+  "network_access_performed": false,
+  "d21_authoritative_requirements_txt_sha256": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a",
+  "d21_authoritative_length": 64,
+  "d22_instruction_requirements_txt_sha256": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c7f55e70056a7c55d194b0a",
+  "d22_instruction_length": 77,
+  "instruction_matches_d21": false,
+  "actual_requirements_txt_sha256": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a",
+  "actual_matches_d21": true,
+  "expected_value_repaired": false,
+  "requirements_txt_modified": false,
+  "other_protected_files_match_d21": true,
+  "d21_sources": [
+    "data/research/adaptive_ensemble/d21/01_baseline_integrity.json",
+    "data/research/adaptive_ensemble/d21/33_source_integrity_after.json"
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "production_file": "requirements.txt",
+  "development_file": "requirements-dev.txt",
+  "production": [
+    {
+      "line": 1,
+      "text": "python-dotenv>=1.0.0",
+      "distribution": "python-dotenv",
+      "specifier": ">=1.0.0",
+      "classes": [
+        "LOWER_BOUND_ONLY"
+      ],
+      "extra": null,
+      "native_candidate": false
+    },
+    {
+      "line": 2,
+      "text": "pandas>=2.0.0",
+      "distribution": "pandas",
+      "specifier": ">=2.0.0",
+      "classes": [
+        "LOWER_BOUND_ONLY"
+      ],
+      "extra": null,
+      "native_candidate": true
+    },
+    {
+      "line": 3,
+      "text": "numpy>=1.24.0",
+      "distribution": "numpy",
+      "specifier": ">=1.24.0",
+      "classes": [
+        "LOWER_BOUND_ONLY"
+      ],
+      "extra": null,
+      "native_candidate": true
+    },
+    {
+      "line": 4,
+      "text": "requests>=2.31.0",
+      "distribution": "requests",
+      "specifier": ">=2.31.0",
+      "classes": [
+        "LOWER_BOUND_ONLY"
+      ],
+      "extra": null,
+      "native_candidate": false
+    },
+    {
+      "line": 5,
+      "text": "psycopg2-binary>=2.9.9",
+      "distribution": "psycopg2-binary",
+      "specifier": ">=2.9.9",
+      "classes": [
+        "LOWER_BOUND_ONLY"
+      ],
+      "extra": null,
+      "native_candidate": true
+    },
+    {
+      "line": 6,
+      "text": "fastapi>=0.109.0",
+      "distribution": "fastapi",
+      "specifier": ">=0.109.0",
+      "classes": [
+        "LOWER_BOUND_ONLY"
+      ],
+      "extra": null,
+      "native_candidate": false
+    },
+    {
+      "line": 7,
+      "text": "uvicorn[standard]>=0.27.0",
+      "distribution": "uvicorn",
+      "specifier": ">=0.27.0",
+      "classes": [
+        "LOWER_BOUND_ONLY"
+      ],
+      "extra": "standard",
+      "native_candidate": "UNVERIFIED"
+    },
+    {
+      "line": 8,
+      "text": "oandapyV20>=0.7.2",
+      "distribution": "oandapyV20",
+      "specifier": ">=0.7.2",
+      "classes": [
+        "LOWER_BOUND_ONLY"
+      ],
+      "extra": null,
+      "native_candidate": false
+    },
+    {
+      "line": 9,
+      "text": "tzdata>=2024.1",
+      "distribution": "tzdata",
+      "specifier": ">=2024.1",
+      "classes": [
+        "LOWER_BOUND_ONLY"
+      ],
+      "extra": null,
+      "native_candidate": false
+    }
+  ],
+  "development": [
+    {
+      "line": 1,
+      "text": "-r requirements.txt",
+      "classes": [
+        "LOCAL_PATH"
+      ],
+      "role": "includes production manifest"
+    },
+    {
+      "line": 2,
+      "text": "packaging>=22.0",
+      "distribution": "packaging",
+      "specifier": ">=22.0",
+      "classes": [
+        "LOWER_BOUND_ONLY"
+      ]
+    },
+    {
+      "line": 3,
+      "text": "pytest>=8.3.5,<9",
+      "distribution": "pytest",
+      "specifier": ">=8.3.5,<9",
+      "classes": [
+        "BOUNDED_RANGE"
+      ]
+    }
+  ],
+  "lockfiles": [],
+  "indexes_contacted": 0
+}

@@ -1,0 +1,16 @@
+{
+  "collected": 171,
+  "executed": 165,
+  "passed": 165,
+  "failed": 0,
+  "skipped": 6,
+  "not_evaluated": ["J166", "J167", "J168", "J169", "J170", "J171"],
+  "selector_records": 127,
+  "vote_wrapper_records": 126,
+  "rl_veto_records": 124,
+  "account_gate_records": 123,
+  "inert_adapter_records": 60,
+  "fake_requests_summed": 60,
+  "production_adapter_invocations": 0,
+  "real_broker_requests": 0
+}

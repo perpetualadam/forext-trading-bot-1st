@@ -1,0 +1,25 @@
+{
+  "filled": {
+    "selected": "mean_reversion",
+    "used": "mean_reversion",
+    "ignored": "trend",
+    "outcome": "recorded",
+    "order_status": "FILLED",
+    "broker_calls": 1,
+    "production_eligible": false,
+    "second_blocked_by": "position_already_open",
+    "second_exposure_read": "exposure_unconfirmed",
+    "second_broker_calls": 0,
+    "second_reservation": false
+  },
+  "ambiguous": {
+    "outcome": "ambiguous",
+    "order_status": "UNRESOLVED",
+    "exposure": "exposure_unconfirmed",
+    "broker_calls": 1,
+    "second_blocked_by": "exposure_unconfirmed",
+    "second_broker_calls": 0,
+    "second_reservation": false
+  },
+  "null_legacy_selector": "select_strategy returns None while every strategy is inactive"
+}

@@ -1,0 +1,32 @@
+{
+  "D6-DB-01": {
+    "result": "PASS",
+    "evidence": "ISOLATED_COMPONENT and ACTUAL_LIFESPAN_ISOLATED",
+    "observation": "Cursor, execute, and commit failures return None, roll back, close the new cursor and connection, and leave globals unset. A later call connects again. Cleanup errors are recorded and do not replace the None return. A healthy global connection is not closed."
+  },
+  "D6-DB-02": {
+    "result": "PASS",
+    "evidence": "ACTUAL_LIFESPAN_ISOLATED",
+    "observation": "Broker construction failure and the pre-task alert failure leave zero pending tasks, close the published connection once, and do so with pending_at_close 0. The harness closed zero connections on those paths."
+  },
+  "D6-TASK-01": {
+    "result": "PASS",
+    "evidence": "ACTUAL_LIFESPAN_ISOLATED",
+    "observation": "Failures during the second task, the fourth task, and Telegram start cancel and await every task already created. Pending after application cleanup is 0 and harness cancellation is 0."
+  },
+  "D6-SHUT-01": {
+    "result": "PASS",
+    "evidence": "ACTUAL_LIFESPAN_ISOLATED",
+    "observation": "A Telegram stop failure still cancels and awaits all four tasks. The stop error remains the escaped exception and is recorded."
+  },
+  "D6-SHUT-02": {
+    "result": "PASS",
+    "evidence": "ACTUAL_LIFESPAN_ISOLATED",
+    "observation": "An unexpected exception from the health task, and separately from the reconciliation task, leaves the other tasks done. Three tasks are cancelled and the failing task is finished with the injected error."
+  },
+  "D6-OWN-01": {
+    "result": "RESOLVED_NOT_A_DEFECT",
+    "evidence": "STATIC_ONLY plus ACTUAL_LIFESPAN_ISOLATED",
+    "observation": "The successful-startup connection stays process-global. Normal shutdown does not close it. Failed startup closes it only after owned tasks have stopped and Telegram stop did not fail."
+  }
+}

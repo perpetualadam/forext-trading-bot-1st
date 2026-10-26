@@ -1,0 +1,29 @@
+{
+  "D12-STOP-01": {
+    "status": "FIXED",
+    "pre_fix": "16 D.12 tests passed while asserting an empty cleanup list and no incomplete-stop log",
+    "post_fix": "actual lifespan with a blocked fake poll records D12-STOP-01 in startup_cleanup_errors and a sanitized warning",
+    "actual_source": [
+      "app.lifespan",
+      "stop_telegram_control"
+    ],
+    "worker_remains_tracked": true,
+    "tasks_drained": true,
+    "database_release_unchanged": true,
+    "no_new_shutdown_exception": true,
+    "normal_stop_warning": false,
+    "limitations": "D.12 historical tests still pin the previous app.py hash and still assert the old empty cleanup list"
+  },
+  "D12-START-01": {
+    "status": "UNRESOLVED_SCOPE_EXPANSION_REQUIRED",
+    "markers": [
+      "D13_START_REPORTING_INTERFACE_MISSING",
+      "D13_SCOPE_EXPANSION_REQUIRED"
+    ],
+    "pre_fix": "second lifespan succeeded with the surviving worker and no refusal report",
+    "post_fix": "the refusal still succeeds startup and still produces no refusal warning",
+    "reason": "start_telegram_control returns None for success, refusal, and commands disabled",
+    "duplicate_worker_prevented": true,
+    "startup_remains_non_fatal": true
+  }
+}

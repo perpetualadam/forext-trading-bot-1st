@@ -1,0 +1,37 @@
+{
+  "defect_id": "D8-CONC-01",
+  "severity": "high_for_the_function_not_entered_by_the_current_startup_order",
+  "source_file": "forex_bot/database.py",
+  "function": "get_connection",
+  "lines": "185-220",
+  "schedule": "S01 unlocked_overlap and S02 unlocked_vs_locked",
+  "failure_windows": ["C01", "C02", "C04", "C09", "C10", "C15", "C16"],
+  "trigger": "Two callers pass the empty _pg_conn check and both run psycopg2.connect. get_connection does not acquire _pg_lock. A helper's lock does not exclude an unlocked caller.",
+  "observed_result": "Both fake connections committed. One was published. The other stayed open with close_calls 0. The application did not record it. The harness closed both open objects after the snapshot.",
+  "evidence_run": {
+    "unlocked_overlap": {
+      "published_id": 1,
+      "abandoned_id": 2,
+      "pair_consistent": true,
+      "application_closed": 0,
+      "harness_closed": 2
+    },
+    "unlocked_vs_locked": {
+      "published_id": 3,
+      "abandoned_id": 4,
+      "pair_consistent": true,
+      "application_closed": 0,
+      "harness_closed": 2
+    }
+  },
+  "locks_held_inside_get_connection": [],
+  "globals_visible_after": "The later successful publisher's connection and its cursor. The first connection is no longer referenced by _pg_conn.",
+  "application_cleanup": "none for the abandoned connection",
+  "harness_cleanup": "closed the abandoned connection and the published connection after the snapshot",
+  "current_startup_order": "The only unlocked production caller is lifespan line 317. It runs once, before tasks, to_thread database work, and Telegram start. Two helpers cannot overlap because each holds _pg_lock around the entire get_connection call. The current startup sequence does not start this race. The function still permits it, and the test observed it.",
+  "torn_pair": "The two global assignments are separate and unlocked. Every executed overlap in this run published a matching pair. The tear was not forced, because there is no hook between the two assignments without editing production source. It is not claimed to be absent.",
+  "proposed_remediation": "Hold _pg_lock across the empty check, connect, cursor, SQL, commit, and both global assignments. If another caller published a connection first, discard the loser and return the published connection. Do not add a new cross-module lock.",
+  "required_future_source_scope": ["forex_bot/database.py"],
+  "implemented": false,
+  "production_source_modified": false
+}

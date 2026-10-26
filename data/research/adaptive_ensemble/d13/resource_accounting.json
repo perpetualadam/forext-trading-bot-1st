@@ -1,0 +1,13 @@
+{
+  "d13_child_timeout_sec": 120,
+  "modes": ["contract", "extra", "repeated", "ownership"],
+  "escaped_telegram_threads": [],
+  "network_denials_after_tests": [],
+  "fake_boundaries": [
+    "in-process requests.Session",
+    "fake psycopg2",
+    "replaced broker, reconciliation, and trading-loop callables"
+  ],
+  "application_snapshot_before_harness_cleanup": true,
+  "daemon_threads_used_for_containment": false
+}

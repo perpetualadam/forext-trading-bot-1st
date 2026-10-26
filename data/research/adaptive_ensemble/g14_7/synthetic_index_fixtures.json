@@ -1,0 +1,51 @@
+{
+  "marker": "SYNTHETIC_TEST_ONLY",
+  "contacted_pypi": false,
+  "contacted_files_pythonhosted": false,
+  "real_package_hashes_recorded": false,
+  "entered_staging_context": false,
+  "requirements_txt_modified": false,
+  "content_type": "application/vnd.g14-synthetic-index+json",
+  "shape": {
+    "marker": "SYNTHETIC_TEST_ONLY",
+    "projects": [
+      {
+        "name": "synthetic package name",
+        "version": "synthetic version",
+        "filename": "synthetic wheel filename",
+        "url": "synthetic URL checked by the existing host policy",
+        "sha256": "SHA-256 of the in-memory synthetic wheel bytes for that test only",
+        "size": "length of those same bytes",
+        "yanked": false,
+        "requires": [],
+        "provenance": "SYNTHETIC_TEST_ONLY",
+        "kind": "wheel"
+      }
+    ]
+  },
+  "positive_package": {
+    "name": "demo",
+    "version": "1.0.0",
+    "filename": "demo-1.0.0-py3-none-any.whl",
+    "tags": "py3-none-any",
+    "dependencies": "none",
+    "hash_meaning": "digest of build_synthetic_wheel output, not a published artifact"
+  },
+  "negative_shapes_used": [
+    "unapproved index URL",
+    "unapproved artifact host",
+    "source distribution filename",
+    "yanked release",
+    "prerelease version",
+    "unsupported wheel tag",
+    "wrong sha256",
+    "wrong size",
+    "non-zip body",
+    "wheel missing WHEEL, METADATA, or RECORD",
+    "Requires-Dist naming a package that was not selected",
+    "Requires-Dist version that conflicts with the selected package",
+    "requirement marker that is false on the synthetic Linux target",
+    "requirement extra the wheel does not provide",
+    "provenance other than SYNTHETIC_TEST_ONLY"
+  ]
+}

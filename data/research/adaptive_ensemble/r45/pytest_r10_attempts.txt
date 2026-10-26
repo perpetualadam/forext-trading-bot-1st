@@ -1,0 +1,11 @@
+attempt_1=fail tests/test_r10_offline_startup.py:200 StartupSafetyAbort('safety state is not startup-compatible') where the test required no exception
+cause=WinError 5 Access is denied replacing data/research/adaptive_ensemble/r10/synthetic_live_safety_state.json.tmp -> synthetic_live_safety_state.json
+log=live_safety.py:359 live safety persist failed
+counts=1 failed, 68 passed, 5 skipped
+live_safety.py_not_modified=true
+synthetic_state_not_deleted=true
+other_suites_exit=0
+attempt_2=pass 69 passed, 5 skipped
+attempt_2_winerror_5=not observed
+live_safety.py_not_modified=true
+synthetic_state_not_deleted=true

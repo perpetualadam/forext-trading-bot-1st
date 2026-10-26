@@ -1,0 +1,25 @@
+{
+  "amd64": {
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "digest": "sha256:2ed6491b93cd49272ee6de2b5a38440c3448360322c089fc23e370722d74179d",
+    "size": 1752,
+    "platform": {
+      "os": "linux",
+      "architecture": "amd64",
+      "variant": null
+    },
+    "reference_type": null
+  },
+  "arm64": {
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "digest": "sha256:739ba32ae445e8d58f3d90feb85f83bebc8346f8dd280fa1eb5848f4ff1ed163",
+    "size": 1754,
+    "platform": {
+      "os": "linux",
+      "architecture": "arm64",
+      "variant": "v8"
+    },
+    "reference_type": null
+  },
+  "duplicate_runtime_candidates": false
+}

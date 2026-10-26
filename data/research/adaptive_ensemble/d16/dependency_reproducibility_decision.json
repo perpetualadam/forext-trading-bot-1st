@@ -1,0 +1,14 @@
+{
+  "exact_direct_versions": "MISSING",
+  "exact_transitive_versions": "MISSING",
+  "offline_artifacts": "MISSING",
+  "artifact_hashes": "MISSING",
+  "independent_verification": "MISSING",
+  "python_version_fixed": "PARTIAL",
+  "platform_fixed": "MISSING",
+  "native_requirements_known": "PARTIAL",
+  "resolution_reproducible": "MISSING",
+  "offline_installation": "MISSING",
+  "provenance": "MISSING",
+  "future_builder_can_verify_bytes": "MISSING"
+}

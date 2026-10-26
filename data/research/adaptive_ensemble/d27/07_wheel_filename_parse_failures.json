@@ -1,0 +1,109 @@
+{
+  "ambiguous_or_invalid_count": 4,
+  "records": [
+    {
+      "status": "AMBIGUOUS",
+      "reason": "name_version_build",
+      "interpretations": [
+        {
+          "distribution": "numpy-1.13.3",
+          "version": "2",
+          "build": null
+        },
+        {
+          "distribution": "numpy",
+          "version": "1.13.3",
+          "build": "2"
+        }
+      ],
+      "python_tag": "cp27",
+      "abi_tag": "none",
+      "platform_tag": "win32",
+      "compressed_tags": false,
+      "evidence": "SYNTACTICALLY_PARSED_FILENAME",
+      "standards_conformance": "NOT_CLAIMED",
+      "project": "numpy",
+      "release": "1.13.3",
+      "filename": "numpy-1.13.3-2-cp27-none-win32.whl",
+      "yanked": false
+    },
+    {
+      "status": "AMBIGUOUS",
+      "reason": "name_version_build",
+      "interpretations": [
+        {
+          "distribution": "numpy-1.13.3",
+          "version": "2",
+          "build": null
+        },
+        {
+          "distribution": "numpy",
+          "version": "1.13.3",
+          "build": "2"
+        }
+      ],
+      "python_tag": "cp34",
+      "abi_tag": "none",
+      "platform_tag": "win32",
+      "compressed_tags": false,
+      "evidence": "SYNTACTICALLY_PARSED_FILENAME",
+      "standards_conformance": "NOT_CLAIMED",
+      "project": "numpy",
+      "release": "1.13.3",
+      "filename": "numpy-1.13.3-2-cp34-none-win32.whl",
+      "yanked": false
+    },
+    {
+      "status": "AMBIGUOUS",
+      "reason": "name_version_build",
+      "interpretations": [
+        {
+          "distribution": "numpy-1.13.3",
+          "version": "2",
+          "build": null
+        },
+        {
+          "distribution": "numpy",
+          "version": "1.13.3",
+          "build": "2"
+        }
+      ],
+      "python_tag": "cp35",
+      "abi_tag": "none",
+      "platform_tag": "win32",
+      "compressed_tags": false,
+      "evidence": "SYNTACTICALLY_PARSED_FILENAME",
+      "standards_conformance": "NOT_CLAIMED",
+      "project": "numpy",
+      "release": "1.13.3",
+      "filename": "numpy-1.13.3-2-cp35-none-win32.whl",
+      "yanked": false
+    },
+    {
+      "status": "AMBIGUOUS",
+      "reason": "name_version_build",
+      "interpretations": [
+        {
+          "distribution": "numpy-1.13.3",
+          "version": "2",
+          "build": null
+        },
+        {
+          "distribution": "numpy",
+          "version": "1.13.3",
+          "build": "2"
+        }
+      ],
+      "python_tag": "cp36",
+      "abi_tag": "none",
+      "platform_tag": "win32",
+      "compressed_tags": false,
+      "evidence": "SYNTACTICALLY_PARSED_FILENAME",
+      "standards_conformance": "NOT_CLAIMED",
+      "project": "numpy",
+      "release": "1.13.3",
+      "filename": "numpy-1.13.3-2-cp36-none-win32.whl",
+      "yanked": false
+    }
+  ]
+}

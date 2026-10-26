@@ -1,0 +1,1140 @@
+{
+  "images": [
+    {
+      "line": 3,
+      "reference": "postgres:16-alpine",
+      "digest_pinned": false
+    },
+    {
+      "line": 214,
+      "reference": "ollama/ollama:latest",
+      "digest_pinned": false
+    }
+  ],
+  "build_lines": [
+    17
+  ],
+  "platform_lines": [],
+  "healthcheck_lines": [
+    10,
+    221
+  ],
+  "restart_lines": [
+    227
+  ],
+  "depends_on_lines": [
+    204
+  ],
+  "volume_mount_lines": [
+    201,
+    203,
+    213,
+    216,
+    218
+  ],
+  "sensitive_defaults": [
+    {
+      "line": 6,
+      "name": "POSTGRES_PASSWORD",
+      "default_empty": false,
+      "value_recorded": false
+    },
+    {
+      "line": 26,
+      "name": "POSTGRES_PASSWORD",
+      "default_empty": false,
+      "value_recorded": false
+    },
+    {
+      "line": 82,
+      "name": "OANDA_ACCESS_TOKEN",
+      "default_empty": true,
+      "value_recorded": false
+    },
+    {
+      "line": 83,
+      "name": "OANDA_API_KEY",
+      "default_empty": true,
+      "value_recorded": false
+    },
+    {
+      "line": 92,
+      "name": "TELEGRAM_TOKEN",
+      "default_empty": true,
+      "value_recorded": false
+    },
+    {
+      "line": 93,
+      "name": "TELEGRAM_BOT_TOKEN",
+      "default_empty": true,
+      "value_recorded": false
+    },
+    {
+      "line": 102,
+      "name": "OPENAI_API_KEY",
+      "default_empty": true,
+      "value_recorded": false
+    },
+    {
+      "line": 116,
+      "name": "ANTHROPIC_API_KEY",
+      "default_empty": true,
+      "value_recorded": false
+    },
+    {
+      "line": 119,
+      "name": "ANTHROPIC_MAX_TOKENS",
+      "default_empty": true,
+      "value_recorded": false
+    },
+    {
+      "line": 122,
+      "name": "DEEPSEEK_API_KEY",
+      "default_empty": true,
+      "value_recorded": false
+    },
+    {
+      "line": 124,
+      "name": "MISTRAL_API_KEY",
+      "default_empty": true,
+      "value_recorded": false
+    },
+    {
+      "line": 126,
+      "name": "XAI_API_KEY",
+      "default_empty": true,
+      "value_recorded": false
+    },
+    {
+      "line": 127,
+      "name": "GROK_API_KEY",
+      "default_empty": true,
+      "value_recorded": false
+    },
+    {
+      "line": 131,
+      "name": "GROQ_API_KEY",
+      "default_empty": true,
+      "value_recorded": false
+    },
+    {
+      "line": 133,
+      "name": "VENICE_API_KEY",
+      "default_empty": true,
+      "value_recorded": false
+    },
+    {
+      "line": 137,
+      "name": "QROK_API_KEY",
+      "default_empty": true,
+      "value_recorded": false
+    }
+  ],
+  "non_sensitive_defaults": [
+    {
+      "line": 5,
+      "name": "POSTGRES_USER",
+      "default_empty": false,
+      "value": "postgres"
+    },
+    {
+      "line": 7,
+      "name": "POSTGRES_DB",
+      "default_empty": false,
+      "value": "trading"
+    },
+    {
+      "line": 11,
+      "name": "POSTGRES_USER",
+      "default_empty": false,
+      "value": "postgres"
+    },
+    {
+      "line": 11,
+      "name": "POSTGRES_DB",
+      "default_empty": false,
+      "value": "trading"
+    },
+    {
+      "line": 21,
+      "name": "BOT_PORT",
+      "default_empty": false,
+      "value": "8001"
+    },
+    {
+      "line": 25,
+      "name": "POSTGRES_USER",
+      "default_empty": false,
+      "value": "postgres"
+    },
+    {
+      "line": 27,
+      "name": "POSTGRES_DB",
+      "default_empty": false,
+      "value": "trading"
+    },
+    {
+      "line": 28,
+      "name": "TRADING_MODE",
+      "default_empty": false,
+      "value": "practice"
+    },
+    {
+      "line": 29,
+      "name": "EXECUTION_MODE",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 30,
+      "name": "PAPER_TRADING",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 31,
+      "name": "KILL_SWITCH",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 32,
+      "name": "STRICT_EXECUTION",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 33,
+      "name": "RECONCILE_INTERVAL_SEC",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 34,
+      "name": "HEALTH_SNAPSHOT_INTERVAL_SEC",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 35,
+      "name": "DAILY_REPORT_INTERVAL_SEC",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 36,
+      "name": "RECONCILE_MAX_AGE_SEC",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 37,
+      "name": "BLOCK_NEW_ENTRIES_ON_RECONCILE_MISMATCH",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 38,
+      "name": "REQUIRE_CLEAN_RECONCILE_FOR_BROKER",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 39,
+      "name": "SKIP_RECONCILE_GATE_FOR_BROKER",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 40,
+      "name": "PERSIST_RECONCILE_STATE",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 41,
+      "name": "OPERATIONAL_EVENT_MAX",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 42,
+      "name": "PERSIST_OPERATIONAL_EVENTS",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 43,
+      "name": "LOAD_OPERATIONAL_EVENTS_FROM_DB",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 44,
+      "name": "RECONCILE_ON_RESUME",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 45,
+      "name": "RECONCILE_ACTION",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 46,
+      "name": "RECONCILE_AUTO_FIX_IN_PAPER",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 47,
+      "name": "RECONCILE_IMPORT_BROKER_POSITIONS",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 48,
+      "name": "RECONCILE_ADJUST_UNITS",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 49,
+      "name": "RECONCILE_MAX_FIXES_PER_CYCLE",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 50,
+      "name": "PERSIST_EXEC_ORDERS",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 51,
+      "name": "BASE_BALANCE",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 52,
+      "name": "POSITION_NOTIONAL_PCT_OF_NAV",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 53,
+      "name": "MAX_PORTFOLIO_GROSS_NOTIONAL_PCT_OF_NAV",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 54,
+      "name": "MAX_GROSS_USD_NOTIONAL",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 55,
+      "name": "EXECUTION_METRICS_MAX_SAMPLES",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 56,
+      "name": "SLIPPAGE_ATR_FRACTION",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 57,
+      "name": "POSITION_RISK_PCT",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 58,
+      "name": "POSITION_RISK_PCT_MAX",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 59,
+      "name": "MIN_POSITION_HOLD_SEC",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 60,
+      "name": "PROFIT_PROTECTION_ENABLED",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 61,
+      "name": "PROFIT_PROTECTION_TRIGGER_PERCENT",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 62,
+      "name": "PROFIT_GIVEBACK_ATR_MULTIPLIER",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 63,
+      "name": "PROFIT_PROTECTION_ATR_PERIOD",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 64,
+      "name": "PROFIT_GIVEBACK_PIPS",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 65,
+      "name": "PROFIT_GIVEBACK_MIN_PIPS",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 66,
+      "name": "PROFIT_GIVEBACK_MAX_PIPS",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 67,
+      "name": "PROFIT_PROTECTION_CLOSE_RETRY_SEC",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 68,
+      "name": "PROFIT_PROTECTION_LOG_RATCHET_PIPS",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 69,
+      "name": "POSITION_LOG",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 70,
+      "name": "PERFORMANCE_LOG",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 71,
+      "name": "PERFORMANCE_LOG_INTERVAL_SEC",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 72,
+      "name": "MAX_PORTFOLIO_RISK_PCT",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 73,
+      "name": "MAX_SAME_USD_DIRECTION_POSITIONS",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 74,
+      "name": "MAX_POSITION_UNITS",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 75,
+      "name": "MIN_STOP_DISTANCE_PRICE",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 76,
+      "name": "USE_ATR_STOPS",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 77,
+      "name": "SL_ATR_MULT",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 78,
+      "name": "SPREAD_MULTIPLIER",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 79,
+      "name": "SLIPPAGE_MULTIPLIER",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 80,
+      "name": "LATENCY_MS",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 81,
+      "name": "MARKET_IMPACT_FACTOR",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 84,
+      "name": "OANDA_ACCOUNT_ID",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 85,
+      "name": "OANDA_MAX_CANDLES_PER_REQUEST",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 86,
+      "name": "OANDA_CHUNK_DELAY_SEC",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 87,
+      "name": "OANDA_MAX_RETRIES",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 88,
+      "name": "OANDA_MAX_REQUESTS_PER_SEC",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 89,
+      "name": "OANDA_CONNECT_TIMEOUT_SEC",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 90,
+      "name": "OANDA_HTTP_TIMEOUT_SEC",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 91,
+      "name": "USE_OANDA_LIVE",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 94,
+      "name": "TELEGRAM_CHAT_ID",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 95,
+      "name": "TELEGRAM_TIMEOUT_SEC",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 96,
+      "name": "TELEGRAM_COOLDOWN_SEC",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 97,
+      "name": "TELEGRAM_COMMANDS",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 98,
+      "name": "TELEGRAM_POLL_TIMEOUT_SEC",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 99,
+      "name": "TELEGRAM_ALLOWED_CHAT_IDS",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 100,
+      "name": "TELEGRAM_INBOUND",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 101,
+      "name": "DISCORD_WEBHOOK_URL",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 103,
+      "name": "OPENAI_BASE_URL",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 104,
+      "name": "OPENAI_MODEL",
+      "default_empty": false,
+      "value": "gpt-4o-mini"
+    },
+    {
+      "line": 105,
+      "name": "OPENAI_JSON_MODE",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 106,
+      "name": "OPENAI_TIMEOUT",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 107,
+      "name": "OPENAI_TEMPERATURE",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 108,
+      "name": "AI_DISABLE_STUB",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 109,
+      "name": "ENSEMBLE_MODE",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 110,
+      "name": "V2_SHADOW_ENABLED",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 111,
+      "name": "V2_SHADOW_ARCHIVE_BYTES",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 112,
+      "name": "NN_PRED_MODE",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 113,
+      "name": "STUB_SMA_EPSILON",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 114,
+      "name": "STUB_MOMENTUM_THRESHOLD",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 115,
+      "name": "STUB_CONFIDENCE_SCALE",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 117,
+      "name": "ANTHROPIC_MODEL",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 118,
+      "name": "ANTHROPIC_BASE_URL",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 120,
+      "name": "ANTHROPIC_TIMEOUT",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 121,
+      "name": "ANTHROPIC_VERSION",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 123,
+      "name": "DEEPSEEK_MODEL",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 125,
+      "name": "MISTRAL_MODEL",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 128,
+      "name": "XAI_BASE_URL",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 129,
+      "name": "GROK_MODEL",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 130,
+      "name": "XAI_MODEL",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 132,
+      "name": "GROQ_MODEL",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 134,
+      "name": "VENICE_BASE_URL",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 135,
+      "name": "VENICE_MODEL",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 136,
+      "name": "VENICE_JSON_MODE",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 138,
+      "name": "QROK_BASE_URL",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 139,
+      "name": "QROK_MODEL",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 140,
+      "name": "QROK_JSON_MODE",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 141,
+      "name": "FOREX_SYMBOLS",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 142,
+      "name": "HYBRID_EUR_USD",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 143,
+      "name": "HYBRID_GBP_USD",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 144,
+      "name": "HYBRID_USD_JPY",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 145,
+      "name": "HYBRID_AUD_USD",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 146,
+      "name": "HYBRID_USD_CAD",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 147,
+      "name": "HYBRID_USD_CHF",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 148,
+      "name": "SCALP_LOOKBACK",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 149,
+      "name": "SWING_LOOKBACK",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 150,
+      "name": "DEFAULT_INDICATOR_LOOKBACK",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 151,
+      "name": "HYBRID_ROUTE_LOOKBACK",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 152,
+      "name": "HYBRID_ATR_SCALP_THRESHOLD",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 153,
+      "name": "HYBRID_OHLCV_COUNT",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 154,
+      "name": "TZ",
+      "default_empty": false,
+      "value": "Europe/London"
+    },
+    {
+      "line": 155,
+      "name": "FX_SESSION_ALWAYS",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 156,
+      "name": "LIVE_SAFETY_STATE_PATH",
+      "default_empty": false,
+      "value": "/app/data/ops/live_safety_state.json"
+    },
+    {
+      "line": 157,
+      "name": "DECISION_SKIP_LOG_INTERVAL_SEC",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 158,
+      "name": "LIVE_TIMEZONE",
+      "default_empty": false,
+      "value": "auto"
+    },
+    {
+      "line": 159,
+      "name": "LIVE_WINDOW_LOG",
+      "default_empty": false,
+      "value": "1"
+    },
+    {
+      "line": 160,
+      "name": "LIVE_EUR_USD_START",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 161,
+      "name": "LIVE_EUR_USD_END",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 162,
+      "name": "LIVE_GBP_USD_START",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 163,
+      "name": "LIVE_GBP_USD_END",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 164,
+      "name": "LIVE_USD_JPY_START",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 165,
+      "name": "LIVE_USD_JPY_END",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 166,
+      "name": "LIVE_AUD_USD_START",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 167,
+      "name": "LIVE_AUD_USD_END",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 168,
+      "name": "LIVE_USD_CAD_START",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 169,
+      "name": "LIVE_USD_CAD_END",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 170,
+      "name": "LIVE_USD_CHF_START",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 171,
+      "name": "LIVE_USD_CHF_END",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 172,
+      "name": "WEEKEND_FLATTEN_MINUTES",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 173,
+      "name": "FX_WEEK_CLOSE_UTC",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 174,
+      "name": "SCALP_EUR_USD_START",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 175,
+      "name": "SCALP_EUR_USD_END",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 176,
+      "name": "SCALP_GBP_USD_START",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 177,
+      "name": "SCALP_GBP_USD_END",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 178,
+      "name": "SCALP_USD_JPY_START",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 179,
+      "name": "SCALP_USD_JPY_END",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 180,
+      "name": "SCALP_AUD_USD_START",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 181,
+      "name": "SCALP_AUD_USD_END",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 182,
+      "name": "SCALP_USD_CAD_START",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 183,
+      "name": "SCALP_USD_CAD_END",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 184,
+      "name": "SCALP_USD_CHF_START",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 185,
+      "name": "SCALP_USD_CHF_END",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 186,
+      "name": "SIMULATION_EUR_USD",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 187,
+      "name": "SIMULATION_GBP_USD",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 188,
+      "name": "SIMULATION_USD_JPY",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 189,
+      "name": "SIMULATION_AUD_USD",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 190,
+      "name": "SIMULATION_USD_CAD",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 191,
+      "name": "SIMULATION_USD_CHF",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 192,
+      "name": "SL_FALLBACK_PIPS",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 193,
+      "name": "FOREX_BACKTEST",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 194,
+      "name": "BACKTEST_CSV",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 195,
+      "name": "BACKTEST_SEED",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 196,
+      "name": "BACKTEST_STEP_BARS",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 197,
+      "name": "BACKTEST_FAST_WINDOW",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 198,
+      "name": "BACKTEST_INDICATOR_WINDOW",
+      "default_empty": true,
+      "value": ""
+    },
+    {
+      "line": 218,
+      "name": "OLLAMA_HOST_PORT",
+      "default_empty": false,
+      "value": "11434"
+    },
+    {
+      "line": 220,
+      "name": "OLLAMA_KEEP_ALIVE",
+      "default_empty": false,
+      "value": "24h"
+    }
+  ],
+  "bot_command_override": false,
+  "bot_entrypoint_override": false,
+  "bot_user": false,
+  "notes": [
+    "bot service uses build context '.' and has no image digest.",
+    "bot service has no platform, command, entrypoint, user, healthcheck, or restart key.",
+    "db service has a healthcheck and a named volume. ollama is profile-gated and has a restart policy.",
+    "Credential-like defaults were counted without copying their literals."
+  ]
+}

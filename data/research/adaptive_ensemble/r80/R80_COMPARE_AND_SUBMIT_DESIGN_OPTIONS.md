@@ -1,0 +1,18 @@
+# R.80 compare-and-submit design options
+
+Evidence class: design analysis. No new broker submission protocol was implemented.
+
+The R.80 change is a second call to `live_management_permitted()` immediately before `api.request` in `_submit_order_create` and `_submit_position_close_body`. The durable permit is still consumed before that call. The check does not make the HTTP write atomic with the journal.
+
+## Options
+
+| Approach | Crash | Restart | Ownership transfer | Journal down | Timeout | Duplicate risk | Deadlock | Complexity | Remaining uncertainty |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Durable in-flight state, which already exists as `network_permit=1` and `ENTRY_SUBMITTING` or `CLOSE_SUBMITTING` | A crash after the claim leaves one consumed permit | Restart sees the unresolved row and must not mint a second permit | A new owner can read the row and must not submit again | The claim itself fails closed if the commit fails | The in-flight row stays unresolved | Stops a second bot attempt. Does not stop a broker duplicate if the first request left the process | Low | Already present | The request may have reached the broker before the crash |
+| Journal compare-and-submit around the HTTP call | The journal cannot stay inside one transaction across a network call without holding a write lock for the whole request | A lock held across the request blocks recovery and repair | The second owner waits or is refused | A lock held while the journal is failing can stall the process | The broker may have filled while the process still holds the lock | Reduces the local race. Does not prove the broker rejected a duplicate | High if the lock covers the request | Larger than R.80 | Broker acceptance of the first request remains unknowable after a timeout |
+| Single submission worker with durable ownership | The worker crash leaves the same in-flight row | Another worker must adopt the row as ambiguous, not as a new submit | Explicit handoff | The worker stops when the journal stops | Same ambiguous outcome | Same local single-attempt property | Medium | New process model | Still no broker idempotency |
+| OS recovery lock held across the synthetic request | The lock dies with the process | The next startup can proceed after the process exits | A live holder blocks the next startup | The lock is not the journal | The lock outlives a timeout only while the process lives | Does not bind the HTTP call to the epoch | The trading cycle and repair block on one lock | Operationally costly | A kill during `api.request` still leaves an unknown broker result |
+| Broker-supported idempotency | Only if the broker documents and enforces a client-id replay rule | Same | Same | Irrelevant to the broker rule | A timeout can still hide whether the first call was accepted | This would be the duplicate control | None in the bot | Not available from the reviewed OANDA documents | `BROKER_ENFORCED_IDEMPOTENCY_NOT_VERIFIED` |
+| Explicit ambiguous-outcome reconciliation | The row stays unresolved | An operator or a supported reconciliation reads broker evidence | A new owner may investigate and must not receive an automatic second permit | Reconciliation waits | This is the current fail-closed outcome | No automatic second submit | Low | Already the R.76–R.79 rule | It does not discover whether the broker filled |
+
+R.80 keeps the existing in-flight permit and adds the pre-request authority recheck. A compare-and-submit protocol that wraps the broker call was not implemented. The irreducible gap is a process that has passed the recheck and then loses authority, crashes, or times out inside `api.request`.

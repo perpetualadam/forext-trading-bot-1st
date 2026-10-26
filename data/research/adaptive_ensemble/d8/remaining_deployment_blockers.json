@@ -1,0 +1,25 @@
+{
+  "stage": "D.8",
+  "resolved_by_d8": [],
+  "blockers": [
+    "Production startup remains unverified.",
+    "Production container identity remains unverified.",
+    "The running image lacks the D.2 through D.7 source changes.",
+    "Live database schema compatibility remains unverified.",
+    "Requirements remain unpinned.",
+    "No verified dependency lock.",
+    "No verified offline wheelhouse.",
+    "Base-image registry digest remains unverified.",
+    "Runtime target profile remains incomplete.",
+    "Trusted receiving boundary remains unimplemented.",
+    "No verified candidate image.",
+    "No verified rollback target.",
+    "Production operational state remains unverified.",
+    "Production shadow state remains unverified.",
+    "The full integration test suite remains unexecuted.",
+    "Research backtests may rely on the old active-by-default strategy behaviour.",
+    "D8-CONC-01 remains unfixed. get_connection can abandon a connection when two callers initialize together.",
+    "DATABASE_BORROWER_QUIESCENCE_UNVERIFIED. Database release is not classified as safe.",
+    "D.5 and D.6 pytest modules remain HISTORICAL_HASH_PIN_CONFLICT against the current app.py hash."
+  ]
+}

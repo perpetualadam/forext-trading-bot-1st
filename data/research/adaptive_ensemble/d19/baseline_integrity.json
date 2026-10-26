@@ -1,0 +1,34 @@
+{
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "working_tree": "dirty before D.19",
+  "head_identifies_working_tree_bytes": false,
+  "d19_directory_at_start": "absent",
+  "protected_hashes_matched": true,
+  "hashes": {
+    "forex_bot/app.py": "3ff01244ed217e85d211bec819a7ebff9c96fb0412c56e5a768792ab54b31ca1",
+    "forex_bot/telegram_control.py": "d32b560306fe2f86cc7c8ddbb40aa42842f071bd88ea513d77f172a6a0fadf4c",
+    "forex_bot/database.py": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e",
+    "forex_bot/live_safety.py": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+    "forex_bot/strategy_meta.py": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+    "requirements.txt": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a",
+    "requirements-dev.txt": "0562a6853549077197defb3cd8515521b843a041f2a735723ee2903790e3eef5",
+    "Dockerfile": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+    ".dockerignore": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+    "docker-compose.yml": "f0a374774c35b4c63dce23a837572886d1d53331fec388044bc5887367980179"
+  },
+  "deployment_script_hashes": {
+    "deploy/docker/collect-due.example.sh": "68f16feeb43f275d5ac0d9ad8170bb565a42da4bbfa1399d5496690aac4921db",
+    "scripts/install_macro_prospective_task.ps1": "0a549b15eb16b75e480691ce7bc76353bed97c6b1267a47b097513c346c3bd79",
+    "scripts/verify_macro_prospective_task.ps1": "f8de7487853b1a21a5fb119a0bba4831ed0a795824705e59ea352dd4495fd63f",
+    "scripts/run_macro_prospective_collect_due.sh": "9ed493bccad2581d3b6fa5daca571f24d8d643530269265e105c022cf33b6165"
+  },
+  "dirty_in_targeted_status": [
+    "Dockerfile",
+    "forex_bot/app.py",
+    "forex_bot/database.py",
+    "forex_bot/live_safety.py",
+    "forex_bot/strategy_meta.py",
+    "forex_bot/telegram_control.py"
+  ]
+}

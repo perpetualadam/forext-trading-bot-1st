@@ -1,0 +1,46 @@
+{
+  "startup": [
+    "Production startup was not verified.",
+    "Pre-yield task failures leave background tasks running until something else cancels them.",
+    "Shutdown stops cancelling tasks after the first cleanup error.",
+    "A database initialization failure is treated as nonfatal and can abandon an open connection."
+  ],
+  "database": [
+    "Live schema was not read.",
+    "No production connection was made.",
+    "get_connection does not close a partially created connection."
+  ],
+  "dependencies": [
+    "Requirements remain unpinned.",
+    "No verified lockfile.",
+    "No verified offline wheelhouse."
+  ],
+  "packaging": [
+    "The running image lacks the D.2, D.3, and D.4 source bytes.",
+    "No candidate image.",
+    "Base-image digest is unverified.",
+    "Runtime profile is incomplete."
+  ],
+  "rollback": [
+    "No verified rollback target."
+  ],
+  "production_state": [
+    "Production container identity was not refreshed.",
+    "Operational state was not read.",
+    "Shadow state was not read.",
+    "Historical live-order authorisation remains BLOCKED.",
+    "The six strategies remain historically inactive."
+  ],
+  "research_compatibility": [
+    "Research backtests that skip inactive strategies still need an explicit later activation."
+  ],
+  "receiving_boundary": [
+    "Trusted receiving boundary remains unimplemented."
+  ],
+  "integration_suite": [
+    "The full test suite was not executed."
+  ],
+  "deployment_decision": "NO-GO",
+  "live_trading_decision": "NOT_AUTHORISED",
+  "rollback_decision": "NO-GO"
+}

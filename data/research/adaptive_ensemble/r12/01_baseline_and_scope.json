@@ -1,0 +1,15 @@
+{
+  "stage": "R.12",
+  "head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "r12_directory_at_start": "absent",
+  "baseline": "HASH_OK",
+  "pre_hashes": {
+    "forex_bot/app.py": "8d4abc71523794f7d50076f96d5cbefb625a963c01a78d8149e4e411baa244a1",
+    "forex_bot/bot_loop.py": "9fbb8c326c35d312b86b88a3d49f395993c2e1fee303afb15a56d7c14c4b2941",
+    "forex_bot/database.py": "16363fdc26929ed0a6fe71837806ba96c51043df76fa3d524a2d26f80736c486",
+    "forex_bot/orders.py": "fca93e8007d5f25413caf6b7e6493db0a27b4b81cffe78331d3321e9e76db1b4"
+  },
+  "protected_unchanged": true,
+  "scope": "forex_bot/bot_loop.py plus tests and hash pins required by that edit"
+}

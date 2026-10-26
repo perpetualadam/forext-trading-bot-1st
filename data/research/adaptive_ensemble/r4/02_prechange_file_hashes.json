@@ -1,0 +1,8 @@
+{
+  "recorded_before_edit": true,
+  "forex_bot/bot_loop.py": "dcc8ed35f1f1ec9eb4d53e3439ebf46f80868c55aba4ec6ec64ad29fbe9f9128",
+  "forex_bot/oanda_exec.py": "f4beb250d81852d8ee4f22af06ab33194c6b4ba1bf6f9b1a6b5d11d3b7b265c8",
+  "forex_bot/database.py": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e",
+  "forex_bot/trading.py": "5ac3981690fe9536edaedfd35a933d17fc37a1e4a77c5c3e9b47517db6300fc7",
+  "forex_bot/orders.py": "30bafb8bf6fde1ad061641e8db01b1a79932d6a1a74dcc3e6f59a591f42b1525"
+}

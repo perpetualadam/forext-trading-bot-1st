@@ -1,0 +1,149 @@
+{
+  "hypothesis": "A 48-bar horizon might leave more room over the spread than 12 bars.",
+  "log_loss_comparable_to_r36": false,
+  "reproducible": true,
+  "validation_log_loss": 0.9792858730282344,
+  "validation_baseline_log_loss": 0.990404067919181,
+  "validation_brier": 0.6013775795923281,
+  "validation_ece": 0.033622950499640786,
+  "validation_abstention_rate": 0.9666480212557684,
+  "validation_economics": {
+    "recorded_bid_ask": {
+      "n_opportunities": 296,
+      "n_actions": 3,
+      "mean_including_abstentions": 5.012010284448943e-07,
+      "mean_actions_only": 4.9451834806562905e-05,
+      "bootstrap_low": -7.497867847694171e-06
+    },
+    "plus_half_pip": {
+      "n_opportunities": 296,
+      "n_actions": 3,
+      "mean_including_abstentions": 6.87726780359303e-08,
+      "mean_actions_only": 6.785570899545124e-06,
+      "bootstrap_low": -7.928779792963987e-06
+    },
+    "plus_one_pip": {
+      "n_opportunities": 296,
+      "n_actions": 3,
+      "mean_including_abstentions": -3.636556723730337e-07,
+      "mean_actions_only": -3.588069300747266e-05,
+      "bootstrap_low": -8.359691738233802e-06
+    }
+  },
+  "walk_forward": [
+    {
+      "train": [
+        20,
+        12000
+      ],
+      "eval": [
+        12048,
+        20000
+      ],
+      "log_loss": 0.9766319472957642,
+      "baseline_log_loss": 0.9770756993662295,
+      "economics": {
+        "recorded_bid_ask": {
+          "n_opportunities": 161,
+          "n_actions": 49,
+          "mean_including_abstentions": 7.320347653878398e-05,
+          "mean_actions_only": 0.00024052570862743308,
+          "bootstrap_low": -8.801640034240149e-07
+        },
+        "plus_half_pip": {
+          "n_opportunities": 161,
+          "n_actions": 49,
+          "mean_including_abstentions": 6.006786718306908e-05,
+          "mean_actions_only": 0.0001973658493157984,
+          "bootstrap_low": -1.1655842613291359e-05
+        },
+        "plus_one_pip": {
+          "n_opportunities": 161,
+          "n_actions": 49,
+          "mean_including_abstentions": 4.693225782735418e-05,
+          "mean_actions_only": 0.00015420599000416372,
+          "bootstrap_low": -2.2385260010018636e-05
+        }
+      }
+    },
+    {
+      "train": [
+        20,
+        20000
+      ],
+      "eval": [
+        20048,
+        28000
+      ],
+      "log_loss": 1.0021479453412039,
+      "baseline_log_loss": 1.005017112532419,
+      "economics": {
+        "recorded_bid_ask": {
+          "n_opportunities": 158,
+          "n_actions": 3,
+          "mean_including_abstentions": -3.3968031606739687e-06,
+          "mean_actions_only": -0.00017889829979549567,
+          "bootstrap_low": -2.3535217508392906e-05
+        },
+        "plus_half_pip": {
+          "n_opportunities": 158,
+          "n_actions": 3,
+          "mean_including_abstentions": -4.207566396938665e-06,
+          "mean_actions_only": -0.00022159849690543633,
+          "bootstrap_low": -2.4115295878259063e-05
+        },
+        "plus_one_pip": {
+          "n_opportunities": 158,
+          "n_actions": 3,
+          "mean_including_abstentions": -5.01832963320336e-06,
+          "mean_actions_only": -0.00026429869401537696,
+          "bootstrap_low": -2.4695374248125217e-05
+        }
+      }
+    },
+    {
+      "train": [
+        20,
+        28000
+      ],
+      "eval": [
+        28048,
+        36000
+      ],
+      "log_loss": 0.9645733423868847,
+      "baseline_log_loss": 0.9646719073725301,
+      "economics": {
+        "recorded_bid_ask": {
+          "n_opportunities": 159,
+          "n_actions": 20,
+          "mean_including_abstentions": -3.09175851568096e-05,
+          "mean_actions_only": -0.00024579480199663634,
+          "bootstrap_low": -0.00010722201747533918
+        },
+        "plus_half_pip": {
+          "n_opportunities": 159,
+          "n_actions": 20,
+          "mean_including_abstentions": -3.621432744850103e-05,
+          "mean_actions_only": -0.0002879039032155831,
+          "bootstrap_low": -0.00011639858621398776
+        },
+        "plus_one_pip": {
+          "n_opportunities": 159,
+          "n_actions": 20,
+          "mean_including_abstentions": -4.1511069740192465e-05,
+          "mean_actions_only": -0.0003300130044345301,
+          "bootstrap_low": -0.00012557515495263628
+        }
+      }
+    }
+  ],
+  "decision": {
+    "windows_passed": 0,
+    "windows_required": 4,
+    "qualifies": false,
+    "production_authorised": false,
+    "validation_status": "unvalidated"
+  },
+  "artifact_sha256": "dc613ff49e41c9b600d0b76c0325697055c59046ccbb156aae001bf95204e871",
+  "validation_prediction_sha256": "47cadc507498c79b41bdada297b6bd470131fd769cf8cabe853ba821b1f8534a"
+}

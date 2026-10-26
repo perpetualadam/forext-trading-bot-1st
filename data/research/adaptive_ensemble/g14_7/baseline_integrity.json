@@ -1,0 +1,23 @@
+{
+  "stage": "G.14.7",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "head_matches_expected": true,
+  "branch_matches_expected": true,
+  "dockerfile_sha256": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+  "dockerignore_sha256": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+  "g10_allowlist_sha256": "b2d0f66f8a696da5488072720f6d8de7ceccfd8c847d54327d4cfff2e10eb7b4",
+  "g10_allowlist_path": "data/research/adaptive_ensemble/g10/production_allowlist.json",
+  "g10_archive_sha256": "d0317de858a00b194bc44408932ad6508eec411fe0179b0196175a2985b12277",
+  "g10_archive_path": "data/research/adaptive_ensemble/g10/source_snapshot.tar",
+  "g10_manifest_digest": "93c73c21bd6f144e7d656be74128a771c3274025c0e88b8a052ffbc742f417cf",
+  "g7_archive_sha256": "0ee97accd2d4a8297a053eb26c5138324192ab5b1f700214acf091d0f6487f82",
+  "g7_archive_path": "data/research/adaptive_ensemble/g7/source_snapshot.tar",
+  "g7_manifest_digest": "ba8eb86d887b44dd44314c6a45c776639bf11bb27f0e92ba2ce24978c3206989",
+  "frozen_hashes_matched": true,
+  "canonical_manifests_reconfirmed_by": "tests/test_g13_packaging.py and tests/test_g13_1_mutations.py in the G.14.7 scoped run",
+  "unexpected_baseline_changes": false,
+  "working_tree_already_dirty": true,
+  "commit_performed": false,
+  "classification": "BASELINE_INTEGRITY_PASS"
+}

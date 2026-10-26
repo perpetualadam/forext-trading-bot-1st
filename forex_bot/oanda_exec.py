@@ -394,8 +394,29 @@ def _parse_open_fill(response: dict[str, Any]) -> tuple[float, float, str, float
     return fill_price, uf, oid, pl, fill_ts
 
 
-def _place_market_order_sync(symbol: str, position_units: float, position_direction: str) -> tuple[float, float]:
-    """PUT /v3/accounts/{id}/positions/{instrument}/close (official closeout)."""
+class CloseGuardRefusal(RuntimeError):
+    """The journal did not grant this close. No broker request was made."""
+
+
+def _submit_position_close_body(
+    symbol: str,
+    position_units: float,
+    position_direction: str,
+    permit,
+) -> dict[str, Any]:
+    """PUT position close. Refuses unless the journal consumes this permit."""
+    from forex_bot.close_journal import CloseSubmissionPermit, JournalUnavailable, active_journal
+
+    if not isinstance(permit, CloseSubmissionPermit):
+        raise CloseGuardRefusal("live close refused: journal submission authority is required")
+    from forex_bot.startup_recovery import live_management_permitted
+
+    if not live_management_permitted():
+        raise CloseGuardRefusal("live close refused: recovery authority is absent")
+    try:
+        active_journal().claim_network_permit(permit)
+    except JournalUnavailable as exc:
+        raise CloseGuardRefusal(f"live close refused: {exc.reason}") from exc
     api = get_api()
     if api is None:
         raise RuntimeError("OANDA API client unavailable (token / build_api)")
@@ -420,20 +441,40 @@ def _place_market_order_sync(symbol: str, position_units: float, position_direct
     else:
         close_req = PositionCloseRequest(shortUnits=units_s)
 
+    # longClientExtensions / shortClientExtensions exist on the SDK request.
+    # They are labels, not a broker idempotency key. This call does not send them.
     r = oanda_positions.PositionClose(
         accountID=account_id, instrument=instrument, data=close_req.data
     )
+    if not live_management_permitted():
+        raise CloseGuardRefusal("live close refused: recovery authority lost before request")
     try:
         from forex_bot.oanda_rate_limit import acquire_oanda_rest_slot
 
         acquire_oanda_rest_slot()
+        if not live_management_permitted():
+            raise CloseGuardRefusal("live close refused: recovery authority lost during rate limit")
         response = api.request(r)
+    except CloseGuardRefusal:
+        raise
+    except TimeoutError:
+        logger.error("OANDA PositionClose timed out")
+        raise
     except Exception as exc:
         logger.error("OANDA PositionClose failed: %s", exc)
         raise RuntimeError(str(exc)) from exc
 
     if not isinstance(response, dict):
         raise ValueError("invalid OANDA PositionClose response")
+    return response
+
+
+def _place_market_order_sync(
+    symbol: str, position_units: float, position_direction: str, permit
+) -> tuple[float, float]:
+    """PUT position close. A returned tuple is not proof the local row may be deleted."""
+    response = _submit_position_close_body(symbol, position_units, position_direction, permit)
+    d = (position_direction or "").upper().strip()
     if d == "BUY":
         oft = response.get("longOrderFillTransaction") or {}
     else:
@@ -446,25 +487,38 @@ def _place_market_order_sync(symbol: str, position_units: float, position_direct
     pl, fill_price = _parse_fill({"orderFillTransaction": oft} if oft else {})
     if math.isnan(pl):
         logger.warning("OANDA close fill missing pl; fill_price=%s", fill_price)
-    logger.info("[ORDER CLOSE] PositionClose %s %s units=%s fill=%.5f", instrument, d, units_s, fill_price)
+    logger.info("[ORDER CLOSE] PositionClose %s %s fill=%.5f", symbol, d, fill_price)
     return pl, fill_price
 
 
-def _place_market_order_open_sync(
+def _submit_order_create(
     symbol: str,
     position_units: float,
     direction: str,
     client_order_id: str,
-    stop_loss: float | None = None,
-    take_profit: float | None = None,
-    entry_quote: Any | None = None,
-) -> tuple[float, float, str, float, float | None]:
-    """Place MARKET order to open; returns (fill_price, abs_units, fill_tx_id, pl, fill_time)."""
+    stop_loss: float | None,
+    take_profit: float | None,
+    entry_quote: Any | None,
+    entry_permit,
+) -> dict[str, Any]:
+    """POST OrderCreate. Refuses unless the entry journal consumes this permit."""
+    from forex_bot.close_journal import JournalUnavailable
+    from forex_bot.entry_journal import EntryGuardRefusal, EntrySubmissionPermit, claim_entry_permit
     from forex_bot.live_safety import assert_new_live_exposure_allowed
     from forex_bot.market_provenance import require_order_quote
 
+    if not isinstance(entry_permit, EntrySubmissionPermit):
+        raise EntryGuardRefusal("live entry refused: journal submission intent is required")
+    from forex_bot.startup_recovery import live_management_permitted
+
+    if not live_management_permitted():
+        raise EntryGuardRefusal("live entry refused: recovery authority is absent")
     assert_new_live_exposure_allowed(action="open")
     require_order_quote(entry_quote, symbol)
+    try:
+        claim_entry_permit(entry_permit)
+    except JournalUnavailable as exc:
+        raise EntryGuardRefusal(f"live entry refused: {exc.reason}") from exc
     api = get_api()
     if api is None:
         raise RuntimeError("OANDA API client unavailable (token / build_api)")
@@ -477,67 +531,88 @@ def _place_market_order_open_sync(
     sl_on_fill = None
     tp_on_fill = None
     if stop_loss is not None and math.isfinite(float(stop_loss)):
-        sl_on_fill = {
-            "price": _format_oanda_price(instrument, float(stop_loss)),
-            "timeInForce": "GTC",
-        }
+        sl_on_fill = {"price": _format_oanda_price(instrument, float(stop_loss)), "timeInForce": "GTC"}
     if take_profit is not None and math.isfinite(float(take_profit)):
-        tp_on_fill = {
-            "price": _format_oanda_price(instrument, float(take_profit)),
-            "timeInForce": "GTC",
-        }
-    # Official MarketOrder: units DecimalNumber, timeInForce FOK|IOC, OPEN_ONLY for entries.
+        tp_on_fill = {"price": _format_oanda_price(instrument, float(take_profit)), "timeInForce": "GTC"}
     mo = MarketOrderRequest(
         instrument=instrument,
         units=units_int,
         timeInForce=TimeInForce.FOK,
         positionFill=OrderPositionFill.OPEN_ONLY,
-        clientExtensions={
-            "id": cid,
-            "tag": "forex_bot",
-            "comment": "idempotent client order",
-        },
+        clientExtensions={"id": cid, "tag": "forex_bot", "comment": "idempotent client order"},
         stopLossOnFill=sl_on_fill,
         takeProfitOnFill=tp_on_fill,
     )
     assert_new_live_exposure_allowed(action="open")
-    r = oanda_orders.OrderCreate(accountID=account_id, data=mo.data)
+    request = oanda_orders.OrderCreate(accountID=account_id, data=mo.data)
+    if not live_management_permitted():
+        raise EntryGuardRefusal("live entry refused: recovery authority lost before request")
     logger.info("[ORDER SENT] MARKET open %s units=%s", instrument, units_int)
     try:
         from forex_bot.oanda_rate_limit import acquire_oanda_rest_slot
 
         acquire_oanda_rest_slot()
-        response = api.request(r)
+        if not live_management_permitted():
+            raise EntryGuardRefusal("live entry refused: recovery authority lost during rate limit")
+        response = api.request(request)
+    except EntryGuardRefusal:
+        raise
     except OrderCreateOutcomeError:
+        raise
+    except TimeoutError:
+        logger.error("[ORDER FAILED] OANDA OrderCreate (open) timeout")
         raise
     except Exception as exc:
         classified = classify_order_create_transport_error(exc)
         logger.error("[ORDER FAILED] OANDA OrderCreate (open) %s: %s", classified.outcome, exc)
         _raise_for_classification(classified, symbol=instrument, side=direction, cid=cid)
     if not isinstance(response, dict):
-        classified = classify_order_create_response(response)
-        _raise_for_classification(classified, symbol=instrument, side=direction, cid=cid)
+        raise RuntimeError("invalid OANDA OrderCreate response")
+    return response
+
+
+def _place_market_order_open_sync(
+    symbol: str,
+    position_units: float,
+    direction: str,
+    client_order_id: str,
+    stop_loss: float | None = None,
+    take_profit: float | None = None,
+    entry_quote: Any | None = None,
+    *,
+    entry_permit,
+) -> tuple[float, float, str, float, float | None]:
+    """Place MARKET order to open; returns (fill_price, abs_units, fill_tx_id, pl, fill_time)."""
+    from forex_bot.entry_journal import mark_entry
+
+    try:
+        response = _submit_order_create(
+            symbol,
+            position_units,
+            direction,
+            client_order_id,
+            stop_loss,
+            take_profit,
+            entry_quote,
+            entry_permit,
+        )
+    except TimeoutError:
+        mark_entry(entry_permit.operation_id, outcome="ENTRY_OUTCOME_AMBIGUOUS", error="timeout")
+        raise
+    from forex_bot.entry_capture import record_entry_response
+
+    try:
+        record_entry_response(entry_permit, response, account_id=_account_id())
+    except Exception:
+        mark_entry(entry_permit.operation_id, outcome="ENTRY_OUTCOME_AMBIGUOUS", error="capture_failed")
+        raise
     classified = classify_order_create_response(response)
     if classified.outcome == OUTCOME_CANCELLED:
-        logger.warning(
-            "%s",
-            format_order_cancel_line(
-                symbol=instrument, side=direction, cid=cid, classification=classified
-            ),
-        )
-        _raise_for_classification(classified, symbol=instrument, side=direction, cid=cid)
+        _raise_for_classification(classified, symbol=symbol, side=direction, cid=client_order_id)
     if classified.outcome != OUTCOME_FILLED:
-        logger.warning(
-            "[ORDER %s] %s %s cid=%s %s",
-            classified.outcome,
-            instrument,
-            direction,
-            cid,
-            classified.error_message or classified.cancel_reason or "",
-        )
-        _raise_for_classification(classified, symbol=instrument, side=direction, cid=cid)
+        _raise_for_classification(classified, symbol=symbol, side=direction, cid=client_order_id)
     fp, uf, oid, pl, fill_ts = _parse_open_fill(response)
-    logger.info("[ORDER FILLED] %s %s units≈%.4f fill=%.5f id=%s", instrument, direction, uf, fp, oid)
+    logger.info("[ORDER FILLED] %s %s units≈%.4f fill=%.5f id=%s", symbol, direction, uf, fp, oid)
     return fp, uf, oid, pl, fill_ts
 
 
@@ -551,15 +626,16 @@ async def execute_oanda_market_open(
     take_profit: float | None = None,
     execution_kind: str = "live",
     entry_quote: Any | None = None,
+    entry_permit,
 ) -> tuple[float, float, str, float, float | None]:
-    """Broker-confirmed open: (fill_price, abs_units, fill_tx_id, pl, fill_time_epoch|None)."""
+    """Broker-confirmed open. The permit is required and is not entry eligibility."""
     from forex_bot.market_provenance import require_order_quote
 
     assert_broker_order_allowed(execution_kind=execution_kind, action="open")
     require_order_quote(entry_quote, symbol)
     if not _access_token():
         raise RuntimeError("OANDA_ACCESS_TOKEN or OANDA_API_KEY missing")
-    result = await asyncio.to_thread(
+    return await asyncio.to_thread(
         _place_market_order_open_sync,
         symbol,
         position_units,
@@ -568,10 +644,8 @@ async def execute_oanda_market_open(
         stop_loss,
         take_profit,
         entry_quote,
+        entry_permit=entry_permit,
     )
-    if isinstance(result, tuple) and len(result) == 4:
-        return (*result, None)
-    return result
 
 
 def fetch_pending_orders_sync() -> list[dict[str, Any]]:
@@ -647,6 +721,7 @@ async def execute_oanda_market_close(
     position_units: float,
     position_direction: str,
     entry_price: float,
+    permit,
     *,
     execution_kind: str = "live",
 ) -> tuple[float, float]:
@@ -661,7 +736,7 @@ async def execute_oanda_market_close(
         raise RuntimeError("OANDA_ACCESS_TOKEN or OANDA_API_KEY missing")
 
     pl, fill_price = await asyncio.to_thread(
-        _place_market_order_sync, symbol, position_units, position_direction
+        _place_market_order_sync, symbol, position_units, position_direction, permit
     )
     if math.isnan(pl):
         from forex_bot.trading import pnl_account_ccy

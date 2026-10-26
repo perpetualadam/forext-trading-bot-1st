@@ -1,0 +1,29 @@
+{
+  "production_files_modified_by_d13": ["forex_bot/app.py"],
+  "functions_added": ["_note_telegram_stop"],
+  "functions_modified": ["lifespan"],
+  "app_sha256_before": "08766300dfaf703e7553c69703e5d5f2c90e8efc2b491e6eeff1791ca93e3b44",
+  "app_sha256_after": "4da4bb0e304b59db702053a1f0702aab227b9896e00bbe4259143def9f2ef3d9",
+  "logging_changes": [
+    "warning for STOP_INCOMPLETE_WORKER_ALIVE",
+    "warning for an unrecognised stop status"
+  ],
+  "public_contract_changes": [
+    "startup_cleanup_errors may include D12-STOP-01 or D12-STOP-UNKNOWN"
+  ],
+  "telegram_worker_changes": false,
+  "database_changes": false,
+  "trading_changes": false,
+  "new_dependencies": false,
+  "new_tasks": false,
+  "new_threads": false,
+  "new_network_requests": false,
+  "new_database_queries": false,
+  "unauthorised_changes": false,
+  "tests_added": [
+    "tests/d13_harness.py",
+    "tests/d13_telegram_reporting_runner.py",
+    "tests/test_d13_telegram_lifecycle_reporting.py",
+    "tests/test_d13_application_lifespan_reporting.py"
+  ]
+}

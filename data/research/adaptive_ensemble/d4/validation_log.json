@@ -1,0 +1,35 @@
+{
+  "stage": "D.4",
+  "commands": [
+    "git rev-parse HEAD",
+    "git status and SHA-256 of app.py, live_safety.py, and strategy_meta.py before edit",
+    "python -m pytest on the preflight, preservation, and activation-default modules",
+    "python -m ruff check tests/test_startup_safety_preflight.py",
+    "SHA-256 after edit"
+  ],
+  "files_read": [
+    "forex_bot/app.py",
+    "forex_bot/live_safety.py public status functions and initialise_fail_closed",
+    "tests/conftest.py isolation behaviour from prior stages"
+  ],
+  "files_created": [
+    "tests/test_startup_safety_preflight.py",
+    "data/research/adaptive_ensemble/d4/"
+  ],
+  "files_modified": [
+    "forex_bot/app.py"
+  ],
+  "tests_executed": [
+    "tests/test_startup_safety_preflight.py",
+    "tests/test_live_safety_preservation.py",
+    "tests/test_strategy_activation_defaults.py"
+  ],
+  "final_pytest": "115 passed, 0 failed, 0 skipped",
+  "prohibited_operations_performed": [],
+  "missing_evidence": [
+    "lifespan was not executed",
+    "app.py was not imported",
+    "the live safety file was not read",
+    "the production image was not updated"
+  ]
+}

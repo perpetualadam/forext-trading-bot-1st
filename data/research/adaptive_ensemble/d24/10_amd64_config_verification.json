@@ -1,0 +1,12 @@
+{
+  "result": "NOT_VERIFIED",
+  "bytes_obtained": false,
+  "byte_count": null,
+  "expected_byte_count": 5684,
+  "computed_digest": null,
+  "expected_digest": "sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+  "digest_match": false,
+  "size_match": false,
+  "parent_manifest": "sha256:2ed6491b93cd49272ee6de2b5a38440c3448360322c089fc23e370722d74179d",
+  "json_validated": false
+}

@@ -1,0 +1,33 @@
+{
+  "socket_barrier": "raising socket.socket subclass",
+  "dns_barrier": "getaddrinfo, gethostbyname, create_connection raise R19_DNS_BLOCKED",
+  "permitted_families": [],
+  "af_inet": false,
+  "af_inet6": false,
+  "af_unix": false,
+  "main_imported": false,
+  "run_bot_executed": false,
+  "lifespan_entered": false,
+  "dotenv_stub_calls_per_process": 1,
+  "dotenv_file_read": false,
+  "broker_substitution": "forex_bot.oanda_exec.execute_oanda_market_open replaced with an async recorder before production_execution_adapter",
+  "inert_broker_stub_calls_on_ineligible_cases": 0,
+  "real_broker_calls": 0,
+  "oanda_client_constructed": false,
+  "postgresql_connected": false,
+  "blocked_constructor_counts": {
+    "r19": 1,
+    "regression": 5,
+    "r10": 5,
+    "r11": 4,
+    "r12": 2,
+    "r13": 3,
+    "r14": 1,
+    "r15": 1,
+    "r16": 1,
+    "r17": 1,
+    "r18": 1
+  },
+  "network_successes": 0,
+  "dns_successes": 0
+}

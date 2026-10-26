@@ -1,0 +1,16 @@
+{
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "working_tree": "already dirty before D.14; existing changes preserved",
+  "app_sha256_before": "4da4bb0e304b59db702053a1f0702aab227b9896e00bbe4259143def9f2ef3d9",
+  "app_sha256_after": "3ff01244ed217e85d211bec819a7ebff9c96fb0412c56e5a768792ab54b31ca1",
+  "telegram_sha256_before": "193a59645c0596b22016164f8cdf1a50b06734a6bd56a014fba9a6910ba68780",
+  "telegram_sha256_after": "d32b560306fe2f86cc7c8ddbb40aa42842f071bd88ea513d77f172a6a0fadf4c",
+  "database_sha256": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e",
+  "live_safety_sha256": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+  "strategy_meta_sha256": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+  "hashes_matched_before_edit": true,
+  "d14_directory_before_stage": "absent",
+  "d13_evidence_present": true,
+  "unexpected_modifications_before_edit": false
+}

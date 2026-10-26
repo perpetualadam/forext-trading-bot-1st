@@ -1,0 +1,30 @@
+{
+  "pid": 2676,
+  "role": "recover",
+  "kind": "filled",
+  "ok": true,
+  "evaluate": true,
+  "functions": [
+    "initialise_application",
+    "evaluate",
+    "dispatch_production_iteration",
+    "evaluate_one_instrument_iteration"
+  ],
+  "recovery_functions": [
+    "read_offline_exec_orders",
+    "select_rows_for_recovery",
+    "ingest_recovery_snapshot"
+  ],
+  "startup_ok": true,
+  "recovered_client_order_id": "cid-3dffe115e1e64b0abe890116dbd47c63",
+  "recovered_status": "FILLED",
+  "recovered_source": "db_recovery",
+  "exposure": "exposure_unconfirmed",
+  "blocked_by": "exposure_unconfirmed",
+  "exposure_read": "exposure_unconfirmed",
+  "reservation_attempted": false,
+  "inert_dispatches": 0,
+  "production_eligible": false,
+  "postgresql_connection": false,
+  "duplicate_order": false
+}

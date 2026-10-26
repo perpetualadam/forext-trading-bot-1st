@@ -1,0 +1,53 @@
+{
+  "matcher": "forex_bot/research/adaptive_ensemble/g8_dockerignore.py",
+  "docker_daemon_behavior": "DOCKER_DAEMON_CONTEXT_BEHAVIOUR_UNVERIFIED",
+  "context_source_if_built_from_repository_root": "C:\\Users\\Brian\\OneDrive\\Desktop\\Forext Trading Bot 1st",
+  "included_file_count": 206,
+  "included_bytes": 1516574,
+  "excluded_file_count_observed": 4528,
+  "classification": "BUILD_CONTEXT_EXPOSURE_BLOCKED",
+  "sensitive_files_likely_to_enter_context": [
+    {
+      "path": "main example .env backup.txt",
+      "bytes": 7922,
+      "reason": "Gitignored as a local secret. .dockerignore excludes .env but not this text backup."
+    },
+    {
+      "path": "# Copy to .env and fill in. docker.txt",
+      "bytes": 7280,
+      "reason": "Gitignored as a local secret. .dockerignore excludes .env but not this text backup."
+    }
+  ],
+  "contents_not_read": true,
+  "other_included_notes": {
+    "env_example": ".env.example is intentionally re-included. Credential fields are blank. It contains a documented example database password.",
+    "research_python_files_included_but_not_copied_into_image": 123,
+    "deploy_and_script_files_included_but_not_copied": [
+      "deploy/cron/forex-macro-prospective.cron",
+      "deploy/docker/collect-due.example.sh",
+      "deploy/env/forex-macro-prospective.env.example",
+      "deploy/systemd/forex-macro-prospective.service",
+      "deploy/systemd/forex-macro-prospective.timer",
+      "scripts/install_macro_prospective_task.ps1",
+      "scripts/run_macro_prospective_collect_due.sh",
+      "scripts/verify_macro_prospective_task.ps1",
+      "forex_bot/decision_quality/trading_economics/env.template",
+      "requirements-dev.txt"
+    ]
+  },
+  "expected_exclusions": [
+    ".git and Git metadata",
+    ".env and .env.* except .env.example",
+    "private-key filenames and *.pem/*.key",
+    "/data, including research datasets, scheduler files, audit artifacts, and operational state",
+    "/tests and /reports",
+    "caches, virtualenvs, and *.md",
+    "docker-compose.yml"
+  ],
+  "symlinks_in_included_files": [],
+  "reparse_points_in_included_files": [],
+  "onedrive_placeholder_concern": "Included files were regular files at scan time. A later dehydrated OneDrive placeholder could change what the daemon receives. Current scan found no reparse points.",
+  "windows_case_sensitivity": "The local matcher is case-sensitive, as Docker's Linux matcher is. No included file used a case variant of .env, id_rsa, or credentials.json.",
+  "windows_path_normalisation": "The local matcher compares forward-slash relative paths. It is not a Docker daemon.",
+  "image_copy_is_not_context_exclusion": "Explicit COPY limits the image. It does not stop the daemon from receiving every file the ignore rules leave in the context."
+}

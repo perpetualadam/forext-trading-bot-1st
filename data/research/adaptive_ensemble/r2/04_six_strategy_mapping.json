@@ -1,0 +1,90 @@
+{
+  "constant": {
+    "name": "STRATEGY_NAME_DOES_NOT_SET_SIDE",
+    "file": "forex_bot/decision_quality/live_path.py",
+    "line": 44,
+    "value": true,
+    "read_by_runtime": false,
+    "runtime_agreement": "SOURCE-TRACED. bot_loop.py uses ai.vote direction. It does not call shadow/signals.py."
+  },
+  "strategies": [
+    {
+      "name": "scalp",
+      "exists": true,
+      "active_by_default": false,
+      "unique_live_side_rule": false,
+      "shadow_rule": "fast average above slow and price strictly above fast average",
+      "shadow_affects_live_orders": false,
+      "unique_stop": false,
+      "unique_size": false,
+      "blocked_while_inactive": "SOURCE-TRACED at bot_loop.py 1076-1084. OFFLINE-TESTED that the default flag is false.",
+      "evidence": "SOURCE-TRACED plus activation tests",
+      "unknown": "The line that returns before sizing was not executed."
+    },
+    {
+      "name": "trend",
+      "exists": true,
+      "active_by_default": false,
+      "unique_live_side_rule": false,
+      "shadow_rule": "fast average above slow and price at or above the fast average; mirror for sell",
+      "shadow_affects_live_orders": false,
+      "unique_stop": false,
+      "unique_size": false,
+      "blocked_while_inactive": "same shared return",
+      "evidence": "SOURCE-TRACED plus activation tests",
+      "unknown": "No executed test of the return-before-sizing line."
+    },
+    {
+      "name": "mean_reversion",
+      "exists": true,
+      "active_by_default": false,
+      "unique_live_side_rule": false,
+      "shadow_rule": "sell above upper band, buy below lower band",
+      "shadow_affects_live_orders": false,
+      "unique_stop": false,
+      "unique_size": false,
+      "blocked_while_inactive": "same shared return",
+      "evidence": "SOURCE-TRACED plus activation tests",
+      "unknown": "No executed test of the return-before-sizing line."
+    },
+    {
+      "name": "swing_trend",
+      "exists": true,
+      "active_by_default": false,
+      "unique_live_side_rule": false,
+      "shadow_rule": "same shadow rule as trend",
+      "shadow_affects_live_orders": false,
+      "unique_stop": false,
+      "unique_size": false,
+      "blocked_while_inactive": "same shared return",
+      "evidence": "SOURCE-TRACED plus activation tests",
+      "unknown": "No separate live behaviour from trend."
+    },
+    {
+      "name": "swing_mean_reversion",
+      "exists": true,
+      "active_by_default": false,
+      "unique_live_side_rule": false,
+      "shadow_rule": "same shadow rule as mean_reversion",
+      "shadow_affects_live_orders": false,
+      "unique_stop": false,
+      "unique_size": false,
+      "blocked_while_inactive": "same shared return",
+      "evidence": "SOURCE-TRACED plus activation tests",
+      "unknown": "No separate live behaviour from mean_reversion."
+    },
+    {
+      "name": "swing_breakout",
+      "exists": true,
+      "active_by_default": false,
+      "unique_live_side_rule": false,
+      "shadow_rule": "buy above the prior high, sell below the prior low",
+      "shadow_affects_live_orders": false,
+      "unique_stop": false,
+      "unique_size": false,
+      "blocked_while_inactive": "same shared return",
+      "evidence": "SOURCE-TRACED plus activation tests",
+      "unknown": "No executed test of the return-before-sizing line."
+    }
+  ]
+}

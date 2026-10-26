@@ -1,0 +1,132 @@
+{
+  "hypothesis": "A probability bin on an earlier fold might identify a cost-adjusted edge.",
+  "buy_bins": [
+    {
+      "low": 0.35,
+      "high": 0.4,
+      "n": 4551,
+      "mean": -0.00012944707476913948,
+      "bootstrap_low": -0.00017112510541556966,
+      "tradeable": false
+    },
+    {
+      "low": 0.4,
+      "high": 0.45,
+      "n": 2357,
+      "mean": -0.00011414481707528646,
+      "bootstrap_low": -0.00019264555040595307,
+      "tradeable": false
+    },
+    {
+      "low": 0.45,
+      "high": 0.5,
+      "n": 242,
+      "mean": -0.00015898062773087737,
+      "bootstrap_low": -0.00035764148685067654,
+      "tradeable": false
+    },
+    {
+      "low": 0.5,
+      "high": 1.01,
+      "n": 13,
+      "mean": 0.0002831859563993964,
+      "bootstrap_low": null,
+      "tradeable": false
+    }
+  ],
+  "sell_bins": [
+    {
+      "low": 0.35,
+      "high": 0.4,
+      "n": 3218,
+      "mean": -0.00013773314753813903,
+      "bootstrap_low": -0.00017901745211631662,
+      "tradeable": false
+    },
+    {
+      "low": 0.4,
+      "high": 0.45,
+      "n": 2111,
+      "mean": -0.00014489044494757897,
+      "bootstrap_low": -0.0001975900622778725,
+      "tradeable": false
+    },
+    {
+      "low": 0.45,
+      "high": 0.5,
+      "n": 586,
+      "mean": -0.0001442964598339408,
+      "bootstrap_low": -0.000276207553218996,
+      "tradeable": false
+    },
+    {
+      "low": 0.5,
+      "high": 1.01,
+      "n": 168,
+      "mean": -0.0001366105609824687,
+      "bootstrap_low": -0.0005408410562334556,
+      "tradeable": false
+    }
+  ],
+  "evaluation": [
+    {
+      "start": 25012,
+      "stop": 35000,
+      "recorded_bid_ask": {
+        "n_opportunities": 825,
+        "n_actions": 0,
+        "mean_including_abstentions": 0.0,
+        "mean_actions_only": null,
+        "bootstrap_low": 0.0
+      },
+      "plus_half_pip": {
+        "n_opportunities": 825,
+        "n_actions": 0,
+        "mean_including_abstentions": 0.0,
+        "mean_actions_only": null,
+        "bootstrap_low": 0.0
+      },
+      "plus_one_pip": {
+        "n_opportunities": 825,
+        "n_actions": 0,
+        "mean_including_abstentions": 0.0,
+        "mean_actions_only": null,
+        "bootstrap_low": 0.0
+      }
+    },
+    {
+      "start": 35012,
+      "stop": 44731,
+      "recorded_bid_ask": {
+        "n_opportunities": 802,
+        "n_actions": 0,
+        "mean_including_abstentions": 0.0,
+        "mean_actions_only": null,
+        "bootstrap_low": 0.0
+      },
+      "plus_half_pip": {
+        "n_opportunities": 802,
+        "n_actions": 0,
+        "mean_including_abstentions": 0.0,
+        "mean_actions_only": null,
+        "bootstrap_low": 0.0
+      },
+      "plus_one_pip": {
+        "n_opportunities": 802,
+        "n_actions": 0,
+        "mean_including_abstentions": 0.0,
+        "mean_actions_only": null,
+        "bootstrap_low": 0.0
+      }
+    }
+  ],
+  "decision": {
+    "windows_passed": 0,
+    "windows_required": 2,
+    "qualifies": false,
+    "production_authorised": false,
+    "validation_status": "unvalidated",
+    "reason": "no_tradeable_probability_bin"
+  },
+  "compared_with": "always_abstain_mean_of_zero_on_the_same_stride"
+}

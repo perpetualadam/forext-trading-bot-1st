@@ -1,0 +1,16 @@
+{
+  "bot_platform": null,
+  "bot_platform_result": "TARGET_PLATFORM_UNSPECIFIED",
+  "bot_build": ".",
+  "bot_build_line": 17,
+  "bot_image": null,
+  "bot_command": null,
+  "bot_restart": null,
+  "bot_healthcheck": null,
+  "bot_mounts": [
+    "./data/ops:/app/data/ops",
+    "./data/research/v2_shadow:/app/data/research/v2_shadow"
+  ],
+  "environment_values_read": false,
+  "configuration_not_modified": true
+}

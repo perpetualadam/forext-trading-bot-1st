@@ -1,0 +1,31 @@
+{
+  "approval": "YES \u2014 Approve D.24 read-only configuration metadata verification.",
+  "approval_timestamp": null,
+  "approval_signature": null,
+  "permitted": [
+    "local revalidation of preserved OCI manifests",
+    "GET the approved AMD64 config blob by immutable digest",
+    "GET the approved ARM64 config blob by immutable digest",
+    "anonymous bearer-token exchange if required",
+    "exact-byte preservation and digest verification",
+    "static JSON parsing"
+  ],
+  "not_permitted": [
+    "other repositories",
+    "other tags",
+    "other config blobs",
+    "image layers",
+    "image pulls",
+    "docker",
+    "container execution",
+    "python runtime execution",
+    "package downloads",
+    "dependency resolution",
+    "image build",
+    "production inspection",
+    "deployment",
+    "rollback",
+    "live trading"
+  ],
+  "d22_r1_authorisation_reused": false
+}

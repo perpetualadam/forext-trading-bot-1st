@@ -1,0 +1,54 @@
+{
+  "maximum": 6,
+  "used": 6,
+  "requests": [
+    {
+      "method": "GET",
+      "host": "registry-1.docker.io",
+      "path": "/v2/library/python/blobs/sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+      "status": 401,
+      "authorization_sent": false,
+      "timestamp": "2026-10-13T12:34:28Z"
+    },
+    {
+      "method": "GET",
+      "host": "auth.docker.io",
+      "path": "/token",
+      "status": 200,
+      "authorization_sent": false,
+      "timestamp": "2026-10-13T12:34:29Z"
+    },
+    {
+      "method": "GET",
+      "host": "registry-1.docker.io",
+      "path": "/v2/library/python/blobs/sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+      "status": 307,
+      "authorization_sent": true,
+      "timestamp": "2026-10-13T12:34:29Z"
+    },
+    {
+      "method": "GET",
+      "host": "production.cloudfront.docker.com",
+      "path": "REDACTED_VALIDATED_STORAGE_URL",
+      "status": 200,
+      "authorization_sent": false,
+      "timestamp": "2026-10-13T12:34:29Z"
+    },
+    {
+      "method": "GET",
+      "host": "registry-1.docker.io",
+      "path": "/v2/library/python/blobs/sha256:eb7d16fec874f15b584063275012ac719885a2b87574d124c0da9c156d504629",
+      "status": 307,
+      "authorization_sent": true,
+      "timestamp": "2026-10-13T12:34:29Z"
+    },
+    {
+      "method": "GET",
+      "host": "production.cloudfront.docker.com",
+      "path": "REDACTED_VALIDATED_STORAGE_URL",
+      "status": 200,
+      "authorization_sent": false,
+      "timestamp": "2026-10-13T12:34:30Z"
+    }
+  ]
+}

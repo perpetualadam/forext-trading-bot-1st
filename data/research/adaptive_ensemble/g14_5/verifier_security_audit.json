@@ -1,0 +1,28 @@
+{
+  "stage": "G.14.5",
+  "file": "tests/g14_4_verify.py",
+  "implemented": [
+    "sha256 and size",
+    "wheel filename tags for a limited linux/x86_64 set",
+    "source-distribution filename suffixes",
+    "manifest requires-list edges",
+    "synthetic provenance is not treated as an approved source",
+    "completion claims rejected",
+    "symlink and reparse on wheelhouse members",
+    "backup filenames and credential keys in the manifest"
+  ],
+  "missing": [
+    "zip structure",
+    "WHEEL member",
+    "METADATA member",
+    "RECORD member",
+    "decompressed-size limit",
+    "compression-ratio limit",
+    "environment-marker evaluation",
+    "extras expansion",
+    "dependency edges read from wheel metadata"
+  ],
+  "non_zip_bytes_with_matching_hash": "accepted",
+  "hash_verified_is_not_archive_verified": true,
+  "classification": "VERIFIER_COVERS_HASH_AND_FILENAME_ONLY"
+}

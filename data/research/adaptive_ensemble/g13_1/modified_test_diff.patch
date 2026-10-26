@@ -1,0 +1,126 @@
+diff --git a/tests/test_g10_snapshot.py b/tests/test_g10_snapshot.py
+index 49daa61..5ae6c59 100644
+--- a/tests/test_g10_snapshot.py
++++ b/tests/test_g10_snapshot.py
+@@ -3,6 +3,7 @@
+ from __future__ import annotations
+ 
+ import hashlib
++import importlib.util
+ import io
+ import json
+ import tarfile
+@@ -42,6 +43,15 @@ def _sha(path: Path) -> str:
+     return hashlib.sha256(path.read_bytes()).hexdigest()
+ 
+ 
++def _g13_1():
++    spec = importlib.util.spec_from_file_location("g13_1_baseline", Path(__file__).with_name("g13_1_baseline.py"))
++    if spec is None or spec.loader is None:
++        raise RuntimeError("g13.1 baseline helper is unavailable")
++    module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module)
++    return module
++
++
+ def _member(name: str, data: bytes, *, mtime: int = 0, link: str = "") -> tarfile.TarInfo:
+     info = tarfile.TarInfo(name=name)
+     info.size = len(data)
+@@ -113,7 +123,26 @@ def test_official_archive_is_independently_verified_and_not_rewritten():
+     assert result["manifest_sha256"] == recorded["manifest_sha256"]
+     assert OFFICIAL_TAR.read_bytes() == before
+     fresh = build_manifest()
+-    assert fresh["manifest_sha256"] == recorded["manifest_sha256"]
++    # The frozen manifest remains the G.10 archive identity. The working tree may
++    # differ only by the authorised G.13 Dockerfile repair.
++    manifest = json.loads(OFFICIAL_MANIFEST.read_text(encoding="utf-8"))
++    baseline = _g13_1()
++    assert manifest["manifest_sha256"] == baseline.G10_MANIFEST_SHA256
++    assert recorded["manifest_sha256"] == baseline.G10_MANIFEST_SHA256
++    report = baseline.compare_snapshot_files(fresh["files"], manifest["files"])
++    assert report["ok"], report
++    assert fresh["manifest_sha256"] != manifest["manifest_sha256"]
++    allow = json.loads((G10 / "production_allowlist.json").read_text(encoding="utf-8"))
++    assert _sha(G10 / "production_allowlist.json") == baseline.ALLOWLIST_FILE_SHA256
++    assert len(allow["files"]) == baseline.ALLOWLIST_COUNT
++    by_path = {row["path"]: row["sha256"] for row in manifest["files"]}
++    allow_report = baseline.evaluate_allowlist(
++        allow["files"],
++        ROOT,
++        expected_paths={row["path"] for row in allow["files"]},
++        manifest_hashes=by_path,
++    )
++    assert allow_report["ok"], allow_report
+ 
+ 
+ def test_g7_archive_remains_frozen():
+diff --git a/tests/test_g11_audit.py b/tests/test_g11_audit.py
+index 1111f3c..bbb6eed 100644
+--- a/tests/test_g11_audit.py
++++ b/tests/test_g11_audit.py
+@@ -69,8 +69,32 @@ def test_g10_allowlist_has_not_drifted(tmp_path: Path):
+         (ROOT / "data/research/adaptive_ensemble/g10/source_manifest.json").read_text(encoding="utf-8")
+     )
+     by_path = {row["path"]: row["sha256"] for row in manifest["files"]}
+-    assert allowlist_drift(allow["files"], by_path, ROOT) == []
++    # Historical drift detection remains. The authorised G.13 Dockerfile repair is
++    # the only accepted difference, and its hash is pinned rather than ignored.
++    spec = importlib.util.spec_from_file_location("g13_1_baseline", Path(__file__).with_name("g13_1_baseline.py"))
++    if spec is None or spec.loader is None:
++        raise RuntimeError("g13.1 baseline helper is unavailable")
++    baseline = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(baseline)
++    assert hashlib.sha256(
++        (ROOT / "data/research/adaptive_ensemble/g10/production_allowlist.json").read_bytes()
++    ).hexdigest() == baseline.ALLOWLIST_FILE_SHA256
++    assert allowlist_drift(allow["files"], by_path, ROOT) == ["Dockerfile"]
++    assert hashlib.sha256((ROOT / "Dockerfile").read_bytes()).hexdigest() == baseline.AUTHORISED_DOCKERFILE_SHA256
+     assert len(allow["files"]) == 63
++    allow_report = baseline.evaluate_allowlist(
++        allow["files"],
++        ROOT,
++        expected_paths={row["path"] for row in allow["files"]},
++        manifest_hashes=by_path,
++    )
++    assert allow_report["ok"], allow_report
++    audit = json.loads(
++        (ROOT / "data/research/adaptive_ensemble/g10/production_dependency_audit.json").read_text(encoding="utf-8")
++    )
++    included = {row["path"] for row in allow["files"]}
++    assert included.isdisjoint(audit["research_only"])
++    assert audit["counts"]["RESEARCH_ONLY"] == 128
+     sample = tmp_path / "main.py"
+     sample.write_text("changed\n", encoding="utf-8")
+     digest = hashlib.sha256(b"original").hexdigest()
+diff --git a/tests/test_macro_prospective_recorder_stage2.py b/tests/test_macro_prospective_recorder_stage2.py
+index 2819675..370b3f7 100644
+--- a/tests/test_macro_prospective_recorder_stage2.py
++++ b/tests/test_macro_prospective_recorder_stage2.py
+@@ -444,7 +444,26 @@ def test_host_store_is_not_a_bot_container_path():
+     assert "consensus_pit/prospective" not in compose
+     assert "COPY reports" not in dockerfile
+     assert "COPY data" not in dockerfile
+-    assert "COPY forex_bot ./forex_bot" in dockerfile
++    # G.13 removed the broad package copy. The replacement rejects that copy and
++    # any equivalent broad, wildcard, credential, research, test, or state copy.
++    root = Path(__file__).resolve().parents[1]
++    spec = importlib.util.spec_from_file_location("g13_1_baseline", root / "tests" / "g13_1_baseline.py")
++    if spec is None or spec.loader is None:
++        raise RuntimeError("g13.1 baseline helper is unavailable")
++    baseline = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(baseline)
++    allow = json.loads(
++        (root / "data/research/adaptive_ensemble/g10/production_allowlist.json").read_text(encoding="utf-8")
++    )
++    rules = baseline._packaging().dockerignore_rules()
++    packaging = baseline.packaging_problems(
++        dockerfile,
++        [row["path"] for row in allow["files"]],
++        root,
++        rules,
++    )
++    assert packaging["ok"], packaging
++    assert packaging["main_py_copies"] == 1
+     loop = Path("forex_bot/bot_loop.py").read_text(encoding="utf-8")
+     assert "macro_prospective" not in loop
+     assert (REAL_ROOT / "events" / "events.json").exists()

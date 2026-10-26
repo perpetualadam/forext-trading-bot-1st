@@ -1,0 +1,20 @@
+{
+  "pre_fix": "see d8_defect_pre_fix_reproduction.json",
+  "post_fix": {
+    "serialized_overlap": {"connect_calls": 1, "cursors_created": 1, "published_id": 1, "returned_ids": [1, 1], "abandoned_open": 0, "second_blocked_while_first_connected": true, "connects_while_held": 1, "application_closed": 0, "harness_closed": 1},
+    "cursor_fails": {"first_none": true, "published_id": 2, "connect_calls": 2, "notes_after_first": [], "abandoned_open": 0, "application_closed": 1, "harness_closed": 1},
+    "sql_fails": {"first_none": true, "published_id": 2, "notes_after_first": [], "abandoned_open": 0},
+    "commit_fails": {"first_none": true, "published_id": 2, "notes_after_first": [], "abandoned_open": 0},
+    "rollback_fails": {"notes_after_first": ["RuntimeError"], "published_is_second": true, "abandoned_open": 0},
+    "cursor_close_fails": {"notes_after_first": ["RuntimeError"], "published_is_second": true, "abandoned_open": 0},
+    "conn_close_fails": {"notes_after_first": ["RuntimeError"], "published_is_second": true, "abandoned_open": 0, "harness_closed": 2},
+    "both_fail": {"published_id": null, "application_closed": 2, "harness_closed": 0, "abandoned_open": 0},
+    "failed_cleanup_keeps_healthy": {"global_still_healthy": true, "failed_none": true},
+    "release": {"borrowed_closed": true, "second_release_notes": [], "release_created_connection": false, "harness_closed": 0},
+    "replace_during_close": {"old_id": 1, "new_id": 2, "old_closed": true, "new_open": true, "published_id": 2},
+    "nested_helper": {"connects_after_second_helper": 1, "helper_rows": []},
+    "nested_waits": {"helper_blocked": true, "connect_calls": 1, "abandoned_open": 0, "worker_errors": []}
+  },
+  "network": [],
+  "alive_workers": 0
+}

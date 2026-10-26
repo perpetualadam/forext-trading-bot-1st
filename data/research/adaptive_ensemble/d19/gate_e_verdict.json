@@ -1,0 +1,5 @@
+{
+  "gate": "E",
+  "result": "PASS",
+  "meaning": "Decision records are pending. No proposed value was written as selected."
+}

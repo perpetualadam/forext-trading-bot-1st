@@ -1,0 +1,23 @@
+{
+  "directory": "data/research/adaptive_ensemble/r56/phase4_preparation",
+  "excludes_self": true,
+  "file_count": 15,
+  "files": {
+    "01_architecture.md": "07a747a83c5db986c5d5e251149965921260493b88d11c683798fcf981381cd0",
+    "02_transport_security.md": "62d25824053f29a8f6c542294ef278398b0d471095b71173b84d9377d91d24fb",
+    "03_credential_safety.md": "cc5703930d6466e6500e35f1360ce935d4ed5cd735fb30b50f5ef894fbf12c96",
+    "04_timeout_evidence.md": "8d00198c7ead63881c6fdd57e0446f7de272bd93586ed7b0e8d5e049214aac88",
+    "05_test_results.md": "30742b1d6bdc1fdf45bea53334703fed13960a679652d78734c03b2ec43197f7",
+    "06_future_connection_checklist.md": "33ea46dd0aedf620cc46699364c7cdeb977d4df08e8d72beb7cf6d63bc027764",
+    "08_phase4_report.md": "94294aa2fc2e48980cbeb49e0433e25d8b6b3ac198187bd9337cffa54daba770",
+    "credential_boundary.py": "69b0873a15ed0e96021f8a0f0b12218916546c680d4a0a59d7ed2ee84e8f088d",
+    "diagnostic_session.py": "b781d6c10a214b1e9e3e489c803cb25c8bcbe1bd7e3df545d2880453d5a8d02c",
+    "https_transport_candidate.py": "4c6c8b2970f5ad947e31fbdb89da56ac2681ae7e78591dd546723c366681dadd",
+    "offline_entry.py": "c65f9c7854bf6498a6f8ef41485053a88c21ff4f8376a01b9742a0ed04b979e4",
+    "synthetic_logs/r56-phase4-r560d18bbfad1884e1caef54bc9e6051b45-0001.json": "468ca987207c53179c4589d10600690b6f68325936e957b5c2bdde37699d7713",
+    "synthetic_logs/r56-phase4-r56fe35d43a3c3c4cd5b78cf01be514b2a0-0001.json": "2040a113e7648978a65c3a8934f9d99833f4fc28f22fad1437e068655838d0c2",
+    "synthetic_transport.py": "e7c4e196ea675cbd99b9d31a75b7f4d8629006599f1da878a855b119186ba296",
+    "test_phase4_offline.py": "6010d803116a3a642a39a25448780b1ca91dfa9a5135902d6538bc01a0125f55"
+  },
+  "schema": "r56.phase4.integrity.1"
+}

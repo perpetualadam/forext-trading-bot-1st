@@ -1,0 +1,2675 @@
+{
+  "instruments": {
+    "AUD_USD": {
+      "range": {
+        "design": {
+          "n": 1103,
+          "mean": -0.0001591009333551812,
+          "bootstrap_low": -0.00019341874875501502,
+          "bootstrap_high": -0.00012338928811418283,
+          "win_rate": 0.30915684496826834,
+          "profit_factor": 0.5788823202432464,
+          "average_win": 0.0007074254374058236,
+          "average_loss": -0.0005468771701393053,
+          "max_drawdown": 0.17721094906265192,
+          "ambiguous": 1,
+          "rejected": {
+            "cost_filter": 1309,
+            "gap": 0,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 656,
+            "target": 165,
+            "timeout": 281,
+            "ambiguous_intrabar": 1
+          },
+          "excluded": {
+            "gap_unevaluable": 4,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 630,
+          "mean": -0.00014886757045120844,
+          "bootstrap_low": -0.0001913965984408181,
+          "bootstrap_high": -0.00010276530722207633,
+          "win_rate": 0.30634920634920637,
+          "profit_factor": 0.5500029716104865,
+          "average_win": 0.0005939347437241263,
+          "average_loss": -0.0004769244277414593,
+          "max_drawdown": 0.09338359571650603,
+          "ambiguous": 1,
+          "rejected": {
+            "cost_filter": 932,
+            "gap": 1,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 345,
+            "target": 90,
+            "timeout": 194,
+            "ambiguous_intrabar": 1
+          },
+          "excluded": {
+            "gap_unevaluable": 4,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 630,
+          "mean": -0.0002904765918218893,
+          "bootstrap_low": -0.0003328325795234283,
+          "bootstrap_high": -0.00024453931811973736,
+          "win_rate": 0.26666666666666666,
+          "profit_factor": 0.3268499459945749,
+          "average_win": 0.0005289065442285522,
+          "average_loss": -0.0005884340958402317,
+          "max_drawdown": 0.1824583227428782,
+          "ambiguous": 1,
+          "rejected": {
+            "cost_filter": 932,
+            "gap": 1,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 345,
+            "target": 90,
+            "timeout": 194,
+            "ambiguous_intrabar": 1
+          },
+          "excluded": {
+            "gap_unevaluable": 4,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 630,
+          "mean": -0.00043208561319257015,
+          "bootstrap_low": -0.00047445740246124403,
+          "bootstrap_high": -0.00038631332901739834,
+          "win_rate": 0.22857142857142856,
+          "profit_factor": 0.19674557169284962,
+          "average_win": 0.00046301994731055433,
+          "average_loss": -0.0006973020755638664,
+          "max_drawdown": 0.27153304976925013,
+          "ambiguous": 1,
+          "rejected": {
+            "cost_filter": 932,
+            "gap": 1,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 345,
+            "target": 90,
+            "timeout": 194,
+            "ambiguous_intrabar": 1
+          },
+          "excluded": {
+            "gap_unevaluable": 4,
+            "unresolved": 0
+          }
+        }
+      },
+      "trend": {
+        "design": {
+          "n": 5799,
+          "mean": -0.0001992519070775159,
+          "bootstrap_low": -0.0002120490135785622,
+          "bootstrap_high": -0.00018638145301989412,
+          "win_rate": 0.2058975685463011,
+          "profit_factor": 0.40833115374253814,
+          "average_win": 0.0006678594600809221,
+          "average_loss": -0.0004240794798000294,
+          "max_drawdown": 1.1555076484604234,
+          "ambiguous": 12,
+          "rejected": {
+            "cost_filter": 3956,
+            "gap": 14,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 4513,
+            "target": 1061,
+            "timeout": 213,
+            "ambiguous_intrabar": 12
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 3634,
+          "mean": -0.000192437706204832,
+          "bootstrap_low": -0.00020702285675724597,
+          "bootstrap_high": -0.0001808697554818176,
+          "win_rate": 0.19592735277930656,
+          "profit_factor": 0.37827502129443374,
+          "average_win": 0.0005975915518156395,
+          "average_loss": -0.00038494312431248967,
+          "max_drawdown": 0.6990303298016418,
+          "ambiguous": 13,
+          "rejected": {
+            "cost_filter": 3563,
+            "gap": 13,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 2860,
+            "target": 624,
+            "timeout": 137,
+            "ambiguous_intrabar": 13
+          },
+          "excluded": {
+            "gap_unevaluable": 2,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 3634,
+          "mean": -0.0003340069257842894,
+          "bootstrap_low": -0.0003485538557149331,
+          "bootstrap_high": -0.00032248574381185365,
+          "win_rate": 0.18767198679141442,
+          "profit_factor": 0.2121663962317159,
+          "average_win": 0.00047928972557393984,
+          "average_loss": -0.0005219026968636636,
+          "max_drawdown": 1.213353936622441,
+          "ambiguous": 13,
+          "rejected": {
+            "cost_filter": 3563,
+            "gap": 13,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 2860,
+            "target": 624,
+            "timeout": 137,
+            "ambiguous_intrabar": 13
+          },
+          "excluded": {
+            "gap_unevaluable": 2,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 3634,
+          "mean": -0.000475576145363747,
+          "bootstrap_low": -0.0004900848546726202,
+          "bootstrap_high": -0.0004640308899995855,
+          "win_rate": 0.18189323059988993,
+          "profit_factor": 0.11824095513119848,
+          "average_win": 0.0003506077663636053,
+          "average_loss": -0.0006592652020915573,
+          "max_drawdown": 1.727677543443245,
+          "ambiguous": 13,
+          "rejected": {
+            "cost_filter": 3563,
+            "gap": 13,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 2860,
+            "target": 624,
+            "timeout": 137,
+            "ambiguous_intrabar": 13
+          },
+          "excluded": {
+            "gap_unevaluable": 2,
+            "unresolved": 0
+          }
+        }
+      },
+      "breakout": {
+        "design": {
+          "n": 2108,
+          "mean": -0.00018920306472429194,
+          "bootstrap_low": -0.00021165884710497832,
+          "bootstrap_high": -0.00016391597831060317,
+          "win_rate": 0.2148956356736243,
+          "profit_factor": 0.44373037674619376,
+          "average_win": 0.0007023189508436686,
+          "average_loss": -0.0004332269155111717,
+          "max_drawdown": 0.4046766399094626,
+          "ambiguous": 5,
+          "rejected": {
+            "cost_filter": 804,
+            "gap": 2,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 1626,
+            "target": 418,
+            "timeout": 59,
+            "ambiguous_intrabar": 5
+          },
+          "excluded": {
+            "gap_unevaluable": 0,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 1285,
+          "mean": -0.00021290432293604198,
+          "bootstrap_low": -0.0002327986334224268,
+          "bootstrap_high": -0.0001916601643755514,
+          "win_rate": 0.177431906614786,
+          "profit_factor": 0.34207317126738623,
+          "average_win": 0.0006238701087957336,
+          "average_loss": -0.00039340060527742786,
+          "max_drawdown": 0.27350496437691074,
+          "ambiguous": 7,
+          "rejected": {
+            "cost_filter": 756,
+            "gap": 5,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 1045,
+            "target": 214,
+            "timeout": 19,
+            "ambiguous_intrabar": 7
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 1285,
+          "mean": -0.0003545072136253094,
+          "bootstrap_low": -0.0003743764385917001,
+          "bootstrap_high": -0.0003331411022924892,
+          "win_rate": 0.1743190661478599,
+          "profit_factor": 0.19478799392758342,
+          "average_win": 0.0004919626466362309,
+          "average_loss": -0.0005332152708341548,
+          "max_drawdown": 0.4550618374129643,
+          "ambiguous": 7,
+          "rejected": {
+            "cost_filter": 756,
+            "gap": 5,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 1045,
+            "target": 214,
+            "timeout": 19,
+            "ambiguous_intrabar": 7
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 1285,
+          "mean": -0.0004961101043145766,
+          "bootstrap_low": -0.0005160641351041283,
+          "bootstrap_high": -0.0004746097026326522,
+          "win_rate": 0.17042801556420234,
+          "profit_factor": 0.10987547177022655,
+          "average_win": 0.00035932469819178326,
+          "average_loss": -0.0006718514005142884,
+          "max_drawdown": 0.6368827286152468,
+          "ambiguous": 7,
+          "rejected": {
+            "cost_filter": 756,
+            "gap": 5,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 1045,
+            "target": 214,
+            "timeout": 19,
+            "ambiguous_intrabar": 7
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        }
+      },
+      "selector": {
+        "design": {
+          "n": 1956,
+          "mean": -0.00020400179977624405,
+          "bootstrap_low": -0.00022854116686160867,
+          "bootstrap_high": -0.00017884952012533256,
+          "win_rate": 0.24948875255623723,
+          "profit_factor": 0.4567838824509445,
+          "average_win": 0.0006875767005891536,
+          "average_loss": -0.0005003848434944417,
+          "max_drawdown": 0.39981700293076067,
+          "ambiguous": 2,
+          "rejected": {
+            "cost_filter": 1412,
+            "gap": 0,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 1357,
+            "target": 307,
+            "timeout": 290,
+            "ambiguous_intrabar": 2
+          },
+          "excluded": {
+            "gap_unevaluable": 4,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 1151,
+          "mean": -0.0001830903347014384,
+          "bootstrap_low": -0.00020931510122427995,
+          "bootstrap_high": -0.00015209095035998094,
+          "win_rate": 0.2476107732406603,
+          "profit_factor": 0.46491526035509767,
+          "average_win": 0.0006424615166549072,
+          "average_loss": -0.00045477887700693325,
+          "max_drawdown": 0.21047260061666584,
+          "ambiguous": 4,
+          "rejected": {
+            "cost_filter": 1060,
+            "gap": 2,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 775,
+            "target": 198,
+            "timeout": 174,
+            "ambiguous_intrabar": 4
+          },
+          "excluded": {
+            "gap_unevaluable": 3,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 1151,
+          "mean": -0.0003246885349867815,
+          "bootstrap_low": -0.0003508522663026136,
+          "bootstrap_high": -0.0002937054995386028,
+          "win_rate": 0.22762814943527368,
+          "profit_factor": 0.27799478921650883,
+          "average_win": 0.0005492085750924298,
+          "average_loss": -0.0005822375145601823,
+          "max_drawdown": 0.373174573664873,
+          "ambiguous": 4,
+          "rejected": {
+            "cost_filter": 1060,
+            "gap": 2,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 775,
+            "target": 198,
+            "timeout": 174,
+            "ambiguous_intrabar": 4
+          },
+          "excluded": {
+            "gap_unevaluable": 3,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 1151,
+          "mean": -0.0004662867352721246,
+          "bootstrap_low": -0.0004923894313809472,
+          "bootstrap_high": -0.00043547319494454447,
+          "win_rate": 0.21112076455256298,
+          "profit_factor": 0.16749274720864102,
+          "average_win": 0.00044435502031286837,
+          "average_loss": -0.0007099937249275798,
+          "max_drawdown": 0.5360151457561458,
+          "ambiguous": 4,
+          "rejected": {
+            "cost_filter": 1060,
+            "gap": 2,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 775,
+            "target": 198,
+            "timeout": 174,
+            "ambiguous_intrabar": 4
+          },
+          "excluded": {
+            "gap_unevaluable": 3,
+            "unresolved": 0
+          }
+        }
+      }
+    },
+    "EUR_USD": {
+      "range": {
+        "design": {
+          "n": 1068,
+          "mean": -0.0001383012627504212,
+          "bootstrap_low": -0.00016693450038539635,
+          "bootstrap_high": -0.00011051461345393769,
+          "win_rate": 0.2949438202247191,
+          "profit_factor": 0.5044517088456855,
+          "average_win": 0.00047733189986223085,
+          "average_loss": -0.0003958370479071083,
+          "max_drawdown": 0.14864445426336068,
+          "ambiguous": 1,
+          "rejected": {
+            "cost_filter": 1372,
+            "gap": 1,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 658,
+            "target": 162,
+            "timeout": 247,
+            "ambiguous_intrabar": 1
+          },
+          "excluded": {
+            "gap_unevaluable": 4,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 561,
+          "mean": -0.00013296416187622785,
+          "bootstrap_low": -0.00016432086009459608,
+          "bootstrap_high": -0.00010163371913377774,
+          "win_rate": 0.30124777183600715,
+          "profit_factor": 0.4711238889678578,
+          "average_win": 0.0003931804656043501,
+          "average_loss": -0.00035979692219310965,
+          "max_drawdown": 0.07541611316957128,
+          "ambiguous": 0,
+          "rejected": {
+            "cost_filter": 1056,
+            "gap": 3,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 333,
+            "target": 78,
+            "timeout": 150,
+            "ambiguous_intrabar": 0
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 561,
+          "mean": -0.00021964791182309607,
+          "bootstrap_low": -0.0002509464754573822,
+          "bootstrap_high": -0.00018834937408298934,
+          "win_rate": 0.25668449197860965,
+          "profit_factor": 0.3005633934155402,
+          "average_win": 0.0003677182418461917,
+          "average_loss": -0.00042247938934918106,
+          "max_drawdown": 0.12352712535548208,
+          "ambiguous": 0,
+          "rejected": {
+            "cost_filter": 1056,
+            "gap": 3,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 333,
+            "target": 78,
+            "timeout": 150,
+            "ambiguous_intrabar": 0
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 561,
+          "mean": -0.00030633166176957937,
+          "bootstrap_low": -0.0003375720908197836,
+          "bootstrap_high": -0.0002750650290318158,
+          "win_rate": 0.21568627450980393,
+          "profit_factor": 0.19342787538386927,
+          "average_win": 0.0003406004604623544,
+          "average_loss": -0.0004842379953833612,
+          "max_drawdown": 0.1720714931809909,
+          "ambiguous": 0,
+          "rejected": {
+            "cost_filter": 1056,
+            "gap": 3,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 333,
+            "target": 78,
+            "timeout": 150,
+            "ambiguous_intrabar": 0
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        }
+      },
+      "trend": {
+        "design": {
+          "n": 5330,
+          "mean": -0.0001376714031313846,
+          "bootstrap_low": -0.00014777603332265073,
+          "bootstrap_high": -0.00012934657228128716,
+          "win_rate": 0.20919324577861162,
+          "profit_factor": 0.4277341951539404,
+          "average_win": 0.000491894827475028,
+          "average_loss": -0.00030421146176155074,
+          "max_drawdown": 0.7335832698239907,
+          "ambiguous": 9,
+          "rejected": {
+            "cost_filter": 5032,
+            "gap": 12,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 4121,
+            "target": 992,
+            "timeout": 208,
+            "ambiguous_intrabar": 9
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 3074,
+          "mean": -0.000135434285166972,
+          "bootstrap_low": -0.0001451032715628898,
+          "bootstrap_high": -0.00012393602276338306,
+          "win_rate": 0.19616135328562134,
+          "profit_factor": 0.3889737339738937,
+          "average_win": 0.0004395168881973829,
+          "average_loss": -0.000275740055113838,
+          "max_drawdown": 0.4167204825800537,
+          "ambiguous": 10,
+          "rejected": {
+            "cost_filter": 5161,
+            "gap": 5,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 2412,
+            "target": 532,
+            "timeout": 120,
+            "ambiguous_intrabar": 10
+          },
+          "excluded": {
+            "gap_unevaluable": 7,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 3074,
+          "mean": -0.00022204421363727756,
+          "bootstrap_low": -0.00023172899050550195,
+          "bootstrap_high": -0.00021058311589014324,
+          "win_rate": 0.1893298633702017,
+          "profit_factor": 0.23812883848183738,
+          "average_win": 0.00036656483260267994,
+          "average_loss": -0.0003595122974702051,
+          "max_drawdown": 0.6824435053491744,
+          "ambiguous": 10,
+          "rejected": {
+            "cost_filter": 5161,
+            "gap": 5,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 2412,
+            "target": 532,
+            "timeout": 120,
+            "ambiguous_intrabar": 10
+          },
+          "excluded": {
+            "gap_unevaluable": 7,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 3074,
+          "mean": -0.0003086541421071985,
+          "bootstrap_low": -0.00031834612452144015,
+          "bootstrap_high": -0.00029723020901651866,
+          "win_rate": 0.18607677293428757,
+          "profit_factor": 0.14695888238969446,
+          "average_win": 0.0002857628833378813,
+          "average_loss": -0.00044454804240879155,
+          "max_drawdown": 0.9484571773162987,
+          "ambiguous": 10,
+          "rejected": {
+            "cost_filter": 5161,
+            "gap": 5,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 2412,
+            "target": 532,
+            "timeout": 120,
+            "ambiguous_intrabar": 10
+          },
+          "excluded": {
+            "gap_unevaluable": 7,
+            "unresolved": 0
+          }
+        }
+      },
+      "breakout": {
+        "design": {
+          "n": 1987,
+          "mean": -0.00016030552116456646,
+          "bootstrap_low": -0.00017625395949668745,
+          "bootstrap_high": -0.00014560051204251664,
+          "win_rate": 0.1972823351786613,
+          "profit_factor": 0.3658038101988047,
+          "average_win": 0.00046868912503146315,
+          "average_loss": -0.00031489229314503266,
+          "max_drawdown": 0.3192563893170615,
+          "ambiguous": 5,
+          "rejected": {
+            "cost_filter": 1061,
+            "gap": 2,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 1567,
+            "target": 355,
+            "timeout": 60,
+            "ambiguous_intrabar": 5
+          },
+          "excluded": {
+            "gap_unevaluable": 2,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 1119,
+          "mean": -0.0001565842781155011,
+          "bootstrap_low": -0.00017462280251428315,
+          "bootstrap_high": -0.0001386361678523879,
+          "win_rate": 0.1742627345844504,
+          "profit_factor": 0.3384860521429349,
+          "average_win": 0.00045977505139539217,
+          "average_loss": -0.0002866601106421506,
+          "max_drawdown": 0.1768288683990703,
+          "ambiguous": 5,
+          "rejected": {
+            "cost_filter": 1039,
+            "gap": 1,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 911,
+            "target": 179,
+            "timeout": 24,
+            "ambiguous_intrabar": 5
+          },
+          "excluded": {
+            "gap_unevaluable": 2,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 1119,
+          "mean": -0.00024321985978211365,
+          "bootstrap_low": -0.00026126834664502214,
+          "bootstrap_high": -0.0002252298343086681,
+          "win_rate": 0.17158176943699732,
+          "profit_factor": 0.21120396096840183,
+          "average_win": 0.000379546708308061,
+          "average_loss": -0.0003722071101308877,
+          "max_drawdown": 0.2732105628490643,
+          "ambiguous": 5,
+          "rejected": {
+            "cost_filter": 1039,
+            "gap": 1,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 911,
+            "target": 179,
+            "timeout": 24,
+            "ambiguous_intrabar": 5
+          },
+          "excluded": {
+            "gap_unevaluable": 2,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 1119,
+          "mean": -0.00032985544144834147,
+          "bootstrap_low": -0.0003479138907753763,
+          "bootstrap_high": -0.0003118246375457504,
+          "win_rate": 0.1671134941912422,
+          "profit_factor": 0.13276246435083408,
+          "average_win": 0.00030216862708551823,
+          "average_loss": -0.0004566671376026675,
+          "max_drawdown": 0.36981302935167865,
+          "ambiguous": 5,
+          "rejected": {
+            "cost_filter": 1039,
+            "gap": 1,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 911,
+            "target": 179,
+            "timeout": 24,
+            "ambiguous_intrabar": 5
+          },
+          "excluded": {
+            "gap_unevaluable": 2,
+            "unresolved": 0
+          }
+        }
+      },
+      "selector": {
+        "design": {
+          "n": 1849,
+          "mean": -0.0001572866525332605,
+          "bootstrap_low": -0.00017540831709690922,
+          "bootstrap_high": -0.00013926492945108234,
+          "win_rate": 0.24337479718766902,
+          "profit_factor": 0.42855795392872875,
+          "average_win": 0.00048467836567465906,
+          "average_loss": -0.0003637800465243712,
+          "max_drawdown": 0.29241939087452395,
+          "ambiguous": 5,
+          "rejected": {
+            "cost_filter": 1554,
+            "gap": 1,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 1299,
+            "target": 308,
+            "timeout": 237,
+            "ambiguous_intrabar": 5
+          },
+          "excluded": {
+            "gap_unevaluable": 6,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 1046,
+          "mean": -0.00015839537919522912,
+          "bootstrap_low": -0.0001796493695964363,
+          "bootstrap_high": -0.00014039000522678935,
+          "win_rate": 0.2208413001912046,
+          "profit_factor": 0.37757665816862024,
+          "average_win": 0.0004350923825753898,
+          "average_loss": -0.00032661092885045973,
+          "max_drawdown": 0.16607142935540362,
+          "ambiguous": 4,
+          "rejected": {
+            "cost_filter": 1301,
+            "gap": 3,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 753,
+            "target": 144,
+            "timeout": 145,
+            "ambiguous_intrabar": 4
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 1046,
+          "mean": -0.00024500981014284774,
+          "bootstrap_low": -0.00026637354492611615,
+          "bootstrap_high": -0.00022703684124004766,
+          "win_rate": 0.19694072657743786,
+          "profit_factor": 0.24168821077025632,
+          "average_win": 0.0003965113256388172,
+          "average_loss": -0.00040233523153692264,
+          "max_drawdown": 0.2565849082321438,
+          "ambiguous": 4,
+          "rejected": {
+            "cost_filter": 1301,
+            "gap": 3,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 753,
+            "target": 144,
+            "timeout": 145,
+            "ambiguous_intrabar": 4
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 1046,
+          "mean": -0.00033162424109008164,
+          "bootstrap_low": -0.000353097720255411,
+          "bootstrap_high": -0.00031368287348417894,
+          "win_rate": 0.17208413001912046,
+          "profit_factor": 0.15740945624970704,
+          "average_win": 0.000360014246024374,
+          "average_loss": -0.0004753828180884673,
+          "max_drawdown": 0.34709838710848184,
+          "ambiguous": 4,
+          "rejected": {
+            "cost_filter": 1301,
+            "gap": 3,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 753,
+            "target": 144,
+            "timeout": 145,
+            "ambiguous_intrabar": 4
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        }
+      }
+    },
+    "GBP_USD": {
+      "range": {
+        "design": {
+          "n": 1116,
+          "mean": -0.00014146786847947252,
+          "bootstrap_low": -0.00017032959696817082,
+          "bootstrap_high": -0.00011362697423564496,
+          "win_rate": 0.2921146953405018,
+          "profit_factor": 0.5446937333507282,
+          "average_win": 0.0005793662006311561,
+          "average_loss": -0.0004389259780112003,
+          "max_drawdown": 0.15975685111383342,
+          "ambiguous": 0,
+          "rejected": {
+            "cost_filter": 1319,
+            "gap": 0,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 680,
+            "target": 177,
+            "timeout": 259,
+            "ambiguous_intrabar": 0
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 675,
+          "mean": -0.0001434044654744854,
+          "bootstrap_low": -0.00017346092942946791,
+          "bootstrap_high": -0.00010720322188667158,
+          "win_rate": 0.29185185185185186,
+          "profit_factor": 0.4789639642782247,
+          "average_win": 0.0004516846175095952,
+          "average_loss": -0.000388660844863322,
+          "max_drawdown": 0.09829568760216272,
+          "ambiguous": 0,
+          "rejected": {
+            "cost_filter": 986,
+            "gap": 2,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 404,
+            "target": 98,
+            "timeout": 173,
+            "ambiguous_intrabar": 0
+          },
+          "excluded": {
+            "gap_unevaluable": 5,
+            "unresolved": 1
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 675,
+          "mean": -0.0002179815851158334,
+          "bootstrap_low": -0.00024799659463524485,
+          "bootstrap_high": -0.00018183769410387167,
+          "win_rate": 0.2740740740740741,
+          "profit_factor": 0.3364538656860395,
+          "average_win": 0.00040327959647495264,
+          "average_loss": -0.00045253937816541593,
+          "max_drawdown": 0.14797206521954945,
+          "ambiguous": 0,
+          "rejected": {
+            "cost_filter": 986,
+            "gap": 2,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 404,
+            "target": 98,
+            "timeout": 173,
+            "ambiguous_intrabar": 0
+          },
+          "excluded": {
+            "gap_unevaluable": 5,
+            "unresolved": 1
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 675,
+          "mean": -0.0002925587047568502,
+          "bootstrap_low": -0.0003225322598406909,
+          "bootstrap_high": -0.0002564721663207404,
+          "win_rate": 0.23555555555555555,
+          "profit_factor": 0.23799596160200187,
+          "average_win": 0.0003879109043424152,
+          "average_loss": -0.0005022382936072053,
+          "max_drawdown": 0.1976484428367153,
+          "ambiguous": 0,
+          "rejected": {
+            "cost_filter": 986,
+            "gap": 2,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 404,
+            "target": 98,
+            "timeout": 173,
+            "ambiguous_intrabar": 0
+          },
+          "excluded": {
+            "gap_unevaluable": 5,
+            "unresolved": 1
+          }
+        }
+      },
+      "trend": {
+        "design": {
+          "n": 5387,
+          "mean": -0.00013769907749538966,
+          "bootstrap_low": -0.00014890107211098835,
+          "bootstrap_high": -0.00012711357155574966,
+          "win_rate": 0.22814182290699833,
+          "profit_factor": 0.47287374229242307,
+          "average_win": 0.0005414478984081973,
+          "average_loss": -0.00033843780606333297,
+          "max_drawdown": 0.7420573201767763,
+          "ambiguous": 15,
+          "rejected": {
+            "cost_filter": 4346,
+            "gap": 15,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 4052,
+            "target": 1089,
+            "timeout": 231,
+            "ambiguous_intrabar": 15
+          },
+          "excluded": {
+            "gap_unevaluable": 2,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 3433,
+          "mean": -0.0001461545522737885,
+          "bootstrap_low": -0.00015873578493123857,
+          "bootstrap_high": -0.00013538545699028903,
+          "win_rate": 0.19778619283425575,
+          "profit_factor": 0.39877587668178704,
+          "average_win": 0.0004901272587239458,
+          "average_loss": -0.0003030301331261711,
+          "max_drawdown": 0.5015885369590342,
+          "ambiguous": 14,
+          "rejected": {
+            "cost_filter": 3725,
+            "gap": 14,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 2669,
+            "target": 596,
+            "timeout": 154,
+            "ambiguous_intrabar": 14
+          },
+          "excluded": {
+            "gap_unevaluable": 4,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 3433,
+          "mean": -0.00022061905573384348,
+          "bootstrap_low": -0.00023322430303456215,
+          "bootstrap_high": -0.00020984862032961634,
+          "win_rate": 0.1939994174191669,
+          "profit_factor": 0.27177908751458707,
+          "average_win": 0.0004244196524315741,
+          "average_loss": -0.000375875933087717,
+          "max_drawdown": 0.7571147450848766,
+          "ambiguous": 14,
+          "rejected": {
+            "cost_filter": 3725,
+            "gap": 14,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 2669,
+            "target": 596,
+            "timeout": 154,
+            "ambiguous_intrabar": 14
+          },
+          "excluded": {
+            "gap_unevaluable": 4,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 3433,
+          "mean": -0.0002950835591935677,
+          "bootstrap_low": -0.00030771282113755495,
+          "bootstrap_high": -0.0002843064059287681,
+          "win_rate": 0.19050393242062336,
+          "profit_factor": 0.18728654451252402,
+          "average_win": 0.0003569523085037068,
+          "average_loss": -0.00044853136684884574,
+          "max_drawdown": 1.0126778587535359,
+          "ambiguous": 14,
+          "rejected": {
+            "cost_filter": 3725,
+            "gap": 14,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 2669,
+            "target": 596,
+            "timeout": 154,
+            "ambiguous_intrabar": 14
+          },
+          "excluded": {
+            "gap_unevaluable": 4,
+            "unresolved": 0
+          }
+        }
+      },
+      "breakout": {
+        "design": {
+          "n": 2016,
+          "mean": -0.00015516661899610704,
+          "bootstrap_low": -0.00017042969495770517,
+          "bootstrap_high": -0.0001369947096958684,
+          "win_rate": 0.21577380952380953,
+          "profit_factor": 0.43334335107599553,
+          "average_win": 0.0005499354504173145,
+          "average_loss": -0.0003491700346791168,
+          "max_drawdown": 0.3127566596244435,
+          "ambiguous": 6,
+          "rejected": {
+            "cost_filter": 850,
+            "gap": 6,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 1550,
+            "target": 394,
+            "timeout": 66,
+            "ambiguous_intrabar": 6
+          },
+          "excluded": {
+            "gap_unevaluable": 0,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 1249,
+          "mean": -0.00015075646821966447,
+          "bootstrap_low": -0.00017015395338150586,
+          "bootstrap_high": -0.00013096569521006758,
+          "win_rate": 0.19935948759007205,
+          "profit_factor": 0.4021302555866312,
+          "average_win": 0.0005086267763485121,
+          "average_loss": -0.0003149428961171404,
+          "max_drawdown": 0.18873742208674718,
+          "ambiguous": 3,
+          "rejected": {
+            "cost_filter": 704,
+            "gap": 5,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 981,
+            "target": 226,
+            "timeout": 39,
+            "ambiguous_intrabar": 3
+          },
+          "excluded": {
+            "gap_unevaluable": 3,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 1249,
+          "mean": -0.00022525208622943183,
+          "bootstrap_low": -0.00024465337616142813,
+          "bootstrap_high": -0.00020549490822384096,
+          "win_rate": 0.19615692554043235,
+          "profit_factor": 0.27780827561650207,
+          "average_win": 0.0004417309682738703,
+          "average_loss": -0.0003880118953462734,
+          "max_drawdown": 0.2814902324831616,
+          "ambiguous": 3,
+          "rejected": {
+            "cost_filter": 704,
+            "gap": 5,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 981,
+            "target": 226,
+            "timeout": 39,
+            "ambiguous_intrabar": 3
+          },
+          "excluded": {
+            "gap_unevaluable": 3,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 1249,
+          "mean": -0.00029974770423886834,
+          "bootstrap_low": -0.00031915279894101974,
+          "bootstrap_high": -0.00028002412123728337,
+          "win_rate": 0.19375500400320256,
+          "profit_factor": 0.1940246004089344,
+          "average_win": 0.00037242424787955146,
+          "average_loss": -0.0004612825725731857,
+          "max_drawdown": 0.3743882388733528,
+          "ambiguous": 3,
+          "rejected": {
+            "cost_filter": 704,
+            "gap": 5,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 981,
+            "target": 226,
+            "timeout": 39,
+            "ambiguous_intrabar": 3
+          },
+          "excluded": {
+            "gap_unevaluable": 3,
+            "unresolved": 0
+          }
+        }
+      },
+      "selector": {
+        "design": {
+          "n": 1931,
+          "mean": -0.00015331111180597764,
+          "bootstrap_low": -0.00017386935483667556,
+          "bootstrap_high": -0.00013224079207076517,
+          "win_rate": 0.25582599689280167,
+          "profit_factor": 0.49052581214876134,
+          "average_win": 0.000576990466978981,
+          "average_loss": -0.0004043681611586356,
+          "max_drawdown": 0.2986268045793319,
+          "ambiguous": 2,
+          "rejected": {
+            "cost_filter": 1467,
+            "gap": 0,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 1322,
+            "target": 363,
+            "timeout": 244,
+            "ambiguous_intrabar": 2
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 1181,
+          "mean": -0.0001538730603720271,
+          "bootstrap_low": -0.0001771786353573362,
+          "bootstrap_high": -0.00012793032894535325,
+          "win_rate": 0.24216765453005928,
+          "profit_factor": 0.43872601844932496,
+          "average_win": 0.000496666578175473,
+          "average_loss": -0.00036175500073469194,
+          "max_drawdown": 0.18288911672287292,
+          "ambiguous": 1,
+          "rejected": {
+            "cost_filter": 1093,
+            "gap": 2,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 824,
+            "target": 195,
+            "timeout": 161,
+            "ambiguous_intrabar": 1
+          },
+          "excluded": {
+            "gap_unevaluable": 5,
+            "unresolved": 1
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 1181,
+          "mean": -0.00022839601157074787,
+          "bootstrap_low": -0.0002517006418610121,
+          "bootstrap_high": -0.00020247588388478,
+          "win_rate": 0.23285351397121085,
+          "profit_factor": 0.30967863662427425,
+          "average_win": 0.0004400131462140895,
+          "average_loss": -0.0004312795859535627,
+          "max_drawdown": 0.2699744846687274,
+          "ambiguous": 1,
+          "rejected": {
+            "cost_filter": 1093,
+            "gap": 2,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 824,
+            "target": 195,
+            "timeout": 161,
+            "ambiguous_intrabar": 1
+          },
+          "excluded": {
+            "gap_unevaluable": 5,
+            "unresolved": 1
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 1181,
+          "mean": -0.0003029189627691377,
+          "bootstrap_low": -0.00032622264836435703,
+          "bootstrap_high": -0.00027702143882387575,
+          "win_rate": 0.21337849280270957,
+          "profit_factor": 0.22057800730405416,
+          "average_win": 0.0004017587747852897,
+          "average_loss": -0.0004940694362499942,
+          "max_drawdown": 0.35791261464827934,
+          "ambiguous": 1,
+          "rejected": {
+            "cost_filter": 1093,
+            "gap": 2,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 824,
+            "target": 195,
+            "timeout": 161,
+            "ambiguous_intrabar": 1
+          },
+          "excluded": {
+            "gap_unevaluable": 5,
+            "unresolved": 1
+          }
+        }
+      }
+    },
+    "USD_CAD": {
+      "range": {
+        "design": {
+          "n": 892,
+          "mean": -0.0001322220001474404,
+          "bootstrap_low": -0.00015558274108247498,
+          "bootstrap_high": -0.00010637074665653551,
+          "win_rate": 0.2769058295964126,
+          "profit_factor": 0.456624671779505,
+          "average_win": 0.0004012648159033051,
+          "average_loss": -0.000336518501797881,
+          "max_drawdown": 0.11832910995948447,
+          "ambiguous": 1,
+          "rejected": {
+            "cost_filter": 1693,
+            "gap": 1,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 539,
+            "target": 123,
+            "timeout": 229,
+            "ambiguous_intrabar": 1
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 590,
+          "mean": -0.00012351287548646476,
+          "bootstrap_low": -0.00015239309808473883,
+          "bootstrap_high": -9.093630399874107e-05,
+          "win_rate": 0.2796610169491525,
+          "profit_factor": 0.4457475138993295,
+          "average_win": 0.0003551906948914518,
+          "average_loss": -0.00030936249692730295,
+          "max_drawdown": 0.07335870762135756,
+          "ambiguous": 0,
+          "rejected": {
+            "cost_filter": 1187,
+            "gap": 0,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 367,
+            "target": 75,
+            "timeout": 148,
+            "ambiguous_intrabar": 0
+          },
+          "excluded": {
+            "gap_unevaluable": 0,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 590,
+          "mean": -0.00019513758002340527,
+          "bootstrap_low": -0.00022419933883123045,
+          "bootstrap_high": -0.0001624417387098746,
+          "win_rate": 0.23389830508474577,
+          "profit_factor": 0.2917634165943838,
+          "average_win": 0.00034368954403208354,
+          "average_loss": -0.0003596467462173377,
+          "max_drawdown": 0.11477414766377035,
+          "ambiguous": 0,
+          "rejected": {
+            "cost_filter": 1187,
+            "gap": 0,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 367,
+            "target": 75,
+            "timeout": 148,
+            "ambiguous_intrabar": 0
+          },
+          "excluded": {
+            "gap_unevaluable": 0,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 590,
+          "mean": -0.00026676228456002775,
+          "bootstrap_low": -0.0002960055795774032,
+          "bootstrap_high": -0.00023401310287974645,
+          "win_rate": 0.2016949152542373,
+          "profit_factor": 0.19483725573179977,
+          "average_win": 0.0003200499847541348,
+          "average_loss": -0.0004150227092912068,
+          "max_drawdown": 0.15695911003109145,
+          "ambiguous": 0,
+          "rejected": {
+            "cost_filter": 1187,
+            "gap": 0,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 367,
+            "target": 75,
+            "timeout": 148,
+            "ambiguous_intrabar": 0
+          },
+          "excluded": {
+            "gap_unevaluable": 0,
+            "unresolved": 0
+          }
+        }
+      },
+      "trend": {
+        "design": {
+          "n": 4437,
+          "mean": -0.0001324613830968011,
+          "bootstrap_low": -0.00014068588747415722,
+          "bootstrap_high": -0.00012320041805183584,
+          "win_rate": 0.18931710615280595,
+          "profit_factor": 0.3671461463782978,
+          "average_win": 0.00040591488121038396,
+          "average_loss": -0.0002581872830184123,
+          "max_drawdown": 0.5876254145043923,
+          "ambiguous": 3,
+          "rejected": {
+            "cost_filter": 8459,
+            "gap": 10,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 3542,
+            "target": 741,
+            "timeout": 151,
+            "ambiguous_intrabar": 3
+          },
+          "excluded": {
+            "gap_unevaluable": 4,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 2808,
+          "mean": -0.00012742171751737569,
+          "bootstrap_low": -0.00013666329892992842,
+          "bootstrap_high": -0.00011784261658778829,
+          "win_rate": 0.17663817663817663,
+          "profit_factor": 0.3440155865469056,
+          "average_win": 0.0003783062192864295,
+          "average_loss": -0.00023591698423653117,
+          "max_drawdown": 0.35825143667586345,
+          "ambiguous": 4,
+          "rejected": {
+            "cost_filter": 6177,
+            "gap": 15,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 2265,
+            "target": 441,
+            "timeout": 98,
+            "ambiguous_intrabar": 4
+          },
+          "excluded": {
+            "gap_unevaluable": 6,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 2808,
+          "mean": -0.0001990795545298236,
+          "bootstrap_low": -0.00020831665813336438,
+          "bootstrap_high": -0.0001894921267460839,
+          "win_rate": 0.17236467236467237,
+          "profit_factor": 0.21430206786719647,
+          "average_win": 0.00031502799828179106,
+          "average_loss": -0.00030614842525306866,
+          "max_drawdown": 0.5589109265738201,
+          "ambiguous": 4,
+          "rejected": {
+            "cost_filter": 6177,
+            "gap": 15,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 2265,
+            "target": 441,
+            "timeout": 98,
+            "ambiguous_intrabar": 4
+          },
+          "excluded": {
+            "gap_unevaluable": 6,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 2808,
+          "mean": -0.0002707373915419533,
+          "bootstrap_low": -0.0002799700173364821,
+          "bootstrap_high": -0.00026115646324407815,
+          "win_rate": 0.16773504273504272,
+          "profit_factor": 0.134643584747402,
+          "average_win": 0.0002511395344171734,
+          "average_loss": -0.00037591669497659115,
+          "max_drawdown": 0.7599803506483347,
+          "ambiguous": 4,
+          "rejected": {
+            "cost_filter": 6177,
+            "gap": 15,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 2265,
+            "target": 441,
+            "timeout": 98,
+            "ambiguous_intrabar": 4
+          },
+          "excluded": {
+            "gap_unevaluable": 6,
+            "unresolved": 0
+          }
+        }
+      },
+      "breakout": {
+        "design": {
+          "n": 1584,
+          "mean": -0.00011930573382593769,
+          "bootstrap_low": -0.0001323503425526563,
+          "bootstrap_high": -0.00010357579714234745,
+          "win_rate": 0.20833333333333334,
+          "profit_factor": 0.42101255166338053,
+          "average_win": 0.0004164169975326485,
+          "average_loss": -0.000260285399972934,
+          "max_drawdown": 0.1893874300891134,
+          "ambiguous": 6,
+          "rejected": {
+            "cost_filter": 1706,
+            "gap": 3,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 1232,
+            "target": 298,
+            "timeout": 48,
+            "ambiguous_intrabar": 6
+          },
+          "excluded": {
+            "gap_unevaluable": 0,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 985,
+          "mean": -0.00012654628381562376,
+          "bootstrap_low": -0.00014232397390929942,
+          "bootstrap_high": -0.00011137821560081273,
+          "win_rate": 0.18680203045685279,
+          "profit_factor": 0.36282626576717947,
+          "average_win": 0.00038575241863856885,
+          "average_loss": -0.00024422788338063174,
+          "max_drawdown": 0.12514265865027385,
+          "ambiguous": 4,
+          "rejected": {
+            "cost_filter": 1284,
+            "gap": 5,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 787,
+            "target": 166,
+            "timeout": 28,
+            "ambiguous_intrabar": 4
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 985,
+          "mean": -0.0001981751677743415,
+          "bootstrap_low": -0.00021400461314749817,
+          "bootstrap_high": -0.0001829379068802492,
+          "win_rate": 0.18071065989847715,
+          "profit_factor": 0.22905231306134818,
+          "average_win": 0.00032581812100292834,
+          "average_loss": -0.00031375237397304534,
+          "max_drawdown": 0.19547599045092867,
+          "ambiguous": 4,
+          "rejected": {
+            "cost_filter": 1284,
+            "gap": 5,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 787,
+            "target": 166,
+            "timeout": 28,
+            "ambiguous_intrabar": 4
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 985,
+          "mean": -0.0002698040517327412,
+          "bootstrap_low": -0.00028568525238537864,
+          "bootstrap_high": -0.0002544975981593678,
+          "win_rate": 0.1715736040609137,
+          "profit_factor": 0.14631089924263058,
+          "average_win": 0.0002695100322566102,
+          "average_loss": -0.00038150022844132006,
+          "max_drawdown": 0.26589732084641154,
+          "ambiguous": 4,
+          "rejected": {
+            "cost_filter": 1284,
+            "gap": 5,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 787,
+            "target": 166,
+            "timeout": 28,
+            "ambiguous_intrabar": 4
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        }
+      },
+      "selector": {
+        "design": {
+          "n": 1604,
+          "mean": -0.00013189368656860165,
+          "bootstrap_low": -0.00014923259896675264,
+          "bootstrap_high": -0.00011323503888303733,
+          "win_rate": 0.23753117206982544,
+          "profit_factor": 0.4230769995260904,
+          "average_win": 0.00040719736390155747,
+          "average_loss": -0.00029983619697672155,
+          "max_drawdown": 0.2121296317568204,
+          "ambiguous": 1,
+          "rejected": {
+            "cost_filter": 2152,
+            "gap": 3,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 1123,
+            "target": 257,
+            "timeout": 223,
+            "ambiguous_intrabar": 1
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 967,
+          "mean": -0.00011791636072725994,
+          "bootstrap_low": -0.00013755598707539053,
+          "bootstrap_high": -9.702756041016632e-05,
+          "win_rate": 0.24301964839710444,
+          "profit_factor": 0.4400448707684284,
+          "average_win": 0.0003813084370336767,
+          "average_loss": -0.00027818661683903605,
+          "max_drawdown": 0.11394864843194635,
+          "ambiguous": 1,
+          "rejected": {
+            "cost_filter": 1584,
+            "gap": 3,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 676,
+            "target": 152,
+            "timeout": 138,
+            "ambiguous_intrabar": 1
+          },
+          "excluded": {
+            "gap_unevaluable": 2,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 967,
+          "mean": -0.00018955856334732838,
+          "bootstrap_low": -0.0002092016391077127,
+          "bootstrap_high": -0.00016874772223627964,
+          "win_rate": 0.2140641158221303,
+          "profit_factor": 0.2860011739922632,
+          "average_win": 0.00035470707852987114,
+          "average_loss": -0.0003377993368586182,
+          "max_drawdown": 0.18300557633397618,
+          "ambiguous": 1,
+          "rejected": {
+            "cost_filter": 1584,
+            "gap": 3,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 676,
+            "target": 152,
+            "timeout": 138,
+            "ambiguous_intrabar": 1
+          },
+          "excluded": {
+            "gap_unevaluable": 2,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 967,
+          "mean": -0.00026120076596707867,
+          "bootstrap_low": -0.0002808445974208705,
+          "bootstrap_high": -0.00024046788406207443,
+          "win_rate": 0.19441571871768357,
+          "profit_factor": 0.18956450595341537,
+          "average_win": 0.00031425459823241746,
+          "average_loss": -0.0004000783121410264,
+          "max_drawdown": 0.2521505028308401,
+          "ambiguous": 1,
+          "rejected": {
+            "cost_filter": 1584,
+            "gap": 3,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 676,
+            "target": 152,
+            "timeout": 138,
+            "ambiguous_intrabar": 1
+          },
+          "excluded": {
+            "gap_unevaluable": 2,
+            "unresolved": 0
+          }
+        }
+      }
+    },
+    "USD_CHF": {
+      "range": {
+        "design": {
+          "n": 1003,
+          "mean": -0.00021072870676928278,
+          "bootstrap_low": -0.00025039372635816205,
+          "bootstrap_high": -0.00016850093159906347,
+          "win_rate": 0.26321036889332006,
+          "profit_factor": 0.4267391590748232,
+          "average_win": 0.0005959789609925489,
+          "average_loss": -0.0004989165610170819,
+          "max_drawdown": 0.21323843897521552,
+          "ambiguous": 0,
+          "rejected": {
+            "cost_filter": 1420,
+            "gap": 0,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 644,
+            "target": 124,
+            "timeout": 235,
+            "ambiguous_intrabar": 0
+          },
+          "excluded": {
+            "gap_unevaluable": 0,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 640,
+          "mean": -0.00019415420124902435,
+          "bootstrap_low": -0.00023641213870872558,
+          "bootstrap_high": -0.0001586633479088513,
+          "win_rate": 0.2796875,
+          "profit_factor": 0.43728498289074524,
+          "average_win": 0.0005394482561135598,
+          "average_loss": -0.00047900201007310806,
+          "max_drawdown": 0.12527013075026994,
+          "ambiguous": 0,
+          "rejected": {
+            "cost_filter": 1033,
+            "gap": 0,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 391,
+            "target": 94,
+            "timeout": 155,
+            "ambiguous_intrabar": 0
+          },
+          "excluded": {
+            "gap_unevaluable": 3,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 640,
+          "mean": -0.00031901693338317173,
+          "bootstrap_low": -0.00036109230819404643,
+          "bootstrap_high": -0.00028334579724517385,
+          "win_rate": 0.2390625,
+          "profit_factor": 0.27095556874173526,
+          "average_win": 0.0004959596710831408,
+          "average_loss": -0.0005750568111723828,
+          "max_drawdown": 0.2046743049560676,
+          "ambiguous": 0,
+          "rejected": {
+            "cost_filter": 1033,
+            "gap": 0,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 391,
+            "target": 94,
+            "timeout": 155,
+            "ambiguous_intrabar": 0
+          },
+          "excluded": {
+            "gap_unevaluable": 3,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 640,
+          "mean": -0.000443879665517319,
+          "bootstrap_low": -0.0004857724776793672,
+          "bootstrap_high": -0.0004080282465814964,
+          "win_rate": 0.209375,
+          "profit_factor": 0.16953893944224332,
+          "average_win": 0.00043280335049525136,
+          "average_loss": -0.0006760447329989089,
+          "max_drawdown": 0.2840784791618651,
+          "ambiguous": 0,
+          "rejected": {
+            "cost_filter": 1033,
+            "gap": 0,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 391,
+            "target": 94,
+            "timeout": 155,
+            "ambiguous_intrabar": 0
+          },
+          "excluded": {
+            "gap_unevaluable": 3,
+            "unresolved": 0
+          }
+        }
+      },
+      "trend": {
+        "design": {
+          "n": 4693,
+          "mean": -0.00017523011768243033,
+          "bootstrap_low": -0.00018788491874156932,
+          "bootstrap_high": -0.00016381771762564716,
+          "win_rate": 0.21137864905177925,
+          "profit_factor": 0.4185322460816289,
+          "average_win": 0.0005966929731099671,
+          "average_loss": -0.0003821330374516976,
+          "max_drawdown": 0.8227664247642226,
+          "ambiguous": 13,
+          "rejected": {
+            "cost_filter": 6834,
+            "gap": 23,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 3598,
+            "target": 857,
+            "timeout": 225,
+            "ambiguous_intrabar": 13
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 3070,
+          "mean": -0.00017734833758644604,
+          "bootstrap_low": -0.0001918573184937285,
+          "bootstrap_high": -0.00016398395589265605,
+          "win_rate": 0.19609120521172638,
+          "profit_factor": 0.38688791029506203,
+          "average_win": 0.0005707084266296204,
+          "average_loss": -0.0003598159923911753,
+          "max_drawdown": 0.5447963558946103,
+          "ambiguous": 9,
+          "rejected": {
+            "cost_filter": 5257,
+            "gap": 22,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 2401,
+            "target": 522,
+            "timeout": 138,
+            "ambiguous_intrabar": 9
+          },
+          "excluded": {
+            "gap_unevaluable": 5,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 3070,
+          "mean": -0.00030230302026705845,
+          "bootstrap_low": -0.00031679717757712196,
+          "bootstrap_high": -0.0002887858243075183,
+          "win_rate": 0.18827361563517916,
+          "profit_factor": 0.2252544936719932,
+          "average_win": 0.0004668393126088489,
+          "average_loss": -0.00048069959667246557,
+          "max_drawdown": 0.9281512971255885,
+          "ambiguous": 9,
+          "rejected": {
+            "cost_filter": 5257,
+            "gap": 22,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 2401,
+            "target": 522,
+            "timeout": 138,
+            "ambiguous_intrabar": 9
+          },
+          "excluded": {
+            "gap_unevaluable": 5,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 3070,
+          "mean": -0.00042725770294767094,
+          "bootstrap_low": -0.0004417370366605155,
+          "bootstrap_high": -0.0004135876927223805,
+          "win_rate": 0.18338762214983714,
+          "profit_factor": 0.1314260584446215,
+          "average_win": 0.0003525287730324945,
+          "average_loss": -0.0006023752880999776,
+          "max_drawdown": 1.3115062383565677,
+          "ambiguous": 9,
+          "rejected": {
+            "cost_filter": 5257,
+            "gap": 22,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 2401,
+            "target": 522,
+            "timeout": 138,
+            "ambiguous_intrabar": 9
+          },
+          "excluded": {
+            "gap_unevaluable": 5,
+            "unresolved": 0
+          }
+        }
+      },
+      "breakout": {
+        "design": {
+          "n": 1749,
+          "mean": -0.00018139661218550415,
+          "bootstrap_low": -0.00020396164763405184,
+          "bootstrap_high": -0.00015975821797224225,
+          "win_rate": 0.21040594625500286,
+          "profit_factor": 0.4078630812696907,
+          "average_win": 0.0005938317568398474,
+          "average_loss": -0.000387974483149537,
+          "max_drawdown": 0.3178227891223413,
+          "ambiguous": 6,
+          "rejected": {
+            "cost_filter": 1516,
+            "gap": 7,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 1349,
+            "target": 328,
+            "timeout": 66,
+            "ambiguous_intrabar": 6
+          },
+          "excluded": {
+            "gap_unevaluable": 0,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 1125,
+          "mean": -0.0001865318218786982,
+          "bootstrap_low": -0.0002095486231743728,
+          "bootstrap_high": -0.0001603973583045585,
+          "win_rate": 0.19555555555555557,
+          "profit_factor": 0.3831889923111301,
+          "average_win": 0.0005925754880914819,
+          "average_loss": -0.00037592807402614533,
+          "max_drawdown": 0.21021341120376777,
+          "ambiguous": 6,
+          "rejected": {
+            "cost_filter": 1121,
+            "gap": 6,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 885,
+            "target": 199,
+            "timeout": 35,
+            "ambiguous_intrabar": 6
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 1125,
+          "mean": -0.0003114487345147071,
+          "bootstrap_low": -0.00033458833336954326,
+          "bootstrap_high": -0.00028534059823592713,
+          "win_rate": 0.18844444444444444,
+          "profit_factor": 0.22776989352341606,
+          "average_win": 0.0004874755317295798,
+          "average_loss": -0.0004969601742121758,
+          "max_drawdown": 0.3504608512347652,
+          "ambiguous": 6,
+          "rejected": {
+            "cost_filter": 1121,
+            "gap": 6,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 885,
+            "target": 199,
+            "timeout": 35,
+            "ambiguous_intrabar": 6
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 1125,
+          "mean": -0.00043636564715071607,
+          "bootstrap_low": -0.0004595548282672836,
+          "bootstrap_high": -0.00041028383816729577,
+          "win_rate": 0.18577777777777776,
+          "profit_factor": 0.13565318350443195,
+          "average_win": 0.00036863684734958827,
+          "average_loss": -0.0006200397970967462,
+          "max_drawdown": 0.4907364433517745,
+          "ambiguous": 6,
+          "rejected": {
+            "cost_filter": 1121,
+            "gap": 6,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 885,
+            "target": 199,
+            "timeout": 35,
+            "ambiguous_intrabar": 6
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        }
+      },
+      "selector": {
+        "design": {
+          "n": 1715,
+          "mean": -0.00021319518061021486,
+          "bootstrap_low": -0.0002362038673249331,
+          "bootstrap_high": -0.0001893817178646079,
+          "win_rate": 0.2291545189504373,
+          "profit_factor": 0.3941057929588188,
+          "average_win": 0.0006051527001117294,
+          "average_loss": -0.0004564710634572073,
+          "max_drawdown": 0.36867030527291494,
+          "ambiguous": 5,
+          "rejected": {
+            "cost_filter": 1763,
+            "gap": 0,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 1223,
+            "target": 268,
+            "timeout": 219,
+            "ambiguous_intrabar": 5
+          },
+          "excluded": {
+            "gap_unevaluable": 0,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 1090,
+          "mean": -0.00018811899732739138,
+          "bootstrap_low": -0.0002179800752842172,
+          "bootstrap_high": -0.0001589501346956792,
+          "win_rate": 0.24311926605504589,
+          "profit_factor": 0.4345743297754247,
+          "average_win": 0.0005947053245311057,
+          "average_loss": -0.00043957165828799956,
+          "max_drawdown": 0.20536440519858962,
+          "ambiguous": 0,
+          "rejected": {
+            "cost_filter": 1278,
+            "gap": 0,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 754,
+            "target": 187,
+            "timeout": 149,
+            "ambiguous_intrabar": 0
+          },
+          "excluded": {
+            "gap_unevaluable": 2,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 1090,
+          "mean": -0.0003130181883464321,
+          "bootstrap_low": -0.00034304947968288033,
+          "bootstrap_high": -0.00028388977662030464,
+          "win_rate": 0.21926605504587157,
+          "profit_factor": 0.2698824945503987,
+          "average_win": 0.0005276915319641962,
+          "average_loss": -0.0005491282038038236,
+          "max_drawdown": 0.34124864112039577,
+          "ambiguous": 0,
+          "rejected": {
+            "cost_filter": 1278,
+            "gap": 0,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 754,
+            "target": 187,
+            "timeout": 149,
+            "ambiguous_intrabar": 0
+          },
+          "excluded": {
+            "gap_unevaluable": 2,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 1090,
+          "mean": -0.0004379173793654728,
+          "bootstrap_low": -0.0004679031925842102,
+          "bootstrap_high": -0.0004089445211398261,
+          "win_rate": 0.2036697247706422,
+          "profit_factor": 0.16932843908592365,
+          "average_win": 0.00043829474885011017,
+          "average_loss": -0.000662017716305403,
+          "max_drawdown": 0.47713287704220203,
+          "ambiguous": 0,
+          "rejected": {
+            "cost_filter": 1278,
+            "gap": 0,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 754,
+            "target": 187,
+            "timeout": 149,
+            "ambiguous_intrabar": 0
+          },
+          "excluded": {
+            "gap_unevaluable": 2,
+            "unresolved": 0
+          }
+        }
+      }
+    },
+    "USD_JPY": {
+      "range": {
+        "design": {
+          "n": 1348,
+          "mean": -8.729772748255881e-05,
+          "bootstrap_low": -0.00012070045182246961,
+          "bootstrap_high": -5.4599211082673506e-05,
+          "win_rate": 0.3271513353115727,
+          "profit_factor": 0.7048578831627448,
+          "average_win": 0.0006372716733354646,
+          "average_loss": -0.00043959663129815784,
+          "max_drawdown": 0.12017592935842648,
+          "ambiguous": 6,
+          "rejected": {
+            "cost_filter": 685,
+            "gap": 0,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 799,
+            "target": 244,
+            "timeout": 299,
+            "ambiguous_intrabar": 6
+          },
+          "excluded": {
+            "gap_unevaluable": 5,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 570,
+          "mean": -9.112818237367362e-05,
+          "bootstrap_low": -0.00012060119774023885,
+          "bootstrap_high": -5.8767320801363984e-05,
+          "win_rate": 0.312280701754386,
+          "profit_factor": 0.574120979277695,
+          "average_win": 0.0003933912822936577,
+          "average_loss": -0.0003111395719420026,
+          "max_drawdown": 0.05308518912670601,
+          "ambiguous": 1,
+          "rejected": {
+            "cost_filter": 783,
+            "gap": 2,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 315,
+            "target": 67,
+            "timeout": 187,
+            "ambiguous_intrabar": 1
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 570,
+          "mean": -0.00015370186207182586,
+          "bootstrap_low": -0.0001832400927613242,
+          "bootstrap_high": -0.00012133826481022287,
+          "win_rate": 0.26842105263157895,
+          "profit_factor": 0.4045450420737148,
+          "average_win": 0.00038902769603617766,
+          "average_loss": -0.000352832851017928,
+          "max_drawdown": 0.08853536740909364,
+          "ambiguous": 1,
+          "rejected": {
+            "cost_filter": 783,
+            "gap": 2,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 315,
+            "target": 67,
+            "timeout": 187,
+            "ambiguous_intrabar": 1
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 570,
+          "mean": -0.00021627554176997815,
+          "bootstrap_low": -0.00024587898778240946,
+          "bootstrap_high": -0.0001839092088190818,
+          "win_rate": 0.22982456140350876,
+          "profit_factor": 0.2914397185701828,
+          "average_win": 0.00038706410954774924,
+          "average_loss": -0.0003963153921631952,
+          "max_drawdown": 0.1240135362735258,
+          "ambiguous": 1,
+          "rejected": {
+            "cost_filter": 783,
+            "gap": 2,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 315,
+            "target": 67,
+            "timeout": 187,
+            "ambiguous_intrabar": 1
+          },
+          "excluded": {
+            "gap_unevaluable": 1,
+            "unresolved": 0
+          }
+        }
+      },
+      "trend": {
+        "design": {
+          "n": 6164,
+          "mean": -0.000106623631344219,
+          "bootstrap_low": -0.00011842955634556806,
+          "bootstrap_high": -9.50475114449195e-05,
+          "win_rate": 0.27855288773523684,
+          "profit_factor": 0.5935583094199913,
+          "average_win": 0.0005589988885935204,
+          "average_loss": -0.0003636224770229009,
+          "max_drawdown": 0.65782645962989,
+          "ambiguous": 29,
+          "rejected": {
+            "cost_filter": 1065,
+            "gap": 11,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 4324,
+            "target": 1517,
+            "timeout": 294,
+            "ambiguous_intrabar": 29
+          },
+          "excluded": {
+            "gap_unevaluable": 4,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 3672,
+          "mean": -0.00010085942167850501,
+          "bootstrap_low": -0.00010944403653909046,
+          "bootstrap_high": -9.091567705182927e-05,
+          "win_rate": 0.2222222222222222,
+          "profit_factor": 0.46785529529597214,
+          "average_win": 0.00039903481784264657,
+          "average_loss": -0.0002436863472559769,
+          "max_drawdown": 0.37102559699114895,
+          "ambiguous": 25,
+          "rejected": {
+            "cost_filter": 2830,
+            "gap": 13,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 2760,
+            "target": 697,
+            "timeout": 190,
+            "ambiguous_intrabar": 25
+          },
+          "excluded": {
+            "gap_unevaluable": 9,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 3672,
+          "mean": -0.00016335509234194416,
+          "bootstrap_low": -0.00017192735595731267,
+          "bootstrap_high": -0.00015341073265226992,
+          "win_rate": 0.21486928104575165,
+          "profit_factor": 0.314761769218803,
+          "average_win": 0.0003492197036252055,
+          "average_loss": -0.00030363310622265213,
+          "max_drawdown": 0.6004460390547547,
+          "ambiguous": 25,
+          "rejected": {
+            "cost_filter": 2830,
+            "gap": 13,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 2760,
+            "target": 697,
+            "timeout": 190,
+            "ambiguous_intrabar": 25
+          },
+          "excluded": {
+            "gap_unevaluable": 9,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 3672,
+          "mean": -0.0002258507630053833,
+          "bootstrap_low": -0.00023441067537553493,
+          "bootstrap_high": -0.00021589343094260803,
+          "win_rate": 0.20561002178649238,
+          "profit_factor": 0.2151217060807824,
+          "average_win": 0.00030106425675329834,
+          "average_loss": -0.00036223089324803143,
+          "max_drawdown": 0.8298664811183644,
+          "ambiguous": 25,
+          "rejected": {
+            "cost_filter": 2830,
+            "gap": 13,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 2760,
+            "target": 697,
+            "timeout": 190,
+            "ambiguous_intrabar": 25
+          },
+          "excluded": {
+            "gap_unevaluable": 9,
+            "unresolved": 0
+          }
+        }
+      },
+      "breakout": {
+        "design": {
+          "n": 2338,
+          "mean": -0.0001160420826063816,
+          "bootstrap_low": -0.0001320553627909349,
+          "bootstrap_high": -9.89615867655048e-05,
+          "win_rate": 0.276732249786142,
+          "profit_factor": 0.5716195800626596,
+          "average_win": 0.0005595426881515655,
+          "average_loss": -0.00037453016461725785,
+          "max_drawdown": 0.2710121178886734,
+          "ambiguous": 16,
+          "rejected": {
+            "cost_filter": 189,
+            "gap": 4,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 1652,
+            "target": 584,
+            "timeout": 86,
+            "ambiguous_intrabar": 16
+          },
+          "excluded": {
+            "gap_unevaluable": 0,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 1202,
+          "mean": -0.0001019041912291089,
+          "bootstrap_low": -0.00012431992138643204,
+          "bootstrap_high": -7.825749288410249e-05,
+          "win_rate": 0.2079866888519135,
+          "profit_factor": 0.4844081398505804,
+          "average_win": 0.0004603221632068576,
+          "average_loss": -0.00024954766665872196,
+          "max_drawdown": 0.12344940325360827,
+          "ambiguous": 21,
+          "rejected": {
+            "cost_filter": 499,
+            "gap": 3,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 922,
+            "target": 237,
+            "timeout": 22,
+            "ambiguous_intrabar": 21
+          },
+          "excluded": {
+            "gap_unevaluable": 0,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 1202,
+          "mean": -0.0001643964869803024,
+          "bootstrap_low": -0.00018684025547903357,
+          "bootstrap_high": -0.00014077467539754364,
+          "win_rate": 0.20549084858569053,
+          "profit_factor": 0.33501206158157687,
+          "average_win": 0.00040303867506743147,
+          "average_loss": -0.0003111572042847948,
+          "max_drawdown": 0.19837749368596155,
+          "ambiguous": 21,
+          "rejected": {
+            "cost_filter": 499,
+            "gap": 3,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 922,
+            "target": 237,
+            "timeout": 22,
+            "ambiguous_intrabar": 21
+          },
+          "excluded": {
+            "gap_unevaluable": 0,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 1202,
+          "mean": -0.00022688878273149587,
+          "bootstrap_low": -0.00024936058957163507,
+          "bootstrap_high": -0.00020329185791098477,
+          "win_rate": 0.20299500831946754,
+          "profit_factor": 0.23588093192301554,
+          "average_win": 0.0003450320702562149,
+          "average_loss": -0.0003725554718014347,
+          "max_drawdown": 0.2733669755409642,
+          "ambiguous": 21,
+          "rejected": {
+            "cost_filter": 499,
+            "gap": 3,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 922,
+            "target": 237,
+            "timeout": 22,
+            "ambiguous_intrabar": 21
+          },
+          "excluded": {
+            "gap_unevaluable": 0,
+            "unresolved": 0
+          }
+        }
+      },
+      "selector": {
+        "design": {
+          "n": 2230,
+          "mean": -9.386952943431894e-05,
+          "bootstrap_low": -0.00011472180495365987,
+          "bootstrap_high": -7.142970511236195e-05,
+          "win_rate": 0.32107623318385653,
+          "profit_factor": 0.6783821244469628,
+          "average_win": 0.0006166669855333747,
+          "average_loss": -0.00042989604509935766,
+          "max_drawdown": 0.21139295506695138,
+          "ambiguous": 16,
+          "rejected": {
+            "cost_filter": 665,
+            "gap": 0,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 1392,
+            "target": 518,
+            "timeout": 304,
+            "ambiguous_intrabar": 16
+          },
+          "excluded": {
+            "gap_unevaluable": 6,
+            "unresolved": 0
+          }
+        },
+        "confirmation": {
+          "n": 1114,
+          "mean": -0.00010376028348065118,
+          "bootstrap_low": -0.0001325707503694774,
+          "bootstrap_high": -7.657486298574623e-05,
+          "win_rate": 0.25314183123877915,
+          "profit_factor": 0.5228827588844472,
+          "average_win": 0.00044920692587380873,
+          "average_loss": -0.00029118426549742726,
+          "max_drawdown": 0.1182252783597187,
+          "ambiguous": 15,
+          "rejected": {
+            "cost_filter": 843,
+            "gap": 2,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 738,
+            "target": 170,
+            "timeout": 191,
+            "ambiguous_intrabar": 15
+          },
+          "excluded": {
+            "gap_unevaluable": 0,
+            "unresolved": 0
+          }
+        },
+        "confirmation_half_pip": {
+          "n": 1114,
+          "mean": -0.00016625735540852182,
+          "bootstrap_low": -0.00019498600657623434,
+          "bootstrap_high": -0.00013894786282270258,
+          "win_rate": 0.2333931777378815,
+          "profit_factor": 0.3717033282986358,
+          "average_win": 0.0004214289845324431,
+          "average_loss": -0.0003451782551563566,
+          "max_drawdown": 0.18728578986643563,
+          "ambiguous": 15,
+          "rejected": {
+            "cost_filter": 843,
+            "gap": 2,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 738,
+            "target": 170,
+            "timeout": 191,
+            "ambiguous_intrabar": 15
+          },
+          "excluded": {
+            "gap_unevaluable": 0,
+            "unresolved": 0
+          }
+        },
+        "confirmation_one_pip": {
+          "n": 1114,
+          "mean": -0.0002287544273363924,
+          "bootstrap_low": -0.00025740126278299126,
+          "bootstrap_high": -0.00020132086265965893,
+          "win_rate": 0.2118491921005386,
+          "profit_factor": 0.2698687079066522,
+          "average_win": 0.0003991115203543892,
+          "average_loss": -0.00039752021737628364,
+          "max_drawdown": 0.2564011069740494,
+          "ambiguous": 15,
+          "rejected": {
+            "cost_filter": 843,
+            "gap": 2,
+            "entry_invalid": 0
+          },
+          "outcomes": {
+            "stop": 738,
+            "target": 170,
+            "timeout": 191,
+            "ambiguous_intrabar": 15
+          },
+          "excluded": {
+            "gap_unevaluable": 0,
+            "unresolved": 0
+          }
+        }
+      }
+    }
+  },
+  "decisions": {
+    "range": {
+      "merits_further_validation": false,
+      "production_authorised": false
+    },
+    "trend": {
+      "merits_further_validation": false,
+      "production_authorised": false
+    },
+    "breakout": {
+      "merits_further_validation": false,
+      "production_authorised": false
+    },
+    "selector": {
+      "merits_further_validation": false,
+      "production_authorised": false
+    }
+  },
+  "always_abstain_mean": 0.0
+}

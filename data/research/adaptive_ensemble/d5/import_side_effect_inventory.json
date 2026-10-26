@@ -1,0 +1,88 @@
+{
+  "method": "AST of module bodies plus bounded source reads. app.py was not imported for the inventory.",
+  "modules_in_app_import_graph": [
+    "forex_bot.app",
+    "forex_bot.alerts",
+    "forex_bot.config",
+    "forex_bot.log_redact",
+    "forex_bot.ai_ensemble",
+    "forex_bot.analytics",
+    "forex_bot.bot_loop",
+    "forex_bot.execution",
+    "forex_bot.trading",
+    "forex_bot.database",
+    "forex_bot.oanda_client",
+    "forex_bot.oanda_exec",
+    "forex_bot.operational_events",
+    "forex_bot.operational_state",
+    "forex_bot.session_rules",
+    "forex_bot.state",
+    "forex_bot.strategy_meta",
+    "forex_bot.orders",
+    "forex_bot.experiment"
+  ],
+  "module_level_calls": [
+    {
+      "module": "forex_bot.config",
+      "call": "load_dotenv()",
+      "dangerous": true,
+      "intercept_before_import": "sys.modules['dotenv']"
+    },
+    {
+      "module": "forex_bot.app",
+      "call": "FastAPI(...)",
+      "dangerous": false,
+      "note": "no host, port, or server start"
+    },
+    {
+      "module": "forex_bot.alerts",
+      "call": "queue.Queue and threading.Lock",
+      "dangerous": false
+    },
+    {
+      "module": "forex_bot.telegram_cloud",
+      "call": "HTTPAdapter(max_retries=0)",
+      "dangerous": false,
+      "note": "requires requests.adapters to exist; no HTTP call"
+    },
+    {
+      "module": "forex_bot.strategy_meta",
+      "call": "Strategy registry comprehension",
+      "dangerous": false,
+      "note": "active default is False"
+    }
+  ],
+  "not_present_at_module_level": [
+    "psycopg2.connect",
+    "socket.socket.connect",
+    "requests.get",
+    "requests.post",
+    "oandapyV20.API.request",
+    "Thread.start",
+    "asyncio.create_task",
+    "signal handlers",
+    "subprocess",
+    "production safety-state read"
+  ],
+  "call_time_effects_reached_only_if_lifespan_continues": [
+    "get_connection",
+    "build_api",
+    "fetch_account_summary",
+    "run_reconciliation_once",
+    "asyncio.create_task of reconciliation, health, telegram inbound, and run_bot",
+    "start_telegram_control",
+    "alert, which would otherwise start the alert-sender thread"
+  ],
+  "third_party_import_review": {
+    "dotenv": "opens a dotenv path only inside DotEnv._get_stream when load_dotenv runs",
+    "requests": "no network call in package init",
+    "oandapyV20": "imports requests and defines practice and live host strings; no request at import",
+    "psycopg2": "may add a DLL directory; connect is separate",
+    "fastapi": "application object does not listen until a server runs",
+    "numpy_pandas": "package init has no network call; native init was additionally covered by the pre-import socket guard"
+  },
+  "foreign_path": {
+    "source": "user site-packages file _editable_impl_market_consensus.pth adds C:\\Users\\Brian\\OneDrive\\Desktop\\concensus-forecast",
+    "action": "that path is removed from sys.path before any forex import; that project was not read"
+  }
+}

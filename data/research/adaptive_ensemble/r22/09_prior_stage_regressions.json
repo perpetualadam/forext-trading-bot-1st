@@ -1,0 +1,25 @@
+{
+  "safety_regression_failed": false,
+  "winerror_5": false,
+  "hash_pin_updates": {
+    "reason": "bot_loop.py and database.py changed, so the existing integrity pins were updated to the new hashes",
+    "bot_loop": "a8b455dad91c464df8ba030b7f119f3c1795ce289e21b83de0af771309823ac2",
+    "database": "c6f761104a3ff3fb36a23aa0e90a9f6516c4c802ed233319151c2b27875ff563"
+  },
+  "r21_note": "The combined R.22 process uses the R22 network token. R.21 asserts the R21 token, so that one test failed in the combined process and passed when run by the R.21 runner.",
+  "suites": [
+    {"mode": "regression", "passed": 120, "skipped": 7, "deselected": 1, "exit": 0},
+    {"mode": "r10", "passed": 69, "skipped": 5, "exit": 0},
+    {"mode": "r11", "passed": 51, "skipped": 5, "exit": 0},
+    {"mode": "r12", "passed": 118, "skipped": 5, "exit": 0},
+    {"mode": "r13", "passed": 81, "skipped": 6, "exit": 0},
+    {"mode": "r14", "passed": 143, "skipped": 5, "exit": 0},
+    {"mode": "r15", "passed": 165, "skipped": 6, "exit": 0},
+    {"mode": "r16", "passed": 135, "skipped": 6, "exit": 0},
+    {"mode": "r17", "passed": 174, "skipped": 9, "exit": 0},
+    {"mode": "r18", "passed": 203, "skipped": 9, "exit": 0},
+    {"mode": "r19", "passed": 213, "skipped": 9, "exit": 0},
+    {"mode": "r20", "passed": 30, "skipped": 0, "exit": 0},
+    {"mode": "r21", "passed": 24, "skipped": 0, "exit": 0, "runner": "r21"}
+  ]
+}

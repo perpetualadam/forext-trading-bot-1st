@@ -1,0 +1,15 @@
+{
+  "stage": "R.20",
+  "head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "output_collision": false,
+  "baseline_integrity": "MATCH",
+  "pre_bot_loop_sha256": "9b6327045e29adc48f37ed81d13db44e216e24e71326284dc6c80079e2e74550",
+  "post_bot_loop_sha256": "248269d4deaa79947cc039708815119cce800a0baffbd434aa56c708041beefd",
+  "unchanged": {
+    "forex_bot/app.py": "8d4abc71523794f7d50076f96d5cbefb625a963c01a78d8149e4e411baa244a1",
+    "forex_bot/database.py": "53e1e81827d6456743a1154d1636c05e6acbcfb340dae438912900c46c2d0ff4",
+    "forex_bot/orders.py": "fca93e8007d5f25413caf6b7e6493db0a27b4b81cffe78331d3321e9e76db1b4"
+  },
+  "historical_r10_winerror": "R.19 recorded WinError 5 replacing data/research/adaptive_ensemble/r10/synthetic_live_safety_state.json, then a passing retry. R.20 did not hit that error."
+}

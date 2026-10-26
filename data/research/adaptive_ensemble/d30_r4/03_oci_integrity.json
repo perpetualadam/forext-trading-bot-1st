@@ -1,0 +1,35 @@
+{
+  "objects": [
+    {
+      "path": "data/research/adaptive_ensemble/d22_r1/09_index_raw_manifest.json",
+      "size": 6546,
+      "expected_size": 6546,
+      "match": true
+    },
+    {
+      "path": "data/research/adaptive_ensemble/d22_r1/15_amd64_raw_manifest.json",
+      "size": 1752,
+      "expected_size": 1752,
+      "match": true
+    },
+    {
+      "path": "data/research/adaptive_ensemble/d22_r1/19_arm64_raw_manifest.json",
+      "size": 1754,
+      "expected_size": 1754,
+      "match": true
+    },
+    {
+      "path": "data/research/adaptive_ensemble/d24_r2/11_amd64_config_raw.json",
+      "size": 5684,
+      "expected_size": 5684,
+      "match": true
+    },
+    {
+      "path": "data/research/adaptive_ensemble/d24_r2/16_arm64_config_raw.json",
+      "size": 5699,
+      "expected_size": 5699,
+      "match": true
+    }
+  ],
+  "match": true
+}

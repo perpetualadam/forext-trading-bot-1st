@@ -1,0 +1,102 @@
+{
+  "stage": "G.14.5",
+  "gate_b_blocked": true,
+  "findings": [
+    {
+      "id": "G14.5-01",
+      "severity": "HIGH",
+      "component": "tests/g14_4_acquire.py",
+      "evidence": "The module has no subprocess, pip, or environment filter. PIP_INDEX_URL and related names do not appear.",
+      "impact": "A later download that copied the host environment could inherit another index, find-links, trusted-host, proxy, or certificate setting.",
+      "remediation": "Build an allowlisted environment in a new helper and require the acquisition path to use it. PIP_CONFIG_FILE pointing at an empty file is not sufficient by itself.",
+      "implemented_in_g14_5": false,
+      "tested_as_present": false,
+      "gap_tested": true,
+      "blocks_gate_b": true
+    },
+    {
+      "id": "G14.5-02",
+      "severity": "HIGH",
+      "component": "tests/g14_4_acquire.py",
+      "evidence": "No redirect, host, TLS, or URL-userinfo check exists. ARTIFACT_HOST_POLICY_NOT_ENFORCED.",
+      "impact": "An index response could redirect a wheel download to an unapproved host, port, or HTTP URL. Pip would not apply this application's host list.",
+      "remediation": "Name approved hosts and reject every other final URL before any byte is saved.",
+      "implemented_in_g14_5": false,
+      "tested_as_present": false,
+      "gap_tested": true,
+      "blocks_gate_b": true
+    },
+    {
+      "id": "G14.5-03",
+      "severity": "HIGH",
+      "component": "tests/g14_4_acquire.py",
+      "evidence": "The source contains no --only-binary flag. WHEELS_ONLY_ENFORCEMENT_INCOMPLETE.",
+      "impact": "Inherited PIP_NO_BINARY or a missing flag can select a source distribution and run a build backend.",
+      "remediation": "Enforce wheels-only in the acquisition command and reject non-wheel files before they are kept.",
+      "implemented_in_g14_5": false,
+      "tested_as_present": false,
+      "gap_tested": true,
+      "blocks_gate_b": true
+    },
+    {
+      "id": "G14.5-04",
+      "severity": "HIGH",
+      "component": "tests/g14_4_verify.py",
+      "evidence": "A file of arbitrary bytes named like a wheel is accepted when its SHA-256 matches. zipfile is not imported.",
+      "impact": "Hash verification does not establish archive structure, metadata, or dependency declarations.",
+      "remediation": "Parse WHEEL, METADATA, and RECORD in memory with size and path limits. Do not extract to disk.",
+      "implemented_in_g14_5": false,
+      "tested_as_present": false,
+      "gap_tested": true,
+      "blocks_gate_b": true
+    },
+    {
+      "id": "G14.5-05",
+      "severity": "HIGH",
+      "component": "tests/g14_4_verify.py",
+      "evidence": "Dependency edges come only from the manifest's requires list. Markers and extras are not evaluated. DEPENDENCY_GRAPH_COMPLETENESS_UNVERIFIED.",
+      "impact": "A complete hash list can still omit a transitive requirement or mis-evaluate a marker.",
+      "remediation": "Compare metadata Requires-Dist, after marker and extra evaluation, with the selected set.",
+      "implemented_in_g14_5": false,
+      "tested_as_present": false,
+      "gap_tested": true,
+      "blocks_gate_b": true
+    },
+    {
+      "id": "G14.5-06",
+      "severity": "HIGH",
+      "component": "tests/g14_4_inventory.py",
+      "evidence": "environment_marker is set to None. A direct URL and a git+ requirement are stored as ordinary constraints.",
+      "impact": "Unsafe requirement forms are not rejected before resolution.",
+      "remediation": "Reject URL and VCS forms and preserve markers for the target environment.",
+      "implemented_in_g14_5": false,
+      "tested_as_present": false,
+      "gap_tested": true,
+      "blocks_gate_b": true
+    },
+    {
+      "id": "G14.5-07",
+      "severity": "MEDIUM",
+      "component": "tests/g14_4_acquire.py",
+      "evidence": "assert_destination_allowed calls Path.resolve, which follows links, and does not lstat the path first.",
+      "impact": "A symlink or reparse point can be judged by its target rather than rejected as a link.",
+      "remediation": "Reject reparse points before resolving the destination.",
+      "implemented_in_g14_5": false,
+      "tested_as_present": false,
+      "gap_tested": true,
+      "blocks_gate_b": true
+    },
+    {
+      "id": "G14.5-08",
+      "severity": "INFORMATIONAL",
+      "component": "tests/g14_4_acquire.py",
+      "evidence": "Importing the helper does not open a socket or start a process.",
+      "impact": "Gate A remains offline. This does not make a future download safe.",
+      "remediation": "Keep import free of network code after the other findings are fixed.",
+      "implemented_in_g14_5": true,
+      "tested_as_present": true,
+      "gap_tested": false,
+      "blocks_gate_b": false
+    }
+  ]
+}

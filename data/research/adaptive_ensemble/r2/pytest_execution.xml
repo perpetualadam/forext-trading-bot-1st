@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="15" time="0.957" timestamp="2026-10-14T23:20:33.151893+01:00" hostname="NucBox_M5PLUS"><testcase classname="tests.test_execution_safety" name="test_paper_like_kinds" time="0.001" /><testcase classname="tests.test_execution_safety" name="test_paper_kinds_cannot_assert_broker_open[paper]" time="0.001" /><testcase classname="tests.test_execution_safety" name="test_paper_kinds_cannot_assert_broker_open[simulated]" time="0.001" /><testcase classname="tests.test_execution_safety" name="test_paper_kinds_cannot_assert_broker_open[window_paper]" time="0.001" /><testcase classname="tests.test_execution_safety" name="test_paper_mode_cannot_assert_broker_even_with_live_kind" time="0.001" /><testcase classname="tests.test_execution_safety" name="test_live_kind_is_blocked_until_authorised" time="0.001" /><testcase classname="tests.test_execution_safety" name="test_async_open_refuses_paper_kinds_before_api[window_paper]" time="0.001"><failure message="AssertionError: Regex pattern did not match.&#10; Regex: 'local-only'&#10; Input: 'R2_NETWORK_BLOCKED'">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002017BFB6190&gt;
+kind = 'window_paper'
+
+    @pytest.mark.parametrize("kind", ["window_paper", "simulated", "paper"])
+    def test_async_open_refuses_paper_kinds_before_api(monkeypatch, kind):
+        monkeypatch.setenv("EXECUTION_MODE", "live_broker")
+        monkeypatch.setenv("OANDA_ACCESS_TOKEN", "tok")
+        called = {"n": 0}
+    
+        def boom(*_a, **_k):
+            called["n"] += 1
+            raise AssertionError("must not place a market order")
+    
+        monkeypatch.setattr("forex_bot.oanda_exec._place_market_order_open_sync", boom)
+    
+        async def _run():
+            await execute_oanda_market_open(
+                "EUR_USD", 2.0, "SELL", "cid-x", execution_kind=kind
+            )
+    
+        with pytest.raises(RuntimeError, match="local-only"):
+&gt;           asyncio.run(_run())
+
+tests\test_execution_safety.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Python313\Lib\asyncio\runners.py:194: in run
+    with Runner(debug=debug, loop_factory=loop_factory) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+C:\Python313\Lib\asyncio\runners.py:137: in _lazy_init
+    self._loop = events.new_event_loop()
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\asyncio\events.py:837: in new_event_loop
+    return get_event_loop_policy().new_event_loop()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\asyncio\events.py:734: in new_event_loop
+    return self._loop_factory()
+           ^^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\asyncio\windows_events.py:316: in __init__
+    super().__init__(proactor)
+C:\Python313\Lib\asyncio\proactor_events.py:637: in __init__
+    self._make_self_pipe()
+C:\Python313\Lib\asyncio\proactor_events.py:784: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\socket.py:613: in _fallback_socketpair
+    lsock = socket(family, type, proto)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;__main__._BlockedSocket fd=-1, family=0, type=0, proto=0&gt;
+args = (&lt;AddressFamily.AF_INET: 2&gt;, &lt;SocketKind.SOCK_STREAM: 1&gt;, 0), kwargs = {}
+
+    def __init__(self, *args: object, **kwargs: object) -&gt; None:
+        ATTEMPTS.append("socket")
+&gt;       raise RuntimeError("R2_NETWORK_BLOCKED")
+E       RuntimeError: R2_NETWORK_BLOCKED
+
+data\research\adaptive_ensemble\r2\20_isolated_runner.py:83: RuntimeError
+
+During handling of the above exception, another exception occurred:
+
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002017BFB6190&gt;
+kind = 'window_paper'
+
+    @pytest.mark.parametrize("kind", ["window_paper", "simulated", "paper"])
+    def test_async_open_refuses_paper_kinds_before_api(monkeypatch, kind):
+        monkeypatch.setenv("EXECUTION_MODE", "live_broker")
+        monkeypatch.setenv("OANDA_ACCESS_TOKEN", "tok")
+        called = {"n": 0}
+    
+        def boom(*_a, **_k):
+            called["n"] += 1
+            raise AssertionError("must not place a market order")
+    
+        monkeypatch.setattr("forex_bot.oanda_exec._place_market_order_open_sync", boom)
+    
+        async def _run():
+            await execute_oanda_market_open(
+                "EUR_USD", 2.0, "SELL", "cid-x", execution_kind=kind
+            )
+    
+&gt;       with pytest.raises(RuntimeError, match="local-only"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E        Regex: 'local-only'
+E        Input: 'R2_NETWORK_BLOCKED'
+
+tests\test_execution_safety.py:85: AssertionError</failure></testcase><testcase classname="tests.test_execution_safety" name="test_async_open_refuses_paper_kinds_before_api[simulated]" time="0.004"><failure message="AssertionError: Regex pattern did not match.&#10; Regex: 'local-only'&#10; Input: 'R2_NETWORK_BLOCKED'">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002017BF9A270&gt;
+kind = 'simulated'
+
+    @pytest.mark.parametrize("kind", ["window_paper", "simulated", "paper"])
+    def test_async_open_refuses_paper_kinds_before_api(monkeypatch, kind):
+        monkeypatch.setenv("EXECUTION_MODE", "live_broker")
+        monkeypatch.setenv("OANDA_ACCESS_TOKEN", "tok")
+        called = {"n": 0}
+    
+        def boom(*_a, **_k):
+            called["n"] += 1
+            raise AssertionError("must not place a market order")
+    
+        monkeypatch.setattr("forex_bot.oanda_exec._place_market_order_open_sync", boom)
+    
+        async def _run():
+            await execute_oanda_market_open(
+                "EUR_USD", 2.0, "SELL", "cid-x", execution_kind=kind
+            )
+    
+        with pytest.raises(RuntimeError, match="local-only"):
+&gt;           asyncio.run(_run())
+
+tests\test_execution_safety.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Python313\Lib\asyncio\runners.py:194: in run
+    with Runner(debug=debug, loop_factory=loop_factory) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+C:\Python313\Lib\asyncio\runners.py:137: in _lazy_init
+    self._loop = events.new_event_loop()
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\asyncio\events.py:837: in new_event_loop
+    return get_event_loop_policy().new_event_loop()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\asyncio\events.py:734: in new_event_loop
+    return self._loop_factory()
+           ^^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\asyncio\windows_events.py:316: in __init__
+    super().__init__(proactor)
+C:\Python313\Lib\asyncio\proactor_events.py:637: in __init__
+    self._make_self_pipe()
+C:\Python313\Lib\asyncio\proactor_events.py:784: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\socket.py:613: in _fallback_socketpair
+    lsock = socket(family, type, proto)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;__main__._BlockedSocket fd=-1, family=0, type=0, proto=0&gt;
+args = (&lt;AddressFamily.AF_INET: 2&gt;, &lt;SocketKind.SOCK_STREAM: 1&gt;, 0), kwargs = {}
+
+    def __init__(self, *args: object, **kwargs: object) -&gt; None:
+        ATTEMPTS.append("socket")
+&gt;       raise RuntimeError("R2_NETWORK_BLOCKED")
+E       RuntimeError: R2_NETWORK_BLOCKED
+
+data\research\adaptive_ensemble\r2\20_isolated_runner.py:83: RuntimeError
+
+During handling of the above exception, another exception occurred:
+
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002017BF9A270&gt;
+kind = 'simulated'
+
+    @pytest.mark.parametrize("kind", ["window_paper", "simulated", "paper"])
+    def test_async_open_refuses_paper_kinds_before_api(monkeypatch, kind):
+        monkeypatch.setenv("EXECUTION_MODE", "live_broker")
+        monkeypatch.setenv("OANDA_ACCESS_TOKEN", "tok")
+        called = {"n": 0}
+    
+        def boom(*_a, **_k):
+            called["n"] += 1
+            raise AssertionError("must not place a market order")
+    
+        monkeypatch.setattr("forex_bot.oanda_exec._place_market_order_open_sync", boom)
+    
+        async def _run():
+            await execute_oanda_market_open(
+                "EUR_USD", 2.0, "SELL", "cid-x", execution_kind=kind
+            )
+    
+&gt;       with pytest.raises(RuntimeError, match="local-only"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E        Regex: 'local-only'
+E        Input: 'R2_NETWORK_BLOCKED'
+
+tests\test_execution_safety.py:85: AssertionError</failure></testcase><testcase classname="tests.test_execution_safety" name="test_async_open_refuses_paper_kinds_before_api[paper]" time="0.001"><failure message="AssertionError: Regex pattern did not match.&#10; Regex: 'local-only'&#10; Input: 'R2_NETWORK_BLOCKED'">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002017BEB3B90&gt;
+kind = 'paper'
+
+    @pytest.mark.parametrize("kind", ["window_paper", "simulated", "paper"])
+    def test_async_open_refuses_paper_kinds_before_api(monkeypatch, kind):
+        monkeypatch.setenv("EXECUTION_MODE", "live_broker")
+        monkeypatch.setenv("OANDA_ACCESS_TOKEN", "tok")
+        called = {"n": 0}
+    
+        def boom(*_a, **_k):
+            called["n"] += 1
+            raise AssertionError("must not place a market order")
+    
+        monkeypatch.setattr("forex_bot.oanda_exec._place_market_order_open_sync", boom)
+    
+        async def _run():
+            await execute_oanda_market_open(
+                "EUR_USD", 2.0, "SELL", "cid-x", execution_kind=kind
+            )
+    
+        with pytest.raises(RuntimeError, match="local-only"):
+&gt;           asyncio.run(_run())
+
+tests\test_execution_safety.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Python313\Lib\asyncio\runners.py:194: in run
+    with Runner(debug=debug, loop_factory=loop_factory) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+C:\Python313\Lib\asyncio\runners.py:137: in _lazy_init
+    self._loop = events.new_event_loop()
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\asyncio\events.py:837: in new_event_loop
+    return get_event_loop_policy().new_event_loop()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\asyncio\events.py:734: in new_event_loop
+    return self._loop_factory()
+           ^^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\asyncio\windows_events.py:316: in __init__
+    super().__init__(proactor)
+C:\Python313\Lib\asyncio\proactor_events.py:637: in __init__
+    self._make_self_pipe()
+C:\Python313\Lib\asyncio\proactor_events.py:784: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\socket.py:613: in _fallback_socketpair
+    lsock = socket(family, type, proto)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;__main__._BlockedSocket fd=-1, family=0, type=0, proto=0&gt;
+args = (&lt;AddressFamily.AF_INET: 2&gt;, &lt;SocketKind.SOCK_STREAM: 1&gt;, 0), kwargs = {}
+
+    def __init__(self, *args: object, **kwargs: object) -&gt; None:
+        ATTEMPTS.append("socket")
+&gt;       raise RuntimeError("R2_NETWORK_BLOCKED")
+E       RuntimeError: R2_NETWORK_BLOCKED
+
+data\research\adaptive_ensemble\r2\20_isolated_runner.py:83: RuntimeError
+
+During handling of the above exception, another exception occurred:
+
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002017BEB3B90&gt;
+kind = 'paper'
+
+    @pytest.mark.parametrize("kind", ["window_paper", "simulated", "paper"])
+    def test_async_open_refuses_paper_kinds_before_api(monkeypatch, kind):
+        monkeypatch.setenv("EXECUTION_MODE", "live_broker")
+        monkeypatch.setenv("OANDA_ACCESS_TOKEN", "tok")
+        called = {"n": 0}
+    
+        def boom(*_a, **_k):
+            called["n"] += 1
+            raise AssertionError("must not place a market order")
+    
+        monkeypatch.setattr("forex_bot.oanda_exec._place_market_order_open_sync", boom)
+    
+        async def _run():
+            await execute_oanda_market_open(
+                "EUR_USD", 2.0, "SELL", "cid-x", execution_kind=kind
+            )
+    
+&gt;       with pytest.raises(RuntimeError, match="local-only"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E        Regex: 'local-only'
+E        Input: 'R2_NETWORK_BLOCKED'
+
+tests\test_execution_safety.py:85: AssertionError</failure></testcase><testcase classname="tests.test_execution_safety" name="test_paper_mode_open_never_calls_sync_place" time="0.003"><failure message="AssertionError: Regex pattern did not match.&#10; Regex: 'paper'&#10; Input: 'R2_NETWORK_BLOCKED'">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002017BEB3710&gt;
+
+    def test_paper_mode_open_never_calls_sync_place(monkeypatch):
+        monkeypatch.setenv("EXECUTION_MODE", "paper")
+        monkeypatch.setenv("OANDA_ACCESS_TOKEN", "tok")
+        called = {"n": 0}
+    
+        def boom(*_a, **_k):
+            called["n"] += 1
+            raise AssertionError("paper must not place")
+    
+        monkeypatch.setattr("forex_bot.oanda_exec._place_market_order_open_sync", boom)
+    
+        async def _run():
+            await execute_oanda_market_open(
+                "EUR_USD", 2.0, "SELL", "cid-x", execution_kind="live"
+            )
+    
+        with pytest.raises(RuntimeError, match="paper"):
+&gt;           asyncio.run(_run())
+
+tests\test_execution_safety.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Python313\Lib\asyncio\runners.py:194: in run
+    with Runner(debug=debug, loop_factory=loop_factory) as runner:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\asyncio\runners.py:58: in __enter__
+    self._lazy_init()
+C:\Python313\Lib\asyncio\runners.py:137: in _lazy_init
+    self._loop = events.new_event_loop()
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\asyncio\events.py:837: in new_event_loop
+    return get_event_loop_policy().new_event_loop()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\asyncio\events.py:734: in new_event_loop
+    return self._loop_factory()
+           ^^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\asyncio\windows_events.py:316: in __init__
+    super().__init__(proactor)
+C:\Python313\Lib\asyncio\proactor_events.py:637: in __init__
+    self._make_self_pipe()
+C:\Python313\Lib\asyncio\proactor_events.py:784: in _make_self_pipe
+    self._ssock, self._csock = socket.socketpair()
+                               ^^^^^^^^^^^^^^^^^^^
+C:\Python313\Lib\socket.py:613: in _fallback_socketpair
+    lsock = socket(family, type, proto)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;__main__._BlockedSocket fd=-1, family=0, type=0, proto=0&gt;
+args = (&lt;AddressFamily.AF_INET: 2&gt;, &lt;SocketKind.SOCK_STREAM: 1&gt;, 0), kwargs = {}
+
+    def __init__(self, *args: object, **kwargs: object) -&gt; None:
+        ATTEMPTS.append("socket")
+&gt;       raise RuntimeError("R2_NETWORK_BLOCKED")
+E       RuntimeError: R2_NETWORK_BLOCKED
+
+data\research\adaptive_ensemble\r2\20_isolated_runner.py:83: RuntimeError
+
+During handling of the above exception, another exception occurred:
+
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002017BEB3710&gt;
+
+    def test_paper_mode_open_never_calls_sync_place(monkeypatch):
+        monkeypatch.setenv("EXECUTION_MODE", "paper")
+        monkeypatch.setenv("OANDA_ACCESS_TOKEN", "tok")
+        called = {"n": 0}
+    
+        def boom(*_a, **_k):
+            called["n"] += 1
+            raise AssertionError("paper must not place")
+    
+        monkeypatch.setattr("forex_bot.oanda_exec._place_market_order_open_sync", boom)
+    
+        async def _run():
+            await execute_oanda_market_open(
+                "EUR_USD", 2.0, "SELL", "cid-x", execution_kind="live"
+            )
+    
+&gt;       with pytest.raises(RuntimeError, match="paper"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E        Regex: 'paper'
+E        Input: 'R2_NETWORK_BLOCKED'
+
+tests\test_execution_safety.py:106: AssertionError</failure></testcase><testcase classname="tests.test_execution_safety" name="test_window_paper_fill_path_is_not_broker" time="0.014" /><testcase classname="tests.test_execution_safety" name="test_paper_fill_path_is_not_broker" time="0.001" /><testcase classname="tests.test_execution_safety" name="test_reconcile_cannot_convert_paper_metadata_to_live" time="0.001" /><testcase classname="tests.test_execution_safety" name="test_duplicate_client_order_id_does_not_reserve_twice" time="0.149" /><testcase classname="tests.test_execution_safety" name="test_window_paper_position_is_not_broker_backed" time="0.000" /></testsuite></testsuites>

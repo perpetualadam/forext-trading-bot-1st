@@ -1,0 +1,13 @@
+{
+  "constants": [
+    "STOP_COMPLETED",
+    "STOP_INCOMPLETE_WORKER_ALIVE",
+    "STOP_NOT_RUNNING"
+  ],
+  "stop_logs_the_status": false,
+  "app_captures_return": false,
+  "app_call": "forex_bot/app.py lines 383-384",
+  "direct_not_running": "STOP_NOT_RUNNING",
+  "wrapped_fast_stop_before_injected_raise": "STOP_COMPLETED",
+  "incomplete_observed_without_wrapper": true
+}

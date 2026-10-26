@@ -1,0 +1,20 @@
+{
+  "safety_state_forward_compatibility": "SAFETY_STATE_FORWARD_COMPATIBILITY_UNVERIFIED",
+  "live_database_compatibility": "LIVE_DATABASE_COMPATIBILITY_UNVERIFIED",
+  "shadow_mount_compatibility": "SHADOW_MOUNT_COMPATIBILITY_UNVERIFIED",
+  "verified_rollback_target": "NO_VERIFIED_ROLLBACK_TARGET",
+  "running_image_classification": "ROLLBACK_CANDIDATE_PARTIALLY_VERIFIED",
+  "deployment_readiness": false,
+  "image_build_authorised": false,
+  "parser_modified": false,
+  "notes": [
+    "Startup forces effective authorisation to BLOCKED.",
+    "Persisted ALLOWED is ignored until a later operator action.",
+    "Known strategy active flags are preserved and are separate from the order gate.",
+    "Unknown top-level keys are preserved.",
+    "Unknown keys inside known strategy rows are dropped on rewrite.",
+    "An unrecognised schema can be replaced by a blank blocked document.",
+    "database.py matches the historically inspected image source. The live schema was not inspected.",
+    "The shadow mount was not inspected."
+  ]
+}

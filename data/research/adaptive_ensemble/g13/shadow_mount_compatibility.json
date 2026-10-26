@@ -1,0 +1,33 @@
+{
+  "mount": "/app/data/research/v2_shadow",
+  "mount_accessed": false,
+  "packaged_writers": [
+    "forex_bot/v2_shadow/store.py append_observation",
+    "forex_bot/v2_shadow/store.py append_outcome",
+    "forex_bot/v2_shadow/market.py persist_completed_candle"
+  ],
+  "packaged_readers": [
+    "forex_bot/v2_shadow/store.py outcome sibling scan",
+    "forex_bot/v2_shadow/market.py idempotency key reload"
+  ],
+  "excluded_reader": "forex_bot/v2_shadow/score_offline.py",
+  "formats": {
+    "observations": "observations.jsonl",
+    "outcomes": "outcomes.jsonl",
+    "market": "market/{SYMBOL}_M5.jsonl",
+    "market_schema_version": "v2_shadow_market_m5_v1",
+    "feature_schema_version": "v2_shadow_input_v1"
+  },
+  "serialization": "JSON lines, append only, secret-like keys redacted by the writer",
+  "authoritative_for_orders": false,
+  "compatibility_risks": [
+    "A renamed path or required new field can make an older reader skip or reject rows.",
+    "Schema strings are constants, not a negotiated migration.",
+    "The running image's shadow-module bytes were not re-read. The forensic archive was not recreated."
+  ],
+  "recovery_assumption": "UNRESOLVED_OPERATOR_DECISION",
+  "unknowns": [
+    "Live mount contents",
+    "Whether the running image writes the same records"
+  ]
+}

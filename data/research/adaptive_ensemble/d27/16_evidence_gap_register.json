@@ -1,0 +1,116 @@
+{
+  "gaps": [
+    {
+      "id": "G01",
+      "gap": "Measured Python interpreter version",
+      "classification": "MISSING",
+      "future_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "G02",
+      "gap": "Python implementation",
+      "classification": "UNVERIFIED",
+      "future_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "G03",
+      "gap": "Python ABI and SOABI",
+      "classification": "MISSING",
+      "future_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "G04",
+      "gap": "Interpreter-supported wheel tags",
+      "classification": "MISSING",
+      "future_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "G05",
+      "gap": "libc family and version",
+      "classification": "UNVERIFIED",
+      "future_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "G06",
+      "gap": "Native shared libraries",
+      "classification": "MISSING",
+      "future_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "G07",
+      "gap": "Exact production package versions",
+      "classification": "MISSING",
+      "future_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "G08",
+      "gap": "Transitive dependency closure",
+      "classification": "MISSING",
+      "future_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "G09",
+      "gap": "Release-specific Requires-Dist",
+      "classification": "MISSING",
+      "future_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "G10",
+      "gap": "Artifact byte verification",
+      "classification": "MISSING",
+      "future_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "G11",
+      "gap": "Publisher authenticity",
+      "classification": "MISSING",
+      "future_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "G12",
+      "gap": "Offline installation capability",
+      "classification": "MISSING",
+      "future_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "G13",
+      "gap": "Final-image startup",
+      "classification": "MISSING",
+      "future_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "G14",
+      "gap": "VPS compatibility",
+      "classification": "MISSING",
+      "future_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "G15",
+      "gap": "Production safety",
+      "classification": "BLOCKED",
+      "future_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "G16",
+      "gap": "Verified rollback",
+      "classification": "MISSING",
+      "future_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    }
+  ]
+}

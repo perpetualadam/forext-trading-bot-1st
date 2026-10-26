@@ -1,0 +1,21 @@
+{
+  "host": "registry-1.docker.io",
+  "path": "/v2/library/python/blobs/sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+  "status": 401,
+  "content_type": "application/json",
+  "content_length_header": "157",
+  "content_encoding": "identity",
+  "docker_content_digest": null,
+  "byte_count": null,
+  "tls": "verified",
+  "redirect_followed": false,
+  "timestamp": "2026-10-13T12:00:58Z",
+  "authenticated_retry": {
+    "status": 307,
+    "authorization_sent": true,
+    "redirect_followed": false,
+    "location_recorded": false,
+    "body_preserved": false,
+    "result": "NOT_OBTAINED"
+  }
+}

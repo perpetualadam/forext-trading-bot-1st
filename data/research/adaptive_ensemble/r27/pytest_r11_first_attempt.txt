@@ -1,0 +1,7 @@
+first_exit=1
+failure=test_i35_live_permission_remains_blocked
+cause=WinError 5 Access is denied replacing data/research/adaptive_ensemble/r11/synthetic_live_safety_state.json.tmp
+retry_exit=0
+retry_result=51 passed, 5 skipped
+live_safety_changed=false
+file_deleted=false

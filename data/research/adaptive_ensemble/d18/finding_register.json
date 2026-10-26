@@ -1,0 +1,88 @@
+{
+  "findings": [
+    {
+      "id": "D18-PLATFORM-01",
+      "location": "Dockerfile line 2 and docker-compose.yml bot service",
+      "evidence": "Neither file declares an OCI platform.",
+      "level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "lock_impact": "blocks resolution",
+      "build_impact": "blocks a candidate image",
+      "deploy_impact": "blocks deployment",
+      "network": false,
+      "docker": false,
+      "production_inspection": false
+    },
+    {
+      "id": "D18-BASE-01",
+      "location": "Dockerfile line 2",
+      "evidence": "Mutable tag python:3.12-slim-bookworm. No digest. Historical local image ID is not a registry digest.",
+      "level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "lock_impact": "blocks a platform-specific lock",
+      "build_impact": "blocks a reproducible image",
+      "deploy_impact": "blocks deployment",
+      "network": true,
+      "docker": false,
+      "production_inspection": false
+    },
+    {
+      "id": "D18-PYTHON-01",
+      "location": "Dockerfile line 2",
+      "evidence": "Minor 3.12 is declared. Patch, implementation bytes, and ABI are not.",
+      "level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "lock_impact": "blocks exact wheel ABI selection",
+      "build_impact": "blocks a candidate image",
+      "deploy_impact": "blocks deployment",
+      "network": true,
+      "docker": false,
+      "production_inspection": false
+    },
+    {
+      "id": "D18-LIBC-01",
+      "location": "Dockerfile line 2",
+      "evidence": "bookworm supports a Debian glibc inference only. Version is absent.",
+      "level": "STATIC_INFERENCE",
+      "lock_impact": "blocks manylinux policy",
+      "build_impact": "blocks a candidate image",
+      "deploy_impact": "blocks deployment",
+      "network": true,
+      "docker": false,
+      "production_inspection": false
+    },
+    {
+      "id": "D18-WHEEL-01",
+      "location": "requirements.txt lines 2, 3, 5, and 7",
+      "evidence": "numpy, pandas, psycopg2-binary, and uvicorn[standard] have no verified target wheels.",
+      "level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "lock_impact": "blocks resolution",
+      "build_impact": "blocks a candidate image",
+      "deploy_impact": "blocks deployment",
+      "network": true,
+      "docker": false,
+      "production_inspection": false
+    },
+    {
+      "id": "D18-RUNTIME-01",
+      "location": "Dockerfile has no USER or HEALTHCHECK; bot service omits restart",
+      "evidence": "Runtime user, bot health check, and bot restart policy are undeclared.",
+      "level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "lock_impact": "does not by itself select wheel tags",
+      "build_impact": "blocks a complete candidate runtime",
+      "deploy_impact": "blocks deployment",
+      "network": false,
+      "docker": false,
+      "production_inspection": false
+    },
+    {
+      "id": "D18-PROV-01",
+      "location": "G.14.5 and D.16 historical context",
+      "evidence": "No current registry provenance, SBOM, or attestation was identified.",
+      "level": "HISTORICAL_OBSERVATION",
+      "lock_impact": "blocks trusted artifact selection",
+      "build_impact": "blocks a candidate image",
+      "deploy_impact": "blocks deployment",
+      "network": true,
+      "docker": false,
+      "production_inspection": false
+    }
+  ]
+}

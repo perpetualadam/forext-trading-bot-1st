@@ -7,7 +7,7 @@ import logging
 import os
 from contextlib import asynccontextmanager
 from enum import Enum
-from typing import Any
+from typing import Any, Callable
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.openapi.utils import get_openapi
@@ -16,7 +16,6 @@ from forex_bot.alerts import alert
 from forex_bot.log_redact import redact_log_text
 from forex_bot.ai_ensemble import ai as ai_ensemble
 from forex_bot.analytics import analytics
-from forex_bot.bot_loop import run_bot
 from forex_bot.config import Config
 from forex_bot.experiment import experiment_snapshot_with_voters
 from forex_bot.execution import (
@@ -32,9 +31,12 @@ from forex_bot.execution import (
     resume_trading,
     trading_allowed,
 )
-from forex_bot.trading import configured_max_portfolio_risk_pct, portfolio_risk_fraction
-from forex_bot.database import fetch_all_trades_ordered, fetch_strategy_analysis, get_connection
-from forex_bot.oanda_client import build_api, fetch_account_summary, last_account_summary
+from forex_bot.database import (
+    fetch_all_trades_ordered,
+    fetch_strategy_analysis,
+    get_connection,
+    release_connection_after_failed_startup,
+)
 from forex_bot.operational_events import (
     load_operational_events_cache_from_db,
     operational_events_payload,
@@ -52,6 +54,105 @@ from forex_bot.state import (
 )
 
 logger = logging.getLogger(__name__)
+
+_PRODUCTION_RECOVERY = object()
+_CALL_RECOVERY = object()
+
+
+class ReconciliationUnavailable(RuntimeError):
+    """Market reconciliation could not run. Exposure holds stay in place."""
+
+
+def _portfolio_metrics(equity: float) -> tuple[float, float]:
+    from forex_bot.trading import configured_max_portfolio_risk_pct, portfolio_risk_fraction
+
+    return portfolio_risk_fraction(equity), configured_max_portfolio_risk_pct()
+
+
+def _oanda_client():
+    from forex_bot import oanda_client
+
+    return oanda_client
+
+
+class StartupSafetyAbort(RuntimeError):
+    """Startup stopped before database, broker, or background work."""
+
+
+_last_cleanup_errors: list[str] = []
+
+
+def startup_cleanup_errors() -> tuple[str, ...]:
+    """Exception type names recorded by the latest lifespan cleanup."""
+    return tuple(_last_cleanup_errors)
+
+
+def _record_cleanup(secondary: list[BaseException], exc: BaseException) -> None:
+    secondary.append(exc)
+    logger.error("lifespan cleanup failed: %s", type(exc).__name__)
+
+
+def _note_telegram_stop(status: object, notes: list[str]) -> None:
+    """Record an incomplete Telegram stop without changing shutdown control.
+
+    None means the callee supplied no documented status. Historical stubs and
+    the pre-status contract return None. That is not treated as success and
+    it is not treated as an incomplete stop.
+    """
+    if status in (None, "STOP_COMPLETED", "STOP_NOT_RUNNING"):
+        return
+    if status == "STOP_INCOMPLETE_WORKER_ALIVE":
+        logger.warning(
+            "D12-STOP-01 Telegram shutdown incomplete: "
+            "polling worker remains alive after bounded join."
+        )
+        notes.append("D12-STOP-01")
+        return
+    logger.warning("D12-STOP-01 Telegram shutdown returned an unrecognised status.")
+    notes.append("D12-STOP-UNKNOWN")
+
+
+def _note_telegram_start(status: object) -> None:
+    """Report a refused Telegram start without failing application startup.
+
+    None means the callee supplied no documented start result. Historical
+    stubs return None. That is not treated as success and it is not treated
+    as a refusal.
+    """
+    if status in (
+        None,
+        "START_STARTED",
+        "START_ALREADY_RUNNING",
+        "START_DISABLED",
+    ):
+        return
+    if status == "START_REFUSED_PREVIOUS_WORKER":
+        logger.warning(
+            "D12-START-01 Telegram startup refused: "
+            "previous polling worker remains alive after shutdown request."
+        )
+        return
+    if status == "START_FAILED":
+        logger.warning("Telegram startup failed internally; trading continues.")
+        return
+    logger.warning("Telegram startup returned an unrecognised status.")
+
+
+async def _await_owned_tasks(
+    owned_tasks: list[asyncio.Task[Any]],
+) -> list[BaseException]:
+    """Cancel and await every task. One failure does not skip the others."""
+    secondary: list[BaseException] = []
+    for item in owned_tasks:
+        item.cancel()
+    for item in owned_tasks:
+        try:
+            await item
+        except asyncio.CancelledError:
+            pass
+        except Exception as exc:  # noqa: BLE001
+            _record_cleanup(secondary, exc)
+    return secondary
 
 
 async def reconciliation_loop() -> None:
@@ -132,7 +233,7 @@ def _trading_metrics_payload() -> dict[str, Any]:
     wr = analytics.winrate()
     pf = analytics.profit_factor()
     eq = current_equity()
-    cap = configured_max_portfolio_risk_pct()
+    risk_fraction, cap = _portfolio_metrics(eq)
     return {
         "equity": eq,
         "sharpe": analytics.sharpe(),
@@ -143,7 +244,7 @@ def _trading_metrics_payload() -> dict[str, Any]:
         "avg_win": round(analytics.avg_win(), 4),
         "avg_loss": round(analytics.avg_loss(), 4),
         "profit_factor": _profit_factor_json(pf),
-        "portfolio_risk_pct": round(portfolio_risk_fraction(eq) * 100.0, 2),
+        "portfolio_risk_pct": round(risk_fraction * 100.0, 2),
         "max_portfolio_risk_pct_cap": round(cap * 100.0, 2) if cap > 0 else 0.0,
         "trading_mode": Config.TRADING_MODE,
         "paper_trading": Config.PAPER_TRADING,
@@ -205,7 +306,7 @@ def _system_snapshot() -> dict[str, Any]:
         "last_bot_cycle_utc": bot_state.get("last_bot_cycle_utc"),
         "symbols": list(Config.SYMBOLS),
         "live_windows": live_windows_status(),
-        "oanda_account": last_account_summary() or None,
+        "oanda_account": _oanda_client().last_account_summary() or None,
         **live_safety_snapshot(),
         **operational_state_payload(),
         **operational_events_payload(),
@@ -244,88 +345,383 @@ def _serialize_trades(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return out
 
 
+class StartupPorts:
+    """Explicit startup dependencies. Production and offline callers supply their own."""
+
+    def __init__(
+        self,
+        *,
+        mode: str,
+        validate_config: Callable[[], None],
+        verify_safety: Callable[[], None],
+        init_persistence: Callable[[], None],
+        recover_orders: Callable[[], Any],
+        recovery_rows: Any,
+        recovery_readable: bool,
+        init_broker: Callable[[], None],
+        init_market_data: Callable[[], None],
+        init_messaging: Callable[[], None],
+        init_health: Callable[[], None],
+        schedule_trading: Callable[[], str],
+        close_opened: Callable[[list[str]], list[str]],
+        symbols: Callable[[], list[str]],
+        lifecycle: dict[str, Any] | None = None,
+    ) -> None:
+        self.mode = mode
+        self.validate_config = validate_config
+        self.verify_safety = verify_safety
+        self.init_persistence = init_persistence
+        self.recover_orders = recover_orders
+        self.recovery_rows = recovery_rows
+        self.recovery_readable = recovery_readable
+        self.init_broker = init_broker
+        self.init_market_data = init_market_data
+        self.init_messaging = init_messaging
+        self.init_health = init_health
+        self.schedule_trading = schedule_trading
+        self.close_opened = close_opened
+        self.symbols = symbols
+        self.lifecycle = lifecycle
+
+
+class StartupReport:
+    """Observable startup result. offline_ready is not permission to trade."""
+
+    def __init__(self) -> None:
+        self.phases: list[str] = []
+        self.ok = False
+        self.offline_ready = False
+        self.trading_ready = False
+        self.trading_loop_started = False
+        self.error = ""
+        self.cleanup_errors: list[str] = []
+        self.exposure: dict[str, str | None] = {}
+        self.reconciliation = "not_requested"
+        self.historical_filled_gap = False
+
+
+def _mark(report: StartupReport, phase: str) -> None:
+    report.phases.append(phase)
+
+
+async def _invoke(fn: Callable[[], Any]) -> Any:
+    result = fn()
+    if hasattr(result, "__await__"):
+        result = await result
+    return result
+
+
+def _evaluate_startup_exposure(symbols: list[str]) -> dict[str, str | None]:
+    from forex_bot.database import exposure_entry_block_reason
+
+    return {symbol: exposure_entry_block_reason(symbol) for symbol in symbols}
+
+
+async def initialise_application(ports: StartupPorts) -> StartupReport:
+    """Run startup orchestration with the caller's dependencies.
+
+    The offline mode never starts the trading loop. trading_ready stays false.
+    """
+    report = StartupReport()
+    opened: list[str] = []
+    _mark(report, "created")
+    if ports.lifecycle is not None:
+        if ports.lifecycle.get("stopped") and not ports.lifecycle.get("allow_after_shutdown"):
+            report.error = "StartupSafetyAbort"
+            _mark(report, "shutdown_completed")
+            exc = StartupSafetyAbort("initialization after shutdown")
+            setattr(exc, "startup_report", report)
+            raise exc
+        if ports.lifecycle.get("started") and not ports.lifecycle.get("allow_repeat"):
+            report.error = "StartupSafetyAbort"
+            _mark(report, "shutdown_completed")
+            exc = StartupSafetyAbort("duplicate initialization")
+            setattr(exc, "startup_report", report)
+            raise exc
+    try:
+        await _invoke(ports.validate_config)
+        _mark(report, "configuration_validated")
+        await _invoke(ports.verify_safety)
+        _mark(report, "safety_defaults_verified")
+        await _invoke(ports.init_persistence)
+        opened.append("persistence")
+        _mark(report, "persistence_initialized")
+        from forex_bot.database import select_rows_for_recovery
+        from forex_bot.orders import ingest_recovery_snapshot
+
+        if ports.recovery_rows is _PRODUCTION_RECOVERY:
+            await _invoke(ports.recover_orders)
+        elif ports.recovery_rows is _CALL_RECOVERY:
+            provided = await _invoke(ports.recover_orders)
+            ingest_recovery_snapshot(
+                select_rows_for_recovery(provided),
+                ports.recovery_readable,
+            )
+        else:
+            ingest_recovery_snapshot(
+                select_rows_for_recovery(ports.recovery_rows),
+                ports.recovery_readable,
+            )
+        _mark(report, "order_recovery_completed")
+        report.exposure = _evaluate_startup_exposure(ports.symbols())
+        _mark(report, "exposure_safety_evaluated")
+        await _invoke(ports.init_broker)
+        opened.append("broker")
+        _mark(report, "broker_dependency_initialized")
+        try:
+            await _invoke(ports.init_market_data)
+        except ReconciliationUnavailable as exc:
+            report.reconciliation = type(exc).__name__
+        else:
+            report.reconciliation = "completed"
+        opened.append("market_data")
+        _mark(report, "market_data_dependency_initialized")
+        await _invoke(ports.init_messaging)
+        opened.append("messaging")
+        _mark(report, "messaging_dependency_initialized")
+        await _invoke(ports.init_health)
+        opened.append("health")
+        _mark(report, "health_dependencies_prepared")
+        schedule_status = await _invoke(ports.schedule_trading)
+        if ports.mode == "offline":
+            if schedule_status != "recorded_not_started":
+                raise StartupSafetyAbort("offline scheduler returned an unsafe status")
+            report.trading_loop_started = False
+            report.trading_ready = False
+            report.offline_ready = True
+            report.ok = True
+            _mark(report, "offline_initialization_ready")
+        else:
+            if schedule_status != "started":
+                raise StartupSafetyAbort("production scheduler did not start")
+            report.trading_loop_started = True
+            report.trading_ready = False
+            report.offline_ready = False
+            report.ok = True
+            _mark(report, "running")
+        if ports.lifecycle is not None:
+            ports.lifecycle["started"] = True
+        return report
+    except Exception as exc:
+        report.ok = False
+        report.offline_ready = False
+        report.trading_ready = False
+        report.trading_loop_started = False
+        report.error = type(exc).__name__
+        setattr(exc, "startup_report", report)
+        if ports.mode == "offline":
+            try:
+                report.cleanup_errors = list(ports.close_opened(list(reversed(opened))))
+            except Exception as cleanup_exc:
+                report.cleanup_errors.append(type(cleanup_exc).__name__)
+            _mark(report, "shutdown_completed")
+            if ports.lifecycle is not None:
+                ports.lifecycle["stopped"] = True
+        raise
+
+
+def shutdown_application(ports: StartupPorts, report: StartupReport) -> StartupReport:
+    """Close an offline initialization. Repeated calls stay safe."""
+    try:
+        report.cleanup_errors.extend(
+            ports.close_opened(
+                ["scheduler", "health", "messaging", "market_data", "broker", "persistence"]
+            )
+        )
+    except Exception as exc:
+        report.cleanup_errors.append(type(exc).__name__)
+    report.offline_ready = False
+    report.trading_ready = False
+    _mark(report, "shutdown_completed")
+    if ports.lifecycle is not None:
+        ports.lifecycle["stopped"] = True
+        ports.lifecycle["started"] = False
+    return report
+
+
+def _production_startup_ports(
+    owned_tasks: list[asyncio.Task[Any]],
+    telegram_flag: dict[str, bool],
+) -> StartupPorts:
+    def validate_config() -> None:
+        symbols = list(Config.SYMBOLS)
+        if not symbols:
+            raise StartupSafetyAbort("startup configuration has no symbols")
+
+    def verify_safety() -> None:
+        from forex_bot.live_safety import (
+            initialise_fail_closed,
+            live_order_auth_reason,
+            live_safety_initialised,
+        )
+
+        initialise_fail_closed()
+        if not live_safety_initialised():
+            reason = live_order_auth_reason()
+            logger.error(
+                "startup aborted: safety state is not startup-compatible reason=%s",
+                reason,
+            )
+            raise StartupSafetyAbort(
+                "startup aborted: safety state is not startup-compatible "
+                f"reason={reason}"
+            )
+
+    def init_persistence() -> None:
+        set_lifespan_phase("starting")
+        get_connection()
+
+    def recover_orders() -> Any:
+        from forex_bot.orders import load_open_orders_from_db_into_memory
+        from forex_bot.reconciliation import load_reconcile_state_from_db
+
+        load_open_orders_from_db_into_memory()
+        load_reconcile_state_from_db()
+        return None
+
+    def init_broker() -> None:
+        _oanda_client().build_api()
+
+    def init_market_data() -> Any:
+        async def _run() -> None:
+            from forex_bot.reconciliation import run_reconciliation_once
+
+            try:
+                await asyncio.to_thread(_oanda_client().fetch_account_summary)
+            except Exception as exc:
+                logger.warning("startup AccountSummary: %s", exc)
+            try:
+                await asyncio.to_thread(run_reconciliation_once)
+            except Exception as exc:
+                logger.warning("startup reconciliation: %s", exc)
+
+        return _run()
+
+    def init_messaging() -> None:
+        return None
+
+    def init_health() -> None:
+        from forex_bot.execution import (
+            ExecutionMode,
+            get_execution_mode,
+            pre_trade_entry_blocked_reason,
+        )
+
+        if get_execution_mode() != ExecutionMode.PAPER:
+            reason = pre_trade_entry_blocked_reason()
+            if reason:
+                logger.warning(
+                    "startup: new entries blocked by policy until conditions clear (%s) — see GET /system",
+                    reason,
+                )
+
+    def schedule_trading() -> str:
+        from forex_bot.bot_loop import run_bot
+        from forex_bot.telegram_control import start_telegram_control
+
+        mark_bot_started()
+        set_lifespan_phase("running")
+        load_operational_events_cache_from_db()
+        started_msg = _health_alert_text("BOT STARTED")
+        set_lifecycle_message(started_msg)
+        alert(started_msg)
+        logger.info("Bot started; trading_mode=%s", Config.TRADING_MODE)
+        log_live_windows(reason="startup")
+        owned_tasks.append(asyncio.create_task(reconciliation_loop()))
+        owned_tasks.append(asyncio.create_task(health_snapshot_loop()))
+        owned_tasks.append(asyncio.create_task(telegram_inbound_loop()))
+        owned_tasks.append(asyncio.create_task(run_bot()))
+        telegram_flag["attempted"] = True
+        _note_telegram_start(start_telegram_control())
+        return "started"
+
+    def close_opened(_names: list[str]) -> list[str]:
+        return []
+
+    return StartupPorts(
+        mode="production",
+        validate_config=validate_config,
+        verify_safety=verify_safety,
+        init_persistence=init_persistence,
+        recover_orders=recover_orders,
+        recovery_rows=_PRODUCTION_RECOVERY,
+        recovery_readable=True,
+        init_broker=init_broker,
+        init_market_data=init_market_data,
+        init_messaging=init_messaging,
+        init_health=init_health,
+        schedule_trading=schedule_trading,
+        close_opened=close_opened,
+        symbols=lambda: [str(item) for item in Config.SYMBOLS],
+    )
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     _ = app
+    _last_cleanup_errors.clear()
     from forex_bot.log_config import configure_forex_bot_logging
-    from forex_bot.live_safety import initialise_fail_closed
 
     configure_forex_bot_logging()
-    initialise_fail_closed()  # fail-closed JSON; never auto-allows live orders
-    set_lifespan_phase("starting")
-    get_connection()
-    from forex_bot.orders import load_open_orders_from_db_into_memory
-    from forex_bot.reconciliation import load_reconcile_state_from_db, run_reconciliation_once
-
-    load_open_orders_from_db_into_memory()
-    load_reconcile_state_from_db()
-    build_api()
+    owned_tasks: list[asyncio.Task[Any]] = []
+    telegram_flag = {"attempted": False}
+    startup_failure: BaseException | None = None
+    body_error = False
+    secondary: list[BaseException] = []
+    release_notes: list[str] = []
+    telegram_stop_notes: list[str] = []
     try:
-        await asyncio.to_thread(fetch_account_summary)
-    except Exception as exc:
-        logger.warning("startup AccountSummary: %s", exc)
-
-    try:
-        await asyncio.to_thread(run_reconciliation_once)
-    except Exception as exc:
-        logger.warning("startup reconciliation: %s", exc)
-
-    from forex_bot.execution import ExecutionMode, get_execution_mode, pre_trade_entry_blocked_reason
-
-    if get_execution_mode() != ExecutionMode.PAPER:
-        br = pre_trade_entry_blocked_reason()
-        if br:
-            logger.warning(
-                "startup: new entries blocked by policy until conditions clear (%s) — see GET /system",
-                br,
-            )
-
-    mark_bot_started()
-    set_lifespan_phase("running")
-    load_operational_events_cache_from_db()
-    started_msg = _health_alert_text("BOT STARTED")
-    set_lifecycle_message(started_msg)
-    alert(started_msg)
-    logger.info("Bot started; trading_mode=%s", Config.TRADING_MODE)
-    log_live_windows(reason="startup")
-    reco_task = asyncio.create_task(reconciliation_loop())
-    health_task = asyncio.create_task(health_snapshot_loop())
-    telegram_task = asyncio.create_task(telegram_inbound_loop())
-    task = asyncio.create_task(run_bot())
-    from forex_bot.telegram_control import start_telegram_control, stop_telegram_control
-
-    start_telegram_control()
-    try:
-        yield
+        await initialise_application(_production_startup_ports(owned_tasks, telegram_flag))
+    except Exception as exc:  # noqa: BLE001
+        startup_failure = exc
+        raise
+    else:
+        try:
+            yield
+        except Exception:  # noqa: BLE001
+            body_error = True
+            raise
     finally:
-        stop_telegram_control()
-        set_lifespan_phase("stopping")
-        health_task.cancel()
-        try:
-            await health_task
-        except asyncio.CancelledError:
-            pass
-        telegram_task.cancel()
-        try:
-            await telegram_task
-        except asyncio.CancelledError:
-            pass
-        reco_task.cancel()
-        try:
-            await reco_task
-        except asyncio.CancelledError:
-            pass
-        task.cancel()
-        try:
-            await task
-        except asyncio.CancelledError:
-            pass
-        mark_bot_stopped()
-        set_lifespan_phase("offline")
-        stopped_msg = _health_alert_text("BOT STOPPED")
-        set_lifecycle_message(stopped_msg)
-        alert(stopped_msg)
-        logger.info("Bot stopped (lifespan shutdown)")
+        telegram_stop_failed = False
+        if telegram_flag["attempted"]:
+            try:
+                from forex_bot.telegram_control import stop_telegram_control
+
+                stop_status = stop_telegram_control()
+            except Exception as exc:  # noqa: BLE001
+                telegram_stop_failed = True
+                _record_cleanup(secondary, exc)
+            else:
+                _note_telegram_stop(stop_status, telegram_stop_notes)
+        if startup_failure is None:
+            set_lifespan_phase("stopping")
+        secondary.extend(await _await_owned_tasks(owned_tasks))
+        if startup_failure is not None and not telegram_stop_failed:
+            release_notes.extend(release_connection_after_failed_startup())
+            for note in release_notes:
+                logger.error("lifespan cleanup failed: %s", note)
+        if startup_failure is None:
+            try:
+                mark_bot_stopped()
+                set_lifespan_phase("offline")
+                stopped_msg = _health_alert_text("BOT STOPPED")
+                set_lifecycle_message(stopped_msg)
+                alert(stopped_msg)
+                logger.info("Bot stopped (lifespan shutdown)")
+            except Exception as exc:  # noqa: BLE001
+                _record_cleanup(secondary, exc)
+        _last_cleanup_errors[:] = [type(item).__name__ for item in secondary]
+        _last_cleanup_errors.extend(release_notes)
+        _last_cleanup_errors.extend(telegram_stop_notes)
+        current = asyncio.current_task()
+        cancelling = current is not None and current.cancelling() > 0
+        if (
+            startup_failure is None
+            and not body_error
+            and not cancelling
+            and secondary
+        ):
+            raise secondary[0]
 
 
 app = FastAPI(
@@ -352,7 +748,7 @@ async def health() -> dict[str, Any]:
         "execution_mode": get_execution_mode().value,
         "trading_allowed": trading_allowed(),
         "live_windows": live_windows_status(),
-        "oanda_account": last_account_summary() or None,
+        "oanda_account": _oanda_client().last_account_summary() or None,
         "experiment": experiment_snapshot_with_voters(ai_ensemble),
     }
 
@@ -442,7 +838,7 @@ def _apply_trading_mode(mode: str) -> dict[str, str]:
         Config.set_trading_mode(mode)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
-    build_api()
+    _oanda_client().build_api()
     alert(f" Trading mode changed to {Config.TRADING_MODE.upper()}")
     return {"status": "success", "mode": Config.TRADING_MODE}
 

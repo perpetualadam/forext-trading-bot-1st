@@ -1,0 +1,40 @@
+{
+  "levels": [
+    {
+      "level": 1,
+      "name": "descriptors and config",
+      "current": "PRESENT",
+      "promotes_to_next": false
+    },
+    {
+      "level": 2,
+      "name": "verified compressed layers",
+      "current": "MISSING",
+      "promotes_to_next": false
+    },
+    {
+      "level": 3,
+      "name": "static filesystem inspection",
+      "current": "MISSING",
+      "promotes_to_next": false
+    },
+    {
+      "level": 4,
+      "name": "isolated runtime measurement",
+      "current": "MISSING",
+      "promotes_to_next": false
+    },
+    {
+      "level": 5,
+      "name": "final bot image",
+      "current": "MISSING",
+      "promotes_to_next": false
+    },
+    {
+      "level": 6,
+      "name": "target VPS",
+      "current": "MISSING",
+      "promotes_to_next": false
+    }
+  ]
+}

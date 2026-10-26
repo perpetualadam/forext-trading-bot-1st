@@ -1,0 +1,191 @@
+{
+  "dotenv_calls": 1,
+  "extra_after": [
+    {
+      "bytes": 67209,
+      "path": "forex_bot/bot_loop.py",
+      "sha256": "dcc8ed35f1f1ec9eb4d53e3439ebf46f80868c55aba4ec6ec64ad29fbe9f9128"
+    },
+    {
+      "bytes": 19115,
+      "path": "forex_bot/trading.py",
+      "sha256": "5ac3981690fe9536edaedfd35a933d17fc37a1e4a77c5c3e9b47517db6300fc7"
+    },
+    {
+      "bytes": 24707,
+      "path": "forex_bot/oanda_exec.py",
+      "sha256": "f4beb250d81852d8ee4f22af06ab33194c6b4ba1bf6f9b1a6b5d11d3b7b265c8"
+    },
+    {
+      "bytes": 2386,
+      "path": "forex_bot/decision_quality/live_path.py",
+      "sha256": "6275fba49bf20d6f577a30bcec2421e5904ed8ef414851906c5103567aece215"
+    },
+    {
+      "bytes": 8029,
+      "path": "forex_bot/shadow/signals.py",
+      "sha256": "50e51518e342589a3dc4b09d25356ba521166c056a027c5c3efb1fafa9ceb799"
+    },
+    {
+      "bytes": 17661,
+      "path": "forex_bot/session_rules.py",
+      "sha256": "90023457126ee98a1b02739b188132278d078c24bf5b04f12dec166ea57a4202"
+    },
+    {
+      "bytes": 8518,
+      "path": "forex_bot/decision_repair/selection.py",
+      "sha256": "ed4fbfcf2d6e01571b3e6ffdef0337899cb5473d3175fe268a574e0b1621812a"
+    },
+    {
+      "bytes": 12406,
+      "path": "forex_bot/ai_ensemble.py",
+      "sha256": "2893d1a0b7a5ac9aa54407e5a15d6670f8addfd895c339f013cdaab205db0bbc"
+    },
+    {
+      "bytes": 1726,
+      "path": "forex_bot/rl_agent.py",
+      "sha256": "912280b9854208b7359b2e264adfdf5b1b454e88afd7b5b5fc3cc0f635091e4e"
+    },
+    {
+      "bytes": 3539,
+      "path": "forex_bot/indicators.py",
+      "sha256": "64fe62a7e5fd997b7ea3ecc69b0bbc09ce5d0bc8ede18180a8bd16b209c52fe9"
+    },
+    {
+      "bytes": 20382,
+      "path": "forex_bot/oanda_client.py",
+      "sha256": "6d7d5d2b6ce1c228af0629c3e2a8b674b02965c57d1a3ed41c3b4015e531ca2b"
+    },
+    {
+      "bytes": 2421,
+      "path": "forex_bot/config.py",
+      "sha256": "13db72c668f60a8a50bf148789070c29cb941be748a51b298bd7bcb2971f99fd"
+    },
+    {
+      "bytes": 8653,
+      "path": "forex_bot/execution.py",
+      "sha256": "6602e363171e3aac4bc4b597ddb805c454c7ca40f7d1fe3fddf542f6a1ab86e2"
+    },
+    {
+      "bytes": 12276,
+      "path": "tests/test_strategy_activation_defaults.py",
+      "sha256": "53c5e67ffb900cf50e8a8d1bef303f29c5b624e58878b0942f0d627b77699911"
+    },
+    {
+      "bytes": 7484,
+      "path": "tests/test_execution_safety.py",
+      "sha256": "38760289cf28c104403149f1ccfc9fd7c80d3cd93e24dc37de3292ef297eba97"
+    },
+    {
+      "bytes": 3175,
+      "path": "tests/test_d15_historical_compatibility.py",
+      "sha256": "55a6ab18155b1ae87d9810f1f0c115214dc9aee2145f2659cea809f5160f7ef1"
+    },
+    {
+      "bytes": 2739,
+      "path": "tests/conftest.py",
+      "sha256": "e5ded4756826ef2b5dd92c8abcf819021287e5d2639fda8fb165a2eeeb82f52c"
+    },
+    {
+      "bytes": 50524,
+      "path": "data/research/adaptive_ensemble/g4/session_coverage.json",
+      "sha256": "25540308a934d922005aa472d68777461ee451a496637f1c5722df2254eadb6c"
+    },
+    {
+      "bytes": 1078,
+      "path": "data/research/adaptive_ensemble/g4/trading_day_definition.json",
+      "sha256": "74acecbe4a0bd5d80a885bbc53b8342677cb3d49c3ce0a73eef41b2423e136c7"
+    },
+    {
+      "bytes": 771,
+      "path": "data/research/adaptive_ensemble/g5/readiness_manifest.json",
+      "sha256": "129cadc4652c4ddb33c59d1c58e4381499aceccfbcc89f191e68e825ae5fc563"
+    },
+    {
+      "bytes": 14518,
+      "path": "data/research/adaptive_ensemble/d15/stage_d15_report.md",
+      "sha256": "3d2c2d4e2d73889e34a4a1143d8de39349a23736c0e68460da441244b575597a"
+    }
+  ],
+  "in_process_active_after_tests": {
+    "mean_reversion": false,
+    "scalp": false,
+    "swing_breakout": false,
+    "swing_mean_reversion": false,
+    "swing_trend": false,
+    "trend": false
+  },
+  "network_attempts": [
+    "socket",
+    "socket",
+    "socket",
+    "socket",
+    "socket"
+  ],
+  "protected_after": {
+    "files": [
+      {
+        "actual": "3ff01244ed217e85d211bec819a7ebff9c96fb0412c56e5a768792ab54b31ca1",
+        "expected": "3ff01244ed217e85d211bec819a7ebff9c96fb0412c56e5a768792ab54b31ca1",
+        "match": true,
+        "path": "forex_bot/app.py"
+      },
+      {
+        "actual": "d32b560306fe2f86cc7c8ddbb40aa42842f071bd88ea513d77f172a6a0fadf4c",
+        "expected": "d32b560306fe2f86cc7c8ddbb40aa42842f071bd88ea513d77f172a6a0fadf4c",
+        "match": true,
+        "path": "forex_bot/telegram_control.py"
+      },
+      {
+        "actual": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e",
+        "expected": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e",
+        "match": true,
+        "path": "forex_bot/database.py"
+      },
+      {
+        "actual": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+        "expected": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+        "match": true,
+        "path": "forex_bot/live_safety.py"
+      },
+      {
+        "actual": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+        "expected": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+        "match": true,
+        "path": "forex_bot/strategy_meta.py"
+      },
+      {
+        "actual": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a",
+        "expected": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a",
+        "match": true,
+        "path": "requirements.txt"
+      },
+      {
+        "actual": "0562a6853549077197defb3cd8515521b843a041f2a735723ee2903790e3eef5",
+        "expected": "0562a6853549077197defb3cd8515521b843a041f2a735723ee2903790e3eef5",
+        "match": true,
+        "path": "requirements-dev.txt"
+      },
+      {
+        "actual": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+        "expected": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+        "match": true,
+        "path": "Dockerfile"
+      },
+      {
+        "actual": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+        "expected": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+        "match": true,
+        "path": ".dockerignore"
+      },
+      {
+        "actual": "f0a374774c35b4c63dce23a837572886d1d53331fec388044bc5887367980179",
+        "expected": "f0a374774c35b4c63dce23a837572886d1d53331fec388044bc5887367980179",
+        "match": true,
+        "path": "docker-compose.yml"
+      }
+    ],
+    "malformed_expected": false,
+    "mismatch": false
+  }
+}

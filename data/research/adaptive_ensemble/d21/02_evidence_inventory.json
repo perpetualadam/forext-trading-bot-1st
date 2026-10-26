@@ -1,0 +1,48 @@
+{
+  "records": [
+    {
+      "source": "D.21 stage instruction section 2",
+      "stage": "D.21",
+      "claim": "linux/amd64 and linux/arm64 are intended targets; the dual policy and the base-image reference are explicitly approved",
+      "level": "EXPLICIT_USER_DECISION",
+      "current": true,
+      "user_approved": true,
+      "independently_verified": false,
+      "static_only": true,
+      "limitation": "No timestamp, signature, or cryptographic provenance was invented. Approval is not image verification."
+    },
+    {
+      "source": "data/research/adaptive_ensemble/d19/target_selection_decision.json",
+      "stage": "D.19",
+      "claim": "selected_platform was null",
+      "level": "HISTORICAL_OBSERVATION",
+      "current": false,
+      "user_approved": false,
+      "independently_verified": false,
+      "static_only": true,
+      "limitation": "Correct for D.19. Not rewritten."
+    },
+    {
+      "source": "data/research/adaptive_ensemble/d20/34_stage_d20_report.md",
+      "stage": "D.20",
+      "claim": "AMD64 and the image reference were recorded; ARM64 remained proposed",
+      "level": "HISTORICAL_OBSERVATION",
+      "current": false,
+      "user_approved": false,
+      "independently_verified": false,
+      "static_only": true,
+      "limitation": "Correct for D.20. The newer dual approval is recorded only in D.21."
+    },
+    {
+      "source": "Dockerfile line 2",
+      "stage": "current file",
+      "claim": "FROM python:3.12-slim-bookworm, no platform and no digest",
+      "level": "CURRENT_STATIC_DECLARATION",
+      "current": true,
+      "user_approved": false,
+      "independently_verified": false,
+      "static_only": true,
+      "limitation": "The file does not name docker.io and does not encode the dual policy."
+    }
+  ]
+}

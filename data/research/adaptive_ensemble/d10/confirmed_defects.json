@@ -1,0 +1,69 @@
+{
+  "defects": [
+    {
+      "defect_id": "D10-STOP-01",
+      "category": "STOP_RETURNS_WITH_LIVE_THREAD",
+      "severity": "shutdown ownership",
+      "source_file": "forex_bot/telegram_control.py",
+      "function": "stop_telegram_control",
+      "schedule": "S11 S12 and lifespan blocked_shutdown",
+      "trigger": "Worker blocked inside get_updates past the 2 second join",
+      "observed_result": "Function returned None. Elapsed 2.0135s and 2.006s. No exception.",
+      "thread_state": "16048, 13880, and lifespan thread 3836 were daemon threads and still alive. The stored _poller_thread was already None.",
+      "database_state": "Unchanged by stop. Lifespan success path kept the connection open.",
+      "lock_state": "Database lock was free during the blocked HTTP wait.",
+      "application_cleanup": "lifespan returned with cleanup_errors empty and did not record the live thread.",
+      "harness_cleanup": "After the snapshot, the harness set the stop event, released the fake getUpdates, and joined the worker.",
+      "reachable_in_current_lifespan": true,
+      "proposed_remediation": "Do not clear _poller_started or _poller_thread, and do not return, until the worker is not alive. Do not let a later start clear _stop_event while that worker exists. Do not treat a timed-out join as proof the worker has stopped.",
+      "required_future_source_scope": ["forex_bot/telegram_control.py"],
+      "implemented": false
+    },
+    {
+      "defect_id": "D10-DB-01",
+      "category": "POST_RELEASE_DATABASE_ACCESS",
+      "severity": "borrower ownership",
+      "source_file": "forex_bot/telegram_control.py",
+      "function": "_poller_loop_inner then fetch_all_trades_ordered and get_connection",
+      "schedule": "S15 S16 S17",
+      "trigger": "release_connection_after_failed_startup completed while the worker was blocked in getUpdates. The fake getUpdates then returned a /trades update.",
+      "observed_result": "Connection 1 was closed. Thread 16048, still alive, executed FROM trades and get_connection published connection 2. Direct fetch after release did the same from connection 5 to connection 6.",
+      "thread_state": "caller telegram-control, caller_alive true, thread 16048",
+      "database_state": "Old connection closed. New connection published. use_after_close empty.",
+      "lock_state": "Lock was free at release. The later helper held _pg_lock for the new connection.",
+      "application_cleanup": "release returned before the query. The new connection was not released by the application.",
+      "harness_cleanup": "Harness closed connection 2 after the worker had exited.",
+      "reachable_in_current_lifespan": "The function sequence is reachable for any caller that releases after stop returns. The current lifespan does not release after a successful start, and startup failure after start_telegram_control is not reachable. The success path still leaves the live worker able to use the connection that was not released.",
+      "proposed_remediation": "Make stop finish only after the worker can no longer enter a database helper. Do not release or republish the shared connection while that worker is alive.",
+      "required_future_source_scope": ["forex_bot/telegram_control.py"],
+      "possible_additional_scope_if_lifespan_must_observe_the_worker": ["forex_bot/app.py"],
+      "implemented": false
+    },
+    {
+      "defect_id": "D10-TEL-02",
+      "category": "DUPLICATE_TELEGRAM_WORKERS",
+      "severity": "lifecycle race",
+      "source_file": "forex_bot/telegram_control.py",
+      "function": "stop_telegram_control then start_telegram_control",
+      "schedule": "S28 S29",
+      "trigger": "start called after stop returned with the worker still blocked in getUpdates",
+      "observed_result": "Threads 13880 and 17184 were both alive. The second start cleared _stop_event.",
+      "thread_state": "two daemon threads named telegram-control",
+      "database_state": "not part of this schedule",
+      "lock_state": "getUpdates calls share _GETUPDATES_LOCK, so the HTTP bodies do not overlap, but both workers remain alive",
+      "application_cleanup": "The first stop had already returned and cleared the stored thread.",
+      "harness_cleanup": "Harness set the stop event again, released the fake poll, and joined both threads.",
+      "reachable_in_current_lifespan": "lifespan calls start once per entry. A second start after an incomplete stop is permitted by the functions and contradicts the stop docstring.",
+      "proposed_remediation": "start must refuse to clear _stop_event or create a thread while a previous worker is alive.",
+      "required_future_source_scope": ["forex_bot/telegram_control.py"],
+      "implemented": false
+    }
+  ],
+  "not_confirmed": [
+    "USE_AFTER_CLOSE of the closed connection or cursor",
+    "release closing the connection while the helper held _pg_lock",
+    "SHUTDOWN_ERROR_MASKING: the broker failure message remained the escaped exception when close failed",
+    "RESOURCE_LEAK_AFTER_FAILED_STARTUP for the broker path: the application closed the connection",
+    "startup failure after the Telegram thread exists"
+  ]
+}

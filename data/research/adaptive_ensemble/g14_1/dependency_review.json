@@ -1,0 +1,27 @@
+{
+  "stage": "G.14.1",
+  "requirements_modified": false,
+  "direct_dependencies": [
+    {"name": "python-dotenv", "constraint": ">=1.0.0"},
+    {"name": "pandas", "constraint": ">=2.0.0"},
+    {"name": "numpy", "constraint": ">=1.24.0"},
+    {"name": "requests", "constraint": ">=2.31.0"},
+    {"name": "psycopg2-binary", "constraint": ">=2.9.9"},
+    {"name": "fastapi", "constraint": ">=0.109.0"},
+    {"name": "uvicorn", "extra": "standard", "constraint": ">=0.27.0"},
+    {"name": "oandapyV20", "constraint": ">=0.7.2"},
+    {"name": "tzdata", "constraint": ">=2024.1"}
+  ],
+  "fully_pinned": false,
+  "hash_verified": false,
+  "transitive_versions": "not resolved; no versions are asserted",
+  "python_version": "the mutable base image selects CPython 3.12; requirements.txt does not pin the interpreter",
+  "platform_wheels": "selection for linux/amd64 bookworm was not resolved",
+  "uvicorn_standard_extra": "the extra's package set depends on the unresolved uvicorn version",
+  "build_time_hooks": "pip install can run package installation hooks; the Dockerfile has no separate build script",
+  "lockfile_present": false,
+  "lockfiles_checked": ["requirements.lock", "constraints.txt", "poetry.lock", "Pipfile.lock", "uv.lock"],
+  "wheelhouse_present": false,
+  "wheelhouse_paths_checked": ["wheelhouse", "wheels"],
+  "classification": "PYTHON_DEPENDENCY_RESOLUTION_UNPINNED"
+}

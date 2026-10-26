@@ -1,0 +1,88 @@
+{
+  "stage": "G.14.9",
+  "implemented": false,
+  "note": "No design-only option is classified as implemented or as TRUST_ANCHOR_ESTABLISHED.",
+  "options": {
+    "A": {
+      "classification": "TRUST_ANCHOR_UNVERIFIED",
+      "eligible": false,
+      "ineligibility": "A same-user launcher repeats the demonstrated CreateFileW race. A different principal is not evidenced.",
+      "points": {
+        "1_root_trust_anchor": "The launcher's first directory open. That open is still a pathname lookup.",
+        "2_who_controls_the_anchor": "Whichever user runs the launcher. A same-user launcher is controlled by the demonstrated attacker.",
+        "3_how_created": "Not created. The design would call CreateFileW or an equivalent path open.",
+        "4_how_authenticated": "Volume serial and file index after the open. Those identify the opened object only.",
+        "5_how_retained": "The existing DirectoryHandle can retain a transferred handle. Transfer was not built.",
+        "6_child_directories": "NtCreateFile FILE_CREATE relative to the parent handle. Reusable only after a good parent exists.",
+        "7_artifact_files": "write_exclusive relative to the child handle.",
+        "8_artifact_verification": "Existing handle-read wheel checks. They do not prove directory intent.",
+        "9_export": "Files already reside on the host. Export does not cross a boundary.",
+        "10_export_destination": "Another path open unless the consumer keeps the same handle.",
+        "11_receiver_provenance": "A receiver that reopens by path does not inherit the producer's handle identity.",
+        "12_receiver_substitution": "The G.14.8 pre-open swap applies to the receiver.",
+        "13_concurrent_modification": "Post-open replacement was contained in tests. Pre-open replacement was not.",
+        "14_crashes": "Not retested. A wrong handle cannot be repaired by crash cleanup.",
+        "15_cleanup": "Do not delete the directory. The current helper does not. Deleting a substituted directory would be unsafe.",
+        "16_partial_artifacts": "interrupted_write leaves the file. The directory is kept.",
+        "17_hostile_metadata": "Synthetic checks only. No live index.",
+        "18_same_user": "Not prevented. The launcher is in reach of the same user.",
+        "19_independently_verifiable": "Post-open binding, junction rejection, and fail-closed close. Not the initial anchor.",
+        "20_assumption": "Either the same user is benign, which is Option C, or a different principal exists, which was not shown."
+      }
+    },
+    "B": {
+      "classification": "TRUST_ANCHOR_DESIGNED_NOT_IMPLEMENTED",
+      "eligible": false,
+      "ineligibility": "ENVIRONMENT_SELECTION_REQUIRES_FURTHER_EVIDENCE. No subtype has a measured boundary.",
+      "points": {
+        "1_root_trust_anchor": "An isolation boundary this user cannot reconfigure. The subtype is not chosen.",
+        "2_who_controls_the_anchor": "Unknown. A same-user Docker daemon, WSL host path, or hypervisor session would not qualify.",
+        "3_how_created": "Not created. Creation would be a later approval.",
+        "4_how_authenticated": "Would require a measured identity of the boundary, not a path string.",
+        "5_how_retained": "Inside the boundary, the existing handle-relative helper could run. That does not retain trust across export.",
+        "6_child_directories": "Same FILE_CREATE design, on a filesystem the attacker cannot swap.",
+        "7_artifact_files": "Same write_exclusive design, inside that filesystem.",
+        "8_artifact_verification": "Reuse G.14.7 checks inside the boundary, then repeat them on the receiving side.",
+        "9_export": "A single exit after the producer stops. The exit medium is unspecified.",
+        "10_export_destination": "Must not be a user-writable path opened with CreateFileW, or the race returns.",
+        "11_receiver_provenance": "Receiver recomputes hashes and records boundary identity. A hash is not source approval.",
+        "12_receiver_substitution": "Unsolved until the import open is inside the same kind of boundary.",
+        "13_concurrent_modification": "Unknown outside the guest. Inside, only as good as the guest filesystem.",
+        "14_crashes": "A disposable guest can be discarded only if discard cannot touch production. Not set up.",
+        "15_cleanup": "Discard the guest rather than deleting host trees. Not authorised.",
+        "16_partial_artifacts": "Fail closed and do not publish a partial export.",
+        "17_hostile_metadata": "Still requires the verifier and an approved source. Isolation does not review metadata.",
+        "18_same_user": "Unknown. This is the property that would have to be tested before selection.",
+        "19_independently_verifiable": "Nothing about a guest was verified in this stage.",
+        "20_assumption": "Some future boundary exists and is not controlled by this user. That assumption is not evidence."
+      }
+    },
+    "C": {
+      "classification": "TRUST_ANCHOR_ASSUMPTION_ONLY",
+      "eligible": false,
+      "ineligibility": "The model defines the demonstrated same-user attacker as trusted. The vulnerability remains.",
+      "points": {
+        "1_root_trust_anchor": "The operator's path, trusted by declaration.",
+        "2_who_controls_the_anchor": "This user, including every process running as this user.",
+        "3_how_created": "The current open_directory path. No new component.",
+        "4_how_authenticated": "Not authenticated against an independent anchor.",
+        "5_how_retained": "The handle is retained after open, as today.",
+        "6_child_directories": "Current create_directory.",
+        "7_artifact_files": "Current write_exclusive.",
+        "8_artifact_verification": "Current handle-read checks, which do not detect the pre-open swap.",
+        "9_export": "Host path to host path.",
+        "10_export_destination": "Declared trusted for the same reason, which is circular.",
+        "11_receiver_provenance": "Would still need independent hashing, and would still lack directory intent.",
+        "12_receiver_substitution": "Accepted if the substitute was written by the same user.",
+        "13_concurrent_modification": "Post-open is contained. Pre-open is accepted.",
+        "14_crashes": "Same as the current helper.",
+        "15_cleanup": "No automatic deletion.",
+        "16_partial_artifacts": "Current interrupted_write behaviour.",
+        "17_hostile_metadata": "Unchanged. The trust model does not review packages.",
+        "18_same_user": "Treated as benign. G.14.8 showed that actor redirect an open.",
+        "19_independently_verifiable": "The assumption is not independently verifiable. The attack is.",
+        "20_assumption": "This user and every same-user process will not substitute the path for the whole download. Unsupported."
+      }
+    }
+  }
+}

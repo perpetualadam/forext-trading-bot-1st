@@ -1,0 +1,33 @@
+{
+  "stage": "G.14.10",
+  "candidate_identified": false,
+  "note": "No numeric score. A running service is not a selected architecture.",
+  "environments": ["vm", "wsl", "container", "windows_execution"],
+  "threats": [
+    {"id": 1, "threat": "same_user_path_substitution", "evidence": "LEVEL_1 G.14.8", "vm": "UNKNOWN if the disk is outside this user's write set", "wsl": "UNKNOWN if the distro is reached by a Windows path", "container": "UNKNOWN; a bind mount would repeat the race", "windows_execution": "NOT_SUPPORTED for same-user controls"},
+    {"id": 2, "threat": "parent_directory_replacement", "evidence": "LEVEL_1 G.14.8", "vm": "UNKNOWN", "wsl": "UNKNOWN", "container": "UNKNOWN", "windows_execution": "Demonstrated on a normal path"},
+    {"id": 3, "threat": "junction_insertion", "evidence": "LEVEL_1 G.14.8 for the helper", "vm": "UNKNOWN inside a guest", "wsl": "UNKNOWN", "container": "UNKNOWN", "windows_execution": "Rejected when the opened object is a junction; not a pre-open identity proof"},
+    {"id": 4, "threat": "symlink_insertion", "evidence": "LEVEL_1 skipped errno 22", "vm": "UNKNOWN", "wsl": "UNKNOWN", "container": "UNKNOWN", "windows_execution": "UNVERIFIED"},
+    {"id": 5, "threat": "reparse_substitution", "evidence": "LEVEL_1 partial", "vm": "UNKNOWN", "wsl": "UNKNOWN", "container": "UNKNOWN", "windows_execution": "Attribute check only; tags not enumerated"},
+    {"id": 6, "threat": "host_filesystem_write", "evidence": "LEVEL_2 token is this user", "vm": "UNKNOWN", "wsl": "UNKNOWN", "container": "HISTORICAL daemon client; mounts not read", "windows_execution": "This user can write what the user owns"},
+    {"id": 7, "threat": "host_filesystem_read", "evidence": "LEVEL_2 same token", "vm": "UNKNOWN", "wsl": "UNKNOWN", "container": "UNKNOWN", "windows_execution": "No separate read boundary observed"},
+    {"id": 8, "threat": "credential_inheritance", "evidence": "not collected", "vm": "UNKNOWN", "wsl": "UNKNOWN", "container": "UNKNOWN; G.14.2 did not collect environment values", "windows_execution": "UNKNOWN"},
+    {"id": 9, "threat": "broker_credential_exposure", "evidence": "backups not opened", "vm": "UNKNOWN", "wsl": "UNKNOWN", "container": "UNKNOWN", "windows_execution": "UNKNOWN"},
+    {"id": 10, "threat": "database_credential_exposure", "evidence": "no database client", "vm": "UNKNOWN", "wsl": "UNKNOWN", "container": "UNKNOWN", "windows_execution": "UNKNOWN"},
+    {"id": 11, "threat": "production_mount_exposure", "evidence": "LEVEL_4 one historical daemon", "vm": "UNKNOWN", "wsl": "UNKNOWN", "container": "HISTORICAL_ONLY shared daemon with the production container", "windows_execution": "Denylist in code is LEVEL_3, not an OS mount policy"},
+    {"id": 12, "threat": "operational_state_exposure", "evidence": "not accessed", "vm": "UNKNOWN", "wsl": "UNKNOWN", "container": "UNKNOWN", "windows_execution": "Not accessed; not an OS boundary"},
+    {"id": 13, "threat": "shadow_state_exposure", "evidence": "not accessed", "vm": "UNKNOWN", "wsl": "UNKNOWN", "container": "UNKNOWN", "windows_execution": "Not accessed"},
+    {"id": 14, "threat": "unrestricted_network_egress", "evidence": "no request this stage", "vm": "UNKNOWN", "wsl": "UNKNOWN", "container": "UNKNOWN", "windows_execution": "NETWORK_DISABLED is application code only"},
+    {"id": 15, "threat": "malicious_dependency_metadata", "evidence": "LEVEL_3 synthetic checks", "vm": "No sender", "wsl": "No sender", "container": "No sender", "windows_execution": "No sender"},
+    {"id": 16, "threat": "malicious_wheel_payload", "evidence": "LEVEL_3 handle-read verifier", "vm": "Verifier not run in a guest", "wsl": "Verifier not run in a distro", "container": "Verifier not run in a new container", "windows_execution": "Verifier does not fix directory identity"},
+    {"id": 17, "threat": "unsafe_artifact_export", "evidence": "LEVEL_5 design", "vm": "No export path identified", "wsl": "No export path identified", "container": "No export path identified", "windows_execution": "No separate export boundary"},
+    {"id": 18, "threat": "unsafe_host_import", "evidence": "LEVEL_1 path open", "vm": "Import would repeat CreateFileW unless the receiver is outside this user", "wsl": "Same", "container": "Same", "windows_execution": "Same"},
+    {"id": 19, "threat": "replacement_after_verification", "evidence": "LEVEL_1 post-open binding only while the handle is kept", "vm": "UNKNOWN across export", "wsl": "UNKNOWN", "container": "UNKNOWN", "windows_execution": "A later path open is a new race"},
+    {"id": 20, "threat": "shared_runtime_interference", "evidence": "LEVEL_4 production container on the historical daemon", "vm": "UNKNOWN overlap with Hyper-V", "wsl": "UNKNOWN overlap with Docker's WSL2 kernel string", "container": "HISTORICAL shared daemon", "windows_execution": "Same user shares the session"},
+    {"id": 21, "threat": "privilege_escalation", "evidence": "LEVEL_2 this token lacks the named high privileges", "vm": "Creation rights UNKNOWN", "wsl": "Reconfiguration rights UNKNOWN", "container": "Daemon rights not remeasured", "windows_execution": "Account elevation UNKNOWN"},
+    {"id": 22, "threat": "environment_reconfiguration", "evidence": "no guest exists", "vm": "Who can change the VM is UNKNOWN", "wsl": "Who can change WSL is UNKNOWN", "container": "Who can change the daemon today is UNKNOWN", "windows_execution": "Owner can change an owner ACL; DACL bytes not read"},
+    {"id": 23, "threat": "incomplete_target_compatibility", "evidence": "preserved unknowns", "vm": "Cannot fill patch, SOABI, glibc, pip, tags", "wsl": "Same", "container": "Same", "windows_execution": "A Windows process is not the Linux target"},
+    {"id": 24, "threat": "base_image_provenance", "evidence": "LEVEL_4 BASE_IMAGE_DIGEST_UNVERIFIED", "vm": "Digest unknown", "wsl": "Digest unknown", "container": "Digest unknown", "windows_execution": "Not a base-image identity"},
+    {"id": 25, "threat": "unverified_rollback", "evidence": "LEVEL_4 NO_VERIFIED_ROLLBACK_TARGET", "vm": "Not a rollback target", "wsl": "Not a rollback target", "container": "Running image remains partially verified only", "windows_execution": "Not a rollback target"}
+  ]
+}

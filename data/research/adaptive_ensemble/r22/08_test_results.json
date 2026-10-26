@@ -1,0 +1,14 @@
+{
+  "file": "tests/test_r22_restart_recovery.py",
+  "passed": 20,
+  "failed": 0,
+  "skipped": 0,
+  "exit": 0,
+  "blocked_socket_or_dns_attempts": 3,
+  "dotenv_stub_calls": 1,
+  "network_successes": 0,
+  "postgresql_connections": 0,
+  "real_broker_calls": 0,
+  "filled": "PASS",
+  "unresolved": "PASS"
+}

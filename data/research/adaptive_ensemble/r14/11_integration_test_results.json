@@ -1,0 +1,16 @@
+{
+  "collected": 148,
+  "executed": 143,
+  "passed": 143,
+  "failed": 0,
+  "skipped": 5,
+  "not_evaluated": ["J143", "J144", "J145", "J146", "J147"],
+  "ledger_records": 147,
+  "ledger_pass": 142,
+  "selector_calls_recorded": 90,
+  "vote_wrapper_calls_recorded": 73,
+  "rl_veto_calls_recorded": 60,
+  "fake_broker_requests_summed_across_tests": 44,
+  "production_adapter_invocations": 0,
+  "extra_unrecorded_assertion": "test_evaluate_coroutine_is_not_started"
+}

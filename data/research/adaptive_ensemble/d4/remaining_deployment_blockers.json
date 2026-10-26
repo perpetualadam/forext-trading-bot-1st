@@ -1,0 +1,28 @@
+{
+  "stage": "D.4",
+  "resolved_in_source_not_in_the_running_image": [
+    "lifespan raises StartupSafetyAbort when safety state is not a supported valid document"
+  ],
+  "carried_forward": [
+    "Production container identity was not reverified",
+    "Historical image inventory is incomplete",
+    "The running image lacks the D.2, D.3, and D.4 source edits",
+    "Real lifespan was not executed",
+    "Broker startup requests remain in the valid-state path and are unverified against the live account",
+    "Database startup DDL on the valid-state path is unverified against the live schema",
+    "Operational-state compatibility is unverified",
+    "Shadow-state compatibility is unverified",
+    "Requirements are unpinned",
+    "No verified dependency lock",
+    "No verified wheelhouse",
+    "Target runtime profile is incomplete",
+    "Base-image registry digest is unverified",
+    "Trusted receiving boundary is not implemented",
+    "No verified candidate image",
+    "No verified rollback target",
+    "Recovery procedure is untested",
+    "Production configuration was not read",
+    "Full current-tree integration tests were not run",
+    "Research backtests can skip entries because strategies now start inactive"
+  ]
+}

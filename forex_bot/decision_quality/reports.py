@@ -154,7 +154,7 @@ def _markdown(
         "# Decision quality report (offline)",
         "",
         "This report does **not** change live trading. Strategy names do not set BUY/SELL;",
-        "direction comes from the production quant stub (`ma_fast` vs `ma_slow` + momentum).",
+        "the operational quant stub was retired in R.34 and cannot set BUY or SELL.",
         "",
         "## Live call path (frozen)",
         "",

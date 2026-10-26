@@ -1,0 +1,11 @@
+{
+  "pid": 19656,
+  "role": "lock_hold",
+  "ok": true,
+  "rolled_back": true,
+  "route_refusals": [],
+  "socket_blocks": [],
+  "dns_blocks": 0,
+  "dotenv_stubs": 1,
+  "real_broker_calls": 0
+}

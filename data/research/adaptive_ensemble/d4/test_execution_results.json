@@ -1,0 +1,35 @@
+{
+  "stage": "D.4",
+  "commands": [
+    "python -m pytest -q --tb=short tests/test_startup_safety_preflight.py tests/test_live_safety_preservation.py tests/test_strategy_activation_defaults.py",
+    "python -m pytest -q --tb=line tests/test_startup_safety_preflight.py tests/test_live_safety_preservation.py tests/test_strategy_activation_defaults.py"
+  ],
+  "environment": "PYTHONDONTWRITEBYTECODE=1",
+  "first_run": {
+    "passed": 114,
+    "failed": 1,
+    "failure": "test_t29 matched run_reconciliation_once inside an import line before the call. The assertion was pointed at the await call. Product code was not changed for that failure."
+  },
+  "final_run": {
+    "passed": 115,
+    "failed": 0,
+    "skipped": 0,
+    "elapsed_seconds": 2.04,
+    "new_tests": 50,
+    "d2_preservation_tests": 30,
+    "d3_activation_tests": 35
+  },
+  "not_executed": [
+    "forex_bot.app lifespan",
+    "uvicorn",
+    "tests/test_live_safety_repair.py because it imports forex_bot.app",
+    "full suite"
+  ],
+  "evidence_levels": {
+    "static_source_review": true,
+    "synthetic_control_flow_model": "T49 only",
+    "isolated_actual_lifespan": false
+  },
+  "ruff_new_tests": "passed",
+  "ruff_app_py": "pre-existing import, exception, and Query findings were not rewritten; the new live_safety import was ordered ahead of log_config"
+}

@@ -1,0 +1,1240 @@
+Linux CPython regression 2026-10-26T14:09:07+00:00
+3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]
+
+===== data/research/adaptive_ensemble/r86/poc/test_r86_snapshot_provenance.py =====
+OANDA AccountSummary invalid: broker_account_mismatch
+EUR_USD: decision_candles_missing
+.OANDA AccountSummary invalid: broker_account_mismatch
+EUR_USD: decision_candles_missing
+.........................................................
+----------------------------------------------------------------------
+Ran 58 tests in 0.798s
+
+OK
+[INFO] 2026-10-26 14:09:09.355720:  DAILY REPORT: Equity=10000.00 Sharpe=0.00 Winrate=0.00% Drawdown=0.00
+ELAPSED_SEC=2.545
+
+===== data/research/adaptive_ensemble/r85/poc/test_r85_exposure_and_fencing.py =====
+.........................OANDA AccountSummary invalid: broker_account_mismatch
+.........OANDA AccountSummary invalid: broker_account_mismatch
+EUR_USD: decision_candles_missing
+.........OANDA AccountSummary invalid: broker_account_mismatch
+OANDA AccountSummary invalid: broker_account_mismatch
+EUR_USD: decision_candles_missing
+.....
+----------------------------------------------------------------------
+Ran 48 tests in 15.317s
+
+OK
+[INFO] 2026-10-26 14:09:15.602930:  DAILY REPORT: Equity=10000.00 Sharpe=0.00 Winrate=0.00% Drawdown=0.00
+ELAPSED_SEC=16.551
+
+===== data/research/adaptive_ensemble/r84/poc/test_r84_close_contract.py =====
+F...........
+======================================================================
+FAIL: test_01_baseline_gates_and_unchanged_modules (__main__.ContractTests.test_01_baseline_gates_and_unchanged_modules)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r84/poc/test_r84_close_contract.py", line 265, in test_01_baseline_gates_and_unchanged_modules
+    self.assertEqual(_sha(ROOT / "forex_bot" / "positions.py"), "b9da0d1da27e298919eff3a889ff4ec83a53baf95b320876839207ab6827153e")
+AssertionError: 'afd62ac98c593ee8d75871c12b421d489061b84113724923cdb6f4950edfe36a' != 'b9da0d1da27e298919eff3a889ff4ec83a53baf95b320876839207ab6827153e'
+- afd62ac98c593ee8d75871c12b421d489061b84113724923cdb6f4950edfe36a
++ b9da0d1da27e298919eff3a889ff4ec83a53baf95b320876839207ab6827153e
+
+
+----------------------------------------------------------------------
+Ran 12 tests in 10.691s
+
+FAILED (failures=1)
+ELAPSED_SEC=12.025
+
+===== data/research/adaptive_ensemble/r83/poc/test_r83_post_commit_and_sqlite.py =====
+test_01_baseline_gates_and_profit_hash (__main__.BaselineTests.test_01_baseline_gates_and_profit_hash) ... ok
+test_05_removal_exception_leaves_full_confirmation (__main__.ClosePublicationTests.test_05_removal_exception_leaves_full_confirmation) ... ok
+test_06_process_kill_before_close_removal (__main__.ClosePublicationTests.test_06_process_kill_before_close_removal) ... ok
+test_07_stale_owner_cannot_finalise_or_resubmit (__main__.ClosePublicationTests.test_07_stale_owner_cannot_finalise_or_resubmit) ... ok
+test_08_partial_kill_keeps_remainder_and_quarantine (__main__.ClosePublicationTests.test_08_partial_kill_keeps_remainder_and_quarantine) ... ok
+test_02_publication_exception_keeps_finalised_entry (__main__.EntryPublicationTests.test_02_publication_exception_keeps_finalised_entry) ... ok
+test_03_process_kill_after_entry_commit_reconstructs_once (__main__.EntryPublicationTests.test_03_process_kill_after_entry_commit_reconstructs_once) ... ok
+test_04_stale_owner_publication_is_refused (__main__.EntryPublicationTests.test_04_stale_owner_publication_is_refused) ... ok
+test_14_stale_epoch_and_closed_close_send_nothing (__main__.MoreFaultTests.test_14_stale_epoch_and_closed_close_send_nothing) ... ok
+test_09_rollback_select_raises_sqlite_busy (__main__.SqliteFaultTests.test_09_rollback_select_raises_sqlite_busy) ... ok
+test_10_shared_cache_begin_raises_sqlite_locked (__main__.SqliteFaultTests.test_10_shared_cache_begin_raises_sqlite_locked) ... ok
+test_11_injected_busy_and_locked_block_both_sinks (__main__.SqliteFaultTests.test_11_injected_busy_and_locked_block_both_sinks) ... [ORDER FAILED] OANDA OrderCreate (open) AMBIGUOUS_TRANSPORT_OUTCOME: database is locked
+[ORDER FAILED] OANDA OrderCreate (open) AMBIGUOUS_TRANSPORT_OUTCOME: database table is locked
+OANDA PositionClose failed: database table is locked
+OANDA PositionClose failed: database is locked
+ok
+test_12_closed_connection_and_missing_row_send_nothing (__main__.SqliteFaultTests.test_12_closed_connection_and_missing_row_send_nothing) ... ok
+test_13_closed_unit_contract (__main__.UnitTests.test_13_closed_unit_contract) ... FAIL
+
+======================================================================
+FAIL: test_13_closed_unit_contract (__main__.UnitTests.test_13_closed_unit_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r83/poc/test_r83_post_commit_and_sqlite.py", line 646, in test_13_closed_unit_contract
+    with self.assertRaises(CloseReadError):
+AssertionError: CloseReadError not raised
+
+----------------------------------------------------------------------
+Ran 14 tests in 15.159s
+
+FAILED (failures=1)
+ELAPSED_SEC=16.485
+
+===== data/research/adaptive_ensemble/r82/poc/test_r82_journal_and_exposure.py =====
+test_01_baseline_and_gates (__main__.BaselineTests.test_01_baseline_and_gates) ... ok
+test_02_entry_authority_missing_before_claim (__main__.JournalLossTests.test_02_entry_authority_missing_before_claim) ... ok
+test_03_close_authority_missing_before_claim (__main__.JournalLossTests.test_03_close_authority_missing_before_claim) ... ok
+test_04_entry_authority_missing_after_claim (__main__.JournalLossTests.test_04_entry_authority_missing_after_claim) ... ok
+test_05_close_authority_missing_after_claim (__main__.JournalLossTests.test_05_close_authority_missing_after_claim) ... ok
+test_06_entry_journal_unreadable_after_rate_limit (__main__.JournalLossTests.test_06_entry_journal_unreadable_after_rate_limit) ... [ORDER FAILED] OANDA OrderCreate (open) AMBIGUOUS_TRANSPORT_OUTCOME: Cannot operate on a closed database.
+ok
+test_07_close_journal_unreadable_after_rate_limit (__main__.JournalLossTests.test_07_close_journal_unreadable_after_rate_limit) ... OANDA PositionClose failed: Cannot operate on a closed database.
+ok
+test_08_entry_authority_row_removed_during_slot (__main__.JournalLossTests.test_08_entry_authority_row_removed_during_slot) ... ok
+test_09_close_authority_row_removed_during_slot (__main__.JournalLossTests.test_09_close_authority_row_removed_during_slot) ... ok
+test_19_readable_wal_stays_authorised_and_malformed_file_does_not (__main__.JournalLossTests.test_19_readable_wal_stays_authorised_and_malformed_file_does_not) ... ok
+test_15_partial_400_records_remaining_and_blocks_repeat (__main__.PartialExposureTests.test_15_partial_400_records_remaining_and_blocks_repeat) ... ok
+test_16_unit_validation_matrix (__main__.PartialExposureTests.test_16_unit_validation_matrix) ... FAIL
+test_17_partial_restart_quarantines_and_cycle_sends_nothing (__main__.PartialExposureTests.test_17_partial_restart_quarantines_and_cycle_sends_nothing) ... ok
+test_18_rejection_can_reserve_again_and_ambiguous_cannot (__main__.PartialExposureTests.test_18_rejection_can_reserve_again_and_ambiguous_cannot) ... OANDA PositionClose timed out
+ok
+test_10_entry_request_entered_after_final_check (__main__.RaceAndPersistenceTests.test_10_entry_request_entered_after_final_check) ... ok
+test_11_close_request_entered_after_final_check (__main__.RaceAndPersistenceTests.test_11_close_request_entered_after_final_check) ... ok
+test_12_entry_commit_failure_after_acceptance (__main__.RaceAndPersistenceTests.test_12_entry_commit_failure_after_acceptance) ... ok
+test_13_close_confirmation_commit_does_not_remove_position (__main__.RaceAndPersistenceTests.test_13_close_confirmation_commit_does_not_remove_position) ... ok
+test_14_ambiguous_entry_and_close_survive_restart (__main__.RaceAndPersistenceTests.test_14_ambiguous_entry_and_close_survive_restart) ... ok
+
+======================================================================
+FAIL: test_16_unit_validation_matrix (__main__.PartialExposureTests.test_16_unit_validation_matrix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r82/poc/test_r82_journal_and_exposure.py", line 648, in test_16_unit_validation_matrix
+    with self.assertRaises(CloseReadError):
+AssertionError: CloseReadError not raised
+
+----------------------------------------------------------------------
+Ran 19 tests in 15.640s
+
+FAILED (failures=1)
+ELAPSED_SEC=16.837
+
+===== data/research/adaptive_ensemble/r81/poc/test_r81_rate_limit_and_recovery.py =====
+F.......OANDA PositionClose timed out
+.[ORDER FAILED] OANDA OrderCreate (open) timeout
+.OANDA PositionClose timed out
+....OANDA PositionClose timed out
+./usr/lib/python3.12/unittest/suite.py:107: ResourceWarning: unclosed file <_io.TextIOWrapper name=8 encoding='UTF-8'>
+  for index, test in enumerate(self):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.12/unittest/suite.py:107: ResourceWarning: unclosed file <_io.TextIOWrapper name=10 encoding='UTF-8'>
+  for index, test in enumerate(self):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.
+======================================================================
+FAIL: test_01_gates_marker_and_unchanged_recovery_files (__main__.BaselineTests.test_01_gates_marker_and_unchanged_recovery_files)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r81/poc/test_r81_rate_limit_and_recovery.py", line 281, in test_01_gates_marker_and_unchanged_recovery_files
+    self.assertEqual(_sha(ROOT / rel), digest, rel)
+AssertionError: 'decab95661526606038856ad1a99b71c54897473bd7120cfa384a8d01db910a3' != '931ade22c1fcb4371de1c0fb87a3701fc2c1766eefdb934fd6297f2f7980bbce'
+- decab95661526606038856ad1a99b71c54897473bd7120cfa384a8d01db910a3
++ 931ade22c1fcb4371de1c0fb87a3701fc2c1766eefdb934fd6297f2f7980bbce
+ : forex_bot/position_recovery.py
+
+----------------------------------------------------------------------
+Ran 16 tests in 26.334s
+
+FAILED (failures=1)
+ELAPSED_SEC=27.664
+
+===== data/research/adaptive_ensemble/r80/poc/test_r80_authorised_concurrency.py =====
+test_01_authorised_close_once_and_stale_permit (__main__.CloseAndEntryTests.test_01_authorised_close_once_and_stale_permit) ... ok
+test_02_ambiguous_close_does_not_retry (__main__.CloseAndEntryTests.test_02_ambiguous_close_does_not_retry) ... OANDA PositionClose timed out
+ok
+test_03_missing_trade_observation_and_wrong_account (__main__.CloseAndEntryTests.test_03_missing_trade_observation_and_wrong_account) ... ok
+test_04_entry_intent_before_request_and_one_shot (__main__.CloseAndEntryTests.test_04_entry_intent_before_request_and_one_shot) ... [ORDER FAILED] OANDA OrderCreate (open) AMBIGUOUS_TRANSPORT_OUTCOME: count-only
+ok
+test_05_entry_fault_after_request_stays_ambiguous (__main__.CloseAndEntryTests.test_05_entry_fault_after_request_stays_ambiguous) ... ok
+test_06_partial_mixed_and_order_id_are_not_manageable (__main__.CloseAndEntryTests.test_06_partial_mixed_and_order_id_are_not_manageable) ... ok
+test_07_duplicate_client_and_restart_after_commit (__main__.CloseAndEntryTests.test_07_duplicate_client_and_restart_after_commit) ... ok
+test_08_authority_lost_before_request_sends_nothing (__main__.CloseAndEntryTests.test_08_authority_lost_before_request_sends_nothing) ... ok
+test_09_request_already_sent_when_authority_changes_inside_it (__main__.CloseAndEntryTests.test_09_request_already_sent_when_authority_changes_inside_it) ... ok
+test_14_several_managed_trades_survive_the_real_cycle (__main__.CycleAndProtectionTests.test_14_several_managed_trades_survive_the_real_cycle) ... OANDA AccountSummary invalid: broker_response_invalid
+EUR_USD: decision_candles_missing
+/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/forex_bot/session_rules.py:131: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return flatten_for_weekend_at(datetime.utcnow())
+broker protection evidence withheld: malformed_body
+GBP_USD: decision_candles_missing
+broker protection evidence withheld: malformed_body
+USD_JPY: decision_candles_missing
+broker protection evidence withheld: malformed_body
+ok
+test_15_conflicting_identity_is_quarantined (__main__.CycleAndProtectionTests.test_15_conflicting_identity_is_quarantined) ... ok
+test_16_profit_protection_on_recovered_rows (__main__.CycleAndProtectionTests.test_16_profit_protection_on_recovered_rows) ... [PROFIT PROTECTION] EUR_USD | ATR unavailable/invalid/insufficient bars — fallback giveback 4.0 pips (PROFIT_GIVEBACK_PIPS)
+[PROFIT PROTECTION] GBP_USD | ATR unavailable/invalid/insufficient bars — fallback giveback 4.0 pips (PROFIT_GIVEBACK_PIPS)
+[PROFIT PROTECTION] USD_JPY | ATR unavailable/invalid/insufficient bars — fallback giveback 4.0 pips (PROFIT_GIVEBACK_PIPS)
+OANDA AccountSummary invalid: broker_response_invalid
+EUR_USD: decision_candles_missing
+ok
+test_17_journal_fault_after_recovery_blocks_management (__main__.CycleAndProtectionTests.test_17_journal_fault_after_recovery_blocks_management) ... OANDA AccountSummary invalid: broker_response_invalid
+EUR_USD: decision_candles_missing
+ok
+test_10_two_processes_cannot_reserve_one_client (__main__.MultiProcessTests.test_10_two_processes_cannot_reserve_one_client) ... ok
+test_11_authorised_entry_pauses_and_competitor_cannot_submit (__main__.MultiProcessTests.test_11_authorised_entry_pauses_and_competitor_cannot_submit) ... ok
+test_12_authorised_close_pauses_and_competitor_cannot_submit (__main__.MultiProcessTests.test_12_authorised_close_pauses_and_competitor_cannot_submit) ... ok
+test_13_kill_during_entry_request_does_not_authorise_a_second (__main__.MultiProcessTests.test_13_kill_during_entry_request_does_not_authorise_a_second) ... /usr/lib/python3.12/unittest/case.py:589: ResourceWarning: unclosed file <_io.TextIOWrapper name=6 encoding='UTF-8'>
+  if method() is not None:
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.12/unittest/case.py:589: ResourceWarning: unclosed file <_io.TextIOWrapper name=8 encoding='UTF-8'>
+  if method() is not None:
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 12.738s
+
+OK
+[INFO] 2026-10-26 14:10:42.215313:  DAILY REPORT: Equity=10000.00 Sharpe=0.00 Winrate=0.00% Drawdown=0.00
+ELAPSED_SEC=14.081
+
+===== data/research/adaptive_ensemble/r79/poc/test_r79_operational_cycle.py =====
+test_01_real_cycle_follows_empty_startup (__main__.OperationalCycleTests.test_01_real_cycle_follows_empty_startup) ... OANDA AccountSummary invalid: broker_unrealised_missing
+EUR_USD: decision_candles_missing
+ok
+test_02_blocked_recovery_still_invokes_cycle_without_management (__main__.OperationalCycleTests.test_02_blocked_recovery_still_invokes_cycle_without_management) ... OANDA AccountSummary invalid: broker_unrealised_missing
+ok
+test_03_null_epoch_cannot_publish_operationally (__main__.OperationalCycleTests.test_03_null_epoch_cannot_publish_operationally) ... ok
+test_04_offline_reconstruction_does_not_grant_management (__main__.OperationalCycleTests.test_04_offline_reconstruction_does_not_grant_management) ... ok
+test_05_stale_epoch_blocks_publish_and_management (__main__.OperationalCycleTests.test_05_stale_epoch_blocks_publish_and_management) ... OANDA AccountSummary invalid: broker_unrealised_missing
+ok
+test_06_entry_and_close_sinks_refuse_without_authority (__main__.OperationalCycleTests.test_06_entry_and_close_sinks_refuse_without_authority) ... ok
+test_07_authorised_order_is_intercepted (__main__.OperationalCycleTests.test_07_authorised_order_is_intercepted) ... OANDA AccountSummary invalid: broker_unrealised_missing
+[ORDER FAILED] OANDA OrderCreate (open) AMBIGUOUS_TRANSPORT_OUTCOME: broker write intercepted: OrderCreate
+ok
+test_08_capture_without_authority_keeps_the_durable_row (__main__.OperationalCycleTests.test_08_capture_without_authority_keeps_the_durable_row) ... ok
+test_09_schema_and_isolation_probes (__main__.OperationalCycleTests.test_09_schema_and_isolation_probes) ... ok
+test_10_snapshot_matrix_records_cycle_execution (__main__.OperationalCycleTests.test_10_snapshot_matrix_records_cycle_execution) ... OANDA AccountSummary invalid: broker_unrealised_missing
+OANDA AccountSummary invalid: broker_unrealised_missing
+OANDA AccountSummary invalid: broker_unrealised_missing
+OANDA AccountSummary invalid: broker_unrealised_missing
+OANDA AccountSummary invalid: broker_unrealised_missing
+OANDA AccountSummary invalid: broker_unrealised_missing
+OANDA AccountSummary invalid: broker_unrealised_missing
+OANDA AccountSummary invalid: broker_unrealised_missing
+ok
+test_11_authority_loss_before_a_second_cycle (__main__.OperationalCycleTests.test_11_authority_loss_before_a_second_cycle) ... OANDA AccountSummary invalid: broker_unrealised_missing
+OANDA AccountSummary invalid: broker_unrealised_missing
+ok
+test_12_restart_after_committed_recovery (__main__.OperationalCycleTests.test_12_restart_after_committed_recovery) ... OANDA AccountSummary invalid: broker_unrealised_missing
+OANDA AccountSummary invalid: broker_unrealised_missing
+ok
+test_13_lock_held_elsewhere_blocks_startup (__main__.OperationalCycleTests.test_13_lock_held_elsewhere_blocks_startup) ... released
+ok
+test_14_corrupt_journal_blocks_before_management (__main__.OperationalCycleTests.test_14_corrupt_journal_blocks_before_management) ... OANDA AccountSummary invalid: broker_unrealised_missing
+ok
+test_15_close_guard_still_confirms_once_after_recovery (__main__.OperationalCycleTests.test_15_close_guard_still_confirms_once_after_recovery) ... OANDA AccountSummary invalid: broker_unrealised_missing
+ok
+test_16_ambiguous_submit_is_not_retried_after_authority (__main__.OperationalCycleTests.test_16_ambiguous_submit_is_not_retried_after_authority) ... OANDA AccountSummary invalid: broker_unrealised_missing
+ok
+test_17_repeat_finalisation_does_not_lower_a_ratchet (__main__.OperationalCycleTests.test_17_repeat_finalisation_does_not_lower_a_ratchet) ... OANDA AccountSummary invalid: broker_unrealised_missing
+ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 5.457s
+
+OK
+[INFO] 2026-10-26 14:10:55.132591:  DAILY REPORT: Equity=10000.00 Sharpe=0.00 Winrate=0.00% Drawdown=0.00
+ELAPSED_SEC=6.722
+
+===== data/research/adaptive_ensemble/r78/poc/test_r78_liveness_and_protocol.py =====
+test_01_schema_and_fresh_authority (__main__.R78Tests.test_01_schema_and_fresh_authority) ... ok
+test_02_version_4_refuses_open_until_explicit_migration (__main__.R78Tests.test_02_version_4_refuses_open_until_explicit_migration) ... ok
+test_03_active_owner_lock_refuses_forged_inactive_evidence (__main__.R78Tests.test_03_active_owner_lock_refuses_forged_inactive_evidence) ... ok
+test_04_crashed_owner_releases_after_process_exit (__main__.R78Tests.test_04_crashed_owner_releases_after_process_exit) ... ok
+test_05_pid_reuse_does_not_protect_a_different_process (__main__.R78Tests.test_05_pid_reuse_does_not_protect_a_different_process) ... ok
+test_06_same_process_start_refuses_even_without_lock (__main__.R78Tests.test_06_same_process_start_refuses_even_without_lock) ... ok
+test_07_missing_and_wrong_token_and_weak_methods (__main__.R78Tests.test_07_missing_and_wrong_token_and_weak_methods) ... ok
+test_08_boot_and_journal_path_fail_closed (__main__.R78Tests.test_08_boot_and_journal_path_fail_closed) ... ok
+test_09_two_repairs_one_commit (__main__.R78Tests.test_09_two_repairs_one_commit) ... ok
+test_10_overlapping_repairs (__main__.R78Tests.test_10_overlapping_repairs) ... ok
+test_11_stale_owner_cannot_publish_or_manage (__main__.R78Tests.test_11_stale_owner_cannot_publish_or_manage) ... ok
+test_12_fresh_startup_after_repair_reconciles (__main__.R78Tests.test_12_fresh_startup_after_repair_reconciles) ... ok
+test_13_repair_failure_and_unresolved_rows_stay (__main__.R78Tests.test_13_repair_failure_and_unresolved_rows_stay) ... ok
+test_14_clock_does_not_authorise_release (__main__.R78Tests.test_14_clock_does_not_authorise_release) ... ok
+test_15_repair_does_not_enable_trading (__main__.R78Tests.test_15_repair_does_not_enable_trading) ... ok
+test_16_investigation_does_not_resolve_or_retry (__main__.R78Tests.test_16_investigation_does_not_resolve_or_retry) ... ok
+test_17_protocol_fixtures (__main__.R78Tests.test_17_protocol_fixtures) ... ok
+test_18_client_identity_and_duplicate_reservation (__main__.R78Tests.test_18_client_identity_and_duplicate_reservation) ... ok
+test_19_management_blocked_before_recovery (__main__.R78Tests.test_19_management_blocked_before_recovery) ... ok
+test_20_corrupt_and_schema_mismatch (__main__.R78Tests.test_20_corrupt_and_schema_mismatch) ... ok
+test_21_second_startup_is_blocked_while_owner_holds_the_lock (__main__.R78Tests.test_21_second_startup_is_blocked_while_owner_holds_the_lock) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 3.485s
+
+OK
+ELAPSED_SEC=3.943
+
+===== data/research/adaptive_ensemble/r77/poc/test_r77_atomic_entry.py =====
+F.........E............E..F.....................................OANDA AccountSummary failed: IsolationBreach: AccountSummary
+OANDA PricingInfo failed: IsolationBreach: PricingInfo
+OANDA candles failed for EUR_USD: IsolationBreach: InstrumentsCandles
+EUR_USD: decision_candles_missing
+/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/forex_bot/session_rules.py:131: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return flatten_for_weekend_at(datetime.utcnow())
+broker protection evidence withheld: request_exception
+.OANDA AccountSummary failed: IsolationBreach: AccountSummary
+OANDA PricingInfo failed: IsolationBreach: PricingInfo
+OANDA candles failed for EUR_USD: IsolationBreach: InstrumentsCandles
+EUR_USD: decision_candles_missing
+.OANDA_ACCESS_TOKEN missing; market data calls will fail.
+OANDA_ACCESS_TOKEN missing; market data calls will fail.
+OANDA_ACCESS_TOKEN missing; market data calls will fail.
+OANDA_ACCESS_TOKEN missing; market data calls will fail.
+EUR_USD: decision_candles_missing
+....................E
+======================================================================
+ERROR: test_12_repeated_finalisation_does_not_move_ratchet (__main__.AtomicEntryTests.test_12_repeated_finalisation_does_not_move_ratchet)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r77/poc/test_r77_atomic_entry.py", line 391, in test_12_repeated_finalisation_does_not_move_ratchet
+    positions["EUR_USD"].profit_protection_active = True
+    ~~~~~~~~~^^^^^^^^^^^
+KeyError: 'EUR_USD'
+
+======================================================================
+ERROR: test_25_journal_write_failure_after_synthetic_submit_stays_ambiguous (__main__.AtomicEntryTests.test_25_journal_write_failure_after_synthetic_submit_stays_ambiguous)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r77/poc/test_r77_atomic_entry.py", line 520, in test_25_journal_write_failure_after_synthetic_submit_stays_ambiguous
+    _place_market_order_open_sync(
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/forex_bot/oanda_exec.py", line 589, in _place_market_order_open_sync
+    response = _submit_order_create(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/forex_bot/oanda_exec.py", line 515, in _submit_order_create
+    raise EntryGuardRefusal("live entry refused: recovery authority is absent")
+forex_bot.entry_journal.EntryGuardRefusal: live entry refused: recovery authority is absent
+
+======================================================================
+ERROR: test_successful_migration_installs_permanent_uniqueness (__main__.AtomicEntryTests.test_successful_migration_installs_permanent_uniqueness)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r77/poc/test_r77_atomic_entry.py", line 1127, in test_successful_migration_installs_permanent_uniqueness
+    journal = open_journal(legacy)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/forex_bot/close_journal.py", line 851, in open_journal
+    raise JournalUnavailable("unsupported_schema")
+forex_bot.close_journal.JournalUnavailable: unsupported_schema
+
+======================================================================
+FAIL: test_01_confirmed_single_trade_finalises (__main__.AtomicEntryTests.test_01_confirmed_single_trade_finalises)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r77/poc/test_r77_atomic_entry.py", line 284, in test_01_confirmed_single_trade_finalises
+    self.assertTrue(evidence["published"], observed)
+AssertionError: False is not true : {'entries': [{'outcome': 'ENTRY_FINALISED', 'client_order_id': 'CID-1'}], 'positions': [{'position_instance_id': 'INST-1', 'trade_id': 'T-TRADE', 'position_generation': 1, 'entry_operation_id': '6b0deada33ed47e9af04324407e75c1c'}], 'memory': [], 'broker_submissions': []}
+
+======================================================================
+FAIL: test_28_unsupported_schema_fails_closed (__main__.AtomicEntryTests.test_28_unsupported_schema_fails_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r77/poc/test_r77_atomic_entry.py", line 553, in test_28_unsupported_schema_fails_closed
+    self.assertEqual(SCHEMA_VERSION, 4)
+AssertionError: 5 != 4
+
+----------------------------------------------------------------------
+Ran 87 tests in 15.762s
+
+FAILED (failures=2, errors=3)
+[INFO] 2026-10-26 14:11:15.348060:  DAILY REPORT: Equity=10000.00 Sharpe=0.00 Winrate=0.00% Drawdown=0.00
+ELAPSED_SEC=17.050
+
+===== data/research/adaptive_ensemble/r77/poc/test_r77_linux_journal.py =====
+FE
+======================================================================
+ERROR: test_migration_and_repair_do_not_enable_trading (__main__.LinuxJournalTests.test_migration_and_repair_do_not_enable_trading)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r77/poc/test_r77_linux_journal.py", line 120, in test_migration_and_repair_do_not_enable_trading
+    journal = open_journal(legacy)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/forex_bot/close_journal.py", line 851, in open_journal
+    raise JournalUnavailable("unsupported_schema")
+forex_bot.close_journal.JournalUnavailable: unsupported_schema
+
+======================================================================
+FAIL: test_atomic_finalisation_and_retained_client_id (__main__.LinuxJournalTests.test_atomic_finalisation_and_retained_client_id)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r77/poc/test_r77_linux_journal.py", line 90, in test_atomic_finalisation_and_retained_client_id
+    self.assertTrue(evidence["published"])
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.530s
+
+FAILED (failures=1, errors=1)
+ELAPSED_SEC=0.909
+
+===== data/research/adaptive_ensemble/r76/poc/test_r76_entry_recovery.py =====
+................E..F..E....F......FFF.<frozen importlib._bootstrap>:488: ResourceWarning: unclosed file <_io.FileIO name=3 mode='rb' closefd=True>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<frozen importlib._bootstrap>:488: ResourceWarning: unclosed file <_io.FileIO name=5 mode='rb' closefd=True>
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/forex_bot/session_rules.py:131: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return flatten_for_weekend_at(datetime.utcnow())
+.......F.......................OANDA_ACCESS_TOKEN missing; market data calls will fail.
+...
+======================================================================
+ERROR: test_17_submission_intent_committed_before_network (__main__.EntryRecoveryTests.test_17_submission_intent_committed_before_network)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r76/poc/test_r76_entry_recovery.py", line 439, in test_17_submission_intent_committed_before_network
+    _place_market_order_open_sync(
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/forex_bot/oanda_exec.py", line 589, in _place_market_order_open_sync
+    response = _submit_order_create(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/forex_bot/oanda_exec.py", line 515, in _submit_order_create
+    raise EntryGuardRefusal("live entry refused: recovery authority is absent")
+forex_bot.entry_journal.EntryGuardRefusal: live entry refused: recovery authority is absent
+
+======================================================================
+ERROR: test_23_ambiguous_broker_timeout (__main__.EntryRecoveryTests.test_23_ambiguous_broker_timeout)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r76/poc/test_r76_entry_recovery.py", line 533, in test_23_ambiguous_broker_timeout
+    _place_market_order_open_sync(
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/forex_bot/oanda_exec.py", line 589, in _place_market_order_open_sync
+    response = _submit_order_create(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/forex_bot/oanda_exec.py", line 515, in _submit_order_create
+    raise EntryGuardRefusal("live entry refused: recovery authority is absent")
+forex_bot.entry_journal.EntryGuardRefusal: live entry refused: recovery authority is absent
+
+======================================================================
+FAIL: test_20_two_process_entry_reservation_race (__main__.EntryRecoveryTests.test_20_two_process_entry_reservation_race)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r76/poc/test_r76_entry_recovery.py", line 490, in test_20_two_process_entry_reservation_race
+    self.fail(first.stderr.read() if first.stderr else "first process did not reach OrderCreate")
+AssertionError
+
+======================================================================
+FAIL: test_28_verified_identity_persisted_before_publication (__main__.EntryRecoveryTests.test_28_verified_identity_persisted_before_publication)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r76/poc/test_r76_entry_recovery.py", line 612, in test_28_verified_identity_persisted_before_publication
+    self.assertTrue(seen["persisted_before_publish"])
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_35_crash_after_position_commit_restores_on_startup (__main__.EntryRecoveryTests.test_35_crash_after_position_commit_restores_on_startup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r76/poc/test_r76_entry_recovery.py", line 680, in test_35_crash_after_position_commit_restores_on_startup
+    self.assertEqual(report["state"], "RECOVERY_COMPLETED")
+AssertionError: 'RECOVERY_COMPLETED_WITH_QUARANTINE' != 'RECOVERY_COMPLETED'
+- RECOVERY_COMPLETED_WITH_QUARANTINE
++ RECOVERY_COMPLETED
+
+
+======================================================================
+FAIL: test_36_crash_before_memory_publication_uses_the_durable_row (__main__.EntryRecoveryTests.test_36_crash_before_memory_publication_uses_the_durable_row)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r76/poc/test_r76_entry_recovery.py", line 684, in test_36_crash_before_memory_publication_uses_the_durable_row
+    self.test_35_crash_after_position_commit_restores_on_startup()
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r76/poc/test_r76_entry_recovery.py", line 680, in test_35_crash_after_position_commit_restores_on_startup
+    self.assertEqual(report["state"], "RECOVERY_COMPLETED")
+AssertionError: 'RECOVERY_COMPLETED_WITH_QUARANTINE' != 'RECOVERY_COMPLETED'
+- RECOVERY_COMPLETED_WITH_QUARANTINE
++ RECOVERY_COMPLETED
+
+
+======================================================================
+FAIL: test_37_crash_after_memory_publication_reloads_the_same_identity (__main__.EntryRecoveryTests.test_37_crash_after_memory_publication_reloads_the_same_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r76/poc/test_r76_entry_recovery.py", line 689, in test_37_crash_after_memory_publication_reloads_the_same_identity
+    self.assertIn("EUR_USD", positions)
+AssertionError: 'EUR_USD' not found in {}
+
+======================================================================
+FAIL: test_46_ambiguous_close_remains_blocked (__main__.EntryRecoveryTests.test_46_ambiguous_close_remains_blocked)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r76/poc/test_r76_entry_recovery.py", line 793, in test_46_ambiguous_close_remains_blocked
+    self.assertEqual(close_api.calls, ["PositionClose"])
+AssertionError: Lists differ: [] != ['PositionClose']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'PositionClose'
+
+- []
++ ['PositionClose']
+
+----------------------------------------------------------------------
+Ran 72 tests in 20.977s
+
+FAILED (failures=6, errors=2)
+ELAPSED_SEC=22.475
+
+===== data/research/adaptive_ensemble/r75/poc/test_r75_guard_and_recovery.py =====
+...F/usr/lib/python3.12/subprocess.py:1127: ResourceWarning: subprocess 1901 is still running
+  _warn("subprocess %s is still running" % self.pid,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.12/concurrent/futures/_base.py:552: ResourceWarning: unclosed file <_io.FileIO name=3 mode='rb' closefd=True>
+  def set_exception(self, exception):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.12/concurrent/futures/_base.py:552: ResourceWarning: unclosed file <_io.FileIO name=5 mode='rb' closefd=True>
+  def set_exception(self, exception):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+FF.......
+======================================================================
+FAIL: test_process_paused_after_claim_blocks_the_other (__main__.GuardTests.test_process_paused_after_claim_blocks_the_other)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r75/poc/test_r75_guard_and_recovery.py", line 319, in test_process_paused_after_claim_blocks_the_other
+    self.assertLess(time.time() - started, deadline)
+AssertionError: 5.007819890975952 not less than 5
+
+======================================================================
+FAIL: test_stale_and_repeat_permit_do_not_submit (__main__.GuardTests.test_stale_and_repeat_permit_do_not_submit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r75/poc/test_r75_guard_and_recovery.py", line 180, in test_stale_and_repeat_permit_do_not_submit
+    self.assertEqual(operation.confirmation_state, "CLOSE_FULLY_CONFIRMED")
+AssertionError: 'CLOSE_RECONCILIATION_REQUIRED' != 'CLOSE_FULLY_CONFIRMED'
+- CLOSE_RECONCILIATION_REQUIRED
++ CLOSE_FULLY_CONFIRMED
+
+
+======================================================================
+FAIL: test_two_processes_submit_once_through_the_guard (__main__.GuardTests.test_two_processes_submit_once_through_the_guard)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r75/poc/test_r75_guard_and_recovery.py", line 296, in test_two_processes_submit_once_through_the_guard
+    self.assertEqual(count, 1)
+AssertionError: 0 != 1
+
+----------------------------------------------------------------------
+Ran 13 tests in 8.296s
+
+FAILED (failures=3)
+ELAPSED_SEC=9.287
+
+===== data/research/adaptive_ensemble/r74/poc/test_r74_close_recovery.py =====
+.[RECONCILE] live row retained; broker-flat is not close confirmation | EUR_USD
+FF..FFFF
+======================================================================
+FAIL: test_flat_snapshot_and_open_trade_do_not_confirm (__main__.OperationalRecoveryTests.test_flat_snapshot_and_open_trade_do_not_confirm)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r74/poc/test_r74_close_recovery.py", line 219, in test_flat_snapshot_and_open_trade_do_not_confirm
+    self.assertEqual(state, CLOSE_OUTCOME_AMBIGUOUS)
+AssertionError: 'CLOSE_RECONCILIATION_REQUIRED' != 'CLOSE_OUTCOME_AMBIGUOUS'
+- CLOSE_RECONCILIATION_REQUIRED
++ CLOSE_OUTCOME_AMBIGUOUS
+
+
+======================================================================
+FAIL: test_full_fill_deletes_matching_row_only (__main__.OperationalRecoveryTests.test_full_fill_deletes_matching_row_only)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r74/poc/test_r74_close_recovery.py", line 146, in test_full_fill_deletes_matching_row_only
+    self.assertEqual(operation.confirmation_state, CLOSE_FULLY_CONFIRMED)
+AssertionError: 'CLOSE_RECONCILIATION_REQUIRED' != 'CLOSE_FULLY_CONFIRMED'
+- CLOSE_RECONCILIATION_REQUIRED
++ CLOSE_FULLY_CONFIRMED
+
+
+======================================================================
+FAIL: test_partial_fill_keeps_row_and_blocks_resubmit (__main__.OperationalRecoveryTests.test_partial_fill_keeps_row_and_blocks_resubmit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r74/poc/test_r74_close_recovery.py", line 159, in test_partial_fill_keeps_row_and_blocks_resubmit
+    self.assertEqual(operation.confirmation_state, CLOSE_PARTIALLY_CONFIRMED)
+AssertionError: 'CLOSE_RECONCILIATION_REQUIRED' != 'CLOSE_PARTIALLY_CONFIRMED'
+- CLOSE_RECONCILIATION_REQUIRED
++ CLOSE_PARTIALLY_CONFIRMED
+
+
+======================================================================
+FAIL: test_rejection_can_reserve_a_new_operation (__main__.OperationalRecoveryTests.test_rejection_can_reserve_a_new_operation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r74/poc/test_r74_close_recovery.py", line 199, in test_rejection_can_reserve_a_new_operation
+    self.assertEqual(operation.confirmation_state, CLOSE_REJECTED_CONFIRMED)
+AssertionError: 'CLOSE_RECONCILIATION_REQUIRED' != 'CLOSE_REJECTED_CONFIRMED'
+- CLOSE_RECONCILIATION_REQUIRED
++ CLOSE_REJECTED_CONFIRMED
+
+
+======================================================================
+FAIL: test_timeout_blocks_resubmit_across_process_reopen (__main__.OperationalRecoveryTests.test_timeout_blocks_resubmit_across_process_reopen)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r74/poc/test_r74_close_recovery.py", line 171, in test_timeout_blocks_resubmit_across_process_reopen
+    self.assertEqual(operation.confirmation_state, CLOSE_OUTCOME_AMBIGUOUS)
+AssertionError: 'CLOSE_RECONCILIATION_REQUIRED' != 'CLOSE_OUTCOME_AMBIGUOUS'
+- CLOSE_RECONCILIATION_REQUIRED
++ CLOSE_OUTCOME_AMBIGUOUS
+
+
+======================================================================
+FAIL: test_two_threads_submit_once (__main__.OperationalRecoveryTests.test_two_threads_submit_once)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r74/poc/test_r74_close_recovery.py", line 270, in test_two_threads_submit_once
+    self.assertEqual(self.api.calls.count("PositionClose"), 1)
+AssertionError: 0 != 1
+
+----------------------------------------------------------------------
+Ran 9 tests in 1.138s
+
+FAILED (failures=6)
+ELAPSED_SEC=2.030
+
+===== data/research/adaptive_ensemble/r74/poc/test_r74_journal.py =====
+....[POSITION] local identity delete succeeded before journal finalise EUR_USD
+.[POSITION REPLACE] EUR_USD old_kind=live old_broker=True → new_kind=live new_broker=True (one local slot per symbol; identities are not merged)
+[POSITION] refuse symbol-only live delete EUR_USD
+...............
+----------------------------------------------------------------------
+Ran 20 tests in 2.718s
+
+OK
+ELAPSED_SEC=2.987
+
+===== data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py =====
+FFFFFFFFFFFFFFFFF[RECONCILE] live row retained; broker-flat is not close confirmation | EUR_USD
+EE[RECONCILE] live row retained; broker-flat is not close confirmation | EUR_USD
+.broker protection evidence withheld: protection_sections_absent
+...[POSITION] refuse symbol-only live delete EUR_USD
+.[POSITION] refuse symbol-only live delete EUR_USD
+.FFF.F.
+======================================================================
+ERROR: test_22_empty_snapshot_preserves_ambiguous_close (__main__.CloseEvidenceTests.test_22_empty_snapshot_preserves_ambiguous_close)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 364, in test_22_empty_snapshot_preserves_ambiguous_close
+    self.assertEqual(close_operation_for("EUR_USD").operation_id, op.operation_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'operation_id'
+
+======================================================================
+ERROR: test_23_incomplete_snapshot_does_not_flat_the_book (__main__.CloseEvidenceTests.test_23_incomplete_snapshot_does_not_flat_the_book)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 380, in test_23_incomplete_snapshot_does_not_flat_the_book
+    self.assertEqual(close_operation_for("EUR_USD").confirmation_state, op.confirmation_state)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'confirmation_state'
+
+======================================================================
+FAIL: test_01_full_fill_allows_one_delete (__main__.CloseEvidenceTests.test_01_full_fill_allows_one_delete)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 183, in test_01_full_fill_allows_one_delete
+    self.assertEqual(op.confirmation_state, CLOSE_FULLY_CONFIRMED)
+AssertionError: 'CLOSE_NOT_REQUESTED' != 'CLOSE_FULLY_CONFIRMED'
+- CLOSE_NOT_REQUESTED
++ CLOSE_FULLY_CONFIRMED
+
+
+======================================================================
+FAIL: test_02_partial_fill_retains_and_blocks_retry (__main__.CloseEvidenceTests.test_02_partial_fill_retains_and_blocks_retry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 197, in test_02_partial_fill_retains_and_blocks_retry
+    self.assertEqual(op.confirmation_state, CLOSE_PARTIALLY_CONFIRMED)
+AssertionError: 'CLOSE_NOT_REQUESTED' != 'CLOSE_PARTIALLY_CONFIRMED'
+- CLOSE_NOT_REQUESTED
++ CLOSE_PARTIALLY_CONFIRMED
+
+
+======================================================================
+FAIL: test_03_zero_confirmed_units (__main__.CloseEvidenceTests.test_03_zero_confirmed_units)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 212, in test_03_zero_confirmed_units
+    self.assertEqual(op.confirmation_state, CLOSE_RECONCILIATION_REQUIRED)
+AssertionError: 'CLOSE_NOT_REQUESTED' != 'CLOSE_RECONCILIATION_REQUIRED'
+- CLOSE_NOT_REQUESTED
++ CLOSE_RECONCILIATION_REQUIRED
+
+
+======================================================================
+FAIL: test_04_rejection_does_not_delete_and_names_rejection (__main__.CloseEvidenceTests.test_04_rejection_does_not_delete_and_names_rejection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 221, in test_04_rejection_does_not_delete_and_names_rejection
+    self.assertEqual(op.confirmation_state, CLOSE_REJECTED_CONFIRMED)
+AssertionError: 'CLOSE_NOT_REQUESTED' != 'CLOSE_REJECTED_CONFIRMED'
+- CLOSE_NOT_REQUESTED
++ CLOSE_REJECTED_CONFIRMED
+
+
+======================================================================
+FAIL: test_05_and_06_timeout_is_ambiguous_and_blocks_retry (__main__.CloseEvidenceTests.test_05_and_06_timeout_is_ambiguous_and_blocks_retry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 230, in test_05_and_06_timeout_is_ambiguous_and_blocks_retry
+    self.assertEqual(op.confirmation_state, CLOSE_OUTCOME_AMBIGUOUS)
+AssertionError: 'CLOSE_NOT_REQUESTED' != 'CLOSE_OUTCOME_AMBIGUOUS'
+- CLOSE_NOT_REQUESTED
++ CLOSE_OUTCOME_AMBIGUOUS
+
+
+======================================================================
+FAIL: test_07_and_08_connection_and_http_errors_are_ambiguous (__main__.CloseEvidenceTests.test_07_and_08_connection_and_http_errors_are_ambiguous)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 244, in test_07_and_08_connection_and_http_errors_are_ambiguous
+    self.assertEqual(op.error_classification, "request_exception")
+AssertionError: 'missing_journal' != 'request_exception'
+- missing_journal
++ request_exception
+
+
+======================================================================
+FAIL: test_09_missing_fill_transaction (__main__.CloseEvidenceTests.test_09_missing_fill_transaction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 252, in test_09_missing_fill_transaction
+    self.assertEqual(op.error_classification, "missing_fill_transaction")
+AssertionError: 'missing_journal' != 'missing_fill_transaction'
+- missing_journal
++ missing_fill_transaction
+
+
+======================================================================
+FAIL: test_10_missing_closed_trade_details (__main__.CloseEvidenceTests.test_10_missing_closed_trade_details)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 262, in test_10_missing_closed_trade_details
+    self.assertEqual(op.error_classification, "missing_closed_trade_details")
+AssertionError: 'missing_journal' != 'missing_closed_trade_details'
+- missing_journal
++ missing_closed_trade_details
+
+
+======================================================================
+FAIL: test_11_wrong_trade_id (__main__.CloseEvidenceTests.test_11_wrong_trade_id)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 270, in test_11_wrong_trade_id
+    self.assertEqual(op.error_classification, "trade_id_mismatch")
+AssertionError: 'missing_journal' != 'trade_id_mismatch'
+- missing_journal
++ trade_id_mismatch
+
+
+======================================================================
+FAIL: test_12_wrong_instrument (__main__.CloseEvidenceTests.test_12_wrong_instrument)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 278, in test_12_wrong_instrument
+    self.assertEqual(op.error_classification, "instrument_mismatch")
+AssertionError: 'missing_journal' != 'instrument_mismatch'
+- missing_journal
++ instrument_mismatch
+
+
+======================================================================
+FAIL: test_13_wrong_direction (__main__.CloseEvidenceTests.test_13_wrong_direction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 286, in test_13_wrong_direction
+    self.assertEqual(op.error_classification, "direction_mismatch")
+AssertionError: 'missing_journal' != 'direction_mismatch'
+- missing_journal
++ direction_mismatch
+
+
+======================================================================
+FAIL: test_14_wrong_account (__main__.CloseEvidenceTests.test_14_wrong_account)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 294, in test_14_wrong_account
+    self.assertEqual(op.error_classification, "account_mismatch")
+AssertionError: 'missing_journal' != 'account_mismatch'
+- missing_journal
++ account_mismatch
+
+
+======================================================================
+FAIL: test_15_duplicate_trade_rows (__main__.CloseEvidenceTests.test_15_duplicate_trade_rows)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 303, in test_15_duplicate_trade_rows
+    self.assertEqual(op.error_classification, "duplicate_transaction_id")
+AssertionError: 'missing_journal' != 'duplicate_transaction_id'
+- missing_journal
++ duplicate_transaction_id
+
+
+======================================================================
+FAIL: test_16_conflicting_transaction_body (__main__.CloseEvidenceTests.test_16_conflicting_transaction_body)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 311, in test_16_conflicting_transaction_body
+    self.assertEqual(op.error_classification, "transaction_id_mismatch")
+AssertionError: 'missing_journal' != 'transaction_id_mismatch'
+- missing_journal
++ transaction_id_mismatch
+
+
+======================================================================
+FAIL: test_18_excessive_units (__main__.CloseEvidenceTests.test_18_excessive_units)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 319, in test_18_excessive_units
+    self.assertEqual(op.confirmation_state, CLOSE_RECONCILIATION_REQUIRED)
+AssertionError: 'CLOSE_NOT_REQUESTED' != 'CLOSE_RECONCILIATION_REQUIRED'
+- CLOSE_NOT_REQUESTED
++ CLOSE_RECONCILIATION_REQUIRED
+
+
+======================================================================
+FAIL: test_19_two_threads_submit_once (__main__.CloseEvidenceTests.test_19_two_threads_submit_once)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 336, in test_19_two_threads_submit_once
+    self.assertTrue(self.api.hold.wait(5))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_20_second_trigger_after_ambiguous_does_not_submit (__main__.CloseEvidenceTests.test_20_second_trigger_after_ambiguous_does_not_submit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 353, in test_20_second_trigger_after_ambiguous_does_not_submit
+    self.assertEqual(self.api.calls.count("PositionClose"), 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_31_restart_keeps_unresolved_blocker_in_memory (__main__.CloseEvidenceTests.test_31_restart_keeps_unresolved_blocker_in_memory)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 447, in test_31_restart_keeps_unresolved_blocker_in_memory
+    self.assertEqual(again.error_classification, "restart_unresolved")
+AssertionError: 'missing_journal' != 'restart_unresolved'
+- missing_journal
++ restart_unresolved
+
+
+======================================================================
+FAIL: test_32_and_33_verification_failure_blocks_repeat_reads (__main__.CloseEvidenceTests.test_32_and_33_verification_failure_blocks_repeat_reads)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 457, in test_32_and_33_verification_failure_blocks_repeat_reads
+    self.assertEqual(op.confirmation_state, "CLOSE_CONFIRMATION_PENDING")
+AssertionError: 'CLOSE_NOT_REQUESTED' != 'CLOSE_CONFIRMATION_PENDING'
+- CLOSE_NOT_REQUESTED
++ CLOSE_CONFIRMATION_PENDING
+
+
+======================================================================
+FAIL: test_35_two_symbols_can_close_concurrently (__main__.CloseEvidenceTests.test_35_two_symbols_can_close_concurrently)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 492, in test_35_two_symbols_can_close_concurrently
+    self.assertEqual(self.api.calls.count("PositionClose"), 2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_sell_full_fill (__main__.CloseEvidenceTests.test_sell_full_fill)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py", line 501, in test_sell_full_fill
+    self.assertEqual(op.confirmation_state, CLOSE_FULLY_CONFIRMED)
+AssertionError: 'CLOSE_NOT_REQUESTED' != 'CLOSE_FULLY_CONFIRMED'
+- CLOSE_NOT_REQUESTED
++ CLOSE_FULLY_CONFIRMED
+
+
+----------------------------------------------------------------------
+Ran 31 tests in 5.192s
+
+FAILED (failures=21, errors=2)
+ELAPSED_SEC=6.150
+
+===== data/research/adaptive_ensemble/r72/poc/test_r72_broker_protection.py =====
+.......broker protection evidence withheld: missing_account
+.OANDA_ACCESS_TOKEN missing; market data calls will fail.
+broker protection evidence withheld: missing_client
+.broker protection evidence withheld: timeout
+.broker protection evidence withheld: request_exception
+.broker protection evidence withheld: null_body
+.broker protection evidence withheld: malformed_body
+.broker protection evidence withheld: nonfinite_price
+.broker protection evidence withheld: malformed_units
+...........[RECONCILE] ignored execution_kind=live for EUR_USD; discovery stays observation-only
+...broker protection evidence withheld: stale_response
+.broker protection evidence withheld: identity_changed
+.broker protection evidence withheld: identity_changed
+.broker protection evidence withheld: protection_sections_absent
+.broker protection evidence withheld: timeout
+.F[PROFIT PROTECTION] EUR_USD | ATR unavailable/invalid/insufficient bars — fallback giveback 4.0 pips (PROFIT_GIVEBACK_PIPS)
+...
+======================================================================
+FAIL: test_operational_source_wiring_and_unchanged_files (__main__.BrokerProtectionTests.test_operational_source_wiring_and_unchanged_files)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r72/poc/test_r72_broker_protection.py", line 591, in test_operational_source_wiring_and_unchanged_files
+    self.assertEqual(hashlib.sha256(payload).hexdigest(), digest, rel)
+AssertionError: 'afd62ac98c593ee8d75871c12b421d489061b84113724923cdb6f4950edfe36a' != '129101e45bafbe0b3359127b3f6e4cf49721a18da1c76301d8d86968218207d5'
+- afd62ac98c593ee8d75871c12b421d489061b84113724923cdb6f4950edfe36a
++ 129101e45bafbe0b3359127b3f6e4cf49721a18da1c76301d8d86968218207d5
+ : forex_bot/positions.py
+
+----------------------------------------------------------------------
+Ran 37 tests in 0.167s
+
+FAILED (failures=1)
+ELAPSED_SEC=1.373
+
+===== data/research/adaptive_ensemble/r71/poc/test_r71_readonly_calculations.py =====
+.[PROFIT PROTECTION] EUR_USD | ATR unavailable/invalid/insufficient bars — fallback giveback 4.0 pips (PROFIT_GIVEBACK_PIPS)
+.......
+----------------------------------------------------------------------
+Ran 8 tests in 0.014s
+
+OK
+ELAPSED_SEC=1.218
+
+===== data/research/adaptive_ensemble/r70/poc/test_r70_snapshot.py =====
+reconciliation: fetch failed: CONFLICT: EUR_USD has both long and short units
+.reconciliation: fetch failed: CONFLICT: duplicate instrument EUR_USD
+..reconciliation: fetch failed: CONFLICT: duplicate instrument EUR_USD
+.reconciliation: fetch failed: INCOMPLETE: OpenPositions body has no positions key
+reconciliation: fetch failed: MALFORMED: OpenPositions positions field is not a list
+reconciliation: OpenPositions failed: down
+reconciliation: fetch failed: REQUEST_FAILED: down
+reconciliation: fetch failed: CONFLICT: EUR_USD has both long and short units
+.reconciliation: fetch failed: MALFORMED: OpenPositions positions field is not a list
+PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | EUR_USD: broker open net=1000.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+.OANDA_ACCESS_TOKEN missing; market data calls will fail.
+reconciliation: fetch failed: UNKNOWN: OANDA API/account unavailable (refusing to treat as empty broker book)
+.reconciliation: fetch failed: MALFORMED: position 1 has no instrument
+.PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | EUR_USD: broker open net=1000.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+reconciliation: fetch failed: INCOMPLETE: OpenPositions body has no positions key
+.reconciliation: fetch failed: MALFORMED: EUR_USD is missing a side section
+reconciliation: fetch failed: MALFORMED: EUR_USD long units is not a decimal
+reconciliation: fetch failed: MALFORMED: EUR_USD long units is not finite
+reconciliation: fetch failed: MALFORMED: EUR_USD long units is not finite
+.PostgreSQL unavailable: postgres blocked
+PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | EUR_USD: broker open net=5.0000 but no local position
+reconciliation [critical] | USD_CAD: broker open net=-7.0000 but no local position
+reconciliation: 2 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+..PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | GBP_USD: broker open net=10.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+reconciliation: fetch failed: MALFORMED: OpenPositions positions field is not a list
+PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | GBP_USD: broker open net=10.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+reconciliation: fetch failed: MALFORMED: OpenPositions positions field is not a list
+PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | GBP_USD: broker open net=10.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+reconciliation: fetch failed: MALFORMED: OpenPositions positions field is not a list
+.reconciliation: fetch failed: INCOMPLETE: OpenPositions body has no positions key
+reconciliation: fetch failed: MALFORMED: OpenPositions positions field is not a list
+reconciliation: fetch failed: MALFORMED: OpenPositions positions field is not a list
+.PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | EUR_USD: broker open net=1000.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+reconciliation: fetch failed: INCOMPLETE: OpenPositions body has no positions key
+.reconciliation: fetch failed: STALE: older OpenPositions response was not published
+.PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | GBP_USD: broker open net=10.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+reconciliation: OpenPositions failed: older failed
+reconciliation: fetch failed: REQUEST_FAILED: older failed
+.PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | GBP_USD: broker open net=10.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+reconciliation: fetch failed: MALFORMED: OpenPositions positions field is not a list
+.PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | GBP_USD: broker open net=10.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+reconciliation: fetch failed: STALE: older OpenPositions response was not published
+.PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | EUR_USD: broker open net=1000.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+reconciliation: fetch failed: MALFORMED: USD_JPY is missing a side section
+.[RECONCILE CONFLICT] EUR_USD broker position exists while local state is paper; paper row kept and broker position recorded as observation-only | local_entry=1.10000 broker_entry=1.20000 broker_net=9000.0000
+PostgreSQL unavailable: postgres blocked
+[RECONCILE] paper row preserved for EUR_USD kind=paper; broker position stays observation-only
+reconciliation [critical] | EUR_USD: broker open net=9000.0000 but local is still paper-like (execution_kind=paper) after conflict resolution
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+.PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | EUR_USD: broker open net=1000.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+reconciliation: OpenPositions failed: synthetic
+reconciliation: fetch failed: REQUEST_FAILED: synthetic
+reconciliation: OpenPositions failed: synthetic timeout
+reconciliation: fetch failed: REQUEST_FAILED: synthetic timeout
+reconciliation: fetch failed: MALFORMED: OpenPositions body is not an object
+.PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | FOO_BAR: broker open net=10.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+..PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | EUR_USD: broker open net=1000.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+.reconciliation: fetch failed: INCOMPLETE: OpenPositions body has no positions key
+[RECONCILE] live row retained; broker-flat is not close confirmation | EUR_USD
+[RECONCILE] unresolved broker/local discrepancy retained | EUR_USD
+reconciliation [warning] | EUR_USD: local open position but broker net=0 (local net units≈1000.0000)
+F
+======================================================================
+FAIL: test_valid_then_incomplete_then_valid_empty_sequence (__main__.SnapshotTests.test_valid_then_incomplete_then_valid_empty_sequence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r70/poc/test_r70_snapshot.py", line 298, in test_valid_then_incomplete_then_valid_empty_sequence
+    self.assertNotIn("EUR_USD", positions)
+AssertionError: 'EUR_USD' unexpectedly found in {'EUR_USD': Position(symbol='EUR_USD', direction='BUY', units=1000.0, entry_price=1.1, stop_loss=1.05, take_profit=1.2, open_time=1793020336.1954823, strategy_name='existing_strategy', rl_state='held', execution_kind='live', client_order_id='bot-cid', broker_order_id='trade-1', broker_order=True, broker_trade_ids='', sl_source='local', tp_source='local', max_profit_pips=0.0, profit_protection_active=False, profit_protection_seeded=False, profit_protection_last_logged_mfe=-1.0, profit_protection_close_attempt_ts=0.0, profit_protection_exit_pips=None, min_profit_pips=0.0, max_adverse_pips=0.0, atr_at_entry_pips=None, protect_activated_mfe_pips=None, protect_activated_atr_pips=None, protect_activated_giveback_pips=None, protect_activated_exit_pips=None, atr_fallback_used=False, observation_only=False, position_instance_id='a3724192318d4bc9a7c4fc2425e26d76', position_generation=1)}
+
+----------------------------------------------------------------------
+Ran 26 tests in 7.636s
+
+FAILED (failures=1)
+[INFO] 2026-10-26 14:12:09.098958: RECONCILE ERROR: CONFLICT: EUR_USD has both long and short units
+[INFO] 2026-10-26 14:12:09.194464: RECONCILE ERROR: CONFLICT: duplicate instrument EUR_USD
+[INFO] 2026-10-26 14:12:09.294342: RECONCILE ERROR: CONFLICT: duplicate instrument EUR_USD
+[INFO] 2026-10-26 14:12:09.594464: RECONCILE ERROR: INCOMPLETE: OpenPositions body has no positions key
+[INFO] 2026-10-26 14:12:09.894296: RECONCILE ERROR: MALFORMED: OpenPositions positions field is not a list
+[INFO] 2026-10-26 14:12:10.194689: RECONCILE ERROR: REQUEST_FAILED: down
+[INFO] 2026-10-26 14:12:10.494455: RECONCILE ERROR: CONFLICT: EUR_USD has both long and short units
+[INFO] 2026-10-26 14:12:10.594352: RECONCILE ERROR: MALFORMED: OpenPositions positions field is not a list
+[INFO] 2026-10-26 14:12:10.826437: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_USD', 'critical', 'broker open net=1000.0000 but no local position')]
+[INFO] 2026-10-26 14:12:10.827062: RECONCILE ERROR: UNKNOWN: OANDA API/account unavailable (refusing to treat as empty broker book)
+[INFO] 2026-10-26 14:12:10.894348: RECONCILE ERROR: MALFORMED: position 1 has no instrument
+[INFO] 2026-10-26 14:12:11.095048: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_USD', 'critical', 'broker open net=1000.0000 but no local position')]
+[INFO] 2026-10-26 14:12:11.194326: RECONCILE ERROR: INCOMPLETE: OpenPositions body has no positions key
+[INFO] 2026-10-26 14:12:11.294364: RECONCILE ERROR: MALFORMED: EUR_USD is missing a side section
+[INFO] 2026-10-26 14:12:11.394336: RECONCILE ERROR: MALFORMED: EUR_USD long units is not a decimal
+[INFO] 2026-10-26 14:12:11.494345: RECONCILE ERROR: MALFORMED: EUR_USD long units is not finite
+[INFO] 2026-10-26 14:12:11.594341: RECONCILE ERROR: MALFORMED: EUR_USD long units is not finite
+[INFO] 2026-10-26 14:12:11.795386: RECONCILE: 2 mismatch(es) (critical=2, warning=0) — [('EUR_USD', 'critical', 'broker open net=5.0000 but no local position'), ('USD_CAD', 'critical', 'broker open net=-7.0000 but no local position')]
+[INFO] 2026-10-26 14:12:11.994802: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('GBP_USD', 'critical', 'broker open net=10.0000 but no local position')]
+[INFO] 2026-10-26 14:12:12.094372: RECONCILE ERROR: MALFORMED: OpenPositions positions field is not a list
+[INFO] 2026-10-26 14:12:12.294817: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('GBP_USD', 'critical', 'broker open net=10.0000 but no local position')]
+[INFO] 2026-10-26 14:12:12.394397: RECONCILE ERROR: MALFORMED: OpenPositions positions field is not a list
+[INFO] 2026-10-26 14:12:12.594864: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('GBP_USD', 'critical', 'broker open net=10.0000 but no local position')]
+[INFO] 2026-10-26 14:12:12.694345: RECONCILE ERROR: MALFORMED: OpenPositions positions field is not a list
+[INFO] 2026-10-26 14:12:12.794349: RECONCILE ERROR: INCOMPLETE: OpenPositions body has no positions key
+[INFO] 2026-10-26 14:12:12.894327: RECONCILE ERROR: MALFORMED: OpenPositions positions field is not a list
+[INFO] 2026-10-26 14:12:12.994328: RECONCILE ERROR: MALFORMED: OpenPositions positions field is not a list
+[INFO] 2026-10-26 14:12:13.194788: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_USD', 'critical', 'broker open net=1000.0000 but no local position')]
+[INFO] 2026-10-26 14:12:13.294342: RECONCILE ERROR: INCOMPLETE: OpenPositions body has no positions key
+[INFO] 2026-10-26 14:12:13.594605: RECONCILE ERROR: STALE: older OpenPositions response was not published
+[INFO] 2026-10-26 14:12:13.894934: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('GBP_USD', 'critical', 'broker open net=10.0000 but no local position')]
+[INFO] 2026-10-26 14:12:13.895767: RECONCILE ERROR: REQUEST_FAILED: older failed
+[INFO] 2026-10-26 14:12:14.194917: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('GBP_USD', 'critical', 'broker open net=10.0000 but no local position')]
+[INFO] 2026-10-26 14:12:14.195415: RECONCILE ERROR: MALFORMED: OpenPositions positions field is not a list
+[INFO] 2026-10-26 14:12:14.494933: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('GBP_USD', 'critical', 'broker open net=10.0000 but no local position')]
+[INFO] 2026-10-26 14:12:14.495588: RECONCILE ERROR: STALE: older OpenPositions response was not published
+[INFO] 2026-10-26 14:12:14.695109: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_USD', 'critical', 'broker open net=1000.0000 but no local position')]
+[INFO] 2026-10-26 14:12:14.794532: RECONCILE ERROR: MALFORMED: USD_JPY is missing a side section
+[INFO] 2026-10-26 14:12:14.995509: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_USD', 'critical', 'broker open net=9000.0000 but local is still paper-like (execution_kind=paper) after conflict resolution')]
+[INFO] 2026-10-26 14:12:15.195143: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_USD', 'critical', 'broker open net=1000.0000 but no local position')]
+[INFO] 2026-10-26 14:12:15.294801: RECONCILE ERROR: REQUEST_FAILED: synthetic
+[INFO] 2026-10-26 14:12:15.394570: RECONCILE ERROR: REQUEST_FAILED: synthetic timeout
+[INFO] 2026-10-26 14:12:15.494388: RECONCILE ERROR: MALFORMED: OpenPositions body is not an object
+[INFO] 2026-10-26 14:12:15.695917: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('FOO_BAR', 'critical', 'broker open net=10.0000 but no local position')]
+[INFO] 2026-10-26 14:12:16.194981: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_USD', 'critical', 'broker open net=1000.0000 but no local position')]
+[INFO] 2026-10-26 14:12:16.494358: RECONCILE ERROR: INCOMPLETE: OpenPositions body has no positions key
+[INFO] 2026-10-26 14:12:16.716943: RECONCILE: 1 mismatch(es) (critical=0, warning=1) — [('EUR_USD', 'warning', 'local open position but broker net=0 (local net units≈1000.0000)')]
+ELAPSED_SEC=8.690
+
+===== data/research/adaptive_ensemble/r69/poc/test_r69_integration.py =====
+..[RECONCILE] ignored execution_kind=live for EUR_USD; discovery stays observation-only
+...[POSITION] refuse local delete of observation-only EUR_USD kind=reconcile_import
+..[POSITION REPLACE] EUR_USD old_kind=paper old_broker=False → new_kind=reconcile_import new_broker=False (one local slot per symbol; identities are not merged)
+[POSITION] refuse local delete of observation-only EUR_USD kind=reconcile_import
+..[RECONCILE] paper row preserved for EUR_USD kind=paper; broker position stays observation-only
+[RECONCILE] ignored execution_kind=live for EUR_USD; discovery stays observation-only
+.[POSITION] refuse local delete of observation-only EUR_USD kind=reconcile_import
+..[RECONCILE CONFLICT] EUR_USD broker position exists while local state is window_paper; paper row kept and broker position recorded as observation-only | local_entry=1.10000 broker_entry=1.20000 broker_net=4000.0000
+PostgreSQL unavailable: postgres blocked
+[RECONCILE] paper row preserved for EUR_USD kind=window_paper; broker position stays observation-only
+reconciliation [critical] | EUR_USD: broker open net=4000.0000 but local is still paper-like (execution_kind=window_paper) after conflict resolution
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/forex_bot/session_rules.py:131: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return flatten_for_weekend_at(datetime.utcnow())
+[PROFIT PROTECTION] EUR_USD | cannot reconstruct MFE from candles; seeding from current 2.0 pips (peak since entry may be understated)
+.[PROFIT PROTECTION] EUR_USD | cannot reconstruct MFE from candles; seeding from current 2.0 pips (peak since entry may be understated)
+.PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | EUR_USD: broker open net=1000.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | EUR_USD: broker open net=-500.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+.F.s.F.[PROFIT PROTECTION] EUR_USD | cannot reconstruct MFE from candles; seeding from current 2.0 pips (peak since entry may be understated)
+[PROFIT PROTECTION] EUR_USD | cannot reconstruct MFE from candles; seeding from current 2.0 pips (peak since entry may be understated)
+[PROFIT PROTECTION] EUR_USD | cannot reconstruct MFE from candles; seeding from current 2.0 pips (peak since entry may be understated)
+..[PROFIT PROTECTION] EUR_USD | cannot reconstruct MFE from candles; seeding from current 2.0 pips (peak since entry may be understated)
+.....[POSITION] refuse local delete of observation-only EUR_USD kind=reconcile_import
+.PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | EUR_USD: broker open net=1000.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+.PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | EUR_USD: broker open net=250.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+.PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | EUR_USD: broker open net=250.0000 but no local position
+.[RECONCILE CONFLICT] EUR_USD broker position exists while local state is window_paper; paper row kept and broker position recorded as observation-only | local_entry=1.10000 broker_entry=1.20000 broker_net=-400.0000
+PostgreSQL unavailable: postgres blocked
+[RECONCILE] paper row preserved for EUR_USD kind=window_paper; broker position stays observation-only
+reconciliation [critical] | EUR_USD: broker open net=-400.0000 but local is still paper-like (execution_kind=window_paper) after conflict resolution
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+.[RECONCILE CONFLICT] EUR_USD broker position exists while local state is paper; paper row kept and broker position recorded as observation-only | local_entry=1.10000 broker_entry=1.22000 broker_net=9000.0000
+PostgreSQL unavailable: postgres blocked
+[RECONCILE] paper row preserved for EUR_USD kind=paper; broker position stays observation-only
+reconciliation [critical] | EUR_USD: broker open net=9000.0000 but local is still paper-like (execution_kind=paper) after conflict resolution
+.PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | EUR_GBP: broker open net=100.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+.PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | USD_JPY: broker open net=100.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+.PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | EUR_USD: broker open net=1000.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+.PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | EUR_USD: broker open net=1000.0000 but no local position
+.reconciliation: fetch failed: INCOMPLETE: OpenPositions body has no positions key
+.reconciliation: OpenPositions failed: synthetic broker snapshot failure
+reconciliation: fetch failed: REQUEST_FAILED: synthetic broker snapshot failure
+.reconciliation: fetch failed: CONFLICT: EUR_USD has both long and short units
+.PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | EUR_USD: broker open net=1000.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+.PostgreSQL unavailable: postgres blocked
+reconciliation [critical] | FOO_BAR: broker open net=10.0000 but no local position
+reconciliation: 1 mismatch(es) were not auto-fixed — set RECONCILE_ACTION=auto_fix and EXECUTION_MODE=paper_broker or live_broker (recommended), or set RECONCILE_AUTO_FIX_IN_PAPER=true if you use EXECUTION_MODE=paper. That drops ghost local positions when the broker is flat (no broker orders).
+.reconciliation: fetch failed: MALFORMED: OpenPositions positions field is not a list
+.reconciliation [warning] | EUR_USD: local open position but broker net=0 (local net units≈1000.0000)
+.reconciliation: fetch failed: MALFORMED: EUR_USD long units is not a decimal
+.[RECONCILE] live row retained; broker-flat is not close confirmation | EUR_USD
+[RECONCILE] unresolved broker/local discrepancy retained | EUR_USD
+reconciliation [warning] | EUR_USD: local open position but broker net=0 (local net units≈1000.0000)
+F.
+======================================================================
+FAIL: test_operational_hashes_match_r68 (__main__.IsolationTests.test_operational_hashes_match_r68)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r69/poc/test_r69_integration.py", line 183, in test_operational_hashes_match_r68
+    self.assertEqual(_sha(rel), digest, rel)
+AssertionError: 'afd62ac98c593ee8d75871c12b421d489061b84113724923cdb6f4950edfe36a' != '129101e45bafbe0b3359127b3f6e4cf49721a18da1c76301d8d86968218207d5'
+- afd62ac98c593ee8d75871c12b421d489061b84113724923cdb6f4950edfe36a
++ 129101e45bafbe0b3359127b3f6e4cf49721a18da1c76301d8d86968218207d5
+ : forex_bot/positions.py
+
+======================================================================
+FAIL: test_live_shape_reaches_quote_and_protection_without_close (__main__.ManagementTests.test_live_shape_reaches_quote_and_protection_without_close)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r69/poc/test_r69_integration.py", line 499, in test_live_shape_reaches_quote_and_protection_without_close
+    self.assertIn("pricing_snapshot", CALLS)
+AssertionError: 'pricing_snapshot' not found in ['fetch_ohlcv']
+
+======================================================================
+FAIL: test_permitted_live_flat_snapshot_still_drops_local_row (__main__.ReconciliationTests.test_permitted_live_flat_snapshot_still_drops_local_row)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r69/poc/test_r69_integration.py", line 377, in test_permitted_live_flat_snapshot_still_drops_local_row
+    self.assertNotIn("EUR_USD", positions)
+AssertionError: 'EUR_USD' unexpectedly found in {'EUR_USD': Position(symbol='EUR_USD', direction='BUY', units=1000.0, entry_price=1.1, stop_loss=1.05, take_profit=1.2, open_time=1793020342.604136, strategy_name='existing_strategy', rl_state='held', execution_kind='live', client_order_id='bot-cid', broker_order_id='trade-1', broker_order=True, broker_trade_ids='', sl_source='local', tp_source='local', max_profit_pips=0.0, profit_protection_active=False, profit_protection_seeded=False, profit_protection_last_logged_mfe=-1.0, profit_protection_close_attempt_ts=0.0, profit_protection_exit_pips=None, min_profit_pips=0.0, max_adverse_pips=0.0, atr_at_entry_pips=None, protect_activated_mfe_pips=None, protect_activated_atr_pips=None, protect_activated_giveback_pips=None, protect_activated_exit_pips=None, atr_fallback_used=False, observation_only=False, position_instance_id='32634f4db9ae411889f018fa93ed93b6', position_generation=1)}
+
+----------------------------------------------------------------------
+Ran 48 tests in 4.855s
+
+FAILED (failures=3, skipped=1)
+[INFO] 2026-10-26 14:12:18.227076: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_USD', 'critical', 'broker open net=4000.0000 but local is still paper-like (execution_kind=window_paper) after conflict resolution')]
+[INFO] 2026-10-26 14:12:18.697244: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_USD', 'critical', 'broker open net=1000.0000 but no local position')]
+[INFO] 2026-10-26 14:12:18.897404: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_USD', 'critical', 'broker open net=-500.0000 but no local position')]
+[INFO] 2026-10-26 14:12:19.204182: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_USD', 'critical', 'broker open net=1000.0000 but no local position')]
+[INFO] 2026-10-26 14:12:19.404220: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_USD', 'critical', 'broker open net=250.0000 but no local position')]
+[INFO] 2026-10-26 14:12:19.603883: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_USD', 'critical', 'broker open net=250.0000 but no local position')]
+[INFO] 2026-10-26 14:12:19.804789: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_USD', 'critical', 'broker open net=-400.0000 but local is still paper-like (execution_kind=window_paper) after conflict resolution')]
+[INFO] 2026-10-26 14:12:20.004413: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_USD', 'critical', 'broker open net=9000.0000 but local is still paper-like (execution_kind=paper) after conflict resolution')]
+[INFO] 2026-10-26 14:12:20.304945: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_GBP', 'critical', 'broker open net=100.0000 but no local position')]
+[INFO] 2026-10-26 14:12:20.604708: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('USD_JPY', 'critical', 'broker open net=100.0000 but no local position')]
+[INFO] 2026-10-26 14:12:20.905248: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_USD', 'critical', 'broker open net=1000.0000 but no local position')]
+[INFO] 2026-10-26 14:12:21.204449: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_USD', 'critical', 'broker open net=1000.0000 but no local position')]
+[INFO] 2026-10-26 14:12:21.504299: RECONCILE ERROR: INCOMPLETE: OpenPositions body has no positions key
+[INFO] 2026-10-26 14:12:21.604060: RECONCILE ERROR: REQUEST_FAILED: synthetic broker snapshot failure
+[INFO] 2026-10-26 14:12:21.703765: RECONCILE ERROR: CONFLICT: EUR_USD has both long and short units
+[INFO] 2026-10-26 14:12:22.004892: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('EUR_USD', 'critical', 'broker open net=1000.0000 but no local position')]
+[INFO] 2026-10-26 14:12:22.204367: RECONCILE: 1 mismatch(es) (critical=1, warning=0) — [('FOO_BAR', 'critical', 'broker open net=10.0000 but no local position')]
+[INFO] 2026-10-26 14:12:22.303644: RECONCILE ERROR: MALFORMED: OpenPositions positions field is not a list
+[INFO] 2026-10-26 14:12:22.503698: RECONCILE: 1 mismatch(es) (critical=0, warning=1) — [('EUR_USD', 'warning', 'local open position but broker net=0 (local net units≈1000.0000)')]
+[INFO] 2026-10-26 14:12:22.603711: RECONCILE ERROR: MALFORMED: EUR_USD long units is not a decimal
+[INFO] 2026-10-26 14:12:22.814310: RECONCILE: 1 mismatch(es) (critical=0, warning=1) — [('EUR_USD', 'warning', 'local open position but broker net=0 (local net units≈1000.0000)')]
+ELAPSED_SEC=6.146
+
+===== data/research/adaptive_ensemble/r68/poc/test_r68_observation_boundary.py =====
+.[RECONCILE] ignored execution_kind=live for EUR_USD; discovery stays observation-only
+..[RECONCILE] ignored execution_kind=live for GBP_USD; discovery stays observation-only
+...[POSITION] refuse local delete of observation-only EUR_USD kind=unknown-broker
+..[POSITION] refuse local delete of observation-only EUR_USD kind=reconcile_import
+[POSITION] refuse local delete of observation-only EUR_USD kind=reconcile_import
+[POSITION] refuse local delete of observation-only EUR_USD kind=reconcile_import
+.[RECONCILE] ignored execution_kind=live for EUR_USD; discovery stays observation-only
+...[POSITION] refuse symbol-only live delete EUR_USD
+F.F..[POSITION] refuse local delete of observation-only EUR_USD kind=reconcile_import
+.[POSITION] refuse local delete of observation-only EUR_USD kind=reconcile_import
+.s[RECONCILE] paper row preserved for EUR_USD kind=window_paper; broker position stays observation-only
+.[POSITION] refuse local delete of observation-only EUR_USD kind=reconcile_import
+.[POSITION] refuse local delete of observation-only EUR_USD kind=live
+.[RECONCILE] refuse unit adjust on observation-only EUR_USD kind=reconcile_import
+.[RECONCILE] paper row preserved for EUR_USD kind=paper; broker position stays observation-only
+[RECONCILE] ignored execution_kind=live for EUR_USD; discovery stays observation-only
+.[POSITION] refuse local delete of observation-only EUR_USD kind=
+[POSITION] refuse local delete of observation-only EUR_USD kind= 
+[POSITION] refuse local delete of observation-only EUR_USD kind=???
+[POSITION] refuse local delete of observation-only EUR_USD kind=reconcile-import
+[POSITION] refuse local delete of observation-only EUR_USD kind=LIVE-FORGED
+[POSITION] refuse local delete of observation-only EUR_USD kind=None
+....E.
+======================================================================
+ERROR: test_disappear_path_refuses_observation_before_pop (__main__.ObservationBoundaryTests.test_disappear_path_refuses_observation_before_pop)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r68/poc/test_r68_observation_boundary.py", line 331, in test_disappear_path_refuses_observation_before_pop
+    pop = text.index("posmap.pop(sym, None)", guard)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: substring not found
+
+======================================================================
+FAIL: test_15_bot_created_row_stays_manageable (__main__.ObservationBoundaryTests.test_15_bot_created_row_stays_manageable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r68/poc/test_r68_observation_boundary.py", line 190, in test_15_bot_created_row_stays_manageable
+    self.assertIs(removed, bot)
+AssertionError: None is not Position(symbol='EUR_USD', direction='BUY', units=1000.0, entry_price=1.1, stop_loss=1.08, take_profit=1.14, open_time=1.0, strategy_name='existing_strategy', rl_state='held', execution_kind='live', client_order_id='bot-cid-1', broker_order_id='', broker_order=True, broker_trade_ids='', sl_source='local', tp_source='local', max_profit_pips=0.0, profit_protection_active=False, profit_protection_seeded=False, profit_protection_last_logged_mfe=-1.0, profit_protection_close_attempt_ts=0.0, profit_protection_exit_pips=None, min_profit_pips=0.0, max_adverse_pips=0.0, atr_at_entry_pips=None, protect_activated_mfe_pips=None, protect_activated_atr_pips=None, protect_activated_giveback_pips=None, protect_activated_exit_pips=None, atr_fallback_used=False, observation_only=False, position_instance_id='49ce4b86c97840dbbf8a6e1775c83a23', position_generation=1)
+
+======================================================================
+FAIL: test_17_and_18_stop_quote_and_profit_files_unchanged (__main__.ObservationBoundaryTests.test_17_and_18_stop_quote_and_profit_files_unchanged)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/data/research/adaptive_ensemble/r68/poc/test_r68_observation_boundary.py", line 211, in test_17_and_18_stop_quote_and_profit_files_unchanged
+    self.assertTrue(digest.startswith(prefix), f"{rel} {digest}")
+AssertionError: False is not true : forex_bot/trading.py b64d58870b2b4d92e16fb763a694a3e19a3ed17251bb8e435d5ec368871d30fd
+
+----------------------------------------------------------------------
+Ran 31 tests in 0.252s
+
+FAILED (failures=2, errors=1, skipped=1)
+ELAPSED_SEC=0.512

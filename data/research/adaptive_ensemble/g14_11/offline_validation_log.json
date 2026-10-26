@@ -1,0 +1,46 @@
+{
+  "stage": "G.14.11",
+  "dynamic_receiver_tests_executed": false,
+  "adversarial_scenarios_executed": 0,
+  "adversarial_scenarios_specified": 50,
+  "docker_commands": [],
+  "wsl_commands": [],
+  "vm_commands": [],
+  "network_requests": false,
+  "accounts_created": false,
+  "acls_modified": false,
+  "services_created": false,
+  "directories_created": false,
+  "endpoints_created": false,
+  "commands": [
+    {
+      "command": "git rev-parse HEAD; git branch --show-current; git status --porcelain",
+      "purpose": "baseline identity",
+      "writes": false
+    },
+    {
+      "command": "python with PYTHONDONTWRITEBYTECODE=1 hashing authorised files and calling verify_directory",
+      "purpose": "baseline and staging",
+      "writes": false,
+      "dockerignore_rules": null
+    }
+  ],
+  "static_reads": [
+    "data/research/adaptive_ensemble/g14_10/stage_g14_10_report.md classification and host summary",
+    "tests/g14_4_verify.py function names",
+    "prior knowledge of tests/g14_7_fs.py open_directory and write_exclusive from earlier stages; the file was not modified"
+  ],
+  "host_inspection_expanded": false,
+  "reason": "G.14.10 already recorded the token, Hyper-V, and WSL service facts. This stage reused them and did not query services again.",
+  "source_files_modified": false,
+  "test_files_modified": false,
+  "existing_artifacts_modified": false,
+  "unexpected_files": [],
+  "pycache_created": false,
+  "limitations": [
+    "The design was not executed.",
+    "No ACL was read.",
+    "Elevation ability was not tested.",
+    "Docker, WSL, and VM facts were not refreshed."
+  ]
+}

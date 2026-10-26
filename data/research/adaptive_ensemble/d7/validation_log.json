@@ -1,0 +1,37 @@
+{
+  "files_read": [
+    "forex_bot/app.py",
+    "forex_bot/database.py",
+    "forex_bot/live_safety.py",
+    "forex_bot/telegram_control.py",
+    "tests/d6_partial_startup_runner.py",
+    "tests/test_d6_partial_startup_cleanup.py",
+    "tests/test_d5_lifespan_isolation.py",
+    "tests/d5_lifespan_runner.py",
+    "tests/test_startup_safety_preflight.py",
+    "tests/test_live_safety_repair.py"
+  ],
+  "files_modified": [
+    "forex_bot/app.py",
+    "forex_bot/database.py"
+  ],
+  "files_created": [
+    "tests/d7_resource_cleanup_runner.py",
+    "tests/test_d7_resource_cleanup.py",
+    "data/research/adaptive_ensemble/d7/"
+  ],
+  "ruff": "tests/d7_resource_cleanup_runner.py and tests/test_d7_resource_cleanup.py passed ruff E,F,BLE,SIM,I. New database cleanup handlers use BLE001 noqa. Pre-existing app.py and database.py findings outside the new helpers were not reformatted.",
+  "prohibited_operations": [],
+  "not_run": [
+    "Docker",
+    "Docker Compose",
+    "WSL",
+    "VM",
+    "Uvicorn",
+    "OANDA",
+    "production PostgreSQL",
+    "production safety-state file",
+    "full test suite",
+    "git commit"
+  ]
+}

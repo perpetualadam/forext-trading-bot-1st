@@ -1,0 +1,43 @@
+{
+  "platform": "linux/arm64/v8",
+  "oci_architecture_identity": "VERIFIED_LOCAL_BYTES",
+  "python_implementation": "UNVERIFIED",
+  "python_version_declaration": "3.12.15",
+  "python_version_evidence": "VERIFIED_CONFIG_DECLARATION",
+  "measured_python_version": "MISSING",
+  "interpreter_abi": "MISSING",
+  "soabi": "MISSING",
+  "extension_suffixes": "MISSING",
+  "supported_wheel_tags": "MISSING",
+  "libc_family": "UNVERIFIED",
+  "libc_version": "MISSING",
+  "native_library_inventory": "MISSING",
+  "cpu_instruction_support": "UNVERIFIED",
+  "actual_vps_compatibility": "MISSING",
+  "assumed_interpreter_implementation": {
+    "value": "CPython",
+    "evidence": "PROPOSED_FOR_FUTURE_VERIFICATION",
+    "supported_use": "a label for a future comparison only"
+  },
+  "candidate_wheel_interpreter_tags": [
+    "cp312",
+    "cp3",
+    "py3",
+    "py312"
+  ],
+  "candidate_wheel_abi_tags": [
+    "cp312",
+    "abi3",
+    "none"
+  ],
+  "candidate_wheel_platform_tags": [
+    "manylinux_aarch64 family",
+    "linux_aarch64"
+  ],
+  "candidate_tag_evidence": "PROPOSED_FOR_FUTURE_VERIFICATION",
+  "candidate_tag_limitation": "These strings are planning labels. They are not verified compatibility tags and they do not establish manylinux compatibility.",
+  "missing_package_release_metadata": true,
+  "missing_artifact_hashes": true,
+  "missing_dependency_closure": true,
+  "missing_production_vps_facts": true
+}

@@ -1,0 +1,14 @@
+{
+  "regression_r4_r9": {"passed": 120, "skipped": 7, "deselected": 1, "failed": 0},
+  "r10": {"passed": 69, "skipped": 5, "failed": 0},
+  "r11": {"passed": 51, "skipped": 5, "failed": 0},
+  "r12": {"passed": 118, "skipped": 5, "failed": 0},
+  "r13": {"passed": 81, "skipped": 6, "failed": 0},
+  "r14": {"passed": 143, "skipped": 5, "failed": 0},
+  "strengthening": [
+    "R.12 missing account now blocks before sizing instead of using current_equity",
+    "R.12 zero and negative equity block before sizing",
+    "R.12 non-finite equity uses account_equity_nonfinite",
+    "R.14 missing-account assertion now expects account_missing"
+  ]
+}

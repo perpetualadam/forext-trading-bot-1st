@@ -1,0 +1,20 @@
+{
+  "barrier": "raising socket subclass",
+  "forbidden_families": ["AF_INET", "AF_INET6", "AF_UNIX"],
+  "dotenv": "stubbed",
+  "persist_exec_orders": "0",
+  "r13_blocked": 3,
+  "r13_dotenv": 1,
+  "regression_blocked": 5,
+  "regression_dotenv": 1,
+  "r10_blocked": 5,
+  "r10_dotenv": 1,
+  "r11_blocked": 4,
+  "r11_dotenv": 1,
+  "r12_blocked": 2,
+  "r12_dotenv": 1,
+  "run_bot_called": false,
+  "lifespan_entered": false,
+  "oanda_api_constructed": false,
+  "postgresql_connected": false
+}

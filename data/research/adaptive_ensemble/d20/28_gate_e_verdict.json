@@ -1,0 +1,5 @@
+{
+  "gate": "E",
+  "result": "PASS",
+  "meaning": "Per-platform image identity fields are UNVERIFIED. The historical local ID was not reused."
+}

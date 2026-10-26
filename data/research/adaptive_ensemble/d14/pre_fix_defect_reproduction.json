@@ -1,0 +1,17 @@
+{
+  "when": "before the D.14 source edit",
+  "command": "python -m pytest tests/test_d13_telegram_lifecycle_reporting.py tests/test_d13_application_lifespan_reporting.py -q --tb=line",
+  "result": "8 passed in 17.96s",
+  "D12-START-01": {
+    "reproduced": true,
+    "evidence": "ACTUAL_LIFESPAN_ISOLATED",
+    "assertions_that_passed": [
+      "second lifespan yielded",
+      "the same worker remained",
+      "the stop event stayed set",
+      "the text Telegram startup refused was absent",
+      "D12-START-01 was absent",
+      "the database connection was reused"
+    ]
+  }
+}

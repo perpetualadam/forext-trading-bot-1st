@@ -1,0 +1,28 @@
+{
+  "parent_platform": "linux/amd64",
+  "parent_manifest_digest": "sha256:2ed6491b93cd49272ee6de2b5a38440c3448360322c089fc23e370722d74179d",
+  "config_media_type": "application/vnd.oci.image.config.v1+json",
+  "config_digest": "sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+  "config_size": 5684,
+  "config_descriptor_annotations": null,
+  "manifest_annotations": {
+    "com.docker.official-images.bashbrew.arch": "amd64",
+    "org.opencontainers.image.base.digest": "sha256:a4672c0cb26fbdde88e38fa2dfb6c681942306680e41e4378b28770b6e79ee91",
+    "org.opencontainers.image.base.name": "debian:bookworm-slim",
+    "org.opencontainers.image.created": "2026-10-06T01:55:57Z",
+    "org.opencontainers.image.revision": "2a3b794c223ab067d122719541cdd54a068732a5",
+    "org.opencontainers.image.source": "https://github.com/docker-library/python.git#2a3b794c223ab067d122719541cdd54a068732a5:3.12/slim-bookworm",
+    "org.opencontainers.image.url": "https://hub.docker.com/_/python",
+    "org.opencontainers.image.version": "3.12.15-slim-bookworm"
+  },
+  "manifest_annotations_are_config_blob_contents": false,
+  "descriptor_validation_verdict": "CONFIG_DESCRIPTOR_VALID_BLOB_NOT_PRESENT",
+  "config_blob_locally_available": false,
+  "config_blob_content_verified": false,
+  "identity_distinctions": {
+    "is_manifest_digest": false,
+    "is_index_digest": false,
+    "is_local_docker_image_id": false,
+    "historical_local_image_id_used": false
+  }
+}

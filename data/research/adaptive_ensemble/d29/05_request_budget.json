@@ -1,0 +1,163 @@
+{
+  "status": "FINALIZED_NOT_AUTHORISED_FOR_EXECUTION",
+  "method": "GET",
+  "retries": 0,
+  "parallel_requests": 1,
+  "request_ceiling": 18,
+  "basis": "One anonymous registry GET, one token GET, eight authenticated registry GETs, and eight storage GETs. The authenticated retry after the single historical 401 is the authentication sequence, not a retry policy.",
+  "historical_pattern_evidence": "HISTORICAL_OBSERVATION",
+  "sequence": [
+    {
+      "order": 1,
+      "host": "registry-1.docker.io",
+      "purpose": "anonymous blob GET for sha256:7fd1ebe418b5079d4aa36f416af9b143d127bc75b0155d71cb5fd559b5e04d39, historically HTTP 401",
+      "authorization_sent": false,
+      "body_cap_bytes": 1048576,
+      "persisted": false
+    },
+    {
+      "order": 2,
+      "host": "auth.docker.io",
+      "purpose": "one anonymous token GET",
+      "authorization_sent": false,
+      "body_cap_bytes": 1048576,
+      "persisted": false
+    },
+    {
+      "order": 3,
+      "host": "registry-1.docker.io",
+      "purpose": "authenticated blob GET for sha256:7fd1ebe418b5079d4aa36f416af9b143d127bc75b0155d71cb5fd559b5e04d39",
+      "authorization_sent": true,
+      "body_cap_bytes": 1048576,
+      "persisted": false,
+      "expected_historical_status": 307
+    },
+    {
+      "order": 4,
+      "host": "STORAGE_HOST_NOT_AUTHORISED",
+      "purpose": "one storage GET for sha256:7fd1ebe418b5079d4aa36f416af9b143d127bc75b0155d71cb5fd559b5e04d39",
+      "authorization_sent": false,
+      "body_cap_bytes": 28249323,
+      "persisted": true
+    },
+    {
+      "order": 5,
+      "host": "registry-1.docker.io",
+      "purpose": "authenticated blob GET for sha256:6e0ba8ba048777f5354b5a7cb497ae5261116fac8246160c06fc045c8300c582",
+      "authorization_sent": true,
+      "body_cap_bytes": 1048576,
+      "persisted": false,
+      "expected_historical_status": 307
+    },
+    {
+      "order": 6,
+      "host": "STORAGE_HOST_NOT_AUTHORISED",
+      "purpose": "one storage GET for sha256:6e0ba8ba048777f5354b5a7cb497ae5261116fac8246160c06fc045c8300c582",
+      "authorization_sent": false,
+      "body_cap_bytes": 3342298,
+      "persisted": true
+    },
+    {
+      "order": 7,
+      "host": "registry-1.docker.io",
+      "purpose": "authenticated blob GET for sha256:86a9e13e035d8e44ae37bfebc52c7fc68898fde19b4b26dd0585f2231fcfaf2c",
+      "authorization_sent": true,
+      "body_cap_bytes": 1048576,
+      "persisted": false,
+      "expected_historical_status": 307
+    },
+    {
+      "order": 8,
+      "host": "STORAGE_HOST_NOT_AUTHORISED",
+      "purpose": "one storage GET for sha256:86a9e13e035d8e44ae37bfebc52c7fc68898fde19b4b26dd0585f2231fcfaf2c",
+      "authorization_sent": false,
+      "body_cap_bytes": 15966608,
+      "persisted": true
+    },
+    {
+      "order": 9,
+      "host": "registry-1.docker.io",
+      "purpose": "authenticated blob GET for sha256:f9d2fb07d6f062d06ddc7aa58191cc5359c728f54af6cebe69a37d2c89e72a0d",
+      "authorization_sent": true,
+      "body_cap_bytes": 1048576,
+      "persisted": false,
+      "expected_historical_status": 307
+    },
+    {
+      "order": 10,
+      "host": "STORAGE_HOST_NOT_AUTHORISED",
+      "purpose": "one storage GET for sha256:f9d2fb07d6f062d06ddc7aa58191cc5359c728f54af6cebe69a37d2c89e72a0d",
+      "authorization_sent": false,
+      "body_cap_bytes": 249,
+      "persisted": true
+    },
+    {
+      "order": 11,
+      "host": "registry-1.docker.io",
+      "purpose": "authenticated blob GET for sha256:c75f989a229d12b2d2613a5997de9ff3546f664c22da9248720033a2410220f6",
+      "authorization_sent": true,
+      "body_cap_bytes": 1048576,
+      "persisted": false,
+      "expected_historical_status": 307
+    },
+    {
+      "order": 12,
+      "host": "STORAGE_HOST_NOT_AUTHORISED",
+      "purpose": "one storage GET for sha256:c75f989a229d12b2d2613a5997de9ff3546f664c22da9248720033a2410220f6",
+      "authorization_sent": false,
+      "body_cap_bytes": 28137179,
+      "persisted": true
+    },
+    {
+      "order": 13,
+      "host": "registry-1.docker.io",
+      "purpose": "authenticated blob GET for sha256:163c741a70d3da9f9cf2dff63f4790528168fad6ecc0b230a84ec48ba7e3cc34",
+      "authorization_sent": true,
+      "body_cap_bytes": 1048576,
+      "persisted": false,
+      "expected_historical_status": 307
+    },
+    {
+      "order": 14,
+      "host": "STORAGE_HOST_NOT_AUTHORISED",
+      "purpose": "one storage GET for sha256:163c741a70d3da9f9cf2dff63f4790528168fad6ecc0b230a84ec48ba7e3cc34",
+      "authorization_sent": false,
+      "body_cap_bytes": 3176203,
+      "persisted": true
+    },
+    {
+      "order": 15,
+      "host": "registry-1.docker.io",
+      "purpose": "authenticated blob GET for sha256:76294804daeb8e71e4d8fa87aa64b374948e3ad22290ffe08d264ecbb5135440",
+      "authorization_sent": true,
+      "body_cap_bytes": 1048576,
+      "persisted": false,
+      "expected_historical_status": 307
+    },
+    {
+      "order": 16,
+      "host": "STORAGE_HOST_NOT_AUTHORISED",
+      "purpose": "one storage GET for sha256:76294804daeb8e71e4d8fa87aa64b374948e3ad22290ffe08d264ecbb5135440",
+      "authorization_sent": false,
+      "body_cap_bytes": 15854851,
+      "persisted": true
+    },
+    {
+      "order": 17,
+      "host": "registry-1.docker.io",
+      "purpose": "authenticated blob GET for sha256:ecbed7df0ff7188fbefa7103723ef4f9602cb01c3485baaa84df6f950e32104b",
+      "authorization_sent": true,
+      "body_cap_bytes": 1048576,
+      "persisted": false,
+      "expected_historical_status": 307
+    },
+    {
+      "order": 18,
+      "host": "STORAGE_HOST_NOT_AUTHORISED",
+      "purpose": "one storage GET for sha256:ecbed7df0ff7188fbefa7103723ef4f9602cb01c3485baaa84df6f950e32104b",
+      "authorization_sent": false,
+      "body_cap_bytes": 250,
+      "persisted": true
+    }
+  ]
+}

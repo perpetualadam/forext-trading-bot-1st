@@ -1,0 +1,45 @@
+{
+  "commands": [
+    "python -m pytest tests/test_d8_database_concurrency.py -q --tb=line",
+    "python -m pytest tests/test_d7_resource_cleanup.py tests/test_live_safety_preservation.py tests/test_strategy_activation_defaults.py tests/test_startup_safety_preflight.py -q --tb=line",
+    "python -m pytest tests/test_d5_lifespan_isolation.py tests/test_d6_partial_startup_cleanup.py -q --tb=line",
+    "python -m ruff check tests/d8_concurrency_runner.py tests/test_d8_database_concurrency.py --select E,F,BLE,SIM"
+  ],
+  "results": {
+    "d8": "7 passed in 2.77s",
+    "d2_d3_d4_d7": "133 passed in 9.96s",
+    "d5_d6": "27 errors in 0.25s, all HISTORICAL_HASH_PIN_CONFLICT",
+    "ruff": "passed for the two new D.8 files"
+  },
+  "files_read": [
+    "forex_bot/database.py",
+    "forex_bot/app.py",
+    "forex_bot/telegram_control.py",
+    "tests/d7_resource_cleanup_runner.py"
+  ],
+  "files_created": [
+    "tests/d8_concurrency_runner.py",
+    "tests/test_d8_database_concurrency.py",
+    "data/research/adaptive_ensemble/d8/"
+  ],
+  "files_modified": [],
+  "production_source_modified": false,
+  "tests_executed": [
+    "tests/test_d8_database_concurrency.py",
+    "tests/test_d7_resource_cleanup.py",
+    "tests/test_live_safety_preservation.py",
+    "tests/test_strategy_activation_defaults.py",
+    "tests/test_startup_safety_preflight.py",
+    "tests/test_d5_lifespan_isolation.py",
+    "tests/test_d6_partial_startup_cleanup.py"
+  ],
+  "prohibited_operations": [],
+  "missing_evidence": [
+    "The publication tear between the two global assignments was not forced.",
+    "No live Telegram poller was inside a database helper during release.",
+    "D.5 and D.6 bodies were not executed past their hash pins.",
+    "The D.8 self-check probed data/ops and not a separate v2_shadow path. The deny predicate includes v2_shadow.",
+    "socket.connect_ex, socket.create_connection, and asyncio.open_connection are not wrapped by the D.8 runner. The network list stayed empty.",
+    "Production startup, the running image, and live database schema were not inspected."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "source": "data/research/adaptive_ensemble/d22_r1/09_index_raw_manifest.json",
+  "expected_digest": "sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258",
+  "actual_digest": "sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258",
+  "expected_size": 6546,
+  "actual_size": 6546,
+  "media_type": "application/vnd.oci.image.index.v1+json",
+  "schema_version": 2,
+  "descriptor_count": 10,
+  "registry_reported_historical_digest": "sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258",
+  "historical_digest_comparison": "MATCH",
+  "json_root": "object",
+  "current_tag_resolution": "NOT_CHECKED",
+  "network_request": false,
+  "verification_verdict": "LOCAL_INDEX_REVALIDATED"
+}

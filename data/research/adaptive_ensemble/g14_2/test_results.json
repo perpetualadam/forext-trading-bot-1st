@@ -1,0 +1,21 @@
+{
+  "stage": "G.14.2",
+  "commands": [
+    "python -m pytest -q --tb=line tests/test_g10_snapshot.py tests/test_g11_audit.py tests/test_g13_packaging.py tests/test_g13_1_mutations.py tests/test_g14_context.py tests/test_g14_1_staging.py",
+    "python -m ruff check tests/g14_1_stage.py tests/g14_1_verify.py tests/g14_1_run_stage.py tests/test_g14_1_staging.py tests/test_g14_context.py",
+    "python -m mypy tests/g14_1_stage.py tests/g14_1_verify.py tests/g14_1_run_stage.py tests/test_g14_1_staging.py tests/test_g14_context.py"
+  ],
+  "passed": 78,
+  "failed": 0,
+  "skipped": 0,
+  "ruff": "pass",
+  "mypy": "pass on the five existing G.14 and G.14.1 modules",
+  "new_g14_2_python_modules": 0,
+  "untested": [
+    "Docker build",
+    "image pull",
+    "package index resolution",
+    "daemon handling of the staged context",
+    "candidate image contents"
+  ]
+}

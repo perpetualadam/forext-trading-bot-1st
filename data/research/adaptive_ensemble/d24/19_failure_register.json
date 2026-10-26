@@ -1,0 +1,24 @@
+{
+  "stop": "redirect status 307",
+  "classification": "D24_BLOCKED_REGISTRY_RESPONSE",
+  "findings": [
+    {
+      "id": "D24-HIST-01",
+      "evidence": "D.22 remains D22_BLOCKED_BASELINE_INTEGRITY with zero network requests.",
+      "evidence_level": "PRESERVED_HISTORICAL_RECORD",
+      "impact": "This stage does not erase that stop.",
+      "required_action": "Leave the D.22 directory unchanged.",
+      "required_approval": "None for preservation.",
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D24-STOP-01",
+      "evidence": "The authenticated AMD64 config-blob GET returned HTTP 307. The Location value was not stored and the redirect was not followed. The ARM64 blob was not requested.",
+      "evidence_level": "STOP_CONDITION",
+      "impact": "Neither configuration blob was retrieved.",
+      "required_action": "Do not retry outside a new approval.",
+      "required_approval": "A new explicit approval if another attempt is requested.",
+      "production_impact": "UNVERIFIED"
+    }
+  ]
+}

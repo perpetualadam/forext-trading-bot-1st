@@ -1,0 +1,25 @@
+{
+  "stage": "D.2",
+  "command": "python -m pytest -q --tb=line tests/test_live_safety_preservation.py tests/test_live_safety_repair.py",
+  "environment": "PYTHONDONTWRITEBYTECODE=1",
+  "first_run": {
+    "result": "1 failed, 52 passed",
+    "failure": "test_t23_temporary_write_failure_preserves_original expected OSError to escape initialise_fail_closed. initialise_fail_closed catches OSError and leaves the original bytes in place. The assertion was corrected to match that contract. The product code was not changed for this failure."
+  },
+  "final_run": {
+    "passed": 53,
+    "failed": 0,
+    "skipped": 0,
+    "elapsed_seconds": 2.95,
+    "preservation_tests": 30,
+    "existing_repair_tests": 23,
+    "repair_file_modified": false
+  },
+  "ruff": {
+    "command": "python -m ruff check forex_bot/live_safety.py tests/test_live_safety_preservation.py",
+    "result": "All checks passed"
+  },
+  "full_suite": "NOT_RUN",
+  "broker_tests": "NOT_RUN",
+  "database_tests": "NOT_RUN"
+}

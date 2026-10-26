@@ -1,0 +1,21 @@
+{
+  "status": "ANALYSIS_ONLY",
+  "image_digest": "MISSING",
+  "build_claimed": false,
+  "fields": [
+    "source_files",
+    "dirty_inventory",
+    "build_context_hash",
+    "requirements_hash",
+    "dependency_artifacts",
+    "base_image_digest",
+    "platform",
+    "python_version",
+    "dockerfile_hash",
+    "builder_identity",
+    "candidate_digest",
+    "receiver_identity",
+    "rollback_digest"
+  ],
+  "field_status": "MISSING"
+}

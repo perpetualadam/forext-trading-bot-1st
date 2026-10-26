@@ -1,0 +1,21 @@
+{
+  "when": "before telegram_control.py was edited",
+  "command": "python -m pytest tests/test_d10_telegram_shutdown.py tests/test_d10_database_borrower_quiescence.py -q --tb=line",
+  "result": "14 passed in 9.79s",
+  "source_sha256": "270f2b48bbbc1c50b1bb89ae338716803c5e2772fada3b1aa39153fb8b300014",
+  "defects": {
+    "D10-STOP-01": {
+      "reproduced": true,
+      "evidence": "D.10 tests asserted stop returns None, join about 2 seconds, worker still alive, and stored thread cleared"
+    },
+    "D10-DB-01": {
+      "reproduced": true,
+      "evidence": "D.10 tests asserted a delayed /trades update after release called fetch_all_trades_ordered and published a new connection"
+    },
+    "D10-TEL-02": {
+      "reproduced": true,
+      "evidence": "D.10 tests asserted a second start after a timed-out stop created another worker and cleared the stop event"
+    }
+  },
+  "production_source_modified_to_force_reproduction": false
+}

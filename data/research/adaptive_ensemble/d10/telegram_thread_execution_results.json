@@ -1,0 +1,54 @@
+{
+  "evidence": "ACTUAL_TELEGRAM_FUNCTION_ISOLATED",
+  "functions": ["start_telegram_control", "stop_telegram_control", "_poller_loop"],
+  "fake_boundary": "requests.Session.get blocks on threading.Event until the harness releases it",
+  "join_monkeypatched": false,
+  "results": {
+    "stop_before_start": {
+      "classification": "PASS",
+      "return_value": null,
+      "elapsed_sec": 0.0,
+      "thread_alive_after_stop": false
+    },
+    "normal_stop": {
+      "classification": "PASS",
+      "thread_before": 19340,
+      "daemon": true,
+      "elapsed_sec": 0.0002,
+      "thread_alive_after_stop": false,
+      "stored_thread_cleared": true
+    },
+    "repeated_stop": {
+      "classification": "PASS",
+      "elapsed_sec": 0.0,
+      "thread_alive_after_stop": false
+    },
+    "repeated_start_while_flag_set": {
+      "classification": "PASS",
+      "thread_count": 1,
+      "thread": 14696,
+      "started_flag": true
+    },
+    "stop_during_blocked_poll": {
+      "classification": "FAIL",
+      "defect": "D10-STOP-01",
+      "elapsed_sec": 2.0135,
+      "thread": 16048,
+      "daemon": true,
+      "thread_alive_after_stop": true,
+      "stored_thread_cleared": true,
+      "started_flag": false,
+      "stop_event_set": true,
+      "return_value": null
+    },
+    "restart_after_incomplete_stop": {
+      "classification": "FAIL",
+      "defect": "D10-TEL-02",
+      "elapsed_sec": 2.006,
+      "threads": [13880, 17184],
+      "thread_alive_after_stop": true,
+      "stop_event_after_second_start": false,
+      "thread_count": 2
+    }
+  }
+}

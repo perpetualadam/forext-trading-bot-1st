@@ -1,0 +1,88 @@
+{
+  "candidates": [
+    {
+      "transcribed_name": "pandas",
+      "extras": [],
+      "present_in_requirements_text": true,
+      "relationship": "direct requirement text",
+      "native_extension_relevance": "unknown",
+      "interpreter_abi_uncertainty": "MISSING",
+      "cpu_architecture_uncertainty": "UNVERIFIED",
+      "libc_compatibility_uncertainty": "UNVERIFIED",
+      "source_distribution_fallback_risk": "UNVERIFIED",
+      "exact_release_selection": "MISSING",
+      "wheel_inventory": "MISSING",
+      "sha256_evidence": "MISSING",
+      "publisher_authenticity": "MISSING",
+      "future_questions": [
+        "Which releases satisfy the transcribed lower bound?",
+        "Which filenames exist for each platform?",
+        "Which of those filenames are wheels rather than source distributions?"
+      ]
+    },
+    {
+      "transcribed_name": "numpy",
+      "extras": [],
+      "present_in_requirements_text": true,
+      "relationship": "direct requirement text",
+      "native_extension_relevance": "unknown",
+      "interpreter_abi_uncertainty": "MISSING",
+      "cpu_architecture_uncertainty": "UNVERIFIED",
+      "libc_compatibility_uncertainty": "UNVERIFIED",
+      "source_distribution_fallback_risk": "UNVERIFIED",
+      "exact_release_selection": "MISSING",
+      "wheel_inventory": "MISSING",
+      "sha256_evidence": "MISSING",
+      "publisher_authenticity": "MISSING",
+      "future_questions": [
+        "Which releases satisfy the transcribed lower bound?",
+        "Which filenames exist for each platform?",
+        "Which of those filenames are wheels rather than source distributions?"
+      ]
+    },
+    {
+      "transcribed_name": "psycopg2-binary",
+      "extras": [],
+      "present_in_requirements_text": true,
+      "relationship": "direct requirement text",
+      "native_extension_relevance": "unknown",
+      "interpreter_abi_uncertainty": "MISSING",
+      "cpu_architecture_uncertainty": "UNVERIFIED",
+      "libc_compatibility_uncertainty": "UNVERIFIED",
+      "source_distribution_fallback_risk": "UNVERIFIED",
+      "exact_release_selection": "MISSING",
+      "wheel_inventory": "MISSING",
+      "sha256_evidence": "MISSING",
+      "publisher_authenticity": "MISSING",
+      "future_questions": [
+        "Which releases satisfy the transcribed lower bound?",
+        "Which filenames exist for each platform?",
+        "Which of those filenames are wheels rather than source distributions?"
+      ]
+    },
+    {
+      "transcribed_name": "uvicorn",
+      "extras": [
+        "standard"
+      ],
+      "present_in_requirements_text": true,
+      "relationship": "direct requirement text",
+      "native_extension_relevance": "unknown",
+      "interpreter_abi_uncertainty": "MISSING",
+      "cpu_architecture_uncertainty": "UNVERIFIED",
+      "libc_compatibility_uncertainty": "UNVERIFIED",
+      "source_distribution_fallback_risk": "UNVERIFIED",
+      "exact_release_selection": "MISSING",
+      "wheel_inventory": "MISSING",
+      "sha256_evidence": "MISSING",
+      "publisher_authenticity": "MISSING",
+      "future_questions": [
+        "Which releases satisfy the transcribed lower bound?",
+        "Which filenames exist for each platform?",
+        "Which of those filenames are wheels rather than source distributions?"
+      ]
+    }
+  ],
+  "d25_candidate_status": "HISTORICAL_OBSERVATION",
+  "compatibility_claim": "none"
+}

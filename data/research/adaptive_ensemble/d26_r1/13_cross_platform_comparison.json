@@ -1,0 +1,50 @@
+{
+  "rows": [
+    {
+      "project": "python-dotenv",
+      "amd64_candidates": 50,
+      "arm64_candidates": 50
+    },
+    {
+      "project": "pandas",
+      "amd64_candidates": 468,
+      "arm64_candidates": 322
+    },
+    {
+      "project": "numpy",
+      "amd64_candidates": 934,
+      "arm64_candidates": 525
+    },
+    {
+      "project": "requests",
+      "amd64_candidates": 83,
+      "arm64_candidates": 83
+    },
+    {
+      "project": "psycopg2-binary",
+      "amd64_candidates": 216,
+      "arm64_candidates": 136
+    },
+    {
+      "project": "fastapi",
+      "amd64_candidates": 323,
+      "arm64_candidates": 323
+    },
+    {
+      "project": "uvicorn",
+      "amd64_candidates": 95,
+      "arm64_candidates": 95
+    },
+    {
+      "project": "oandapyv20",
+      "amd64_candidates": 2,
+      "arm64_candidates": 2
+    },
+    {
+      "project": "tzdata",
+      "amd64_candidates": 38,
+      "arm64_candidates": 38
+    }
+  ],
+  "compatibility_claimed": false
+}

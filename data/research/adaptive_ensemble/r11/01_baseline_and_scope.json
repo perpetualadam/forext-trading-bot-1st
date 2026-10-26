@@ -1,0 +1,18 @@
+{
+  "stage": "R.11",
+  "head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "baseline_status": "MATCH",
+  "output_collision": false,
+  "pre_stage_hashes": {
+    "forex_bot/app.py": "7a925e3f5a247b9f92ab42db17242c5a895de099b6897145fba6bfb7d737ef9e",
+    "forex_bot/bot_loop.py": "9fbb8c326c35d312b86b88a3d49f395993c2e1fee303afb15a56d7c14c4b2941",
+    "forex_bot/database.py": "4c289dfaa2ca70077fc314a9bb3f92609ab0a9dbda9db26ff912d80b8d03a4a8",
+    "forex_bot/orders.py": "78c34c86bcc5f1d90d3979b18052a4fc9496a2b3cc2f37589f17ef2b6f7f0dd9"
+  },
+  "protected_hashes_matched": true,
+  "production_deployment": "NO-GO",
+  "practice_orders": "NOT AUTHORISED",
+  "live_trading": "NOT AUTHORISED",
+  "rollback": "NO-GO"
+}

@@ -1,0 +1,9 @@
+{
+  "gate": "A",
+  "verdict": "PASS",
+  "baseline": "PASS",
+  "get_connection_locked_before_edit": false,
+  "lock_type": "threading.RLock",
+  "release_clears_under_lock_and_closes_outside": true,
+  "imported_app_before_guards": false
+}

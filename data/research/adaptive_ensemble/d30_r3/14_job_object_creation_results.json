@@ -1,0 +1,84 @@
+{
+  "probe": {
+    "supervisor_in_job": true,
+    "limit_flags": 8200,
+    "active_process_limit": 1,
+    "limits_contained": true,
+    "layouts": {
+      "pointer_bytes": 8,
+      "basic_limit_bytes": 64,
+      "extended_limit_bytes": 144,
+      "expected_basic_bytes": 64,
+      "expected_extended_bytes": 144,
+      "layouts_match": true
+    },
+    "process_created": false
+  },
+  "runs": [
+    {
+      "mode": "complete",
+      "limit_flags": 8200,
+      "breakaway_clear": true
+    },
+    {
+      "mode": "spawn_complete",
+      "limit_flags": 8200,
+      "breakaway_clear": true
+    },
+    {
+      "mode": "spawn_block",
+      "limit_flags": 8200,
+      "breakaway_clear": true
+    },
+    {
+      "mode": "block",
+      "limit_flags": 8200,
+      "breakaway_clear": true
+    },
+    {
+      "mode": "ignore_stop",
+      "limit_flags": 8200,
+      "breakaway_clear": true
+    },
+    {
+      "mode": "spawn_block",
+      "limit_flags": 8200,
+      "breakaway_clear": true
+    },
+    {
+      "mode": "spawn_exit_first",
+      "limit_flags": 8200,
+      "breakaway_clear": true
+    },
+    {
+      "mode": "nonzero",
+      "limit_flags": 8200,
+      "breakaway_clear": true
+    },
+    {
+      "mode": "malformed",
+      "limit_flags": 8200,
+      "breakaway_clear": true
+    },
+    {
+      "mode": "stdout_flood",
+      "limit_flags": 8200,
+      "breakaway_clear": true
+    },
+    {
+      "mode": "late",
+      "limit_flags": 8200,
+      "breakaway_clear": true
+    },
+    {
+      "mode": "secrets",
+      "limit_flags": 8200,
+      "breakaway_clear": true
+    },
+    {
+      "mode": "secret_block",
+      "limit_flags": 8200,
+      "breakaway_clear": true
+    }
+  ]
+}

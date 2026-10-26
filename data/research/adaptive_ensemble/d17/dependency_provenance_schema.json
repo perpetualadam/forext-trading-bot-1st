@@ -1,0 +1,13 @@
+{
+  "artifacts_acquired": 0,
+  "record_template": {
+    "distribution": "MISSING",
+    "version": "NOT_ACQUIRED",
+    "filename": "NOT_ACQUIRED",
+    "sha256": "UNVERIFIED",
+    "python_tag": "MISSING",
+    "abi_tag": "MISSING",
+    "platform_tag": "MISSING",
+    "origin": "MISSING"
+  }
+}

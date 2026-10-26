@@ -1,0 +1,20 @@
+{
+  "stage": "G.14.6",
+  "commands": [
+    "python -m pytest -q --tb=line tests/test_g14_6_security.py tests/test_g14_5_security.py tests/test_g14_4_wheelhouse.py tests/test_g14_3_supply.py tests/test_g13_packaging.py tests/test_g13_1_mutations.py tests/test_g14_context.py tests/test_g14_1_staging.py",
+    "python -m ruff check tests/g14_4_acquire.py tests/g14_4_verify.py tests/g14_4_inventory.py tests/test_g14_6_security.py tests/test_g14_5_security.py tests/test_g14_4_wheelhouse.py",
+    "python -m mypy tests/g14_4_acquire.py tests/g14_4_verify.py tests/g14_4_inventory.py tests/test_g14_6_security.py tests/test_g14_5_security.py"
+  ],
+  "passed": 140,
+  "failed": 0,
+  "skipped": 0,
+  "g14_6_nodes": 47,
+  "required_negative_cases": 100,
+  "required_negative_cases_failed_closed": 100,
+  "not_executed": 0,
+  "ruff": "pass",
+  "mypy": "pass",
+  "g10_snapshot_tests_not_run": true,
+  "warning": "zipfile warned while the duplicate-member negative test wrote two entries with the same name",
+  "unexpected_protected_file_changes": []
+}

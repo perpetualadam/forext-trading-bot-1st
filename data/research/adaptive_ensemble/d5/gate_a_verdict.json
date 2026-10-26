@@ -1,0 +1,20 @@
+{
+  "gate": "A",
+  "verdict": "PASS",
+  "app_imported_during_gate_a": false,
+  "configuration_isolation": "INTERCEPTABLE_BEFORE_IMPORT",
+  "import_isolation": "DANGEROUS_CALLS_ARE_CALL_TIME",
+  "unclassified_imports": [],
+  "static_unknowns_closed_before_gate_c": [
+    {
+      "item": "numpy and pandas native initialization",
+      "static_status": "Python package __init__ has no network call",
+      "closure": "socket.connect was denied before import; the first observed connect was later, inside asyncio.run, and was the Windows event-loop self-pipe"
+    }
+  ],
+  "blocked_codes_not_used": [
+    "CONFIGURATION_ISOLATION_BLOCKED",
+    "IMPORT_ISOLATION_BLOCKED",
+    "IMPORT_SAFETY_UNKNOWN"
+  ]
+}

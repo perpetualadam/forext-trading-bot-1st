@@ -1,0 +1,19 @@
+{
+  "suite": "tests/test_d11_telegram_shutdown_remediation.py",
+  "result": "13 passed as part of 31 passed in 30.79s",
+  "observations": {
+    "S01_S05_S11": "STOP_COMPLETED, worker not alive, reference cleared, elapsed under 1 second",
+    "S02": "STOP_NOT_RUNNING",
+    "S03": "STOP_NOT_RUNNING",
+    "S04": "one worker, stop event clear",
+    "S12_S13_S14": "STOP_INCOMPLETE_WORKER_ALIVE, stored worker alive, elapsed between 1.5 and 3.5 seconds",
+    "S15_S16_S17": "second start kept the same ident, one thread, stop event stayed set",
+    "S19": "restart after exit produced one worker and STOP_COMPLETED",
+    "S20": "one worker",
+    "S21": "both stops returned STOP_INCOMPLETE_WORKER_ALIVE, one worker, event set",
+    "S22": "one worker, event set, stop incomplete",
+    "S07_S26": "no queries, connect delta 0, worker exited, STOP_COMPLETED",
+    "S37": "incomplete stop, then injected poll error, no query, worker exited",
+    "self_stop": "STOP_INCOMPLETE_WORKER_ALIVE without joining the current thread; later start created a different worker"
+  }
+}

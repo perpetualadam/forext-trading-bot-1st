@@ -1,0 +1,16 @@
+{
+  "production_files_modified_by_d9": ["forex_bot/database.py"],
+  "functions_modified": ["get_connection"],
+  "lines": "185-227",
+  "change": "Acquire the existing reentrant _pg_lock before the reuse check and hold it through connect, cursor creation, the existing SQL, commit, and both global assignments. Failure still discards only the local objects and returns None.",
+  "sql_changes": false,
+  "schema_changes": false,
+  "connection_argument_changes": false,
+  "public_contract_changes": false,
+  "release_api_changed": false,
+  "new_dependencies": false,
+  "unauthorised_changes": false,
+  "final_sha256": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e",
+  "pre_edit_sha256": "74bb9f5d692ace88bff525f334d7eb8577427bfe75cf5f229f647e60b88979e9",
+  "app_py_unchanged_sha256": "08766300dfaf703e7553c69703e5d5f2c90e8efc2b491e6eeff1791ca93e3b44"
+}

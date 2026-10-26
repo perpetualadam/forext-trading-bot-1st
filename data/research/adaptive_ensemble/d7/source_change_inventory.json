@@ -1,0 +1,35 @@
+{
+  "production_files_modified_by_d7": [
+    "forex_bot/app.py",
+    "forex_bot/database.py"
+  ],
+  "production_files_not_modified_by_d7": [
+    "forex_bot/live_safety.py",
+    "forex_bot/strategy_meta.py",
+    "forex_bot/bot_loop.py",
+    "forex_bot/oanda_client.py",
+    "forex_bot/oanda_exec.py",
+    "forex_bot/live_manage.py"
+  ],
+  "tests_added": [
+    "tests/d7_resource_cleanup_runner.py",
+    "tests/test_d7_resource_cleanup.py"
+  ],
+  "tests_not_modified": [
+    "tests/d5_lifespan_runner.py",
+    "tests/test_d5_lifespan_isolation.py",
+    "tests/d6_partial_startup_runner.py",
+    "tests/test_d6_partial_startup_cleanup.py",
+    "tests/test_live_safety_repair.py"
+  ],
+  "hashes_after": {
+    "forex_bot/app.py": "08766300dfaf703e7553c69703e5d5f2c90e8efc2b491e6eeff1791ca93e3b44",
+    "forex_bot/database.py": "74bb9f5d692ace88bff525f334d7eb8577427bfe75cf5f229f647e60b88979e9",
+    "forex_bot/live_safety.py": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+    "forex_bot/strategy_meta.py": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d"
+  },
+  "sql_statement_diff_lines": 0,
+  "new_dependencies": [],
+  "new_environment_variables": [],
+  "docker_or_requirements_changed_by_d7": false
+}

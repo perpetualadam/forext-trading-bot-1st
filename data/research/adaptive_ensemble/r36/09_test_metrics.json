@@ -1,0 +1,510 @@
+{
+  "logistic": {
+    "log_loss": 1.064502689312228,
+    "brier": 0.6442965208804596,
+    "ece": 0.012890331384942505,
+    "accuracy": 0.30838630305515685,
+    "abstention_rate": 0.9943271136627708,
+    "baseline_log_loss": 1.1120496887483393,
+    "baseline_brier": 0.6741711006330477,
+    "confusion_truth_rows_predicted_columns": [
+      [
+        22,
+        5080,
+        20
+      ],
+      [
+        7,
+        4476,
+        2
+      ],
+      [
+        18,
+        4992,
+        14
+      ]
+    ],
+    "per_class": {
+      "SELL": {
+        "precision": 0.46808510638297873,
+        "recall": 0.004295197188598204,
+        "support": 5122
+      },
+      "NO_TRADE": {
+        "precision": 0.3076711575474292,
+        "recall": 0.9979933110367893,
+        "support": 4485
+      },
+      "BUY": {
+        "precision": 0.3888888888888889,
+        "recall": 0.002786624203821656,
+        "support": 5024
+      }
+    },
+    "class_balance": {
+      "SELL": 5122,
+      "NO_TRADE": 4485,
+      "BUY": 5024
+    },
+    "prediction_sha256": "27a3eaa45b8d17482d3e70877921e536cd3a3e67bb29a44fc9cc2a07055c88b8",
+    "next_bar": {
+      "recorded_bid_ask": {
+        "n_opportunities": 1220,
+        "n_actions": 5,
+        "mean_including_abstentions": -5.237038965373258e-07,
+        "mean_actions_only": -0.00012778375075510752,
+        "block_interval": {
+          "mean": -5.237038965373258e-07,
+          "low": -3.2359171104297153e-06,
+          "high": 2.7479699608409102e-06,
+          "n": 1220
+        }
+      },
+      "plus_half_pip": {
+        "n_opportunities": 1220,
+        "n_actions": 5,
+        "mean_including_abstentions": -7.019245713208975e-07,
+        "mean_actions_only": -0.000171269595402299,
+        "block_interval": {
+          "mean": -7.019245713208975e-07,
+          "low": -3.5223803889698548e-06,
+          "high": 2.553147508355844e-06,
+          "n": 1220
+        }
+      },
+      "plus_one_pip": {
+        "n_opportunities": 1220,
+        "n_actions": 5,
+        "mean_including_abstentions": -8.801452461044689e-07,
+        "mean_actions_only": -0.00021475544004949046,
+        "block_interval": {
+          "mean": -8.801452461044689e-07,
+          "low": -3.81011737541848e-06,
+          "high": 2.4420638124115677e-06,
+          "n": 1220
+        }
+      }
+    },
+    "close_to_close": {
+      "recorded_bid_ask": {
+        "n_opportunities": 1220,
+        "n_actions": 5,
+        "mean_including_abstentions": -5.308268094225843e-07,
+        "mean_actions_only": -0.00012952174149911058,
+        "block_interval": {
+          "mean": -5.308268094225843e-07,
+          "low": -3.277715861194357e-06,
+          "high": 2.719576761598662e-06,
+          "n": 1220
+        }
+      },
+      "plus_half_pip": {
+        "n_opportunities": 1220,
+        "n_actions": 5,
+        "mean_including_abstentions": -7.090477805371529e-07,
+        "mean_actions_only": -0.0001730076584510653,
+        "block_interval": {
+          "mean": -7.090477805371529e-07,
+          "low": -3.564253746617952e-06,
+          "high": 2.524875597026242e-06,
+          "n": 1220
+        }
+      },
+      "plus_one_pip": {
+        "n_opportunities": 1220,
+        "n_actions": 5,
+        "mean_including_abstentions": -8.872687516517213e-07,
+        "mean_actions_only": -0.00021649357540302,
+        "block_interval": {
+          "mean": -8.872687516517213e-07,
+          "low": -3.851989499722397e-06,
+          "high": 2.4136649215299504e-06,
+          "n": 1220
+        }
+      }
+    },
+    "midpoint_hit_rate_among_actions": 0.4939759036144578,
+    "spread_price_quantiles": {
+      "p10": 0.00014999999999987246,
+      "p50": 0.00015999999999993797,
+      "p90": 0.00017000000000000348
+    },
+    "validation_chosen_threshold": 0.4,
+    "at_validation_chosen_threshold": {
+      "log_loss": 1.064502689312228,
+      "abstention_rate": 0.7533319663727701,
+      "next_bar": {
+        "recorded_bid_ask": {
+          "n_opportunities": 1220,
+          "n_actions": 309,
+          "mean_including_abstentions": -3.181802455041047e-05,
+          "mean_actions_only": -0.00012562456294984073,
+          "block_interval": {
+            "mean": -3.181802455041047e-05,
+            "low": -5.493730582820648e-05,
+            "high": -6.322978561190262e-06,
+            "n": 1220
+          }
+        },
+        "plus_half_pip": {
+          "n_opportunities": 1220,
+          "n_actions": 309,
+          "mean_including_abstentions": -4.2851418414990474e-05,
+          "mean_actions_only": -0.00016918682998798827,
+          "block_interval": {
+            "mean": -4.2851418414990474e-05,
+            "low": -6.677946604901786e-05,
+            "high": -1.6678487967398925e-05,
+            "n": 1220
+          }
+        },
+        "plus_one_pip": {
+          "n_opportunities": 1220,
+          "n_actions": 309,
+          "mean_including_abstentions": -5.3884812279570464e-05,
+          "mean_actions_only": -0.0002127490970261358,
+          "block_interval": {
+            "mean": -5.3884812279570464e-05,
+            "low": -7.86216262698292e-05,
+            "high": -2.6870785101838953e-05,
+            "n": 1220
+          }
+        }
+      }
+    },
+    "baselines": {
+      "majority_class": "SELL",
+      "majority_next_bar": {
+        "recorded_bid_ask": {
+          "n_opportunities": 1220,
+          "n_actions": 1220,
+          "mean_including_abstentions": -0.00015972556724184144,
+          "mean_actions_only": -0.00015972556724184144,
+          "block_interval": {
+            "mean": -0.00015972556724184144,
+            "low": -0.00018902679697684773,
+            "high": -0.00013033977864185703,
+            "n": 1220
+          }
+        },
+        "plus_half_pip": {
+          "n_opportunities": 1220,
+          "n_actions": 1220,
+          "mean_including_abstentions": -0.00020325683469382078,
+          "mean_actions_only": -0.00020325683469382078,
+          "block_interval": {
+            "mean": -0.00020325683469382078,
+            "low": -0.00023255963377458204,
+            "high": -0.00017386041557623897,
+            "n": 1220
+          }
+        },
+        "plus_one_pip": {
+          "n_opportunities": 1220,
+          "n_actions": 1220,
+          "mean_including_abstentions": -0.0002467881021458001,
+          "mean_actions_only": -0.0002467881021458001,
+          "block_interval": {
+            "mean": -0.0002467881021458001,
+            "low": -0.00027609247057231633,
+            "high": -0.0002173810525106209,
+            "n": 1220
+          }
+        }
+      },
+      "momentum_next_bar": {
+        "recorded_bid_ask": {
+          "n_opportunities": 1220,
+          "n_actions": 891,
+          "mean_including_abstentions": -0.00010937380962781279,
+          "mean_actions_only": -0.00014975987401339124,
+          "block_interval": {
+            "mean": -0.00010937380962781279,
+            "low": -0.00014338112143938938,
+            "high": -7.530803976938305e-05,
+            "n": 1220
+          }
+        },
+        "plus_half_pip": {
+          "n_opportunities": 1220,
+          "n_actions": 891,
+          "mean_including_abstentions": -0.00014117951239382568,
+          "mean_actions_only": -0.00019330977005664122,
+          "block_interval": {
+            "mean": -0.00014117951239382568,
+            "low": -0.0001753180617385138,
+            "high": -0.00010704790714384064,
+            "n": 1220
+          }
+        },
+        "plus_one_pip": {
+          "n_opportunities": 1220,
+          "n_actions": 891,
+          "mean_including_abstentions": -0.00017298521515983858,
+          "mean_actions_only": -0.00023685966609989116,
+          "block_interval": {
+            "mean": -0.00017298521515983858,
+            "low": -0.00020791659097444372,
+            "high": -0.00013880030747081732,
+            "n": 1220
+          }
+        }
+      },
+      "always_abstain_mean": 0.0
+    }
+  },
+  "xgboost": {
+    "log_loss": 1.0584872650208632,
+    "brier": 0.6403145038628851,
+    "ece": 0.02288713424686984,
+    "accuracy": 0.30654090629485337,
+    "abstention_rate": 1.0,
+    "baseline_log_loss": 1.1120496887483393,
+    "baseline_brier": 0.6741711006330477,
+    "confusion_truth_rows_predicted_columns": [
+      [
+        0,
+        5122,
+        0
+      ],
+      [
+        0,
+        4485,
+        0
+      ],
+      [
+        0,
+        5024,
+        0
+      ]
+    ],
+    "per_class": {
+      "SELL": {
+        "precision": null,
+        "recall": 0.0,
+        "support": 5122
+      },
+      "NO_TRADE": {
+        "precision": 0.30654090629485337,
+        "recall": 1.0,
+        "support": 4485
+      },
+      "BUY": {
+        "precision": null,
+        "recall": 0.0,
+        "support": 5024
+      }
+    },
+    "class_balance": {
+      "SELL": 5122,
+      "NO_TRADE": 4485,
+      "BUY": 5024
+    },
+    "prediction_sha256": "49e4d191086a2568ffc25a75534ee9c38148517394191770e0b2b211e0f58e3f",
+    "next_bar": {
+      "recorded_bid_ask": {
+        "n_opportunities": 1220,
+        "n_actions": 0,
+        "mean_including_abstentions": 0.0,
+        "mean_actions_only": null,
+        "block_interval": {
+          "mean": 0.0,
+          "low": 0.0,
+          "high": 0.0,
+          "n": 1220
+        }
+      },
+      "plus_half_pip": {
+        "n_opportunities": 1220,
+        "n_actions": 0,
+        "mean_including_abstentions": 0.0,
+        "mean_actions_only": null,
+        "block_interval": {
+          "mean": 0.0,
+          "low": 0.0,
+          "high": 0.0,
+          "n": 1220
+        }
+      },
+      "plus_one_pip": {
+        "n_opportunities": 1220,
+        "n_actions": 0,
+        "mean_including_abstentions": 0.0,
+        "mean_actions_only": null,
+        "block_interval": {
+          "mean": 0.0,
+          "low": 0.0,
+          "high": 0.0,
+          "n": 1220
+        }
+      }
+    },
+    "close_to_close": {
+      "recorded_bid_ask": {
+        "n_opportunities": 1220,
+        "n_actions": 0,
+        "mean_including_abstentions": 0.0,
+        "mean_actions_only": null,
+        "block_interval": {
+          "mean": 0.0,
+          "low": 0.0,
+          "high": 0.0,
+          "n": 1220
+        }
+      },
+      "plus_half_pip": {
+        "n_opportunities": 1220,
+        "n_actions": 0,
+        "mean_including_abstentions": 0.0,
+        "mean_actions_only": null,
+        "block_interval": {
+          "mean": 0.0,
+          "low": 0.0,
+          "high": 0.0,
+          "n": 1220
+        }
+      },
+      "plus_one_pip": {
+        "n_opportunities": 1220,
+        "n_actions": 0,
+        "mean_including_abstentions": 0.0,
+        "mean_actions_only": null,
+        "block_interval": {
+          "mean": 0.0,
+          "low": 0.0,
+          "high": 0.0,
+          "n": 1220
+        }
+      }
+    },
+    "midpoint_hit_rate_among_actions": null,
+    "spread_price_quantiles": {
+      "p10": 0.00014999999999987246,
+      "p50": 0.00015999999999993797,
+      "p90": 0.00017000000000000348
+    },
+    "validation_chosen_threshold": 0.4,
+    "at_validation_chosen_threshold": {
+      "log_loss": 1.0584872650208632,
+      "abstention_rate": 0.5932608844234843,
+      "next_bar": {
+        "recorded_bid_ask": {
+          "n_opportunities": 1220,
+          "n_actions": 507,
+          "mean_including_abstentions": -4.199262276060227e-05,
+          "mean_actions_only": -0.00010104733682038418,
+          "block_interval": {
+            "mean": -4.199262276060227e-05,
+            "low": -6.808115144080067e-05,
+            "high": -7.194313858193384e-06,
+            "n": 1220
+          }
+        },
+        "plus_half_pip": {
+          "n_opportunities": 1220,
+          "n_actions": 507,
+          "mean_including_abstentions": -6.0092130032863986e-05,
+          "mean_actions_only": -0.0001446003917950573,
+          "block_interval": {
+            "mean": -6.0092130032863986e-05,
+            "low": -8.765107120099588e-05,
+            "high": -2.541758882159183e-05,
+            "n": 1220
+          }
+        },
+        "plus_one_pip": {
+          "n_opportunities": 1220,
+          "n_actions": 507,
+          "mean_including_abstentions": -7.819163730512568e-05,
+          "mean_actions_only": -0.00018815344676973044,
+          "block_interval": {
+            "mean": -7.819163730512568e-05,
+            "low": -0.00010775476156678053,
+            "high": -4.364086378499028e-05,
+            "n": 1220
+          }
+        }
+      }
+    },
+    "baselines": {
+      "majority_class": "SELL",
+      "majority_next_bar": {
+        "recorded_bid_ask": {
+          "n_opportunities": 1220,
+          "n_actions": 1220,
+          "mean_including_abstentions": -0.00015972556724184144,
+          "mean_actions_only": -0.00015972556724184144,
+          "block_interval": {
+            "mean": -0.00015972556724184144,
+            "low": -0.00018902679697684773,
+            "high": -0.00013033977864185703,
+            "n": 1220
+          }
+        },
+        "plus_half_pip": {
+          "n_opportunities": 1220,
+          "n_actions": 1220,
+          "mean_including_abstentions": -0.00020325683469382078,
+          "mean_actions_only": -0.00020325683469382078,
+          "block_interval": {
+            "mean": -0.00020325683469382078,
+            "low": -0.00023255963377458204,
+            "high": -0.00017386041557623897,
+            "n": 1220
+          }
+        },
+        "plus_one_pip": {
+          "n_opportunities": 1220,
+          "n_actions": 1220,
+          "mean_including_abstentions": -0.0002467881021458001,
+          "mean_actions_only": -0.0002467881021458001,
+          "block_interval": {
+            "mean": -0.0002467881021458001,
+            "low": -0.00027609247057231633,
+            "high": -0.0002173810525106209,
+            "n": 1220
+          }
+        }
+      },
+      "momentum_next_bar": {
+        "recorded_bid_ask": {
+          "n_opportunities": 1220,
+          "n_actions": 891,
+          "mean_including_abstentions": -0.00010937380962781279,
+          "mean_actions_only": -0.00014975987401339124,
+          "block_interval": {
+            "mean": -0.00010937380962781279,
+            "low": -0.00014338112143938938,
+            "high": -7.530803976938305e-05,
+            "n": 1220
+          }
+        },
+        "plus_half_pip": {
+          "n_opportunities": 1220,
+          "n_actions": 891,
+          "mean_including_abstentions": -0.00014117951239382568,
+          "mean_actions_only": -0.00019330977005664122,
+          "block_interval": {
+            "mean": -0.00014117951239382568,
+            "low": -0.0001753180617385138,
+            "high": -0.00010704790714384064,
+            "n": 1220
+          }
+        },
+        "plus_one_pip": {
+          "n_opportunities": 1220,
+          "n_actions": 891,
+          "mean_including_abstentions": -0.00017298521515983858,
+          "mean_actions_only": -0.00023685966609989116,
+          "block_interval": {
+            "mean": -0.00017298521515983858,
+            "low": -0.00020791659097444372,
+            "high": -0.00013880030747081732,
+            "n": 1220
+          }
+        }
+      },
+      "always_abstain_mean": 0.0
+    }
+  }
+}

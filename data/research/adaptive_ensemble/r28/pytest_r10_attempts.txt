@@ -1,0 +1,6 @@
+attempt_1=fail test_i23_historical_filled_row WinError 5 replacing r10/synthetic_live_safety_state.json
+attempt_2=fail test_i41_clean_shutdown WinError 5 on the same file
+attempt_3=fail test_i27_missing_dependency WinError 5 on the same file
+attempt_4=pass 69 passed, 5 skipped
+live_safety_changed=false
+file_deleted=false

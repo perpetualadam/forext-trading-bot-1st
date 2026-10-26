@@ -1,0 +1,28 @@
+{
+  "reproduction_command": "python -m pytest -q --tb=short tests/test_g10_snapshot.py::test_official_archive_is_independently_verified_and_not_rewritten tests/test_g11_audit.py::test_g10_allowlist_has_not_drifted tests/test_macro_prospective_recorder_stage2.py::test_host_store_is_not_a_bot_container_path",
+  "reproduction_before_migration": "3 failed",
+  "ruff_command": "python -m ruff check tests/g13_1_baseline.py tests/test_g13_1_mutations.py tests/test_g10_snapshot.py tests/test_g11_audit.py",
+  "ruff_new_and_migrated_modules": "All checks passed",
+  "ruff_preexisting_in_stage2_file": [
+    "F401 timedelta unused",
+    "DTZ001 naive datetime constructions",
+    "UP031 percent formatting"
+  ],
+  "mypy_command": "python -m mypy tests/g13_1_baseline.py tests/test_g13_1_mutations.py tests/test_g10_snapshot.py tests/test_g11_audit.py tests/test_macro_prospective_recorder_stage2.py",
+  "mypy_new_modules": "No errors",
+  "mypy_preexisting": [
+    "tests/test_g11_audit.py helper loader spec narrowing",
+    "tests/test_macro_prospective_recorder_stage2.py recorder loader spec narrowing",
+    "tests/test_g10_snapshot.py int overload at the existing tar helper",
+    "pandas stubs missing through forex_bot.strategy_meta"
+  ],
+  "suite_command": "python -m pytest -q --tb=line tests/test_live_safety_repair.py tests/test_execution_safety.py tests/test_decision_repair.py tests/test_decision_repair_f1.py tests/test_decision_repair_f2.py tests/test_market_provenance_g5.py tests/test_market_provenance_g6.py tests/test_market_provenance_g7.py tests/test_g7_snapshot.py tests/test_g8_packaging.py tests/test_g8_missing_candles.py tests/test_g9_management.py tests/test_g9_1_candle_exceptions.py tests/test_g10_snapshot.py tests/test_g11_audit.py tests/test_g12_forensics.py tests/test_g12_1_verify.py tests/test_g13_packaging.py tests/test_g13_1_mutations.py tests/test_v2_shadow.py tests/test_v2_shadow_market.py tests/test_macro_prospective_recorder_stage2.py",
+  "passed": 274,
+  "failed": 0,
+  "skipped": 0,
+  "warnings": [
+    "datetime.utcnow deprecation in bot_loop.py",
+    "datetime.utcnow deprecation in session_rules.py"
+  ],
+  "entire_repository_suite_executed": false
+}

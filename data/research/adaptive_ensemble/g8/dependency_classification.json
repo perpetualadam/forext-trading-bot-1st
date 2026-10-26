@@ -5,7 +5,10 @@
     "RESEARCH_ONLY": 84,
     "TEST_ONLY": 1
   },
-  "dynamic_import_sites": [],
+  "dynamic_import_sites": [
+    "forex_bot/bot_loop.py",
+    "forex_bot/research/learning/supervised.py"
+  ],
   "minimal_production_set_approved": false,
   "previously_unknown": 86,
   "rows": [

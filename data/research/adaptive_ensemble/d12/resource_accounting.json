@@ -1,0 +1,8 @@
+{
+  "d12_children_network_after": [],
+  "escaped_final": [],
+  "ownership_open_connections": [],
+  "ownership_open_cursors": [],
+  "use_after_close": [],
+  "application_snapshot_precedes_harness_release": true
+}

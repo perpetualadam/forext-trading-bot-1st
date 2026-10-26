@@ -1,0 +1,18 @@
+{
+  "release_labels": 1098,
+  "distribution_records": 9387,
+  "orphan_distribution_records": [],
+  "releases_without_distributions": [
+    {
+      "project": "numpy",
+      "release_labels_without_distributions": 14
+    },
+    {
+      "project": "requests",
+      "release_labels_without_distributions": 3
+    }
+  ],
+  "duplicate_filenames": [],
+  "missing_sizes": 0,
+  "missing_timestamps": 0
+}

@@ -1,0 +1,6 @@
+{
+  "evidence": "ACTUAL_LIFESPAN_ISOLATED",
+  "result": "PASS",
+  "R01-R16": "worker A stays tracked, stop event stays set, second lifespan yields, D12-START-01 logged, connection id reused",
+  "R17-R26": "worker A exits, worker B starts, no third-lifespan refusal warning, no late query, network empty"
+}

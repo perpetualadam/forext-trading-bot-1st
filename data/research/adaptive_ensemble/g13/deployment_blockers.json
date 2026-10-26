@@ -1,0 +1,14 @@
+{
+  "image_build_authorised": false,
+  "deployment_authorised": false,
+  "rollback_authorised": false,
+  "blockers": [
+    "DOCKER_DAEMON_CONTEXT_BEHAVIOUR_UNVERIFIED",
+    "LIVE_DATABASE_COMPATIBILITY_UNVERIFIED",
+    "NO_VERIFIED_ROLLBACK_TARGET",
+    "ROLLBACK_CANDIDATE_PARTIALLY_VERIFIED",
+    "UNRESOLVED_OPERATOR_DECISION for backup location, downtime, and recovery objectives",
+    "Broker reconciliation is required before any rollback that follows persistent-state changes",
+    "Three historical tests still pin the pre-repair Dockerfile and fail until a later edit updates them"
+  ]
+}

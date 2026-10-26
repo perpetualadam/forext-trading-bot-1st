@@ -1,0 +1,27 @@
+{
+  "stage": "R.23",
+  "classification_basis": "measured before the store-arm change",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "r23_directory_at_start": "absent",
+  "dirty_tree_preserved": true,
+  "r22_classification": "R22_OFFLINE_RESTART_RECOVERY_INTEGRATED",
+  "r22_limitation": "Recovery was proven inside one Python interpreter after clearing in-memory maps. EXEC_ORDER_OFFLINE_STORE selected the JSON store by itself.",
+  "pre_edit_sha256": {
+    "forex_bot/database.py": "c6f761104a3ff3fb36a23aa0e90a9f6516c4c802ed233319151c2b27875ff563",
+    "forex_bot/bot_loop.py": "a8b455dad91c464df8ba030b7f119f3c1795ce289e21b83de0af771309823ac2",
+    "forex_bot/orders.py": "fca93e8007d5f25413caf6b7e6493db0a27b4b81cffe78331d3321e9e76db1b4",
+    "forex_bot/app.py": "8d4abc71523794f7d50076f96d5cbefb625a963c01a78d8149e4e411baa244a1"
+  },
+  "unchanged_this_stage": [
+    "forex_bot/bot_loop.py",
+    "forex_bot/orders.py",
+    "forex_bot/app.py",
+    "forex_bot/oanda_exec.py",
+    "forex_bot/live_safety.py",
+    "forex_bot/strategy_meta.py",
+    "forex_bot/config.py",
+    "main.py"
+  ],
+  "approved_edit": "forex_bot/database.py offline store arm only"
+}

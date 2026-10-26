@@ -1,0 +1,14 @@
+{
+  "gaps": [
+    "measured interpreter",
+    "SOABI",
+    "supported wheel tags",
+    "libc family",
+    "libc version",
+    "layer bytes",
+    "final image",
+    "VPS",
+    "publisher authenticity",
+    "production safety"
+  ]
+}

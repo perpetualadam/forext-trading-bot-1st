@@ -1,0 +1,15 @@
+{
+  "allowlist_source": "data/research/adaptive_ensemble/g10/production_allowlist.json",
+  "allowlist_sha256": "b2d0f66f8a696da5488072720f6d8de7ceccfd8c847d54327d4cfff2e10eb7b4",
+  "file_count": 63,
+  "unchanged_file_count": 62,
+  "authorised_exception": {
+    "path": "Dockerfile",
+    "historical_sha256": "f8d537d84c8ab004c5fc2cbdc5ef58e8141f5ca66a13be6cc5eac38c7c7006a6",
+    "current_sha256": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad"
+  },
+  "missing_files": [],
+  "unexpected_files": [],
+  "research_only_count_still_excluded": 128,
+  "accounting": "63 audited files = 59 package files + requirements.txt + main.py + Dockerfile. Dockerfile and .dockerignore are build policy and are not runtime copies. The image copy count is 61."
+}

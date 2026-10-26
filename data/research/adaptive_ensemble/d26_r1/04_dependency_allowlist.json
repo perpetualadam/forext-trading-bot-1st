@@ -1,0 +1,99 @@
+{
+  "requirements": [
+    {
+      "line": 1,
+      "original": "python-dotenv>=1.0.0",
+      "parsing": "TRANSCRIPTION_ONLY_NOT_PEP508_VALIDATED",
+      "token": "python-dotenv",
+      "segment": "python-dotenv",
+      "extras": [],
+      "specifier": ">=1.0.0"
+    },
+    {
+      "line": 2,
+      "original": "pandas>=2.0.0",
+      "parsing": "TRANSCRIPTION_ONLY_NOT_PEP508_VALIDATED",
+      "token": "pandas",
+      "segment": "pandas",
+      "extras": [],
+      "specifier": ">=2.0.0"
+    },
+    {
+      "line": 3,
+      "original": "numpy>=1.24.0",
+      "parsing": "TRANSCRIPTION_ONLY_NOT_PEP508_VALIDATED",
+      "token": "numpy",
+      "segment": "numpy",
+      "extras": [],
+      "specifier": ">=1.24.0"
+    },
+    {
+      "line": 4,
+      "original": "requests>=2.31.0",
+      "parsing": "TRANSCRIPTION_ONLY_NOT_PEP508_VALIDATED",
+      "token": "requests",
+      "segment": "requests",
+      "extras": [],
+      "specifier": ">=2.31.0"
+    },
+    {
+      "line": 5,
+      "original": "psycopg2-binary>=2.9.9",
+      "parsing": "TRANSCRIPTION_ONLY_NOT_PEP508_VALIDATED",
+      "token": "psycopg2-binary",
+      "segment": "psycopg2-binary",
+      "extras": [],
+      "specifier": ">=2.9.9"
+    },
+    {
+      "line": 6,
+      "original": "fastapi>=0.109.0",
+      "parsing": "TRANSCRIPTION_ONLY_NOT_PEP508_VALIDATED",
+      "token": "fastapi",
+      "segment": "fastapi",
+      "extras": [],
+      "specifier": ">=0.109.0"
+    },
+    {
+      "line": 7,
+      "original": "uvicorn[standard]>=0.27.0",
+      "parsing": "TRANSCRIPTION_ONLY_NOT_PEP508_VALIDATED",
+      "token": "uvicorn",
+      "segment": "uvicorn",
+      "extras": [
+        "standard"
+      ],
+      "specifier": ">=0.27.0"
+    },
+    {
+      "line": 8,
+      "original": "oandapyV20>=0.7.2",
+      "parsing": "TRANSCRIPTION_ONLY_NOT_PEP508_VALIDATED",
+      "token": "oandapyV20",
+      "segment": "oandapyv20",
+      "extras": [],
+      "specifier": ">=0.7.2"
+    },
+    {
+      "line": 9,
+      "original": "tzdata>=2024.1",
+      "parsing": "TRANSCRIPTION_ONLY_NOT_PEP508_VALIDATED",
+      "token": "tzdata",
+      "segment": "tzdata",
+      "extras": [],
+      "specifier": ">=2024.1"
+    }
+  ],
+  "approved_segments": [
+    "python-dotenv",
+    "pandas",
+    "numpy",
+    "requests",
+    "psycopg2-binary",
+    "fastapi",
+    "uvicorn",
+    "oandapyv20",
+    "tzdata"
+  ],
+  "match": true
+}

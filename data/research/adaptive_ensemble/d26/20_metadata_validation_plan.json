@@ -1,0 +1,20 @@
+{
+  "stdlib_checks": [
+    "content type JSON",
+    "object schema",
+    "name field present",
+    "sha256 hex length",
+    "size non-negative integer",
+    "filename without path separators",
+    "yanked boolean"
+  ],
+  "deferred_until_approved_parser": [
+    "requires_python grammar",
+    "requires_dist grammar",
+    "wheel filename grammar",
+    "wheel tag grammar",
+    "marker evaluation"
+  ],
+  "parser_prerequisite": "A packaging parser was not imported and must not be installed for this plan. A future stage that wants authoritative grammar checks needs a separate approval.",
+  "regex_is_not_pep508_or_pep427_validation": true
+}

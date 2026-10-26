@@ -1,0 +1,21 @@
+{
+  "authorised": [
+    "local reads",
+    "sha256",
+    "JSON parsing",
+    "requirement transcription",
+    "offline planning",
+    "new D.26 files"
+  ],
+  "not_authorised": [
+    "network",
+    "DNS",
+    "package index",
+    "downloads",
+    "resolution",
+    "installation",
+    "docker",
+    "production access"
+  ],
+  "planning_is_not_execution": true
+}

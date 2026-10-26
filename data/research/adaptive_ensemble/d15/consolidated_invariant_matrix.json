@@ -1,0 +1,244 @@
+{
+  "invariants": [
+    {
+      "id": "I01",
+      "source_functions": "initialise_fail_closed",
+      "test_ids": "D.15 S02-S05, D.4",
+      "evidence_level": "ACTUAL_SOURCE_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Production safety files were not read."
+    },
+    {
+      "id": "I02",
+      "source_functions": "live_order_auth_state",
+      "test_ids": "D.15 S01, E14",
+      "evidence_level": "ACTUAL_LIFESPAN_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Isolated synthetic state only."
+    },
+    {
+      "id": "I03",
+      "source_functions": "Strategy.active",
+      "test_ids": "D.15 S09-S14, D.3",
+      "evidence_level": "ACTUAL_SOURCE_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "No production activation."
+    },
+    {
+      "id": "I04",
+      "source_functions": "start_telegram_control",
+      "test_ids": "D.15 T01-T17",
+      "evidence_level": "ACTUAL_CONCURRENT_SOURCE_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Unknown result is not emitted by production start."
+    },
+    {
+      "id": "I05",
+      "source_functions": "_note_telegram_start",
+      "test_ids": "D.15 L06, R09",
+      "evidence_level": "ACTUAL_LIFESPAN_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Refusal is a log warning, not a cleanup error."
+    },
+    {
+      "id": "I06",
+      "source_functions": "lifespan",
+      "test_ids": "D.15 L07, R10",
+      "evidence_level": "ACTUAL_LIFESPAN_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Refusal still reaches the yield."
+    },
+    {
+      "id": "I07",
+      "source_functions": "_note_telegram_stop",
+      "test_ids": "D.15 L15-L16",
+      "evidence_level": "ACTUAL_LIFESPAN_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Incomplete stop is recorded as D12-STOP-01."
+    },
+    {
+      "id": "I08",
+      "source_functions": "_poller_thread",
+      "test_ids": "D.15 T11, L18",
+      "evidence_level": "ACTUAL_CONCURRENT_SOURCE_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "A timed-out worker stays tracked."
+    },
+    {
+      "id": "I09",
+      "source_functions": "start_telegram_control",
+      "test_ids": "D.15 T02, R11",
+      "evidence_level": "ACTUAL_CONCURRENT_SOURCE_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Concurrent starts produced one worker."
+    },
+    {
+      "id": "I10",
+      "source_functions": "_stop_event",
+      "test_ids": "D.15 T06, R12",
+      "evidence_level": "ACTUAL_CONCURRENT_SOURCE_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Refused restart does not clear the event."
+    },
+    {
+      "id": "I11",
+      "source_functions": "stop_telegram_control",
+      "test_ids": "D.15 T10",
+      "evidence_level": "ACTUAL_CONCURRENT_SOURCE_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "The two-second production join was not shortened."
+    },
+    {
+      "id": "I12",
+      "source_functions": "_read_trades_if_running",
+      "test_ids": "D.15 B14-B18, T18",
+      "evidence_level": "ACTUAL_CONCURRENT_SOURCE_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Stop is observed under _pg_lock."
+    },
+    {
+      "id": "I13",
+      "source_functions": "release_connection_after_failed_startup",
+      "test_ids": "D.15 B19",
+      "evidence_level": "ACTUAL_CONCURRENT_SOURCE_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Delayed poll added no connection."
+    },
+    {
+      "id": "I14",
+      "source_functions": "get_connection",
+      "test_ids": "D.15 B01-B03",
+      "evidence_level": "ACTUAL_CONCURRENT_SOURCE_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "No borrower counter exists."
+    },
+    {
+      "id": "I15",
+      "source_functions": "_pg_lock",
+      "test_ids": "D.15 B07-B09",
+      "evidence_level": "ACTUAL_CONCURRENT_SOURCE_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Release waited for the held query."
+    },
+    {
+      "id": "I16",
+      "source_functions": "get_connection",
+      "test_ids": "D.15 B10-B12",
+      "evidence_level": "ACTUAL_SOURCE_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Failed initialization closed unpublished objects."
+    },
+    {
+      "id": "I17",
+      "source_functions": "lifespan",
+      "test_ids": "D.15 L21, B20",
+      "evidence_level": "ACTUAL_LIFESPAN_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Retention is intentional, not a leak."
+    },
+    {
+      "id": "I18",
+      "source_functions": "release_connection_after_failed_startup",
+      "test_ids": "D.15 L22, E10",
+      "evidence_level": "ACTUAL_LIFESPAN_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Release runs only after startup failure when stop did not raise."
+    },
+    {
+      "id": "I19",
+      "source_functions": "_await_owned_tasks",
+      "test_ids": "D.15 L20, E05-E08",
+      "evidence_level": "ACTUAL_LIFESPAN_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Pending owned tasks were zero after the child loop."
+    },
+    {
+      "id": "I20",
+      "source_functions": "lifespan",
+      "test_ids": "D.15 E01-E04",
+      "evidence_level": "ACTUAL_LIFESPAN_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Broker RuntimeError stayed primary."
+    },
+    {
+      "id": "I21",
+      "source_functions": "_record_cleanup",
+      "test_ids": "D.15 E07, E11, E12",
+      "evidence_level": "ACTUAL_LIFESPAN_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Secondary errors stayed in cleanup diagnostics."
+    },
+    {
+      "id": "I22",
+      "source_functions": "start_telegram_control",
+      "test_ids": "D.15 R01-R19",
+      "evidence_level": "ACTUAL_LIFESPAN_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Worker B differed from worker A."
+    },
+    {
+      "id": "I23",
+      "source_functions": "get_connection",
+      "test_ids": "D.15 R13, R22",
+      "evidence_level": "ACTUAL_LIFESPAN_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "The same connection id was reused."
+    },
+    {
+      "id": "I24",
+      "source_functions": "lifespan fakes",
+      "test_ids": "D.15 S17-S18, L30",
+      "evidence_level": "ACTUAL_LIFESPAN_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Broker and order calls were fakes."
+    },
+    {
+      "id": "I25",
+      "source_functions": "filesystem guards",
+      "test_ids": "all D.15 children",
+      "evidence_level": "ACTUAL_LIFESPAN_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "Production mounts were denied, not read."
+    },
+    {
+      "id": "I26",
+      "source_functions": "network guards",
+      "test_ids": "all D.15 children",
+      "evidence_level": "ACTUAL_LIFESPAN_ISOLATED",
+      "result": "PASS",
+      "remaining_limitation": "network_after was empty."
+    },
+    {
+      "id": "I27",
+      "source_functions": "protected hashes",
+      "test_ids": "source_integrity_after",
+      "evidence_level": "SOURCE_INSPECTION_ONLY",
+      "result": "PASS",
+      "remaining_limitation": "Hashes matched before and after."
+    },
+    {
+      "id": "I28",
+      "source_functions": "historical pytest",
+      "test_ids": "109 setup errors",
+      "evidence_level": "HISTORICAL_TEST_COMPATIBILITY",
+      "result": "PASS",
+      "remaining_limitation": "Bodies did not run. Conflicts are not safety proof."
+    },
+    {
+      "id": "I29",
+      "source_functions": "coverage map",
+      "test_ids": "109 mapped rows",
+      "evidence_level": "HISTORICAL_TEST_COMPATIBILITY",
+      "result": "PASS",
+      "remaining_limitation": "D.9 close-failure variants are covered by executed D.7 tests, not a fresh D.15 matrix."
+    },
+    {
+      "id": "I30",
+      "source_functions": "deployment blockers",
+      "test_ids": "remaining_deployment_blockers",
+      "evidence_level": "SOURCE_INSPECTION_ONLY",
+      "result": "PASS",
+      "remaining_limitation": "Blockers stay open. This pass means they were not cleared."
+    }
+  ]
+}

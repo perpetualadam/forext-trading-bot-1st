@@ -1,0 +1,66 @@
+{
+  "stage": "G.14.6",
+  "method": "The acceptance functions were read after the edit and the negative tests call those functions. A Markdown sentence was not treated as a control.",
+  "findings": [
+    {
+      "id": "G14.5-01",
+      "original_severity": "HIGH",
+      "status": "RESOLVED_AND_INDEPENDENTLY_VERIFIED",
+      "control": "build_acquisition_environment rejects inherited mappings and returns an allowlisted mapping",
+      "used_by": "prepare_acquisition",
+      "gate_b_granted": false
+    },
+    {
+      "id": "G14.5-02",
+      "original_severity": "HIGH",
+      "status": "RESOLVED_AND_INDEPENDENTLY_VERIFIED",
+      "control": "prepare_acquisition and commit_acquisition call authorize_url. commit has no socket sender.",
+      "remaining_limitation": "A live HTTPS client was not implemented. Pip is not claimed to enforce this redirect policy.",
+      "gate_b_granted": false
+    },
+    {
+      "id": "G14.5-03",
+      "original_severity": "HIGH",
+      "status": "RESOLVED_AND_INDEPENDENTLY_VERIFIED",
+      "control": "assess_wheel_candidate rejects sdists, bad tags, yanked releases, and prereleases before commit",
+      "gate_b_granted": false
+    },
+    {
+      "id": "G14.5-04",
+      "original_severity": "HIGH",
+      "status": "RESOLVED_AND_INDEPENDENTLY_VERIFIED",
+      "control": "verify_wheelhouse calls inspect_wheel_bytes and rejects a non-ZIP payload after a hash match",
+      "gate_b_granted": false
+    },
+    {
+      "id": "G14.5-05",
+      "original_severity": "HIGH",
+      "status": "RESOLVED_AND_INDEPENDENTLY_VERIFIED",
+      "control": "verify_wheelhouse calls assert_dependency_graph. accept_verified_lock refuses unproven provenance.",
+      "remaining_limitation": "The production transitive graph is still unknown because no real wheels exist.",
+      "gate_b_granted": false
+    },
+    {
+      "id": "G14.5-06",
+      "original_severity": "HIGH",
+      "status": "RESOLVED_AND_INDEPENDENTLY_VERIFIED",
+      "control": "parse_requirement_line rejects URL and VCS forms and preserves markers. prepare_acquisition uses parse_requirement_document.",
+      "gate_b_granted": false
+    },
+    {
+      "id": "G14.5-07",
+      "original_severity": "MEDIUM",
+      "status": "RESOLVED_AND_INDEPENDENTLY_VERIFIED",
+      "control": "os.lstat rejects links before use. create_exclusive_file uses O_EXCL.",
+      "remaining_limitation": "A concurrent parent-directory replacement is not fully excluded.",
+      "gate_b_granted": false
+    },
+    {
+      "id": "G14.5-08",
+      "original_severity": "INFORMATIONAL",
+      "status": "NOT_APPLICABLE_WITH_EVIDENCE",
+      "control": "The modules still do not import a network client. Import was not given a new side effect.",
+      "gate_b_granted": false
+    }
+  ]
+}

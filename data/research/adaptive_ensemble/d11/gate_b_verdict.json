@@ -1,0 +1,5 @@
+{
+  "gate": "B",
+  "verdict": "PASS",
+  "basis": "Bounded status return. Live worker stays tracked. Database entry is checked while _pg_lock is held. app.py ignores the return value, so safety does not depend on that return value. Timeout does not raise."
+}

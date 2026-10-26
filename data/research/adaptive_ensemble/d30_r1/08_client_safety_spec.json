@@ -1,0 +1,15 @@
+{
+  "hosts": [
+    "auth.docker.io",
+    "registry-1.docker.io"
+  ],
+  "methods": {
+    "registry-1.docker.io": "HEAD",
+    "auth.docker.io": "GET"
+  },
+  "redirects_followed": 0,
+  "retries": 0,
+  "proxy": "not discovered and not used",
+  "credentials": "not read",
+  "dns_hard_deadline": false
+}

@@ -1,0 +1,64 @@
+{
+  "stage": "G.14.9",
+  "scale": "0 to 5, higher is more favorable",
+  "weight_sum": 104,
+  "maximum_weighted_score": 520,
+  "weight_rationale": "Initial anchor, same-user resistance, and residual risk are weighted 10 because they are the G.14.8 blocker. Isolation of files, credentials, and production is weighted 8. Export safety is 7. Network, independent verification, and Docker risk are 6. Rollback is 5. Target compatibility and reproducibility are 4 and 5. Privilege burden is 4 and is favorable only when it does not hide a failed safety condition. Implementation, operations, and approval complexity are 3 or 2 so that a smaller project cannot outrank a failed boundary.",
+  "mandatory_safety_condition": "The option prevents or contains same-user pre-open path substitution, and the import path does not recreate that substitution. Unevidenced containment is not a pass.",
+  "high_score_rule": "A higher aggregate cannot make an ineligible option eligible.",
+  "criteria": [
+    {"id": 1, "name": "initial_trust_anchor_strength", "weight": 10},
+    {"id": 2, "name": "same_user_path_substitution_resistance", "weight": 10},
+    {"id": 3, "name": "filesystem_isolation", "weight": 8},
+    {"id": 4, "name": "credential_isolation", "weight": 8},
+    {"id": 5, "name": "production_system_isolation", "weight": 8},
+    {"id": 6, "name": "network_egress_control", "weight": 6},
+    {"id": 7, "name": "native_linux_wheel_compatibility", "weight": 5},
+    {"id": 8, "name": "artifact_export_safety", "weight": 7},
+    {"id": 9, "name": "independent_verifiability", "weight": 6},
+    {"id": 10, "name": "implementation_complexity_favorable_if_simpler", "weight": 3},
+    {"id": 11, "name": "operational_complexity_favorable_if_simpler", "weight": 2},
+    {"id": 12, "name": "privilege_requirements_favorable_if_no_new_privilege", "weight": 4},
+    {"id": 13, "name": "docker_interaction_risk_favorable_if_lower", "weight": 6},
+    {"id": 14, "name": "reproducibility", "weight": 4},
+    {"id": 15, "name": "rollback_implications_favorable_if_decoupled", "weight": 5},
+    {"id": 16, "name": "approval_complexity_favorable_if_smaller", "weight": 2},
+    {"id": 17, "name": "residual_risk_favorable_if_lower", "weight": 10}
+  ],
+  "scores": {
+    "A": {
+      "values": [1, 0, 1, 1, 2, 2, 1, 2, 2, 3, 3, 4, 5, 2, 4, 3, 1],
+      "weighted_total": 190,
+      "eligible": false,
+      "notes": "Privilege and Docker scores are favorable because the weak launcher needs neither. Those points do not repair scores 1, 2, and 17. Evidence is G.14.8 cases 1, 2, 3, and 11 and open_directory."
+    },
+    "B": {
+      "values": null,
+      "weighted_total": null,
+      "aggregate": "NOT_COMPUTED",
+      "reason": "Isolation, same-user resistance, export safety, and Docker behaviour are UNKNOWN for every subtype. Scoring them as hopeful would manufacture a winner.",
+      "subtype_eligibility": {
+        "restricted_windows_process": "INELIGIBLE",
+        "disposable_wsl": "INELIGIBLE_PENDING_EVIDENCE",
+        "disposable_vm": "INELIGIBLE_PENDING_EVIDENCE",
+        "disposable_container": "INELIGIBLE_PENDING_EVIDENCE"
+      }
+    },
+    "C": {
+      "values": [0, 0, 1, 1, 2, 2, 1, 2, 1, 5, 4, 5, 5, 2, 4, 4, 0],
+      "weighted_total": 178,
+      "eligible": false,
+      "notes": "Complexity scores are high because nothing new is built. Residual risk is 0 because the demonstrated attacker is defined as trusted. Evidence is the G.14.8 same-user swap."
+    }
+  },
+  "ineligible": ["A", "B", "C"],
+  "uncertainty": [
+    "Process DACL of a future launcher was not read.",
+    "Other-user DACL behaviour was not tested.",
+    "Directory symlink kernel behaviour was not executed.",
+    "No hypervisor, WSL configuration, or Docker daemon property was inspected.",
+    "Whether this user can open a Docker pipe or a virtual disk is unknown.",
+    "Python patch, SOABI, glibc, pip, wheel tags, and the registry digest are unknown."
+  ],
+  "result": "No eligible option. Numeric totals for A (190) and C (178) are recorded so the weighting can be checked. They do not select a winner."
+}

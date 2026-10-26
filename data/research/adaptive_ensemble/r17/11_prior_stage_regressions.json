@@ -1,0 +1,22 @@
+{
+  "suites": {
+    "r17": {"collected": 183, "executed": 174, "passed": 174, "failed": 0, "skipped": 9, "deselected": 0, "not_evaluated": 9, "exit": 0},
+    "regression_r4_r9": {"collected": 128, "executed": 120, "passed": 120, "failed": 0, "skipped": 7, "deselected": 1, "not_evaluated": 7, "exit": 0, "deselected_name": "test_h39_h40_restart_keeps_live_orders_blocked"},
+    "r10": {"collected": 74, "executed": 69, "passed": 69, "failed": 0, "skipped": 5, "deselected": 0, "not_evaluated": 5, "exit": 0},
+    "r11": {"collected": 56, "executed": 51, "passed": 51, "failed": 0, "skipped": 5, "deselected": 0, "not_evaluated": 5, "exit": 0},
+    "r12": {"collected": 123, "executed": 118, "passed": 118, "failed": 0, "skipped": 5, "deselected": 0, "not_evaluated": 5, "exit": 0},
+    "r13": {"collected": 87, "executed": 81, "passed": 81, "failed": 0, "skipped": 6, "deselected": 0, "not_evaluated": 6, "exit": 0},
+    "r14": {"collected": 148, "executed": 143, "passed": 143, "failed": 0, "skipped": 5, "deselected": 0, "not_evaluated": 5, "exit": 0},
+    "r15": {"collected": 171, "executed": 165, "passed": 165, "failed": 0, "skipped": 6, "deselected": 0, "not_evaluated": 6, "exit": 0},
+    "r16": {"collected": 141, "executed": 135, "passed": 135, "failed": 0, "skipped": 6, "deselected": 0, "not_evaluated": 6, "exit": 0}
+  },
+  "assertion_strengthenings": [
+    "R.12 J16 now expects candle_nonfinite and zero broker calls",
+    "R.12 J17 now expects candle_malformed and zero broker calls",
+    "R.12 J19 records spread_limit not_approved",
+    "R.12 J20 now expects insufficient_lookback and zero broker calls",
+    "R.12 J32 now expects quote_malformed and zero broker calls",
+    "R.12 through R.16 default candle count is 50 and synthetic bid/ask are present"
+  ],
+  "weakened_assertions": []
+}

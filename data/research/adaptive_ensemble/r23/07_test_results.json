@@ -1,0 +1,14 @@
+{
+  "suite": "r23",
+  "collected": 15,
+  "passed": 15,
+  "failed": 0,
+  "skipped": 0,
+  "deselected": 0,
+  "exit": 0,
+  "blocked_socket_or_dns_attempts": 3,
+  "dotenv_stubs": 1,
+  "postgresql_connections": 0,
+  "real_broker_calls": 0,
+  "winerror_5": false
+}

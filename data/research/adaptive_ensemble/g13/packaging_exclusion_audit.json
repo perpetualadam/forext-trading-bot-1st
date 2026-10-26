@@ -1,0 +1,17 @@
+{
+  "method": "Explicit COPY sources compared with the allowlist. Local .dockerignore matcher also reports no copied source as excluded. Daemon context behaviour was not tested.",
+  "credentials_excluded": true,
+  "research_data_excluded": true,
+  "tests_excluded": true,
+  "frozen_artifacts_excluded": true,
+  "operational_state_excluded": true,
+  "git_metadata_excluded": true,
+  "onedrive_metadata_excluded": true,
+  "broad_package_copy_removed": true,
+  "main_py_copies": 1,
+  "remaining_risks": [
+    "DOCKER_DAEMON_CONTEXT_BEHAVIOUR_UNVERIFIED",
+    "A future file added beside an allowlisted module is not copied, which is intentional.",
+    "Base-image contents and installed wheels were not rebuilt or inventoried."
+  ]
+}

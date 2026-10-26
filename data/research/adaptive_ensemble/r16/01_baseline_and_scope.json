@@ -1,0 +1,28 @@
+{
+  "stage": "R.16",
+  "head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "output_directory_at_start": "absent",
+  "pre_hashes": {
+    "forex_bot/app.py": "8d4abc71523794f7d50076f96d5cbefb625a963c01a78d8149e4e411baa244a1",
+    "forex_bot/bot_loop.py": "518b5930038e1ef520f17afe3555c9d055efd0ad7acc196d0f3c879b9381c0bd",
+    "forex_bot/database.py": "53e1e81827d6456743a1154d1636c05e6acbcfb340dae438912900c46c2d0ff4",
+    "forex_bot/orders.py": "fca93e8007d5f25413caf6b7e6493db0a27b4b81cffe78331d3321e9e76db1b4"
+  },
+  "post_hashes": {
+    "forex_bot/app.py": "8d4abc71523794f7d50076f96d5cbefb625a963c01a78d8149e4e411baa244a1",
+    "forex_bot/bot_loop.py": "27934fe441420b0a978bfbb207b2a21a98b9420415668f60b98fc05db4422f4e",
+    "forex_bot/database.py": "53e1e81827d6456743a1154d1636c05e6acbcfb340dae438912900c46c2d0ff4",
+    "forex_bot/orders.py": "fca93e8007d5f25413caf6b7e6493db0a27b4b81cffe78331d3321e9e76db1b4"
+  },
+  "protected_hashes_unchanged": true,
+  "application_source_modified": ["forex_bot/bot_loop.py"],
+  "tests_added": ["tests/test_r16_equity_sources.py"],
+  "tests_modified": [
+    "tests/test_r8_reservation_safety.py",
+    "tests/test_r10_offline_startup.py",
+    "tests/test_r11_historical_recovery.py",
+    "tests/test_r12_single_iteration.py",
+    "tests/test_r14_decision_path.py"
+  ]
+}

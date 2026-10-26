@@ -1,0 +1,25 @@
+{
+  "approval": "YES \u2014 Approve D.24-R1 redirect destination discovery.",
+  "approval_timestamp": null,
+  "approval_signature": null,
+  "permitted": [
+    "local baseline and OCI validation",
+    "GET the approved AMD64 config blob",
+    "anonymous token exchange if required",
+    "one authenticated retry of the same AMD64 blob",
+    "sanitised redirect metadata inspection"
+  ],
+  "not_permitted": [
+    "following redirects",
+    "contacting the redirect destination",
+    "ARM64 config blob",
+    "other blobs",
+    "image layers",
+    "docker",
+    "dependency resolution",
+    "production inspection",
+    "deployment",
+    "live trading"
+  ],
+  "d24_authorisation_extended": false
+}

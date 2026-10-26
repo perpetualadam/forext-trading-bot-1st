@@ -26,6 +26,8 @@ REASON_EVOLVE = "evolve_negative_sharpe"
 REASON_NOT_AUTHORISED = "not_authorised_for_live"
 REASON_PROCESS_START = "process_start_requires_operator_authorisation"
 REASON_PERSISTED_ALLOWED_IGNORED = "persisted_allowed_ignored_until_operator_action"
+REASON_FUTURE_SCHEMA = "unsupported_future_schema"
+REASON_UNREADABLE = "safety_state_unreadable"
 KNOWN_STRATEGY_NAMES = (
     "scalp",
     "trend",
@@ -45,6 +47,14 @@ _persisted_auth_state = AUTH_BLOCKED
 _persisted_auth_reason = REASON_DEFAULT_DENY
 _persisted_auth_updated_at: str | None = None
 _loaded_from_durable = False
+
+
+class SafetyStateProtected(RuntimeError):
+    """An existing safety file was left unchanged because it is not a supported document."""
+
+    def __init__(self, kind: str) -> None:
+        self.kind = kind
+        super().__init__(f"safety state preserved kind={kind}")
 
 
 def _utc_now() -> str:
@@ -131,14 +141,23 @@ def _blank_document(*, reason: str) -> dict[str, Any]:
     }
 
 
+def _version_kind(blob: dict[str, Any]) -> str:
+    if "schema_version" not in blob:
+        return "invalid"
+    version = blob["schema_version"]
+    if isinstance(version, bool) or not isinstance(version, int):
+        return "invalid"
+    if version > SCHEMA_VERSION:
+        return "future"
+    if version == SCHEMA_VERSION:
+        return "supported"
+    return "invalid"
+
+
 def _validate_document(blob: Any) -> dict[str, Any] | None:
     if not isinstance(blob, dict):
         return None
-    try:
-        ver = int(blob.get("schema_version") or 0)
-    except (TypeError, ValueError):
-        return None
-    if ver != SCHEMA_VERSION:
+    if _version_kind(blob) != "supported":
         return None
     auth = blob.get("live_order_authorisation")
     if not isinstance(auth, dict):
@@ -153,28 +172,98 @@ def _validate_document(blob: Any) -> dict[str, Any] | None:
         row = strategies.get(name)
         if not isinstance(row, dict):
             return None
-        if "active" not in row:
+        if not isinstance(row.get("active"), bool):
+            return None
+        if "authorised_for_live" in row and not isinstance(row.get("authorised_for_live"), bool):
             return None
     return blob
 
 
+def _read_text(path: Path) -> str:
+    return path.read_text(encoding="utf-8-sig")
+
+
+def _render_payload(payload: dict[str, Any]) -> str:
+    return json.dumps(payload, indent=2, sort_keys=True)
+
+
+def _inspect_durable(path: Path) -> tuple[str, dict[str, Any] | None]:
+    """Classify a safety file without replacing it."""
+    try:
+        exists = path.exists()
+    except OSError:
+        return "unreadable", None
+    if not exists:
+        return "missing", None
+    try:
+        is_file = path.is_file()
+    except OSError:
+        return "unreadable", None
+    if not is_file:
+        return "invalid", None
+    try:
+        raw = _read_text(path)
+    except OSError:
+        return "unreadable", None
+    try:
+        blob = json.loads(raw)
+    except (json.JSONDecodeError, UnicodeError, RecursionError, ValueError):
+        return "invalid", None
+    if not isinstance(blob, dict):
+        return "invalid", None
+    kind = _version_kind(blob)
+    if kind == "future":
+        return "future", None
+    if kind != "supported":
+        return "invalid", None
+    validated = _validate_document(blob)
+    if validated is None:
+        return "invalid", None
+    return "valid", validated
+
+
 def _atomic_write(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
+    text = _render_payload(payload)
     tmp = path.with_suffix(path.suffix + ".tmp")
-    text = json.dumps(payload, indent=2, sort_keys=True)
-    tmp.write_text(text, encoding="utf-8")
-    os.replace(tmp, path)
+    try:
+        with tmp.open("w", encoding="utf-8", newline="\n") as handle:
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(tmp, path)
+    except Exception:
+        try:
+            if tmp.exists():
+                tmp.unlink()
+        except OSError:
+            logger.error("live safety temporary file cleanup failed path=%s", tmp)
+        raise
 
 
 def _read_document(path: Path) -> dict[str, Any] | None:
-    if not path.is_file():
-        return None
-    try:
-        raw = path.read_text(encoding="utf-8-sig")
-        blob = json.loads(raw)
-    except (OSError, json.JSONDecodeError, UnicodeError):
-        return None
-    return _validate_document(blob)
+    kind, document = _inspect_durable(path)
+    if kind == "valid":
+        return document
+    return None
+
+
+def _document_for_update() -> dict[str, Any]:
+    """Return a supported document. Refuse to replace a protected existing file."""
+    kind, document = _inspect_durable(state_path())
+    if kind == "missing":
+        return _blank_document(reason=REASON_DEFAULT_DENY)
+    if kind == "valid" and document is not None:
+        return document
+    raise SafetyStateProtected(kind)
+
+
+def _preserve_unknown(previous: Any, known: dict[str, Any]) -> dict[str, Any]:
+    kept: dict[str, Any] = {}
+    if isinstance(previous, dict):
+        kept = {key: value for key, value in previous.items() if key not in known}
+    kept.update(known)
+    return kept
 
 
 def _record_persisted_auth(doc: dict[str, Any]) -> None:
@@ -194,23 +283,37 @@ def _set_effective_blocked(*, reason: str) -> None:
     _effective_auth_updated_at = _utc_now()
 
 
+def _deactivate_all_strategies(reason: str) -> None:
+    from forex_bot.strategy_meta import strategies
+
+    now = _utc_now()
+    for strat in strategies.values():
+        strat.active = False
+        strat.authorised_for_live = False
+        strat.disable_reason = reason
+        strat.changed_at_utc = now
+        strat.loaded_from_durable = False
+
+
 def _apply_strategies_from_doc(doc: dict[str, Any]) -> None:
     from forex_bot.strategy_meta import strategies
 
     rows = doc.get("strategies") or {}
     for name, strat in strategies.items():
         row = rows.get(name) if isinstance(rows.get(name), dict) else None
-        if row is None:
+        active = row.get("active") if isinstance(row, dict) else None
+        if not isinstance(active, bool):
             strat.active = False
             strat.disable_reason = REASON_CORRUPT
             strat.changed_at_utc = _utc_now()
             strat.loaded_from_durable = False
             strat.authorised_for_live = False
             continue
-        strat.active = bool(row.get("active"))
-        strat.authorised_for_live = bool(row.get("authorised_for_live"))
-        strat.disable_reason = row.get("disable_reason")
-        strat.changed_at_utc = row.get("changed_at_utc")
+        authorised = row.get("authorised_for_live", False) if isinstance(row, dict) else False
+        strat.active = active
+        strat.authorised_for_live = authorised if isinstance(authorised, bool) else False
+        strat.disable_reason = row.get("disable_reason") if isinstance(row, dict) else None
+        strat.changed_at_utc = row.get("changed_at_utc") if isinstance(row, dict) else None
         strat.loaded_from_durable = True
         if not strat.active:
             strat.authorised_for_live = False
@@ -223,21 +326,24 @@ def _snapshot_strategies_into(doc: dict[str, Any]) -> None:
     for name, strat in strategies.items():
         try:
             sharpe = float(strat.sharpe())
-        except Exception:
+        except (TypeError, ValueError, ZeroDivisionError):
             sharpe = None
         pnl = getattr(strat, "pnl", None)
         n = len(pnl) if pnl is not None else 0
         raw_prev = out.get(name)
         prev = raw_prev if isinstance(raw_prev, dict) else {}
-        out[name] = {
-            "active": bool(getattr(strat, "active", False)),
-            "authorised_for_live": bool(getattr(strat, "authorised_for_live", False)),
+        known = {
+            "active": getattr(strat, "active", False) is True,
+            "authorised_for_live": getattr(strat, "authorised_for_live", False) is True,
             "disable_reason": getattr(strat, "disable_reason", None) or prev.get("disable_reason"),
             "changed_at_utc": getattr(strat, "changed_at_utc", None) or prev.get("changed_at_utc"),
             "sample_count": n,
             "sharpe": sharpe,
             "loaded_from_durable": bool(getattr(strat, "loaded_from_durable", False)),
         }
+        if not known["active"]:
+            known["authorised_for_live"] = False
+        out[name] = _preserve_unknown(prev, known)
     doc["strategies"] = out
 
 
@@ -256,20 +362,38 @@ def _persist_unlocked(doc: dict[str, Any]) -> None:
         raise
 
 
+def _refuse_existing(kind: str, path: Path) -> dict[str, Any]:
+    """Fail closed in memory and leave the existing file bytes unchanged."""
+    global _initialised, _state_valid, _loaded_from_durable
+    if kind == "future":
+        reason = REASON_FUTURE_SCHEMA
+    elif kind == "unreadable":
+        reason = REASON_UNREADABLE
+    else:
+        reason = REASON_CORRUPT
+    logger.warning("live safety: %s path=%s — file preserved", reason, path)
+    _loaded_from_durable = False
+    _deactivate_all_strategies(reason)
+    _set_effective_blocked(reason=reason)
+    _state_valid = False
+    _initialised = True
+    return _blank_document(reason=reason)
+
+
 def initialise_fail_closed() -> dict[str, Any]:
     """Load durable strategy state. Effective live-order auth is always BLOCKED on process start."""
     global _initialised, _state_valid, _loaded_from_durable
     with _lock:
         path = state_path()
-        doc = _read_document(path)
-        if doc is None:
-            reason = REASON_CORRUPT if path.exists() else REASON_DEFAULT_DENY
+        kind, doc = _inspect_durable(path)
+        if kind == "missing":
+            reason = REASON_DEFAULT_DENY
             logger.warning("live safety: %s path=%s — fail closed", reason, path)
             doc = _blank_document(reason=reason)
             _loaded_from_durable = False
             _apply_strategies_from_doc(doc)
             _set_effective_blocked(reason=reason)
-        else:
+        elif kind == "valid" and doc is not None:
             _loaded_from_durable = True
             _state_valid = True
             _record_persisted_auth(doc)
@@ -278,6 +402,8 @@ def initialise_fail_closed() -> dict[str, Any]:
                 _set_effective_blocked(reason=REASON_PERSISTED_ALLOWED_IGNORED)
             else:
                 _set_effective_blocked(reason=REASON_PROCESS_START)
+        else:
+            return _refuse_existing(kind, path)
         _snapshot_strategies_into(doc)
         try:
             _persist_unlocked(doc)
@@ -303,19 +429,22 @@ def persist_evolve_disable(name: str, *, sample_count: int, sharpe: float) -> No
     with _lock:
         if not _initialised:
             initialise_fail_closed()
-        path = state_path()
-        doc = _read_document(path) or _blank_document(reason=REASON_DEFAULT_DENY)
+        doc = _document_for_update()
         rows = doc.setdefault("strategies", {})
         now = _utc_now()
-        rows[name] = {
-            "active": False,
-            "authorised_for_live": False,
-            "disable_reason": REASON_EVOLVE,
-            "changed_at_utc": now,
-            "sample_count": int(sample_count),
-            "sharpe": float(sharpe),
-            "loaded_from_durable": True,
-        }
+        previous = rows.get(name)
+        rows[name] = _preserve_unknown(
+            previous,
+            {
+                "active": False,
+                "authorised_for_live": False,
+                "disable_reason": REASON_EVOLVE,
+                "changed_at_utc": now,
+                "sample_count": int(sample_count),
+                "sharpe": float(sharpe),
+                "loaded_from_durable": True,
+            },
+        )
         from forex_bot.strategy_meta import strategies
 
         strat = strategies.get(name)
@@ -344,19 +473,21 @@ def operator_set_live_order_authorisation(
     why = (reason or "").strip()
     if not why:
         raise ValueError("reason is required")
+    global _effective_auth_state, _effective_auth_reason, _effective_auth_updated_at
     with _lock:
         if not _initialised:
             initialise_fail_closed()
-        path = state_path()
-        doc = _read_document(path) or _blank_document(reason=REASON_DEFAULT_DENY)
-        global _effective_auth_state, _effective_auth_reason, _effective_auth_updated_at
+        doc = _document_for_update()
         now = _utc_now()
-        doc["live_order_authorisation"] = {
-            "state": wanted,
-            "reason": why,
-            "updated_at_utc": now,
-            "source": "operator",
-        }
+        doc["live_order_authorisation"] = _preserve_unknown(
+            doc.get("live_order_authorisation"),
+            {
+                "state": wanted,
+                "reason": why,
+                "updated_at_utc": now,
+                "source": "operator",
+            },
+        )
         _persist_unlocked(doc)
         _effective_auth_state = wanted
         _effective_auth_reason = why
@@ -382,15 +513,14 @@ def operator_set_strategy_active(
     with _lock:
         if not _initialised:
             initialise_fail_closed()
+        doc = _document_for_update()
         from forex_bot.strategy_meta import strategies
 
         strat = strategies[key]
-        strat.active = bool(active)
-        strat.authorised_for_live = bool(active)
-        strat.disable_reason = None if active else why
+        strat.active = active is True
+        strat.authorised_for_live = active is True
+        strat.disable_reason = None if strat.active else why
         strat.changed_at_utc = _utc_now()
-        path = state_path()
-        doc = _read_document(path) or _blank_document(reason=REASON_DEFAULT_DENY)
         _snapshot_strategies_into(doc)
         _persist_unlocked(doc)
 
@@ -404,7 +534,7 @@ def live_safety_snapshot() -> dict[str, Any]:
         for name, strat in strategies.items():
             try:
                 sharpe = float(strat.sharpe())
-            except Exception:
+            except (TypeError, ValueError, ZeroDivisionError):
                 sharpe = None
             pnl = getattr(strat, "pnl", None)
             active = bool(getattr(strat, "active", False))

@@ -1,0 +1,23 @@
+{
+  "suite": "r24_recovery_fail_closed",
+  "passed": 14,
+  "failed": 0,
+  "skipped": 0,
+  "deselected": 0,
+  "exit": 0,
+  "blocked_socket_or_dns_attempts": 3,
+  "dotenv_stubs": 1,
+  "postgresql_connections": 0,
+  "broker_calls": 0,
+  "network_successes": 0,
+  "scenarios": {
+    "connection_unavailable": "recovery_unreadable",
+    "query_failure": "recovery_unreadable",
+    "explicit_failure_result": "recovery_unreadable",
+    "empty_success": "not recovery_unreadable",
+    "filled": "exposure_unconfirmed",
+    "unresolved": "exposure_unconfirmed",
+    "pending": "active_reservation",
+    "partial": "active_reservation"
+  }
+}

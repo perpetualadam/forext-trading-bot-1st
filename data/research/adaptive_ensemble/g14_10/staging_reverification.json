@@ -1,0 +1,20 @@
+{
+  "stage": "G.14.10",
+  "mode": "read_only",
+  "staging_directory": "C:\\Users\\Brian\\AppData\\Local\\Temp\\forext-g14-1-staging-0yifygx2",
+  "verifier": "tests/g14_1_verify.py:verify_directory",
+  "dockerignore_rules_argument": null,
+  "expected_files": 63,
+  "actual_files": 63,
+  "expected_bytes": 617279,
+  "actual_bytes": 617279,
+  "manifest_sha256": "8597768f9b351ee5a8b8c3750cb4df12880a25414dfb4e6aab072e1fe2b3b33b",
+  "independent_verification": "PASS",
+  "per_file_hashes": "matched the G.14.1 manifest or verify_directory would have raised hash_mismatch",
+  "unexpected_files": false,
+  "symlinks_reparse_placeholders": "unsafe attributes would have failed verification",
+  "sensitive_backups_excluded": true,
+  "credential_research_operational_test_paths": "forbidden names or prefixes would have failed verification",
+  "staging_modified": false,
+  "result": "PASS"
+}

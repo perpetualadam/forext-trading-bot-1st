@@ -1,0 +1,9 @@
+# D.7 harness independent review
+
+Reviewed read-only: `tests/d7_resource_cleanup_runner.py` and `tests/test_d7_resource_cleanup.py`. Neither file was modified. Hash pins remain `20e935d5d6e91844ba6d736081bb01989b88b6208584aafbf3aa2d4aedf2a68e` and `89f9858d9b4fe20d1f7d177f91f7b9481003582d8499efc60f827470778bd8e1`.
+
+The D.7 child builds a synthetic environment and does not copy the parent environment. It fakes `dotenv`, installs a fake `psycopg2` before import, denies `socket.connect`, `socket.connect_ex`, `socket.create_connection`, and `asyncio.open_connection`, and denies `socket.getaddrinfo`. `socket.socketpair` is limited to a loopback port 0 bind used by the Windows self-pipe. A later connect to that port, or to `127.0.0.1:5432`, is still denied. Filesystem guards cover open, replace, rename, remove, and the shutil copies that the runner wraps. Production `data/ops`, `v2_shadow`, `.env`, and credential basenames are denied. Temporary safety state is a pytest path. Broker, trading-loop, reconciliation, and Telegram entry points used by the lifespan tests are replaced. Subprocess timeout is bounded by the parent test. The runner snapshots application state before its own close and cancel counts.
+
+A subprocess is not treated as a security boundary. The preventive controls above are what make the D.7 runs usable. They are sufficient for the D.7 cleanup tests. They are not a concurrency harness: they do not provide barriers, per-worker exception boxes, or connection-identity accounting for two overlapping `get_connection` calls. D.8 therefore uses `tests/d8_concurrency_runner.py` and does not edit the D.7 runner to weaken its hash checks.
+
+D.7 tests were re-executed in this stage as regression, not rewritten. Result: the D.7 module was part of 133 passed tests in 9.96 seconds, together with the D.2, D.3, and D.4 modules.

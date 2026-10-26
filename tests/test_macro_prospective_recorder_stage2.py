@@ -444,7 +444,26 @@ def test_host_store_is_not_a_bot_container_path():
     assert "consensus_pit/prospective" not in compose
     assert "COPY reports" not in dockerfile
     assert "COPY data" not in dockerfile
-    assert "COPY forex_bot ./forex_bot" in dockerfile
+    # G.13 removed the broad package copy. The replacement rejects that copy and
+    # any equivalent broad, wildcard, credential, research, test, or state copy.
+    root = Path(__file__).resolve().parents[1]
+    spec = importlib.util.spec_from_file_location("g13_1_baseline", root / "tests" / "g13_1_baseline.py")
+    if spec is None or spec.loader is None:
+        raise RuntimeError("g13.1 baseline helper is unavailable")
+    baseline = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(baseline)
+    allow = json.loads(
+        (root / "data/research/adaptive_ensemble/g10/production_allowlist.json").read_text(encoding="utf-8")
+    )
+    rules = baseline._packaging().dockerignore_rules()
+    packaging = baseline.packaging_problems(
+        dockerfile,
+        [row["path"] for row in allow["files"]],
+        root,
+        rules,
+    )
+    assert packaging["ok"], packaging
+    assert packaging["main_py_copies"] == 1
     loop = Path("forex_bot/bot_loop.py").read_text(encoding="utf-8")
     assert "macro_prospective" not in loop
     assert (REAL_ROOT / "events" / "events.json").exists()

@@ -1,0 +1,17 @@
+{
+  "suites": {
+    "r19": {"collected": 222, "executed": 213, "passed": 213, "failed": 0, "skipped": 9, "deselected": 0, "not_evaluated": 9},
+    "regression_r4_r5_r7_r8_r9": {"collected": 128, "executed": 127, "passed": 120, "failed": 0, "skipped": 7, "deselected": 1, "not_evaluated": 7},
+    "r10": {"collected": 74, "executed": 69, "passed": 69, "failed": 0, "skipped": 5, "deselected": 0, "not_evaluated": 5, "first_attempt": "failed on transient WinError 5 replacing data/research/adaptive_ensemble/r10/synthetic_live_safety_state.json", "retry": "69 passed, 5 skipped"},
+    "r11": {"collected": 56, "executed": 51, "passed": 51, "failed": 0, "skipped": 5, "deselected": 0},
+    "r12": {"collected": 123, "executed": 118, "passed": 118, "failed": 0, "skipped": 5, "deselected": 0},
+    "r13": {"collected": 87, "executed": 81, "passed": 81, "failed": 0, "skipped": 6, "deselected": 0},
+    "r14": {"collected": 148, "executed": 143, "passed": 143, "failed": 0, "skipped": 5, "deselected": 0},
+    "r15": {"collected": 171, "executed": 165, "passed": 165, "failed": 0, "skipped": 6, "deselected": 0},
+    "r16": {"collected": 141, "executed": 135, "passed": 135, "failed": 0, "skipped": 6, "deselected": 0},
+    "r17": {"collected": 183, "executed": 174, "passed": 174, "failed": 0, "skipped": 9, "deselected": 0},
+    "r18": {"collected": 212, "executed": 203, "passed": 203, "failed": 0, "skipped": 9, "deselected": 0}
+  },
+  "r18_assertion_change": "K018 now requires stable eligibility fields and a distinct generated client-order id. It no longer requires the whole decision dict to be byte-identical, because each order is bound to its own client-order id.",
+  "hash_pins_updated": ["tests/test_r8_reservation_safety.py", "tests/test_r10_offline_startup.py", "tests/test_r11_historical_recovery.py"]
+}

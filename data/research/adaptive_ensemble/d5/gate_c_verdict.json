@@ -1,0 +1,26 @@
+{
+  "gate": "C",
+  "verdict": "PASS",
+  "entered": true,
+  "reason": "Gate A and Gate B rows are PASS.",
+  "entrypoint": "async with forex_bot.app.lifespan(app)",
+  "server_started": false,
+  "uvicorn_started": false,
+  "listening_socket": false,
+  "actual_lifespan_executed": true,
+  "evidence_level": "ACTUAL_LIFESPAN_ISOLATED",
+  "production_startup_verified": false,
+  "incomplete_replacements": [],
+  "isolation_violations": [],
+  "first_probe": {
+    "result": "stopped",
+    "detail": "socket.connect to 127.0.0.1 was denied. The traceback was asyncio Windows self-pipe creation inside asyncio.run, after app import had completed. The guard was not opened for general loopback. A later run confined that one socketpair to a port bound in the same call."
+  },
+  "passing_run": {
+    "network_attempts": [],
+    "filesystem_denials": [],
+    "self_pipe_used_for_event_loop": true,
+    "dotenv_fake_called_at_import": true,
+    "foreign_project_on_sys_path": false
+  }
+}

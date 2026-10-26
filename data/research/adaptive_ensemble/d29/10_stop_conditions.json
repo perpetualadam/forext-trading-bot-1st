@@ -1,0 +1,14 @@
+{
+  "stop_if": [
+    "any host is not the registry, the authentication host, or a storage host named by a future execution approval",
+    "a second HTTP 401 appears",
+    "a redirect has more than one hop",
+    "a response body exceeds its cap",
+    "content encoding is not identity",
+    "a proxy is configured",
+    "a digest or size differs",
+    "the serial clock exceeds 2160 seconds",
+    "the request count would exceed 18",
+    "any operation other than the listed GET is required"
+  ]
+}

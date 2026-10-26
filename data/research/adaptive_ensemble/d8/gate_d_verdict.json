@@ -1,0 +1,11 @@
+{
+  "gate": "D",
+  "verdict": "PASS_EXECUTED_DEFECT_OBSERVED",
+  "entered": true,
+  "actual_get_connection_executed": true,
+  "actual_lifespan_executed": true,
+  "production_source_modified": false,
+  "prohibited_operation": false,
+  "confirmed_defect": "D8-CONC-01",
+  "borrower_quiescence": "DATABASE_BORROWER_QUIESCENCE_UNVERIFIED"
+}

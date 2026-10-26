@@ -204,8 +204,8 @@ def test_rl_restart_roundtrip_and_stable_inference(tmp_path, monkeypatch):
     agent = RLAgent(epsilon=0.25)
     agent.q = store.q_table() or {}
     agent.persisted_ok = True
-    assert agent.decide("s") == "BUY"
-    assert agent.decide("s") == "BUY"
+    assert agent.decide("s") == "UNAVAILABLE"
+    assert agent.decide("s") == "UNAVAILABLE"
 
 
 def test_offline_learning_cannot_overwrite_production(tmp_path):

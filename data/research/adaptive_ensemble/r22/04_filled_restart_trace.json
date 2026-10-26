@@ -1,0 +1,80 @@
+{
+  "kind": "filled",
+  "instance_a": {
+    "functions": [
+      "evaluate",
+      "dispatch_production_iteration",
+      "evaluate_one_instrument_iteration"
+    ],
+    "inert_dispatches": 1,
+    "order_status": "FILLED",
+    "client_order_id": "cid-8954e8b39e904c8189c2f5e3dce31041",
+    "production_eligible": false,
+    "selected_strategy": "scalp"
+  },
+  "store": {
+    "path": "C:\\Users\\Brian\\OneDrive\\Desktop\\Forext Trading Bot 1st\\data\\research\\adaptive_ensemble\\r22\\stores\\filled.json",
+    "sha256": "e6594e518dc92ca2d4953a1f33e39ec1669276e68e64f2e7b6789872b55cc987",
+    "sha256_after_wipe": "e6594e518dc92ca2d4953a1f33e39ec1669276e68e64f2e7b6789872b55cc987",
+    "record": {
+      "broker_order_id": "SIMULATED",
+      "client_order_id": "cid-8954e8b39e904c8189c2f5e3dce31041",
+      "fill_price": 1.1,
+      "filled_units": 100000.00000001102,
+      "metadata": {
+        "exposure_safety": "UNCONFIRMED",
+        "simulation": true,
+        "strategy": "scalp"
+      },
+      "reservation_status": "FILLED",
+      "side": "BUY",
+      "status": "FILLED",
+      "symbol": "EUR_USD",
+      "units": 100000.00000001102
+    }
+  },
+  "restart": {
+    "maps_after_wipe": {
+      "orders": 0,
+      "positions": 0,
+      "exposure": 0,
+      "blocking": 0,
+      "unresolved": 0
+    },
+    "file_unchanged": true,
+    "startup_function": "initialise_application",
+    "recovery_functions": [
+      "read_offline_exec_orders",
+      "select_rows_for_recovery",
+      "ingest_recovery_snapshot"
+    ],
+    "provider_calls": [
+      "validate_config",
+      "verify_safety",
+      "persistence",
+      "read_offline_exec_orders",
+      "broker",
+      "market_data",
+      "messaging",
+      "health",
+      "schedule"
+    ],
+    "startup_ok": true,
+    "recovered_source": "db_recovery",
+    "recovered_status": "FILLED",
+    "recovered_object_is_new": true,
+    "exposure": "exposure_unconfirmed"
+  },
+  "instance_b": {
+    "functions": [
+      "evaluate",
+      "dispatch_production_iteration",
+      "evaluate_one_instrument_iteration"
+    ],
+    "blocked_by": "exposure_unconfirmed",
+    "exposure_read": "exposure_unconfirmed",
+    "reservation_attempted": false,
+    "inert_dispatches": 0,
+    "production_eligible": false
+  }
+}

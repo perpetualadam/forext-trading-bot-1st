@@ -1,0 +1,55 @@
+{
+  "requirements": [
+    {
+      "source_file": "requirements-dev.txt",
+      "line": 1,
+      "original": "-r requirements.txt",
+      "parsing": "TRANSCRIPTION_ONLY_NOT_PEP508_VALIDATED",
+      "kind": "directive"
+    },
+    {
+      "source_file": "requirements-dev.txt",
+      "line": 2,
+      "original": "packaging>=22.0",
+      "parsing": "TRANSCRIPTION_ONLY_NOT_PEP508_VALIDATED",
+      "transcribed_name": "packaging",
+      "extras": [],
+      "version_specifier": ">=22.0",
+      "environment_marker_text": null,
+      "semicolon_present": false,
+      "direct_url_text_present": false,
+      "editable": false,
+      "exact_version_pin": false,
+      "hash_pin": false,
+      "architecture_sensitive": "unknown",
+      "native_extension_candidate": "unknown",
+      "transitive_closure_known": false,
+      "metadata_verified_externally": false,
+      "future_metadata_evidence_required": "bounded project metadata for this transcribed name",
+      "pep508_validation": "NOT_PERFORMED"
+    },
+    {
+      "source_file": "requirements-dev.txt",
+      "line": 3,
+      "original": "pytest>=8.3.5,<9",
+      "parsing": "TRANSCRIPTION_ONLY_NOT_PEP508_VALIDATED",
+      "transcribed_name": "pytest",
+      "extras": [],
+      "version_specifier": ">=8.3.5,<9",
+      "environment_marker_text": null,
+      "semicolon_present": false,
+      "direct_url_text_present": false,
+      "editable": false,
+      "exact_version_pin": false,
+      "hash_pin": false,
+      "architecture_sensitive": "unknown",
+      "native_extension_candidate": "unknown",
+      "transitive_closure_known": false,
+      "metadata_verified_externally": false,
+      "future_metadata_evidence_required": "bounded project metadata for this transcribed name",
+      "pep508_validation": "NOT_PERFORMED"
+    }
+  ],
+  "merged_into_production_inventory": false,
+  "executed": false
+}

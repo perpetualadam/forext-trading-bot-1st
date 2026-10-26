@@ -1,0 +1,42 @@
+{
+  "cleared_events": [],
+  "day_baselines": {
+    "2026-10-26": 10000.0
+  },
+  "events": [
+    {
+      "broker_seq": 1,
+      "broker_time_utc": "2026-10-26T14:26:13.110682+00:00",
+      "event_id": "e--200.0-10000.0",
+      "ingested_utc": "2026-10-26T14:26:13.110893+00:00",
+      "realised_delta": -200.0,
+      "utc_day": "2026-10-26"
+    }
+  ],
+  "integrity": "ok",
+  "integrity_hash": "809d06427d03a8e26b21c30ddcc2998449f343a0cfb23e0fe82c5cfb4daf663f",
+  "latch_reason": "daily_realised_loss_limit",
+  "latched": true,
+  "latched_at_utc": "2026-10-26T14:26:13.110924+00:00",
+  "limits": {
+    "daily_realised_pct": 0.02,
+    "daily_total_pct": 0.03,
+    "max_dd_pct": 0.05
+  },
+  "nav_snapshots": [
+    {
+      "asof_utc": "2026-10-26T14:26:13.110907+00:00",
+      "nav": 10000.0,
+      "unrealised": 0.0
+    },
+    {
+      "asof_utc": "2026-10-26T14:26:13.140515+00:00",
+      "nav": 10000.0,
+      "unrealised": 0.0
+    }
+  ],
+  "peak_equity": 10000.0,
+  "quarantine": [],
+  "schema_version": 2,
+  "updated_utc": "2026-10-26T14:26:13.140532+00:00"
+}

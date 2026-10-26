@@ -1,0 +1,5 @@
+{
+  "gate": "G",
+  "result": "PASS",
+  "meaning": "BOTH_DECISIONS_PENDING. This is a completed decision record, not a verified target."
+}

@@ -1,0 +1,22 @@
+{
+  "stage": "G.14.3",
+  "staging_directory": "C:\\Users\\Brian\\AppData\\Local\\Temp\\forext-g14-1-staging-0yifygx2",
+  "outside_onedrive": true,
+  "expected_files": 63,
+  "actual_files": 63,
+  "expected_bytes": 617279,
+  "actual_bytes": 617279,
+  "manifest_sha256": "8597768f9b351ee5a8b8c3750cb4df12880a25414dfb4e6aab072e1fe2b3b33b",
+  "manifest_digest_matched": true,
+  "per_file_hashes_matched": true,
+  "unexpected_files": [],
+  "symlinks": 0,
+  "reparse_points": 0,
+  "onedrive_placeholders": 0,
+  "sensitive_backup_filenames_present": false,
+  "backup_files_opened": false,
+  "verifier": "tests/g14_1_verify.py",
+  "independent_verification": "PASS",
+  "staging_regenerated": false,
+  "staging_modified": false
+}

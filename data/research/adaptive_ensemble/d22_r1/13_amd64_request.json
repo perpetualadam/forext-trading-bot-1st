@@ -1,0 +1,5 @@
+{
+  "method": "GET",
+  "host": "registry-1.docker.io",
+  "path": "/v2/library/python/manifests/sha256:2ed6491b93cd49272ee6de2b5a38440c3448360322c089fc23e370722d74179d"
+}

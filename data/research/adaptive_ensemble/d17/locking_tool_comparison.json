@@ -1,0 +1,28 @@
+{
+  "executed": false,
+  "tools_assumed_installed": false,
+  "approaches": [
+    {
+      "name": "pip-tools hash output",
+      "hashes": "FUTURE_VERIFICATION_REQUIRED",
+      "cross_platform": "FUTURE_VERIFICATION_REQUIRED",
+      "host_contamination_risk": "high if run on Windows Python 3.13"
+    },
+    {
+      "name": "uv compile or uv lock",
+      "hashes": "FUTURE_VERIFICATION_REQUIRED",
+      "cross_platform": "FUTURE_VERIFICATION_REQUIRED",
+      "host_contamination_risk": "lower only if target platform flags are later proven"
+    },
+    {
+      "name": "Poetry",
+      "hashes": "FUTURE_VERIFICATION_REQUIRED",
+      "project_fit": "no pyproject.toml; would change the install path"
+    },
+    {
+      "name": "name-only pins without hashes",
+      "sufficient": false
+    }
+  ],
+  "planning_preference": "Generate one hash-pinned production lock for the verified Python 3.12 Linux target, from a disposable target environment or a later-proven cross-resolver. Do not lock from the host interpreter."
+}

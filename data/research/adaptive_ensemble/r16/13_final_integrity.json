@@ -1,0 +1,28 @@
+{
+  "classification": "R16_OFFLINE_EQUITY_SOURCES_UNIFIED",
+  "labels": {
+    "source_reviewed": true,
+    "code_modified": true,
+    "account_validation_executed": true,
+    "equity_inputs_unified": true,
+    "actual_strategy_selector_executed": true,
+    "actual_ai_vote_executed": true,
+    "actual_rl_veto_executed": true,
+    "inert_adapter_dispatch": true,
+    "production_adapter_source_verified": true,
+    "production_adapter_invoked": false,
+    "production_account_provenance": "NOT_EVALUATED",
+    "broker": "NOT_EVALUATED",
+    "postgresql": "NOT_EVALUATED"
+  },
+  "run_bot_executed": false,
+  "launcher_executed": false,
+  "real_broker_requests": 0,
+  "network_successes": 0,
+  "postgresql_connections": 0,
+  "git_commit": false,
+  "production_deployment": "NO-GO",
+  "practice_orders": "NOT AUTHORISED",
+  "live_trading": "NOT AUTHORISED",
+  "rollback": "NO-GO"
+}

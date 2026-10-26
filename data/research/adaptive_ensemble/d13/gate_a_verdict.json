@@ -1,0 +1,13 @@
+{
+  "gate": "A",
+  "verdict": "PASS",
+  "baseline": "expected production hashes matched before any D.13 edit",
+  "lifespan": "forex_bot/app.py lifespan",
+  "telegram_start_call": "forex_bot/app.py lines 388-391",
+  "telegram_stop_call": "forex_bot/app.py lines 402-410",
+  "logger": "logging.getLogger(__name__) at forex_bot/app.py line 59",
+  "cleanup_channel": "startup_cleanup_errors() reads _last_cleanup_errors",
+  "start_contract": "start_telegram_control returns None",
+  "stop_contract": "stop_telegram_control returns STOP_COMPLETED, STOP_INCOMPLETE_WORKER_ALIVE, or STOP_NOT_RUNNING",
+  "database_release_rule": "release only when startup_failure is set and telegram_stop_failed is false"
+}

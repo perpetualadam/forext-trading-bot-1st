@@ -11,8 +11,8 @@ def test_aggregate_direction_weighted_buy_vs_sell():
     assert (
         _aggregate_direction(
             [
-                {"direction": "BUY", "confidence": 0.4},
-                {"direction": "SELL", "confidence": 0.6},
+                {"allow": True, "direction": "BUY", "confidence": 0.4},
+                {"allow": True, "direction": "SELL", "confidence": 0.6},
             ]
         )
         == "SELL"
@@ -20,39 +20,39 @@ def test_aggregate_direction_weighted_buy_vs_sell():
     assert (
         _aggregate_direction(
             [
-                {"direction": "BUY", "confidence": 0.6},
-                {"direction": "SELL", "confidence": 0.4},
+                {"allow": True, "direction": "BUY", "confidence": 0.6},
+                {"allow": True, "direction": "SELL", "confidence": 0.4},
             ]
         )
         == "BUY"
     )
 
 
-def test_aggregate_direction_tie_uses_highest_confidence_side():
+def test_aggregate_direction_tie_has_no_side():
     assert (
         _aggregate_direction(
             [
-                {"direction": "BUY", "confidence": 0.5},
-                {"direction": "SELL", "confidence": 0.5},
+                {"allow": True, "direction": "BUY", "confidence": 0.5},
+                {"allow": True, "direction": "SELL", "confidence": 0.5},
             ]
         )
-        == "BUY"
+        is None
     )
     assert (
         _aggregate_direction(
             [
-                {"direction": "SELL", "confidence": 0.8},
-                {"direction": "BUY", "confidence": 0.8},
-                {"direction": "HOLD", "confidence": 1.0},
+                {"allow": True, "direction": "SELL", "confidence": 0.8},
+                {"allow": True, "direction": "BUY", "confidence": 0.8},
+                {"allow": True, "direction": "HOLD", "confidence": 1.0},
             ]
         )
-        == "SELL"
+        is None
     )
 
 
-def test_aggregate_direction_all_hold_defaults_buy():
-    assert _aggregate_direction([{"direction": "HOLD", "confidence": 0.9}]) == "BUY"
-    assert _aggregate_direction([]) == "BUY"
+def test_aggregate_direction_hold_and_empty_have_no_side():
+    assert _aggregate_direction([{"allow": True, "direction": "HOLD", "confidence": 0.9}]) is None
+    assert _aggregate_direction([]) is None
 
 
 def test_vote_allow_is_confidence_weighted_not_majority_count():
@@ -71,9 +71,9 @@ def test_vote_allow_is_confidence_weighted_not_majority_count():
         external_llms=[],
     )
     out = asyncio.run(ens.vote({}, "EUR_USD"))
-    # allow_score = 0.2 / (0.2+0.8) = 0.2 → not allowed; direction still SELL by weight
+    # allow_score = 0.2 / (0.2+0.8) = 0.2 → not allowed, and the rejected result has no side
     assert out["allow"] is False
-    assert out["direction"] == "SELL"
+    assert out["direction"] is None
 
 
 def test_vote_allow_true_when_weighted_allow_over_half():

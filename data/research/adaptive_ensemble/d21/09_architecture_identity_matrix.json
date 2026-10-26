@@ -1,0 +1,42 @@
+{
+  "linux/amd64": {
+    "intended_oci_platform": "linux/amd64",
+    "approval_evidence": "D.21 stage instruction, decisions D21-PLATFORM-01 and D21-PLATFORM-02",
+    "approval_state": "EXPLICITLY_APPROVED_INTENDED_TARGETS",
+    "approved_base_image_reference": "docker.io/library/python:3.12-slim-bookworm",
+    "registry_index_digest": "UNVERIFIED",
+    "platform_manifest_digest": "UNVERIFIED",
+    "configuration_digest": "UNVERIFIED",
+    "python_implementation": "UNKNOWN",
+    "python_patch": "UNKNOWN",
+    "python_abi": "UNKNOWN",
+    "distribution_revision": "UNKNOWN",
+    "libc_family": "UNKNOWN",
+    "libc_version": "UNKNOWN",
+    "native_dependency_compatibility": "UNVERIFIED",
+    "wheel_compatibility": "UNVERIFIED",
+    "actual_vps_compatibility": "UNVERIFIED",
+    "verification_status": "NOT_VERIFIED",
+    "approval_is_not_technical_verification": true
+  },
+  "linux/arm64": {
+    "intended_oci_platform": "linux/arm64",
+    "approval_evidence": "D.21 stage instruction, decisions D21-PLATFORM-01 and D21-PLATFORM-02",
+    "approval_state": "EXPLICITLY_APPROVED_INTENDED_TARGETS",
+    "approved_base_image_reference": "docker.io/library/python:3.12-slim-bookworm",
+    "registry_index_digest": "UNVERIFIED",
+    "platform_manifest_digest": "UNVERIFIED",
+    "configuration_digest": "UNVERIFIED",
+    "python_implementation": "UNKNOWN",
+    "python_patch": "UNKNOWN",
+    "python_abi": "UNKNOWN",
+    "distribution_revision": "UNKNOWN",
+    "libc_family": "UNKNOWN",
+    "libc_version": "UNKNOWN",
+    "native_dependency_compatibility": "UNVERIFIED",
+    "wheel_compatibility": "UNVERIFIED",
+    "actual_vps_compatibility": "UNVERIFIED",
+    "verification_status": "NOT_VERIFIED",
+    "approval_is_not_technical_verification": true
+  }
+}

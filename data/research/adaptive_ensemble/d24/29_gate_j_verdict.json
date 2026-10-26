@@ -1,0 +1,7 @@
+{
+  "gate": "J",
+  "verdict": "PASS",
+  "protected_hashes_match": true,
+  "d22_r1_manifests_match": true,
+  "config_bytes_match": "NOT_BOTH_OBTAINED"
+}

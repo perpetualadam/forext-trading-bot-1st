@@ -1,0 +1,11 @@
+{
+  "d21_records_amd64_approved": true,
+  "d21_records_arm64_approved": true,
+  "d21_records_multi_platform_policy_approved": true,
+  "d21_records_base_image_reference_approved": true,
+  "d21_evidence": "data/research/adaptive_ensemble/d21/03_multi_platform_policy_decision.json and 04_base_image_reference_decision.json",
+  "d22_registry_read_stated_in_instruction": true,
+  "registry_read_executed": false,
+  "reason_not_executed": "D.22 requirements.txt expected digest does not match the D.21 baseline.",
+  "approval_does_not_authorise_other_network_operations": true
+}

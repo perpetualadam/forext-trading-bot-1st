@@ -1,0 +1,67 @@
+{
+  "evidence": "ACTUAL_COMBINED_TELEGRAM_DATABASE_ISOLATED",
+  "functions": [
+    "get_connection",
+    "fetch_all_trades_ordered",
+    "release_connection_after_failed_startup"
+  ],
+  "fake_boundary": "psycopg2.connect returns an in-memory connection; cursor.execute can block on threading.Event",
+  "results": {
+    "release_after_stop_while_poll_blocked": {
+      "classification": "FAIL",
+      "defect": "D10-DB-01",
+      "connection_after_stop": {"id": 1, "open": true, "cursor": 1, "lock_free": true},
+      "release_notes": [],
+      "old_closed": true,
+      "query_after_release": {
+        "thread": 16048,
+        "caller": "telegram-control",
+        "caller_alive": true,
+        "generation": 1,
+        "connection_id": 2,
+        "cursor_id": 2
+      },
+      "use_after_close": []
+    },
+    "release_waits_for_locked_query": {
+      "classification": "PASS",
+      "lock_free_while_query_held": false,
+      "release_finished_before_query_release": false,
+      "release_finished_after": true,
+      "connection_after_release_open": false,
+      "thread_still_alive_after_release": 19876,
+      "note": "The close waited for the locked execute. The worker was still alive afterwards and could call the helper again. This schedule did not issue that second call."
+    },
+    "stop_while_other_thread_holds_lock": {
+      "classification": "PASS",
+      "poller_blocked_on_foreign_lock": true,
+      "stop_finished_while_foreign_lock_held": false,
+      "elapsed_sec": 0.3118,
+      "thread_alive_after_stop": false
+    },
+    "direct_helper_after_release": {
+      "classification": "FAIL",
+      "defect": "D10-DB-01",
+      "evidence": "ACTUAL_DATABASE_FUNCTION_ISOLATED",
+      "old_id": 5,
+      "old_closed": true,
+      "new_id": 6,
+      "rows": 0,
+      "use_after_close": []
+    },
+    "release_close_failure": {
+      "classification": "PASS",
+      "notes": ["RuntimeError"],
+      "global_cleared": true,
+      "object_still_open": true,
+      "harness_closed": 1,
+      "note": "Matches the existing release contract: the error is recorded, the global is cleared, and a failed close leaves the object open."
+    },
+    "init_lock_overlap": {
+      "classification": "PASS",
+      "ids": [8, 8],
+      "connect_delta": 1,
+      "evidence": "ACTUAL_DATABASE_FUNCTION_ISOLATED"
+    }
+  }
+}

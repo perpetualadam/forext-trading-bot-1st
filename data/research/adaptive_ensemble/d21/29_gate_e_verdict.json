@@ -1,0 +1,6 @@
+{
+  "gate": "E",
+  "result": "PASS",
+  "meaning": "Index and both platform-manifest checks are specified. None were executed.",
+  "registry_verification_performed": false
+}

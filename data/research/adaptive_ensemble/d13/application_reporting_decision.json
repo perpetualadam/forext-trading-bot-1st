@@ -1,0 +1,8 @@
+{
+  "classification": "APPLICATION_SHUTDOWN_REPORTING_ONLY_REMEDIATED",
+  "final_stage_classification": "D13_REMEDIATION_PARTIAL_SCOPE_EXPANSION_REQUIRED",
+  "shutdown_observability": "D12-STOP-01 is application-observable through logger.warning and startup_cleanup_errors",
+  "startup_observability": "D12-START-01 remains unobservable inside app.py",
+  "database_ownership": "unchanged",
+  "required_future_action": "a separately approved change that gives start_telegram_control a documented result before app.py can report a refused start"
+}

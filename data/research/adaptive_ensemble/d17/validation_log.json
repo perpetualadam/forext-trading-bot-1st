@@ -1,0 +1,16 @@
+{
+  "commands": [
+    "git rev-parse HEAD",
+    "git branch --show-current",
+    "git status --short for protected and packaging paths",
+    "SHA-256 comparison against the D.17 expected hashes",
+    "AST scan of the 60 Dockerfile COPY Python files",
+    "AST scan of top-level tests/*.py for third-party imports",
+    "zoneinfo import search inside the copy set"
+  ],
+  "package_manager_commands": 0,
+  "network_requests": 0,
+  "docker_commands": 0,
+  "application_imports": 0,
+  "lockfiles_created": 0
+}

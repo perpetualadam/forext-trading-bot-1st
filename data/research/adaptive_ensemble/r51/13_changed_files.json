@@ -1,0 +1,24 @@
+{
+  "directory": "data/research/adaptive_ensemble/r51",
+  "files": {
+    "00_preflight.py": "25eaae442300226f24c7fda5fa42af71c06bb60e65d094b915d7b4eb130fa583",
+    "01_preflight.json": "6e27f31e4ac8ed06127d81b8229647079024317496cdbcbf10a37849195318eb",
+    "02_r48_r50_review.md": "6e59bd6e33696362c49df75508811d3b20a9a4349c54c0b31f2a7ecc228e6d50",
+    "03_adapter.md": "659d68beee09dbe3c110019af09574ddcaf9434f47254d43fd8846498432fa0f",
+    "04_tls_enforcement.md": "6f0127c87e38733e1867ab9718d6ef14c066b79c202971ad58a3f1a553c04734",
+    "05_redaction.md": "bb51732221367ae7c3fee33f903b813c00904760235fcaff59a0a76e2051692a",
+    "06_synthetic_session.json": "f8a862412d693c1c03dfc2057ed33751eb777b914159a39665e940042186caea",
+    "07_response_schema.md": "0fb8412694b01e298ae45b385b52a543694e0457515e364fe189d94a3b340743",
+    "08_gbp_home_currency.md": "944acb1533bce19ef53dc1889ebaa950f2e3d44ee1aad5417681fa7bc248b51a",
+    "09_manual_procedure.md": "42e7cc49992f3d41175a32e69fecfd11387f8291c4dc688ddc1c640c1e30e143",
+    "10_credential_boundary.md": "29085e1412c5db6300ee81aa9e7a83a9da0968ba4bb8c783b30f236cafe62d72",
+    "11_token_caveat.md": "206e320f2c5a4568c90c09c3307c346ae17d73f1b74ec2b293f45ad87580ade4",
+    "12_test_results.md": "6a6447ec928c11b751e32800792e781cfbeb5ab15de8a718f71d7dd94a1b5a9c",
+    "14_risks.md": "3f2d913e6113f8a362528f529e83840dae7f1d1345341d3cf4cc8a9c3eaa39bd",
+    "15_next_boundary.md": "0ef16b6e6e64f507a35e037837043b90abda63914a328164b7dc819604285619",
+    "https_adapter.py": "e08652cbd3b3b352fd7a3908288cb4a7e48a56ab7d17b429d2688698d8848cef",
+    "stage_r51_report.md": "2184c2f9f3c7e66486426d4d49a9c89cd8affd9fb487ba92b8a0c5e7d14e865f",
+    "test_adapter.py": "a80c0653c1671ced5d695a08d12be0d0cf4527db85b28a8f4d32e148321270f9",
+    "validation_log.json": "4cda0ef937e1192934d907d4f3d81fa3b0ac408b76e50c7ce786e33ff8c6de47"
+  }
+}

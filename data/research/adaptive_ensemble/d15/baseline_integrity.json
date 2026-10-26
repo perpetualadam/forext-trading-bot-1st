@@ -1,0 +1,64 @@
+{
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "working_tree": "dirty before D.15; existing changes preserved",
+  "d15_directory_at_start": "absent",
+  "d14_report_present": true,
+  "protected_hashes_matched": true,
+  "protected": {
+    "forex_bot/app.py": {
+      "sha256": "3ff01244ed217e85d211bec819a7ebff9c96fb0412c56e5a768792ab54b31ca1",
+      "size": 24456
+    },
+    "forex_bot/telegram_control.py": {
+      "sha256": "d32b560306fe2f86cc7c8ddbb40aa42842f071bd88ea513d77f172a6a0fadf4c",
+      "size": 46024
+    },
+    "forex_bot/database.py": {
+      "sha256": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e",
+      "size": 27888
+    },
+    "forex_bot/live_safety.py": {
+      "sha256": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+      "size": 22301
+    },
+    "forex_bot/strategy_meta.py": {
+      "sha256": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+      "size": 6823
+    }
+  },
+  "historical_test_hashes": {
+    "tests/test_d7_resource_cleanup.py": "89f9858d9b4fe20d1f7d177f91f7b9481003582d8499efc60f827470778bd8e1",
+    "tests/d7_resource_cleanup_runner.py": "20e935d5d6e91844ba6d736081bb01989b88b6208584aafbf3aa2d4aedf2a68e",
+    "tests/test_d8_database_concurrency.py": "830db4afab4c9c38c9e188b1aece7aa3819de8b42327326524cd2a24d09cffda",
+    "tests/d8_concurrency_runner.py": "7cf6533a9bfb66bbf2fd4a077110a59ee1150e5d2ff2b1f341f065ce877fc444",
+    "tests/test_d9_database_concurrency_remediation.py": "6d8275ef404345b0703254b1c9821f5d74fedd45c0f7cf3161ededc60b4f07b5",
+    "tests/d9_database_concurrency_runner.py": "13d0546d653b8124af255f87dfe21356386b970919b51ab5f85b8e2d0df8a1f8",
+    "tests/test_d10_telegram_shutdown.py": "20e0087fbe024005f4e6ce88e743f6cfd84412aebd228c1309721209600cbde5",
+    "tests/test_d10_database_borrower_quiescence.py": "aa914c7321253208163141d22a46c92cbae63a9b1d3d5be7bcf3623de6f12f4b",
+    "tests/d10_telegram_shutdown_runner.py": "7e847d4d3412487e892f52b03ec0975ed721b9fd9a8f05e0aea53f30cd79ae79",
+    "tests/test_d11_telegram_shutdown_remediation.py": "5e165ae6b884b6e69666d3f9f4cfcdf9f6c5a7350be4a5c2ada1e2ec41fad642",
+    "tests/test_d11_database_borrower_quiescence.py": "26ac0ef7ac968d22cc1e99a03f63458ee69d6fadf9b5354ab8ca8fc7b016762d",
+    "tests/d11_telegram_shutdown_runner.py": "32c5c563e8d44c3983e1df9529213e81244a75beab6df14ccec4ab2704644973",
+    "tests/test_d12_shutdown_contract.py": "2b16cb7456de5b738e7c54fae1b454327750dbae480715bd60b7313f333b1dbd",
+    "tests/test_d12_repeated_lifespan.py": "c0d6c81d704ed25e86838cfd93537e4c7375bbb70e8bffaeb187945c87dde26f",
+    "tests/test_d12_database_ownership.py": "61f50106ce80a092df71b235ab58ec996247dfa3b8afd1e169b80e78513d37fc",
+    "tests/d12_shutdown_contract_runner.py": "53bfd014018da027771362d0ef2d2c3ebf2363a12d001fc064c632bed52c83b4",
+    "tests/d12_harness.py": "07cb7dff459bae2873f83c56bf261a13a6312e4ec0cea4012188de216c2af6c7",
+    "tests/test_d13_telegram_lifecycle_reporting.py": "6b68bb4151dc0f8c440cf0a5c1037ab3c837facb2a086fc5ac902134fe15f24f",
+    "tests/test_d13_application_lifespan_reporting.py": "2c5e5fc88d891704e2ed117025f000f6438d6b523e4a172823bf22419a3e4940",
+    "tests/d13_telegram_reporting_runner.py": "f36f35fae3e9b924741ffe4300bd3b1c7a7f3734827433764e85120ab332f366",
+    "tests/d13_harness.py": "b634386bb69eec5449cdb8d45b9caa75800baeb7a51a63b12e92eea77715cf53",
+    "tests/test_d14_telegram_start_contract.py": "c0fcba3c9186a4cd07f7133d6b2b46d4ab24ab3b7d21e9cbf8c065c734bcb1ec",
+    "tests/test_d14_application_start_reporting.py": "5f4f0593167bf4a67694372753de225f5fe4737d7bde2c9df60f6e2e157efc86",
+    "tests/test_d14_lifecycle_regressions.py": "bdcc60df8db98f1814ea94ca6d86ef9cfa293b153e4a09137f94f02d375c166a",
+    "tests/d14_telegram_start_runner.py": "ca0c04a8909942b637c5f482981b9ea35d09263c42d227f844cce28a2a6dc4b4",
+    "tests/d14_harness.py": "6f33086756d3a0fd696960ff6de32ef6c6e766a6949f1866db518caa9815a374",
+    "tests/test_d5_lifespan_isolation.py": "8cf8c712979ad32eac648b4a8f18d65546bf24a72d2a4e6f4f3ff6041bd88dd4",
+    "tests/d5_lifespan_runner.py": "0729bea1df8a59d5dde3c66c396a476a0abb80c9c36213f15f08fcb77f2a3b60",
+    "tests/test_d6_partial_startup_cleanup.py": "1fd9c54a98da7f099cfa8b204f234d22f7f61ca7cb5d315db9ce6e8c25498ad9",
+    "tests/d6_partial_startup_runner.py": "0f26f2f9de022e47d0a1865f06f2be217c6d903bceb6031c1dc8aa3348734336"
+  },
+  "unexpected_protected_hash_changes": [],
+  "runtime_testing": "entered after the hash match"
+}

@@ -1,0 +1,21 @@
+{
+  "commands": [
+    "python -m pytest tests/test_d13_telegram_lifecycle_reporting.py tests/test_d13_application_lifespan_reporting.py -q --tb=line",
+    "python -m pytest tests/test_d14_telegram_start_contract.py tests/test_d14_application_start_reporting.py tests/test_d14_lifecycle_regressions.py -q --tb=short",
+    "python -m ruff check --select E,F,BLE,SIM,I tests/d14_telegram_start_runner.py tests/d14_harness.py tests/test_d14_telegram_start_contract.py tests/test_d14_application_start_reporting.py tests/test_d14_lifecycle_regressions.py",
+    "python -m pytest tests/test_live_safety_preservation.py tests/test_strategy_activation_defaults.py tests/test_startup_safety_preflight.py tests/test_d7_resource_cleanup.py -q --tb=line",
+    "python -m pytest tests/test_live_safety_repair.py tests/test_telegram_control.py::test_start_telegram_control_noop_without_token -q --tb=line",
+    "python -m pytest tests/test_d5_lifespan_isolation.py tests/test_d6_partial_startup_cleanup.py tests/test_d8_database_concurrency.py tests/test_d9_database_concurrency_remediation.py tests/test_d10_telegram_shutdown.py tests/test_d10_database_borrower_quiescence.py tests/test_d11_telegram_shutdown_remediation.py tests/test_d11_database_borrower_quiescence.py tests/test_d12_shutdown_contract.py tests/test_d12_repeated_lifespan.py tests/test_d12_database_ownership.py tests/test_d13_telegram_lifecycle_reporting.py tests/test_d13_application_lifespan_reporting.py -q --tb=line"
+  ],
+  "results": {
+    "pre_fix_d13": "8 passed in 17.96s",
+    "d14_pytest": "10 passed in 22.11s",
+    "d14_ruff": "All checks passed",
+    "d2_d3_d4_d7": "133 passed in 13.09s",
+    "safety_repair_and_noop": "24 passed in 4.94s",
+    "historical_hash_pins": "109 errors in 1.45s"
+  },
+  "files_modified": ["forex_bot/telegram_control.py", "forex_bot/app.py"],
+  "prohibited_operations": [],
+  "missing_evidence": ["production startup was not verified"]
+}

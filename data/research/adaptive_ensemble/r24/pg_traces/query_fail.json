@@ -1,0 +1,15 @@
+{
+  "pid": 8908,
+  "role": "query_fail",
+  "ok": true,
+  "raised": "order recovery query failed",
+  "fail_closed": true,
+  "blocked_by": "recovery_unreadable",
+  "inert_dispatches": 0,
+  "reservation_attempted": false,
+  "route_refusals": [],
+  "socket_blocks": [],
+  "dns_blocks": 0,
+  "dotenv_stubs": 1,
+  "real_broker_calls": 0
+}

@@ -1,0 +1,5 @@
+{
+  "gate": "B",
+  "result": "PASS",
+  "meaning": "AMD64 and the image reference are recorded as stated decisions. ARM64 stays proposed."
+}

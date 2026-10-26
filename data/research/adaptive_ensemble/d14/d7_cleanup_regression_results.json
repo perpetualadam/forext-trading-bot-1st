@@ -1,0 +1,7 @@
+{
+  "historical_suite": "EXECUTED_PASS",
+  "tests": 18,
+  "combined_with_d2_d3_d4": "133 passed in 13.09s",
+  "stub_none_policy": "D.7 doubles return None and still expect an empty cleanup list; that suite passed",
+  "result": "PASS"
+}

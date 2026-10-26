@@ -1,0 +1,114 @@
+{
+  "daily_loss": {
+    "writer": {
+      "pid": 20176,
+      "role": "persist",
+      "exit_pid": 20176,
+      "blocked_by": "daily_realised_loss_limit",
+      "broker_requests": 0,
+      "reservation_attempted": false,
+      "production_eligible": false,
+      "realised": -200.0,
+      "peak_equity": 10000.0,
+      "account_id": "101-004-1435156-001",
+      "event_ids": [
+        "1"
+      ],
+      "exposure_order_ids": []
+    },
+    "reader": {
+      "pid": 20980,
+      "role": "evaluate",
+      "exit_pid": 20980,
+      "blocked_by": "daily_realised_loss_limit",
+      "broker_requests": 0,
+      "reservation_attempted": false,
+      "production_eligible": false,
+      "realised": -200.0,
+      "peak_equity": 10000.0,
+      "account_id": "101-004-1435156-001",
+      "event_ids": [
+        "1"
+      ],
+      "exposure_order_ids": []
+    }
+  },
+  "drawdown": {
+    "writer": {
+      "pid": 20932,
+      "role": "persist",
+      "exit_pid": 20932,
+      "blocked_by": "",
+      "broker_requests": 1,
+      "reservation_attempted": true,
+      "production_eligible": false,
+      "realised": 0.0,
+      "peak_equity": 11000.0,
+      "account_id": "101-004-1435156-001",
+      "event_ids": [],
+      "exposure_order_ids": []
+    },
+    "reader": {
+      "pid": 7488,
+      "role": "evaluate",
+      "exit_pid": 7488,
+      "blocked_by": "max_drawdown_limit",
+      "broker_requests": 0,
+      "reservation_attempted": false,
+      "production_eligible": false,
+      "realised": 0.0,
+      "peak_equity": 11000.0,
+      "account_id": "101-004-1435156-001",
+      "event_ids": [],
+      "exposure_order_ids": []
+    }
+  },
+  "exposure": {
+    "pid": 1924,
+    "role": "evaluate",
+    "exit_pid": 1924,
+    "blocked_by": "total_exposure_limit",
+    "broker_requests": 0,
+    "reservation_attempted": false,
+    "production_eligible": false,
+    "realised": 0.0,
+    "peak_equity": 10000.0,
+    "account_id": "101-004-1435156-001",
+    "event_ids": [],
+    "exposure_order_ids": [
+      "204"
+    ]
+  },
+  "duplicate": {
+    "pid": 2592,
+    "role": "replay",
+    "exit_pid": 2592,
+    "blocked_by": "",
+    "broker_requests": 1,
+    "reservation_attempted": true,
+    "production_eligible": false,
+    "realised": -50.0,
+    "peak_equity": 10000.0,
+    "account_id": "101-004-1435156-001",
+    "event_ids": [
+      "1"
+    ],
+    "exposure_order_ids": []
+  },
+  "incomplete": {
+    "pid": 6312,
+    "role": "incomplete",
+    "exit_pid": 6312,
+    "blocked_by": "event_gap",
+    "broker_requests": 0,
+    "reservation_attempted": false,
+    "production_eligible": false,
+    "realised": -50.0,
+    "peak_equity": 10000.0,
+    "account_id": "101-004-1435156-001",
+    "event_ids": [
+      "1"
+    ],
+    "exposure_order_ids": []
+  }
+}

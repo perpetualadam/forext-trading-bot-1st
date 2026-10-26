@@ -1,0 +1,14 @@
+{
+  "stage": "G.14.6",
+  "recorded_before_edit": true,
+  "files": {
+    "tests/g14_4_acquire.py": "224b3d0bff64985287a3f43b8a2654bf2b11e68f0bff471edcdd1345734c5f9a",
+    "tests/g14_4_verify.py": "c512d597af90ad9451b86315d95aab9e038365531f508d790c16ee52fed9beba",
+    "tests/g14_4_inventory.py": "ef2ba453e0dc54e3805ca57e64ccb4bbb4249d3055f74b2ccc69cab103dfcfdd"
+  },
+  "behavior_before_edit": {
+    "acquire": "Destination path checks only. Path.resolve followed links. No environment, URL, or wheels-only policy.",
+    "verify": "SHA-256 and filename checks. A non-ZIP payload with a matching hash was accepted.",
+    "inventory": "Nine-line count. environment_marker was always null. Direct URL and VCS text were stored as constraints."
+  }
+}

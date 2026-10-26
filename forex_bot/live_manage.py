@@ -74,7 +74,11 @@ def resolve_broker_manage_price(
 
 
 def broker_sl_tp_hit(_pos: Any) -> bool:
-    """OANDA is authoritative for hard SL/TP on broker-backed locals."""
+    """Compatibility wrapper for the existing close decision.
+
+    Always false. A pending broker stop is not a fill, and a recorded fill is
+    not proof that every local unit closed. R.72 evidence is diagnostic only.
+    """
     return False
 
 

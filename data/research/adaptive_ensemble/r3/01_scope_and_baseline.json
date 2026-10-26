@@ -1,0 +1,9 @@
+{
+  "branch": "main",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "network_attempts": [
+    "socket:  File \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\n >   File \"<frozen importlib._bootstrap_external>\", line 1026, in exec_module\n >   File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n >   File \"C:\\Users\\Brian\\AppData\\Roaming\\Python\\Python313\\site-packages\\urllib3\\util\\connection.py\", line 137, in <module>\n    HAS_IPV6 = _has_ipv6(\"::1\")\n >   File \"C:\\Users\\Brian\\AppData\\Roaming\\Python\\Python313\\site-packages\\urllib3\\util\\connection.py\", line 126, in _has_ipv6\n    sock = socket.socket(socket.AF_INET6)\n"
+  ],
+  "protected_match": true,
+  "stage": "R.3"
+}

@@ -1,0 +1,5 @@
+{
+  "gate": "D",
+  "result": "PASS",
+  "meaning": "No explicit user selection or registry confirmation was present."
+}

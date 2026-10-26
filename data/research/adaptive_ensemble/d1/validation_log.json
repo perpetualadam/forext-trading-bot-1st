@@ -1,0 +1,40 @@
+{
+  "stage": "D.1",
+  "commands": [
+    "git rev-parse HEAD",
+    "git branch --show-current",
+    "git status --porcelain",
+    "git diff --name-status",
+    "git diff --numstat on the six tracked modifications",
+    "git log -1 commit time",
+    "SHA-256 of Dockerfile, .dockerignore, G.10 allowlist, G.10 archive, G.7 archive",
+    "canonical JSON digest of g10/source_manifest.json and g7/manifest.json",
+    "SHA-256 compare of the 63 allowlist paths to the working tree",
+    "SHA-256 compare of the G.14.1 manifest to the working tree",
+    "read-only re-hash of the existing staging directory",
+    "AST parse of the 60 allowlisted Python files"
+  ],
+  "tests_executed": 0,
+  "docker_commands": 0,
+  "wsl_commands": 0,
+  "vm_commands": 0,
+  "network_requests": 0,
+  "broker_requests": 0,
+  "database_access": 0,
+  "operational_state_access": 0,
+  "shadow_mount_access": 0,
+  "application_imported": false,
+  "sensitive_files_opened": false,
+  "files_modified_outside_d1": false,
+  "missing_evidence": [
+    "current container inspect",
+    "full image file manifest",
+    "live safety file",
+    "live database schema",
+    "live shadow mount",
+    "live environment values",
+    "current test run",
+    "candidate image",
+    "verified rollback drill"
+  ]
+}

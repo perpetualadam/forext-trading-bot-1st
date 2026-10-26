@@ -1,0 +1,31 @@
+{
+  "stage": "G.14.4",
+  "gate": "A",
+  "implementation": "CPython",
+  "python_major_minor": "3.12",
+  "python_patch": "UNKNOWN",
+  "operating_system": "linux",
+  "architecture": "x86_64",
+  "distribution_family": "debian bookworm, as named by the mutable image tag; image contents were not inspected",
+  "glibc": "UNKNOWN",
+  "abi": "cp312 is the expected tag family; the image SOABI was not inspected, so the ABI is not fully established",
+  "wheel_tags_that_may_be_acceptable": [
+    "py3-none-any",
+    "py312-none-any",
+    "cp312-cp312-manylinux*_x86_64",
+    "cp312-abi3-manylinux*_x86_64",
+    "cp312-cp312-musllinux*_x86_64",
+    "cp312-cp312-linux_x86_64"
+  ],
+  "wheel_tag_set_established": false,
+  "environment_markers": "must be evaluated for linux, CPython, 3.12; the Windows host must not be the evaluation environment",
+  "platform_flag_is_sufficient": false,
+  "extras": ["uvicorn[standard]"],
+  "uvicorn_standard_selected_packages": "UNKNOWN",
+  "native_extension_risks": ["pandas", "numpy", "psycopg2-binary"],
+  "base_image_tag": "python:3.12-slim-bookworm",
+  "local_image_id_historical": "sha256:782412e85d0f0984994c290652577d4018aff08145c85b262bb63dc0c7522254",
+  "local_image_id_is_registry_digest": false,
+  "immutable_from_reference": "UNKNOWN",
+  "host_resolution_represents_linux_amd64": false
+}

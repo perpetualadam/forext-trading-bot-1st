@@ -1,0 +1,19 @@
+{
+  "stage": "R.22",
+  "baseline": "MATCH",
+  "head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "r22_preexisting_artifacts": false,
+  "bot_loop_sha256_at_r21_close": "081314246ce22fa092d6f7de9ef8f84760bf87e086f5838e763fb08d7f34f55f",
+  "bot_loop_sha256_after": "a8b455dad91c464df8ba030b7f119f3c1795ce289e21b83de0af771309823ac2",
+  "database_sha256_before": "53e1e81827d6456743a1154d1636c05e6acbcfb340dae438912900c46c2d0ff4",
+  "database_sha256_after": "c6f761104a3ff3fb36a23aa0e90a9f6516c4c802ed233319151c2b27875ff563",
+  "orders_sha256": "fca93e8007d5f25413caf6b7e6493db0a27b4b81cffe78331d3321e9e76db1b4",
+  "app_sha256": "8d4abc71523794f7d50076f96d5cbefb625a963c01a78d8149e4e411baa244a1",
+  "r21_behaviour_present": {
+    "authoritative_selector": true,
+    "null_blocks_no_strategy_selected": true,
+    "ambiguous_local_status_unresolved": true
+  },
+  "application_files_modified": ["forex_bot/bot_loop.py", "forex_bot/database.py"]
+}

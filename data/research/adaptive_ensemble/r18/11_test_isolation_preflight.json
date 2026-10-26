@@ -1,0 +1,32 @@
+{
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1",
+    "PYTEST_ADDOPTS": "",
+    "PERSIST_EXEC_ORDERS": "0"
+  },
+  "barriers": {
+    "socket_subclass": true,
+    "af_inet_permitted": false,
+    "af_inet6_permitted": false,
+    "af_unix_permitted": false,
+    "dns_blocked": true,
+    "dotenv_stubbed": true
+  },
+  "blocked_constructor_counts": {
+    "r18": 1,
+    "regression": 5,
+    "r10": 5,
+    "r11": 4,
+    "r12": 2,
+    "r13": 3,
+    "r14": 1,
+    "r15": 1,
+    "r16": 1,
+    "r17": 1
+  },
+  "dotenv_stub_calls_per_process": 1,
+  "network_successes": 0,
+  "dns_successes": 0,
+  "note": "Blocked constructors come from importing the OANDA package. They are refused before a connection. The dotenv stub does not read a file."
+}

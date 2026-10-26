@@ -1,0 +1,12 @@
+{
+  "stage": "G.14.1",
+  "base_image_reference": "python:3.12-slim-bookworm",
+  "mutable_tag": true,
+  "immutable_digest_recorded": false,
+  "locally_cached_copy_known": false,
+  "local_cache_query": "not performed; Docker was not invoked",
+  "future_build_can_pull_a_different_image": true,
+  "future_build_may_require_network": true,
+  "digest_establishment": "A later authorised stage can resolve the tag to a registry digest without building, then pin FROM to that digest. This stage did not contact a registry and did not guess a digest.",
+  "classification": "BASE_IMAGE_DIGEST_UNVERIFIED"
+}

@@ -1,0 +1,99 @@
+{
+  "advancement": "NO_MODEL_QUALIFIES_FOR_ADVANCEMENT",
+  "advancement_reason": "frozen_rule",
+  "test_metrics_used": false,
+  "validation_status": "unvalidated",
+  "production_authorised": false,
+  "models": {
+    "logistic": {
+      "qualifies": false,
+      "failed_checks": [
+        "at_least_30_stride12_validation_actions",
+        "block_bootstrap_lower_bound_above_zero"
+      ],
+      "passed_checks": [
+        "validation_log_loss_below_frequency_baseline",
+        "validation_brier_below_frequency_baseline",
+        "validation_ece_at_most_0.10",
+        "stride12_next_bar_mean_above_zero",
+        "half_pip_adverse_mean_above_zero",
+        "at_least_two_walk_forward_folds_not_worse_than_frequency_baseline",
+        "reproducible_refit"
+      ],
+      "walk_forward_folds_not_worse": 3,
+      "validation_status": "unvalidated",
+      "production_authorised": false,
+      "validation_threshold_choice": {
+        "threshold": 0.4,
+        "reason": "validation_stride12_mean",
+        "mean": -5.5412470995104914e-05,
+        "n_actions": 452
+      },
+      "threshold_grid": [
+        {
+          "threshold": 0.4,
+          "n_actions": 452,
+          "mean": -5.5412470995104914e-05
+        },
+        {
+          "threshold": 0.5,
+          "n_actions": 12,
+          "mean": 6.604074232494623e-06
+        },
+        {
+          "threshold": 0.6,
+          "n_actions": 0,
+          "mean": 0.0
+        }
+      ]
+    },
+    "xgboost": {
+      "qualifies": false,
+      "failed_checks": [
+        "at_least_30_stride12_validation_actions",
+        "stride12_next_bar_mean_above_zero",
+        "block_bootstrap_lower_bound_above_zero",
+        "half_pip_adverse_mean_above_zero"
+      ],
+      "passed_checks": [
+        "validation_log_loss_below_frequency_baseline",
+        "validation_brier_below_frequency_baseline",
+        "validation_ece_at_most_0.10",
+        "at_least_two_walk_forward_folds_not_worse_than_frequency_baseline",
+        "reproducible_refit"
+      ],
+      "walk_forward_folds_not_worse": 3,
+      "validation_status": "unvalidated",
+      "production_authorised": false,
+      "validation_threshold_choice": {
+        "threshold": 0.4,
+        "reason": "validation_stride12_mean",
+        "mean": -5.6354748573323665e-05,
+        "n_actions": 599
+      },
+      "threshold_grid": [
+        {
+          "threshold": 0.4,
+          "n_actions": 599,
+          "mean": -5.6354748573323665e-05
+        },
+        {
+          "threshold": 0.5,
+          "n_actions": 0,
+          "mean": 0.0
+        },
+        {
+          "threshold": 0.6,
+          "n_actions": 0,
+          "mean": 0.0
+        }
+      ]
+    }
+  },
+  "training_class_balance": {
+    "SELL": 17080,
+    "NO_TRADE": 10221,
+    "BUY": 16975
+  },
+  "lightgbm": "unavailable"
+}

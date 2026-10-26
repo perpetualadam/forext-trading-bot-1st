@@ -1,0 +1,64 @@
+{
+  "records": [
+    {
+      "path": "Dockerfile",
+      "line": 2,
+      "reference": "python:3.12-slim-bookworm",
+      "digest_type": null,
+      "platform": null,
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "historical": false,
+      "current": true,
+      "suitable_for_target_selection": false
+    },
+    {
+      "path": "data/research/adaptive_ensemble/d16/historical_deployment_context.md",
+      "reference": "sha256:782412e85d0f0984994c290652577d4018aff08145c85b262bb63dc0c7522254",
+      "digest_type": "LOCAL_IMAGE_ID",
+      "platform": null,
+      "evidence_level": "HISTORICAL_OBSERVATION",
+      "suitable_for_target_selection": false
+    },
+    {
+      "path": "data/research/adaptive_ensemble/g14_5/base_image_provenance_review.md",
+      "reference": "registry manifest digest UNKNOWN",
+      "digest_type": "absent",
+      "evidence_level": "HISTORICAL_OBSERVATION",
+      "suitable_for_target_selection": false
+    },
+    {
+      "path": "data/research/adaptive_ensemble/g14_2/stage_g14_2_report.md",
+      "reference": "python@sha256:782412e85d0f0984994c290652577d4018aff08145c85b262bb63dc0c7522254",
+      "digest_type": "LOCAL_IMAGE_ID repeated without a registry hostname",
+      "evidence_level": "HISTORICAL_OBSERVATION",
+      "suitable_for_target_selection": false
+    },
+    {
+      "path": "docker-compose.yml",
+      "line": 3,
+      "reference": "postgres:16-alpine",
+      "role": "database service, not the bot runtime",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "suitable_for_target_selection": false
+    },
+    {
+      "path": "docker-compose.yml",
+      "line": 214,
+      "reference": "ollama/ollama:latest",
+      "role": "optional profile",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "suitable_for_target_selection": false
+    },
+    {
+      "path": "deploy/docker/collect-due.example.sh",
+      "line": 13,
+      "reference": "python:3.13-slim",
+      "role": "example collector, explicitly not the live trading-bot container",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "suitable_for_target_selection": false
+    }
+  ],
+  "sbom_found": false,
+  "build_attestation_found": false,
+  "search_limit": "Reviewed Dockerfile, Compose, deployment scripts, D.16, D.17, and the cited G.14 provenance files. Docker storage was not searched."
+}

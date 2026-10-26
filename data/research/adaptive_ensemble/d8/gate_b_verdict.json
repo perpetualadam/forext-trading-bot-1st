@@ -1,0 +1,10 @@
+{
+  "gate": "B",
+  "verdict": "PASS",
+  "d7_harness_modified": false,
+  "d7_harness_sufficient_for_its_own_cleanup_tests": true,
+  "d7_harness_is_not_a_concurrency_harness": true,
+  "d8_runner_created_separately": true,
+  "isolation_blocker": null,
+  "residual_gap": "The D.8 runner denies socket.connect and socket.getaddrinfo and replaces socket.socketpair. It does not also wrap socket.connect_ex, socket.create_connection, or asyncio.open_connection. The D.7 runner does. Executed D.8 reports recorded an empty network list. Fake psycopg2.connect was installed before importing forex_bot.database."
+}

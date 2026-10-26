@@ -1,0 +1,30 @@
+{
+  "commands": [
+    {
+      "command": "python -m pytest tests/test_d5_lifespan_isolation.py tests/test_d6_partial_startup_cleanup.py tests/test_d8_database_concurrency.py tests/test_d9_database_concurrency_remediation.py tests/test_d10_telegram_shutdown.py tests/test_d10_database_borrower_quiescence.py tests/test_d11_telegram_shutdown_remediation.py tests/test_d11_database_borrower_quiescence.py tests/test_d12_shutdown_contract.py tests/test_d12_repeated_lifespan.py tests/test_d12_database_ownership.py tests/test_d13_telegram_lifecycle_reporting.py tests/test_d13_application_lifespan_reporting.py -q --tb=line",
+      "exit_code": 1,
+      "result": "109 errors in 1.13s"
+    },
+    {
+      "command": "python -m pytest tests/test_live_safety_preservation.py tests/test_strategy_activation_defaults.py tests/test_startup_safety_preflight.py tests/test_d7_resource_cleanup.py tests/test_d14_telegram_start_contract.py tests/test_d14_application_start_reporting.py tests/test_d14_lifecycle_regressions.py -q --tb=line",
+      "exit_code": 0,
+      "result": "143 passed in 34.62s"
+    },
+    {
+      "command": "python -m pytest tests/test_live_safety_repair.py -q --tb=line",
+      "exit_code": 0,
+      "result": "23 passed in 4.95s"
+    },
+    {
+      "command": "python -m ruff check tests/d15_lifecycle_runner.py tests/d15_harness.py tests/test_d15_consolidated_lifecycle.py tests/test_d15_telegram_worker_concurrency.py tests/test_d15_database_borrower_safety.py tests/test_d15_cleanup_exception_precedence.py tests/test_d15_historical_compatibility.py --select E,F,BLE,SIM,I",
+      "exit_code": 0,
+      "result": "All checks passed"
+    },
+    {
+      "command": "python -m pytest tests/test_d15_consolidated_lifecycle.py tests/test_d15_telegram_worker_concurrency.py tests/test_d15_database_borrower_safety.py tests/test_d15_cleanup_exception_precedence.py tests/test_d15_historical_compatibility.py -q --tb=line",
+      "exit_code": 0,
+      "result": "16 passed in 28.16s"
+    }
+  ],
+  "prohibited_operations": []
+}

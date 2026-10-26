@@ -1,0 +1,22 @@
+{
+  "approved_hosts": [
+    "registry-1.docker.io",
+    "auth.docker.io"
+  ],
+  "actual_hosts": [
+    "auth.docker.io",
+    "registry-1.docker.io"
+  ],
+  "https_only": true,
+  "port": 443,
+  "proxy_environment_present": false,
+  "getproxies_empty": true,
+  "proxy_handler_installed": false,
+  "redirect_response_received": 307,
+  "redirect_location_recorded": false,
+  "redirects_followed": 0,
+  "tls": "ssl.create_default_context",
+  "timeout_seconds": 30,
+  "body_cap_bytes": 1048576,
+  "client_ready_before_network": true
+}

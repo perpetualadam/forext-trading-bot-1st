@@ -1,0 +1,53 @@
+{
+  "platform_label": "arm64",
+  "created": "2026-10-06T02:11:13.014797359Z",
+  "historical_created_report": "2026-10-06T02:11:13.014797359Z",
+  "created_matches_d24_r2_report": true,
+  "architecture": "arm64",
+  "os": "linux",
+  "variant": "v8",
+  "environment_names": [
+    "GPG_KEY",
+    "LANG",
+    "PATH",
+    "PYTHON_SHA256",
+    "PYTHON_VERSION"
+  ],
+  "non_secret_declarations": {
+    "LANG": "C.UTF-8",
+    "PYTHON_VERSION": "3.12.15"
+  },
+  "python_sha256_present": true,
+  "python_sha256_is_64_hex": true,
+  "redacted_environment_names": [
+    "GPG_KEY"
+  ],
+  "gpg_key_value_recorded": false,
+  "runtime_user_declared": false,
+  "runtime_user": null,
+  "working_dir_declared": false,
+  "working_dir": null,
+  "entrypoint_declared": false,
+  "entrypoint": null,
+  "command_declared": true,
+  "command": [
+    "python3"
+  ],
+  "exposed_ports_declared": false,
+  "volumes_declared": false,
+  "labels_declared": false,
+  "labels": null,
+  "rootfs_type": "layers",
+  "rootfs_diff_id_count": 4,
+  "history_entry_count": 10,
+  "manifest_annotations": {
+    "version": "3.12.15-slim-bookworm",
+    "base_name": "debian:bookworm-slim",
+    "base_digest": "sha256:a1b86db52ce3daef089e45aabe36dfec4091f82464c25c1fdcf03de197cbe82a",
+    "created": "2026-10-06T01:59:28Z",
+    "revision": "2a3b794c223ab067d122719541cdd54a068732a5",
+    "evidence_level": "VERIFIED_LOCAL_BYTES",
+    "supported_conclusion": "These strings are annotations inside the rehashed platform manifest.",
+    "unsupported_conclusion": "The annotations do not measure installed Debian packages or the running interpreter."
+  }
+}

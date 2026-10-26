@@ -1,0 +1,12 @@
+{
+  "postgresql_used": false,
+  "method": "synthetic snapshot and in-memory gate",
+  "cases": [
+    {"id": "C01-C06", "status": "PASS", "evidence": "SYNTHETICALLY TESTED", "note": "Identity kept on a fake row. No database round trip."},
+    {"id": "C07-C11", "status": "PASS", "evidence": "SYNTHETICALLY TESTED", "note": "Reload and a second client id were blocked in memory."},
+    {"id": "C12-C13", "status": "PASS", "evidence": "SYNTHETICALLY TESTED", "note": "Timeout stays ambiguous. Cancel does not clear UNRESOLVED in memory."},
+    {"id": "C14-C15", "status": "PASS", "evidence": "SYNTHETICALLY TESTED"},
+    {"id": "C16-C19", "status": "PASS", "evidence": "SYNTHETICALLY TESTED", "note": "Book transitions only. No order row was updated in PostgreSQL."},
+    {"id": "C20", "status": "PASS", "evidence": "SYNTHETICALLY TESTED", "note": "Retry count stayed 0. No timer exists in the tested functions."}
+  ]
+}

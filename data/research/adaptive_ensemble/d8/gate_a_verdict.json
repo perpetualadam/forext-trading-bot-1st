@@ -1,0 +1,12 @@
+{
+  "gate": "A",
+  "verdict": "PASS",
+  "imported_app": false,
+  "executed_database_connection": false,
+  "baseline": "PASS",
+  "ownership_mapped": true,
+  "lock_coverage_mapped": true,
+  "concurrency_model_reviewed": true,
+  "failure_windows_classified": true,
+  "cleanup_edge_reviewed": true
+}

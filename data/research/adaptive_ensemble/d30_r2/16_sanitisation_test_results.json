@@ -1,0 +1,23 @@
+{
+  "results": [
+    {
+      "test_id": "S01",
+      "fixture": "secrets",
+      "expected": "markers absent from ledger",
+      "actual": "absent",
+      "monotonic_start": 90638.653182,
+      "elapsed": 0.0614,
+      "result": "PASS"
+    },
+    {
+      "test_id": "S02",
+      "fixture": "env_keys",
+      "expected": "environment values not logged",
+      "actual": "hidden",
+      "monotonic_start": 90638.721962,
+      "elapsed": 0.0611,
+      "result": "PASS"
+    }
+  ],
+  "leak_detected": false
+}

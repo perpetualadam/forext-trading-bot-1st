@@ -1,0 +1,20 @@
+{
+  "suites": {
+    "r18": {"collected": 212, "executed": 203, "passed": 203, "failed": 0, "skipped": 9, "deselected": 0, "not_evaluated": 9, "exit": 0},
+    "regression_r4_r9": {"collected": 128, "executed": 120, "passed": 120, "failed": 0, "skipped": 7, "deselected": 1, "not_evaluated": 7, "exit": 0},
+    "r10": {"collected": 74, "executed": 69, "passed": 69, "failed": 0, "skipped": 5, "deselected": 0, "not_evaluated": 5, "exit": 0},
+    "r11": {"collected": 56, "executed": 51, "passed": 51, "failed": 0, "skipped": 5, "deselected": 0, "not_evaluated": 5, "exit": 0},
+    "r12": {"collected": 123, "executed": 118, "passed": 118, "failed": 0, "skipped": 5, "deselected": 0, "not_evaluated": 5, "exit": 0},
+    "r13": {"collected": 87, "executed": 81, "passed": 81, "failed": 0, "skipped": 6, "deselected": 0, "not_evaluated": 6, "exit": 0},
+    "r14": {"collected": 148, "executed": 143, "passed": 143, "failed": 0, "skipped": 5, "deselected": 0, "not_evaluated": 5, "exit": 0},
+    "r15": {"collected": 171, "executed": 165, "passed": 165, "failed": 0, "skipped": 6, "deselected": 0, "not_evaluated": 6, "exit": 0},
+    "r16": {"collected": 141, "executed": 135, "passed": 135, "failed": 0, "skipped": 6, "deselected": 0, "not_evaluated": 6, "exit": 0},
+    "r17": {"collected": 183, "executed": 174, "passed": 174, "failed": 0, "skipped": 9, "deselected": 0, "not_evaluated": 9, "exit": 0}
+  },
+  "assertion_strengthenings": [
+    "R.12 through R.17 default fixtures now supply quote_as_of equal to the injected clock",
+    "R.12 J19 requires production_eligible false while the unapproved spread still reaches the inert adapter once",
+    "R.17 I058 now expects quote_timestamp_missing, zero adapter calls, and production_eligible false"
+  ],
+  "weakened_assertions": []
+}

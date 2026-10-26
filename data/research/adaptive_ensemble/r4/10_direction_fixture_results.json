@@ -1,0 +1,15 @@
+{
+  "function": "forex_bot.bot_loop.canonical_entry_direction",
+  "gate": "forex_bot.bot_loop.direction_action_gate",
+  "loop_started": false,
+  "buy": "BUY",
+  "sell": "SELL",
+  "lowercase_and_spaces": "BUY or SELL",
+  "none_empty_whitespace_unknown_no_trade_numbers_hold": null,
+  "invalid_size_calls": 0,
+  "invalid_build_calls": 0,
+  "invalid_send_calls": 0,
+  "valid_hook_calls_when_spies_supplied": {"size": 2, "build": 2, "send": 2},
+  "production_call": "The loop passes no sizing, construction, or dispatch hooks into the gate. Invalid direction returns before those later steps.",
+  "results": "F17 through F28 and F33 passed."
+}

@@ -1,0 +1,124 @@
+{
+  "status_differences": [],
+  "identity_differences": [
+    "architecture",
+    "variant",
+    "manifest digest",
+    "config digest",
+    "creation timestamp",
+    "annotated base digest"
+  ],
+  "shared_blocker": "unpinned requirements and missing wheel, ABI, libc, VPS, startup, and provenance evidence",
+  "findings": [
+    {
+      "id": "D25-BASE-01",
+      "status": "ESTABLISHED",
+      "evidence_source": "Dockerfile FROM instruction and docker-compose.yml image instructions",
+      "observation": "The bot base reference is python:3.12-slim-bookworm with no digest and no platform flag. Compose also uses mutable postgres:16-alpine and ollama/ollama:latest references.",
+      "evidence_level": "DECLARED_IN_LOCAL_SOURCE",
+      "consequence": "The verified OCI index is a historical snapshot. Current tag resolution was not rechecked.",
+      "required_next_evidence": "A separately approved registry recheck, or an explicit digest pin.",
+      "new_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D25-CONFIG-01",
+      "status": "ESTABLISHED",
+      "evidence_source": "rehashed AMD64 and ARM64 config bytes",
+      "observation": "Both configs declare PYTHON_VERSION=3.12.15 and Cmd [\"python3\"]. Neither declares User, WorkingDir, Entrypoint, ExposedPorts, Volumes, or Labels.",
+      "evidence_level": "VERIFIED_CONFIG_DECLARATION",
+      "consequence": "These are declarations in the base-image config. They do not measure the interpreter or describe the final bot image.",
+      "required_next_evidence": "Final-image metadata or an isolated runtime measurement.",
+      "new_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D25-ABI-01",
+      "status": "ESTABLISHED",
+      "evidence_source": "verified config bytes and local requirement files",
+      "observation": "No SOABI, ABI flag, or wheel tag is present in the preserved evidence.",
+      "evidence_level": "MISSING",
+      "consequence": "A Python 3.12 declaration does not select a wheel tag.",
+      "required_next_evidence": "Interpreter ABI measurement or an explicitly labelled assumption in a later stage.",
+      "new_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D25-LIBC-01",
+      "status": "ESTABLISHED",
+      "evidence_source": "verified manifests and configs; layer bytes absent",
+      "observation": "Debian bookworm-slim appears only as a manifest annotation. No libc version or installed package revision was read.",
+      "evidence_level": "MISSING",
+      "consequence": "manylinux compatibility remains unknown for both architectures.",
+      "required_next_evidence": "Approved image-layer or package-list inspection.",
+      "new_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D25-WHEEL-01",
+      "status": "ESTABLISHED",
+      "evidence_source": "requirements.txt and the absence of wheel records",
+      "observation": "numpy, pandas, psycopg2-binary, and uvicorn[standard] are declared without versions, wheel names, or platform tags.",
+      "evidence_level": "MISSING",
+      "consequence": "Neither linux/amd64 nor linux/arm64/v8 has demonstrated wheel compatibility.",
+      "required_next_evidence": "Approved per-platform wheel metadata, hashes, and provenance.",
+      "new_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D25-LOCK-01",
+      "status": "ESTABLISHED",
+      "evidence_source": "requirements.txt, requirements-dev.txt, and Dockerfile RUN instructions",
+      "observation": "Production requirements are lower bounds. No lockfile, hash pin, or wheelhouse is referenced.",
+      "evidence_level": "DECLARED_IN_LOCAL_SOURCE",
+      "consequence": "The dependency install is not reproducible from the current files.",
+      "required_next_evidence": "An approved lock and artifact-hash design.",
+      "new_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D25-PROV-01",
+      "status": "ESTABLISHED",
+      "evidence_source": "rehashed OCI objects and local project files",
+      "observation": "Digest checks bind the preserved bytes. No image signature, attestation, or package provenance file was verified.",
+      "evidence_level": "MISSING",
+      "consequence": "Byte identity against earlier descriptors is not publisher authentication.",
+      "required_next_evidence": "Approved signature or attestation verification.",
+      "new_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D25-VPS-01",
+      "status": "ESTABLISHED",
+      "evidence_source": "approved intended-target record; no receiver inventory in this stage",
+      "observation": "linux/amd64 and linux/arm64/v8 are intended targets. No VPS provider, CPU, kernel, or container engine was verified.",
+      "evidence_level": "MISSING",
+      "consequence": "An intended architecture is not a verified production host.",
+      "required_next_evidence": "Approved deployment-receiver inventory.",
+      "new_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D25-RUNTIME-01",
+      "status": "ESTABLISHED",
+      "evidence_source": "Dockerfile and docker-compose.yml",
+      "observation": "The bot command is declared, and the bot service has no healthcheck. No container was started.",
+      "evidence_level": "MISSING",
+      "consequence": "Startup and health remain untested on both architectures.",
+      "required_next_evidence": "An approved isolated runtime test after image and dependency evidence exists.",
+      "new_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D25-SAFETY-01",
+      "status": "ESTABLISHED",
+      "evidence_source": "historical stage boundary and local source hashes",
+      "observation": "Historical live-order authorisation is BLOCKED. Current production authorisation was not read. Source hashes do not show that production is running those bytes.",
+      "evidence_level": "HISTORICAL_OBSERVATION",
+      "consequence": "Source-level safety work remains separate from production runtime safety.",
+      "required_next_evidence": "A separately authorised production assessment.",
+      "new_approval_required": true,
+      "production_impact": "UNVERIFIED"
+    }
+  ]
+}

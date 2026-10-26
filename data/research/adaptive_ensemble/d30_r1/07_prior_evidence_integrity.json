@@ -1,0 +1,16 @@
+{
+  "d29_r1_digest_set_matches_manifests": true,
+  "d30_stop_preserved": true,
+  "prior_hashes": {
+    "data/research/adaptive_ensemble/d29_r1/05_exact_layer_reference_inventory.json": "0bc57f1b90e07e4b76a0f047997f6c630ee5cd699c380cfd2eaf3966bcfadebe",
+    "data/research/adaptive_ensemble/d29_r1/06_unique_blob_inventory.json": "032fe0a342a3fe247df7fd4aa5ccab7a77a0db7f260c97f1235fdacd07925b50",
+    "data/research/adaptive_ensemble/d29_r1/07_deduplication_reconciliation.json": "5eec8ecca7e6ec131748e82eba3dca883052af80b30df3b6d0d05b77df9922eb",
+    "data/research/adaptive_ensemble/d29_r1/10_timeout_deadline_specification.json": "b85790d14437814a73ac2f670e26d0b406cc952801b0aa263717b0e7d2e47f5d",
+    "data/research/adaptive_ensemble/d29_r1/31_stage_d29_r1_report.md": "ccc25e374abe2de10ef4940774ddab8a866f9ec823c19946cd1cc281ee6694dd",
+    "data/research/adaptive_ensemble/d30/01_approval_scope.json": "a0d7ba9702135d4976f68a6b20d91fab3eba82cadf49b7d75396a9d065cbe789",
+    "data/research/adaptive_ensemble/d30/02_baseline_integrity.json": "a3a1fa807c7208f4e3b0f43de55349973cba39518042e6708c00ca9189d29548",
+    "data/research/adaptive_ensemble/d30/15_failure_register.json": "b7055152d113a8b1a1c9134cf63787bf9ffd90fee1f20fb80f7d6c0d01a0419f",
+    "data/research/adaptive_ensemble/d30/16_gate_a_verdict.json": "385320355569fbfc83ddcef81f82b54e0b191333a007cad431a95c5544878f35",
+    "data/research/adaptive_ensemble/d30/28_stage_d30_report.md": "b1ddd82c73f8b5c1b562e1cec5690a7c8028843d322f400a8592e8b2450ac58c"
+  }
+}

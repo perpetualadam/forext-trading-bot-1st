@@ -1,0 +1,40 @@
+{
+  "connection_timeout": {
+    "value": null,
+    "unit": "seconds",
+    "status": "MISSING",
+    "reason": "No local evidence records a registry TCP or TLS handshake duration."
+  },
+  "socket_inactivity_timeout": {
+    "value": null,
+    "unit": "seconds",
+    "status": "MISSING",
+    "reason": "No local evidence records an acceptable idle gap while reading a layer body. Inactivity is not a total request deadline."
+  },
+  "per_request_total_deadline": {
+    "value": null,
+    "unit": "seconds",
+    "status": "MISSING",
+    "reason": "The D.29 value of 120 seconds came from the Dockerfile pip timeout. That declaration does not justify a registry deadline. The historical 30 second config-blob client timeout applied to objects of a few kilobytes, not to these layers."
+  },
+  "whole_stage_deadline": {
+    "value": null,
+    "unit": "seconds",
+    "status": "MISSING",
+    "reason": "The D.29 value of 2160 seconds was 18 times the withdrawn 120 second socket figure. It was not a measured or monotonic stage deadline."
+  },
+  "withdrawn_d29_values": {
+    "socket_timeout_seconds": 120,
+    "stage_ceiling_seconds": 2160,
+    "adopted": false
+  },
+  "future_rules": [
+    "Use a monotonic clock for request and stage deadlines.",
+    "Receiving another body chunk does not reset the request deadline.",
+    "Starting another request does not reset the stage deadline.",
+    "The same deadlines cover connection, TLS, headers, body streaming, redirect decisions, and token requests.",
+    "No numeric timeout is authorised for network execution by D.29-R1."
+  ],
+  "measured_transfer_rate": "MISSING",
+  "evidence": "the absence of a registry timing measurement is recorded; the pip timeout is DECLARED_IN_LOCAL_SOURCE and is not used"
+}

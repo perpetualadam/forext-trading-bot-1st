@@ -1,0 +1,11 @@
+{
+  "host": "production.cloudfront.docker.com",
+  "method": "GET",
+  "scheme": "https",
+  "effective_port": 443,
+  "query_present": true,
+  "authorization_sent": false,
+  "http_status": 200,
+  "byte_count": 5699,
+  "etag_present": true
+}

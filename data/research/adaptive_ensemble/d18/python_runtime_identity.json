@@ -1,0 +1,45 @@
+{
+  "implementation": {
+    "value": "CPython",
+    "classification": "INFERRED",
+    "evidence_level": "STATIC_INFERENCE"
+  },
+  "major": {
+    "value": 3,
+    "classification": "DECLARED",
+    "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED"
+  },
+  "minor": {
+    "value": 12,
+    "classification": "DECLARED",
+    "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED"
+  },
+  "patch": {
+    "value": null,
+    "classification": "MISSING",
+    "evidence_level": "MISSING"
+  },
+  "abi": {
+    "value": null,
+    "classification": "MISSING",
+    "evidence_level": "MISSING"
+  },
+  "operating_system": {
+    "value": "linux",
+    "classification": "INFERRED",
+    "evidence_level": "STATIC_INFERENCE"
+  },
+  "distribution": {
+    "value": "Debian bookworm codename only",
+    "classification": "INFERRED",
+    "evidence_level": "STATIC_INFERENCE"
+  },
+  "architecture": {
+    "value": null,
+    "classification": "MISSING",
+    "evidence_level": "MISSING"
+  },
+  "stdlib_assumptions": "UNVERIFIED",
+  "shared_library_assumptions": "UNVERIFIED",
+  "source": "Dockerfile line 2"
+}

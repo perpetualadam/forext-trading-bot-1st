@@ -1,0 +1,36 @@
+{
+  "account_id": "101-004-1435156-001",
+  "currency": "USD",
+  "day_baselines": {
+    "2026-01-07": 1000000000.0
+  },
+  "events": {},
+  "exposure_orders": [
+    {
+      "id": "204",
+      "notional_account_ccy": 1270000.0,
+      "status": "PENDING",
+      "symbol": "GBP_USD"
+    }
+  ],
+  "exposure_positions": [],
+  "peak_equity": 10000.0,
+  "realised_by_day": {
+    "2026-01-07": 0.0
+  },
+  "reconciliation": {
+    "account_id": "101-004-1435156-001",
+    "as_of": "2026-01-07T12:00:00+00:00",
+    "balance": 10000.0,
+    "currency": "USD",
+    "equity_source": "broker_nav",
+    "last_sequence": null,
+    "nav": 10000.0,
+    "sequence_evidence": "absent",
+    "snapshot_id": "summary-none-10000.000000",
+    "status": "verified",
+    "unrealised": 0.0
+  },
+  "revision": 2,
+  "schema_version": 1
+}

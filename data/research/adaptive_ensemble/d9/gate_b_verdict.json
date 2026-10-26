@@ -1,0 +1,9 @@
+{
+  "gate": "B",
+  "verdict": "PASS",
+  "design": "Hold the existing reentrant _pg_lock for the reuse check, connect, cursor, SQL, commit, and both global assignments.",
+  "new_lock": false,
+  "rlock_replaced": false,
+  "deadlock": "None. Helpers already hold the same RLock. Release takes it only to copy and clear, then closes outside the lock and does not call get_connection.",
+  "scope_expansion": false
+}

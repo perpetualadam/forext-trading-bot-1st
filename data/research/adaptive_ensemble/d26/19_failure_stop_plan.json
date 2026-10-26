@@ -1,0 +1,31 @@
+{
+  "stop_on": [
+    "unapproved hostname",
+    "unapproved scheme",
+    "unapproved port",
+    "redirect",
+    "proxy requirement",
+    "TLS failure",
+    "authentication requirement",
+    "HTTP error",
+    "rate limit",
+    "oversized response",
+    "timeout",
+    "malformed JSON",
+    "malformed metadata",
+    "unexpected content encoding",
+    "invalid package name",
+    "ambiguous package identity",
+    "file-download response",
+    "binary response",
+    "budget exhaustion",
+    "resolution attempt",
+    "package download",
+    "source modification"
+  ],
+  "fail_closed": true,
+  "negative_interpretations_prohibited": [
+    "a failed request does not prove a wheel is absent",
+    "a missing release entry is not definitive without sufficient index evidence"
+  ]
+}

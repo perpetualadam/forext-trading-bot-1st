@@ -1,0 +1,13 @@
+{
+  "gate": "D",
+  "verdict": "PASS",
+  "file": "forex_bot/database.py",
+  "function": "get_connection",
+  "lines": "185-227",
+  "other_production_files": [],
+  "sql_changed": false,
+  "schema_changed": false,
+  "connection_arguments_changed": false,
+  "release_function_changed": false,
+  "helper_contracts_changed": false
+}

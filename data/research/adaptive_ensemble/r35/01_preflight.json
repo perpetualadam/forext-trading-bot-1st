@@ -1,0 +1,95 @@
+{
+  "project_root": "C:\\Users\\Brian\\OneDrive\\Desktop\\Forext Trading Bot 1st",
+  "branch": "main",
+  "head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "working_tree": "dirty_preserved",
+  "strategy_flags": {
+    "trend": {
+      "active": false,
+      "authorised_for_live": false
+    },
+    "swing_trend": {
+      "active": false,
+      "authorised_for_live": false
+    },
+    "scalp": {
+      "active": false,
+      "authorised_for_live": false
+    },
+    "swing_mean_reversion": {
+      "active": false,
+      "authorised_for_live": false
+    },
+    "mean_reversion": {
+      "active": false,
+      "authorised_for_live": false
+    },
+    "swing_breakout": {
+      "active": false,
+      "authorised_for_live": false
+    }
+  },
+  "all_strategies_inactive": true,
+  "quant_stub_vote": {
+    "allow": false,
+    "direction": null,
+    "status": "unavailable",
+    "reason": "quant_stub_removed"
+  },
+  "default_builder_registers_local_llm": false,
+  "unverified_rl": "UNAVAILABLE",
+  "source_hashes_before_r35": {
+    "forex_bot/ai_ensemble.py": "1d8e02e334e07b88eefc834e45390a128bebaa078af98e428df081efcf5857fa",
+    "forex_bot/rl_agent.py": "2f79452b7538e504b4b338c186d137221240d7688bdc26cce185f58405f7043e",
+    "forex_bot/session_rules.py": "1e9ec90f573f1fd8add2a2fa4bab82fe164788242f34e97bbcf428e6f5c4bef1",
+    "forex_bot/experiment.py": "36eb14d5adb0a626f277a0adcc6f08b14163054273bea71e3d9679f535821356",
+    "forex_bot/bot_loop.py": "6e953f7a2b0aa93f1f65c7b411d117e74cba6adf523f8514847bc69a7ea5c796",
+    "forex_bot/strategy_meta.py": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+    "forex_bot/research/ml_prediction.py": "97ba722204734b480ecc610cc26756a42cabafb9d4ded81070ced146580bd7bc",
+    "forex_bot/research/decision_journal.py": "2b11468a69b015470eb4a57bd9a3585cdb4b1721fde54e8a424c01966e1025c5",
+    "forex_bot/decision_quality/live_path.py": "6275fba49bf20d6f577a30bcec2421e5904ed8ef414851906c5103567aece215",
+    "forex_bot/decision_quality/reports.py": "6e31df4f48579eeeeab3ad91dd02d6a61299a9b709514ffc762b313d026f353f",
+    "forex_bot/shadow/fidelity.py": "bb8eb46b292b645694bb137704eb129e5d366421499eb1874db6796870121e2e",
+    "tests/test_silent_skip_observability.py": "b54ae5b73d859e5ac25bc95bad378ecd2cff1866215cd9badb6df0741559da8e",
+    "tests/test_v2_shadow.py": "2f0d6a9c0fabcb14ea1fc317cb5a3aa0594d00add19e415f4e2072ba5d103431",
+    "tests/test_momentum_m5_dedup_research.py": "97f8ea6b2a3a4961afa870b1a7c4d6c9d994cd2c9677f05585c2c407ac7b6ac8",
+    "tests/test_decision_quality_engine.py": "5cd6fb98acae4958e76d4548529f83209963c4243561a333ce6ac30bea2d8454",
+    "tests/test_quant_stub_mapping.py": "5a25bab49d09a60867a371750a1cbafdaa7ba2ca8584d28a173087e8c2c14147"
+  },
+  "evidence_directories": [
+    "r10",
+    "r11",
+    "r12",
+    "r13",
+    "r14",
+    "r15",
+    "r16",
+    "r17",
+    "r18",
+    "r19",
+    "r2",
+    "r20",
+    "r21",
+    "r22",
+    "r23",
+    "r24",
+    "r25",
+    "r26",
+    "r27",
+    "r28",
+    "r29",
+    "r3",
+    "r30",
+    "r31",
+    "r32",
+    "r33",
+    "r34",
+    "r35",
+    "r4",
+    "r5",
+    "r6",
+    "r7",
+    "r8",
+    "r9"
+  ]
+}

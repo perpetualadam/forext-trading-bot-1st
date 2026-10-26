@@ -1,0 +1,20 @@
+{
+  "all_exits_zero": true,
+  "winerror_5": false,
+  "suites": [
+    {"mode": "regression", "passed": 120, "skipped": 7, "deselected": 1, "blocked": 5, "dotenv": 1},
+    {"mode": "r10", "passed": 69, "skipped": 5, "blocked": 5, "dotenv": 1},
+    {"mode": "r11", "passed": 51, "skipped": 5, "blocked": 4, "dotenv": 1},
+    {"mode": "r12", "passed": 118, "skipped": 5, "blocked": 2, "dotenv": 1},
+    {"mode": "r13", "passed": 81, "skipped": 6, "blocked": 3, "dotenv": 1},
+    {"mode": "r14", "passed": 143, "skipped": 5, "blocked": 1, "dotenv": 1},
+    {"mode": "r15", "passed": 165, "skipped": 6, "blocked": 1, "dotenv": 1},
+    {"mode": "r16", "passed": 135, "skipped": 6, "blocked": 1, "dotenv": 1},
+    {"mode": "r17", "passed": 174, "skipped": 9, "blocked": 1, "dotenv": 1},
+    {"mode": "r18", "passed": 203, "skipped": 9, "blocked": 1, "dotenv": 1},
+    {"mode": "r19", "passed": 213, "skipped": 9, "blocked": 1, "dotenv": 1},
+    {"mode": "r20", "passed": 30, "skipped": 0, "blocked": 1, "dotenv": 1}
+  ],
+  "fixture_update": "R.14-R.20 happy paths that invoke the selector now pass strategy_active_map scalp=True. Selector-invoking cases that previously expected a supplied inactive or unknown name now expect NO_STRATEGY_SELECTED. Exposure, eligibility, and adapter assertions were not weakened.",
+  "safety_regression_failed": false
+}

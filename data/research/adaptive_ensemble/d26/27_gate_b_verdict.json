@@ -1,0 +1,5 @@
+{
+  "gate": "B",
+  "verdict": "PASS",
+  "reason": "five OCI objects rehashed and their descriptor links matched"
+}

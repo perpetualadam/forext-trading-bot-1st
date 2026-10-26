@@ -39,7 +39,7 @@ FIDELITY_MATRIX: dict[str, dict[str, Any]] = {
     "quant_stub": {
         "file": "forex_bot/ai_ensemble.py:_quant_stub_vote",
         "offline": "EXACT",
-        "note": "Live ENSEMBLE_MODE=quant, 1 LocalLLM, 0 API voters. Stub ignores nn_pred. Track A copies the math without skip-log I/O.",
+        "note": "Historical shadow copy only. R.34 removed this rule from operational voting; the live function abstains.",
     },
     "ai_api_voters": {
         "file": "forex_bot/ai_ensemble.py:_fill_external_voters",
@@ -54,7 +54,7 @@ FIDELITY_MATRIX: dict[str, dict[str, Any]] = {
     "rl_decide": {
         "file": "forex_bot/rl_agent.py:RLAgent.decide",
         "offline": "UNAVAILABLE",
-        "note": "Epsilon-greedy over an in-memory Q table with no disk snapshot. Empty table + random.choice is not reproducible.",
+        "note": "An unverified or tied Q table returns UNAVAILABLE and does not sample a random action.",
     },
     "position_sizing": {
         "file": "forex_bot/trading.py:position_sizing",

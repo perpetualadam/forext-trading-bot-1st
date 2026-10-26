@@ -1,0 +1,26 @@
+{
+  "account_id": "synthetic-offline",
+  "currency": "USD",
+  "day_baselines": {
+    "2026-01-07": 1000000000.0
+  },
+  "events": {},
+  "exposure_orders": [],
+  "exposure_positions": [],
+  "peak_equity": 10000.0,
+  "realised_by_day": {
+    "2026-01-07": 0.0
+  },
+  "reconciliation": {
+    "account_id": "synthetic-offline",
+    "as_of": "2026-01-07T12:00:00+00:00",
+    "currency": "USD",
+    "equity_source": "synthetic_seed",
+    "last_sequence": null,
+    "sequence_evidence": "absent",
+    "snapshot_id": "synthetic-seed",
+    "status": "synthetic_offline"
+  },
+  "revision": 1,
+  "schema_version": 1
+}

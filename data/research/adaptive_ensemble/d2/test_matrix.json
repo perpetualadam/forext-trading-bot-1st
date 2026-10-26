@@ -1,0 +1,42 @@
+{
+  "stage": "D.2",
+  "module": "tests/test_live_safety_preservation.py",
+  "execution": "PASSED",
+  "cases": [
+    {"id": "T01", "test": "test_t01_valid_blocked_state_loads", "result": "PASSED"},
+    {"id": "T02", "test": "test_t02_valid_blocked_state_round_trips", "result": "PASSED"},
+    {"id": "T03", "test": "test_t03_unknown_top_level_scalar_survives", "result": "PASSED"},
+    {"id": "T04", "test": "test_t04_unknown_top_level_object_survives", "result": "PASSED"},
+    {"id": "T05", "test": "test_t05_unknown_strategy_scalar_survives", "result": "PASSED"},
+    {"id": "T06", "test": "test_t06_unknown_strategy_object_survives", "result": "PASSED"},
+    {"id": "T07", "test": "test_t07_unknown_future_strategy_entry_survives", "result": "PASSED"},
+    {"id": "T08", "test": "test_t08_unknown_metadata_cannot_enable_trading", "result": "PASSED"},
+    {"id": "T09", "test": "test_t09_future_schema_is_not_overwritten", "result": "PASSED"},
+    {"id": "T10", "test": "test_t10_future_schema_fails_closed", "result": "PASSED"},
+    {"id": "T11", "test": "test_t11_repeated_future_schema_reads_are_non_destructive", "result": "PASSED"},
+    {"id": "T12", "test": "test_t12_corrupt_json_is_not_overwritten", "result": "PASSED"},
+    {"id": "T13", "test": "test_t13_truncated_json_fails_closed", "result": "PASSED"},
+    {"id": "T14", "test": "test_t14_non_object_root_fails_closed", "result": "PASSED"},
+    {"id": "T15", "test": "test_t15_invalid_schema_version_type_fails_closed", "result": "PASSED"},
+    {"id": "T16", "test": "test_t16_invalid_authorisation_fails_closed", "result": "PASSED"},
+    {"id": "T17", "test": "test_t17_invalid_activation_value_fails_closed", "result": "PASSED"},
+    {"id": "T18", "test": "test_t18_missing_activation_value_fails_closed", "result": "PASSED"},
+    {"id": "T19", "test": "test_t19_missing_file_creates_only_blocked_state", "result": "PASSED"},
+    {"id": "T20", "test": "test_t20_permission_failure_is_not_a_missing_file", "result": "PASSED"},
+    {"id": "T21", "test": "test_t21_successful_replacement_preserves_valid_json", "result": "PASSED"},
+    {"id": "T22", "test": "test_t22_serialization_failure_preserves_original", "result": "PASSED"},
+    {"id": "T23", "test": "test_t23_temporary_write_failure_preserves_original", "result": "PASSED"},
+    {"id": "T24", "test": "test_t24_replace_failure_preserves_original", "result": "PASSED"},
+    {"id": "T25", "test": "test_t25_failed_save_leaves_no_partial_target", "result": "PASSED"},
+    {"id": "T26", "test": "test_t26_blocked_authorisation_remains_blocked", "result": "PASSED"},
+    {"id": "T27", "test": "test_t27_recovery_never_creates_allowed_authorisation", "result": "PASSED"},
+    {"id": "T28", "test": "test_t28_safe_defaults_leave_six_strategies_inactive", "result": "PASSED"},
+    {"id": "T29", "test": "test_t29_tested_module_has_no_broker_or_database_client", "result": "PASSED"},
+    {"id": "T30", "test": "test_t30_existing_valid_document_remains_compatible", "result": "PASSED"}
+  ],
+  "not_separately_executed": [
+    "Deeply nested JSON that raises RecursionError is classified invalid in source and is not overwritten. No dedicated fixture was run.",
+    "A directory path in place of the safety file is classified invalid in source. No dedicated fixture was run.",
+    "Duplicate JSON keys follow json.loads last-wins. No dedicated fixture was run."
+  ]
+}

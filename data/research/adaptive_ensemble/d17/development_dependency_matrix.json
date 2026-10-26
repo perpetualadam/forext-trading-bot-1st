@@ -1,0 +1,9 @@
+{
+  "includes_production": true,
+  "direct_dev_only": [
+    "packaging",
+    "pytest"
+  ],
+  "pytest_seen_in_top_level_tests": true,
+  "packaging_seen_in_tests_scan": false
+}

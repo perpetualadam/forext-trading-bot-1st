@@ -1,0 +1,24 @@
+control,status,where,notes
+position_sizing,CONNECTED_TO_LIVE_PATH,forex_bot/trading.py position_sizing; bot_loop.py around line 1367,Shared formula. Margin is not modelled. Not changed in R.6.
+stop_loss,CONNECTED_TO_LIVE_PATH,sl_tp_distance_for_entry,Shared distance for every strategy name.
+take_profit,CONNECTED_TO_LIVE_PATH,sl_tp_distance_for_entry,Shared distance for every strategy name.
+margin,MISSING,trading.py docstring,OANDA may reject size. No local margin model on the live path.
+leverage,MISSING,none on live path,Not a live control.
+spread,SOURCE_PRESENT,trading.py execution price helper,Used where that helper is called. Not a full spread gate.
+slippage,SOURCE_PRESENT,trading.py execution price helper,Assumed slippage. Not broker-validated.
+session_window,CONNECTED_TO_LIVE_PATH,session_rules.in_active_session,Blocks new entries outside the window.
+weekend_flatten,CONNECTED_TO_LIVE_PATH,flatten_for_weekend,Connected in the manage path.
+daily_loss_limit,IMPLEMENTED_BUT_DISCONNECTED,decision_repair/account_risk.py,Runs only if DECISION_REPAIR_ACCOUNT_RISK is on. Default is off.
+drawdown_limit,IMPLEMENTED_BUT_DISCONNECTED,decision_repair/account_risk.py,Same flag. Shadow and research books have their own limits.
+max_open_positions,IMPLEMENTED_BUT_DISCONNECTED,decision_repair/exposure.py,Same account-risk flag.
+max_pending_orders,IMPLEMENTED_BUT_DISCONNECTED,decision_repair/exposure.py,Same flag.
+portfolio_notional_cap,CONNECTED_TO_LIVE_PATH,portfolio_exposure.notional_cap_decision,Present. Effectiveness depends on configuration. Not re-tested here.
+currency_correlation,MISSING,none on live path,Not implemented on the live path.
+overnight_financing,MISSING,research protocol marks financing UNAVAILABLE,Not modelled on the live path.
+news_restrictions,MISSING,none on live path,Not implemented.
+market_gaps,UNKNOWN,candle and provenance checks exist,Not a complete gap policy.
+partial_fills,SOURCE_PRESENT,OrderStatus.PARTIAL and recovery,Recovery can reload PARTIAL. Broker partial behaviour was not validated.
+emergency_halt,CONNECTED_TO_LIVE_PATH,execution halt and kill switch,Checked before a new entry.
+live_order_block,CONNECTED_TO_LIVE_PATH,live_safety.initialise_fail_closed,Startup forces BLOCKED even if a file says ALLOWED.
+broker_disconnect,CONNECTED_TO_LIVE_PATH,ambiguous outcome stays UNRESOLVED,Synthetic tests only. No broker test in R.6.
+restart_recovery,SOURCE_PRESENT,load_open_orders_from_db_into_memory,Connected in source. PostgreSQL engine not executed.

@@ -1,0 +1,8 @@
+{
+  "gate": "A",
+  "result": "PASS",
+  "baseline": "PASS",
+  "production_source_modified": false,
+  "lifespan_executed_during_gate_a": false,
+  "evidence": "STATIC_SOURCE_REVIEW"
+}

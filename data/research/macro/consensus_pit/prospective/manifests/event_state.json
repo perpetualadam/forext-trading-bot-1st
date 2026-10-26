@@ -5,7 +5,7 @@
     "armed": true
   },
   "usd_cpi_2026-10-14": {
-    "event_status": "PRE_WINDOW",
+    "event_status": "RELEASE_PENDING",
     "failure_status": null,
     "armed": true
   },

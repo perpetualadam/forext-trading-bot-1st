@@ -1,0 +1,10 @@
+{
+  "network_deadlines_exercised": false,
+  "dns_hard_deadline_enforced": false,
+  "approved_limits_seconds": {
+    "connection": 10,
+    "inactivity": 15,
+    "request": 30,
+    "stage": 180
+  }
+}

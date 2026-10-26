@@ -1,0 +1,20 @@
+{
+  "regression_r4_r9": {"passed": 120, "skipped": 7, "deselected": 1, "failed": 0},
+  "r10": {"passed": 69, "skipped": 5, "failed": 0},
+  "r11": {"passed": 51, "skipped": 5, "failed": 0},
+  "r12": {"passed": 118, "skipped": 5, "failed": 0},
+  "r13": {"passed": 81, "skipped": 6, "failed": 0},
+  "intentional_assertion_update": {
+    "tests": [
+      "tests/test_r8_reservation_safety.py::test_i29_i30_refusal_stays_before_broker_dispatch",
+      "tests/test_r9_position_safety.py::test_i48_i53_refusal_isolation_and_dispatch_order"
+    ],
+    "change": "The unreachable tail no longer contains execute_oanda_market_open. The assertions now require the non-dispatch marker after reservation and require that _evaluate_impl does not name the broker open.",
+    "safety": "stronger"
+  },
+  "hash_pins_updated": [
+    "tests/test_r8_reservation_safety.py",
+    "tests/test_r10_offline_startup.py",
+    "tests/test_r11_historical_recovery.py"
+  ]
+}

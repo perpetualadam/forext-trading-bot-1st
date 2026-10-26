@@ -1,0 +1,141 @@
+{
+  "domains": [
+    {
+      "id": "R01",
+      "status": "PROPOSED",
+      "evidence": "Permitted platform choices are listed. None is selected.",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "required_action": "Keep the choice list until the user selects one.",
+      "required_separate_approval": true,
+      "blocks_next_stage": false
+    },
+    {
+      "id": "R02",
+      "status": "PENDING_USER_DECISION",
+      "evidence": "No user statement selects an OCI platform.",
+      "evidence_level": "MISSING",
+      "required_action": "Wait for an explicit selection statement.",
+      "required_separate_approval": true,
+      "blocks_next_stage": true
+    },
+    {
+      "id": "R03",
+      "status": "PROPOSED",
+      "evidence": "docker.io/library/python and tag 3.12-slim-bookworm are candidates only.",
+      "evidence_level": "DECLARED_UNVERIFIED",
+      "required_action": "Do not query this registry until it is confirmed.",
+      "required_separate_approval": true,
+      "blocks_next_stage": true
+    },
+    {
+      "id": "R04",
+      "status": "PENDING_USER_DECISION",
+      "evidence": "No user statement approves the candidate registry.",
+      "evidence_level": "MISSING",
+      "required_action": "Wait for an explicit registry confirmation.",
+      "required_separate_approval": true,
+      "blocks_next_stage": true
+    },
+    {
+      "id": "R05",
+      "status": "UNVERIFIED",
+      "evidence": "Deployment hardware was not inspected.",
+      "evidence_level": "UNVERIFIED",
+      "required_action": "Do not infer hardware from the workstation or from G.14.2.",
+      "required_separate_approval": true,
+      "blocks_next_stage": true
+    },
+    {
+      "id": "R06",
+      "status": "UNVERIFIED",
+      "evidence": "Dockerfile line 2 has no digest.",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "required_action": "Capture a digest only after both decisions and a registry approval.",
+      "required_separate_approval": true,
+      "blocks_next_stage": true
+    },
+    {
+      "id": "R07",
+      "status": "MISSING",
+      "evidence": "No platform manifest is recorded.",
+      "evidence_level": "MISSING",
+      "required_action": "Requires a selected platform and a later manifest read.",
+      "required_separate_approval": true,
+      "blocks_next_stage": true
+    },
+    {
+      "id": "R08",
+      "status": "MISSING",
+      "evidence": "Python patch is not in the tag.",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "required_action": "Read patch from later image metadata.",
+      "required_separate_approval": true,
+      "blocks_next_stage": true
+    },
+    {
+      "id": "R09",
+      "status": "MISSING",
+      "evidence": "No ABI is declared.",
+      "evidence_level": "MISSING",
+      "required_action": "Derive ABI after implementation, patch, and architecture exist.",
+      "required_separate_approval": true,
+      "blocks_next_stage": true
+    },
+    {
+      "id": "R10",
+      "status": "UNVERIFIED",
+      "evidence": "glibc remains a D.18 inference. Version is absent.",
+      "evidence_level": "STATIC_INFERENCE",
+      "required_action": "Confirm libc from image metadata under a separate approval.",
+      "required_separate_approval": true,
+      "blocks_next_stage": true
+    },
+    {
+      "id": "R11",
+      "status": "MISSING",
+      "evidence": "No target wheels exist.",
+      "evidence_level": "MISSING",
+      "required_action": "Verify wheels only after the target identity exists.",
+      "required_separate_approval": true,
+      "blocks_next_stage": true
+    },
+    {
+      "id": "R12",
+      "status": "BLOCKED",
+      "evidence": "Lock inputs are incomplete and unapproved.",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "required_action": "Do not resolve dependencies.",
+      "required_separate_approval": true,
+      "blocks_next_stage": true
+    },
+    {
+      "id": "R13",
+      "status": "BLOCKED",
+      "evidence": "No verified base image and no selected platform.",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "required_action": "Do not build an image.",
+      "required_separate_approval": true,
+      "blocks_next_stage": true
+    },
+    {
+      "id": "R14",
+      "status": "BLOCKED",
+      "evidence": "Deployment authority is not present.",
+      "evidence_level": "HISTORICAL_OBSERVATION",
+      "required_action": "Do not deploy.",
+      "required_separate_approval": true,
+      "blocks_next_stage": true
+    }
+  ],
+  "counts": {
+    "total": 14,
+    "VERIFIED": 0,
+    "DECLARED": 0,
+    "PROPOSED": 2,
+    "PENDING_USER_DECISION": 2,
+    "MISSING": 4,
+    "UNVERIFIED": 3,
+    "BLOCKED": 3,
+    "NOT_APPLICABLE": 0
+  }
+}

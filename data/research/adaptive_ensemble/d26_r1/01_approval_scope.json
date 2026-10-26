@@ -1,0 +1,18 @@
+{
+  "approval": "YES — Approve D.26-R1 metadata discovery: pypi.org only, nine GET requests maximum, no package downloads, no dependency resolution, and no production access.",
+  "host": "pypi.org",
+  "segments": [
+    "python-dotenv",
+    "pandas",
+    "numpy",
+    "requests",
+    "psycopg2-binary",
+    "fastapi",
+    "uvicorn",
+    "oandapyv20",
+    "tzdata"
+  ],
+  "maximum_requests": 9,
+  "downloads_authorised": false,
+  "resolution_authorised": false
+}

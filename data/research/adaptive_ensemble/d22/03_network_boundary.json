@@ -1,0 +1,10 @@
+{
+  "approved_hosts_not_contacted": ["registry-1.docker.io", "auth.docker.io"],
+  "hosts_contacted": [],
+  "methods_used": [],
+  "request_count": 0,
+  "redirects": 0,
+  "proxy_used": false,
+  "tls_validation": "not exercised",
+  "reason": "Gate A stopped before any socket was opened."
+}

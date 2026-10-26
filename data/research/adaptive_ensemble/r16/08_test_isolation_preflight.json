@@ -1,0 +1,33 @@
+{
+  "socket_barrier": "raising socket subclass",
+  "dns_barrier": "raising getaddrinfo, gethostbyname, create_connection",
+  "permitted_families": [],
+  "main_imported": false,
+  "run_bot_executed": false,
+  "lifespan_entered": false,
+  "postgresql_connected": false,
+  "oanda_client_constructed": false,
+  "execute_oanda_market_open_called": false,
+  "blocked_constructor_attempts": {
+    "r16": 1,
+    "regression": 5,
+    "r10": 5,
+    "r11": 4,
+    "r12": 2,
+    "r13": 3,
+    "r14": 1,
+    "r15": 1
+  },
+  "dotenv_stub_calls": {
+    "r16": 1,
+    "regression": 1,
+    "r10": 1,
+    "r11": 1,
+    "r12": 1,
+    "r13": 1,
+    "r14": 1,
+    "r15": 1
+  },
+  "network_successes": 0,
+  "dns_successes": 0
+}

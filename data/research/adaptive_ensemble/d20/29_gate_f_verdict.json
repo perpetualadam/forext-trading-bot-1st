@@ -1,0 +1,5 @@
+{
+  "gate": "F",
+  "result": "PASS",
+  "meaning": "A per-platform lock preference is documented and not created."
+}

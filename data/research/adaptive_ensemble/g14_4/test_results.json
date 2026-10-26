@@ -1,0 +1,25 @@
+{
+  "stage": "G.14.4",
+  "gate": "A",
+  "commands": [
+    "python -m pytest -q --tb=line tests/test_g14_4_wheelhouse.py",
+    "python -m pytest -q --tb=line tests/test_g14_4_wheelhouse.py tests/test_g14_3_supply.py tests/test_g13_packaging.py tests/test_g13_1_mutations.py tests/test_g14_context.py tests/test_g14_1_staging.py",
+    "python -m ruff check tests/g14_4_verify.py tests/g14_4_acquire.py tests/g14_4_inventory.py tests/test_g14_4_wheelhouse.py",
+    "python -m mypy tests/g14_4_verify.py tests/g14_4_acquire.py tests/g14_4_inventory.py tests/test_g14_4_wheelhouse.py"
+  ],
+  "passed": 86,
+  "failed": 0,
+  "skipped": 0,
+  "ruff": "pass",
+  "mypy": "pass",
+  "g10_snapshot_tests_not_run": "Frozen G.7 and G.10 archives were hashed directly. test_g10_snapshot.py was not run because it can rewrite G.5 and G.6 JSON.",
+  "synthetic_fixtures": "pytest temporary wheel-like files only; none retained",
+  "unexpected_protected_file_changes": [],
+  "untested": [
+    "real package index resolution",
+    "real wheel hashes",
+    "base-image glibc and Python patch",
+    "pip version inside the base image",
+    "Docker build"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "approval_status": "PROPOSED_NOT_AUTHORISED",
+  "proposed_registry_host": "registry-1.docker.io",
+  "proposed_authentication_host": "auth.docker.io",
+  "storage_redirect_hosts": "MISSING until a future approval names them. The historical CloudFront observation is not approval.",
+  "repository": "library/python",
+  "manifest_digests": [
+    "sha256:2ed6491b93cd49272ee6de2b5a38440c3448360322c089fc23e370722d74179d",
+    "sha256:739ba32ae445e8d58f3d90feb85f83bebc8346f8dd280fa1eb5848f4ff1ed163"
+  ],
+  "layer_digests": [
+    "sha256:7fd1ebe418b5079d4aa36f416af9b143d127bc75b0155d71cb5fd559b5e04d39",
+    "sha256:6e0ba8ba048777f5354b5a7cb497ae5261116fac8246160c06fc045c8300c582",
+    "sha256:86a9e13e035d8e44ae37bfebc52c7fc68898fde19b4b26dd0585f2231fcfaf2c",
+    "sha256:f9d2fb07d6f062d06ddc7aa58191cc5359c728f54af6cebe69a37d2c89e72a0d",
+    "sha256:c75f989a229d12b2d2613a5997de9ff3546f664c22da9248720033a2410220f6",
+    "sha256:163c741a70d3da9f9cf2dff63f4790528168fad6ecc0b230a84ec48ba7e3cc34",
+    "sha256:76294804daeb8e71e4d8fa87aa64b374948e3ad22290ffe08d264ecbb5135440",
+    "sha256:ecbed7df0ff7188fbefa7103723ef4f9602cb01c3485baaa84df6f950e32104b"
+  ],
+  "methods": [
+    "GET"
+  ],
+  "proposed_request_count": 8,
+  "proposed_request_count_status": "PROPOSED_NOT_AUTHORISED",
+  "redirect_policy": "do not follow",
+  "authentication_policy": "anonymous only if a future approval repeats it",
+  "tls": "default verification",
+  "proxy": "no proxy",
+  "retries": 0,
+  "compressed_bytes_declared": 94726961,
+  "duration": "MISSING",
+  "response_size_cap": "MISSING"
+}

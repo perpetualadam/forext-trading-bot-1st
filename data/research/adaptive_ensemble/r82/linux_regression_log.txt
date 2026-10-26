@@ -1,0 +1,17 @@
+FILE data/research/adaptive_ensemble/r82/poc/test_r82_journal_and_exposure.py EXIT 0 SECONDS 23.462 Ran 18 tests in 21.008s OK 
+FILE data/research/adaptive_ensemble/r81/poc/test_r81_rate_limit_and_recovery.py EXIT 0 SECONDS 37.228 Ran 16 tests in 35.671s OK 
+FILE data/research/adaptive_ensemble/r80/poc/test_r80_authorised_concurrency.py EXIT 0 SECONDS 18.8 Ran 17 tests in 17.105s OK 
+FILE data/research/adaptive_ensemble/r79/poc/test_r79_operational_cycle.py EXIT 0 SECONDS 7.714 Ran 17 tests in 5.772s OK 
+FILE data/research/adaptive_ensemble/r78/poc/test_r78_liveness_and_protocol.py EXIT 0 SECONDS 4.545 Ran 21 tests in 3.847s OK 
+FILE data/research/adaptive_ensemble/r77/poc/test_r77_atomic_entry.py EXIT 1 SECONDS 16.574 Ran 87 tests in 14.862s FAILED (failures=2, errors=3) 
+FILE data/research/adaptive_ensemble/r77/poc/test_r77_linux_journal.py EXIT 1 SECONDS 1.136 Ran 2 tests in 0.522s FAILED (failures=1, errors=1) 
+FILE data/research/adaptive_ensemble/r76/poc/test_r76_entry_recovery.py EXIT 1 SECONDS 22.847 Ran 72 tests in 21.095s FAILED (failures=6, errors=2) 
+FILE data/research/adaptive_ensemble/r75/poc/test_r75_guard_and_recovery.py EXIT 1 SECONDS 10.025 Ran 13 tests in 8.313s FAILED (failures=3) 
+FILE data/research/adaptive_ensemble/r74/poc/test_r74_close_recovery.py EXIT 1 SECONDS 2.426 Ran 9 tests in 1.065s FAILED (failures=6) 
+FILE data/research/adaptive_ensemble/r74/poc/test_r74_journal.py EXIT 0 SECONDS 3.024 Ran 20 tests in 2.539s OK 
+FILE data/research/adaptive_ensemble/r73/poc/test_r73_close_evidence.py EXIT 1 SECONDS 6.489 Ran 31 tests in 5.210s FAILED (failures=21, errors=2) 
+FILE data/research/adaptive_ensemble/r72/poc/test_r72_broker_protection.py EXIT 1 SECONDS 1.816 Ran 37 tests in 0.160s FAILED (failures=1) 
+FILE data/research/adaptive_ensemble/r71/poc/test_r71_readonly_calculations.py EXIT 0 SECONDS 1.699 Ran 8 tests in 0.017s OK 
+FILE data/research/adaptive_ensemble/r70/poc/test_r70_snapshot.py EXIT 1 SECONDS 9.15 Ran 26 tests in 7.646s FAILED (failures=1) 
+FILE data/research/adaptive_ensemble/r69/poc/test_r69_integration.py EXIT 1 SECONDS 6.693 Ran 48 tests in 4.880s FAILED (failures=3, skipped=1) 
+FILE data/research/adaptive_ensemble/r68/poc/test_r68_observation_boundary.py EXIT 1 SECONDS 0.55 Ran 31 tests in 0.231s FAILED (failures=2, errors=1, skipped=1) 

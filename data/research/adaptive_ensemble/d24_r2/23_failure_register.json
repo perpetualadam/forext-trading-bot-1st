@@ -1,0 +1,33 @@
+{
+  "stop": null,
+  "classification": "D24_R2_CONFIG_VERIFIED_BOTH_PLATFORMS",
+  "findings": [
+    {
+      "id": "D24R2-HIST-01",
+      "evidence": "D.22 through D.24-R1 classifications were left unchanged.",
+      "evidence_level": "PRESERVED_HISTORICAL_RECORD",
+      "impact": "This stage does not reclassify the earlier redirect stop.",
+      "required_action": "Leave those directories unchanged.",
+      "required_approval": "None for preservation.",
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D24R2-TOKEN-01",
+      "evidence": "Storage requests were built without an Authorization header.",
+      "evidence_level": "CLIENT_CONTROL",
+      "impact": "The registry bearer token was not forwarded to storage.",
+      "required_action": "Keep storage requests unauthenticated by the registry token.",
+      "required_approval": "None for this control.",
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D24R2-PY-01",
+      "evidence": "Verified config JSON may declare a Python version.",
+      "evidence_level": "VERIFIED_CONFIG_CONTENT",
+      "impact": "The declaration is not a measured interpreter, ABI, or libc.",
+      "required_action": "Do not treat config verification as runtime approval.",
+      "required_approval": "A later filesystem or runtime stage.",
+      "production_impact": "UNVERIFIED"
+    }
+  ]
+}

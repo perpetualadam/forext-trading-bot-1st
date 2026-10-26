@@ -1,0 +1,23 @@
+{
+  "stage": "G.14.1",
+  "design": "dedicated temporary directory populated only by individually copied allowlisted files",
+  "repository_root_used_as_context": false,
+  "broad_copy_used": false,
+  "permitted_inputs": [
+    "Dockerfile",
+    ".dockerignore",
+    "requirements.txt",
+    "main.py",
+    "59 explicit forex_bot package files named by the G.10 allowlist and by Dockerfile COPY"
+  ],
+  "expected_context_files": 63,
+  "actual_context_files": 63,
+  "staging_directory": "C:\\Users\\Brian\\AppData\\Local\\Temp\\forext-g14-1-staging-0yifygx2",
+  "outside_onedrive": true,
+  "newly_created": true,
+  "dockerfile_hash_authority": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+  "dockerignore_hash_authority": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+  "non_dockerfile_hash_authority": "sha256 values stored in the verified G.10 allowlist",
+  "g14_1_reports_included_in_context": false,
+  "classification": "MINIMAL_CONTEXT_DESIGNED"
+}

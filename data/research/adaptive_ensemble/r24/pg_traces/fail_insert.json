@@ -1,0 +1,16 @@
+{
+  "pid": 6128,
+  "role": "fail_insert",
+  "ok": true,
+  "begun": false,
+  "exists": false,
+  "fail_closed": true,
+  "blocked_by": "recovery_unreadable",
+  "inert_dispatches": 0,
+  "reservation_attempted": false,
+  "route_refusals": [],
+  "socket_blocks": [],
+  "dns_blocks": 0,
+  "dotenv_stubs": 1,
+  "real_broker_calls": 0
+}

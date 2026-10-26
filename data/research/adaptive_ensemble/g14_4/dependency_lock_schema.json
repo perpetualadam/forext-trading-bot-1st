@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "g14_4_lock_schema_v1",
+  "title": "G.14.4 dependency lock schema",
+  "description": "Schema only. This document is not an approved lock and contains no third-party package hashes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "synthetic",
+    "status",
+    "target",
+    "source",
+    "packages",
+    "toolchain",
+    "claimed_state"
+  ],
+  "properties": {
+    "schema_version": {"const": "g14_4_lock_schema_v1"},
+    "synthetic": {"type": "boolean"},
+    "status": {"type": "string"},
+    "claimed_state": {
+      "enum": [
+        null,
+        "RESOLUTION_COMPLETE",
+        "ARTIFACT_ACQUISITION_COMPLETE",
+        "INDEPENDENT_ARTIFACT_VERIFICATION_COMPLETE"
+      ]
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["implementation", "python_major_minor", "python_patch", "os", "arch"],
+      "properties": {
+        "implementation": {"const": "cp"},
+        "python_major_minor": {"const": "3.12"},
+        "python_patch": {"type": "string"},
+        "os": {"const": "linux"},
+        "arch": {"const": "x86_64"}
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["index_url", "source_approved", "additional_indexes"],
+      "properties": {
+        "index_url": {"type": "string"},
+        "source_approved": {"type": "boolean"},
+        "additional_indexes": {"type": "array", "maxItems": 0}
+      }
+    },
+    "toolchain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pip_version", "resolver"],
+      "properties": {
+        "pip_version": {"type": "string"},
+        "resolver": {"type": "string"}
+      }
+    },
+    "packages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "version",
+          "filename",
+          "sha256",
+          "size",
+          "direct",
+          "extras",
+          "markers",
+          "requires",
+          "provenance",
+          "url",
+          "vcs"
+        ],
+        "properties": {
+          "name": {"type": "string"},
+          "version": {"type": "string"},
+          "filename": {"type": "string"},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "size": {"type": "integer", "minimum": 0},
+          "direct": {"type": "boolean"},
+          "extras": {"type": "array", "items": {"type": "string"}},
+          "markers": {"type": ["string", "null"]},
+          "requires": {"type": "array", "items": {"type": "string"}},
+          "provenance": {"type": "string", "minLength": 1},
+          "url": {"type": "null"},
+          "vcs": {"type": "null"}
+        }
+      }
+    }
+  },
+  "canonical_serialization": {
+    "encoding": "utf-8",
+    "json_sort_keys": true,
+    "separators": [",", ":"],
+    "package_order": "PEP 503 normalized name, then version, then filename",
+    "path_representation": "relative posix, NFC",
+    "unknown_fields": "reject",
+    "duplicate_names": "reject",
+    "case_insensitive_filenames": "reject",
+    "incomplete_records": "reject",
+    "credentials": "reject"
+  },
+  "synthetic_example_not_an_approved_lock": {
+    "schema_version": "g14_4_lock_schema_v1",
+    "synthetic": true,
+    "status": "SYNTHETIC_NOT_AN_APPROVED_LOCK",
+    "claimed_state": null,
+    "note": "No package filename, version, or hash is supplied here."
+  }
+}

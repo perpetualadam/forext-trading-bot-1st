@@ -1,0 +1,14 @@
+{
+  "forex_bot_app_imported": false,
+  "run_bot_started": false,
+  "oanda_client_created": false,
+  "postgresql_connection": false,
+  "telegram_or_discord": false,
+  "dotenv_stub_calls": 1,
+  "socket_attempts_blocked": 5,
+  "dns_policy": "getaddrinfo and gethostbyname raise R9_DNS_BLOCKED",
+  "socket_policy": "socket subclass raises R9_NETWORK_BLOCKED before the real constructor",
+  "families_allowed": [],
+  "persist_exec_orders": "0",
+  "writes": "r9 runner log, r9 synthetic live-safety file, approved source, and tests"
+}

@@ -1,0 +1,6 @@
+{
+  "https_observation": "The ledger records what pypi.org returned for the approved paths.",
+  "publisher_authenticity": "MISSING",
+  "artifact_bytes_checked": false,
+  "published_sha256_is_metadata": true
+}

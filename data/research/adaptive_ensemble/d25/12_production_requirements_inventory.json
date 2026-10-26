@@ -1,0 +1,199 @@
+{
+  "count": 9,
+  "lower_bound_only_count": 9,
+  "exact_pin_count": 0,
+  "hash_pin_count": 0,
+  "direct_url_count": 0,
+  "requirements": [
+    {
+      "line": 1,
+      "original": "python-dotenv>=1.0.0",
+      "kind": "requirement",
+      "package": "python-dotenv",
+      "extras": [],
+      "version_constraints": ">=1.0.0",
+      "environment_marker": null,
+      "direct_url": false,
+      "hash_pinning": false,
+      "exact_version_pinning": false,
+      "lower_bound_only": true
+    },
+    {
+      "line": 2,
+      "original": "pandas>=2.0.0",
+      "kind": "requirement",
+      "package": "pandas",
+      "extras": [],
+      "version_constraints": ">=2.0.0",
+      "environment_marker": null,
+      "direct_url": false,
+      "hash_pinning": false,
+      "exact_version_pinning": false,
+      "lower_bound_only": true
+    },
+    {
+      "line": 3,
+      "original": "numpy>=1.24.0",
+      "kind": "requirement",
+      "package": "numpy",
+      "extras": [],
+      "version_constraints": ">=1.24.0",
+      "environment_marker": null,
+      "direct_url": false,
+      "hash_pinning": false,
+      "exact_version_pinning": false,
+      "lower_bound_only": true
+    },
+    {
+      "line": 4,
+      "original": "requests>=2.31.0",
+      "kind": "requirement",
+      "package": "requests",
+      "extras": [],
+      "version_constraints": ">=2.31.0",
+      "environment_marker": null,
+      "direct_url": false,
+      "hash_pinning": false,
+      "exact_version_pinning": false,
+      "lower_bound_only": true
+    },
+    {
+      "line": 5,
+      "original": "psycopg2-binary>=2.9.9",
+      "kind": "requirement",
+      "package": "psycopg2-binary",
+      "extras": [],
+      "version_constraints": ">=2.9.9",
+      "environment_marker": null,
+      "direct_url": false,
+      "hash_pinning": false,
+      "exact_version_pinning": false,
+      "lower_bound_only": true
+    },
+    {
+      "line": 6,
+      "original": "fastapi>=0.109.0",
+      "kind": "requirement",
+      "package": "fastapi",
+      "extras": [],
+      "version_constraints": ">=0.109.0",
+      "environment_marker": null,
+      "direct_url": false,
+      "hash_pinning": false,
+      "exact_version_pinning": false,
+      "lower_bound_only": true
+    },
+    {
+      "line": 7,
+      "original": "uvicorn[standard]>=0.27.0",
+      "kind": "requirement",
+      "package": "uvicorn",
+      "extras": [
+        "standard"
+      ],
+      "version_constraints": ">=0.27.0",
+      "environment_marker": null,
+      "direct_url": false,
+      "hash_pinning": false,
+      "exact_version_pinning": false,
+      "lower_bound_only": true
+    },
+    {
+      "line": 8,
+      "original": "oandapyV20>=0.7.2",
+      "kind": "requirement",
+      "package": "oandapyV20",
+      "extras": [],
+      "version_constraints": ">=0.7.2",
+      "environment_marker": null,
+      "direct_url": false,
+      "hash_pinning": false,
+      "exact_version_pinning": false,
+      "lower_bound_only": true
+    },
+    {
+      "line": 9,
+      "original": "tzdata>=2024.1",
+      "kind": "requirement",
+      "package": "tzdata",
+      "extras": [],
+      "version_constraints": ">=2024.1",
+      "environment_marker": null,
+      "direct_url": false,
+      "hash_pinning": false,
+      "exact_version_pinning": false,
+      "lower_bound_only": true
+    }
+  ],
+  "static_import_presence": {
+    "python-dotenv": [
+      "forex_bot/config.py"
+    ],
+    "pandas": [
+      "forex_bot/backtest.py",
+      "forex_bot/csv_ohlcv.py",
+      "forex_bot/decision_quality/breakdowns.py",
+      "forex_bot/decision_quality/cross_pair.py",
+      "forex_bot/decision_quality/data.py",
+      "forex_bot/decision_quality/download_history.py",
+      "forex_bot/decision_quality/ema_retracement.py",
+      "forex_bot/decision_quality/engine.py"
+    ],
+    "numpy": [
+      "forex_bot/analytics.py",
+      "forex_bot/backtest.py",
+      "forex_bot/decision_quality/cross_pair.py",
+      "forex_bot/decision_quality/ema_retracement.py",
+      "forex_bot/decision_quality/event_discovery.py",
+      "forex_bot/decision_quality/fast_cache.py",
+      "forex_bot/decision_quality/feature_discovery.py",
+      "forex_bot/decision_quality/fibonacci_retracement.py"
+    ],
+    "requests": [
+      "forex_bot/alerts.py",
+      "forex_bot/anthropic_voter.py",
+      "forex_bot/decision_quality/macro_first_print/fetch.py",
+      "forex_bot/decision_quality/trading_economics/client.py",
+      "forex_bot/openai_voter.py",
+      "forex_bot/telegram_cloud.py",
+      "forex_bot/telegram_control.py"
+    ],
+    "psycopg2": [
+      "forex_bot/database.py",
+      "forex_bot/decision_quality/live_trades.py"
+    ],
+    "fastapi": [
+      "forex_bot/app.py"
+    ],
+    "uvicorn": [
+      "main.py"
+    ],
+    "oandapyV20": [
+      "forex_bot/oanda_candles_read.py",
+      "forex_bot/oanda_client.py",
+      "forex_bot/oanda_exec.py",
+      "forex_bot/reconciliation.py"
+    ],
+    "tzdata": [],
+    "zoneinfo": [
+      "forex_bot/decision_quality/feature_discovery.py",
+      "forex_bot/decision_quality/schedule.py",
+      "forex_bot/decision_quality/sessions.py",
+      "forex_bot/decision_quality/trading_economics/timestamps.py",
+      "forex_bot/research/adaptive_ensemble/g4_sessions.py",
+      "forex_bot/session_rules.py"
+    ]
+  },
+  "static_import_file_counts": {
+    "python-dotenv": 1,
+    "pandas": 49,
+    "numpy": 23,
+    "requests": 7,
+    "psycopg2": 2,
+    "fastapi": 1,
+    "uvicorn": 1,
+    "oandapyV20": 4,
+    "tzdata": 0,
+    "zoneinfo": 6
+  }
+}

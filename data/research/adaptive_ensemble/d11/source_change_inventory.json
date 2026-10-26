@@ -1,0 +1,42 @@
+{
+  "production_file": "forex_bot/telegram_control.py",
+  "baseline_sha256": "270f2b48bbbc1c50b1bb89ae338716803c5e2772fada3b1aa39153fb8b300014",
+  "final_sha256": "193a59645c0596b22016164f8cdf1a50b06734a6bd56a014fba9a6910ba68780",
+  "final_bytes": 45313,
+  "git_numstat_vs_head": {
+    "insertions": 69,
+    "deletions": 14
+  },
+  "functions_added": [
+    "_read_trades_if_running",
+    "_forget_worker"
+  ],
+  "functions_modified": [
+    "cmd_trades",
+    "cmd_search",
+    "process_update",
+    "process_updates",
+    "_poller_loop",
+    "_poller_loop_inner",
+    "start_telegram_control",
+    "stop_telegram_control",
+    "reset_telegram_control_for_tests"
+  ],
+  "public_stop_contract": "Return value changed from None to STOP_COMPLETED, STOP_INCOMPLETE_WORKER_ALIVE, or STOP_NOT_RUNNING. Timeout does not raise.",
+  "callers_of_real_stop": "app.py ignores the return value and was not modified.",
+  "unchanged": [
+    "command names",
+    "command permissions",
+    "authentication",
+    "chat id handling",
+    "tokens",
+    "network endpoints",
+    "message formatting",
+    "database.py",
+    "app.py",
+    "live_safety.py",
+    "strategy_meta.py"
+  ],
+  "new_dependencies": [],
+  "unauthorised_changes": []
+}

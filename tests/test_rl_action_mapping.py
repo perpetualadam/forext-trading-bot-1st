@@ -14,6 +14,7 @@ def test_actions_are_strings_not_integers():
 
 def test_greedy_prefers_highest_q_without_buy_sell_swap():
     agent = RLAgent(alpha=0.15, epsilon=0.0)
+    agent.persisted_ok = True
     agent.q["s"] = {"BUY": 1.0, "SELL": 0.0, "SKIP": 0.0}
     assert agent.decide("s") == "BUY"
     agent.q["s"] = {"BUY": 0.0, "SELL": 1.0, "SKIP": 0.0}

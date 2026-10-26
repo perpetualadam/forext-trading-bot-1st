@@ -1,0 +1,132 @@
+{
+  "methods": [
+    {
+      "method": "config-only",
+      "can_establish": [
+        "architecture",
+        "os",
+        "variant",
+        "PYTHON_VERSION declaration",
+        "Cmd declaration"
+      ],
+      "cannot_establish": [
+        "ABI",
+        "SOABI",
+        "wheel tags",
+        "libc version",
+        "final image",
+        "VPS"
+      ],
+      "network": false,
+      "layers": false,
+      "install": false,
+      "container": false,
+      "docker": false,
+      "wsl_or_vm": false,
+      "production": false,
+      "credentials": false,
+      "native_execution": false,
+      "resource_risk": "none",
+      "priority": "already exhausted"
+    },
+    {
+      "method": "static layer inspection after verified download",
+      "can_establish": [
+        "ELF architecture",
+        "interpreter file hash",
+        "sysconfigdata if present",
+        "libc file identity and version string",
+        "PT_INTERP",
+        "symbol versions present in files"
+      ],
+      "cannot_establish": [
+        "live sys.* values",
+        "effective loader search",
+        "final bot image",
+        "VPS"
+      ],
+      "network": true,
+      "layers": true,
+      "install": false,
+      "container": false,
+      "docker": false,
+      "wsl_or_vm": false,
+      "production": false,
+      "credentials": false,
+      "native_execution": false,
+      "resource_risk": "compressed download plus a later bounded extract",
+      "priority": "measurement stage after byte acquisition"
+    },
+    {
+      "method": "isolated runtime interrogation",
+      "can_establish": [
+        "sys.version",
+        "SOABI",
+        "supported wheel tags",
+        "loader behaviour"
+      ],
+      "cannot_establish": [
+        "final bot image",
+        "VPS",
+        "publisher identity"
+      ],
+      "network": true,
+      "layers": true,
+      "install": false,
+      "container": true,
+      "docker": true,
+      "wsl_or_vm": "possible if the host cannot run the image natively",
+      "production": false,
+      "credentials": false,
+      "native_execution": true,
+      "resource_risk": "container runtime and possible emulation",
+      "priority": "only for questions static files cannot answer"
+    },
+    {
+      "method": "final bot image",
+      "can_establish": [
+        "final command",
+        "installed packages",
+        "final interpreter"
+      ],
+      "cannot_establish": [
+        "VPS",
+        "production safety"
+      ],
+      "network": true,
+      "layers": true,
+      "install": true,
+      "container": true,
+      "docker": true,
+      "wsl_or_vm": false,
+      "production": false,
+      "credentials": false,
+      "native_execution": true,
+      "resource_risk": "build and dependency installation",
+      "priority": "later"
+    },
+    {
+      "method": "actual VPS",
+      "can_establish": [
+        "deployed host architecture",
+        "deployed libc",
+        "deployed runtime"
+      ],
+      "cannot_establish": [
+        "that the host matches this snapshot unless digests are compared"
+      ],
+      "network": true,
+      "layers": false,
+      "install": false,
+      "container": false,
+      "docker": false,
+      "wsl_or_vm": false,
+      "production": true,
+      "credentials": true,
+      "native_execution": true,
+      "resource_risk": "production access",
+      "priority": "not next"
+    }
+  ],
+  "executed": false
+}

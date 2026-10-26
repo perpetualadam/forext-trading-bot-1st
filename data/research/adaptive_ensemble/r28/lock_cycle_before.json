@@ -1,0 +1,270 @@
+{
+  "controlled": {
+    "database_oid": 16389,
+    "locks_while_alter_waited": [
+      [
+        "relation",
+        "AccessShareLock",
+        true,
+        "16428"
+      ],
+      [
+        "relation",
+        "AccessExclusiveLock",
+        false,
+        "16428"
+      ]
+    ],
+    "holder_error": [],
+    "alter_error": [],
+    "deadlock": false
+  },
+  "application_race": {
+    "rounds": 8,
+    "deadlocks": 3,
+    "stored_before_cleanup": [
+      [
+        "R28S0",
+        1
+      ],
+      [
+        "R28S1",
+        1
+      ],
+      [
+        "R28S2",
+        1
+      ],
+      [
+        "R28S3",
+        1
+      ],
+      [
+        "R28S4",
+        1
+      ],
+      [
+        "R28S5",
+        1
+      ],
+      [
+        "R28S6",
+        1
+      ],
+      [
+        "R28S7",
+        1
+      ]
+    ],
+    "outcomes": [
+      {
+        "symbol": "R28S0",
+        "pids": [
+          1952,
+          7812
+        ],
+        "begun": 1,
+        "exists": 1,
+        "rows": [
+          {
+            "pid": 1952,
+            "begun": false,
+            "exists": false,
+            "notes": [
+              "insert_exec_order_pending_if_absent failed: deadlock detected\nLINE 2:                 INSERT INTO exec_orders (client_order_id, sy...\n                                    ^\nDETAIL:  Process 19800 waits for RowExclusiveLock on relation 16428 of database 16389; blocked by process 14280.\nProcess 14280 waits for AccessExclusiveLock on relation 16428 of database 16389; blocked by process 19800.\nHINT:  See server log for query details.\n"
+            ],
+            "exit_code": 0
+          },
+          {
+            "pid": 7812,
+            "begun": true,
+            "exists": true,
+            "notes": [],
+            "exit_code": 0
+          }
+        ]
+      },
+      {
+        "symbol": "R28S1",
+        "pids": [
+          16480,
+          468
+        ],
+        "begun": 1,
+        "exists": 1,
+        "rows": [
+          {
+            "pid": 16480,
+            "begun": true,
+            "exists": true,
+            "notes": [],
+            "exit_code": 0
+          },
+          {
+            "pid": 468,
+            "begun": false,
+            "exists": false,
+            "notes": [],
+            "exit_code": 0
+          }
+        ]
+      },
+      {
+        "symbol": "R28S2",
+        "pids": [
+          16348,
+          13332
+        ],
+        "begun": 1,
+        "exists": 1,
+        "rows": [
+          {
+            "pid": 16348,
+            "begun": true,
+            "exists": true,
+            "notes": [],
+            "exit_code": 0
+          },
+          {
+            "pid": 13332,
+            "begun": false,
+            "exists": false,
+            "notes": [],
+            "exit_code": 0
+          }
+        ]
+      },
+      {
+        "symbol": "R28S3",
+        "pids": [
+          1120,
+          11076
+        ],
+        "begun": 1,
+        "exists": 1,
+        "rows": [
+          {
+            "pid": 1120,
+            "begun": true,
+            "exists": true,
+            "notes": [],
+            "exit_code": 0
+          },
+          {
+            "pid": 11076,
+            "begun": false,
+            "exists": false,
+            "notes": [],
+            "exit_code": 0
+          }
+        ]
+      },
+      {
+        "symbol": "R28S4",
+        "pids": [
+          19164,
+          11348
+        ],
+        "begun": 1,
+        "exists": 1,
+        "rows": [
+          {
+            "pid": 19164,
+            "begun": true,
+            "exists": true,
+            "notes": [],
+            "exit_code": 0
+          },
+          {
+            "pid": 11348,
+            "begun": false,
+            "exists": false,
+            "notes": [
+              "PostgreSQL unavailable: deadlock detected\nDETAIL:  Process 8892 waits for AccessExclusiveLock on relation 16428 of database 16389; blocked by process 472.\nProcess 472 waits for RowExclusiveLock on relation 16428 of database 16389; blocked by process 8892.\nHINT:  See server log for query details.\n",
+              "exec_orders: persist enabled but PostgreSQL unavailable \u2014 blocking new order reservation"
+            ],
+            "exit_code": 0
+          }
+        ]
+      },
+      {
+        "symbol": "R28S5",
+        "pids": [
+          6400,
+          2220
+        ],
+        "begun": 1,
+        "exists": 1,
+        "rows": [
+          {
+            "pid": 6400,
+            "begun": true,
+            "exists": true,
+            "notes": [],
+            "exit_code": 0
+          },
+          {
+            "pid": 2220,
+            "begun": false,
+            "exists": false,
+            "notes": [],
+            "exit_code": 0
+          }
+        ]
+      },
+      {
+        "symbol": "R28S6",
+        "pids": [
+          164,
+          18860
+        ],
+        "begun": 1,
+        "exists": 1,
+        "rows": [
+          {
+            "pid": 164,
+            "begun": true,
+            "exists": true,
+            "notes": [],
+            "exit_code": 0
+          },
+          {
+            "pid": 18860,
+            "begun": false,
+            "exists": false,
+            "notes": [],
+            "exit_code": 0
+          }
+        ]
+      },
+      {
+        "symbol": "R28S7",
+        "pids": [
+          2248,
+          568
+        ],
+        "begun": 1,
+        "exists": 1,
+        "rows": [
+          {
+            "pid": 2248,
+            "begun": true,
+            "exists": true,
+            "notes": [],
+            "exit_code": 0
+          },
+          {
+            "pid": 568,
+            "begun": false,
+            "exists": false,
+            "notes": [
+              "PostgreSQL unavailable: deadlock detected\nDETAIL:  Process 11424 waits for AccessExclusiveLock on relation 16428 of database 16389; blocked by process 4168.\nProcess 4168 waits for RowExclusiveLock on relation 16428 of database 16389; blocked by process 11424.\nHINT:  See server log for query details.\n",
+              "exec_orders: persist enabled but PostgreSQL unavailable \u2014 blocking new order reservation"
+            ],
+            "exit_code": 0
+          }
+        ]
+      }
+    ]
+  }
+}

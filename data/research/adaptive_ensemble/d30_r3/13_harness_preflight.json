@@ -1,0 +1,101 @@
+{
+  "checks": [
+    {
+      "check": "D01_windows",
+      "passed": true
+    },
+    {
+      "check": "D02_no_network_import",
+      "passed": true
+    },
+    {
+      "check": "D03_no_socket_import",
+      "passed": true
+    },
+    {
+      "check": "D04_no_dns",
+      "passed": true
+    },
+    {
+      "check": "D05_no_http_client",
+      "passed": true
+    },
+    {
+      "check": "D06_no_production_path",
+      "passed": true
+    },
+    {
+      "check": "D07_no_credential_read",
+      "passed": true
+    },
+    {
+      "check": "D08_output_boundary",
+      "passed": true
+    },
+    {
+      "check": "D09_fixed_worker_args",
+      "passed": true
+    },
+    {
+      "check": "D10_fixed_descendant_args",
+      "passed": true
+    },
+    {
+      "check": "D11_one_descendant",
+      "passed": true
+    },
+    {
+      "check": "D12_no_shell",
+      "passed": true
+    },
+    {
+      "check": "D13_signatures",
+      "passed": true
+    },
+    {
+      "check": "D14_job_lifecycle",
+      "passed": true
+    },
+    {
+      "check": "D15_kill_on_close",
+      "passed": true
+    },
+    {
+      "check": "D16_containment_before_execution",
+      "passed": true
+    },
+    {
+      "check": "D17_membership_check",
+      "passed": true
+    },
+    {
+      "check": "D18_forced_termination",
+      "passed": true
+    },
+    {
+      "check": "D19_worker_exit",
+      "passed": true
+    },
+    {
+      "check": "D20_descendant_exit",
+      "passed": true
+    },
+    {
+      "check": "D21_cleanup_allowance",
+      "passed": true
+    },
+    {
+      "check": "D22_no_retry",
+      "passed": true
+    },
+    {
+      "check": "D23_no_broad_kill",
+      "passed": true
+    },
+    {
+      "check": "D24_prior_preserved",
+      "passed": true
+    }
+  ],
+  "verdict": "PASS"
+}

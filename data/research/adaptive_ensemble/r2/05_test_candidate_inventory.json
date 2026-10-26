@@ -1,0 +1,34 @@
+{
+  "safe": [
+    "tests/test_strategy_activation_defaults.py",
+    "tests/test_d15_historical_compatibility.py",
+    "tests/test_execution_safety.py::test_paper_like_kinds",
+    "tests/test_execution_safety.py::test_paper_kinds_cannot_assert_broker_open",
+    "tests/test_execution_safety.py::test_paper_mode_cannot_assert_broker_even_with_live_kind",
+    "tests/test_execution_safety.py::test_live_kind_is_blocked_until_authorised",
+    "tests/test_execution_safety.py::test_window_paper_fill_path_is_not_broker",
+    "tests/test_execution_safety.py::test_paper_fill_path_is_not_broker",
+    "tests/test_execution_safety.py::test_reconcile_cannot_convert_paper_metadata_to_live",
+    "tests/test_execution_safety.py::test_duplicate_client_order_id_does_not_reserve_twice",
+    "tests/test_execution_safety.py::test_window_paper_position_is_not_broker_backed"
+  ],
+  "not_safe": [
+    {
+      "test": "tests/test_execution_safety.py::test_live_kind_can_assert_broker_when_authorised",
+      "reason": "Requires the fixture that sets live-order authorisation to ALLOWED."
+    },
+    {
+      "test": "tests/test_execution_safety.py::test_live_open_reaches_sync_place_and_keeps_ids",
+      "reason": "Requires the same ALLOWED fixture and drives the open function."
+    },
+    {
+      "tests": "tests/test_d15_consolidated_lifecycle.py and the other D.15 lifespan files",
+      "reason": "The D.15 runner imports forex_bot.app and enters the application lifespan."
+    }
+  ],
+  "ran_but_barrier_blocked_asyncio": [
+    "test_async_open_refuses_paper_kinds_before_api",
+    "test_paper_mode_open_never_calls_sync_place"
+  ],
+  "note": "Those two async tests were initially classed as safe. On Windows, asyncio.run opens a local self-pipe. The socket barrier stopped that pipe. The order function was not reached. They are not evidence of a broker failure."
+}

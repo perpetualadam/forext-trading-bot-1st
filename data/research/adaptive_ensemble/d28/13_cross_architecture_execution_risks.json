@@ -1,0 +1,38 @@
+{
+  "pairs": [
+    {
+      "image": "linux/amd64",
+      "host": "linux/amd64",
+      "mode": "native",
+      "emulation": false,
+      "fidelity": "highest available for this image",
+      "available_here": "NOT_EVALUATED"
+    },
+    {
+      "image": "linux/arm64/v8",
+      "host": "linux/arm64",
+      "mode": "native",
+      "emulation": false,
+      "fidelity": "highest available for this image",
+      "available_here": "NOT_EVALUATED"
+    },
+    {
+      "image": "linux/arm64/v8",
+      "host": "linux/amd64",
+      "mode": "emulation",
+      "emulation": "not assumed",
+      "fidelity": "may differ from native ARM64",
+      "available_here": "NOT_INSTALLED_AND_NOT_RUN"
+    },
+    {
+      "image": "linux/amd64",
+      "host": "linux/arm64",
+      "mode": "emulation",
+      "emulation": "not assumed",
+      "fidelity": "may differ from native AMD64",
+      "available_here": "NOT_INSTALLED_AND_NOT_RUN"
+    }
+  ],
+  "windows_host_cannot_natively_execute_linux_binaries": true,
+  "tools_installed_by_d28": false
+}

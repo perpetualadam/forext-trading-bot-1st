@@ -1,0 +1,17 @@
+{
+  "exact_direct_versions": "MISSING",
+  "exact_transitive_versions": "MISSING",
+  "per_platform_resolution": "MISSING",
+  "python_312_compatibility": "UNVERIFIED",
+  "amd64_wheel_selection": "MISSING",
+  "arm64_wheel_selection": "MISSING",
+  "wheel_sha256_hashes": "MISSING",
+  "source_distribution_policy": "MISSING",
+  "native_build_policy": "MISSING",
+  "offline_installation": "MISSING",
+  "trusted_package_provenance": "MISSING",
+  "repeatable_build_inputs": "MISSING",
+  "resolver_executed": false,
+  "lockfile_created": false,
+  "wheelhouse_created": false
+}

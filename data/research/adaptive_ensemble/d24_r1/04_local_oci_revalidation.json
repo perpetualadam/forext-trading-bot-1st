@@ -1,0 +1,12 @@
+{
+  "index_digest": "sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258",
+  "amd64_manifest_digest": "sha256:2ed6491b93cd49272ee6de2b5a38440c3448360322c089fc23e370722d74179d",
+  "arm64_manifest_digest": "sha256:739ba32ae445e8d58f3d90feb85f83bebc8346f8dd280fa1eb5848f4ff1ed163",
+  "amd64_config_digest": "sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+  "amd64_config_size": 5684,
+  "arm64_config_digest": "sha256:eb7d16fec874f15b584063275012ac719885a2b87574d124c0da9c156d504629",
+  "arm64_config_size": 5699,
+  "d23_agreement": "EXACT",
+  "arm64_blob_requested": false,
+  "verdict": "LOCAL_OCI_REVALIDATED"
+}

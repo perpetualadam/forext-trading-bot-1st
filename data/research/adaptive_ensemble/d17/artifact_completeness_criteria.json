@@ -1,0 +1,15 @@
+{
+  "per_distribution": [
+    "version",
+    "compatible artifact",
+    "hash",
+    "filename",
+    "origin",
+    "manifest inclusion",
+    "markers",
+    "transitive closure"
+  ],
+  "one_platform_does_not_cover_another": true,
+  "python_312_does_not_cover_313": true,
+  "current_status": "MISSING"
+}

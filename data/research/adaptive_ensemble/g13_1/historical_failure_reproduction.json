@@ -1,0 +1,43 @@
+{
+  "command": "python -m pytest -q --tb=short tests/test_g10_snapshot.py::test_official_archive_is_independently_verified_and_not_rewritten tests/test_g11_audit.py::test_g10_allowlist_has_not_drifted tests/test_macro_prospective_recorder_stage2.py::test_host_store_is_not_a_bot_container_path",
+  "result_before_migration": "3 failed",
+  "fresh_manifest_difference": ["Dockerfile"],
+  "fresh_dockerfile_sha256": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+  "recorded_dockerfile_sha256": "f8d537d84c8ab004c5fc2cbdc5ef58e8141f5ca66a13be6cc5eac38c7c7006a6",
+  "snapshot_file_count": 196,
+  "failures": [
+    {
+      "file": "tests/test_g10_snapshot.py",
+      "function": "test_official_archive_is_independently_verified_and_not_rewritten",
+      "assertion": "fresh['manifest_sha256'] == recorded['manifest_sha256']",
+      "historical_purpose": "Prove the working tree still matches the immutable G.10 source snapshot.",
+      "original_expectation": "93c73c21bd6f144e7d656be74128a771c3274025c0e88b8a052ffbc742f417cf",
+      "actual": "bb0d46140525b1aab6cf3008022d8f051d26fb2767f5ebeb899051053547959a",
+      "genuine_regression": false,
+      "obsolete": true,
+      "reason": "File-level comparison shows the only hash difference is the authorised Dockerfile repair."
+    },
+    {
+      "file": "tests/test_g11_audit.py",
+      "function": "test_g10_allowlist_has_not_drifted",
+      "assertion": "allowlist_drift(allow['files'], by_path, ROOT) == []",
+      "historical_purpose": "Detect any allowlisted working-tree file whose bytes differ from the audited pin and the frozen manifest.",
+      "original_expectation": "no drifted paths",
+      "actual": ["Dockerfile"],
+      "genuine_regression": false,
+      "obsolete": true,
+      "reason": "The drift helper still works. Dockerfile is the only drifted path, and its new hash is the authorised G.13 digest."
+    },
+    {
+      "file": "tests/test_macro_prospective_recorder_stage2.py",
+      "function": "test_host_store_is_not_a_bot_container_path",
+      "assertion": "\"COPY forex_bot ./forex_bot\" in dockerfile",
+      "historical_purpose": "Prove the prospective recorder tree is not copied into the bot image by a broad application copy.",
+      "original_expectation": "the broad COPY instruction is present, so the image build is the bot tree rather than the recorder tree",
+      "actual": "the broad instruction is absent after G.13",
+      "genuine_regression": false,
+      "obsolete": true,
+      "reason": "The safety purpose remains. Explicit copies still exclude the recorder tree, research data, credentials, tests, and operational state."
+    }
+  ]
+}

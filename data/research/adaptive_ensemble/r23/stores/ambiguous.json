@@ -1,0 +1,22 @@
+{
+  "orders": [
+    {
+      "broker_order_id": "",
+      "client_order_id": "cid-ccf13f0f8c5643379ea6746a85e3d4a7",
+      "fill_price": null,
+      "filled_units": null,
+      "metadata": {
+        "exposure_safety": "UNCONFIRMED",
+        "reason": "ambiguous_broker_outcome",
+        "simulation": true,
+        "strategy": "scalp"
+      },
+      "reservation_status": "UNRESOLVED",
+      "side": "BUY",
+      "status": "UNRESOLVED",
+      "symbol": "EUR_USD",
+      "units": 100000.00000001102
+    }
+  ],
+  "schema": "exec_orders_offline_v1"
+}

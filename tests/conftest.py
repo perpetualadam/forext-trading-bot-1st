@@ -4,6 +4,22 @@ from __future__ import annotations
 
 import pytest
 
+# These modules install a process-wide network barrier during import, or they
+# refuse to import unless that barrier is already installed. Stage runners
+# execute them. The shared CI process must not import them.
+collect_ignore = [
+    "test_r10_offline_startup.py",
+    "test_r11_historical_recovery.py",
+    "test_r26_broker_reconciliation.py",
+    "test_r27_oanda_account_contract.py",
+    "test_r29_scalp_readiness.py",
+    "test_r30_scalp_lifecycle.py",
+    "test_r31_strategy_screening.py",
+    "test_r32_signal_diagnostics.py",
+    "test_r33_ai_rl_audit.py",
+    "test_r34_stub_removal.py",
+]
+
 
 @pytest.fixture(autouse=True)
 def _isolate_sizing_env(monkeypatch):

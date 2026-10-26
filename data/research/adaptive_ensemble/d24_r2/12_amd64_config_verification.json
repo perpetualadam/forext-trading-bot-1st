@@ -1,0 +1,12 @@
+{
+  "result": "AMD64_CONFIG_BLOB_VERIFIED",
+  "bytes_obtained": true,
+  "byte_count": 5684,
+  "expected_byte_count": 5684,
+  "computed_digest": "sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+  "expected_digest": "sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+  "parent_manifest": "sha256:2ed6491b93cd49272ee6de2b5a38440c3448360322c089fc23e370722d74179d",
+  "digest_match": true,
+  "size_match": true,
+  "json_validated": true
+}

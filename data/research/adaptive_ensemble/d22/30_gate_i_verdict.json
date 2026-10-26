@@ -1,0 +1,5 @@
+{
+  "gate": "I",
+  "result": "NOT_RUN",
+  "meaning": "Source files were rehashed and still match D.21. The stage stopped for the instruction discrepancy, not for a source change."
+}

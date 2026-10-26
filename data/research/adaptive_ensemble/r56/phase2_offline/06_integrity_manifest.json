@@ -1,0 +1,70 @@
+{
+  "schema": "r56.phase2.integrity.1",
+  "files": [
+    {
+      "path": "data/research/adaptive_ensemble/r56/phase2_offline/01_architecture.md",
+      "bytes": 3376,
+      "sha256": "c697120f0578595a7d9472e9a1f7b13fcd360ac3477c4962ca236b24287781db"
+    },
+    {
+      "path": "data/research/adaptive_ensemble/r56/phase2_offline/02_logging_schema.md",
+      "bytes": 3696,
+      "sha256": "6e14693cbeb3fc4d983fb9ab37f8b81322d441750618f659bd6bba0fc1a30819"
+    },
+    {
+      "path": "data/research/adaptive_ensemble/r56/phase2_offline/03_safety_review.md",
+      "bytes": 2561,
+      "sha256": "f1773e9a4722aa9d3a16b937d29d3ec4c03ca45de0bdfab0c5f8cafa8214d2be"
+    },
+    {
+      "path": "data/research/adaptive_ensemble/r56/phase2_offline/04_future_integration_plan.md",
+      "bytes": 3845,
+      "sha256": "cce8504986226914a692bc5d9efa838b2152d41bf0cd352154f105fa4e747601"
+    },
+    {
+      "path": "data/research/adaptive_ensemble/r56/phase2_offline/05_test_results.md",
+      "bytes": 2155,
+      "sha256": "8c57d22c11f856de43f23c3f4122c0857f53fd4d66036f33dc4905e47cbc80a3"
+    },
+    {
+      "path": "data/research/adaptive_ensemble/r56/phase2_offline/07_phase2_report.md",
+      "bytes": 6428,
+      "sha256": "51320c1dae3c576724e26337182be5ae09f19089ae20e682f443ccf7715d4202"
+    },
+    {
+      "path": "data/research/adaptive_ensemble/r56/phase2_offline/account_diagnostics.py",
+      "bytes": 6127,
+      "sha256": "807b4b5c9a7cd353fe96a6b4691579af07308de573822b69e9cdeba3fdd4ba26"
+    },
+    {
+      "path": "data/research/adaptive_ensemble/r56/phase2_offline/diagnostic_writer.py",
+      "bytes": 12386,
+      "sha256": "c480487c86149ab23c54b0398cc2f4b1cf3efbf7ee91cddf6002b2bb05d34448"
+    },
+    {
+      "path": "data/research/adaptive_ensemble/r56/phase2_offline/pricing_diagnostics.py",
+      "bytes": 10681,
+      "sha256": "5aac6a9f7d6853e4dd884707845083e8aee2bf35fe5fe771cb8114e880389cf9"
+    },
+    {
+      "path": "data/research/adaptive_ensemble/r56/phase2_offline/response_adapter.py",
+      "bytes": 6920,
+      "sha256": "d10e5663d1ca81c28f22ca7085e86c746421eab911f64aeb37588dbef9123079"
+    },
+    {
+      "path": "data/research/adaptive_ensemble/r56/phase2_offline/sizing_diagnostics.py",
+      "bytes": 6516,
+      "sha256": "4d861e689db1bdbaf616567617caf8103d8766d7193fe90a6b9748f1d0f32525"
+    },
+    {
+      "path": "data/research/adaptive_ensemble/r56/phase2_offline/synthetic_fixtures.py",
+      "bytes": 4603,
+      "sha256": "e0d9ddb4f7b67725c99938c7f00979eb91c7a271ada03588720bd7e9e1abaaa2"
+    },
+    {
+      "path": "data/research/adaptive_ensemble/r56/phase2_offline/test_phase2_offline.py",
+      "bytes": 18297,
+      "sha256": "a39df7060e1fbb8d5dfc85692a0bd2c12d2d4b30b10097b4eed24986f728e70c"
+    }
+  ]
+}

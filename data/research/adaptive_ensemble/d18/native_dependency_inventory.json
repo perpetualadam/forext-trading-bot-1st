@@ -1,0 +1,40 @@
+{
+  "packages": [
+    {
+      "name": "numpy",
+      "constraint": ">=1.24.0",
+      "extras": null,
+      "file": "requirements.txt",
+      "line": 3,
+      "status": "DIRECTLY_DECLARED",
+      "wheel_availability": "UNVERIFIED"
+    },
+    {
+      "name": "pandas",
+      "constraint": ">=2.0.0",
+      "extras": null,
+      "file": "requirements.txt",
+      "line": 2,
+      "status": "DIRECTLY_DECLARED",
+      "wheel_availability": "UNVERIFIED"
+    },
+    {
+      "name": "psycopg2-binary",
+      "constraint": ">=2.9.9",
+      "extras": null,
+      "file": "requirements.txt",
+      "line": 5,
+      "status": "DIRECTLY_DECLARED",
+      "wheel_availability": "UNVERIFIED"
+    },
+    {
+      "name": "uvicorn",
+      "constraint": ">=0.27.0",
+      "extras": "standard",
+      "file": "requirements.txt",
+      "line": 7,
+      "status": "DIRECTLY_DECLARED",
+      "wheel_availability": "UNVERIFIED"
+    }
+  ]
+}

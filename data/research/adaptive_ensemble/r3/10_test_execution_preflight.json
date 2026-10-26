@@ -1,0 +1,15 @@
+{
+  "application_started": false,
+  "trading_loop_imported": false,
+  "broker_function_called": false,
+  "dotenv_reads_file": false,
+  "dotenv_stub_calls": 1,
+  "dns": "getaddrinfo replaced",
+  "socket_policy": "constructor raises before an operating-system socket exists",
+  "blocked_import_probe": "urllib3 _has_ipv6 AF_INET6 was raised and caught inside urllib3",
+  "live_permission_changed": false,
+  "strategy_left_inactive": true,
+  "writes_outside_r3": false,
+  "async_tests": "NOT_RUN",
+  "verdict": "PASS"
+}

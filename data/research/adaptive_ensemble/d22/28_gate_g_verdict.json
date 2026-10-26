@@ -1,0 +1,5 @@
+{
+  "gate": "G",
+  "result": "NOT_RUN",
+  "meaning": "The ARM64 manifest was not requested."
+}

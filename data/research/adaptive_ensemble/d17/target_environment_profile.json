@@ -1,0 +1,20 @@
+{
+  "python_implementation": "INFERRED",
+  "python_major_minor": "DECLARED",
+  "python_patch": "MISSING",
+  "abi_tag": "MISSING",
+  "operating_system": "INFERRED",
+  "linux_distribution": "INFERRED",
+  "architecture": "MISSING",
+  "platform_tag": "MISSING",
+  "libc_family": "INFERRED",
+  "libc_version": "MISSING",
+  "native_libraries": "MISSING",
+  "base_image_registry_digest": "MISSING",
+  "package_index_policy": "MISSING",
+  "wheel_only_policy": "planning preference, not authorised",
+  "source_distribution_policy": "reject for the first milestone unless a later approval adds a toolchain",
+  "hash_enforcement_policy": "required before any install; not implemented",
+  "declared_base_image": "python:3.12-slim-bookworm",
+  "assumed_architecture": null
+}

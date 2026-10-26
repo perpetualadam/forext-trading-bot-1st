@@ -1,0 +1,13 @@
+{
+  "phase2_requested": false,
+  "classification": "BUILD_CONTEXT_EXPOSURE_BLOCKED",
+  "safety_state_forward_compatibility": "SAFETY_STATE_FORWARD_COMPATIBILITY_UNVERIFIED",
+  "live_database_compatibility": "LIVE_DATABASE_COMPATIBILITY_UNVERIFIED",
+  "shadow_mount_compatibility": "SHADOW_MOUNT_COMPATIBILITY_UNVERIFIED",
+  "verified_rollback_target": "NO_VERIFIED_ROLLBACK_TARGET",
+  "running_image_classification": "ROLLBACK_CANDIDATE_PARTIALLY_VERIFIED",
+  "docker_daemon_context_behaviour": "DOCKER_DAEMON_CONTEXT_BEHAVIOUR_UNVERIFIED",
+  "offline_build_feasible": false,
+  "deployment_readiness": false,
+  "runtime_validation": "not started"
+}

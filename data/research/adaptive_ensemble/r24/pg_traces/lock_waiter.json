@@ -1,0 +1,14 @@
+{
+  "pid": 17480,
+  "role": "insert",
+  "ok": true,
+  "begun": true,
+  "exists": true,
+  "fail_closed": false,
+  "block": "active_reservation",
+  "route_refusals": [],
+  "socket_blocks": [],
+  "dns_blocks": 0,
+  "dotenv_stubs": 1,
+  "real_broker_calls": 0
+}

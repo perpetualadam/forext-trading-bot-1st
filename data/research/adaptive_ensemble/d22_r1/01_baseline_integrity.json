@@ -1,0 +1,58 @@
+{
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "working_tree": "dirty before D.22-R1",
+  "hashes_match": true,
+  "comparisons": {
+    "forex_bot/app.py": {
+      "expected_length": 64,
+      "matches_expected": true,
+      "matches_d21": true
+    },
+    "forex_bot/telegram_control.py": {
+      "expected_length": 64,
+      "matches_expected": true,
+      "matches_d21": true
+    },
+    "forex_bot/database.py": {
+      "expected_length": 64,
+      "matches_expected": true,
+      "matches_d21": true
+    },
+    "forex_bot/live_safety.py": {
+      "expected_length": 64,
+      "matches_expected": true,
+      "matches_d21": true
+    },
+    "forex_bot/strategy_meta.py": {
+      "expected_length": 64,
+      "matches_expected": true,
+      "matches_d21": true
+    },
+    "requirements.txt": {
+      "expected_length": 64,
+      "matches_expected": true,
+      "matches_d21": true
+    },
+    "requirements-dev.txt": {
+      "expected_length": 64,
+      "matches_expected": true,
+      "matches_d21": true
+    },
+    "Dockerfile": {
+      "expected_length": 64,
+      "matches_expected": true,
+      "matches_d21": true
+    },
+    ".dockerignore": {
+      "expected_length": 64,
+      "matches_expected": true,
+      "matches_d21": true
+    },
+    "docker-compose.yml": {
+      "expected_length": 64,
+      "matches_expected": true,
+      "matches_d21": true
+    }
+  }
+}

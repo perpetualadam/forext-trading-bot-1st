@@ -1,0 +1,12 @@
+{
+  "status": "FINALIZED_NOT_AUTHORISED_FOR_EXECUTION",
+  "measured_transfer_rate": "MISSING",
+  "socket_timeout_seconds": 120,
+  "socket_timeout_basis": "DECLARED_IN_LOCAL_SOURCE: Dockerfile sets PIP_DEFAULT_TIMEOUT=120 and pip --timeout 120. The same 120 second ceiling is the per-request policy.",
+  "largest_blob_implied_minimum_average_bytes_per_second": 235411,
+  "implied_rate_is_a_measurement": false,
+  "total_duration_ceiling_seconds": 2160,
+  "total_duration_basis": "18 serial requests times 120 seconds. This is a ceiling, not an expected runtime.",
+  "historical_config_timeout_seconds": 30,
+  "historical_config_timeout_applies_to_layer_blobs": false
+}

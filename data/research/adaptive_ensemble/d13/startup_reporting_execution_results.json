@@ -1,0 +1,27 @@
+{
+  "evidence": "ACTUAL_LIFESPAN_ISOLATED",
+  "successful_start": {
+    "result": "PASS",
+    "refusal_warning": false
+  },
+  "commands_disabled": {
+    "result": "PASS",
+    "yielded": true,
+    "stored_alive": false,
+    "diagnostic": "D12-STOP-01 absent"
+  },
+  "start_exception_injection": {
+    "result": "PASS",
+    "label": "SYNTHETIC_FAULT_INJECTION",
+    "escaped_type": "RuntimeError",
+    "note": "production start_telegram_control swallows its own start exception and returns None"
+  },
+  "refused_start": {
+    "result": "NOT_IMPLEMENTED_SCOPE_EXPANSION",
+    "markers": [
+      "D13_START_REPORTING_INTERFACE_MISSING",
+      "D13_SCOPE_EXPANSION_REQUIRED"
+    ],
+    "observed": "second lifespan yields, same worker, no refusal warning"
+  }
+}

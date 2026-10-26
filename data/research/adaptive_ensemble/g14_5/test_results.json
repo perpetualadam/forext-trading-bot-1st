@@ -1,0 +1,22 @@
+{
+  "stage": "G.14.5",
+  "commands": [
+    "python -m pytest -q --tb=line tests/test_g14_5_security.py tests/test_g14_4_wheelhouse.py tests/test_g14_3_supply.py tests/test_g13_packaging.py tests/test_g13_1_mutations.py tests/test_g14_context.py tests/test_g14_1_staging.py",
+    "python -m ruff check tests/g14_5_audit.py tests/test_g14_5_security.py",
+    "python -m mypy tests/g14_5_audit.py tests/test_g14_5_security.py"
+  ],
+  "passed": 93,
+  "failed": 0,
+  "skipped": 0,
+  "ruff": "pass",
+  "mypy": "pass",
+  "g10_snapshot_tests_not_run": true,
+  "synthetic_fixtures": "in-memory requirement text and one non-zip wheel-like file under the pytest temporary directory",
+  "unexpected_protected_file_changes": [],
+  "untested_real_behavior": [
+    "live redirects",
+    "pip configuration on this machine",
+    "real wheel ZIP bombs",
+    "registry manifest digest"
+  ]
+}

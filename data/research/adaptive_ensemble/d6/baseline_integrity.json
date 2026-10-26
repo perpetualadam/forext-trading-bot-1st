@@ -1,0 +1,48 @@
+{
+  "stage": "D.6",
+  "recorded_at": "2026-10-12",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "expected_git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "head_matches_expected": true,
+  "branch": "main",
+  "working_tree": {
+    "clean": false,
+    "tracked_modifications_preserved": [
+      "Dockerfile",
+      "data/research/macro/consensus_pit/prospective/scheduler/audit.jsonl",
+      "data/research/macro/consensus_pit/prospective/scheduler/state.json",
+      "forex_bot/app.py",
+      "forex_bot/live_safety.py",
+      "forex_bot/strategy_meta.py",
+      "tests/test_g10_snapshot.py",
+      "tests/test_g11_audit.py",
+      "tests/test_macro_prospective_recorder_stage2.py"
+    ],
+    "action": "preserved; no reset, stash, clean, or commit"
+  },
+  "hashes": {
+    "forex_bot/app.py": {
+      "sha256": "f38c304c4692c4a69e537610173e5691c03d49e24c48d6e258f56d1be75ae7b4",
+      "matches_expected": true
+    },
+    "forex_bot/live_safety.py": {
+      "sha256": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+      "matches_expected": true
+    },
+    "forex_bot/strategy_meta.py": {
+      "sha256": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+      "matches_expected": true
+    },
+    "tests/test_d5_lifespan_isolation.py": {
+      "sha256": "8cf8c712979ad32eac648b4a8f18d65546bf24a72d2a4e6f4f3ff6041bd88dd4",
+      "matches_d5_recorded_hash": true
+    },
+    "tests/d5_lifespan_runner.py": {
+      "sha256": "0729bea1df8a59d5dde3c66c396a476a0abb80c9c36213f15f08fcb77f2a3b60",
+      "matches_d5_recorded_hash": true
+    }
+  },
+  "existing_d6_files_before_stage": [],
+  "d5_result_reviewed": "D5_ACTUAL_LIFESPAN_ISOLATED_TESTED",
+  "baseline_verdict": "PASS"
+}

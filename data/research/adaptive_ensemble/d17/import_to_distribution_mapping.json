@@ -1,0 +1,50 @@
+{
+  "mappings": [
+    {
+      "import": "dotenv",
+      "distribution": "python-dotenv",
+      "basis": "requirement text plus import name; metadata not queried"
+    },
+    {
+      "import": "fastapi",
+      "distribution": "fastapi",
+      "basis": "same name"
+    },
+    {
+      "import": "numpy",
+      "distribution": "numpy",
+      "basis": "same name"
+    },
+    {
+      "import": "oandapyV20",
+      "distribution": "oandapyV20",
+      "basis": "same name"
+    },
+    {
+      "import": "pandas",
+      "distribution": "pandas",
+      "basis": "same name"
+    },
+    {
+      "import": "psycopg2",
+      "distribution": "psycopg2-binary",
+      "basis": "requirement declares psycopg2-binary; import is psycopg2; installed metadata not queried"
+    },
+    {
+      "import": "requests",
+      "distribution": "requests",
+      "basis": "same name"
+    },
+    {
+      "import": "uvicorn",
+      "distribution": "uvicorn",
+      "basis": "same name; extra standard is declared"
+    },
+    {
+      "import": "zoneinfo",
+      "distribution": "tzdata may supply zone data",
+      "basis": "stdlib import; pip tzdata is declared and not imported by name"
+    }
+  ],
+  "undeclared_in_image_copy_set": []
+}

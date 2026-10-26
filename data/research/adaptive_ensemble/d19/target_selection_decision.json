@@ -1,0 +1,17 @@
+{
+  "decision_id": "D19-DECISION-PLATFORM",
+  "proposed_choices": [
+    "linux/amd64",
+    "linux/arm64",
+    "another explicitly named OCI platform",
+    "UNSELECTED"
+  ],
+  "selected_platform": null,
+  "selection_status": "PENDING_USER_DECISION",
+  "approval_evidence": null,
+  "approval_evidence_source": null,
+  "target_hardware_verified": false,
+  "architecture_compatibility_verified": false,
+  "choice_currency": "No choice has been made. Historical linux/amd64 text remains historical.",
+  "required_future_validation": "After an explicit selection, verify the platform manifest, Python patch, ABI, libc, and wheels. Selection alone does not verify them."
+}

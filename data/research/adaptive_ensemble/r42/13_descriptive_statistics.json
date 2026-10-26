@@ -1,0 +1,1154 @@
+{
+  "implementation_version": "r42.structure.v1",
+  "protocol_sha256": "da8f53c0f8b89037ab00721f4c0a3b8d7c322d6da692e37a2b3f142a643c6b27",
+  "lifecycle_py_sha256": "4ed6fb9d53b2c67930e1367303c50a48a06f51b266c4b99a6655dda32162cba5",
+  "source_sha256": {
+    "AUD_USD": "e639a1f817e4b91973ccfea0ee0c8c3dd5279c722ea665c531ad309b359165e0",
+    "EUR_USD": "3ae3c4d061792353b94b8d2be73684f950362f135d47926d1bc8c11a24791091",
+    "GBP_USD": "ac3ddba51b75f493a08a5ea57e9926e38a5a85b06797de53803e6cd4f8b00d58",
+    "USD_CAD": "a88eb2c440691bd5893a8317b64e6beaf87bb6f3c93b0c6e6a4cd16e53aa9c60",
+    "USD_CHF": "3901a2d50a63ef5ca4d10858145cca7fd70d20d24420761e1b7d2d09f2a127bc",
+    "USD_JPY": "e1b0d3491f873723967315d74e3bd5b707474814a294be4ed50a26e1b8c9805c"
+  },
+  "rejected_buckets": {
+    "AUD_USD": {
+      "h1_incomplete_buckets": 27,
+      "h4_incomplete_buckets": 130
+    },
+    "EUR_USD": {
+      "h1_incomplete_buckets": 20,
+      "h4_incomplete_buckets": 125
+    },
+    "GBP_USD": {
+      "h1_incomplete_buckets": 32,
+      "h4_incomplete_buckets": 130
+    },
+    "USD_CAD": {
+      "h1_incomplete_buckets": 28,
+      "h4_incomplete_buckets": 125
+    },
+    "USD_CHF": {
+      "h1_incomplete_buckets": 53,
+      "h4_incomplete_buckets": 148
+    },
+    "USD_JPY": {
+      "h1_incomplete_buckets": 31,
+      "h4_incomplete_buckets": 132
+    }
+  },
+  "series": [
+    {
+      "instrument": "AUD_USD",
+      "timeframe": "H1",
+      "complete_candles": 6189,
+      "gap_rejected_windows": 296,
+      "confirmed_swing_highs": 795,
+      "confirmed_swing_lows": 807,
+      "tied_high_candidates": 48,
+      "tied_low_candidates": 42,
+      "counts": {
+        "levels_created": 1602,
+        "level_invalidations": 572,
+        "level_supersessions": 1028,
+        "trendlines_created": 1600,
+        "trendline_breaks": 673,
+        "trendline_supersessions": 925,
+        "line_touch_episodes": 386,
+        "support_touch_episodes": 251,
+        "resistance_touch_episodes": 211,
+        "range_pairs": 1230,
+        "range_reaction_episodes": 407,
+        "confirmed_ranges": 0,
+        "range_invalidations": 524,
+        "range_replacements": 705,
+        "contradictory_pairs": 0,
+        "invalidated_before_confirmation": 524,
+        "replaced_before_confirmation": 705,
+        "confirmed_then_invalidated": 0,
+        "confirmed_then_replaced": 0,
+        "uncertain_candles": 2054,
+        "candidate_candles": 3618,
+        "confirmed_candles": 0,
+        "invalidated_candles": 517,
+        "active_levels_at_end": 2,
+        "active_lines_at_end": 2,
+        "legacy_raw_continuation_comparisons": 0
+      },
+      "prefix_invariant": true,
+      "clock": {
+        "active_levels_at_most_one_per_side": true,
+        "active_lines_at_most_one_per_side": true,
+        "confirmed_range_has_two_reactions": true,
+        "unfinished_candle_hidden": true,
+        "visible_at_close": true,
+        "level_hidden_before_birth": true,
+        "level_visible_at_birth": true
+      },
+      "example": {
+        "observation": {
+          "record_type": "market_structure_lifecycle_observation",
+          "instrument": "AUD_USD",
+          "timeframe": "H1",
+          "candle_time": "2025-09-01T00:00:00+00:00",
+          "available_at": "2025-09-01T01:00:00+00:00",
+          "range_state": "UNCERTAIN",
+          "range_reason": "no_eligible_pair",
+          "range_id": null,
+          "support_level_id": null,
+          "resistance_level_id": null,
+          "support_line_id": null,
+          "resistance_line_id": null,
+          "source_sha256": "e639a1f817e4b91973ccfea0ee0c8c3dd5279c722ea665c531ad309b359165e0",
+          "definition_version": "r42.structure.v1",
+          "parent_definition": "r41.structure.v1",
+          "protocol_sha256": "da8f53c0f8b89037ab00721f4c0a3b8d7c322d6da692e37a2b3f142a643c6b27",
+          "trading_decision": null,
+          "outcome": null,
+          "confidence": null
+        },
+        "first_level": {
+          "level_id": "RESISTANCE|HIGH|AUD_USD|H1|2025-09-01T02:00:00+00:00",
+          "status": "INVALIDATED",
+          "transitions": [
+            {
+              "status": "ACTIVE",
+              "available_at": "2025-09-01T05:00:00+00:00",
+              "reason": "confirmed_swing",
+              "related_id": "HIGH|AUD_USD|H1|2025-09-01T02:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            },
+            {
+              "status": "INVALIDATED",
+              "available_at": "2025-09-01T09:00:00+00:00",
+              "reason": "close_through",
+              "related_id": null,
+              "definition_version": "r42.structure.v1"
+            }
+          ]
+        },
+        "first_confirmed_range": null
+      }
+    },
+    {
+      "instrument": "AUD_USD",
+      "timeframe": "H4",
+      "complete_candles": 1478,
+      "gap_rejected_windows": 270,
+      "confirmed_swing_highs": 158,
+      "confirmed_swing_lows": 169,
+      "tied_high_candidates": 5,
+      "tied_low_candidates": 6,
+      "counts": {
+        "levels_created": 327,
+        "level_invalidations": 133,
+        "level_supersessions": 194,
+        "trendlines_created": 325,
+        "trendline_breaks": 140,
+        "trendline_supersessions": 185,
+        "line_touch_episodes": 87,
+        "support_touch_episodes": 37,
+        "resistance_touch_episodes": 40,
+        "range_pairs": 238,
+        "range_reaction_episodes": 66,
+        "confirmed_ranges": 0,
+        "range_invalidations": 118,
+        "range_replacements": 120,
+        "contradictory_pairs": 0,
+        "invalidated_before_confirmation": 118,
+        "replaced_before_confirmation": 120,
+        "confirmed_then_invalidated": 0,
+        "confirmed_then_replaced": 0,
+        "uncertain_candles": 649,
+        "candidate_candles": 714,
+        "confirmed_candles": 0,
+        "invalidated_candles": 115,
+        "active_levels_at_end": 0,
+        "active_lines_at_end": 0,
+        "legacy_raw_continuation_comparisons": 0
+      },
+      "prefix_invariant": true,
+      "clock": {
+        "active_levels_at_most_one_per_side": true,
+        "active_lines_at_most_one_per_side": true,
+        "confirmed_range_has_two_reactions": true,
+        "unfinished_candle_hidden": true,
+        "visible_at_close": true,
+        "level_hidden_before_birth": true,
+        "level_visible_at_birth": true
+      },
+      "example": {
+        "observation": {
+          "record_type": "market_structure_lifecycle_observation",
+          "instrument": "AUD_USD",
+          "timeframe": "H4",
+          "candle_time": "2025-09-01T00:00:00+00:00",
+          "available_at": "2025-09-01T04:00:00+00:00",
+          "range_state": "UNCERTAIN",
+          "range_reason": "no_eligible_pair",
+          "range_id": null,
+          "support_level_id": null,
+          "resistance_level_id": null,
+          "support_line_id": null,
+          "resistance_line_id": null,
+          "source_sha256": "e639a1f817e4b91973ccfea0ee0c8c3dd5279c722ea665c531ad309b359165e0",
+          "definition_version": "r42.structure.v1",
+          "parent_definition": "r41.structure.v1",
+          "protocol_sha256": "da8f53c0f8b89037ab00721f4c0a3b8d7c322d6da692e37a2b3f142a643c6b27",
+          "trading_decision": null,
+          "outcome": null,
+          "confidence": null
+        },
+        "first_level": {
+          "level_id": "RESISTANCE|HIGH|AUD_USD|H4|2025-09-01T08:00:00+00:00",
+          "status": "SUPERSEDED",
+          "transitions": [
+            {
+              "status": "ACTIVE",
+              "available_at": "2025-09-01T20:00:00+00:00",
+              "reason": "confirmed_swing",
+              "related_id": "HIGH|AUD_USD|H4|2025-09-01T08:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            },
+            {
+              "status": "SUPERSEDED",
+              "available_at": "2025-09-02T12:00:00+00:00",
+              "reason": "newer_confirmed_level",
+              "related_id": "RESISTANCE|HIGH|AUD_USD|H4|2025-09-02T00:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            }
+          ]
+        },
+        "first_confirmed_range": null
+      }
+    },
+    {
+      "instrument": "EUR_USD",
+      "timeframe": "H1",
+      "complete_candles": 6196,
+      "gap_rejected_windows": 275,
+      "confirmed_swing_highs": 774,
+      "confirmed_swing_lows": 787,
+      "tied_high_candidates": 50,
+      "tied_low_candidates": 52,
+      "counts": {
+        "levels_created": 1561,
+        "level_invalidations": 594,
+        "level_supersessions": 965,
+        "trendlines_created": 1559,
+        "trendline_breaks": 666,
+        "trendline_supersessions": 891,
+        "line_touch_episodes": 394,
+        "support_touch_episodes": 225,
+        "resistance_touch_episodes": 226,
+        "range_pairs": 1233,
+        "range_reaction_episodes": 397,
+        "confirmed_ranges": 0,
+        "range_invalidations": 546,
+        "range_replacements": 686,
+        "contradictory_pairs": 0,
+        "invalidated_before_confirmation": 546,
+        "replaced_before_confirmation": 686,
+        "confirmed_then_invalidated": 0,
+        "confirmed_then_replaced": 0,
+        "uncertain_candles": 1975,
+        "candidate_candles": 3685,
+        "confirmed_candles": 0,
+        "invalidated_candles": 536,
+        "active_levels_at_end": 2,
+        "active_lines_at_end": 2,
+        "legacy_raw_continuation_comparisons": 0
+      },
+      "prefix_invariant": true,
+      "clock": {
+        "active_levels_at_most_one_per_side": true,
+        "active_lines_at_most_one_per_side": true,
+        "confirmed_range_has_two_reactions": true,
+        "unfinished_candle_hidden": true,
+        "visible_at_close": true,
+        "level_hidden_before_birth": true,
+        "level_visible_at_birth": true
+      },
+      "example": {
+        "observation": {
+          "record_type": "market_structure_lifecycle_observation",
+          "instrument": "EUR_USD",
+          "timeframe": "H1",
+          "candle_time": "2025-09-01T00:00:00+00:00",
+          "available_at": "2025-09-01T01:00:00+00:00",
+          "range_state": "UNCERTAIN",
+          "range_reason": "no_eligible_pair",
+          "range_id": null,
+          "support_level_id": null,
+          "resistance_level_id": null,
+          "support_line_id": null,
+          "resistance_line_id": null,
+          "source_sha256": "3ae3c4d061792353b94b8d2be73684f950362f135d47926d1bc8c11a24791091",
+          "definition_version": "r42.structure.v1",
+          "parent_definition": "r41.structure.v1",
+          "protocol_sha256": "da8f53c0f8b89037ab00721f4c0a3b8d7c322d6da692e37a2b3f142a643c6b27",
+          "trading_decision": null,
+          "outcome": null,
+          "confidence": null
+        },
+        "first_level": {
+          "level_id": "RESISTANCE|HIGH|EUR_USD|H1|2025-09-01T08:00:00+00:00",
+          "status": "SUPERSEDED",
+          "transitions": [
+            {
+              "status": "ACTIVE",
+              "available_at": "2025-09-01T11:00:00+00:00",
+              "reason": "confirmed_swing",
+              "related_id": "HIGH|EUR_USD|H1|2025-09-01T08:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            },
+            {
+              "status": "SUPERSEDED",
+              "available_at": "2025-09-01T22:00:00+00:00",
+              "reason": "newer_confirmed_level",
+              "related_id": "RESISTANCE|HIGH|EUR_USD|H1|2025-09-01T19:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            }
+          ]
+        },
+        "first_confirmed_range": null
+      }
+    },
+    {
+      "instrument": "EUR_USD",
+      "timeframe": "H4",
+      "complete_candles": 1483,
+      "gap_rejected_windows": 250,
+      "confirmed_swing_highs": 165,
+      "confirmed_swing_lows": 159,
+      "tied_high_candidates": 4,
+      "tied_low_candidates": 5,
+      "counts": {
+        "levels_created": 324,
+        "level_invalidations": 121,
+        "level_supersessions": 202,
+        "trendlines_created": 322,
+        "trendline_breaks": 146,
+        "trendline_supersessions": 175,
+        "line_touch_episodes": 79,
+        "support_touch_episodes": 58,
+        "resistance_touch_episodes": 48,
+        "range_pairs": 243,
+        "range_reaction_episodes": 97,
+        "confirmed_ranges": 0,
+        "range_invalidations": 109,
+        "range_replacements": 134,
+        "contradictory_pairs": 0,
+        "invalidated_before_confirmation": 109,
+        "replaced_before_confirmation": 134,
+        "confirmed_then_invalidated": 0,
+        "confirmed_then_replaced": 0,
+        "uncertain_candles": 555,
+        "candidate_candles": 821,
+        "confirmed_candles": 0,
+        "invalidated_candles": 107,
+        "active_levels_at_end": 1,
+        "active_lines_at_end": 1,
+        "legacy_raw_continuation_comparisons": 0
+      },
+      "prefix_invariant": true,
+      "clock": {
+        "active_levels_at_most_one_per_side": true,
+        "active_lines_at_most_one_per_side": true,
+        "confirmed_range_has_two_reactions": true,
+        "unfinished_candle_hidden": true,
+        "visible_at_close": true,
+        "level_hidden_before_birth": true,
+        "level_visible_at_birth": true
+      },
+      "example": {
+        "observation": {
+          "record_type": "market_structure_lifecycle_observation",
+          "instrument": "EUR_USD",
+          "timeframe": "H4",
+          "candle_time": "2025-09-01T00:00:00+00:00",
+          "available_at": "2025-09-01T04:00:00+00:00",
+          "range_state": "UNCERTAIN",
+          "range_reason": "no_eligible_pair",
+          "range_id": null,
+          "support_level_id": null,
+          "resistance_level_id": null,
+          "support_line_id": null,
+          "resistance_line_id": null,
+          "source_sha256": "3ae3c4d061792353b94b8d2be73684f950362f135d47926d1bc8c11a24791091",
+          "definition_version": "r42.structure.v1",
+          "parent_definition": "r41.structure.v1",
+          "protocol_sha256": "da8f53c0f8b89037ab00721f4c0a3b8d7c322d6da692e37a2b3f142a643c6b27",
+          "trading_decision": null,
+          "outcome": null,
+          "confidence": null
+        },
+        "first_level": {
+          "level_id": "RESISTANCE|HIGH|EUR_USD|H4|2025-09-01T08:00:00+00:00",
+          "status": "SUPERSEDED",
+          "transitions": [
+            {
+              "status": "ACTIVE",
+              "available_at": "2025-09-01T20:00:00+00:00",
+              "reason": "confirmed_swing",
+              "related_id": "HIGH|EUR_USD|H4|2025-09-01T08:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            },
+            {
+              "status": "SUPERSEDED",
+              "available_at": "2025-09-02T08:00:00+00:00",
+              "reason": "newer_confirmed_level",
+              "related_id": "RESISTANCE|HIGH|EUR_USD|H4|2025-09-01T20:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            }
+          ]
+        },
+        "first_confirmed_range": null
+      }
+    },
+    {
+      "instrument": "GBP_USD",
+      "timeframe": "H1",
+      "complete_candles": 6184,
+      "gap_rejected_windows": 295,
+      "confirmed_swing_highs": 774,
+      "confirmed_swing_lows": 826,
+      "tied_high_candidates": 35,
+      "tied_low_candidates": 31,
+      "counts": {
+        "levels_created": 1600,
+        "level_invalidations": 547,
+        "level_supersessions": 1051,
+        "trendlines_created": 1598,
+        "trendline_breaks": 681,
+        "trendline_supersessions": 915,
+        "line_touch_episodes": 401,
+        "support_touch_episodes": 264,
+        "resistance_touch_episodes": 230,
+        "range_pairs": 1254,
+        "range_reaction_episodes": 432,
+        "confirmed_ranges": 1,
+        "range_invalidations": 500,
+        "range_replacements": 753,
+        "contradictory_pairs": 0,
+        "invalidated_before_confirmation": 500,
+        "replaced_before_confirmation": 752,
+        "confirmed_then_invalidated": 0,
+        "confirmed_then_replaced": 1,
+        "uncertain_candles": 2068,
+        "candidate_candles": 3626,
+        "confirmed_candles": 0,
+        "invalidated_candles": 490,
+        "active_levels_at_end": 2,
+        "active_lines_at_end": 2,
+        "legacy_raw_continuation_comparisons": 0
+      },
+      "prefix_invariant": true,
+      "clock": {
+        "active_levels_at_most_one_per_side": true,
+        "active_lines_at_most_one_per_side": true,
+        "confirmed_range_has_two_reactions": true,
+        "unfinished_candle_hidden": true,
+        "visible_at_close": true,
+        "level_hidden_before_birth": true,
+        "level_visible_at_birth": true
+      },
+      "example": {
+        "observation": {
+          "record_type": "market_structure_lifecycle_observation",
+          "instrument": "GBP_USD",
+          "timeframe": "H1",
+          "candle_time": "2025-09-01T00:00:00+00:00",
+          "available_at": "2025-09-01T01:00:00+00:00",
+          "range_state": "UNCERTAIN",
+          "range_reason": "no_eligible_pair",
+          "range_id": null,
+          "support_level_id": null,
+          "resistance_level_id": null,
+          "support_line_id": null,
+          "resistance_line_id": null,
+          "source_sha256": "ac3ddba51b75f493a08a5ea57e9926e38a5a85b06797de53803e6cd4f8b00d58",
+          "definition_version": "r42.structure.v1",
+          "parent_definition": "r41.structure.v1",
+          "protocol_sha256": "da8f53c0f8b89037ab00721f4c0a3b8d7c322d6da692e37a2b3f142a643c6b27",
+          "trading_decision": null,
+          "outcome": null,
+          "confidence": null
+        },
+        "first_level": {
+          "level_id": "RESISTANCE|HIGH|GBP_USD|H1|2025-09-01T03:00:00+00:00",
+          "status": "INVALIDATED",
+          "transitions": [
+            {
+              "status": "ACTIVE",
+              "available_at": "2025-09-01T06:00:00+00:00",
+              "reason": "confirmed_swing",
+              "related_id": "HIGH|GBP_USD|H1|2025-09-01T03:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            },
+            {
+              "status": "INVALIDATED",
+              "available_at": "2025-09-01T07:00:00+00:00",
+              "reason": "close_through",
+              "related_id": null,
+              "definition_version": "r42.structure.v1"
+            }
+          ]
+        },
+        "first_confirmed_range": {
+          "range_id": "SUPPORT|LOW|GBP_USD|H1|2026-05-20T01:00:00+00:00|RESISTANCE|HIGH|GBP_USD|H1|2026-05-19T23:00:00+00:00",
+          "pair_available_at": "2026-05-20T04:00:00+00:00",
+          "confirmed_at": "2026-05-20T09:00:00+00:00",
+          "invalidated_at": null,
+          "width_price": 0.002610000000000001,
+          "width_pips": 26.100000000000012,
+          "state": "CONFIRMED"
+        }
+      }
+    },
+    {
+      "instrument": "GBP_USD",
+      "timeframe": "H4",
+      "complete_candles": 1478,
+      "gap_rejected_windows": 267,
+      "confirmed_swing_highs": 168,
+      "confirmed_swing_lows": 165,
+      "tied_high_candidates": 7,
+      "tied_low_candidates": 9,
+      "counts": {
+        "levels_created": 333,
+        "level_invalidations": 128,
+        "level_supersessions": 204,
+        "trendlines_created": 331,
+        "trendline_breaks": 144,
+        "trendline_supersessions": 187,
+        "line_touch_episodes": 99,
+        "support_touch_episodes": 55,
+        "resistance_touch_episodes": 42,
+        "range_pairs": 244,
+        "range_reaction_episodes": 88,
+        "confirmed_ranges": 0,
+        "range_invalidations": 113,
+        "range_replacements": 131,
+        "contradictory_pairs": 0,
+        "invalidated_before_confirmation": 113,
+        "replaced_before_confirmation": 131,
+        "confirmed_then_invalidated": 0,
+        "confirmed_then_replaced": 0,
+        "uncertain_candles": 592,
+        "candidate_candles": 775,
+        "confirmed_candles": 0,
+        "invalidated_candles": 111,
+        "active_levels_at_end": 1,
+        "active_lines_at_end": 0,
+        "legacy_raw_continuation_comparisons": 0
+      },
+      "prefix_invariant": true,
+      "clock": {
+        "active_levels_at_most_one_per_side": true,
+        "active_lines_at_most_one_per_side": true,
+        "confirmed_range_has_two_reactions": true,
+        "unfinished_candle_hidden": true,
+        "visible_at_close": true,
+        "level_hidden_before_birth": true,
+        "level_visible_at_birth": true
+      },
+      "example": {
+        "observation": {
+          "record_type": "market_structure_lifecycle_observation",
+          "instrument": "GBP_USD",
+          "timeframe": "H4",
+          "candle_time": "2025-09-01T00:00:00+00:00",
+          "available_at": "2025-09-01T04:00:00+00:00",
+          "range_state": "UNCERTAIN",
+          "range_reason": "no_eligible_pair",
+          "range_id": null,
+          "support_level_id": null,
+          "resistance_level_id": null,
+          "support_line_id": null,
+          "resistance_line_id": null,
+          "source_sha256": "ac3ddba51b75f493a08a5ea57e9926e38a5a85b06797de53803e6cd4f8b00d58",
+          "definition_version": "r42.structure.v1",
+          "parent_definition": "r41.structure.v1",
+          "protocol_sha256": "da8f53c0f8b89037ab00721f4c0a3b8d7c322d6da692e37a2b3f142a643c6b27",
+          "trading_decision": null,
+          "outcome": null,
+          "confidence": null
+        },
+        "first_level": {
+          "level_id": "RESISTANCE|HIGH|GBP_USD|H4|2025-09-01T20:00:00+00:00",
+          "status": "SUPERSEDED",
+          "transitions": [
+            {
+              "status": "ACTIVE",
+              "available_at": "2025-09-02T08:00:00+00:00",
+              "reason": "confirmed_swing",
+              "related_id": "HIGH|GBP_USD|H4|2025-09-01T20:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            },
+            {
+              "status": "SUPERSEDED",
+              "available_at": "2025-09-04T04:00:00+00:00",
+              "reason": "newer_confirmed_level",
+              "related_id": "RESISTANCE|HIGH|GBP_USD|H4|2025-09-03T16:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            }
+          ]
+        },
+        "first_confirmed_range": null
+      }
+    },
+    {
+      "instrument": "USD_CAD",
+      "timeframe": "H1",
+      "complete_candles": 6188,
+      "gap_rejected_windows": 275,
+      "confirmed_swing_highs": 778,
+      "confirmed_swing_lows": 790,
+      "tied_high_candidates": 41,
+      "tied_low_candidates": 52,
+      "counts": {
+        "levels_created": 1568,
+        "level_invalidations": 554,
+        "level_supersessions": 1013,
+        "trendlines_created": 1566,
+        "trendline_breaks": 684,
+        "trendline_supersessions": 880,
+        "line_touch_episodes": 349,
+        "support_touch_episodes": 239,
+        "resistance_touch_episodes": 229,
+        "range_pairs": 1222,
+        "range_reaction_episodes": 422,
+        "confirmed_ranges": 0,
+        "range_invalidations": 505,
+        "range_replacements": 717,
+        "contradictory_pairs": 0,
+        "invalidated_before_confirmation": 505,
+        "replaced_before_confirmation": 717,
+        "confirmed_then_invalidated": 0,
+        "confirmed_then_replaced": 0,
+        "uncertain_candles": 2134,
+        "candidate_candles": 3556,
+        "confirmed_candles": 0,
+        "invalidated_candles": 498,
+        "active_levels_at_end": 1,
+        "active_lines_at_end": 2,
+        "legacy_raw_continuation_comparisons": 0
+      },
+      "prefix_invariant": true,
+      "clock": {
+        "active_levels_at_most_one_per_side": true,
+        "active_lines_at_most_one_per_side": true,
+        "confirmed_range_has_two_reactions": true,
+        "unfinished_candle_hidden": true,
+        "visible_at_close": true,
+        "level_hidden_before_birth": true,
+        "level_visible_at_birth": true
+      },
+      "example": {
+        "observation": {
+          "record_type": "market_structure_lifecycle_observation",
+          "instrument": "USD_CAD",
+          "timeframe": "H1",
+          "candle_time": "2025-09-01T00:00:00+00:00",
+          "available_at": "2025-09-01T01:00:00+00:00",
+          "range_state": "UNCERTAIN",
+          "range_reason": "no_eligible_pair",
+          "range_id": null,
+          "support_level_id": null,
+          "resistance_level_id": null,
+          "support_line_id": null,
+          "resistance_line_id": null,
+          "source_sha256": "a88eb2c440691bd5893a8317b64e6beaf87bb6f3c93b0c6e6a4cd16e53aa9c60",
+          "definition_version": "r42.structure.v1",
+          "parent_definition": "r41.structure.v1",
+          "protocol_sha256": "da8f53c0f8b89037ab00721f4c0a3b8d7c322d6da692e37a2b3f142a643c6b27",
+          "trading_decision": null,
+          "outcome": null,
+          "confidence": null
+        },
+        "first_level": {
+          "level_id": "SUPPORT|LOW|USD_CAD|H1|2025-09-01T02:00:00+00:00",
+          "status": "SUPERSEDED",
+          "transitions": [
+            {
+              "status": "ACTIVE",
+              "available_at": "2025-09-01T05:00:00+00:00",
+              "reason": "confirmed_swing",
+              "related_id": "LOW|USD_CAD|H1|2025-09-01T02:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            },
+            {
+              "status": "SUPERSEDED",
+              "available_at": "2025-09-01T13:00:00+00:00",
+              "reason": "newer_confirmed_level",
+              "related_id": "SUPPORT|LOW|USD_CAD|H1|2025-09-01T10:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            }
+          ]
+        },
+        "first_confirmed_range": null
+      }
+    },
+    {
+      "instrument": "USD_CAD",
+      "timeframe": "H4",
+      "complete_candles": 1483,
+      "gap_rejected_windows": 250,
+      "confirmed_swing_highs": 170,
+      "confirmed_swing_lows": 147,
+      "tied_high_candidates": 3,
+      "tied_low_candidates": 5,
+      "counts": {
+        "levels_created": 317,
+        "level_invalidations": 134,
+        "level_supersessions": 183,
+        "trendlines_created": 315,
+        "trendline_breaks": 135,
+        "trendline_supersessions": 180,
+        "line_touch_episodes": 83,
+        "support_touch_episodes": 46,
+        "resistance_touch_episodes": 46,
+        "range_pairs": 222,
+        "range_reaction_episodes": 82,
+        "confirmed_ranges": 0,
+        "range_invalidations": 118,
+        "range_replacements": 104,
+        "contradictory_pairs": 0,
+        "invalidated_before_confirmation": 118,
+        "replaced_before_confirmation": 104,
+        "confirmed_then_invalidated": 0,
+        "confirmed_then_replaced": 0,
+        "uncertain_candles": 691,
+        "candidate_candles": 675,
+        "confirmed_candles": 0,
+        "invalidated_candles": 117,
+        "active_levels_at_end": 0,
+        "active_lines_at_end": 0,
+        "legacy_raw_continuation_comparisons": 0
+      },
+      "prefix_invariant": true,
+      "clock": {
+        "active_levels_at_most_one_per_side": true,
+        "active_lines_at_most_one_per_side": true,
+        "confirmed_range_has_two_reactions": true,
+        "unfinished_candle_hidden": true,
+        "visible_at_close": true,
+        "level_hidden_before_birth": true,
+        "level_visible_at_birth": true
+      },
+      "example": {
+        "observation": {
+          "record_type": "market_structure_lifecycle_observation",
+          "instrument": "USD_CAD",
+          "timeframe": "H4",
+          "candle_time": "2025-09-01T00:00:00+00:00",
+          "available_at": "2025-09-01T04:00:00+00:00",
+          "range_state": "UNCERTAIN",
+          "range_reason": "no_eligible_pair",
+          "range_id": null,
+          "support_level_id": null,
+          "resistance_level_id": null,
+          "support_line_id": null,
+          "resistance_line_id": null,
+          "source_sha256": "a88eb2c440691bd5893a8317b64e6beaf87bb6f3c93b0c6e6a4cd16e53aa9c60",
+          "definition_version": "r42.structure.v1",
+          "parent_definition": "r41.structure.v1",
+          "protocol_sha256": "da8f53c0f8b89037ab00721f4c0a3b8d7c322d6da692e37a2b3f142a643c6b27",
+          "trading_decision": null,
+          "outcome": null,
+          "confidence": null
+        },
+        "first_level": {
+          "level_id": "RESISTANCE|HIGH|USD_CAD|H4|2025-09-01T12:00:00+00:00",
+          "status": "INVALIDATED",
+          "transitions": [
+            {
+              "status": "ACTIVE",
+              "available_at": "2025-09-02T00:00:00+00:00",
+              "reason": "confirmed_swing",
+              "related_id": "HIGH|USD_CAD|H4|2025-09-01T12:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            },
+            {
+              "status": "INVALIDATED",
+              "available_at": "2025-09-02T08:00:00+00:00",
+              "reason": "close_through",
+              "related_id": null,
+              "definition_version": "r42.structure.v1"
+            }
+          ]
+        },
+        "first_confirmed_range": null
+      }
+    },
+    {
+      "instrument": "USD_CHF",
+      "timeframe": "H1",
+      "complete_candles": 6163,
+      "gap_rejected_windows": 367,
+      "confirmed_swing_highs": 729,
+      "confirmed_swing_lows": 781,
+      "tied_high_candidates": 42,
+      "tied_low_candidates": 34,
+      "counts": {
+        "levels_created": 1510,
+        "level_invalidations": 558,
+        "level_supersessions": 950,
+        "trendlines_created": 1508,
+        "trendline_breaks": 636,
+        "trendline_supersessions": 871,
+        "line_touch_episodes": 387,
+        "support_touch_episodes": 244,
+        "resistance_touch_episodes": 225,
+        "range_pairs": 1180,
+        "range_reaction_episodes": 406,
+        "confirmed_ranges": 0,
+        "range_invalidations": 516,
+        "range_replacements": 663,
+        "contradictory_pairs": 0,
+        "invalidated_before_confirmation": 516,
+        "replaced_before_confirmation": 663,
+        "confirmed_then_invalidated": 0,
+        "confirmed_then_replaced": 0,
+        "uncertain_candles": 2127,
+        "candidate_candles": 3528,
+        "confirmed_candles": 0,
+        "invalidated_candles": 508,
+        "active_levels_at_end": 2,
+        "active_lines_at_end": 1,
+        "legacy_raw_continuation_comparisons": 0
+      },
+      "prefix_invariant": true,
+      "clock": {
+        "active_levels_at_most_one_per_side": true,
+        "active_lines_at_most_one_per_side": true,
+        "confirmed_range_has_two_reactions": true,
+        "unfinished_candle_hidden": true,
+        "visible_at_close": true,
+        "level_hidden_before_birth": true,
+        "level_visible_at_birth": true
+      },
+      "example": {
+        "observation": {
+          "record_type": "market_structure_lifecycle_observation",
+          "instrument": "USD_CHF",
+          "timeframe": "H1",
+          "candle_time": "2025-09-01T00:00:00+00:00",
+          "available_at": "2025-09-01T01:00:00+00:00",
+          "range_state": "UNCERTAIN",
+          "range_reason": "no_eligible_pair",
+          "range_id": null,
+          "support_level_id": null,
+          "resistance_level_id": null,
+          "support_line_id": null,
+          "resistance_line_id": null,
+          "source_sha256": "3901a2d50a63ef5ca4d10858145cca7fd70d20d24420761e1b7d2d09f2a127bc",
+          "definition_version": "r42.structure.v1",
+          "parent_definition": "r41.structure.v1",
+          "protocol_sha256": "da8f53c0f8b89037ab00721f4c0a3b8d7c322d6da692e37a2b3f142a643c6b27",
+          "trading_decision": null,
+          "outcome": null,
+          "confidence": null
+        },
+        "first_level": {
+          "level_id": "RESISTANCE|HIGH|USD_CHF|H1|2025-09-01T07:00:00+00:00",
+          "status": "INVALIDATED",
+          "transitions": [
+            {
+              "status": "ACTIVE",
+              "available_at": "2025-09-01T10:00:00+00:00",
+              "reason": "confirmed_swing",
+              "related_id": "HIGH|USD_CHF|H1|2025-09-01T07:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            },
+            {
+              "status": "INVALIDATED",
+              "available_at": "2025-09-01T12:00:00+00:00",
+              "reason": "close_through",
+              "related_id": null,
+              "definition_version": "r42.structure.v1"
+            }
+          ]
+        },
+        "first_confirmed_range": null
+      }
+    },
+    {
+      "instrument": "USD_CHF",
+      "timeframe": "H4",
+      "complete_candles": 1460,
+      "gap_rejected_windows": 336,
+      "confirmed_swing_highs": 148,
+      "confirmed_swing_lows": 148,
+      "tied_high_candidates": 5,
+      "tied_low_candidates": 1,
+      "counts": {
+        "levels_created": 296,
+        "level_invalidations": 120,
+        "level_supersessions": 175,
+        "trendlines_created": 294,
+        "trendline_breaks": 134,
+        "trendline_supersessions": 159,
+        "line_touch_episodes": 92,
+        "support_touch_episodes": 49,
+        "resistance_touch_episodes": 40,
+        "range_pairs": 214,
+        "range_reaction_episodes": 75,
+        "confirmed_ranges": 0,
+        "range_invalidations": 104,
+        "range_replacements": 110,
+        "contradictory_pairs": 0,
+        "invalidated_before_confirmation": 104,
+        "replaced_before_confirmation": 110,
+        "confirmed_then_invalidated": 0,
+        "confirmed_then_replaced": 0,
+        "uncertain_candles": 677,
+        "candidate_candles": 681,
+        "confirmed_candles": 0,
+        "invalidated_candles": 102,
+        "active_levels_at_end": 1,
+        "active_lines_at_end": 1,
+        "legacy_raw_continuation_comparisons": 0
+      },
+      "prefix_invariant": true,
+      "clock": {
+        "active_levels_at_most_one_per_side": true,
+        "active_lines_at_most_one_per_side": true,
+        "confirmed_range_has_two_reactions": true,
+        "unfinished_candle_hidden": true,
+        "visible_at_close": true,
+        "level_hidden_before_birth": true,
+        "level_visible_at_birth": true
+      },
+      "example": {
+        "observation": {
+          "record_type": "market_structure_lifecycle_observation",
+          "instrument": "USD_CHF",
+          "timeframe": "H4",
+          "candle_time": "2025-09-01T00:00:00+00:00",
+          "available_at": "2025-09-01T04:00:00+00:00",
+          "range_state": "UNCERTAIN",
+          "range_reason": "no_eligible_pair",
+          "range_id": null,
+          "support_level_id": null,
+          "resistance_level_id": null,
+          "support_line_id": null,
+          "resistance_line_id": null,
+          "source_sha256": "3901a2d50a63ef5ca4d10858145cca7fd70d20d24420761e1b7d2d09f2a127bc",
+          "definition_version": "r42.structure.v1",
+          "parent_definition": "r41.structure.v1",
+          "protocol_sha256": "da8f53c0f8b89037ab00721f4c0a3b8d7c322d6da692e37a2b3f142a643c6b27",
+          "trading_decision": null,
+          "outcome": null,
+          "confidence": null
+        },
+        "first_level": {
+          "level_id": "SUPPORT|LOW|USD_CHF|H4|2025-09-01T08:00:00+00:00",
+          "status": "SUPERSEDED",
+          "transitions": [
+            {
+              "status": "ACTIVE",
+              "available_at": "2025-09-01T20:00:00+00:00",
+              "reason": "confirmed_swing",
+              "related_id": "LOW|USD_CHF|H4|2025-09-01T08:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            },
+            {
+              "status": "SUPERSEDED",
+              "available_at": "2025-09-02T08:00:00+00:00",
+              "reason": "newer_confirmed_level",
+              "related_id": "SUPPORT|LOW|USD_CHF|H4|2025-09-01T20:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            }
+          ]
+        },
+        "first_confirmed_range": null
+      }
+    },
+    {
+      "instrument": "USD_JPY",
+      "timeframe": "H1",
+      "complete_candles": 6185,
+      "gap_rejected_windows": 303,
+      "confirmed_swing_highs": 815,
+      "confirmed_swing_lows": 827,
+      "tied_high_candidates": 25,
+      "tied_low_candidates": 23,
+      "counts": {
+        "levels_created": 1642,
+        "level_invalidations": 572,
+        "level_supersessions": 1068,
+        "trendlines_created": 1640,
+        "trendline_breaks": 699,
+        "trendline_supersessions": 940,
+        "line_touch_episodes": 413,
+        "support_touch_episodes": 219,
+        "resistance_touch_episodes": 227,
+        "range_pairs": 1289,
+        "range_reaction_episodes": 396,
+        "confirmed_ranges": 0,
+        "range_invalidations": 535,
+        "range_replacements": 753,
+        "contradictory_pairs": 0,
+        "invalidated_before_confirmation": 535,
+        "replaced_before_confirmation": 753,
+        "confirmed_then_invalidated": 0,
+        "confirmed_then_replaced": 0,
+        "uncertain_candles": 1921,
+        "candidate_candles": 3739,
+        "confirmed_candles": 0,
+        "invalidated_candles": 525,
+        "active_levels_at_end": 2,
+        "active_lines_at_end": 1,
+        "legacy_raw_continuation_comparisons": 0
+      },
+      "prefix_invariant": true,
+      "clock": {
+        "active_levels_at_most_one_per_side": true,
+        "active_lines_at_most_one_per_side": true,
+        "confirmed_range_has_two_reactions": true,
+        "unfinished_candle_hidden": true,
+        "visible_at_close": true,
+        "level_hidden_before_birth": true,
+        "level_visible_at_birth": true
+      },
+      "example": {
+        "observation": {
+          "record_type": "market_structure_lifecycle_observation",
+          "instrument": "USD_JPY",
+          "timeframe": "H1",
+          "candle_time": "2025-09-01T00:00:00+00:00",
+          "available_at": "2025-09-01T01:00:00+00:00",
+          "range_state": "UNCERTAIN",
+          "range_reason": "no_eligible_pair",
+          "range_id": null,
+          "support_level_id": null,
+          "resistance_level_id": null,
+          "support_line_id": null,
+          "resistance_line_id": null,
+          "source_sha256": "e1b0d3491f873723967315d74e3bd5b707474814a294be4ed50a26e1b8c9805c",
+          "definition_version": "r42.structure.v1",
+          "parent_definition": "r41.structure.v1",
+          "protocol_sha256": "da8f53c0f8b89037ab00721f4c0a3b8d7c322d6da692e37a2b3f142a643c6b27",
+          "trading_decision": null,
+          "outcome": null,
+          "confidence": null
+        },
+        "first_level": {
+          "level_id": "SUPPORT|LOW|USD_JPY|H1|2025-09-01T03:00:00+00:00",
+          "status": "SUPERSEDED",
+          "transitions": [
+            {
+              "status": "ACTIVE",
+              "available_at": "2025-09-01T06:00:00+00:00",
+              "reason": "confirmed_swing",
+              "related_id": "LOW|USD_JPY|H1|2025-09-01T03:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            },
+            {
+              "status": "SUPERSEDED",
+              "available_at": "2025-09-01T09:00:00+00:00",
+              "reason": "newer_confirmed_level",
+              "related_id": "SUPPORT|LOW|USD_JPY|H1|2025-09-01T06:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            }
+          ]
+        },
+        "first_confirmed_range": null
+      }
+    },
+    {
+      "instrument": "USD_JPY",
+      "timeframe": "H4",
+      "complete_candles": 1476,
+      "gap_rejected_windows": 277,
+      "confirmed_swing_highs": 165,
+      "confirmed_swing_lows": 173,
+      "tied_high_candidates": 2,
+      "tied_low_candidates": 0,
+      "counts": {
+        "levels_created": 338,
+        "level_invalidations": 128,
+        "level_supersessions": 209,
+        "trendlines_created": 336,
+        "trendline_breaks": 142,
+        "trendline_supersessions": 193,
+        "line_touch_episodes": 85,
+        "support_touch_episodes": 46,
+        "resistance_touch_episodes": 52,
+        "range_pairs": 244,
+        "range_reaction_episodes": 85,
+        "confirmed_ranges": 0,
+        "range_invalidations": 113,
+        "range_replacements": 131,
+        "contradictory_pairs": 0,
+        "invalidated_before_confirmation": 113,
+        "replaced_before_confirmation": 131,
+        "confirmed_then_invalidated": 0,
+        "confirmed_then_replaced": 0,
+        "uncertain_candles": 632,
+        "candidate_candles": 732,
+        "confirmed_candles": 0,
+        "invalidated_candles": 112,
+        "active_levels_at_end": 1,
+        "active_lines_at_end": 1,
+        "legacy_raw_continuation_comparisons": 0
+      },
+      "prefix_invariant": true,
+      "clock": {
+        "active_levels_at_most_one_per_side": true,
+        "active_lines_at_most_one_per_side": true,
+        "confirmed_range_has_two_reactions": true,
+        "unfinished_candle_hidden": true,
+        "visible_at_close": true,
+        "level_hidden_before_birth": true,
+        "level_visible_at_birth": true
+      },
+      "example": {
+        "observation": {
+          "record_type": "market_structure_lifecycle_observation",
+          "instrument": "USD_JPY",
+          "timeframe": "H4",
+          "candle_time": "2025-09-01T00:00:00+00:00",
+          "available_at": "2025-09-01T04:00:00+00:00",
+          "range_state": "UNCERTAIN",
+          "range_reason": "no_eligible_pair",
+          "range_id": null,
+          "support_level_id": null,
+          "resistance_level_id": null,
+          "support_line_id": null,
+          "resistance_line_id": null,
+          "source_sha256": "e1b0d3491f873723967315d74e3bd5b707474814a294be4ed50a26e1b8c9805c",
+          "definition_version": "r42.structure.v1",
+          "parent_definition": "r41.structure.v1",
+          "protocol_sha256": "da8f53c0f8b89037ab00721f4c0a3b8d7c322d6da692e37a2b3f142a643c6b27",
+          "trading_decision": null,
+          "outcome": null,
+          "confidence": null
+        },
+        "first_level": {
+          "level_id": "RESISTANCE|HIGH|USD_JPY|H4|2025-09-01T12:00:00+00:00",
+          "status": "INVALIDATED",
+          "transitions": [
+            {
+              "status": "ACTIVE",
+              "available_at": "2025-09-02T00:00:00+00:00",
+              "reason": "confirmed_swing",
+              "related_id": "HIGH|USD_JPY|H4|2025-09-01T12:00:00+00:00",
+              "definition_version": "r42.structure.v1"
+            },
+            {
+              "status": "INVALIDATED",
+              "available_at": "2025-09-02T04:00:00+00:00",
+              "reason": "close_through",
+              "related_id": null,
+              "definition_version": "r42.structure.v1"
+            }
+          ]
+        },
+        "first_confirmed_range": null
+      }
+    }
+  ],
+  "trading_backtest_run": false
+}

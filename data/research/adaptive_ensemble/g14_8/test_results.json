@@ -1,0 +1,31 @@
+{
+  "commands": [
+    "python -m pytest tests/test_g13_packaging.py tests/test_g13_1_mutations.py tests/test_g14_context.py tests/test_g14_1_staging.py tests/test_g14_3_supply.py tests/test_g14_4_wheelhouse.py tests/test_g14_5_security.py tests/test_g14_6_security.py tests/test_g14_7_integration.py tests/test_g14_8_filesystem.py -q --tb=line -rs",
+    "python -m ruff check tests/g14_7_fs.py tests/g14_7_transport.py tests/test_g14_8_filesystem.py tests/test_g14_7_integration.py",
+    "python -m mypy tests/g14_7_fs.py tests/g14_7_transport.py tests/g14_4_verify.py tests/g14_4_acquire.py tests/g14_4_inventory.py"
+  ],
+  "pytest": {"passed": 225, "failed": 0, "skipped": 3, "warnings": 1},
+  "ruff": "All checks passed",
+  "mypy": "Success: no issues found in 5 source files",
+  "windows_api_tests_executed": [
+    "CreateFileW open",
+    "NtCreateFile relative FILE_CREATE",
+    "GetFileInformationByHandle",
+    "junction via mklink /J",
+    "rename while handle open",
+    "rmdir while handle open"
+  ],
+  "injected_tests": [
+    "volume-serial mismatch predicate",
+    "G.14.7 injected lstat symlink cases, unchanged"
+  ],
+  "unsupported": [
+    "real directory symlink errno 22",
+    "cross-volume kernel transition",
+    "32-bit process"
+  ],
+  "not_run": ["tests/test_g10_snapshot.py"],
+  "docker": false,
+  "pip": false,
+  "network": false
+}

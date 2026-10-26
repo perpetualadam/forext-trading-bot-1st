@@ -1,0 +1,5 @@
+{
+  "gate": "B",
+  "verdict": "PASS",
+  "basis": "D.12 child reused the D.11 preventive guards and its self-check passed before import."
+}

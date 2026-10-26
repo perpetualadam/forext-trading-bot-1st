@@ -1,0 +1,8 @@
+{
+  "child_timeout_sec": 120,
+  "modes": ["direct", "lifespan", "shutdown", "ownership"],
+  "d14_pytest": "10 passed in 22.11s",
+  "escaped_telegram_threads": [],
+  "network_denials_after_tests": [],
+  "application_snapshot_before_harness_cleanup": true
+}

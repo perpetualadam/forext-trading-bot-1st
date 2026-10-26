@@ -1,0 +1,112 @@
+{
+  "stage": "G.14.12",
+  "note": "These are gaps in the G.14.11 text. The G.14.12 documents state the missing rule. That is design text. It is not a measured control. Implementation stays blocked for every item.",
+  "unresolved_critical": 0,
+  "unresolved_high": 0,
+  "defects": [
+    {
+      "id": "G14.12-D01",
+      "severity": "CRITICAL",
+      "g14_11_gap": "Ancestor chain was required and not specified",
+      "evidence": "G.14.11 receiving filesystem note said ancestors were not enumerated. G.14.8 cases 1-3 show a writable parent is enough.",
+      "scenario": "The interactive user replaces one ancestor before the receiver's CreateFileW. Children are created in the substitute.",
+      "criteria": ["C06", "C05"],
+      "remediation": "filesystem_ancestor_trust_contract.md denies write, delete, WRITE_DAC, and WRITE_OWNER on every ancestor. No path is approved.",
+      "design_only_remediation": true,
+      "status": "SPECIFIED_IN_G14_12_TEXT",
+      "empirical_verification_required": true,
+      "implementation_blocked": true
+    },
+    {
+      "id": "G14.12-D02",
+      "severity": "HIGH",
+      "g14_11_gap": "Executable, configuration, and import paths were not placed",
+      "evidence": "A separate SID does not bind bytes the interactive user can replace",
+      "scenario": "The user replaces the interpreter or a module. The receiver process loads the substitute.",
+      "criteria": ["C03", "C04"],
+      "remediation": "receiver_executable_integrity_review.md puts the program, runtime, config, and logs on the same chain and discards the user environment.",
+      "design_only_remediation": true,
+      "status": "SPECIFIED_IN_G14_12_TEXT",
+      "empirical_verification_required": true,
+      "implementation_blocked": true
+    },
+    {
+      "id": "G14.12-D03",
+      "severity": "HIGH",
+      "g14_11_gap": "Pipe authentication order, squatting, and impersonation were incomplete",
+      "evidence": "G.14.11 required SID checks and did not order them. No pipe exists.",
+      "scenario": "The user creates the pipe first, or connects as a client, and the other side trusts the name.",
+      "criteria": ["C13", "C14", "C15"],
+      "remediation": "authenticated_transfer_contract_review.md requires server-SID then client-SID then nonce, and forbids ImpersonateNamedPipeClient.",
+      "design_only_remediation": true,
+      "status": "SPECIFIED_IN_G14_12_TEXT",
+      "empirical_verification_required": true,
+      "implementation_blocked": true
+    },
+    {
+      "id": "G14.12-D04",
+      "severity": "HIGH",
+      "g14_11_gap": "Transfer maximums were deferred without a refusal rule",
+      "evidence": "An absent maximum could have been read as unlimited",
+      "scenario": "A sender streams without a cap and the receiver stores it.",
+      "criteria": ["C15", "C26"],
+      "remediation": "If the approved configuration has no count or byte maximum, fail closed before the first body is stored. The number is not invented here.",
+      "design_only_remediation": true,
+      "status": "SPECIFIED_IN_G14_12_TEXT",
+      "empirical_verification_required": true,
+      "implementation_blocked": true
+    },
+    {
+      "id": "G14.12-D05",
+      "severity": "HIGH",
+      "g14_11_gap": "Publication could be read as file-id plus hash after the handle closed",
+      "evidence": "NTFS file indexes can be reused after deletion. G.14.8 post-open binding does not survive a later path open.",
+      "scenario": "The object is deleted, a new object reuses the index, and a consumer opens a path.",
+      "criteria": ["C17", "C18", "C21"],
+      "remediation": "publication_mutation_review.md requires a commit on the open handle, a re-read before send, and no consumer path open.",
+      "design_only_remediation": true,
+      "status": "SPECIFIED_IN_G14_12_TEXT",
+      "empirical_verification_required": true,
+      "implementation_blocked": true
+    },
+    {
+      "id": "G14.12-D06",
+      "severity": "HIGH",
+      "g14_11_gap": "Consumer program and launch method were unnamed",
+      "evidence": "receiver_to_build_contract.md authenticated the receiver and did not place the consumer binary",
+      "scenario": "The consumer executable is user-writable, or a service path is swapped.",
+      "criteria": ["C19", "C20"],
+      "remediation": "The consumer binary and any launch configuration must sit on the same chain. No launch method is selected. Until one is approved, the receiver is not started.",
+      "design_only_remediation": true,
+      "status": "SPECIFIED_IN_G14_12_TEXT",
+      "empirical_verification_required": true,
+      "implementation_blocked": true
+    },
+    {
+      "id": "G14.12-D07",
+      "severity": "MEDIUM",
+      "g14_11_gap": "Privilege set for the receiver token was not listed",
+      "evidence": "Current token privileges are not the receiver's",
+      "scenario": "The receiver account is created with backup or take-ownership rights and can rewrite unrelated objects.",
+      "criteria": ["C01"],
+      "remediation": "The receiver token must be non-administrator and must not hold SeDebugPrivilege, SeImpersonatePrivilege, SeBackupPrivilege, SeRestorePrivilege, SeTakeOwnershipPrivilege, SeTcbPrivilege, or SeAssignPrimaryTokenPrivilege.",
+      "design_only_remediation": true,
+      "status": "SPECIFIED_IN_G14_12_TEXT",
+      "empirical_verification_required": true,
+      "implementation_blocked": true
+    },
+    {
+      "id": "G14.12-D08",
+      "severity": "INFORMATIONAL",
+      "g14_11_gap": "Whether this interactive account can elevate",
+      "evidence": "Administrators is deny-only on this token. No elevation was attempted.",
+      "scenario": "A later elevated process rewrites the receiver DACL.",
+      "criteria": ["C07", "C08"],
+      "remediation": "Threat C is outside the claim. The contract does not need a UAC result to be internally stated, and it must not be described as administrator-proof.",
+      "design_only_remediation": true,
+      "status": "LIMITATION_RECORDED",
+      "empirical_verification_required": false,
+      "implementation_blocked": true
+    }
+  ]
+}

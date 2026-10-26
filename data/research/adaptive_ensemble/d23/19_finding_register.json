@@ -1,0 +1,67 @@
+{
+  "findings": [
+    {
+      "id": "D23-HIST-01",
+      "evidence": "data/research/adaptive_ensemble/d22/01_baseline_integrity.json records D22_BLOCKED_BASELINE_INTEGRITY and zero network requests.",
+      "evidence_level": "PRESERVED_HISTORICAL_RECORD",
+      "impact": "The corrected D.22-R1 result does not erase the original stop.",
+      "required_action": "Leave the D.22 directory unchanged.",
+      "required_approval": "None for preservation.",
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D23-CFG-01",
+      "evidence": "Both platform manifests contain config descriptors. No config blob is in the D.22-R1 evidence.",
+      "evidence_level": "VERIFIED_DESCRIPTOR_ONLY",
+      "impact": "Config contents, image user, entrypoint, and base-image environment remain unread.",
+      "required_action": "Keep blob retrieval outside D.23.",
+      "required_approval": "A separate config-blob approval.",
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D23-ANN-01",
+      "evidence": "Both revalidated manifests contain org.opencontainers.image.version 3.12.15-slim-bookworm and org.opencontainers.image.base.name debian:bookworm-slim. Their base digests differ.",
+      "evidence_level": "LITERAL_MANIFEST_ANNOTATION",
+      "impact": "The annotation is not a measured Python patch, ABI, Debian package revision, or libc version.",
+      "required_action": "Keep R07, R09, R11, and R12 at their recorded unverified or missing statuses.",
+      "required_approval": "Class A, B, or C evidence under a later approval.",
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D23-TAG-01",
+      "evidence": "Dockerfile line 2 is FROM python:3.12-slim-bookworm. The verified index digest is absent from that line.",
+      "evidence_level": "DECLARED_IN_LOCAL_SOURCE",
+      "impact": "The local build reference remains a mutable tag.",
+      "required_action": "Leave the Dockerfile unchanged in D.23.",
+      "required_approval": "A later source-pinning approval, if one is requested.",
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D23-PLAT-01",
+      "evidence": "The index has 10 descriptors. Exactly one linux/amd64 runtime descriptor and one linux/arm64 variant v8 runtime descriptor were selected. Eight other descriptors, including attestations, arm/v7, 386, and ppc64le, were not retrieved.",
+      "evidence_level": "VERIFIED_FROM_LOCAL_BYTES",
+      "impact": "The approved target set remains the two selected platforms.",
+      "required_action": "Do not retrieve the other descriptors under this stage.",
+      "required_approval": "A new approval for any other architecture or attestation.",
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D23-NAT-01",
+      "evidence": "requirements.txt is unpinned. D.17 records missing wheel tags for numpy, pandas, and psycopg2-binary. uvicorn[standard] transitive native components are unresolved.",
+      "evidence_level": "DECLARED_LOWER_BOUNDS",
+      "impact": "Manifest identity does not establish wheel or native-library compatibility on either platform.",
+      "required_action": "Leave dependency resolution unauthorised.",
+      "required_approval": "A later dependency stage.",
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D23-PROV-01",
+      "evidence": "Local digests match the preserved D.22-R1 registry digests. Attestation manifests were not validated.",
+      "evidence_level": "BYTE_IDENTITY_ONLY",
+      "impact": "Byte identity is not publisher authenticity or a rollback artifact.",
+      "required_action": "Keep provenance status UNVERIFIED.",
+      "required_approval": "A separate provenance review.",
+      "production_impact": "UNVERIFIED"
+    }
+  ]
+}

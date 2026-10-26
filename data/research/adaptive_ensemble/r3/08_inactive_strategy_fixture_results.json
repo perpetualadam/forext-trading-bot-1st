@@ -1,0 +1,32 @@
+{
+  "broker_calls": 0,
+  "defaults_all_inactive": {
+    "mean_reversion": false,
+    "scalp": false,
+    "swing_breakout": false,
+    "swing_mean_reversion": false,
+    "swing_trend": false,
+    "trend": false
+  },
+  "evidence": "Selector fixture SYNTHETICALLY REPRODUCED. The bot_loop return before sizing was not executed.",
+  "hybrid_horizon": "scalp",
+  "hybrid_selected_name": "trend",
+  "hybrid_selected_was_active": false,
+  "legacy_horizon": "legacy",
+  "legacy_selected_when_all_inactive": null,
+  "loop_branch_executed": false,
+  "order_construction_calls": 0,
+  "scoped_names_include_inactive": [
+    "mean_reversion",
+    "scalp",
+    "trend"
+  ],
+  "setter_results": {
+    "boolean_true": true,
+    "false": false,
+    "none": false,
+    "number_one": false,
+    "string_true": false
+  },
+  "sizing_calls": 0
+}

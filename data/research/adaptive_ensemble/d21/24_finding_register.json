@@ -1,0 +1,44 @@
+{
+  "findings": [
+    {
+      "id": "D21-POLICY-01",
+      "evidence": "The D.21 instruction approves linux/amd64 and linux/arm64 as intended targets.",
+      "level": "EXPLICIT_USER_DECISION",
+      "impact": "The support policy is recorded. Neither architecture is verified.",
+      "action": "Keep D.19 and D.20 unchanged.",
+      "approval": "Already stated for the policy. Not stated for verification."
+    },
+    {
+      "id": "D21-BASE-01",
+      "evidence": "The reference is approved. Digest, both manifests, and provenance are UNVERIFIED.",
+      "level": "EXPLICIT_USER_DECISION",
+      "impact": "A later tag move would still be inside the approved name.",
+      "action": "Verify bytes only in a separate registry stage.",
+      "approval": "Registry read is not approved."
+    },
+    {
+      "id": "D21-CONFIG-01",
+      "evidence": "Dockerfile line 2 and the Compose bot service declare no OCI platform.",
+      "level": "CURRENT_STATIC_DECLARATION",
+      "impact": "The policy is not represented in deployment configuration. A default build can follow the builder platform.",
+      "action": "Leave both files unchanged.",
+      "approval": "Any future platform field or Buildx input needs its own approval."
+    },
+    {
+      "id": "D21-REG-01",
+      "evidence": "The registry procedure is a design. No request was sent.",
+      "level": "PROPOSAL",
+      "impact": "Index and platform digests remain unknown.",
+      "action": "Do not query docker.io.",
+      "approval": "A future checklist approval is required before any request."
+    },
+    {
+      "id": "D21-DEP-01",
+      "evidence": "requirements.txt still hashes to the nine lower-bound manifest. No lock and no wheels.",
+      "level": "CURRENT_STATIC_DECLARATION",
+      "impact": "Dependency compatibility is unverified on both platforms.",
+      "action": "Do not resolve or install.",
+      "approval": "Locking remains a later stage."
+    }
+  ]
+}

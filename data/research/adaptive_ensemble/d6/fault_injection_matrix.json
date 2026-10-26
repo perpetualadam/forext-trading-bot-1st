@@ -1,0 +1,24 @@
+{
+  "rows": [
+    {"id": "F01", "exists": true, "policy": "EXPECTED_NONFATAL_STARTUP_ERROR", "reachable": true, "executed": true, "observed": "connect raises, get_connection returns None, lifespan yields, no connection object"},
+    {"id": "F02", "exists": true, "policy": "PARTIAL_INITIALIZATION_FAILURE", "reachable": true, "executed": true, "observed": "covered by cursor, execute, and commit failures after connect returns"},
+    {"id": "F03", "exists": true, "policy": "EXPECTED_NONFATAL_STARTUP_ERROR", "reachable": true, "executed": true, "observed": "startup continues; connection close_calls is 0 and the global is cleared"},
+    {"id": "F04", "exists": true, "policy": "EXPECTED_NONFATAL_STARTUP_ERROR", "reachable": true, "executed": true, "observed": "startup continues; connection and cursor are not closed"},
+    {"id": "F05", "exists": true, "policy": "EXPECTED_NONFATAL_STARTUP_ERROR", "reachable": true, "executed": true, "observed": "startup continues; commit does not happen; rollback is 0; connection is not closed"},
+    {"id": "F06", "exists": false, "policy": "NOT_APPLICABLE", "reachable": false, "executed": false, "observed": "no startup path calls cursor.close"},
+    {"id": "F07", "exists": false, "policy": "NOT_APPLICABLE", "reachable": false, "executed": false, "observed": "no startup path calls connection.close"},
+    {"id": "F08", "exists": true, "policy": "FATAL_STARTUP_ERROR", "reachable": true, "executed": true, "observed": "RuntimeError escapes; yield is false; tasks are 0; database connection stays open"},
+    {"id": "F09", "exists": true, "policy": "EXPECTED_NONFATAL_STARTUP_ERROR", "reachable": true, "executed": true, "observed": "exception does not escape; yield is true; application cancels 4 tasks"},
+    {"id": "F10", "exists": true, "policy": "EXPECTED_NONFATAL_STARTUP_ERROR", "reachable": true, "executed": true, "observed": "exception does not escape; yield is true; application cancels 4 tasks"},
+    {"id": "F11", "exists": true, "policy": "FATAL_STARTUP_ERROR", "reachable": true, "executed": true, "observed": "alert raises before create_task; tasks are 0; connection stays open"},
+    {"id": "F12", "exists": true, "policy": "PARTIAL_INITIALIZATION_FAILURE", "reachable": true, "executed": true, "observed": "1 task pending after the application returns; harness cancelled it"},
+    {"id": "F13", "exists": true, "policy": "PARTIAL_INITIALIZATION_FAILURE", "reachable": true, "executed": true, "observed": "3 tasks pending; harness cancelled them"},
+    {"id": "F14", "exists": true, "policy": "PARTIAL_INITIALIZATION_FAILURE", "reachable": true, "executed": true, "observed": "4 tasks pending when start_telegram_control raises; harness cancelled them"},
+    {"id": "F15", "exists": true, "policy": "SHUTDOWN_FAILURE", "reachable": true, "executed": true, "observed": "yield happened; stop raises; 4 tasks still pending"},
+    {"id": "F16", "exists": false, "policy": "NOT_APPLICABLE", "reachable": false, "executed": false, "observed": "Task.cancel() is not a raising source path"},
+    {"id": "F17", "exists": true, "policy": "SHUTDOWN_FAILURE", "reachable": true, "executed": true, "observed": "health await raises RuntimeError; 3 later tasks stay pending"},
+    {"id": "F18", "exists": true, "policy": "repeated startup", "reachable": true, "executed": true, "observed": "after a one-task leak and harness cleanup, a second lifespan yields with auth BLOCKED"},
+    {"id": "F19", "exists": true, "executed": true, "observed": "every case kept effective and file authorisation BLOCKED"},
+    {"id": "F20", "exists": true, "executed": true, "observed": "every case left the active strategy list empty"}
+  ]
+}

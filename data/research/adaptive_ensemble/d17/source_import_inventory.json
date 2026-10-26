@@ -1,0 +1,24 @@
+{
+  "scope": "60 Python files named by Dockerfile COPY",
+  "syntax_errors": 0,
+  "dynamic_import_calls": 0,
+  "third_party": {
+    "dotenv": "forex_bot/config.py:8",
+    "fastapi": "forex_bot/app.py:12",
+    "numpy": "forex_bot/analytics.py:5",
+    "oandapyV20": "forex_bot/oanda_client.py:13",
+    "pandas": "forex_bot/decision_repair/selection.py:16",
+    "psycopg2": "forex_bot/database.py:11",
+    "requests": "forex_bot/alerts.py:16",
+    "uvicorn": "main.py:13"
+  },
+  "zoneinfo": "forex_bot/session_rules.py:14",
+  "stdlib_classifier": "host Python 3.13 sys.stdlib_module_names",
+  "tests_top_level_third_party": [
+    "numpy",
+    "oandapyV20",
+    "pandas",
+    "pytest",
+    "requests"
+  ]
+}

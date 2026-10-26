@@ -1,0 +1,10 @@
+{
+  "gate_g": "PASS",
+  "app_imported": false,
+  "run_bot_started": false,
+  "postgresql_started": false,
+  "dotenv_stub_calls": 1,
+  "blocked_socket_constructors": 1,
+  "completed_connections": 0,
+  "plugins": "autoload off, cache off, conftest not loaded"
+}

@@ -1,0 +1,24 @@
+{
+  "windows": [
+    {"id": "C01", "name": "Two callers see no published connection", "reachable_in_function": true, "reachable_in_current_startup_order": false, "locks": "none inside get_connection", "observed": "unlocked_overlap connect_calls 2", "leak": "later publisher abandons the first connection", "test": "S01"},
+    {"id": "C02", "name": "Both callers begin initialization", "reachable_in_function": true, "reachable_in_current_startup_order": false, "locks": "none", "observed": "barrier inside fake connect, both passed the empty check", "test": "S01"},
+    {"id": "C03", "name": "First connects while second waits", "reachable_in_function": true, "reachable_in_current_startup_order": true, "locks": "_pg_lock held by both helpers", "observed": "both_locked connect_calls 1, one published pair", "leak": "none", "test": "locked pair"},
+    {"id": "C04", "name": "First connects while second also connects", "reachable_in_function": true, "reachable_in_current_startup_order": false, "locks": "none, or only the locked caller", "observed": "D8-CONC-01", "test": "S01 S02"},
+    {"id": "C05", "name": "First initializes a cursor", "reachable_in_function": true, "observed": "both overlap connections have cursors", "test": "S01"},
+    {"id": "C06", "name": "Second initializes a cursor", "reachable_in_function": true, "observed": "same run", "test": "S01"},
+    {"id": "C07", "name": "First commits", "reachable_in_function": true, "observed": "both overlap connections commits 1", "test": "S04"},
+    {"id": "C08", "name": "Second commits", "reachable_in_function": true, "observed": "same run", "test": "S04"},
+    {"id": "C09", "name": "First publishes globals", "reachable_in_function": true, "observed": "published id 1 in the evidence run", "test": "S05"},
+    {"id": "C10", "name": "Second publishes globals", "reachable_in_function": true, "observed": "the other connection was left unreferenced", "test": "S05"},
+    {"id": "C11", "name": "One fails while the other succeeds", "reachable_in_function": true, "observed": "loser closed by discard, winner published, abandoned_open 0", "test": "S06 S07"},
+    {"id": "C12", "name": "Both fail", "reachable_in_function": true, "observed": "globals null, both closed by the application", "test": "S08"},
+    {"id": "C13", "name": "One releases while another holds a borrowed reference", "reachable_in_function": true, "observed": "release closed the held object", "quiescence": "DATABASE_BORROWER_QUIESCENCE_UNVERIFIED", "test": "S10"},
+    {"id": "C14", "name": "One releases while another initializes", "reachable_in_function": true, "observed": "release before publish was a no-op; the connection was then published and stayed open", "test": "S11"},
+    {"id": "C15", "name": "A borrower retains an old connection", "reachable_in_function": true, "observed": "abandoned connection 2 and 4 had no global reference and were still open", "test": "S01 S14"},
+    {"id": "C16", "name": "A borrower retains an old cursor", "reachable_in_function": true, "observed": "abandoned connections still had unclosed cursors; published pair matched", "test": "S01"},
+    {"id": "C17", "name": "Failed cleanup tries to clear globals", "reachable_in_function": false, "note": "Discard closes local objects and does not assign or clear globals. cleanup_fails left globals null because both attempts failed before publication.", "test": "S12"},
+    {"id": "C18", "name": "Retry after a failed initialization", "reachable_in_function": true, "observed": "first connect returned None and created no object; second published id 18", "test": "S13"},
+    {"id": "C19", "name": "A connection closes during task shutdown", "reachable_in_lifespan": "only on startup failure when Telegram stop does not raise", "observed": "before_yield application closed it; successful yield did not", "test": "S18 S20"},
+    {"id": "C20", "name": "Telegram stop fails while database users may exist", "reachable_in_lifespan": true, "observed": "startup_stop retained the connection and still cleaned tasks", "quiescence": "DATABASE_BORROWER_QUIESCENCE_UNVERIFIED", "test": "S17"}
+  ]
+}

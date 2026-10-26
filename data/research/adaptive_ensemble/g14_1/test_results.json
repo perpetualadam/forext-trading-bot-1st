@@ -1,0 +1,22 @@
+{
+  "stage": "G.14.1",
+  "commands": [
+    "python -m pytest -q --tb=line tests/test_g14_1_staging.py",
+    "python -m ruff check tests/g14_1_stage.py tests/g14_1_verify.py tests/test_g14_1_staging.py tests/g14_1_run_stage.py",
+    "python -m mypy tests/g14_1_stage.py tests/g14_1_verify.py tests/test_g14_1_staging.py tests/g14_1_run_stage.py",
+    "python -m pytest -q --tb=line tests/test_live_safety_repair.py tests/test_execution_safety.py tests/test_decision_repair.py tests/test_decision_repair_f1.py tests/test_decision_repair_f2.py tests/test_market_provenance_g5.py tests/test_market_provenance_g6.py tests/test_market_provenance_g7.py tests/test_g7_snapshot.py tests/test_g8_packaging.py tests/test_g8_missing_candles.py tests/test_g9_management.py tests/test_g9_1_candle_exceptions.py tests/test_g10_snapshot.py tests/test_g11_audit.py tests/test_g12_forensics.py tests/test_g12_1_verify.py tests/test_g13_packaging.py tests/test_g13_1_mutations.py tests/test_g14_context.py tests/test_g14_1_staging.py tests/test_v2_shadow.py tests/test_v2_shadow_market.py tests/test_macro_prospective_recorder_stage2.py"
+  ],
+  "g14_1_tests_passed": 27,
+  "scoped_suite_passed": 304,
+  "failed": 0,
+  "skipped": 0,
+  "warnings": [
+    "pre-existing datetime.utcnow deprecation in forex_bot/bot_loop.py:1651",
+    "pre-existing datetime.utcnow deprecation in forex_bot/session_rules.py:135"
+  ],
+  "ruff": "pass",
+  "mypy": "pass on the four new G.14.1 modules",
+  "g5_g6_artifacts_rewritten_by_tests_then_restored": true,
+  "docker_executed": false,
+  "production_python_modified": false
+}

@@ -1,0 +1,52 @@
+{
+  "findings": [
+    {
+      "id": "D20-POLICY-01",
+      "evidence": "linux/arm64 and the dual policy are proposed. The D.20 instruction does not approve them.",
+      "level": "EXPLICIT_USER_DECISION",
+      "impact": "ARM64 must not enter the deployment configuration.",
+      "action": "Wait for an explicit confirm or reject.",
+      "approval": "A statement that approves or rejects linux/amd64 + linux/arm64."
+    },
+    {
+      "id": "D20-BASE-01",
+      "evidence": "The reference is approved. Neither platform manifest nor the index digest is verified. The tag does not prove both platforms exist.",
+      "level": "EXPLICIT_USER_DECISION",
+      "impact": "Image identity remains open for both architectures.",
+      "action": "A later read-only registry stage after its own approval.",
+      "approval": "Separate registry-read approval. Reference approval is not that approval."
+    },
+    {
+      "id": "D20-WHEEL-01",
+      "evidence": "numpy, pandas, psycopg2-binary, and uvicorn[standard] have no verified wheels for either architecture.",
+      "level": "CURRENT_STATIC_DECLARATION",
+      "impact": "Dependency compatibility is unverified on both platforms.",
+      "action": "Verify artifacts only after image identity and a lock approval.",
+      "approval": "Package-metadata and artifact approvals."
+    },
+    {
+      "id": "D20-LOCK-01",
+      "evidence": "Nine lower bounds remain. No lock exists.",
+      "level": "CURRENT_STATIC_DECLARATION",
+      "impact": "A shared unpinned install can select different bytes per platform.",
+      "action": "Keep resolution unauthorised.",
+      "approval": "Resolver version, hash policy, and platform scope."
+    },
+    {
+      "id": "D20-VPS-01",
+      "evidence": "No provider and no hardware verification.",
+      "level": "MISSING",
+      "impact": "The AMD64 selection does not prove a future VPS is x86-64.",
+      "action": "Independent VPS validation under a later approval.",
+      "approval": "Provider and host inspection approval. Not granted."
+    },
+    {
+      "id": "D20-SOURCE-01",
+      "evidence": "g10_snapshot.py and g10_audit.py call ctypes.windll. They are not in the Dockerfile COPY list. Deployment files contain no amd64 or arm64 strings.",
+      "level": "CURRENT_STATIC_DECLARATION",
+      "impact": "Those research scripts are Windows-specific. Their absence from the image is not proof the application is portable.",
+      "action": "Leave the scripts unchanged.",
+      "approval": "None for a repair. No repair was made."
+    }
+  ]
+}

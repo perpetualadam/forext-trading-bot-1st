@@ -1,0 +1,23 @@
+{
+  "classification": "R21_OFFLINE_SELECTOR_AND_ORDER_STATE_INTEGRATED",
+  "head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "bot_loop_sha256": "081314246ce22fa092d6f7de9ef8f84760bf87e086f5838e763fb08d7f34f55f",
+  "application_files_modified": ["forex_bot/bot_loop.py"],
+  "database_py_unchanged": true,
+  "orders_py_unchanged": true,
+  "protected_files_unchanged": true,
+  "r21_tests_passed": 24,
+  "prior_regressions_failed": false,
+  "real_broker_calls": 0,
+  "postgresql_connections": 0,
+  "network_successes": 0,
+  "dns_successes": 0,
+  "run_bot_executed": false,
+  "main_py_executed": false,
+  "production_eligible": false,
+  "production_deployment": "NO-GO",
+  "practice_orders": "NOT AUTHORISED",
+  "live_trading": "NOT AUTHORISED",
+  "rollback": "NO-GO"
+}

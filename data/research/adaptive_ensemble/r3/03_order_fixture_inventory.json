@@ -1,0 +1,16 @@
+{
+  "cases": [
+    "C01 fake fill",
+    "C02 fake reject",
+    "C03 fake cancel",
+    "C04 TimeoutError",
+    "C05 ConnectionResetError",
+    "C06 body with no fill, reject, or cancel",
+    "C07 same client id twice",
+    "C08 new client id after an uncertain outcome",
+    "C09 memory cleared as a stand-in for restart",
+    "C10 reconciliation not present on this path",
+    "C11 second id with no reconciliation result"
+  ],
+  "not_called": ["execute_oanda_market_open", "fetch_exec_orders_open_for_recovery", "bot_loop._evaluate_impl"]
+}

@@ -1,0 +1,85 @@
+{
+  "checks": [
+    {
+      "check": "fixture_modes_fixed",
+      "passed": true
+    },
+    {
+      "check": "no_arbitrary_command",
+      "passed": true
+    },
+    {
+      "check": "no_url_input",
+      "passed": true
+    },
+    {
+      "check": "no_hostname_resolution",
+      "passed": true
+    },
+    {
+      "check": "no_network_import",
+      "passed": true
+    },
+    {
+      "check": "no_socket_path",
+      "passed": true
+    },
+    {
+      "check": "no_dns_path",
+      "passed": true
+    },
+    {
+      "check": "no_project_import",
+      "passed": true
+    },
+    {
+      "check": "no_credential_read",
+      "passed": true
+    },
+    {
+      "check": "no_production_access",
+      "passed": true
+    },
+    {
+      "check": "output_boundary",
+      "passed": true
+    },
+    {
+      "check": "bounded_output",
+      "passed": true
+    },
+    {
+      "check": "bounded_runtime",
+      "passed": true
+    },
+    {
+      "check": "bounded_process_creation",
+      "passed": true
+    },
+    {
+      "check": "worker_spawns_no_children",
+      "passed": true
+    },
+    {
+      "check": "no_retry_helper",
+      "passed": true
+    },
+    {
+      "check": "termination_available",
+      "passed": true
+    },
+    {
+      "check": "exit_check_available",
+      "passed": true
+    },
+    {
+      "check": "synthetic_cannot_request",
+      "passed": true
+    },
+    {
+      "check": "d30_r1_client_not_executed",
+      "passed": true
+    }
+  ],
+  "verdict": "PASS"
+}

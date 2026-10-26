@@ -1,0 +1,45 @@
+{
+  "checks": [
+    {
+      "check": "windows",
+      "passed": true
+    },
+    {
+      "check": "no_socket_import",
+      "passed": true
+    },
+    {
+      "check": "no_dns_call",
+      "passed": true
+    },
+    {
+      "check": "no_http_client",
+      "passed": true
+    },
+    {
+      "check": "no_project_import",
+      "passed": true
+    },
+    {
+      "check": "no_shell",
+      "passed": true
+    },
+    {
+      "check": "discover_refuses_first",
+      "passed": true
+    },
+    {
+      "check": "historical_client_not_a_transport",
+      "passed": true
+    },
+    {
+      "check": "output_boundary",
+      "passed": true
+    },
+    {
+      "check": "no_broad_kill",
+      "passed": true
+    }
+  ],
+  "verdict": "PASS"
+}

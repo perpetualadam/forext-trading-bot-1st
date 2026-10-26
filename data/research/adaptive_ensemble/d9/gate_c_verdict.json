@@ -1,0 +1,24 @@
+{
+  "gate": "C",
+  "verdict": "PASS",
+  "pre_fix": "D8_CONC_01_REPRODUCED_PRE_FIX",
+  "d8_guard_gap_addressed": true,
+  "denied_before_import": [
+    "socket.connect",
+    "socket.connect_ex",
+    "socket.create_connection",
+    "socket.getaddrinfo",
+    "socket.gethostbyname",
+    "urllib.request.urlopen",
+    "asyncio.open_connection",
+    "asyncio.start_server",
+    "asyncio.create_subprocess_exec",
+    "asyncio.create_subprocess_shell",
+    "os.system",
+    "subprocess.Popen",
+    "subprocess.run",
+    "requests"
+  ],
+  "socketpair": "narrow loopback port 0 bind; later connect to that port is denied",
+  "filesystem": [".env", "credential", "data/ops", "v2_shadow", "pgdata", "pathlib.Path.open"]
+}

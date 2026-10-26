@@ -1,0 +1,9 @@
+{
+  "counts": {
+    "PUBLISHED_HASH_PRESENT_VALID_FORMAT": 9387,
+    "PUBLISHED_HASH_MISSING": 0,
+    "PUBLISHED_HASH_MALFORMED": 0
+  },
+  "artifact_bytes_verified": false,
+  "publisher_authenticated": false
+}

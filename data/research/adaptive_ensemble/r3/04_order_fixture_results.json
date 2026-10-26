@@ -1,0 +1,133 @@
+{
+  "blocked_attempts": 1,
+  "broker_calls": 0,
+  "cases": [
+    {
+      "broker_function_reached": false,
+      "evidence": "SYNTHETICALLY REPRODUCED",
+      "function": "classify_order_create_response",
+      "id": "C01",
+      "input": "fake fill body",
+      "observed": "FILLED",
+      "result": "PASS",
+      "second_order_permitted": false
+    },
+    {
+      "broker_function_reached": false,
+      "evidence": "SYNTHETICALLY REPRODUCED",
+      "function": "classify_order_create_response",
+      "id": "C02",
+      "input": "fake reject body",
+      "observed": "REJECTED",
+      "result": "PASS"
+    },
+    {
+      "broker_function_reached": false,
+      "evidence": "SYNTHETICALLY REPRODUCED",
+      "function": "classify_order_create_response",
+      "id": "C03",
+      "input": "fake cancel body",
+      "observed": "CANCELLED",
+      "result": "PASS"
+    },
+    {
+      "broker_function_reached": false,
+      "broker_outcome": "UNKNOWN",
+      "evidence": "SYNTHETICALLY REPRODUCED",
+      "function": "classify_order_create_transport_error",
+      "id": "C04",
+      "input": "TimeoutError",
+      "observed": "AMBIGUOUS_TRANSPORT_OUTCOME",
+      "result": "PASS"
+    },
+    {
+      "broker_function_reached": false,
+      "evidence": "SYNTHETICALLY REPRODUCED",
+      "function": "classify_order_create_transport_error",
+      "id": "C05",
+      "input": "ConnectionResetError",
+      "observed": "AMBIGUOUS_TRANSPORT_OUTCOME",
+      "result": "PASS"
+    },
+    {
+      "broker_function_reached": false,
+      "evidence": "SYNTHETICALLY REPRODUCED",
+      "function": "classify_order_create_response",
+      "id": "C06",
+      "input": "body with no fill, reject, or cancel",
+      "observed": "MALFORMED_RESPONSE",
+      "result": "PASS"
+    },
+    {
+      "broker_function_reached": false,
+      "evidence": "SYNTHETICALLY DISPROVED FOR TESTED PATH",
+      "first_reserved": true,
+      "function": "try_begin_order_submission",
+      "id": "C07",
+      "input": "same synthetic client id twice",
+      "note": "The same id is refused while it remains in memory. This does not cover a new id.",
+      "result": "PASS",
+      "second_order_permitted": false,
+      "state_after": {
+        "detail": "",
+        "status": "PENDING"
+      }
+    },
+    {
+      "ambiguous_is_outcome_error": true,
+      "broker_function_reached": false,
+      "evidence": "SYNTHETICALLY REPRODUCED",
+      "expected_safe": "A new id must not be reserved while the first broker outcome is unknown.",
+      "id": "C08",
+      "input": "timeout classification then mark_order_failed_or_cancelled then a new id",
+      "limitation": "The bot_loop except block was not entered. The functions that block names were called directly.",
+      "loop_except_entered": false,
+      "new_client_order_id_prefix": "cid-",
+      "new_id_reserved": true,
+      "result": "FAIL",
+      "same_id_reserved_again": false,
+      "second_order_permitted": true,
+      "state_after_mark": {
+        "detail": "execution_failed",
+        "status": "CANCELLED"
+      },
+      "timeout_class": "AMBIGUOUS_TRANSPORT_OUTCOME"
+    },
+    {
+      "broker_function_reached": false,
+      "database_recovery_called": false,
+      "evidence": "SYNTHETICALLY REPRODUCED",
+      "function": "try_begin_order_submission",
+      "id": "C09",
+      "input": "memory cleared to stand in for a new process",
+      "limitation": "fetch_exec_orders_open_for_recovery was not called because it opens a database connection. Source says it reloads only PENDING and PARTIAL.",
+      "result": "FAIL",
+      "second_order_permitted": true
+    },
+    {
+      "broker_function_reached": false,
+      "evidence": "SOURCE-LEVEL SUSPECTED",
+      "id": "C10",
+      "input": "no reconciliation function on the timeout path",
+      "note": "A fake broker position check was not executed. No such check is on the timeout path.",
+      "observed": "no reconcile call exists before the next reserve",
+      "result": "NOT_EVALUATED",
+      "second_order_permitted": true
+    },
+    {
+      "broker_function_reached": false,
+      "evidence": "SYNTHETICALLY REPRODUCED",
+      "id": "C11",
+      "input": "reconciliation unavailable",
+      "observed": "C08 still reserved a new id with no reconciliation result",
+      "result": "FAIL",
+      "second_order_permitted": true
+    }
+  ],
+  "dotenv_calls": 1,
+  "phases": {
+    "after_direction": 1,
+    "after_inactive": 1,
+    "after_orders": 1
+  }
+}

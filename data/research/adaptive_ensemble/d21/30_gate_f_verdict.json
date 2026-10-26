@@ -1,0 +1,6 @@
+{
+  "gate": "F",
+  "result": "PASS",
+  "meaning": "Evidence schema and stop conditions are specified. No registry bytes were stored.",
+  "registry_verification_performed": false
+}

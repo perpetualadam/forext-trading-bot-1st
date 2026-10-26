@@ -1,0 +1,32 @@
+{
+  "stage": "G.14.8",
+  "reviewed": "data/research/adaptive_ensemble/g14_7/",
+  "g14_7_classification": "G14_7_OFFLINE_INTEGRATION_COMPLETE_FILESYSTEM_BOUNDARY_BLOCKED",
+  "g14_7_evidence_overwritten": false,
+  "preserved_results": {
+    "tests_passed": 201,
+    "tests_failed": 0,
+    "tests_skipped": 2,
+    "synthetic_transport": true,
+    "synthetic_end_to_end": "COMPLETE_SYNTHETIC",
+    "real_network": false,
+    "real_wheelhouse": false,
+    "real_dependency_lock": false,
+    "docker": false,
+    "production_changes": false
+  },
+  "filesystem_findings_kept": [
+    "Initial directory open uses a pathname lookup",
+    "Post-open handle-relative writes stayed on the opened object",
+    "Real junction rejection was tested",
+    "Real directory symlink creation was unavailable",
+    "Injected lstat symlink results were rejected",
+    "ACQUISITION_FILESYSTEM_BOUNDARY_UNVERIFIED"
+  ],
+  "historical_prototype_directories_left_in_user_temp": [
+    "g147-fs-4o_59mie",
+    "g147-fs-8qypzh4u"
+  ],
+  "prototype_directories_inspected": false,
+  "prototype_directories_modified": false
+}

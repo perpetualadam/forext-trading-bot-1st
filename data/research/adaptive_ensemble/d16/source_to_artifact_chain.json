@@ -1,0 +1,66 @@
+{
+  "links": [
+    {
+      "link": "source files",
+      "evidence": "local hashes",
+      "level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "blocks": true,
+      "reason": "dirty tree is not identified by HEAD"
+    },
+    {
+      "link": "build context",
+      "evidence": "dockerignore and COPY list",
+      "level": "STATIC_INFERENCE",
+      "blocks": true,
+      "reason": "daemon behaviour unverified"
+    },
+    {
+      "link": "dependency artifacts",
+      "evidence": "none",
+      "level": "MISSING",
+      "blocks": true
+    },
+    {
+      "link": "base image",
+      "evidence": "mutable tag only",
+      "level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "blocks": true
+    },
+    {
+      "link": "build process",
+      "evidence": "Dockerfile text",
+      "level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "blocks": true
+    },
+    {
+      "link": "candidate image",
+      "evidence": "none",
+      "level": "MISSING",
+      "blocks": true
+    },
+    {
+      "link": "image integrity",
+      "evidence": "none",
+      "level": "MISSING",
+      "blocks": true
+    },
+    {
+      "link": "trusted receiver",
+      "evidence": "G.14.12 unverified",
+      "level": "HISTORICAL_OBSERVATION",
+      "blocks": true
+    },
+    {
+      "link": "production container",
+      "evidence": "historical ids only",
+      "level": "HISTORICAL_OBSERVATION",
+      "blocks": true
+    },
+    {
+      "link": "rollback target",
+      "evidence": "none verified",
+      "level": "HISTORICAL_OBSERVATION",
+      "blocks": true
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "result": "D8_CONC_01_REPRODUCED_PRE_FIX",
+  "source_hash": "74bb9f5d692ace88bff525f334d7eb8577427bfe75cf5f229f647e60b88979e9",
+  "harness": "tests/d9_database_concurrency_runner.py mode pre_fix",
+  "workers": 2,
+  "synchronization": "threading.Barrier inside fake connect, before either caller returned to publish",
+  "connect_calls": 2,
+  "cursors_created": 2,
+  "published_id": 1,
+  "cursor_connection": 1,
+  "pair_consistent": true,
+  "returned_ids": [1, 2],
+  "abandoned_open": 1,
+  "abandoned_connection": {
+    "ident": 2,
+    "commits": 1,
+    "close_calls": 0,
+    "closed": false
+  },
+  "application_closed": 0,
+  "harness_closed": 2,
+  "worker_errors": [],
+  "alive_workers": 0,
+  "network": [],
+  "note": "Both connections committed. The application published connection 1 and left connection 2 open without a global reference. The harness closed both after the snapshot."
+}

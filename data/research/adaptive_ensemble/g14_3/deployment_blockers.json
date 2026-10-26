@@ -1,0 +1,13 @@
+{
+  "stage": "G.14.3",
+  "safety_state_forward_compatibility": "SAFETY_STATE_FORWARD_COMPATIBILITY_UNVERIFIED",
+  "live_database_compatibility": "LIVE_DATABASE_COMPATIBILITY_UNVERIFIED",
+  "shadow_mount_compatibility": "SHADOW_MOUNT_COMPATIBILITY_UNVERIFIED",
+  "verified_rollback_target": "NO_VERIFIED_ROLLBACK_TARGET",
+  "docker_daemon_context_behaviour": "DOCKER_DAEMON_CONTEXT_BEHAVIOUR_UNVERIFIED",
+  "running_image_status": "ROLLBACK_CANDIDATE_PARTIALLY_VERIFIED",
+  "candidate_runtime_behavior": "UNVERIFIED",
+  "production_deployment": "NO-GO",
+  "rollback": "NO-GO",
+  "changed_because_design_completed": false
+}

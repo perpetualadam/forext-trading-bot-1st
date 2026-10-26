@@ -1,0 +1,13 @@
+{
+  "stage": "D.4",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "app_py_status_before_edit": "unmodified relative to HEAD",
+  "original_app_py_sha256": "77888f0fa40b5a2935913be6d9b8770c1df0aa204d21c72537cef9e01ac0f70d",
+  "live_safety_sha256": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+  "live_safety_matches_d2": true,
+  "strategy_meta_sha256": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+  "strategy_meta_matches_d3": true,
+  "d3_classification": "D3_REMEDIATION_COMPLETE_OFFLINE_TESTED",
+  "unexpected_app_change_before_edit": false
+}

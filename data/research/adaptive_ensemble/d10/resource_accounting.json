@@ -1,0 +1,32 @@
+{
+  "threads": {
+    "escaped_final": [],
+    "application_alive_after_blocked_stop": [16048, 13880, 3836],
+    "harness_joined_after_snapshot": "all telegram-control threads that were still alive",
+    "daemon_used_as_cleanup": false
+  },
+  "connections": {
+    "fake_driver_only": true,
+    "open_at_end_of_thread_run": [],
+    "use_after_close": [],
+    "application_closed": "connection 1 after the explicit release; the locked-query connection; the broker-failure lifespan connection",
+    "left_open_by_application_and_closed_by_harness": [
+      "connection 2 published by the post-release poller query",
+      "connection 6 published by the direct helper",
+      "the connection whose close raised RuntimeError",
+      "the overlap connection 8",
+      "each successful lifespan connection, which the success path intentionally keeps"
+    ]
+  },
+  "cursors": {
+    "open_at_end_of_thread_run": [],
+    "old_cursor_reused_after_close": false
+  },
+  "asyncio_tasks": {
+    "lifespan_created_on_success": 4,
+    "pending_after_application_cleanup": 0,
+    "harness_cancelled": 0
+  },
+  "network": [],
+  "http_methods_inside_fake": ["getUpdates", "getWebhookInfo", "sendMessage", "setMyCommands"]
+}

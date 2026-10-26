@@ -1,0 +1,8 @@
+{
+  "gate": "E",
+  "result": "PASS",
+  "setup_errors": 109,
+  "bodies_executed": 0,
+  "current_source_passes": "143 passed in 34.62s, plus safety-repair 23 passed in 4.95s",
+  "unclassified": 0
+}

@@ -1,0 +1,19 @@
+{
+  "evidence": "ACTUAL_LIFESPAN_ISOLATED",
+  "normal_warnings": 0,
+  "disabled_warnings": 0,
+  "first_start": "START_STARTED",
+  "second_start": "START_REFUSED_PREVIOUS_WORKER",
+  "second_lifespan_yielded": true,
+  "refusal_logged": true,
+  "same_worker": true,
+  "stop_event": true,
+  "connection_reused": true,
+  "third_start": "START_STARTED",
+  "third_warnings": 0,
+  "start_failed_yielded": true,
+  "start_failed_escaped": "",
+  "unknown_yielded": true,
+  "unknown_warning": true,
+  "result": "PASS"
+}

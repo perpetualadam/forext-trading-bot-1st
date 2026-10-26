@@ -1,0 +1,60 @@
+2026-10-19 23:37:47.677 BST [12784] LOG:  starting PostgreSQL 18.6 on x86_64-windows, compiled by msvc-19.44.35229, 64-bit
+2026-10-19 23:37:47.678 BST [12784] LOG:  listening on IPv4 address "127.0.0.1", port 55432
+2026-10-19 23:37:47.828 BST [20140] LOG:  database system was shut down at 2026-10-19 12:30:48 BST
+2026-10-19 23:37:47.859 BST [12784] LOG:  database system is ready to accept connections
+2026-10-19 23:38:18.485 BST [4360] ERROR:  permission denied to examine "data_directory"
+2026-10-19 23:38:18.485 BST [4360] DETAIL:  Only roles with privileges of the "pg_read_all_settings" role may examine this parameter.
+2026-10-19 23:38:18.485 BST [4360] STATEMENT:  SHOW data_directory
+2026-10-19 23:40:04.470 BST [19800] ERROR:  deadlock detected at character 30
+2026-10-19 23:40:04.470 BST [19800] DETAIL:  Process 19800 waits for RowExclusiveLock on relation 16428 of database 16389; blocked by process 14280.
+	Process 14280 waits for AccessExclusiveLock on relation 16428 of database 16389; blocked by process 19800.
+	Process 19800: 
+	                INSERT INTO exec_orders (client_order_id, symbol, side, units, status, metadata)
+	                VALUES ('cid-r28-0-a', 'R28S0', 'BUY', 1000.0, 'PENDING', '{}')
+	                ON CONFLICT (client_order_id) DO NOTHING
+	                
+	Process 14280: ALTER TABLE exec_orders ADD COLUMN IF NOT EXISTS filled_units DOUBLE PRECISION;
+2026-10-19 23:40:04.470 BST [19800] HINT:  See server log for query details.
+2026-10-19 23:40:04.470 BST [19800] STATEMENT:  
+	                INSERT INTO exec_orders (client_order_id, symbol, side, units, status, metadata)
+	                VALUES ('cid-r28-0-a', 'R28S0', 'BUY', 1000.0, 'PENDING', '{}')
+	                ON CONFLICT (client_order_id) DO NOTHING
+	                
+2026-10-19 23:40:05.670 BST [8892] ERROR:  deadlock detected
+2026-10-19 23:40:05.670 BST [8892] DETAIL:  Process 8892 waits for AccessExclusiveLock on relation 16428 of database 16389; blocked by process 472.
+	Process 472 waits for RowExclusiveLock on relation 16428 of database 16389; blocked by process 8892.
+	Process 8892: ALTER TABLE exec_orders ADD COLUMN IF NOT EXISTS filled_units DOUBLE PRECISION;
+	Process 472: 
+	                INSERT INTO exec_orders (client_order_id, symbol, side, units, status, metadata)
+	                VALUES ('cid-r28-4-a', 'R28S4', 'BUY', 1000.0, 'PENDING', '{}')
+	                ON CONFLICT (client_order_id) DO NOTHING
+	                
+2026-10-19 23:40:05.670 BST [8892] HINT:  See server log for query details.
+2026-10-19 23:40:05.670 BST [8892] STATEMENT:  ALTER TABLE exec_orders ADD COLUMN IF NOT EXISTS filled_units DOUBLE PRECISION;
+2026-10-19 23:40:06.613 BST [11424] ERROR:  deadlock detected
+2026-10-19 23:40:06.613 BST [11424] DETAIL:  Process 11424 waits for AccessExclusiveLock on relation 16428 of database 16389; blocked by process 4168.
+	Process 4168 waits for RowExclusiveLock on relation 16428 of database 16389; blocked by process 11424.
+	Process 11424: ALTER TABLE exec_orders ADD COLUMN IF NOT EXISTS filled_units DOUBLE PRECISION;
+	Process 4168: 
+	                INSERT INTO exec_orders (client_order_id, symbol, side, units, status, metadata)
+	                VALUES ('cid-r28-7-a', 'R28S7', 'BUY', 1000.0, 'PENDING', '{}')
+	                ON CONFLICT (client_order_id) DO NOTHING
+	                
+2026-10-19 23:40:06.613 BST [11424] HINT:  See server log for query details.
+2026-10-19 23:40:06.613 BST [11424] STATEMENT:  ALTER TABLE exec_orders ADD COLUMN IF NOT EXISTS filled_units DOUBLE PRECISION;
+2026-10-19 23:42:47.804 BST [4972] LOG:  checkpoint starting: time
+2026-10-19 23:42:48.999 BST [4972] LOG:  checkpoint complete: wrote 10 buffers (0.1%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=1.097 s, sync=0.081 s, total=1.195 s; sync files=10, longest=0.015 s, average=0.009 s; distance=42 kB, estimate=42 kB; lsn=0/1D141C0, redo lsn=0/1D14168
+2026-10-19 23:43:37.226 BST [9712] ERROR:  r28_insert_rejected
+2026-10-19 23:43:37.226 BST [9712] CONTEXT:  PL/pgSQL function r28_reject_insert() line 3 at RAISE
+2026-10-19 23:43:37.226 BST [9712] STATEMENT:  
+	                INSERT INTO exec_orders (client_order_id, symbol, side, units, status, metadata)
+	                VALUES ('cid-r28-fail', 'R28FAIL', 'BUY', 1000.0, 'PENDING', '{}')
+	                ON CONFLICT (client_order_id) DO NOTHING
+	                
+2026-10-19 23:46:18.200 BST [12784] LOG:  received fast shutdown request
+2026-10-19 23:46:18.203 BST [12784] LOG:  aborting any active transactions
+2026-10-19 23:46:18.209 BST [12784] LOG:  background worker "logical replication launcher" (PID 13388) exited with exit code 1
+2026-10-19 23:46:18.209 BST [4972] LOG:  shutting down
+2026-10-19 23:46:18.211 BST [4972] LOG:  checkpoint starting: shutdown immediate
+2026-10-19 23:46:18.268 BST [4972] LOG:  checkpoint complete: wrote 33 buffers (0.2%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.013 s, sync=0.036 s, total=0.059 s; sync files=28, longest=0.002 s, average=0.002 s; distance=145 kB, estimate=145 kB; lsn=0/1D38830, redo lsn=0/1D38830
+2026-10-19 23:46:18.305 BST [12784] LOG:  database system is shut down

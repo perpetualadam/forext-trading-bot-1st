@@ -1,0 +1,86 @@
+{
+  "sha256": "597388bf5b238ff2a866a83c2662b6a46f4f52a3fefff4ee268d770221cc8dd1",
+  "protocol": {
+    "stage": "R38",
+    "feature_schema_sha256": "7d15b98d9bfe99136f2de5e05522d9cef623539b38f7ab61e9ea722a24889946",
+    "label_protocol_sha256": "dc914245aa072f1922b656634f473cd1c641cd01fa1f4c217b21ab1decb0ed51",
+    "datasets": {
+      "AUD_USD": "e639a1f817e4b91973ccfea0ee0c8c3dd5279c722ea665c531ad309b359165e0",
+      "EUR_USD": "3ae3c4d061792353b94b8d2be73684f950362f135d47926d1bc8c11a24791091",
+      "GBP_USD": "ac3ddba51b75f493a08a5ea57e9926e38a5a85b06797de53803e6cd4f8b00d58",
+      "USD_CAD": "a88eb2c440691bd5893a8317b64e6beaf87bb6f3c93b0c6e6a4cd16e53aa9c60",
+      "USD_CHF": "3901a2d50a63ef5ca4d10858145cca7fd70d20d24420761e1b7d2d09f2a127bc",
+      "USD_JPY": "e1b0d3491f873723967315d74e3bd5b707474814a294be4ed50a26e1b8c9805c"
+    },
+    "pip_size": {
+      "AUD_USD": 0.0001,
+      "EUR_USD": 0.0001,
+      "GBP_USD": 0.0001,
+      "USD_CAD": 0.0001,
+      "USD_CHF": 0.0001,
+      "USD_JPY": 0.01
+    },
+    "features": [
+      "return_1",
+      "rolling_vol_20",
+      "atr_14",
+      "ma_distance",
+      "momentum_12",
+      "spread",
+      "hour_utc",
+      "session_code",
+      "range_20",
+      "volume"
+    ],
+    "numeric_features": [
+      "return_1",
+      "rolling_vol_20",
+      "atr_14",
+      "ma_distance",
+      "momentum_12",
+      "spread",
+      "range_20",
+      "volume"
+    ],
+    "categorical_features": [
+      "hour_utc",
+      "session_code"
+    ],
+    "horizons": [
+      12,
+      48
+    ],
+    "primary_horizon": 12,
+    "warmup_bars": 20,
+    "train_end_exclusive": "2026-03-01T00:00:00Z",
+    "confirmation_start": "2026-05-01T00:00:00Z",
+    "walk_forward_eval_starts": [
+      "2025-11-01T00:00:00Z",
+      "2025-12-01T00:00:00Z",
+      "2026-01-01T00:00:00Z"
+    ],
+    "primary_instrument": "EUR_USD",
+    "primary_tests": "eight_numeric_features_by_signed_midpoint_return_on_eurusd_horizon_12",
+    "multiple_comparison_count": 8,
+    "bonferroni_alpha": 0.05,
+    "association_bootstrap": {
+      "block": "max(20, horizon)",
+      "reps": 800,
+      "seed": 3801
+    },
+    "economic_bootstrap": {
+      "block": "max(20, horizon)",
+      "reps": 200,
+      "seed": 3801
+    },
+    "minimum_confirmation_rows": 500,
+    "minimum_actions": 30,
+    "candidate_rule": "largest_absolute_training_spearman_whose_unadjusted_interval_excludes_zero; tie_breaks_to_earlier_feature; no_second_try",
+    "candidate_thresholds": "training_20th_and_80th_percentiles",
+    "magnitude_model": "ridge_alpha_1_median_imputer_standard_scaler_fit_on_training_only",
+    "magnitude_baseline": "training_mean_absolute_midpoint_return",
+    "other_instruments": "exploratory_replication_not_independent_confirmations",
+    "pooled_model": false,
+    "production_authorised": false
+  }
+}

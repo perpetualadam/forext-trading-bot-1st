@@ -1,0 +1,152 @@
+{
+  "record_type": "research_structure_observation",
+  "fed_to_production_journal": false,
+  "rows": [
+    {
+      "instrument": "EUR_USD",
+      "timeframe": "H1",
+      "observation": {
+        "record_type": "market_structure_lifecycle_observation",
+        "instrument": "EUR_USD",
+        "timeframe": "H1",
+        "candle_time": "2025-09-01T00:00:00+00:00",
+        "available_at": "2025-09-01T01:00:00+00:00",
+        "range_state": "UNCERTAIN",
+        "range_reason": "no_eligible_pair",
+        "range_id": null,
+        "support_level_id": null,
+        "resistance_level_id": null,
+        "support_line_id": null,
+        "resistance_line_id": null,
+        "source_sha256": "3ae3c4d061792353b94b8d2be73684f950362f135d47926d1bc8c11a24791091",
+        "definition_version": "r42.structure.v1",
+        "parent_definition": "r41.structure.v1",
+        "protocol_sha256": "da8f53c0f8b89037ab00721f4c0a3b8d7c322d6da692e37a2b3f142a643c6b27",
+        "trading_decision": null,
+        "outcome": null,
+        "confidence": null
+      },
+      "first_level": {
+        "level_id": "RESISTANCE|HIGH|EUR_USD|H1|2025-09-01T08:00:00+00:00",
+        "status": "SUPERSEDED",
+        "transitions": [
+          {
+            "status": "ACTIVE",
+            "available_at": "2025-09-01T11:00:00+00:00",
+            "reason": "confirmed_swing",
+            "related_id": "HIGH|EUR_USD|H1|2025-09-01T08:00:00+00:00",
+            "definition_version": "r42.structure.v1"
+          },
+          {
+            "status": "SUPERSEDED",
+            "available_at": "2025-09-01T22:00:00+00:00",
+            "reason": "newer_confirmed_level",
+            "related_id": "RESISTANCE|HIGH|EUR_USD|H1|2025-09-01T19:00:00+00:00",
+            "definition_version": "r42.structure.v1"
+          }
+        ]
+      },
+      "first_confirmed_range": null
+    },
+    {
+      "instrument": "EUR_USD",
+      "timeframe": "H4",
+      "observation": {
+        "record_type": "market_structure_lifecycle_observation",
+        "instrument": "EUR_USD",
+        "timeframe": "H4",
+        "candle_time": "2025-09-01T00:00:00+00:00",
+        "available_at": "2025-09-01T04:00:00+00:00",
+        "range_state": "UNCERTAIN",
+        "range_reason": "no_eligible_pair",
+        "range_id": null,
+        "support_level_id": null,
+        "resistance_level_id": null,
+        "support_line_id": null,
+        "resistance_line_id": null,
+        "source_sha256": "3ae3c4d061792353b94b8d2be73684f950362f135d47926d1bc8c11a24791091",
+        "definition_version": "r42.structure.v1",
+        "parent_definition": "r41.structure.v1",
+        "protocol_sha256": "da8f53c0f8b89037ab00721f4c0a3b8d7c322d6da692e37a2b3f142a643c6b27",
+        "trading_decision": null,
+        "outcome": null,
+        "confidence": null
+      },
+      "first_level": {
+        "level_id": "RESISTANCE|HIGH|EUR_USD|H4|2025-09-01T08:00:00+00:00",
+        "status": "SUPERSEDED",
+        "transitions": [
+          {
+            "status": "ACTIVE",
+            "available_at": "2025-09-01T20:00:00+00:00",
+            "reason": "confirmed_swing",
+            "related_id": "HIGH|EUR_USD|H4|2025-09-01T08:00:00+00:00",
+            "definition_version": "r42.structure.v1"
+          },
+          {
+            "status": "SUPERSEDED",
+            "available_at": "2025-09-02T08:00:00+00:00",
+            "reason": "newer_confirmed_level",
+            "related_id": "RESISTANCE|HIGH|EUR_USD|H4|2025-09-01T20:00:00+00:00",
+            "definition_version": "r42.structure.v1"
+          }
+        ]
+      },
+      "first_confirmed_range": null
+    },
+    {
+      "instrument": "GBP_USD",
+      "timeframe": "H1",
+      "observation": {
+        "record_type": "market_structure_lifecycle_observation",
+        "instrument": "GBP_USD",
+        "timeframe": "H1",
+        "candle_time": "2025-09-01T00:00:00+00:00",
+        "available_at": "2025-09-01T01:00:00+00:00",
+        "range_state": "UNCERTAIN",
+        "range_reason": "no_eligible_pair",
+        "range_id": null,
+        "support_level_id": null,
+        "resistance_level_id": null,
+        "support_line_id": null,
+        "resistance_line_id": null,
+        "source_sha256": "ac3ddba51b75f493a08a5ea57e9926e38a5a85b06797de53803e6cd4f8b00d58",
+        "definition_version": "r42.structure.v1",
+        "parent_definition": "r41.structure.v1",
+        "protocol_sha256": "da8f53c0f8b89037ab00721f4c0a3b8d7c322d6da692e37a2b3f142a643c6b27",
+        "trading_decision": null,
+        "outcome": null,
+        "confidence": null
+      },
+      "first_level": {
+        "level_id": "RESISTANCE|HIGH|GBP_USD|H1|2025-09-01T03:00:00+00:00",
+        "status": "INVALIDATED",
+        "transitions": [
+          {
+            "status": "ACTIVE",
+            "available_at": "2025-09-01T06:00:00+00:00",
+            "reason": "confirmed_swing",
+            "related_id": "HIGH|GBP_USD|H1|2025-09-01T03:00:00+00:00",
+            "definition_version": "r42.structure.v1"
+          },
+          {
+            "status": "INVALIDATED",
+            "available_at": "2025-09-01T07:00:00+00:00",
+            "reason": "close_through",
+            "related_id": null,
+            "definition_version": "r42.structure.v1"
+          }
+        ]
+      },
+      "first_confirmed_range": {
+        "range_id": "SUPPORT|LOW|GBP_USD|H1|2026-05-20T01:00:00+00:00|RESISTANCE|HIGH|GBP_USD|H1|2026-05-19T23:00:00+00:00",
+        "pair_available_at": "2026-05-20T04:00:00+00:00",
+        "confirmed_at": "2026-05-20T09:00:00+00:00",
+        "invalidated_at": null,
+        "width_price": 0.002610000000000001,
+        "width_pips": 26.100000000000012,
+        "state": "CONFIRMED"
+      }
+    }
+  ]
+}

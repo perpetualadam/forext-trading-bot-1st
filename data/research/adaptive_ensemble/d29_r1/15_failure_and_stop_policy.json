@@ -1,0 +1,21 @@
+{
+  "tested": false,
+  "outcomes": [
+    {
+      "condition": "baseline mismatch, OCI mismatch, descriptor conflict, unapproved host, unapproved redirect, unexpected authentication, credential-store access, proxy use, TLS failure, non-identity encoding, body overrun, cumulative overrun, disk shortfall, temp collision, cleanup failure, size mismatch, hash mismatch, unexpected file modification, production access, or scope expansion",
+      "classification": "hard stop"
+    },
+    {
+      "condition": "HTTP error, connection timeout, inactivity timeout, request deadline, or stage deadline before every unique blob is verified",
+      "classification": "safe incomplete result when no partial file remains and no unapproved host was contacted"
+    },
+    {
+      "condition": "missing Content-Length",
+      "classification": "not fatal by itself when a streaming cap is in force; an invalid or over-cap Content-Length is a hard stop"
+    },
+    {
+      "condition": "unexpected media type on a retained object, or a handler that continues after a hard stop",
+      "classification": "safety scope violation"
+    }
+  ]
+}

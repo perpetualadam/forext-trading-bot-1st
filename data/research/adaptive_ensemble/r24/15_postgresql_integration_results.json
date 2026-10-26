@@ -1,0 +1,50 @@
+{
+  "classification": "R24_ISOLATED_POSTGRESQL_RECOVERY_INTEGRATED",
+  "endpoint": "127.0.0.1:55432",
+  "database": "r24_synthetic_orders",
+  "application_role": "r24_tester",
+  "role_is_superuser": false,
+  "postgres_database_refused": true,
+  "password_encryption": "scram-sha-256",
+  "server_pid": 12896,
+  "listener": "127.0.0.1:55432",
+  "persistence": {
+    "symbol": "USD_CHF",
+    "client_order_id": "cid-r24-persist",
+    "insert": true,
+    "duplicate_reported_success": false,
+    "update_filled": true,
+    "read_back_status": "FILLED"
+  },
+  "failed_insert": {
+    "reported_success": false,
+    "row_exists": false,
+    "fail_closed": true,
+    "evaluate_blocked_by": "recovery_unreadable",
+    "inert_dispatches": 0,
+    "reservation_attempted": false
+  },
+  "insert_after_failed_transaction": {
+    "symbol": "EUR_GBP",
+    "client_order_id": "cid-r24-after",
+    "insert": true,
+    "fail_closed": false
+  },
+  "reservation_race": {
+    "symbol": "NZD_USD",
+    "pids": [10224, 18916],
+    "successes": 1,
+    "rows_left": 1,
+    "loser_cause": "deadlock detected; application rolled back and returned false"
+  },
+  "lock_rollback": {
+    "symbol": "EUR_AUD",
+    "holder_pid": 19656,
+    "waiter_pid": 17480,
+    "holder_rolled_back": true,
+    "waiter_insert": true
+  },
+  "real_broker_calls": 0,
+  "route_refusal_probe": "postgres@localhost:5432/trading",
+  "route_refusal_connected": false
+}

@@ -1,0 +1,94 @@
+{
+  "manifests": [
+    "requirements.txt",
+    "requirements-dev.txt"
+  ],
+  "lockfiles": [],
+  "wheelhouses": [],
+  "direct": [
+    {
+      "name": "python-dotenv",
+      "specifier": ">=1.0.0",
+      "class": "LOWER_BOUND_ONLY",
+      "extra": null,
+      "line": 1
+    },
+    {
+      "name": "pandas",
+      "specifier": ">=2.0.0",
+      "class": "LOWER_BOUND_ONLY",
+      "extra": null,
+      "line": 2
+    },
+    {
+      "name": "numpy",
+      "specifier": ">=1.24.0",
+      "class": "LOWER_BOUND_ONLY",
+      "extra": null,
+      "line": 3,
+      "native": true
+    },
+    {
+      "name": "requests",
+      "specifier": ">=2.31.0",
+      "class": "LOWER_BOUND_ONLY",
+      "extra": null,
+      "line": 4
+    },
+    {
+      "name": "psycopg2-binary",
+      "specifier": ">=2.9.9",
+      "class": "LOWER_BOUND_ONLY",
+      "extra": null,
+      "line": 5,
+      "native": true
+    },
+    {
+      "name": "fastapi",
+      "specifier": ">=0.109.0",
+      "class": "LOWER_BOUND_ONLY",
+      "extra": null,
+      "line": 6
+    },
+    {
+      "name": "uvicorn",
+      "specifier": ">=0.27.0",
+      "class": "LOWER_BOUND_ONLY",
+      "extra": "standard",
+      "line": 7
+    },
+    {
+      "name": "oandapyV20",
+      "specifier": ">=0.7.2",
+      "class": "LOWER_BOUND_ONLY",
+      "extra": null,
+      "line": 8
+    },
+    {
+      "name": "tzdata",
+      "specifier": ">=2024.1",
+      "class": "LOWER_BOUND_ONLY",
+      "extra": null,
+      "line": 9
+    }
+  ],
+  "dev": [
+    {
+      "name": "-r requirements.txt",
+      "class": "LOCAL_PATH",
+      "line": 1
+    },
+    {
+      "name": "packaging",
+      "specifier": ">=22.0",
+      "class": "LOWER_BOUND_ONLY",
+      "line": 2
+    },
+    {
+      "name": "pytest",
+      "specifier": ">=8.3.5,<9",
+      "class": "BOUNDED_RANGE",
+      "line": 3
+    }
+  ]
+}

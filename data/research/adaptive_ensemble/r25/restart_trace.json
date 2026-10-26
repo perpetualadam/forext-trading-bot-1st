@@ -1,0 +1,42 @@
+{
+  "daily_loss": {
+    "writer": {
+      "pid": 19236,
+      "role": "record-loss",
+      "exit_pid": 19236,
+      "recorded": true,
+      "blocked_by": "",
+      "broker_requests": 0,
+      "reservation_attempted": false
+    },
+    "reader": {
+      "pid": 20792,
+      "role": "evaluate",
+      "exit_pid": 20792,
+      "blocked_by": "daily_realised_loss_limit",
+      "broker_requests": 0,
+      "reservation_attempted": false,
+      "production_eligible": false
+    }
+  },
+  "drawdown": {
+    "writer": {
+      "pid": 6440,
+      "role": "evaluate",
+      "exit_pid": 6440,
+      "blocked_by": "",
+      "broker_requests": 1,
+      "reservation_attempted": true,
+      "production_eligible": false
+    },
+    "reader": {
+      "pid": 21128,
+      "role": "evaluate",
+      "exit_pid": 21128,
+      "blocked_by": "max_drawdown_limit",
+      "broker_requests": 0,
+      "reservation_attempted": false,
+      "production_eligible": false
+    }
+  }
+}

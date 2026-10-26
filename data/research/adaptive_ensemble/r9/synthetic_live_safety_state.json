@@ -1,0 +1,66 @@
+{
+  "live_order_authorisation": {
+    "reason": "r9-synthetic",
+    "source": "fail_closed",
+    "state": "ALLOWED",
+    "updated_at_utc": "2026-10-26T14:26:30.360157+00:00"
+  },
+  "schema_version": 1,
+  "state_valid": true,
+  "strategies": {
+    "mean_reversion": {
+      "active": false,
+      "authorised_for_live": false,
+      "changed_at_utc": "2026-10-26T14:26:30.360174+00:00",
+      "disable_reason": "r9-synthetic",
+      "loaded_from_durable": true,
+      "sample_count": 0,
+      "sharpe": 0.0
+    },
+    "scalp": {
+      "active": false,
+      "authorised_for_live": false,
+      "changed_at_utc": "2026-10-26T14:26:30.360168+00:00",
+      "disable_reason": "r9-synthetic",
+      "loaded_from_durable": true,
+      "sample_count": 0,
+      "sharpe": 0.0
+    },
+    "swing_breakout": {
+      "active": false,
+      "authorised_for_live": false,
+      "changed_at_utc": "2026-10-26T14:26:30.360179+00:00",
+      "disable_reason": "r9-synthetic",
+      "loaded_from_durable": true,
+      "sample_count": 0,
+      "sharpe": 0.0
+    },
+    "swing_mean_reversion": {
+      "active": false,
+      "authorised_for_live": false,
+      "changed_at_utc": "2026-10-26T14:26:30.360177+00:00",
+      "disable_reason": "r9-synthetic",
+      "loaded_from_durable": true,
+      "sample_count": 0,
+      "sharpe": 0.0
+    },
+    "swing_trend": {
+      "active": false,
+      "authorised_for_live": false,
+      "changed_at_utc": "2026-10-26T14:26:30.360175+00:00",
+      "disable_reason": "r9-synthetic",
+      "loaded_from_durable": true,
+      "sample_count": 0,
+      "sharpe": 0.0
+    },
+    "trend": {
+      "active": false,
+      "authorised_for_live": false,
+      "changed_at_utc": "2026-10-26T14:26:30.360171+00:00",
+      "disable_reason": "r9-synthetic",
+      "loaded_from_durable": true,
+      "sample_count": 0,
+      "sharpe": 0.0
+    }
+  }
+}

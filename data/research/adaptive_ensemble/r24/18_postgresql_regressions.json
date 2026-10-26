@@ -1,0 +1,24 @@
+{
+  "runner": "data/research/adaptive_ensemble/r24/22_run_pg_regressions.py",
+  "isolation_log": "data/research/adaptive_ensemble/r24/pg_isolation_log.txt",
+  "all_exit_codes_zero": true,
+  "failed": 0,
+  "suites": [
+    {"mode": "r24", "exit": 0, "passed": 14, "skipped": 0, "deselected": 0, "blocked": 3, "dotenv": 1},
+    {"mode": "regression", "exit": 0, "passed": 120, "skipped": 7, "deselected": 1, "blocked": 5, "dotenv": 1},
+    {"mode": "r10", "exit": 0, "passed": 69, "skipped": 5, "deselected": 0, "blocked": 5, "dotenv": 1},
+    {"mode": "r11", "exit": 0, "passed": 51, "skipped": 5, "deselected": 0, "blocked": 4, "dotenv": 1},
+    {"mode": "r12", "exit": 0, "passed": 118, "skipped": 5, "deselected": 0, "blocked": 2, "dotenv": 1},
+    {"mode": "r13", "exit": 0, "passed": 81, "skipped": 6, "deselected": 0, "blocked": 3, "dotenv": 1},
+    {"mode": "r14", "exit": 0, "passed": 143, "skipped": 5, "deselected": 0, "blocked": 1, "dotenv": 1},
+    {"mode": "r15", "exit": 0, "passed": 165, "skipped": 6, "deselected": 0, "blocked": 1, "dotenv": 1},
+    {"mode": "r16", "exit": 0, "passed": 135, "skipped": 6, "deselected": 0, "blocked": 1, "dotenv": 1},
+    {"mode": "r17", "exit": 0, "passed": 174, "skipped": 9, "deselected": 0, "blocked": 1, "dotenv": 1},
+    {"mode": "r18", "exit": 0, "passed": 203, "skipped": 9, "deselected": 0, "blocked": 1, "dotenv": 1},
+    {"mode": "r19", "exit": 0, "passed": 213, "skipped": 9, "deselected": 0, "blocked": 1, "dotenv": 1},
+    {"mode": "r20", "exit": 0, "passed": 30, "skipped": 0, "deselected": 0, "blocked": 1, "dotenv": 1},
+    {"mode": "r21", "exit": 0, "passed": 24, "skipped": 0, "deselected": 0, "blocked": 3, "dotenv": 1},
+    {"mode": "r22", "exit": 0, "passed": 20, "skipped": 0, "deselected": 0, "blocked": 3, "dotenv": 1},
+    {"mode": "r23", "exit": 0, "passed": 15, "skipped": 0, "deselected": 0, "blocked": 3, "dotenv": 1}
+  ]
+}

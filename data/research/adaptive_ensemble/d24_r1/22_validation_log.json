@@ -1,0 +1,32 @@
+{
+  "commands_executed": [
+    "git rev-parse HEAD",
+    "git branch --show-current",
+    "git status --short -- protected files",
+    "Python standard-library HTTPS client"
+  ],
+  "network_request_count": 3,
+  "request_methods": [
+    "GET"
+  ],
+  "request_hosts": [
+    "auth.docker.io",
+    "registry-1.docker.io"
+  ],
+  "request_paths": [
+    "/v2/library/python/blobs/sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+    "/token",
+    "/v2/library/python/blobs/sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524"
+  ],
+  "http_statuses": [
+    401,
+    200,
+    307
+  ],
+  "redirect_hostname": "production.cloudfront.docker.com",
+  "redirect_destination_contacted": false,
+  "files_modified_outside_d24_r1": [],
+  "stop": null,
+  "classification": "D24_R1_REDIRECT_HOST_DISCOVERED_NOT_CONTACTED",
+  "docker_commands": 0
+}

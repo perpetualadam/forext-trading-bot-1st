@@ -1,0 +1,22 @@
+{
+  "directory": "data/research/adaptive_ensemble/r53",
+  "files": {
+    "00_preflight.py": "e0dac040119d9b83a3f79356fb2b167efa528ed9df650951e59b7fda29fcc6b1",
+    "01_preflight.json": "e837ca77ca1df321d2ca2f7327b5bc144767fa4ff05caeccd6ea9e765eaf9546",
+    "02_prior_hashes.md": "64992fd50352d447ad33a8e18755539d833bcace6140977121e4b543bb38a7cd",
+    "03_connector.md": "36e53299219dc3b8a4b1c8316c0aaeb609b85806e5b2f953febd88c456cc6b72",
+    "04_transport.md": "ede5e464074c7f66f3a97131cf4d6817b4ea0d5d7b599bcf8a5c2bb76a450c67",
+    "05_credentials.md": "9a713d187f874aab0bb9e9614d1ddd05e2f5a25b0809af48ce2c77f7379612cf",
+    "06_synthetic_output.json": "0f7afcde507dbe3ca204b5bffcdb98f8c06e1047d5952215e431a22cef97d28c",
+    "07_security_tests.md": "896db8086a065e9a15d8b303bbe8046722e5920982343ad0cc10213f1c5126e7",
+    "08_account_unknowns.md": "7b567895aa50e0f08daa6d06b005da6cc8f9f1d53f33110a65a4e470bfb79d60",
+    "09_manual_procedure.md": "ba518b67bae49927f2578b95900ca8b75f80d58fd13c489f39d1813afdb0fba4",
+    "10_token_caveat.md": "daec72d9b389d44233f93d06496ad06a78cac9617744d1c395b07103edf76b0f",
+    "11_test_results.md": "bf78544ad2049596f6d1e4125a808b56918a453cc3327e1b06efaba2903a792b",
+    "12_next_boundary.md": "0a072854ae5e746f86b528d2a32908fef2cb7420ebc724621e61881924928ebb",
+    "connector.py": "7e6bd27a3a65fec3e59e53771cd783c33e92d83b0ac7437a4d4caa0f37dc3df4",
+    "stage_r53_report.md": "a12a6321b8a093304f740a4b28fa5e9403761c3440570d0185e56c53f3b1573b",
+    "test_connector.py": "28516ed44307b125a8719c7bc068fc339c49803e0246597405c970f533c4de73",
+    "validation_log.json": "5c98e11f8f8bd27e91f8b36c6315cf6ba2c836f57c8f04e86bc1df8e7bfafae9"
+  }
+}

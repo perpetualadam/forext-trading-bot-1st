@@ -1,0 +1,28 @@
+{
+  "carried_forward": [
+    "Production startup remains unverified.",
+    "Production container identity remains unverified.",
+    "The running image lacks the D.2 through D.9 working-tree fixes.",
+    "Live database schema compatibility remains unverified.",
+    "Requirements remain unpinned.",
+    "No verified dependency lock.",
+    "No verified offline wheelhouse.",
+    "Base-image registry digest remains unverified.",
+    "Runtime target profile remains incomplete.",
+    "Trusted receiving boundary remains unimplemented.",
+    "No verified candidate image.",
+    "No verified rollback target.",
+    "Production operational state remains unverified.",
+    "Production shadow state remains unverified.",
+    "The full integration suite remains unexecuted.",
+    "Historical D.5, D.6, and D.8 test hash pins remain.",
+    "Research backtests may rely on active-by-default strategy assumptions.",
+    "Telegram shutdown can return while the poller is alive.",
+    "A live poller can call fetch_all_trades_ordered after connection release and publish a new connection.",
+    "A second start after an incomplete stop can overlap the old poller."
+  ],
+  "not_resolved_by_d10": true,
+  "deployment": "NO-GO",
+  "live_trading": "NOT AUTHORISED",
+  "rollback": "NO-GO"
+}

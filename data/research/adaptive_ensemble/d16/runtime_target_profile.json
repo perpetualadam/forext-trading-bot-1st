@@ -1,0 +1,14 @@
+{
+  "operating_system": "HISTORICAL_ONLY",
+  "architecture": "MISSING",
+  "python_image_tag": "SPECIFIED_UNVERIFIED",
+  "python_digest": "MISSING",
+  "host_audit_python": "3.13.5",
+  "entrypoint": "SPECIFIED_AND_EVIDENCED",
+  "command": "uvicorn forex_bot.app:app --host 0.0.0.0 --port 8000",
+  "user": "MISSING",
+  "healthcheck": "MISSING",
+  "restart_policy_in_compose_bot_service": "omitted",
+  "production_restart_policy": "UNVERIFIED",
+  "complete": false
+}

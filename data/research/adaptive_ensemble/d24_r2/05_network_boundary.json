@@ -1,0 +1,19 @@
+{
+  "approved_hosts": [
+    "registry-1.docker.io",
+    "auth.docker.io",
+    "production.cloudfront.docker.com"
+  ],
+  "actual_hosts": [
+    "auth.docker.io",
+    "production.cloudfront.docker.com",
+    "registry-1.docker.io"
+  ],
+  "automatic_redirects": false,
+  "proxy_handler_installed": false,
+  "tls": "ssl.create_default_context",
+  "timeout_seconds": 30,
+  "body_cap_bytes": 1048576,
+  "maximum_requests": 6,
+  "client_ready_before_network": true
+}

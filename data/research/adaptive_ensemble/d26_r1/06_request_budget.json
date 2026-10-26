@@ -1,0 +1,22 @@
+{
+  "maximum_requests": 9,
+  "attempts": 9,
+  "per_project": {
+    "python-dotenv": 1,
+    "pandas": 1,
+    "numpy": 1,
+    "requests": 1,
+    "psycopg2-binary": 1,
+    "fastapi": 1,
+    "uvicorn": 1,
+    "oandapyv20": 1,
+    "tzdata": 1
+  },
+  "maximum_body_bytes": 16777216,
+  "maximum_total_bytes": 150994944,
+  "timeout_seconds": 30,
+  "maximum_duration_seconds": 270,
+  "artifact_limit_bytes": 50331648,
+  "retries": 0,
+  "redirects_followed": 0
+}

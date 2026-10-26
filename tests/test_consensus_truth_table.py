@@ -59,9 +59,8 @@ def test_quant_buy_api_buy():
     assert _final(BUY, BUY, "BUY") == "BUY"
 
 
-def test_quant_buy_api_hold_allow_still_buy_then_rl():
-    # HOLD does not add side weight; BUY weight from quant; allow from both
-    assert _final(BUY, HOLD_ALLOW, "BUY") == "BUY"
+def test_explicit_hold_fails_closed():
+    assert _final(BUY, HOLD_ALLOW, "BUY") == "NO_TRADE"
 
 
 def test_quant_buy_api_sell_stronger_flips_side():

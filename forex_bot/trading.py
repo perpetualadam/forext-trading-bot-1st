@@ -380,24 +380,15 @@ async def execute_trade(
     If ``realized_pnl`` is None: **paper** mode uses deterministic simulation; **broker** modes
     require ``realized_pnl`` (raises when missing if ``STRICT_EXECUTION``).
 
-    When ``execution_kind`` is ``live``, **always** issues an OANDA PositionClose and uses broker
-    ``pl`` / fill price. Missing broker enablement or close failure **raises** so callers do not
-    drop local state while the broker position may still be open.
+    When ``execution_kind`` is ``live``, this function raises before any broker
+    request. A live close has to enter through the journal-backed close path.
     """
     _ = sl, tp
     oanda_broker = False
     exit_px_model = float("nan")
     kind = (execution_kind or "simulated").strip().lower()
     if kind == "live":
-        if not oanda_exec.use_oanda_live():
-            raise RuntimeError(
-                "live close requires broker orders (EXECUTION_MODE=live_broker or paper_broker)"
-            )
-        pnl, exit_px_model = await oanda_exec.execute_oanda_market_close(
-            symbol, size, direction, price, execution_kind=kind
-        )
-        oanda_broker = True
-        alert(f"[OANDA LIVE] {symbol} {direction} {size:.2f} units PnL={pnl:.2f}")
+        raise RuntimeError("live close refused: journal submission authority is required")
     elif realized_pnl is None:
         mode = get_execution_mode()
         if mode == ExecutionMode.PAPER:

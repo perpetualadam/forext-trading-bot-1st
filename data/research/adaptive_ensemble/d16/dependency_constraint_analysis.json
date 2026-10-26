@@ -1,0 +1,13 @@
+{
+  "exact_pins": 0,
+  "lower_bound_only": 10,
+  "bounded_ranges": 1,
+  "unbounded": 0,
+  "vcs": 0,
+  "environment_markers": 0,
+  "extras": [
+    "uvicorn[standard]"
+  ],
+  "transitive_versions": "MISSING",
+  "note": "Lower bounds do not identify the bytes a future installer would select."
+}

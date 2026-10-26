@@ -1,0 +1,81 @@
+{
+  "production_count": 9,
+  "exact_pins": 0,
+  "lower_bound_only": 9,
+  "environment_markers": 0,
+  "transitive_closure": "MISSING",
+  "requirements": [
+    {
+      "line": 1,
+      "text": "python-dotenv>=1.0.0",
+      "extras": null,
+      "pinned": false,
+      "native": "PURE_PYTHON_CANDIDATE",
+      "arch_verified": false
+    },
+    {
+      "line": 2,
+      "text": "pandas>=2.0.0",
+      "extras": null,
+      "pinned": false,
+      "native": "NATIVE_EXTENSION_CANDIDATE",
+      "arch_verified": false
+    },
+    {
+      "line": 3,
+      "text": "numpy>=1.24.0",
+      "extras": null,
+      "pinned": false,
+      "native": "NATIVE_EXTENSION_CANDIDATE",
+      "arch_verified": false
+    },
+    {
+      "line": 4,
+      "text": "requests>=2.31.0",
+      "extras": null,
+      "pinned": false,
+      "native": "PURE_PYTHON_CANDIDATE",
+      "arch_verified": false
+    },
+    {
+      "line": 5,
+      "text": "psycopg2-binary>=2.9.9",
+      "extras": null,
+      "pinned": false,
+      "native": "NATIVE_EXTENSION_CANDIDATE",
+      "arch_verified": false
+    },
+    {
+      "line": 6,
+      "text": "fastapi>=0.109.0",
+      "extras": null,
+      "pinned": false,
+      "native": "PURE_PYTHON_CANDIDATE",
+      "arch_verified": false
+    },
+    {
+      "line": 7,
+      "text": "uvicorn[standard]>=0.27.0",
+      "extras": "standard",
+      "pinned": false,
+      "native": "MIXED_OR_OPTIONAL_NATIVE",
+      "arch_verified": false
+    },
+    {
+      "line": 8,
+      "text": "oandapyV20>=0.7.2",
+      "extras": null,
+      "pinned": false,
+      "native": "UNKNOWN",
+      "arch_verified": false
+    },
+    {
+      "line": 9,
+      "text": "tzdata>=2024.1",
+      "extras": null,
+      "pinned": false,
+      "native": "PURE_PYTHON_CANDIDATE",
+      "arch_verified": false
+    }
+  ]
+}

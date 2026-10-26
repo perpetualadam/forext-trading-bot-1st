@@ -1,0 +1,99 @@
+{
+  "proposal_name": "D.26-R1 — Controlled Read-Only Direct Dependency Metadata Discovery",
+  "started": false,
+  "authorises_network_now": false,
+  "package_tokens": [
+    "python-dotenv",
+    "pandas",
+    "numpy",
+    "requests",
+    "psycopg2-binary",
+    "fastapi",
+    "uvicorn",
+    "oandapyV20",
+    "tzdata"
+  ],
+  "proposed_segments": [
+    "python-dotenv",
+    "pandas",
+    "numpy",
+    "requests",
+    "psycopg2-binary",
+    "fastapi",
+    "uvicorn",
+    "oandapyv20",
+    "tzdata"
+  ],
+  "metadata_host": "pypi.org",
+  "excluded_hosts": [
+    "files.pythonhosted.org"
+  ],
+  "method": "GET",
+  "path_pattern": "/pypi/{segment}/json",
+  "accept": "application/json",
+  "total_requests": 9,
+  "per_project_requests": 1,
+  "timeout_seconds": 30,
+  "response_cap_bytes": 16777216,
+  "transfer_cap_bytes": 150994944,
+  "duration_cap_seconds": 270,
+  "redirect_policy": "stop",
+  "authentication_policy": "anonymous, stop on challenge",
+  "proxy_policy": "no proxy",
+  "tls": "default certificate and hostname verification",
+  "permitted_stored_fields": [
+    "name",
+    "version",
+    "requires_python",
+    "requires_dist",
+    "filename",
+    "packagetype",
+    "size",
+    "sha256",
+    "yanked",
+    "http_status",
+    "request_count"
+  ],
+  "prohibited": [
+    "file downloads",
+    "wheel downloads",
+    "source downloads",
+    "dependency resolution",
+    "installation",
+    "lockfile",
+    "wheelhouse",
+    "docker",
+    "production access"
+  ],
+  "output_directory": "data/research/adaptive_ensemble/d26_r1/",
+  "protected_hashes_must_be_rechecked": {
+    "forex_bot/app.py": "3ff01244ed217e85d211bec819a7ebff9c96fb0412c56e5a768792ab54b31ca1",
+    "forex_bot/telegram_control.py": "d32b560306fe2f86cc7c8ddbb40aa42842f071bd88ea513d77f172a6a0fadf4c",
+    "forex_bot/database.py": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e",
+    "forex_bot/live_safety.py": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+    "forex_bot/strategy_meta.py": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+    "requirements.txt": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a",
+    "requirements-dev.txt": "0562a6853549077197defb3cd8515521b843a041f2a735723ee2903790e3eef5",
+    "Dockerfile": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+    ".dockerignore": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+    "docker-compose.yml": "f0a374774c35b4c63dce23a837572886d1d53331fec388044bc5887367980179"
+  },
+  "oci_revalidation_required": true,
+  "stop_conditions": [
+    "unapproved host",
+    "redirect",
+    "oversize",
+    "malformed JSON",
+    "budget exhaustion",
+    "download",
+    "source change"
+  ],
+  "proposed_classifications": [
+    "D26_R1_DIRECT_METADATA_DISCOVERED",
+    "D26_R1_DIRECT_METADATA_PARTIAL",
+    "D26_R1_BLOCKED_NETWORK",
+    "D26_R1_BLOCKED_BUDGET",
+    "D26_R1_BLOCKED_METADATA"
+  ],
+  "open_ended_permission": false
+}

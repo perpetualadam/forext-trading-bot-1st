@@ -1,0 +1,25 @@
+{
+  "stage": "D.11",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "working_tree_at_start": "dirty_from_prior_stages_preserved",
+  "d11_directory_existed_before": false,
+  "expected_and_observed_before_edit": {
+    "forex_bot/telegram_control.py": "270f2b48bbbc1c50b1bb89ae338716803c5e2772fada3b1aa39153fb8b300014",
+    "forex_bot/app.py": "08766300dfaf703e7553c69703e5d5f2c90e8efc2b491e6eeff1791ca93e3b44",
+    "forex_bot/database.py": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e",
+    "forex_bot/live_safety.py": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+    "forex_bot/strategy_meta.py": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d"
+  },
+  "baseline_result": "PASS",
+  "unexpected_production_hash_changes_before_edit": [],
+  "final_telegram_control_sha256": "193a59645c0596b22016164f8cdf1a50b06734a6bd56a014fba9a6910ba68780",
+  "final_telegram_control_bytes": 45313,
+  "final_unchanged_from_d11_baseline": [
+    "forex_bot/app.py",
+    "forex_bot/database.py",
+    "forex_bot/live_safety.py",
+    "forex_bot/strategy_meta.py"
+  ],
+  "note": "app.py, database.py, live_safety.py, and strategy_meta.py remain modified versus Git HEAD from earlier stages. Their bytes still match the D.11 expected baseline. D.11 did not edit them."
+}

@@ -1,0 +1,18 @@
+{
+  "D12-START-01": {
+    "status": "FIXED",
+    "pre_fix": "start returned None and app.py emitted no refusal warning",
+    "post_fix": "a live worker with the stop event set returns START_REFUSED_PREVIOUS_WORKER and app.py logs D12-START-01",
+    "actual_source": ["start_telegram_control", "app.lifespan"],
+    "duplicate_worker": false,
+    "stop_event_remains_set": true,
+    "startup_non_fatal": true,
+    "normal_warning": false,
+    "disabled_warning": false
+  },
+  "D12-STOP-01": {
+    "status": "FIXED",
+    "post_fix": "blocked lifespan still records D12-STOP-01, drains tasks, and retains the database",
+    "regressed": false
+  }
+}

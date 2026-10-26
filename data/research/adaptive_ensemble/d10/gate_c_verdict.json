@@ -1,0 +1,8 @@
+{
+  "gate": "C",
+  "result": "PASS",
+  "primary_coordination": "threading.Event",
+  "sleep_used_as_race_mechanism": false,
+  "real_join_timeout_monkeypatched": false,
+  "synthetic_join_model_presented_as_actual": false
+}

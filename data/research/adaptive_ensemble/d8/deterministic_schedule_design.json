@@ -1,0 +1,25 @@
+{
+  "method": "threading.Barrier and threading.Event inside the fake driver. No sleep-based race control. No production source edit.",
+  "schedules": [
+    {"id": "S01", "name": "unlocked_overlap", "status": "EXECUTED", "result": "D8-CONC-01 abandoned connection 2"},
+    {"id": "S02", "name": "unlocked_vs_locked", "status": "EXECUTED", "result": "D8-CONC-01 abandoned connection 4; the helper lock did not exclude the unlocked caller"},
+    {"id": "S03", "name": "cursor while the other connects", "status": "EXECUTED_AS_PART_OF_S01", "result": "both cursors created before either publish"},
+    {"id": "S04", "name": "both commit", "status": "EXECUTED_AS_PART_OF_S01", "result": "both commits 1"},
+    {"id": "S05", "name": "both publish", "status": "EXECUTED_AS_PART_OF_S01", "result": "published pair matched; the other connection was abandoned"},
+    {"id": "S06", "name": "second_fails", "status": "EXECUTED", "result": "published 6, discarded 7"},
+    {"id": "S07", "name": "first_fails", "status": "EXECUTED", "result": "discarded 8, published 9"},
+    {"id": "S08", "name": "both_fail", "status": "EXECUTED", "result": "globals null, application closed both"},
+    {"id": "S09", "name": "second caller reuses", "status": "EXECUTED", "result": "both_locked connect_calls 1, both workers returned id 5"},
+    {"id": "S10", "name": "release_borrowed", "status": "EXECUTED", "result": "application closed the held object; second release created nothing"},
+    {"id": "S11", "name": "release_during_init", "status": "EXECUTED", "result": "release notes empty; published 14 stayed open"},
+    {"id": "S12", "name": "cleanup_fails", "status": "EXECUTED", "result": "both attempts failed; close of id 12 raised; partial note RuntimeError; id 13 closed; globals null; harness later closed 12"},
+    {"id": "S13", "name": "retry_after_connect_failure", "status": "EXECUTED", "result": "first None, published 18"},
+    {"id": "S14", "name": "stale borrower", "status": "EXECUTED_AS_RELEASE_BORROWED", "result": "the retained object was closed; no separate driver error was invented"},
+    {"id": "S15", "name": "failed attempt does not replace a healthy pair", "status": "EXECUTED_AS_S06_S07", "result": "winner remained published"},
+    {"id": "S16", "name": "replace_during_close", "status": "EXECUTED", "result": "old 16 closed, new 17 published and open at snapshot"},
+    {"id": "S17", "name": "startup_stop", "status": "EXECUTED", "result": "connection retained, tasks cleaned, primary exception preserved"},
+    {"id": "S18", "name": "before_yield", "status": "EXECUTED", "result": "stop returned, tasks cleaned, application released the connection"},
+    {"id": "S19", "name": "await_health", "status": "EXECUTED", "result": "one task raised, pending 0, connection retained because startup had succeeded"},
+    {"id": "S20", "name": "repeat", "status": "EXECUTED", "result": "second startup stayed BLOCKED, active [], pending 0"}
+  ]
+}

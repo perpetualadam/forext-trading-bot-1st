@@ -1,0 +1,38 @@
+{
+  "classification_rule": "BASELINE_INTEGRITY_BLOCKED only for an unexpected frozen-artifact mismatch",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "spec_expected_head": "f6c4f40ae6b7614379347ed45141ecd5a3d33642",
+  "head_difference": "The operator committed Stages A-G.12.1 after the G.13 prompt was written. The tree was not reset.",
+  "initial_porcelain": [
+    " M data/research/macro/consensus_pit/prospective/scheduler/audit.jsonl",
+    " M data/research/macro/consensus_pit/prospective/scheduler/state.json"
+  ],
+  "frozen_expected": {
+    "g7_archive": "0ee97accd2d4a8297a053eb26c5138324192ab5b1f700214acf091d0f6487f82",
+    "g7_manifest": "ba8eb86d887b44dd44314c6a45c776639bf11bb27f0e92ba2ce24978c3206989",
+    "dockerignore": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+    "g10_archive": "d0317de858a00b194bc44408932ad6508eec411fe0179b0196175a2985b12277",
+    "g10_manifest": "93c73c21bd6f144e7d656be74128a771c3274025c0e88b8a052ffbc742f417cf",
+    "original_dockerfile": "f8d537d84c8ab004c5fc2cbdc5ef58e8141f5ca66a13be6cc5eac38c7c7006a6",
+    "image_database": "98ed215c0a7e7f21ecf938172a45805a3f1b456c5cf49e8d0a8ea9f0d5cbce72"
+  },
+  "frozen_actual": {
+    "g7_archive": "0ee97accd2d4a8297a053eb26c5138324192ab5b1f700214acf091d0f6487f82",
+    "g7_manifest": "ba8eb86d887b44dd44314c6a45c776639bf11bb27f0e92ba2ce24978c3206989",
+    "dockerignore": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+    "g10_archive": "d0317de858a00b194bc44408932ad6508eec411fe0179b0196175a2985b12277",
+    "g10_manifest": "93c73c21bd6f144e7d656be74128a771c3274025c0e88b8a052ffbc742f417cf",
+    "original_dockerfile_from_g10_tar": "f8d537d84c8ab004c5fc2cbdc5ef58e8141f5ca66a13be6cc5eac38c7c7006a6"
+  },
+  "frozen_match": true,
+  "manifest_hash_method": "canonical JSON digest excluding the manifest_sha256 field, not the raw file bytes",
+  "g3_raw_verified": true,
+  "g3_normalised_verified": true,
+  "g3_preserved_ok": true,
+  "protocol_verified": true,
+  "protocol_sha256": "539cdc083f83393a79d254d21385edc6c48e88eb0f085d4549df9fdd6d431bc0",
+  "g4_paths_not_modified_by_this_stage": true,
+  "original_dockerfile_sha256": "f8d537d84c8ab004c5fc2cbdc5ef58e8141f5ca66a13be6cc5eac38c7c7006a6",
+  "new_dockerfile_sha256": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+  "forensic_archive_recreated": false
+}

@@ -1,0 +1,17 @@
+{
+  "initial_registry_status": 401,
+  "bearer_challenge": {
+    "scheme": "Bearer",
+    "realm_host": "auth.docker.io",
+    "realm_path": "/token",
+    "service": "registry.docker.io",
+    "scope": "repository:library/python:pull"
+  },
+  "token_service": "auth.docker.io",
+  "token_scope": "repository:library/python:pull",
+  "token_requested": true,
+  "token_persisted": false,
+  "credentials_accessed": false,
+  "registry_token_forwarded_to_storage": false,
+  "verdict": "ANONYMOUS_TOKEN_USED"
+}

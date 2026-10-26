@@ -1,0 +1,14 @@
+{
+  "static_parser_is_not_a_docker_build": true,
+  "ok": true,
+  "copy_count": 61,
+  "main_py_copies": 1,
+  "broad_copy_present": false,
+  "wildcard_copy_present": false,
+  "entrypoint": "CMD [\"uvicorn\", \"forex_bot.app:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]",
+  "dependency_install_unchanged": true,
+  "workdir": "/app",
+  "symlinks_or_reparse_points_in_sources": [],
+  "dockerignore_excluded_sources": [],
+  "new_dockerfile_sha256": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad"
+}

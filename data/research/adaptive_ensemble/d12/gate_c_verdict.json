@@ -1,0 +1,9 @@
+{
+  "gate": "C",
+  "verdict": "PASS",
+  "d12_tests": "16 passed in 16.39s",
+  "gaps_confirmed": [
+    "D12-STOP-01",
+    "D12-START-01"
+  ]
+}

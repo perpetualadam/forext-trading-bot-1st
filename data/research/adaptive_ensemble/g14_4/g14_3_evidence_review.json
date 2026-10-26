@@ -1,0 +1,21 @@
+{
+  "stage": "G.14.4",
+  "gate": "A",
+  "source": "data/research/adaptive_ensemble/g14_3/",
+  "recorded_classification": "SUPPLY_CHAIN_LOCKING_DESIGN_COMPLETE_APPROVAL_REQUIRED",
+  "interpreted_as_dependencies_locked": false,
+  "direct_requirements": 9,
+  "exact_pins": 0,
+  "minimum_version_constraints": 9,
+  "requirement_hashes": 0,
+  "transitive_graph": "UNKNOWN",
+  "verified_wheelhouse": false,
+  "locked_manifest": false,
+  "preserved_blockers": [
+    "PYTHON_DEPENDENCY_RESOLUTION_UNPINNED",
+    "BASE_IMAGE_DIGEST_UNVERIFIED",
+    "PIP_TOOLCHAIN_VERSION_UNVERIFIED",
+    "NETWORK_REQUIRED",
+    "BUILDKIT_PROVENANCE_UNVERIFIED"
+  ]
+}

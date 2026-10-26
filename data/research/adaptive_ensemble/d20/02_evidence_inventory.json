@@ -1,0 +1,52 @@
+{
+  "records": [
+    {
+      "file": "D.20 user instruction section 2",
+      "stage": "D.20",
+      "claim": "linux/amd64 selected; docker.io/library/python:3.12-slim-bookworm approved as a reference; linux/arm64 proposed only",
+      "level": "EXPLICIT_USER_DECISION",
+      "current": true,
+      "historical": false,
+      "local_hardware": false,
+      "deployment_target": true,
+      "independently_verified": false,
+      "limitation": "The statement approves a reference and an intended architecture. It does not verify hardware, a digest, or ARM64."
+    },
+    {
+      "file": "data/research/adaptive_ensemble/d19/target_selection_decision.json",
+      "stage": "D.19",
+      "claim": "selected_platform null",
+      "level": "HISTORICAL_OBSERVATION",
+      "current": false,
+      "historical": true,
+      "local_hardware": false,
+      "deployment_target": true,
+      "independently_verified": false,
+      "limitation": "D.19 correctly recorded pending. D.20 does not rewrite that file. The newer decision text is the D.20 instruction."
+    },
+    {
+      "file": "Dockerfile line 2",
+      "stage": "current file",
+      "claim": "FROM python:3.12-slim-bookworm",
+      "level": "CURRENT_STATIC_DECLARATION",
+      "current": true,
+      "historical": false,
+      "local_hardware": false,
+      "deployment_target": true,
+      "independently_verified": false,
+      "limitation": "No registry hostname, digest, or platform in the file."
+    },
+    {
+      "file": "data/research/adaptive_ensemble/g14_2/stage_g14_2_report.md",
+      "stage": "G.14.2",
+      "claim": "historical local image linux/amd64",
+      "level": "HISTORICAL_OBSERVATION",
+      "current": false,
+      "historical": true,
+      "local_hardware": true,
+      "deployment_target": false,
+      "independently_verified": false,
+      "limitation": "Developer Docker Desktop observation. Not the D.20 user decision and not a registry digest."
+    }
+  ]
+}

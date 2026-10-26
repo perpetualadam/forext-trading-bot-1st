@@ -1,0 +1,21 @@
+{
+  "gate": "D",
+  "result": "PASS",
+  "meaning": "Isolated actual-source execution completed. Defects were observed. A defect is a finding, not a failed gate.",
+  "actual_functions": [
+    "start_telegram_control",
+    "stop_telegram_control",
+    "_poller_loop",
+    "get_connection",
+    "fetch_all_trades_ordered",
+    "release_connection_after_failed_startup",
+    "app.lifespan"
+  ],
+  "fake_boundaries": [
+    "requests.Session.get/post",
+    "requests.get/post",
+    "psycopg2.connect",
+    "broker, reconciliation, trading-loop, and inbound-asyncio task bodies during lifespan"
+  ],
+  "lifecycle_algorithm_replaced": false
+}

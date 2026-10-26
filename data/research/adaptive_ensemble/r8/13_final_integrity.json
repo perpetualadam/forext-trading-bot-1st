@@ -1,0 +1,49 @@
+{
+  "classification": "R8_OFFLINE_RESERVATION_REPAIR_PARTIAL",
+  "pending_window_in_source": "repaired",
+  "pending_window_synthetic": "tested",
+  "postgresql_engine": "NOT_EVALUATED",
+  "postgresql_persistence": "NOT_EVALUATED",
+  "application_started": false,
+  "trading_loop_started": false,
+  "broker_requests": 0,
+  "network_requests_succeeded": 0,
+  "socket_attempts_blocked": 3,
+  "dns_attempts_blocked": true,
+  "production_database_accessed": false,
+  "existing_database_accessed": false,
+  "postgresql_started": false,
+  "telegram_or_discord": false,
+  "package_install": false,
+  "docker_wsl_vm": false,
+  "git_commit_or_reset": false,
+  "strategy_activated": false,
+  "live_order_permission_changed": false,
+  "practice_orders": 0,
+  "real_orders": 0,
+  "pre_stage_hashes": {
+    "forex_bot/bot_loop.py": "b16bb86a9cd30306a0200c0fab9f105ceeb78f82903ebebd4b3082eea77291c7",
+    "forex_bot/database.py": "24247454852278e51ce0560270a53d2097ea935b03d9c164c407aa3ca8d0042b",
+    "forex_bot/orders.py": "44193ffd61470337e1ffcdab413df5356586513e552851fb81ded3ced6d6aca5"
+  },
+  "post_stage_hashes": {
+    "forex_bot/bot_loop.py": "b16bb86a9cd30306a0200c0fab9f105ceeb78f82903ebebd4b3082eea77291c7",
+    "forex_bot/database.py": "6cafdc5aba020b774f6f235b427d34950d373e5427da9c97fcbe1cfcbfc0c7d9",
+    "forex_bot/orders.py": "ed05062d895574fc1ea21d1486f316271165466bf01330cf38e8a42c4c4450b1"
+  },
+  "cumulative_diff_versus_head": {
+    "note": "Includes earlier dirty work. R.8 did not change bot_loop.py.",
+    "files": ["forex_bot/bot_loop.py", "forex_bot/database.py", "forex_bot/orders.py"],
+    "insertions": 736,
+    "deletions": 100
+  },
+  "tests": {
+    "collected": 106,
+    "executed": 102,
+    "passed": 102,
+    "failed": 0,
+    "skipped": 3,
+    "deselected": 1,
+    "not_evaluated": 3
+  }
+}

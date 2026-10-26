@@ -1,0 +1,32 @@
+{
+  "removed": {
+    "rows_read": 74572,
+    "rows_kept": 74572,
+    "feature_invalid": 20,
+    "label_unevaluable": 875,
+    "eligible": 73653,
+    "train_rows": 44276,
+    "validation_rows": 14746,
+    "test_rows": 14631,
+    "embargo_positions": 24,
+    "warmup_bars": 20,
+    "gaps_longer_than_one_bar": 73
+  },
+  "splits": {
+    "train": [
+      20,
+      44731
+    ],
+    "validation": [
+      44743,
+      59645
+    ],
+    "test": [
+      59657,
+      74560
+    ],
+    "embargo_bars": 12,
+    "warmup_bars": 20
+  },
+  "research_exposed": true
+}

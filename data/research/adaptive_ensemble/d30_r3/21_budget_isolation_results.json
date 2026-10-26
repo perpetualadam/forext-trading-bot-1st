@@ -1,0 +1,125 @@
+{
+  "results": [
+    {
+      "test_id": "G01",
+      "expected": "counter increments",
+      "actual": 1,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G02",
+      "expected": "twenty allowed",
+      "actual": 20,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G03",
+      "expected": "twenty-first rejected",
+      "actual": 20,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G04",
+      "expected": "head ceiling",
+      "actual": 16,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G05",
+      "expected": "token ceiling",
+      "actual": 1,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G06",
+      "expected": "storage rejected",
+      "actual": "storage",
+      "result": "PASS"
+    },
+    {
+      "test_id": "G07",
+      "expected": "registry GET rejected",
+      "actual": "registry_get",
+      "result": "PASS"
+    },
+    {
+      "test_id": "G08",
+      "expected": "redirect recorded not followed",
+      "actual": 0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G09",
+      "expected": "retry rejected",
+      "actual": "retry",
+      "result": "PASS"
+    },
+    {
+      "test_id": "G10",
+      "expected": "body bytes counted",
+      "actual": 7,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G12",
+      "expected": "excess body rejected",
+      "actual": 7,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G13",
+      "expected": "failed reserve keeps counters",
+      "actual": 20,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G14",
+      "expected": "worker message ignored",
+      "actual": true,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G15",
+      "expected": "descendant message ignored",
+      "actual": true,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G16",
+      "expected": "unexpected method",
+      "actual": "method",
+      "result": "PASS"
+    },
+    {
+      "test_id": "G17",
+      "expected": "unexpected host",
+      "actual": "host",
+      "result": "PASS"
+    },
+    {
+      "test_id": "G18",
+      "expected": "unexpected repository",
+      "actual": "repository",
+      "result": "PASS"
+    },
+    {
+      "test_id": "G19",
+      "expected": "unexpected digest",
+      "actual": "digest",
+      "result": "PASS"
+    },
+    {
+      "test_id": "G20",
+      "expected": "layer body rejected",
+      "actual": "layer_body",
+      "result": "PASS"
+    },
+    {
+      "test_id": "G21",
+      "expected": "process termination leaves supervisor counter",
+      "actual": 1,
+      "result": "PASS"
+    }
+  ],
+  "network_requests": 0
+}

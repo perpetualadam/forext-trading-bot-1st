@@ -1,0 +1,9 @@
+{
+  "stage": "R.7",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "r7_before": "absent",
+  "hashes_matched_before_any_edit": true,
+  "application_files_modified": [],
+  "postgresql_started": false
+}

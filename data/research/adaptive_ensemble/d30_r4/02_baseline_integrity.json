@@ -1,0 +1,68 @@
+{
+  "head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "status": "M Dockerfile\n M forex_bot/app.py\n M forex_bot/database.py\n M forex_bot/live_safety.py\n M forex_bot/strategy_meta.py\n M forex_bot/telegram_control.py",
+  "files": [
+    {
+      "path": "forex_bot/app.py",
+      "expected": "3ff01244ed217e85d211bec819a7ebff9c96fb0412c56e5a768792ab54b31ca1",
+      "actual": "3ff01244ed217e85d211bec819a7ebff9c96fb0412c56e5a768792ab54b31ca1",
+      "match": true
+    },
+    {
+      "path": "forex_bot/telegram_control.py",
+      "expected": "d32b560306fe2f86cc7c8ddbb40aa42842f071bd88ea513d77f172a6a0fadf4c",
+      "actual": "d32b560306fe2f86cc7c8ddbb40aa42842f071bd88ea513d77f172a6a0fadf4c",
+      "match": true
+    },
+    {
+      "path": "forex_bot/database.py",
+      "expected": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e",
+      "actual": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e",
+      "match": true
+    },
+    {
+      "path": "forex_bot/live_safety.py",
+      "expected": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+      "actual": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+      "match": true
+    },
+    {
+      "path": "forex_bot/strategy_meta.py",
+      "expected": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+      "actual": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+      "match": true
+    },
+    {
+      "path": "requirements.txt",
+      "expected": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a",
+      "actual": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a",
+      "match": true
+    },
+    {
+      "path": "requirements-dev.txt",
+      "expected": "0562a6853549077197defb3cd8515521b843a041f2a735723ee2903790e3eef5",
+      "actual": "0562a6853549077197defb3cd8515521b843a041f2a735723ee2903790e3eef5",
+      "match": true
+    },
+    {
+      "path": "Dockerfile",
+      "expected": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+      "actual": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+      "match": true
+    },
+    {
+      "path": ".dockerignore",
+      "expected": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+      "actual": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+      "match": true
+    },
+    {
+      "path": "docker-compose.yml",
+      "expected": "f0a374774c35b4c63dce23a837572886d1d53331fec388044bc5887367980179",
+      "actual": "f0a374774c35b4c63dce23a837572886d1d53331fec388044bc5887367980179",
+      "match": true
+    }
+  ],
+  "match": true
+}

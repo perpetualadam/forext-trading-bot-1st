@@ -1,0 +1,5 @@
+{
+  "gate": "B",
+  "result": "PASS",
+  "basis": "Each child installed the existing D.11 guards before importing forex_bot. Guard self-checks passed and network_after was empty."
+}

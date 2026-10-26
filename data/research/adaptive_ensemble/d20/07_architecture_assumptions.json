@@ -1,0 +1,30 @@
+{
+  "deployment_files_arch_strings": "NOT_FOUND_IN_INSPECTED_SCOPE",
+  "inspected": [
+    "Dockerfile",
+    "docker-compose.yml",
+    "requirements.txt",
+    "requirements-dev.txt",
+    "main.py",
+    ".dockerignore",
+    "forex_bot/**/*.py"
+  ],
+  "findings": [
+    {
+      "path": "forex_bot/research/adaptive_ensemble/g10_snapshot.py",
+      "line": 86,
+      "classification": "CONFIRMED_SOURCE_ASSUMPTION",
+      "detail": "ctypes.windll.kernel32.GetFileAttributesW",
+      "in_image_copy_set": false
+    },
+    {
+      "path": "forex_bot/research/adaptive_ensemble/g10_audit.py",
+      "line": 241,
+      "classification": "CONFIRMED_SOURCE_ASSUMPTION",
+      "detail": "ctypes.windll.kernel32.GetFileAttributesW",
+      "in_image_copy_set": false
+    }
+  ],
+  "negative_search_is_not_portability_proof": true,
+  "native_dependency_assumptions": "POSSIBLE_DEPENDENCY_ASSUMPTION"
+}

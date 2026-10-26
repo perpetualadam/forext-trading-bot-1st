@@ -1,0 +1,28 @@
+{
+  "when": "before the D.13 app.py edit",
+  "command": "python -m pytest tests/test_d12_shutdown_contract.py tests/test_d12_repeated_lifespan.py tests/test_d12_database_ownership.py -q --tb=line",
+  "result": "16 passed in 16.66s",
+  "D12-STOP-01": {
+    "reproduced": true,
+    "evidence": "ACTUAL_LIFESPAN_ISOLATED",
+    "assertions_that_passed": [
+      "blocked worker remained alive after the bounded join",
+      "cleanup_errors was empty",
+      "application logs did not contain the incomplete-stop status",
+      "owned tasks pending was 0",
+      "database connection stayed open",
+      "application close calls were 0"
+    ]
+  },
+  "D12-START-01": {
+    "reproduced": true,
+    "evidence": "ACTUAL_COMBINED_LIFECYCLE_ISOLATED",
+    "assertions_that_passed": [
+      "second lifespan reached startup",
+      "the same worker identity remained",
+      "no duplicate worker was started",
+      "the database connection was reused",
+      "application logs did not report a startup refusal"
+    ]
+  }
+}

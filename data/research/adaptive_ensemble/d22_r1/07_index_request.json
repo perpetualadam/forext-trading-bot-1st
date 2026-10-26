@@ -1,0 +1,6 @@
+{
+  "method": "GET",
+  "host": "registry-1.docker.io",
+  "path": "/v2/library/python/manifests/3.12-slim-bookworm",
+  "sent": true
+}

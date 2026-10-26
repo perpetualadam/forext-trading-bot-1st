@@ -8,7 +8,9 @@ from __future__ import annotations
 
 import logging
 import os
+import threading
 from datetime import datetime, timezone
+from decimal import Decimal, InvalidOperation
 from typing import Any
 
 import oandapyV20.endpoints.positions as pos_ep
@@ -30,6 +32,125 @@ _logged_conflict: set[str] = set()
 _logged_match: set[str] = set()
 _logged_paper_preserved: set[str] = set()
 _last_trade_ids: dict[str, list[str]] = {}
+_snapshot_lock = threading.Lock()
+_snapshot_generation = 0
+_accepted_generation = 0
+_last_snapshot_class = "UNKNOWN"
+_fetch_tls = threading.local()
+
+
+class BrokerSnapshotError(RuntimeError):
+    """A broker position read that must not be treated as a flat book."""
+
+    def __init__(self, classification: str, detail: str) -> None:
+        self.classification = classification
+        super().__init__(f"{classification}: {detail}")
+
+
+def _parse_broker_decimal(raw: Any, *, label: str) -> Decimal:
+    text = str(raw).replace(",", "").strip()
+    if text == "":
+        raise BrokerSnapshotError("MALFORMED", f"{label} is blank")
+    try:
+        value = Decimal(text)
+    except InvalidOperation as exc:
+        raise BrokerSnapshotError("MALFORMED", f"{label} is not a decimal") from exc
+    if not value.is_finite():
+        raise BrokerSnapshotError("MALFORMED", f"{label} is not finite")
+    return value
+
+
+def _interpret_open_positions(resp: Any) -> tuple[str, dict[str, tuple[float, float]], dict[str, list[str]]]:
+    """Classify an OpenPositions body. Raises instead of inventing an empty book."""
+    if not isinstance(resp, dict):
+        raise BrokerSnapshotError("MALFORMED", "OpenPositions body is not an object")
+    if "positions" not in resp:
+        raise BrokerSnapshotError("INCOMPLETE", "OpenPositions body has no positions key")
+    rows = resp["positions"]
+    if not isinstance(rows, list):
+        raise BrokerSnapshotError("MALFORMED", "OpenPositions positions field is not a list")
+
+    out: dict[str, tuple[float, float]] = {}
+    trade_ids: dict[str, list[str]] = {}
+    seen: set[str] = set()
+    for index, row in enumerate(rows):
+        if not isinstance(row, dict):
+            raise BrokerSnapshotError("MALFORMED", f"position {index} is not an object")
+        inst = oanda_instrument(str(row.get("instrument") or ""))
+        if not inst:
+            raise BrokerSnapshotError("MALFORMED", f"position {index} has no instrument")
+        if inst in seen:
+            raise BrokerSnapshotError("CONFLICT", f"duplicate instrument {inst}")
+        seen.add(inst)
+        if "long" not in row or "short" not in row:
+            raise BrokerSnapshotError("MALFORMED", f"{inst} is missing a side section")
+        long_side = row["long"]
+        short_side = row["short"]
+        if not isinstance(long_side, dict) or not isinstance(short_side, dict):
+            raise BrokerSnapshotError("MALFORMED", f"{inst} side section is not an object")
+        if "units" not in long_side or "units" not in short_side:
+            raise BrokerSnapshotError("MALFORMED", f"{inst} side is missing units")
+        long_units = _parse_broker_decimal(long_side["units"], label=f"{inst} long units")
+        short_units = _parse_broker_decimal(short_side["units"], label=f"{inst} short units")
+        if long_units < 0 or short_units > 0:
+            raise BrokerSnapshotError("MALFORMED", f"{inst} side units have the wrong sign")
+        if long_units > 0 and short_units < 0:
+            raise BrokerSnapshotError("CONFLICT", f"{inst} has both long and short units")
+        for side in (long_side, short_side):
+            raw_ids = side.get("tradeIDs", [])
+            if raw_ids is None:
+                raw_ids = []
+            if not isinstance(raw_ids, list):
+                raise BrokerSnapshotError("MALFORMED", f"{inst} tradeIDs is not a list")
+        net = long_units + short_units
+        if net == 0:
+            continue
+        price_raw = long_side.get("averagePrice") if long_units > 0 else short_side.get("averagePrice")
+        if price_raw in (None, ""):
+            raise BrokerSnapshotError("MALFORMED", f"{inst} open side has no averagePrice")
+        price = _parse_broker_decimal(price_raw, label=f"{inst} averagePrice")
+        if price <= 0:
+            raise BrokerSnapshotError("MALFORMED", f"{inst} averagePrice is not positive")
+        ids: list[str] = []
+        for side in (long_side, short_side):
+            raw_ids = side.get("tradeIDs", [])
+            if raw_ids is None:
+                raw_ids = []
+            if not isinstance(raw_ids, list):
+                raise BrokerSnapshotError("MALFORMED", f"{inst} tradeIDs is not a list")
+            for raw_id in raw_ids:
+                text = str(raw_id or "").strip()
+                if text:
+                    ids.append(text)
+        out[inst] = (float(net), float(price))
+        trade_ids[inst] = ids
+    classification = "COMPLETE_NONEMPTY" if out else "COMPLETE_EMPTY"
+    return classification, out, trade_ids
+
+
+def _begin_snapshot_request() -> int:
+    global _snapshot_generation
+    with _snapshot_lock:
+        _snapshot_generation += 1
+        return _snapshot_generation
+
+
+def _publish_snapshot(
+    generation: int,
+    classification: str,
+    detail: dict[str, tuple[float, float]],
+    trade_ids: dict[str, list[str]],
+) -> None:
+    global _accepted_generation, _have_broker_snapshot, _last_broker_nets, _last_snapshot_class
+    with _snapshot_lock:
+        if generation != _snapshot_generation or generation < _accepted_generation:
+            raise BrokerSnapshotError("STALE", "older OpenPositions response was not published")
+        _last_broker_nets = {_norm_inst(key): float(value[0]) for key, value in detail.items()}
+        _last_trade_ids.clear()
+        _last_trade_ids.update(trade_ids)
+        _have_broker_snapshot = True
+        _accepted_generation = generation
+        _last_snapshot_class = classification
 
 
 def _max_fixes_per_cycle() -> int:
@@ -217,74 +338,31 @@ def fetch_broker_positions_detail() -> dict[str, tuple[float, float]]:
     Net signed units and average price per instrument from OANDA OpenPositions.
     Positive net = long.
 
-    Raises when the API client or account id is missing in broker execution modes so
-    reconciliation does not treat "unavailable" as a clean empty book.
+    A missing or malformed body raises BrokerSnapshotError and does not replace
+    the previous published snapshot. A missing client is not an empty book.
     """
-    from forex_bot.execution import ExecutionMode, get_execution_mode
-
     api = get_api()
     aid = (Config.OANDA_ACCOUNT_ID or "").strip()
     if api is None or not aid:
-        mode = get_execution_mode()
-        if mode in (ExecutionMode.PAPER_BROKER, ExecutionMode.LIVE_BROKER):
-            raise RuntimeError(
-                "reconciliation: OANDA API/account unavailable in broker mode "
-                "(refusing to treat as empty broker book)"
-            )
-        logger.debug("reconciliation: skip fetch (no API or OANDA_ACCOUNT_ID)")
-        return {}
+        raise BrokerSnapshotError(
+            "UNKNOWN",
+            "OANDA API/account unavailable (refusing to treat as empty broker book)",
+        )
 
     from forex_bot.oanda_client import _oanda_request
 
+    generation = _begin_snapshot_request()
     r = pos_ep.OpenPositions(accountID=aid)
     try:
         resp: dict[str, Any] = _oanda_request(api, r, context="open positions")
     except Exception as exc:
         logger.warning("reconciliation: OpenPositions failed: %s", exc)
-        raise
+        raise BrokerSnapshotError("REQUEST_FAILED", str(exc)) from exc
 
-    out: dict[str, tuple[float, float]] = {}
-    _last_trade_ids.clear()
-    for p in resp.get("positions") or []:
-        inst = oanda_instrument(str(p.get("instrument") or ""))
-        if not inst:
-            continue
-        long_u = p.get("long") or {}
-        short_u = p.get("short") or {}
-        try:
-            lu = float(str(long_u.get("units") or "0").replace(",", "") or 0.0)
-        except (TypeError, ValueError):
-            lu = 0.0
-        try:
-            su = float(str(short_u.get("units") or "0").replace(",", "") or 0.0)
-        except (TypeError, ValueError):
-            su = 0.0
-        try:
-            lp = float(str(long_u.get("averagePrice") or "0").replace(",", "") or 0.0)
-        except (TypeError, ValueError):
-            lp = 0.0
-        try:
-            sp = float(str(short_u.get("averagePrice") or "0").replace(",", "") or 0.0)
-        except (TypeError, ValueError):
-            sp = 0.0
-        net = lu + su
-        if abs(net) < 1e-9:
-            continue
-        if abs(lu) > 1e-9 and abs(su) < 1e-9:
-            ap = lp
-        elif abs(su) > 1e-9 and abs(lu) < 1e-9:
-            ap = sp
-        else:
-            denom = abs(lu) + abs(su)
-            ap = (abs(lu) * lp + abs(su) * sp) / denom if denom > 1e-12 else lp
-        out[inst] = (net, ap)
-        tids = []
-        for raw_id in list(long_u.get("tradeIDs") or []) + list(short_u.get("tradeIDs") or []):
-            s = str(raw_id or "").strip()
-            if s:
-                tids.append(s)
-        _last_trade_ids[inst] = tids
-    return out
+    classification, detail, trade_ids = _interpret_open_positions(resp)
+    _publish_snapshot(generation, classification, detail, trade_ids)
+    _fetch_tls.snapshot_class = classification
+    return detail
 
 
 def fetch_broker_open_positions() -> dict[str, float]:
@@ -546,7 +624,7 @@ def _apply_position_convergence(
             if sym not in _logged_conflict:
                 logger.warning(
                     "[RECONCILE CONFLICT] %s broker position exists while local state is %s; "
-                    "displacing local paper state and importing broker truth | "
+                    "paper row kept and broker position recorded as observation-only | "
                     "local_entry=%.5f broker_entry=%.5f broker_net=%.4f",
                     sym,
                     local.execution_kind,
@@ -555,10 +633,8 @@ def _apply_position_convergence(
                     float(bnet),
                 )
                 _logged_conflict.add(sym)
-            posmod.displace_paper_position(sym, reason="broker_authoritative")
             _import_broker_truth(sym, float(bnet), float(bavg), pending)
-            fixes += 1
-            logger.info("[RECONCILE IMPORT] %s imported after paper displace (broker-backed)", sym)
+            logger.info("[RECONCILE OBSERVE] %s broker position kept out of the managed book", sym)
 
     # Case E: broker flat + local paper — keep simulation; log once (broker modes).
     if _broker_execution_mode():
@@ -608,6 +684,8 @@ def _apply_position_convergence(
             # Case E: paper-like + broker flat — keep the simulation row.
             if is_paper_like(pos):
                 continue
+            if not posmod.position_management_permitted(pos):
+                continue
             if not is_broker_backed(pos):
                 continue
             b = broker_nets.get(_norm_inst(sym))
@@ -617,6 +695,12 @@ def _apply_position_convergence(
                 from forex_bot.broker_exit import account_disappeared_broker_position
 
                 result = account_disappeared_broker_position(pos)
+                if result == "retained":
+                    logger.warning(
+                        "[RECONCILE] unresolved broker/local discrepancy retained | %s",
+                        sym,
+                    )
+                    continue
                 fixes += 1
                 if result == "pending":
                     logger.warning(
@@ -644,10 +728,9 @@ def _apply_position_convergence(
             sym = _norm_inst(sym_raw)
             if sym in posmod.positions:
                 continue
-            # Case C
+            # Case C: observe only. Do not insert a managed position.
             _import_broker_truth(sym, float(bnet), float(bavg), pending)
-            fixes += 1
-            logger.info("[RECONCILE IMPORT] imported broker-only | %s | fix=%s/%s", sym, fixes, cap or "inf")
+            logger.info("[RECONCILE OBSERVE] broker-only position not managed | %s", sym)
 
     from forex_bot.broker_exit import retry_pending_broker_exits
 
@@ -734,10 +817,17 @@ def reconcile_positions_log_only() -> list[tuple[str, str, str]]:
     broker_pending: list[dict[str, Any]] = []
     fixes = 0
 
+    snapshot_class = "UNKNOWN"
     try:
         broker_detail = fetch_broker_positions_detail()
+        snapshot_class = str(getattr(_fetch_tls, "snapshot_class", _last_snapshot_class))
+    except BrokerSnapshotError as exc:
+        err = str(exc)
+        snapshot_class = exc.classification
+        logger.warning("reconciliation: fetch failed: %s", exc)
     except Exception as exc:
         err = str(exc)
+        snapshot_class = "REQUEST_FAILED"
         logger.warning("reconciliation: fetch failed: %s", exc)
 
     if err is None:
@@ -749,7 +839,6 @@ def reconcile_positions_log_only() -> list[tuple[str, str, str]]:
             logger.warning("reconciliation: pending orders fetch failed: %s", exc)
 
     if err is None:
-        _remember_broker_snapshot(broker_detail)
         fixes = _apply_position_convergence(broker_detail, broker_pending)
         _reconcile_fixes_total += fixes
         try:
@@ -810,6 +899,7 @@ def reconcile_positions_log_only() -> list[tuple[str, str, str]]:
         "severities": [m[1] for m in mismatches],
         "broker_positions_fetched": len(broker) if err is None else None,
         "broker_pending_orders": len(broker_pending) if err is None else None,
+        "broker_snapshot_class": snapshot_class,
         "reconcile_fixes_applied": fixes,
         "reconcile_runs_total": _reconcile_runs_total,
         "reconcile_fixes_total": _reconcile_fixes_total,

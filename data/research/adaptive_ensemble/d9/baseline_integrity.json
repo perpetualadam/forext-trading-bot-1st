@@ -1,0 +1,29 @@
+{
+  "stage": "D.9",
+  "verdict": "PASS",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "working_tree": "dirty_before_stage_and_preserved",
+  "hashes_before_edit": {
+    "forex_bot/database.py": "74bb9f5d692ace88bff525f334d7eb8577427bfe75cf5f229f647e60b88979e9",
+    "forex_bot/app.py": "08766300dfaf703e7553c69703e5d5f2c90e8efc2b491e6eeff1791ca93e3b44",
+    "forex_bot/live_safety.py": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+    "forex_bot/strategy_meta.py": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d"
+  },
+  "hashes_after_edit": {
+    "forex_bot/database.py": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e",
+    "forex_bot/app.py": "08766300dfaf703e7553c69703e5d5f2c90e8efc2b491e6eeff1791ca93e3b44",
+    "forex_bot/live_safety.py": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+    "forex_bot/strategy_meta.py": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d"
+  },
+  "historical_tests_unchanged": {
+    "tests/d7_resource_cleanup_runner.py": "20e935d5d6e91844ba6d736081bb01989b88b6208584aafbf3aa2d4aedf2a68e",
+    "tests/test_d7_resource_cleanup.py": "89f9858d9b4fe20d1f7d177f91f7b9481003582d8499efc60f827470778bd8e1",
+    "tests/d8_concurrency_runner.py": "7cf6533a9bfb66bbf2fd4a077110a59ee1150e5d2ff2b1f341f065ce877fc444",
+    "tests/test_d8_database_concurrency.py": "830db4afab4c9c38c9e188b1aece7aa3819de8b42327326524cd2a24d09cffda"
+  },
+  "existing_d9_files_at_start": [],
+  "d8_classification": "D8_AUDIT_COMPLETE_CONCURRENCY_OR_CLEANUP_DEFECTS_FOUND",
+  "confirmed_defect": "D8-CONC-01",
+  "unexpected_changes": []
+}

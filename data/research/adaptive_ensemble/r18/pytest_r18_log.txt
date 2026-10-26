@@ -1,0 +1,3 @@
+exit=1
+blocked=1
+dotenv=1

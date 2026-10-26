@@ -1,0 +1,5 @@
+{
+  "gate": "G",
+  "result": "PASS",
+  "meaning": "Static gate completed. The target platform was not selected and was not verified."
+}

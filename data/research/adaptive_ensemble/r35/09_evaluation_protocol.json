@@ -1,0 +1,28 @@
+{
+  "version": "r35.evaluation.v1",
+  "order": "chronological",
+  "train_fraction": 0.6,
+  "validation_fraction": 0.2,
+  "test_fraction": 0.2,
+  "embargo_bars": 12,
+  "warmup_bars": 20,
+  "model_selection": "training_and_validation_only",
+  "held_out_test": "not_used_for_selection_or_tuning",
+  "scalers": "fit_inside_each_training_prefix_only",
+  "costs": "recorded_bid_ask_not_zero",
+  "baselines": [
+    "always_abstain",
+    "majority_training_direction"
+  ],
+  "probability_metrics": [
+    "calibration_curve",
+    "log_loss",
+    "brier_score"
+  ],
+  "coverage_metrics": [
+    "abstention_rate",
+    "class_balance",
+    "regime_slices"
+  ],
+  "research_exposed_warning": "The R.29-R.33 EUR_USD M5 year has already been researched. A new split of that file is not an untouched final test."
+}

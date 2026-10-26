@@ -1,0 +1,24 @@
+{
+  "stage": "D.4",
+  "safety_state_classification": "PASS_ISOLATED_COMPONENT",
+  "valid_blocked_state": "PASS_ISOLATED_COMPONENT",
+  "protected_state_abort": "PASS_STATIC_ONLY",
+  "database_initialization_ordering": "PASS_STATIC_ONLY",
+  "broker_initialization_ordering": "PASS_STATIC_ONLY",
+  "broker_request_prevention": "PASS_STATIC_ONLY",
+  "reconciliation_prevention": "PASS_STATIC_ONLY",
+  "scheduler_prevention": "PASS_STATIC_ONLY",
+  "background_task_prevention": "PASS_STATIC_ONLY",
+  "strategy_activation": "PASS_ISOLATED_COMPONENT",
+  "live_order_authorisation": "PASS_ISOLATED_COMPONENT",
+  "startup_exception_propagation": "PASS_STATIC_ONLY",
+  "partial_start_cleanup": "PASS_STATIC_ONLY",
+  "d2_regression": "PASS_ISOLATED_COMPONENT",
+  "d3_regression": "PASS_ISOLATED_COMPONENT",
+  "production_image": "UNKNOWN",
+  "actual_lifespan": "NOT_RUN",
+  "notes": {
+    "protected_state_abort": "The raise is before downstream calls in lifespan source. The function was not executed.",
+    "production_image": "The historical image does not contain this working-tree edit. It was not rebuilt."
+  }
+}

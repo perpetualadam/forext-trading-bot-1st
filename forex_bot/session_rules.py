@@ -154,16 +154,44 @@ def pre_close_adjustment(symbol: str) -> bool:
     return pre_close_adjustment_at(symbol, datetime.utcnow())
 
 
-def volatility_ok(df: pd.DataFrame) -> bool:
-    atr = df["atr"]
-    if len(atr) < 20 or atr.iloc[-1] != atr.iloc[-1]:  # NaN check
-        return True
-    atr_latest = float(atr.iloc[-1])
-    valid = atr.dropna()
-    if len(valid) < 20:
-        return True
-    p90 = float(np.percentile(valid, 90))
-    p10 = float(np.percentile(valid, 10))
+VOLATILITY_MIN_BARS = 20
+VOLATILITY_LOOKBACK = 200
+
+
+def volatility_ok(
+    df: pd.DataFrame,
+    *,
+    index: int | None = None,
+    lookback: int = VOLATILITY_LOOKBACK,
+) -> bool:
+    """Score one bar from ATR values at or before that bar.
+
+    The default index is the last row. A short or non-finite window fails closed.
+    The percentile thresholds are unchanged.
+    """
+    if not isinstance(df, pd.DataFrame) or "atr" not in getattr(df, "columns", []):
+        return False
+    if len(df) == 0 or lookback < VOLATILITY_MIN_BARS:
+        return False
+    if index is None:
+        index = len(df) - 1
+    if isinstance(index, bool) or not isinstance(index, int) or index < 0 or index >= len(df):
+        return False
+    window = df["atr"].iloc[max(0, index + 1 - lookback) : index + 1]
+    if len(window) < VOLATILITY_MIN_BARS:
+        return False
+    latest = window.iloc[-1]
+    if latest != latest:
+        return False
+    valid = window.dropna()
+    if len(valid) < VOLATILITY_MIN_BARS:
+        return False
+    atr_latest = float(latest)
+    if not np.isfinite(atr_latest):
+        return False
+    values = valid.to_numpy(dtype=float)
+    p90 = float(np.percentile(values, 90))
+    p10 = float(np.percentile(values, 10))
     if atr_latest > p90 * 2 or atr_latest < p10 * 0.5:
         return False
     return True

@@ -1,0 +1,23 @@
+{
+  "version": "r35.labels.v1",
+  "primary_horizon_bars": 12,
+  "horizons": [
+    1,
+    6,
+    12,
+    48
+  ],
+  "bar_seconds": 300,
+  "entry": "decision_bar_close_bid_ask",
+  "exit": "close_exactly_horizon_bars_later",
+  "buy_cost_return": "(future_bid_close - decision_ask_close) / decision_ask_close",
+  "sell_cost_return": "(decision_bid_close - future_ask_close) / decision_bid_close",
+  "midpoint_return": "(future_midpoint - decision_midpoint) / decision_midpoint",
+  "no_trade": "abstention_has_no_chosen_side_and_no_cost_adjusted_decision_outcome",
+  "missing_price": "unevaluable",
+  "time_gap": "unevaluable_unless_future_timestamp_is_exactly_horizon_times_bar_seconds",
+  "end_of_data": "unevaluable",
+  "overlapping_windows": "labels_may_overlap_evaluation_embargoes_them",
+  "not_an_executed_trade": true,
+  "difference_from_r30": "R.30 enters on a later bar inside the scalp simulator. R.35 labels the decision bar close to a later close."
+}

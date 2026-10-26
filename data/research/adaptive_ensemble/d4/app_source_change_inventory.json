@@ -1,0 +1,26 @@
+{
+  "stage": "D.4",
+  "files_modified": [
+    {
+      "path": "forex_bot/app.py",
+      "change": "lifespan raises StartupSafetyAbort unless live_safety_initialised() is true after initialise_fail_closed()",
+      "original_sha256": "77888f0fa40b5a2935913be6d9b8770c1df0aa204d21c72537cef9e01ac0f70d",
+      "final_sha256": "f38c304c4692c4a69e537610173e5691c03d49e24c48d6e258f56d1be75ae7b4",
+      "diff_stat": "20 lines changed, 19 insertions, 1 deletion"
+    }
+  ],
+  "files_added": [
+    "tests/test_startup_safety_preflight.py"
+  ],
+  "not_modified": [
+    "forex_bot/live_safety.py",
+    "forex_bot/strategy_meta.py",
+    "forex_bot/bot_loop.py",
+    "forex_bot/database.py",
+    "forex_bot/oanda_client.py"
+  ],
+  "new_type": "StartupSafetyAbort",
+  "dependencies_added": 0,
+  "schema_changes": 0,
+  "authorisation_paths_added": 0
+}

@@ -1,0 +1,8 @@
+{
+  "proposed_metadata_host": "pypi.org",
+  "proposed_file_host": "files.pythonhosted.org",
+  "contacted_in_d26": false,
+  "dns_resolved_in_d26": false,
+  "file_host_in_discovery_allowlist": false,
+  "mirrors": "not proposed"
+}

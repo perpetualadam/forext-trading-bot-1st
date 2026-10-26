@@ -1,0 +1,32 @@
+{
+  "base_image": "python:3.12-slim-bookworm",
+  "base_image_digest_known": false,
+  "workdir": "/app",
+  "user_instruction": "absent; the image default is root",
+  "build_args": [],
+  "environment_names": [
+    "PYTHONDONTWRITEBYTECODE",
+    "PYTHONUNBUFFERED",
+    "PIP_DISABLE_PIP_VERSION_CHECK",
+    "PIP_DEFAULT_TIMEOUT",
+    "PIP_RETRIES"
+  ],
+  "environment_contains_secrets": false,
+  "dependency_installation": "RUN pip install --upgrade pip && pip install --no-cache-dir --prefer-binary --timeout 120 --retries 15 -r requirements.txt",
+  "requirements_pins": "minimum versions only; no equality pins and no hashes",
+  "build_time_commands": ["pip install"],
+  "application_imported_at_build_time": false,
+  "application_started_at_build_time": false,
+  "package_install_hooks_possible": true,
+  "copy_count": 61,
+  "main_py_copies": 1,
+  "requirements_copies": 1,
+  "package_copies": 59,
+  "broad_copy": false,
+  "wildcard_copy": false,
+  "credential_copy": false,
+  "entrypoint": "CMD [\"uvicorn\", \"forex_bot.app:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]",
+  "exposed_port": 8000,
+  "unsupported_constructs": [],
+  "network_required_for_successful_build": true
+}

@@ -1,0 +1,246 @@
+{
+  "primary": "EUR_USD",
+  "replication": [
+    {
+      "instrument": "AUD_USD",
+      "n": 24571,
+      "median_spread_pips": 1.300000000000745,
+      "features": [
+        {
+          "feature": "return_1",
+          "rho": -0.027047596874255356,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "rolling_vol_20",
+          "rho": 0.017057461070858426,
+          "same_sign_as_eur": false
+        },
+        {
+          "feature": "atr_14",
+          "rho": 0.035776524744377786,
+          "same_sign_as_eur": false
+        },
+        {
+          "feature": "ma_distance",
+          "rho": -0.037433962820176234,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "momentum_12",
+          "rho": -0.038316599249157826,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "spread",
+          "rho": 5.236162940835915e-05,
+          "same_sign_as_eur": false
+        },
+        {
+          "feature": "range_20",
+          "rho": 0.02586076518954926,
+          "same_sign_as_eur": false
+        },
+        {
+          "feature": "volume",
+          "rho": 0.02377696242179316,
+          "same_sign_as_eur": false
+        }
+      ],
+      "independent_confirmation": false
+    },
+    {
+      "instrument": "GBP_USD",
+      "n": 24585,
+      "median_spread_pips": 1.8999999999991246,
+      "features": [
+        {
+          "feature": "return_1",
+          "rho": -0.020212651855118065,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "rolling_vol_20",
+          "rho": -0.026641164024838057,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "atr_14",
+          "rho": -0.021629118216529086,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "ma_distance",
+          "rho": -0.028400676119368088,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "momentum_12",
+          "rho": -0.034911350734489456,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "spread",
+          "rho": 0.009280284051747693,
+          "same_sign_as_eur": false
+        },
+        {
+          "feature": "range_20",
+          "rho": -0.029081211957833617,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "volume",
+          "rho": -0.02278597192671164,
+          "same_sign_as_eur": true
+        }
+      ],
+      "independent_confirmation": false
+    },
+    {
+      "instrument": "USD_CAD",
+      "n": 24611,
+      "median_spread_pips": 1.80000000000069,
+      "features": [
+        {
+          "feature": "return_1",
+          "rho": -0.028068240706126225,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "rolling_vol_20",
+          "rho": 0.004270219767127624,
+          "same_sign_as_eur": false
+        },
+        {
+          "feature": "atr_14",
+          "rho": -0.005872021939863426,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "ma_distance",
+          "rho": -0.03191724350165152,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "momentum_12",
+          "rho": -0.04029620321193339,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "spread",
+          "rho": 0.007680357757739079,
+          "same_sign_as_eur": false
+        },
+        {
+          "feature": "range_20",
+          "rho": 0.012920677218664599,
+          "same_sign_as_eur": false
+        },
+        {
+          "feature": "volume",
+          "rho": 0.00841108018617692,
+          "same_sign_as_eur": false
+        }
+      ],
+      "independent_confirmation": false
+    },
+    {
+      "instrument": "USD_CHF",
+      "n": 24436,
+      "median_spread_pips": 1.4999999999998348,
+      "features": [
+        {
+          "feature": "return_1",
+          "rho": -0.015585365758066374,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "rolling_vol_20",
+          "rho": 0.05734189707538572,
+          "same_sign_as_eur": false
+        },
+        {
+          "feature": "atr_14",
+          "rho": 0.0524330990407373,
+          "same_sign_as_eur": false
+        },
+        {
+          "feature": "ma_distance",
+          "rho": -0.015623093024497188,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "momentum_12",
+          "rho": -0.020931491353989508,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "spread",
+          "rho": -0.004273310153604005,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "range_20",
+          "rho": 0.046877403405021056,
+          "same_sign_as_eur": false
+        },
+        {
+          "feature": "volume",
+          "rho": 0.03043392794007349,
+          "same_sign_as_eur": false
+        }
+      ],
+      "independent_confirmation": false
+    },
+    {
+      "instrument": "USD_JPY",
+      "n": 24574,
+      "median_spread_pips": 1.5999999999991132,
+      "features": [
+        {
+          "feature": "return_1",
+          "rho": -0.03215892270560424,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "rolling_vol_20",
+          "rho": 0.1258905259736591,
+          "same_sign_as_eur": false
+        },
+        {
+          "feature": "atr_14",
+          "rho": 0.11306171199676991,
+          "same_sign_as_eur": false
+        },
+        {
+          "feature": "ma_distance",
+          "rho": -0.041659131068642344,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "momentum_12",
+          "rho": -0.050047216088736565,
+          "same_sign_as_eur": true
+        },
+        {
+          "feature": "spread",
+          "rho": 0.020192900068088052,
+          "same_sign_as_eur": false
+        },
+        {
+          "feature": "range_20",
+          "rho": 0.10590201931638585,
+          "same_sign_as_eur": false
+        },
+        {
+          "feature": "volume",
+          "rho": 0.09024883413856405,
+          "same_sign_as_eur": false
+        }
+      ],
+      "independent_confirmation": false
+    }
+  ],
+  "pooled_model": false
+}

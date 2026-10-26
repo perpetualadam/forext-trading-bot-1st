@@ -1,0 +1,21 @@
+{
+  "dockerfile_sha256": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+  "unchanged_during_g13_1": true,
+  "broad_copy_detected": false,
+  "duplicate_main_py": false,
+  "main_py_copies": 1,
+  "requirements_copies": 1,
+  "package_file_copies": 59,
+  "wildcard_copy": false,
+  "path_traversal": false,
+  "symlink_or_reparse_in_sources": false,
+  "credential_copy": false,
+  "test_copy": false,
+  "research_copy": false,
+  "operational_state_copy": false,
+  "missing_runtime_dependency": false,
+  "entrypoint_unchanged": true,
+  "dependency_install_unchanged": true,
+  "docker_daemon_verification": "DOCKER_DAEMON_CONTEXT_BEHAVIOUR_UNVERIFIED",
+  "static_checker_is_not_a_docker_build": true
+}

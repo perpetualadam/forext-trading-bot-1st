@@ -1,0 +1,24 @@
+{
+  "directory": "data/research/adaptive_ensemble/r56/phase5_connection",
+  "excludes_self": true,
+  "file_count": 16,
+  "files": {
+    "01_architecture.md": "0bcea0ea5180c330ad0cc71c9a069a693071a5fc2c0d3a744875156072f4035d",
+    "02_request_security.md": "c1e7512c3062873d9ab6d3e38beb22f1ecebed1a257878ca86bf90275e94cf69",
+    "03_credential_security.md": "802a6526ce0dc1e04678b85f8dafaf744dd40f61ceaf2b3cec9872fa2795ebd8",
+    "04_process_timeout_evidence.md": "a89985476efcc6fab275ee4a79a13453199da2f027b1e1f96ee481446ce7016f",
+    "05_test_results.md": "20ad60c0b8a2f0ca68ffea1f8ee9352b7f7d72ea8ffe278a55bb198b2c4cfa6a",
+    "06_future_live_session_procedure.md": "c3e757939e756d1ea9bf12fbac2b71455ab85f171ed837cd4d85ea36976d559f",
+    "08_phase5_report.md": "943ed4f5076b460483a0b2ffafeeba15275842515556cbdfb2d6ced0419196c7",
+    "credential_gate.py": "7af2972b8750e06cbc9d7e6fc56710ef3f2edc8094923e89eb94bf03055796c4",
+    "isolated_worker.py": "6febacb0445c4c53bb6a563291b3948ec23c9b44e6e33c712a17734d52826e74",
+    "offline_entry.py": "7ce1b8773bbd0c06fb72ef362c96eaa20878682aef347418dc442210e127e0d0",
+    "operator_confirmation.py": "ef928bd59e54cdb4ab389e405bb4ddee4037df10753877c4dc41f8af71732d6c",
+    "restricted_https_transport.py": "27a060ee09ee1f1ed3b64e5ce499fb03f952e238177c8eb4ce2b47a22bf90b67",
+    "session_supervisor.py": "970442b5dd098eeb2f0e4b0d4106bf2440140f3e58266cdf856f82be748f76a0",
+    "synthetic_fixtures.py": "d4cff5c0ab1acaeef11fd00b93b4b6b7e3952a8f6a2066997db2566c6b810c4a",
+    "synthetic_logs/r56-phase5-r5648e194c2de644e0599b05572ece9599e-0001.json": "d8a52fdfc6e403d0e4afc3632b490b4bdefef6acee6b92c64a6c7988fcd8cf4a",
+    "test_phase5_offline.py": "08d9a73278cecb7e808a589148df70d963ea23886db8c2ad640ae14b1c8613a0"
+  },
+  "schema": "r56.phase5.integrity.1"
+}

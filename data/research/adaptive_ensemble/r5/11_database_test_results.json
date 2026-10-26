@@ -1,0 +1,12 @@
+{
+  "postgresql_execution": "POSTGRESQL_EXECUTION_NOT_EVALUATED",
+  "engine_started": false,
+  "production_database": false,
+  "schema_status_column": "TEXT NOT NULL",
+  "check_constraint_on_status": false,
+  "unresolved_fits_existing_column": "SOURCE-REVIEWED",
+  "synthetic_snapshot_tests": "PASS",
+  "advisory_lock_sql_present": true,
+  "advisory_lock_executed": false,
+  "migration_run": false
+}

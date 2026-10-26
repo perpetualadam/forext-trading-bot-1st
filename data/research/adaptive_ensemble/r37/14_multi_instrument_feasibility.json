@@ -1,0 +1,117 @@
+{
+  "files": [
+    {
+      "instrument": "AUD_USD",
+      "rows": 74563,
+      "gaps": 81,
+      "duplicate_timestamps": 0,
+      "median_spread_price": 0.0001300000000000745,
+      "median_spread_pips": 1.300000000000745,
+      "pip_size": 0.0001,
+      "sha256": "e639a1f817e4b91973ccfea0ee0c8c3dd5279c722ea665c531ad309b359165e0"
+    },
+    {
+      "instrument": "EUR_USD",
+      "rows": 74572,
+      "gaps": 73,
+      "duplicate_timestamps": 0,
+      "median_spread_price": 0.00015999999999993797,
+      "median_spread_pips": 1.5999999999993797,
+      "pip_size": 0.0001,
+      "sha256": "3ae3c4d061792353b94b8d2be73684f950362f135d47926d1bc8c11a24791091"
+    },
+    {
+      "instrument": "GBP_USD",
+      "rows": 74555,
+      "gaps": 87,
+      "duplicate_timestamps": 0,
+      "median_spread_price": 0.0001900000000001345,
+      "median_spread_pips": 1.900000000001345,
+      "pip_size": 0.0001,
+      "sha256": "ac3ddba51b75f493a08a5ea57e9926e38a5a85b06797de53803e6cd4f8b00d58"
+    },
+    {
+      "instrument": "USD_CAD",
+      "rows": 74560,
+      "gaps": 82,
+      "duplicate_timestamps": 0,
+      "median_spread_price": 0.000180000000000069,
+      "median_spread_pips": 1.80000000000069,
+      "pip_size": 0.0001,
+      "sha256": "a88eb2c440691bd5893a8317b64e6beaf87bb6f3c93b0c6e6a4cd16e53aa9c60"
+    },
+    {
+      "instrument": "USD_CHF",
+      "rows": 74514,
+      "gaps": 116,
+      "duplicate_timestamps": 0,
+      "median_spread_price": 0.00014999999999998348,
+      "median_spread_pips": 1.4999999999998348,
+      "pip_size": 0.0001,
+      "sha256": "3901a2d50a63ef5ca4d10858145cca7fd70d20d24420761e1b7d2d09f2a127bc"
+    },
+    {
+      "instrument": "USD_JPY",
+      "rows": 74557,
+      "gaps": 85,
+      "duplicate_timestamps": 0,
+      "median_spread_price": 0.016000000000019554,
+      "median_spread_pips": 1.6000000000019554,
+      "pip_size": 0.01,
+      "sha256": "e1b0d3491f873723967315d74e3bd5b707474814a294be4ed50a26e1b8c9805c"
+    }
+  ],
+  "train_period_return_correlation": {
+    "AUD_USD": {
+      "AUD_USD": 1.0,
+      "EUR_USD": 0.6498,
+      "GBP_USD": 0.6591,
+      "USD_CAD": -0.6552,
+      "USD_CHF": -0.4946,
+      "USD_JPY": -0.3684
+    },
+    "EUR_USD": {
+      "AUD_USD": 0.6498,
+      "EUR_USD": 1.0,
+      "GBP_USD": 0.7857,
+      "USD_CAD": -0.5942,
+      "USD_CHF": -0.7918,
+      "USD_JPY": -0.5896
+    },
+    "GBP_USD": {
+      "AUD_USD": 0.6591,
+      "EUR_USD": 0.7857,
+      "GBP_USD": 1.0,
+      "USD_CAD": -0.5698,
+      "USD_CHF": -0.6497,
+      "USD_JPY": -0.5237
+    },
+    "USD_CAD": {
+      "AUD_USD": -0.6552,
+      "EUR_USD": -0.5942,
+      "GBP_USD": -0.5698,
+      "USD_CAD": 1.0,
+      "USD_CHF": 0.5128,
+      "USD_JPY": 0.3725
+    },
+    "USD_CHF": {
+      "AUD_USD": -0.4946,
+      "EUR_USD": -0.7918,
+      "GBP_USD": -0.6497,
+      "USD_CAD": 0.5128,
+      "USD_CHF": 1.0,
+      "USD_JPY": 0.5891
+    },
+    "USD_JPY": {
+      "AUD_USD": -0.3684,
+      "EUR_USD": -0.5896,
+      "GBP_USD": -0.5237,
+      "USD_CAD": 0.3725,
+      "USD_CHF": 0.5891,
+      "USD_JPY": 1.0
+    }
+  },
+  "aligned_training_rows": 44674,
+  "pooled_model_run": false,
+  "reason": "The pairs share the same clock and a common market regime. Six files are not six independent samples. Pooling was not in the frozen candidate list."
+}

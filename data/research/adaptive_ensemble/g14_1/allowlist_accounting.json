@@ -1,0 +1,35 @@
+{
+  "stage": "G.14.1",
+  "allowlist_path": "data/research/adaptive_ensemble/g10/production_allowlist.json",
+  "allowlist_sha256": "b2d0f66f8a696da5488072720f6d8de7ceccfd8c847d54327d4cfff2e10eb7b4",
+  "allowlist_modified": false,
+  "g10_allowlist_path_count": 63,
+  "classification_counts": {
+    "PYTHON_PACKAGE_FILE": 59,
+    "APPLICATION_ENTRYPOINT": 1,
+    "DEPENDENCY_MANIFEST": 1,
+    "DOCKERFILE": 1,
+    "DOCKERIGNORE": 1,
+    "OTHER": 0
+  },
+  "application_filesystem_files": 61,
+  "application_filesystem_members": "59 package files + main.py + requirements.txt",
+  "docker_build_context_files": 63,
+  "docker_build_context_members": "61 application files + Dockerfile + .dockerignore",
+  "packaging_policy_files_not_copied_into_app": 2,
+  "packaging_policy_members": ["Dockerfile", ".dockerignore"],
+  "dockerignore_is_in_the_g10_allowlist": true,
+  "discrepancy": {
+    "reported_narratives": [
+      "59 package files + requirements.txt + main.py + Dockerfile + .dockerignore was described as 63 and also as totaling 64",
+      "59 package files + requirements.txt + main.py + Dockerfile was described as 63"
+    ],
+    "arithmetic": "59 + 1 + 1 + 1 + 1 = 63. Adding the package-file count to five labels (59 + 5) produces 64. Omitting .dockerignore from the same five categories produces 62.",
+    "authoritative_count": 63,
+    "resolved": true,
+    "allowlist_rewritten": false
+  },
+  "historical_dockerfile_pin_inside_allowlist": "f8d537d84c8ab004c5fc2cbdc5ef58e8141f5ca66a13be6cc5eac38c7c7006a6",
+  "staged_dockerfile_hash": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+  "classification": "ALLOWLIST_ACCOUNTING_RESOLVED"
+}

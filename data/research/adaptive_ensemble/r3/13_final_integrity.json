@@ -1,0 +1,225 @@
+{
+  "broker_calls": 0,
+  "dotenv_calls": 1,
+  "extra_after": [
+    {
+      "bytes": 67209,
+      "path": "forex_bot/bot_loop.py",
+      "sha256": "dcc8ed35f1f1ec9eb4d53e3439ebf46f80868c55aba4ec6ec64ad29fbe9f9128"
+    },
+    {
+      "bytes": 19115,
+      "path": "forex_bot/trading.py",
+      "sha256": "5ac3981690fe9536edaedfd35a933d17fc37a1e4a77c5c3e9b47517db6300fc7"
+    },
+    {
+      "bytes": 24707,
+      "path": "forex_bot/oanda_exec.py",
+      "sha256": "f4beb250d81852d8ee4f22af06ab33194c6b4ba1bf6f9b1a6b5d11d3b7b265c8"
+    },
+    {
+      "bytes": 2386,
+      "path": "forex_bot/decision_quality/live_path.py",
+      "sha256": "6275fba49bf20d6f577a30bcec2421e5904ed8ef414851906c5103567aece215"
+    },
+    {
+      "bytes": 8029,
+      "path": "forex_bot/shadow/signals.py",
+      "sha256": "50e51518e342589a3dc4b09d25356ba521166c056a027c5c3efb1fafa9ceb799"
+    },
+    {
+      "bytes": 7484,
+      "path": "tests/test_execution_safety.py",
+      "sha256": "38760289cf28c104403149f1ccfc9fd7c80d3cd93e24dc37de3292ef297eba97"
+    },
+    {
+      "bytes": 12276,
+      "path": "tests/test_strategy_activation_defaults.py",
+      "sha256": "53c5e67ffb900cf50e8a8d1bef303f29c5b624e58878b0942f0d627b77699911"
+    }
+  ],
+  "extra_before": [
+    {
+      "bytes": 67209,
+      "path": "forex_bot/bot_loop.py",
+      "sha256": "dcc8ed35f1f1ec9eb4d53e3439ebf46f80868c55aba4ec6ec64ad29fbe9f9128"
+    },
+    {
+      "bytes": 19115,
+      "path": "forex_bot/trading.py",
+      "sha256": "5ac3981690fe9536edaedfd35a933d17fc37a1e4a77c5c3e9b47517db6300fc7"
+    },
+    {
+      "bytes": 24707,
+      "path": "forex_bot/oanda_exec.py",
+      "sha256": "f4beb250d81852d8ee4f22af06ab33194c6b4ba1bf6f9b1a6b5d11d3b7b265c8"
+    },
+    {
+      "bytes": 2386,
+      "path": "forex_bot/decision_quality/live_path.py",
+      "sha256": "6275fba49bf20d6f577a30bcec2421e5904ed8ef414851906c5103567aece215"
+    },
+    {
+      "bytes": 8029,
+      "path": "forex_bot/shadow/signals.py",
+      "sha256": "50e51518e342589a3dc4b09d25356ba521166c056a027c5c3efb1fafa9ceb799"
+    },
+    {
+      "bytes": 7484,
+      "path": "tests/test_execution_safety.py",
+      "sha256": "38760289cf28c104403149f1ccfc9fd7c80d3cd93e24dc37de3292ef297eba97"
+    },
+    {
+      "bytes": 12276,
+      "path": "tests/test_strategy_activation_defaults.py",
+      "sha256": "53c5e67ffb900cf50e8a8d1bef303f29c5b624e58878b0942f0d627b77699911"
+    }
+  ],
+  "network_attempts": [
+    "socket:  File \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\n >   File \"<frozen importlib._bootstrap_external>\", line 1026, in exec_module\n >   File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n >   File \"C:\\Users\\Brian\\AppData\\Roaming\\Python\\Python313\\site-packages\\urllib3\\util\\connection.py\", line 137, in <module>\n    HAS_IPV6 = _has_ipv6(\"::1\")\n >   File \"C:\\Users\\Brian\\AppData\\Roaming\\Python\\Python313\\site-packages\\urllib3\\util\\connection.py\", line 126, in _has_ipv6\n    sock = socket.socket(socket.AF_INET6)\n"
+  ],
+  "protected_after": [
+    {
+      "bytes": 24456,
+      "expected": "3ff01244ed217e85d211bec819a7ebff9c96fb0412c56e5a768792ab54b31ca1",
+      "match": true,
+      "path": "forex_bot/app.py",
+      "sha256": "3ff01244ed217e85d211bec819a7ebff9c96fb0412c56e5a768792ab54b31ca1"
+    },
+    {
+      "bytes": 46024,
+      "expected": "d32b560306fe2f86cc7c8ddbb40aa42842f071bd88ea513d77f172a6a0fadf4c",
+      "match": true,
+      "path": "forex_bot/telegram_control.py",
+      "sha256": "d32b560306fe2f86cc7c8ddbb40aa42842f071bd88ea513d77f172a6a0fadf4c"
+    },
+    {
+      "bytes": 27888,
+      "expected": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e",
+      "match": true,
+      "path": "forex_bot/database.py",
+      "sha256": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e"
+    },
+    {
+      "bytes": 22301,
+      "expected": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+      "match": true,
+      "path": "forex_bot/live_safety.py",
+      "sha256": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44"
+    },
+    {
+      "bytes": 6823,
+      "expected": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+      "match": true,
+      "path": "forex_bot/strategy_meta.py",
+      "sha256": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d"
+    },
+    {
+      "bytes": 174,
+      "expected": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a",
+      "match": true,
+      "path": "requirements.txt",
+      "sha256": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a"
+    },
+    {
+      "bytes": 56,
+      "expected": "0562a6853549077197defb3cd8515521b843a041f2a735723ee2903790e3eef5",
+      "match": true,
+      "path": "requirements-dev.txt",
+      "sha256": "0562a6853549077197defb3cd8515521b843a041f2a735723ee2903790e3eef5"
+    },
+    {
+      "bytes": 4406,
+      "expected": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+      "match": true,
+      "path": "Dockerfile",
+      "sha256": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad"
+    },
+    {
+      "bytes": 709,
+      "expected": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+      "match": true,
+      "path": ".dockerignore",
+      "sha256": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd"
+    },
+    {
+      "bytes": 10920,
+      "expected": "f0a374774c35b4c63dce23a837572886d1d53331fec388044bc5887367980179",
+      "match": true,
+      "path": "docker-compose.yml",
+      "sha256": "f0a374774c35b4c63dce23a837572886d1d53331fec388044bc5887367980179"
+    }
+  ],
+  "protected_before": [
+    {
+      "bytes": 24456,
+      "expected": "3ff01244ed217e85d211bec819a7ebff9c96fb0412c56e5a768792ab54b31ca1",
+      "match": true,
+      "path": "forex_bot/app.py",
+      "sha256": "3ff01244ed217e85d211bec819a7ebff9c96fb0412c56e5a768792ab54b31ca1"
+    },
+    {
+      "bytes": 46024,
+      "expected": "d32b560306fe2f86cc7c8ddbb40aa42842f071bd88ea513d77f172a6a0fadf4c",
+      "match": true,
+      "path": "forex_bot/telegram_control.py",
+      "sha256": "d32b560306fe2f86cc7c8ddbb40aa42842f071bd88ea513d77f172a6a0fadf4c"
+    },
+    {
+      "bytes": 27888,
+      "expected": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e",
+      "match": true,
+      "path": "forex_bot/database.py",
+      "sha256": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e"
+    },
+    {
+      "bytes": 22301,
+      "expected": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+      "match": true,
+      "path": "forex_bot/live_safety.py",
+      "sha256": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44"
+    },
+    {
+      "bytes": 6823,
+      "expected": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+      "match": true,
+      "path": "forex_bot/strategy_meta.py",
+      "sha256": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d"
+    },
+    {
+      "bytes": 174,
+      "expected": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a",
+      "match": true,
+      "path": "requirements.txt",
+      "sha256": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a"
+    },
+    {
+      "bytes": 56,
+      "expected": "0562a6853549077197defb3cd8515521b843a041f2a735723ee2903790e3eef5",
+      "match": true,
+      "path": "requirements-dev.txt",
+      "sha256": "0562a6853549077197defb3cd8515521b843a041f2a735723ee2903790e3eef5"
+    },
+    {
+      "bytes": 4406,
+      "expected": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+      "match": true,
+      "path": "Dockerfile",
+      "sha256": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad"
+    },
+    {
+      "bytes": 709,
+      "expected": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+      "match": true,
+      "path": ".dockerignore",
+      "sha256": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd"
+    },
+    {
+      "bytes": 10920,
+      "expected": "f0a374774c35b4c63dce23a837572886d1d53331fec388044bc5887367980179",
+      "match": true,
+      "path": "docker-compose.yml",
+      "sha256": "f0a374774c35b4c63dce23a837572886d1d53331fec388044bc5887367980179"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "evidence": "ACTUAL_LIFESPAN_ISOLATED",
+  "function": "app.lifespan",
+  "telegram_functions_used": ["start_telegram_control", "stop_telegram_control"],
+  "stop_wrapper": "Only the stop_raises case calls the real stop and then raises. That raise is injected. Production stop does not raise.",
+  "results": {
+    "corrupt": {
+      "classification": "PASS",
+      "yielded": false,
+      "escaped_type": "StartupSafetyAbort",
+      "connect_calls": 0,
+      "created": 0,
+      "thread_alive": false,
+      "auth": "BLOCKED",
+      "active": []
+    },
+    "broker": {
+      "classification": "PASS",
+      "yielded": false,
+      "message": "injected broker construction failure",
+      "thread_alive": false,
+      "pg_conn_held": false,
+      "application_close_calls": 1,
+      "pending": 0,
+      "auth": "BLOCKED",
+      "active": []
+    },
+    "normal": {
+      "classification": "PASS",
+      "yielded": true,
+      "thread_alive_after_application": false,
+      "pending": 0,
+      "created": 4,
+      "pg_conn_held": true,
+      "application_close_calls": 0,
+      "auth": "BLOCKED",
+      "active": []
+    },
+    "blocked_shutdown": {
+      "classification": "FAIL",
+      "defect": "D10-STOP-01",
+      "yielded": true,
+      "blocked_ready": true,
+      "thread": 3836,
+      "daemon": true,
+      "thread_alive_after_application": true,
+      "cleanup_errors": [],
+      "pg_conn_held": true,
+      "application_close_calls": 0,
+      "pending": 0,
+      "created": 4,
+      "auth": "BLOCKED",
+      "active": []
+    },
+    "await_health": {
+      "classification": "PASS",
+      "escaped_type": "RuntimeError",
+      "message": "injected task await failure",
+      "pending": 0,
+      "cleanup_errors": ["RuntimeError"],
+      "pg_conn_held": true
+    },
+    "stop_raises": {
+      "classification": "PASS",
+      "note": "Injected exception after the real stop. Not production stop behaviour.",
+      "escaped_type": "RuntimeError",
+      "message": "injected shutdown failure",
+      "pending": 0,
+      "pg_conn_held": true,
+      "cleanup_errors": ["RuntimeError"]
+    },
+    "release_fails": {
+      "classification": "PASS",
+      "message": "injected broker construction failure",
+      "cleanup_errors": ["RuntimeError"],
+      "pg_conn_held": false,
+      "application_close_calls": 1,
+      "object_left_open_until_harness": true
+    },
+    "repeat": {
+      "classification": "PASS",
+      "yielded": true,
+      "thread_alive_after_application": false,
+      "pending": 0
+    },
+    "startup_failure_after_telegram": {
+      "classification": "NOT_REACHABLE",
+      "evidence": "NOT_REACHABLE_IN_CURRENT_SOURCE"
+    }
+  }
+}

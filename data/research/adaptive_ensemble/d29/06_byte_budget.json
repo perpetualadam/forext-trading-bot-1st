@@ -1,0 +1,13 @@
+{
+  "status": "FINALIZED_NOT_AUTHORISED_FOR_EXECUTION",
+  "layer_body_bytes": 94726961,
+  "layer_body_basis": "VERIFIED_OCI_DESCRIPTOR",
+  "per_layer_body_cap": "the declared compressed size of that digest",
+  "non_layer_body_cap_bytes": 1048576,
+  "non_layer_body_cap_basis": "The D.24-R2 config retrieval used a 1048576 byte body cap. That cap remains the ceiling for 401, token, and 307 bodies.",
+  "non_layer_response_count": 10,
+  "non_layer_read_ceiling_bytes": 10485760,
+  "total_body_read_ceiling_bytes": 105212721,
+  "disk_bytes_after_verified_retention": 94726961,
+  "decompressed_bytes": "NOT IN THIS BUDGET"
+}

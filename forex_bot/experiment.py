@@ -16,9 +16,9 @@ def normalize_ensemble_mode() -> EnsembleMode:
     """
     ``ENSEMBLE_MODE``:
 
-    - ``quant`` — LocalLLM quant stub only (ignore API keys; baseline).
-    - ``api`` — registered API voters only (no quant stub), if keys exist.
-    - ``hybrid`` — quant stub + API voters (default).
+    - ``quant`` — retired. The operational ensemble abstains; it does not run the old stub.
+    - ``api`` — registered API voters only, when keys exist. No heuristic fallback.
+    - ``hybrid`` — registered API voters only, when keys exist. The quant stub is not inserted.
     """
     raw = (os.getenv("ENSEMBLE_MODE") or "hybrid").strip().lower()
     if raw in ("quant", "quant_only", "stub", "baseline"):

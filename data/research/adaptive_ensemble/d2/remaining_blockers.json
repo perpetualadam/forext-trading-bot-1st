@@ -1,0 +1,44 @@
+{
+  "stage": "D.2",
+  "safety_state_writer": "FIXED_IN_SOURCE_AND_OFFLINE_TESTED",
+  "running_image_still_has_old_writer": true,
+  "live_safety_file_not_read": true,
+  "production_state_not_verified": true,
+  "blockers": [
+    {
+      "id": "D2-STARTUP",
+      "status": "UNRESOLVED",
+      "detail": "Strategy objects are constructed with active=True before initialise_fail_closed. strategy_meta.py was outside the authorised edit. Startup was not executed."
+    },
+    {
+      "id": "D2-IMAGE",
+      "status": "UNRESOLVED",
+      "detail": "The historical container image still contains the pre-change live_safety.py. This stage did not rebuild or restart."
+    },
+    {
+      "id": "D2-DURABILITY",
+      "status": "LIMITED",
+      "detail": "Temporary-file fsync plus os.replace is tested for injected failures. Directory fsync and power-loss behaviour are not claimed."
+    },
+    {
+      "id": "D1-DATABASE",
+      "status": "UNCHANGED",
+      "detail": "Live schema compatibility remains unverified. The database was not accessed."
+    },
+    {
+      "id": "D1-SHADOW",
+      "status": "UNCHANGED",
+      "detail": "Shadow-mount compatibility remains unverified. The shadow mount was not accessed."
+    },
+    {
+      "id": "D1-PACKAGING",
+      "status": "UNCHANGED",
+      "detail": "No lockfile, wheelhouse, candidate image, or verified rollback target."
+    },
+    {
+      "id": "D1-ISOLATION",
+      "status": "UNCHANGED",
+      "detail": "No verified isolation boundary and no suitable existing receiving principal."
+    }
+  ]
+}

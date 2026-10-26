@@ -1,0 +1,16 @@
+{
+  "http_status": 307,
+  "location_present": true,
+  "absolute": true,
+  "syntactically_valid": true,
+  "scheme": "https",
+  "hostname": "production.cloudfront.docker.com",
+  "explicit_port": null,
+  "effective_port": 443,
+  "query_present": true,
+  "fragment_present": false,
+  "userinfo_present": false,
+  "validation": "PASS",
+  "destination_contacted": true,
+  "authorization_forwarded": false
+}

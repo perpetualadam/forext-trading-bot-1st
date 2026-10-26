@@ -1,0 +1,12 @@
+{
+  "gate": "B",
+  "verdict": "PASS",
+  "meaning": "The offline task completed. Missing runtime metadata was not obtained.",
+  "checks": [
+    "Index digest and size match.",
+    "Schema version 2 and an allowed index media type.",
+    "Historical registry-reported digest matches the local recomputation.",
+    "The current tag was not resolved again."
+  ],
+  "network_requests": 0
+}

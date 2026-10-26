@@ -1,0 +1,244 @@
+{
+  "groups": {
+    "D.2": {
+      "file": "tests/test_live_safety_preservation.py",
+      "tests": 30,
+      "classification": [
+        "CURRENT_SOURCE_COMPATIBLE_PASS"
+      ],
+      "executed": true,
+      "result": "included in 143 passed"
+    },
+    "D.3": {
+      "file": "tests/test_strategy_activation_defaults.py",
+      "tests": 35,
+      "classification": [
+        "CURRENT_SOURCE_COMPATIBLE_PASS"
+      ],
+      "executed": true,
+      "result": "included in 143 passed"
+    },
+    "D.4": {
+      "file": "tests/test_startup_safety_preflight.py",
+      "tests": 50,
+      "classification": [
+        "CURRENT_SOURCE_COMPATIBLE_PASS"
+      ],
+      "executed": true,
+      "result": "included in 143 passed"
+    },
+    "D.5": {
+      "file": "tests/test_d5_lifespan_isolation.py",
+      "tests": 15,
+      "setup_errors": 15,
+      "pin": "app.py f38c304c4692c4a69e537610173e5691c03d49e24c48d6e258f56d1be75ae7b4",
+      "current": "3ff01244ed217e85d211bec819a7ebff9c96fb0412c56e5a768792ab54b31ca1",
+      "changed_by": [
+        "D.7",
+        "D.13",
+        "D.14"
+      ],
+      "body_executed": false,
+      "classification": [
+        "HISTORICAL_HASH_PIN_CONFLICT"
+      ],
+      "invariant": "fail-closed lifespan preflight before downstream work",
+      "replacement": "D.4 current-source tests and D.15 S02-S05 plus corrupt lifespan"
+    },
+    "D.6": {
+      "file": "tests/test_d6_partial_startup_cleanup.py",
+      "tests": 12,
+      "setup_errors": 12,
+      "pin": "app.py f38c304c4692c4a69e537610173e5691c03d49e24c48d6e258f56d1be75ae7b4",
+      "changed_by": [
+        "D.7"
+      ],
+      "body_executed": false,
+      "classification": [
+        "HISTORICAL_HASH_PIN_CONFLICT",
+        "HISTORICAL_DEFECT_ASSERTION_CONFLICT"
+      ],
+      "latent_obsolete_assertions": [
+        "database failure leaves the connection open",
+        "shutdown failure skips task cancellation",
+        "task-await failure skips later cancellation"
+      ],
+      "invariant": "startup failure cleans the connection and tasks",
+      "replacement": "D.7 current-source tests and D.15 E01-E12"
+    },
+    "D.7": {
+      "file": "tests/test_d7_resource_cleanup.py",
+      "tests": 18,
+      "classification": [
+        "CURRENT_SOURCE_COMPATIBLE_PASS"
+      ],
+      "executed": true,
+      "result": "included in 143 passed",
+      "pin": "asserts app.py is not the pre-D.7 hash"
+    },
+    "D.8": {
+      "file": "tests/test_d8_database_concurrency.py",
+      "tests": 7,
+      "setup_errors": 7,
+      "pin": "app.py 08766300 and database.py 74bb9f5d",
+      "changed_by": [
+        "D.9",
+        "D.13",
+        "D.14"
+      ],
+      "body_executed": false,
+      "classification": [
+        "HISTORICAL_HASH_PIN_CONFLICT",
+        "HISTORICAL_DEFECT_ASSERTION_CONFLICT"
+      ],
+      "latent_obsolete_assertions": [
+        "unlocked overlap abandons a connection"
+      ],
+      "invariant": "initialization publishes one connection and one cursor",
+      "replacement": "D.15 B01-B06 and D.7 initialization-failure tests"
+    },
+    "D.9": {
+      "file": "tests/test_d9_database_concurrency_remediation.py",
+      "tests": 6,
+      "setup_errors": 6,
+      "pin": "app.py 08766300; records pre-D.9 database 74bb9f5d",
+      "changed_by": [
+        "D.13",
+        "D.14"
+      ],
+      "body_executed": false,
+      "classification": [
+        "HISTORICAL_HASH_PIN_CONFLICT"
+      ],
+      "invariant": "serialized initialization, partial cleanup, healthy global retained",
+      "replacement": "D.15 B01-B13 and D.7 commit and cleanup tests"
+    },
+    "D.10": {
+      "files": [
+        "tests/test_d10_telegram_shutdown.py",
+        "tests/test_d10_database_borrower_quiescence.py"
+      ],
+      "tests": 14,
+      "setup_errors": 14,
+      "pin": "app.py 08766300 and telegram 270f2b48",
+      "changed_by": [
+        "D.11",
+        "D.13",
+        "D.14"
+      ],
+      "body_executed": false,
+      "classification": [
+        "HISTORICAL_HASH_PIN_CONFLICT",
+        "HISTORICAL_DEFECT_ASSERTION_CONFLICT"
+      ],
+      "latent_obsolete_assertions": [
+        "test_second_start_overlaps_surviving_worker expects stop_event cleared and at least two workers"
+      ],
+      "invariant": "a live stopped worker is not duplicated and its stop event stays set",
+      "replacement": "D.15 T05-T08 and R08-R12"
+    },
+    "D.11": {
+      "files": [
+        "tests/test_d11_telegram_shutdown_remediation.py",
+        "tests/test_d11_database_borrower_quiescence.py"
+      ],
+      "tests": 31,
+      "setup_errors": 31,
+      "pin": "app.py 08766300",
+      "changed_by": [
+        "D.13",
+        "D.14"
+      ],
+      "body_executed": false,
+      "classification": [
+        "HISTORICAL_HASH_PIN_CONFLICT"
+      ],
+      "invariant": "bounded stop, one worker, no late query, release waits",
+      "replacement": "D.15 T09-T25 and B07-B19"
+    },
+    "D.12": {
+      "files": [
+        "tests/test_d12_shutdown_contract.py",
+        "tests/test_d12_repeated_lifespan.py",
+        "tests/test_d12_database_ownership.py"
+      ],
+      "tests": 16,
+      "setup_errors": 16,
+      "pin": "app.py 08766300 and telegram 193a5964",
+      "changed_by": [
+        "D.13",
+        "D.14"
+      ],
+      "body_executed": false,
+      "classification": [
+        "HISTORICAL_HASH_PIN_CONFLICT",
+        "HISTORICAL_CONTRACT_ASSERTION_CONFLICT"
+      ],
+      "latent_obsolete_assertions": [
+        "incomplete stop is absent from application logs and cleanup errors"
+      ],
+      "invariant": "incomplete stop is reported and is not a new primary error",
+      "replacement": "D.15 L14-L19 and E13"
+    },
+    "D.13": {
+      "files": [
+        "tests/test_d13_telegram_lifecycle_reporting.py",
+        "tests/test_d13_application_lifespan_reporting.py"
+      ],
+      "tests": 8,
+      "setup_errors": 8,
+      "pin": "telegram_control.py 193a5964",
+      "changed_by": [
+        "D.14"
+      ],
+      "body_executed": false,
+      "classification": [
+        "HISTORICAL_HASH_PIN_CONFLICT",
+        "HISTORICAL_CONTRACT_ASSERTION_CONFLICT"
+      ],
+      "latent_obsolete_assertions": [
+        "test_s05_s06_start_refusal_is_not_observable expects D12-START-01 to be absent"
+      ],
+      "invariant": "startup refusal is logged and startup still yields",
+      "replacement": "D.15 R08-R10 and L06-L07"
+    },
+    "D.14": {
+      "files": [
+        "tests/test_d14_telegram_start_contract.py",
+        "tests/test_d14_application_start_reporting.py",
+        "tests/test_d14_lifecycle_regressions.py"
+      ],
+      "tests": 10,
+      "classification": [
+        "CURRENT_SOURCE_COMPATIBLE_PASS"
+      ],
+      "executed": true,
+      "result": "included in 143 passed",
+      "pin": "database, live_safety, and strategy_meta only"
+    },
+    "safety-repair": {
+      "file": "tests/test_live_safety_repair.py",
+      "tests": 23,
+      "classification": [
+        "CURRENT_SOURCE_COMPATIBLE_PASS"
+      ],
+      "executed": true,
+      "result": "23 passed in 4.95s, separate process"
+    }
+  },
+  "setup_error_counts": {
+    "tests/test_d5_lifespan_isolation.py": 15,
+    "tests/test_d6_partial_startup_cleanup.py": 12,
+    "tests/test_d8_database_concurrency.py": 7,
+    "tests/test_d9_database_concurrency_remediation.py": 6,
+    "tests/test_d10_telegram_shutdown.py": 8,
+    "tests/test_d10_database_borrower_quiescence.py": 6,
+    "tests/test_d11_telegram_shutdown_remediation.py": 14,
+    "tests/test_d11_database_borrower_quiescence.py": 17,
+    "tests/test_d12_shutdown_contract.py": 7,
+    "tests/test_d12_repeated_lifespan.py": 3,
+    "tests/test_d12_database_ownership.py": 6,
+    "tests/test_d13_telegram_lifecycle_reporting.py": 5,
+    "tests/test_d13_application_lifespan_reporting.py": 3
+  }
+}

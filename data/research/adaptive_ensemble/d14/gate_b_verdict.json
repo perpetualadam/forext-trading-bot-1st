@@ -1,0 +1,7 @@
+{
+  "gate": "B",
+  "verdict": "PASS",
+  "representation": "string constants beside the existing STOP_* constants",
+  "lock": "existing _poller_lock; result is chosen inside the same critical section that decides whether to create a worker",
+  "none_policy": "a stub returning None is an absent result and produces no refusal warning"
+}

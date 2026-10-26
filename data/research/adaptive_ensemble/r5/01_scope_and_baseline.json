@@ -1,0 +1,15 @@
+{
+  "stage": "R.5",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "r5_directory_before": "absent",
+  "gate_a_baseline": "PASS",
+  "expected_r4_hashes_matched": {
+    "forex_bot/database.py": "e3e4be7c70e55757d8692b36044a9f7ed1bfc00884236a892b926f76c715a683",
+    "forex_bot/bot_loop.py": "c16c289a61f03a98260aa4f6e4c4c616c07e7aaded73a69bf126dd6d41a98744"
+  },
+  "protected_hashes_matched": true,
+  "oanda_exec_before": "f4beb250d81852d8ee4f22af06ab33194c6b4ba1bf6f9b1a6b5d11d3b7b265c8",
+  "orders_before": "30bafb8bf6fde1ad061641e8db01b1a79932d6a1a74dcc3e6f59a591f42b1525",
+  "orders_was_clean_versus_head": true
+}

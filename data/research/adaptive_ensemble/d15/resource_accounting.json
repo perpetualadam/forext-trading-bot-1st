@@ -1,0 +1,14 @@
+{
+  "application_versus_harness": "Snapshots used by the assertions are taken before harness close. A retained connection in those snapshots is application retention.",
+  "normal_connection_open_before_harness": true,
+  "failed_startup_connection_open": false,
+  "incomplete_stop_worker_alive_in_application_snapshot": true,
+  "database_open_connections_after_harness_close": [],
+  "database_open_cursors_after_harness_close": [],
+  "use_after_close": [],
+  "network_after": [],
+  "escaped_workers": [],
+  "owned_pending_after_lifespan_child": 0,
+  "child_exit_codes": 0,
+  "exact_created_counts": "Not exported beyond the passing open, closed, and delta assertions."
+}

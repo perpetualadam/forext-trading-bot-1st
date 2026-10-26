@@ -1,0 +1,22 @@
+{
+  "classification": "R14_OFFLINE_DECISION_PATH_INTEGRATED",
+  "post_hash_bot_loop": "91953e58f9ab131399dd3ec84ebd5217161cfbc773022b42a58154597639528f",
+  "run_bot_executed": false,
+  "launcher_executed": false,
+  "production_lifespan_entered": false,
+  "production_adapter_invoked": false,
+  "real_broker_requests": 0,
+  "network_successes": 0,
+  "dns_successes": 0,
+  "postgresql_connections": 0,
+  "strategy_activation_changes": false,
+  "live_permission_changes": false,
+  "migration": false,
+  "git_commit": false,
+  "production_execution_continuity": "SOURCE-VERIFIED ONLY",
+  "postgresql_engine": "NOT_EVALUATED",
+  "oanda_broker": "NOT_EVALUATED",
+  "production_loop": "NOT_EVALUATED",
+  "broker_flat_release": "NOT_EVALUATED",
+  "profitability": "NOT_EVALUATED"
+}

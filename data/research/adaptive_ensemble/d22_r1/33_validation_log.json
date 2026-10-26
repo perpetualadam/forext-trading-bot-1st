@@ -1,0 +1,64 @@
+{
+  "request_count": 5,
+  "requests": [
+    {
+      "n": 1,
+      "method": "GET",
+      "host": "registry-1.docker.io",
+      "path": "/v2/library/python/manifests/3.12-slim-bookworm",
+      "purpose": "index",
+      "authorization_sent": false,
+      "status": 401,
+      "content_type": "application/json",
+      "byte_count": 157
+    },
+    {
+      "n": 2,
+      "method": "GET",
+      "host": "auth.docker.io",
+      "path": "/token?service=registry.docker.io&scope=repository%3Alibrary%2Fpython%3Apull",
+      "purpose": "token",
+      "authorization_sent": false,
+      "status": 200,
+      "content_type": "application/json",
+      "byte_count": 5489
+    },
+    {
+      "n": 3,
+      "method": "GET",
+      "host": "registry-1.docker.io",
+      "path": "/v2/library/python/manifests/3.12-slim-bookworm",
+      "purpose": "index-retry",
+      "authorization_sent": true,
+      "status": 200,
+      "content_type": "application/vnd.oci.image.index.v1+json",
+      "byte_count": 6546
+    },
+    {
+      "n": 4,
+      "method": "GET",
+      "host": "registry-1.docker.io",
+      "path": "/v2/library/python/manifests/sha256:2ed6491b93cd49272ee6de2b5a38440c3448360322c089fc23e370722d74179d",
+      "purpose": "amd64",
+      "authorization_sent": true,
+      "status": 200,
+      "content_type": "application/vnd.oci.image.manifest.v1+json",
+      "byte_count": 1752
+    },
+    {
+      "n": 5,
+      "method": "GET",
+      "host": "registry-1.docker.io",
+      "path": "/v2/library/python/manifests/sha256:739ba32ae445e8d58f3d90feb85f83bebc8346f8dd280fa1eb5848f4ff1ed163",
+      "purpose": "arm64",
+      "authorization_sent": true,
+      "status": 200,
+      "content_type": "application/vnd.oci.image.manifest.v1+json",
+      "byte_count": 1754
+    }
+  ],
+  "classification": "D22_R1_REGISTRY_IDENTITY_VERIFIED_BOTH_PLATFORMS",
+  "docker_commands": 0,
+  "package_manager_commands": 0,
+  "application_imports": 0
+}

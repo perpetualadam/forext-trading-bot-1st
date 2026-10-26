@@ -1,0 +1,12 @@
+{
+  "classification": "INTENTIONAL_PROCESS_GLOBAL_RETENTION",
+  "failed_startup": "FAILED_STARTUP_CLEANUP",
+  "delayed_poll": "no query, connect delta 0, no published connection",
+  "gate": "no query and no connect after stop",
+  "foreign_lock": "worker was waiting, then STOP_COMPLETED with no query",
+  "inflight": "release did not finish early, query still held, stop incomplete",
+  "init_lock": "connect delta 1, one connection id",
+  "final_open_connections": [],
+  "final_open_cursors": [],
+  "use_after_close": []
+}

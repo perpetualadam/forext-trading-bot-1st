@@ -1,0 +1,28 @@
+{
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "working_tree": "dirty before D.30",
+  "head_identifies_working_tree_bytes": false,
+  "targeted_status": [
+    "M Dockerfile",
+    "M forex_bot/app.py",
+    "M forex_bot/database.py",
+    "M forex_bot/live_safety.py",
+    "M forex_bot/strategy_meta.py",
+    "M forex_bot/telegram_control.py"
+  ],
+  "output_directory_before_artifacts": "absent",
+  "prompt_digest_syntax": [
+    {"file": "forex_bot/app.py", "prompt_length": 64, "syntax_valid": true, "local_match": true},
+    {"file": "forex_bot/telegram_control.py", "prompt_length": 64, "syntax_valid": true, "local_match": true},
+    {"file": "forex_bot/database.py", "prompt_length": 64, "syntax_valid": true, "local_match": true},
+    {"file": "forex_bot/live_safety.py", "prompt_length": 64, "syntax_valid": true, "local_match": true},
+    {"file": "forex_bot/strategy_meta.py", "prompt_length": 64, "syntax_valid": true, "local_match": true},
+    {"file": "requirements.txt", "prompt_length": 66, "syntax_valid": false, "local_match": "NOT_PERFORMED", "prompt_expected_digest": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c7f55d194b0a"},
+    {"file": "requirements-dev.txt", "prompt_length": 64, "syntax_valid": true, "local_match": true},
+    {"file": "Dockerfile", "prompt_length": 64, "syntax_valid": true, "local_match": true},
+    {"file": ".dockerignore", "prompt_length": 64, "syntax_valid": true, "local_match": true},
+    {"file": "docker-compose.yml", "prompt_length": 64, "syntax_valid": true, "local_match": true}
+  ],
+  "silent_correction": false
+}

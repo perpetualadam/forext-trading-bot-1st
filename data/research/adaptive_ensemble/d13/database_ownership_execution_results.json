@@ -1,0 +1,13 @@
+{
+  "evidence": "ACTUAL_COMBINED_LIFECYCLE_ISOLATED",
+  "normal_retention": "connection_open true and application_close_calls 0",
+  "failed_startup_release": "broker failure leaves connection_open false",
+  "incomplete_stop_retention": "blocked lifespan leaves connection_open true",
+  "delayed_poll_queries": [],
+  "delayed_poll_connect_delta": 0,
+  "gate_queries": [],
+  "gate_connect_delta": 0,
+  "open_connections_final": [],
+  "reporting_database_work": false,
+  "result": "PASS"
+}

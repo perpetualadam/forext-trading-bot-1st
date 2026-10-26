@@ -1,0 +1,28 @@
+{
+  "production_requirement_count_in_d25_file": 9,
+  "exact_pin_count_in_d25_file": 0,
+  "hash_pin_count_in_d25_file": 0,
+  "amd64_entries": 32,
+  "arm64_entries": 32,
+  "combined_status_counts": {
+    "VERIFIED_LOCAL_BYTES": 12,
+    "UNVERIFIED": 4,
+    "VERIFIED_CONFIG_DECLARATION": 6,
+    "MISSING": 34,
+    "DECLARED_IN_LOCAL_SOURCE": 4,
+    "BLOCKED": 4
+  },
+  "expected_status_counts": {
+    "VERIFIED_LOCAL_BYTES": 12,
+    "VERIFIED_CONFIG_DECLARATION": 6,
+    "DECLARED_IN_LOCAL_SOURCE": 4,
+    "UNVERIFIED": 4,
+    "MISSING": 34,
+    "BLOCKED": 4
+  },
+  "totals_match_expected": true,
+  "option_c_text_present": true,
+  "evidence_level_for_counts": "VERIFIED_LOCAL_BYTES",
+  "evidence_level_for_runtime_claims": "HISTORICAL_OBSERVATION",
+  "count_discrepancy": false
+}

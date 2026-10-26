@@ -1,0 +1,13 @@
+{
+  "libraries": {
+    "numpy": "2.2.2",
+    "pandas": "2.2.3",
+    "sklearn": "1.7.0",
+    "lightgbm": null,
+    "xgboost": "3.0.3",
+    "joblib": "1.5.1"
+  },
+  "proposed_install_not_executed": [
+    "python -m pip install lightgbm"
+  ]
+}

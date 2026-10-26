@@ -1,0 +1,20 @@
+{
+  "separate_questions": {
+    "metadata_transport_integrity": "future TLS verification, not yet performed",
+    "package_index_identity": "proposed host only, not authenticated",
+    "artifact_digest_identity": "future published hash, download still unapproved",
+    "publisher_authenticity": "MISSING",
+    "trusted_release_provenance": "MISSING",
+    "reproducible_version_selection": "MISSING",
+    "artifact_retention": "MISSING",
+    "rollback_availability": "MISSING"
+  },
+  "activities_requiring_separate_approval": [
+    "artifact downloads",
+    "signature verification",
+    "attestation verification",
+    "trusted publisher records",
+    "offline wheel storage",
+    "additional network hosts"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "commands": [
+    "git rev-parse HEAD",
+    "git branch --show-current",
+    "git status --short -- protected files",
+    "python -B local budget finalisation"
+  ],
+  "network_requests": 0
+}

@@ -1,0 +1,17 @@
+{
+  "commands": [
+    "git rev-parse HEAD",
+    "git branch --show-current",
+    "targeted git status",
+    "SHA-256 comparison",
+    "static Dockerfile and Compose text checks"
+  ],
+  "exit_codes_observed": [
+    0
+  ],
+  "docker_commands": 0,
+  "network_requests": 0,
+  "registry_requests": 0,
+  "package_manager_commands": 0,
+  "application_imports": 0
+}

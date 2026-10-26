@@ -1,0 +1,15 @@
+{
+  "stage": "G.14.8",
+  "staging_directory": "C:\\Users\\Brian\\AppData\\Local\\Temp\\forext-g14-1-staging-0yifygx2",
+  "verifier": "tests/g14_1_verify.py:verify_directory",
+  "expected_files": 63,
+  "actual_files": 63,
+  "expected_bytes": 617279,
+  "actual_bytes": 617279,
+  "manifest_sha256": "8597768f9b351ee5a8b8c3750cb4df12880a25414dfb4e6aab072e1fe2b3b33b",
+  "independent_verification": "PASS",
+  "regenerated": false,
+  "modified": false,
+  "sensitive_backup_filenames_present": false,
+  "classification": "STAGING_CONTEXT_INTEGRITY_PASS"
+}

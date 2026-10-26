@@ -1,0 +1,30 @@
+{
+  "protected": {
+    "forex_bot/app.py": {
+      "sha256": "3ff01244ed217e85d211bec819a7ebff9c96fb0412c56e5a768792ab54b31ca1",
+      "size": 24456,
+      "unchanged": true
+    },
+    "forex_bot/telegram_control.py": {
+      "sha256": "d32b560306fe2f86cc7c8ddbb40aa42842f071bd88ea513d77f172a6a0fadf4c",
+      "size": 46024,
+      "unchanged": true
+    },
+    "forex_bot/database.py": {
+      "sha256": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e",
+      "size": 27888,
+      "unchanged": true
+    },
+    "forex_bot/live_safety.py": {
+      "sha256": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+      "size": 22301,
+      "unchanged": true
+    },
+    "forex_bot/strategy_meta.py": {
+      "sha256": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+      "size": 6823,
+      "unchanged": true
+    }
+  },
+  "production_source_modified_by_d15": false
+}

@@ -1,0 +1,19 @@
+{
+  "base_image_pull_possible": true,
+  "base_image_tag_mutable": "python:3.12-slim-bookworm",
+  "base_image_digest_recorded": false,
+  "local_base_image_presence": "UNVERIFIED_NO_DOCKER_COMMANDS",
+  "dependency_downloads_possible": true,
+  "dependency_index": "PyPI by pip default",
+  "dependency_versions_pinned": false,
+  "requirements_file": "requirements.txt",
+  "build_scripts_in_dockerfile": ["pip install --upgrade pip", "pip install -r requirements.txt"],
+  "setup_hooks_of_downloaded_packages_can_execute": true,
+  "external_network_required_for_this_dockerfile": true,
+  "offline_build_feasible_without_dockerfile_change": false,
+  "offline_limitation": "The Dockerfile has no vendored wheels and no digest-pinned base image. --network=none would fail at pip install unless a cache and base image were already present, and Phase 1 could not verify either.",
+  "credentials_supplied_by_dockerfile": false,
+  "build_args": [],
+  "reproducibility": "A repeated build can resolve a different base-image digest and different package versions inside the declared ranges.",
+  "network_access_not_requested": "Context exposure blocks Phase 2. Network access is a separate unresolved limitation and is not approved by this stage."
+}

@@ -1,4 +1,4 @@
-"""Pluggable local / external LLM-style voters (deterministic quant stub by default)."""
+"""Pluggable external voters. The retired quant stub cannot approve a direction."""
 
 from __future__ import annotations
 
@@ -10,8 +10,15 @@ from typing import Any, Protocol
 logger = logging.getLogger(__name__)
 
 
-def _stub_disabled() -> bool:
-    return os.getenv("AI_DISABLE_STUB", "").strip().lower() in ("1", "true", "yes", "on")
+def _unavailable(reason: str, *, confidence: float = 0.0) -> dict[str, Any]:
+    """Abstain without attaching a BUY or SELL placeholder."""
+    return {
+        "allow": False,
+        "confidence": confidence,
+        "direction": None,
+        "status": "unavailable",
+        "reason": reason,
+    }
 
 
 def _optional_json_flag(env_name: str) -> bool | None:
@@ -31,154 +38,29 @@ def _env_float(name: str, default: float) -> float:
 
 
 def _quant_stub_vote(payload: dict[str, Any]) -> dict[str, Any]:
-    """
-    Deterministic filter from trend (MA cross) + momentum + ATR presence.
-    Expects ``ma_fast`` / ``ma_slow`` (or ``sma_*``) and ``returns`` / ``atr`` when possible.
-    """
-    from forex_bot.decision_skip_log import (
-        QUANT_ATR_NOT_OK,
-        QUANT_M5_MOVE_BELOW_THRESHOLD,
-        QUANT_MA_INVALID,
-        QUANT_MA_NAN,
-        QUANT_MA_NOT_CLEAR,
-        QUANT_SIGNAL_PASS,
-        log_quant_pre_sizing,
-        ma_relationship,
-    )
-
-    symbol = payload.get("symbol")
-    timeframe = payload.get("timeframe")
-    bar_time = payload.get("m5_bar_time")
-    if bar_time is None:
-        bar_time = payload.get("bar_time")
-
-    price = float(payload.get("price") or 0.0)
-    sma_fast = payload.get("sma_fast")
-    if sma_fast is None:
-        sma_fast = payload.get("ma_fast")
-    sma_slow = payload.get("sma_slow")
-    if sma_slow is None:
-        sma_slow = payload.get("ma_slow")
-    try:
-        sma_fast = float(sma_fast if sma_fast is not None else price)
-        sma_slow = float(sma_slow if sma_slow is not None else price)
-    except (TypeError, ValueError):
-        log_quant_pre_sizing(reason=QUANT_MA_INVALID, symbol=symbol, timeframe=timeframe, bar_time=bar_time)
-        return {"allow": False, "confidence": 0.0, "direction": None}
-
-    returns = float(payload.get("returns") or 0.0)
-    try:
-        atr = float(payload.get("atr") or 0.0)
-    except (TypeError, ValueError):
-        atr = 0.0
-
-    if math.isnan(sma_fast) or math.isnan(sma_slow):
-        log_quant_pre_sizing(
-            reason=QUANT_MA_NAN,
-            symbol=symbol,
-            timeframe=timeframe,
-            bar_time=bar_time,
-            sma_fast=sma_fast,
-            sma_slow=sma_slow,
-        )
-        return {"allow": False, "confidence": 0.0, "direction": None}
-
-    eps = max(0.0, _env_float("STUB_SMA_EPSILON", 1e-6))
-    mom_thr = max(0.0, _env_float("STUB_MOMENTUM_THRESHOLD", 0.0001))
-    conf_scale = max(1e-12, _env_float("STUB_CONFIDENCE_SCALE", 1000.0))
-    relationship = ma_relationship(sma_fast, sma_slow, eps)
-
-    if sma_fast > sma_slow + eps:
-        direction = "BUY"
-    elif sma_fast < sma_slow - eps:
-        direction = "SELL"
-    else:
-        log_quant_pre_sizing(
-            reason=QUANT_MA_NOT_CLEAR,
-            symbol=symbol,
-            timeframe=timeframe,
-            bar_time=bar_time,
-            sma_fast=sma_fast,
-            sma_slow=sma_slow,
-            eps=eps,
-            relationship=relationship,
-        )
-        return {"allow": False, "confidence": 0.0, "direction": None}
-
-    momentum_strength = abs(returns)
-    vol_ok = atr > 0 and not math.isnan(atr)
-    allow = momentum_strength > mom_thr and vol_ok
-
-    confidence = min(1.0, max(0.0, momentum_strength * conf_scale))
-
-    if not allow:
-        if not (momentum_strength > mom_thr):
-            reason = QUANT_M5_MOVE_BELOW_THRESHOLD
-            comparison = "abs(m5_pct_change)<=threshold"
-        else:
-            reason = QUANT_ATR_NOT_OK
-            comparison = "atr<=0_or_nan"
-        log_quant_pre_sizing(
-            reason=reason,
-            symbol=symbol,
-            timeframe=timeframe,
-            bar_time=bar_time,
-            sma_fast=sma_fast,
-            sma_slow=sma_slow,
-            eps=eps,
-            relationship=relationship,
-            direction=direction,
-            move=momentum_strength,
-            threshold=mom_thr,
-            comparison=comparison,
-        )
-        return {"allow": allow, "confidence": confidence, "direction": direction}
-
-    log_quant_pre_sizing(
-        reason=QUANT_SIGNAL_PASS,
-        symbol=symbol,
-        timeframe=timeframe,
-        bar_time=bar_time,
-        sma_fast=sma_fast,
-        sma_slow=sma_slow,
-        eps=eps,
-        relationship=relationship,
-        direction=direction,
-        move=momentum_strength,
-        threshold=mom_thr,
-        comparison="abs(m5_pct_change)>threshold and atr>0",
-    )
-    return {"allow": allow, "confidence": confidence, "direction": direction}
+    """Retired moving-average rule. It cannot supply BUY or SELL."""
+    _ = payload
+    return _unavailable("quant_stub_removed")
 
 
-def _aggregate_direction(votes: list[dict[str, Any]]) -> str:
+def _aggregate_direction(votes: list[dict[str, Any]]) -> str | None:
+    """Confidence-weighted side. A tie or an abstention has no direction."""
     buy_w = 0.0
     sell_w = 0.0
-    for v in votes:
-        d = str(v.get("direction") or "").upper()
-        w = float(v.get("confidence", 0.5))
-        if d == "BUY":
-            buy_w += w
-        elif d == "SELL":
-            sell_w += w
+    for vote in votes:
+        if not vote.get("allow"):
+            continue
+        side = str(vote.get("direction") or "").upper()
+        weight = float(vote.get("confidence", 0.0))
+        if side == "BUY":
+            buy_w += weight
+        elif side == "SELL":
+            sell_w += weight
     if buy_w > sell_w:
         return "BUY"
     if sell_w > buy_w:
         return "SELL"
-    # Tie-break: highest-confidence vote with a side (no randomness).
-    best_d = "BUY"
-    best_c = -1.0
-    for v in votes:
-        d = str(v.get("direction") or "").upper()
-        if d not in ("BUY", "SELL"):
-            continue
-        c = float(v.get("confidence", 0.0))
-        if c > best_c:
-            best_c = c
-            best_d = d
-    if best_c >= 0:
-        return best_d
-    return "BUY"
+    return None
 
 
 class LLMVoter(Protocol):
@@ -186,13 +68,18 @@ class LLMVoter(Protocol):
 
 
 class LocalLLM:
+    """Retired local heuristic. Registered ensembles do not include this voter."""
+
     async def predict(self, payload: dict[str, Any]) -> dict[str, Any]:
         return _quant_stub_vote(payload)
 
 
 class ExternalLLMAPI:
+    """Placeholder that does not call a network service and does not invent a side."""
+
     async def predict(self, payload: dict[str, Any]) -> dict[str, Any]:
-        return _quant_stub_vote(payload)
+        _ = payload
+        return _unavailable("external_voter_unavailable")
 
 
 class AIEnsemble:
@@ -200,33 +87,67 @@ class AIEnsemble:
         self,
         local_llms: list[LLMVoter] | None = None,
         external_llms: list[LLMVoter] | None = None,
+        mode: str | None = None,
     ) -> None:
         self.local_llms = local_llms or []
         self.external_llms = external_llms or []
+        self.mode = mode
 
     async def vote(self, payload: dict[str, Any], symbol: str) -> dict[str, Any]:
         _ = symbol
-        votes: list[dict[str, Any]] = []
-        for llm in self.local_llms:
+        if self.mode == "quant":
+            return _unavailable("unsupported_ensemble_mode")
+        votes: list[Any] = []
+        failures = 0
+        for voter in [*self.local_llms, *self.external_llms]:
             try:
-                votes.append(await llm.predict(payload))
+                votes.append(await voter.predict(payload))
             except Exception as exc:
-                logger.debug("local llm vote failed: %s", exc)
-        for api in self.external_llms:
-            try:
-                votes.append(await api.predict(payload))
-            except Exception as exc:
-                logger.debug("external llm vote failed: %s", exc)
+                failures += 1
+                logger.debug("voter failed: %s", exc)
         if not votes:
-            logger.warning(
-                "AI ensemble: no voter outputs; failing closed (allow=False). "
-                "Configure LLM keys or ensure LocalLLM stub is enabled."
+            return _unavailable("voter_exception" if failures else "no_voters")
+        cleaned: list[dict[str, Any]] = []
+        for item in votes:
+            if not isinstance(item, dict) or "allow" not in item:
+                raise TypeError("malformed vote")
+            side = str(item.get("direction") or "").strip().upper()
+            if side == "HOLD":
+                return _unavailable("hold")
+            raw_confidence = item.get("confidence", 0.0 if not item.get("allow") else None)
+            if raw_confidence is None:
+                raise TypeError("missing confidence")
+            confidence = float(raw_confidence)
+            if math.isnan(confidence) or math.isinf(confidence):
+                return _unavailable("nonfinite_confidence", confidence=confidence)
+            if item.get("allow") and side not in ("BUY", "SELL"):
+                return _unavailable("invalid_direction")
+            cleaned.append({**item, "confidence": confidence, "direction": side or None})
+        direction = _aggregate_direction(cleaned)
+        total_conf = sum(float(vote["confidence"]) for vote in cleaned)
+        allow_score = sum(
+            float(vote["confidence"]) if vote.get("allow") else 0.0 for vote in cleaned
+        ) / (total_conf + 1e-6)
+        if direction not in ("BUY", "SELL") or not (allow_score > 0.5):
+            reason = (
+                "conflicting_or_missing_direction"
+                if direction not in ("BUY", "SELL")
+                else "allow_threshold"
             )
-            return {"allow": False, "confidence": 0.0, "direction": "BUY"}
-        total_conf = sum(float(v["confidence"]) for v in votes)
-        allow_score = sum(float(v["confidence"]) if v.get("allow") else 0.0 for v in votes) / (total_conf + 1e-6)
-        direction = _aggregate_direction(votes)
-        return {"allow": allow_score > 0.5, "confidence": allow_score, "direction": direction}
+            return {
+                "allow": False,
+                "confidence": allow_score if math.isfinite(allow_score) else 0.0,
+                "direction": None,
+                "status": "abstain",
+                "reason": reason,
+            }
+        return {
+            "allow": True,
+            "confidence": allow_score,
+            "direction": direction,
+            "status": "approved",
+            "reason": "",
+        }
 
 
 def _env_model(var: str, default: str) -> str:
@@ -321,37 +242,15 @@ def _build_default_ensemble() -> AIEnsemble:
     from forex_bot.experiment import normalize_ensemble_mode
 
     mode = normalize_ensemble_mode()
-    local: list[LLMVoter] = []
     external: list[LLMVoter] = []
-
-    if mode == "quant":
-        local = [LocalLLM()]
-        if _stub_disabled():
-            logger.info("ENSEMBLE_MODE=quant: LocalLLM enabled (AI_DISABLE_STUB ignored for quant baseline).")
-    elif mode == "api":
+    if mode in ("api", "hybrid"):
         _fill_external_voters(external)
-        if not external:
-            logger.warning("ENSEMBLE_MODE=api but no API keys configured; falling back to quant LocalLLM.")
-            local = [LocalLLM()]
-    else:
-        if not _stub_disabled():
-            local = [LocalLLM()]
-        _fill_external_voters(external)
-        if not local and not external:
-            in_bt = os.getenv("FOREX_BACKTEST", "").strip().lower() in ("1", "true", "yes", "on")
-            logger.warning(
-                "Hybrid ensemble: no API keys and stub disabled — using quant LocalLLM only.%s",
-                " (FOREX_BACKTEST=1)" if in_bt else "",
-            )
-            local = [LocalLLM()]
-
     logger.info(
-        "AI ensemble: mode=%s local_voters=%s external_voters=%s",
+        "AI ensemble: mode=%s local_voters=0 external_voters=%s",
         mode,
-        len(local),
         len(external),
     )
-    return AIEnsemble(local_llms=local, external_llms=external)
+    return AIEnsemble(local_llms=[], external_llms=external, mode=mode)
 
 
 ai = _build_default_ensemble()

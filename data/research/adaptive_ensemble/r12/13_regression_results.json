@@ -1,0 +1,12 @@
+{
+  "r12": {"passed": 118, "failed": 0, "skipped": 5, "exit": 0},
+  "r4_r5_r7_r8_r9": {"passed": 120, "failed": 0, "skipped": 7, "deselected": 1, "exit": 0},
+  "r10": {"passed": 69, "failed": 0, "skipped": 5, "exit": 0},
+  "r11": {"passed": 51, "failed": 0, "skipped": 5, "exit": 0},
+  "hash_pins_updated_for_bot_loop": [
+    "tests/test_r8_reservation_safety.py",
+    "tests/test_r10_offline_startup.py",
+    "tests/test_r11_historical_recovery.py"
+  ],
+  "safety_assertions_weakened": false
+}

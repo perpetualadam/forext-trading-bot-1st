@@ -1,0 +1,216 @@
+{
+  "parallel": {
+    "deadlocks": 0,
+    "rounds": [
+      {
+        "symbol": "R28P0",
+        "pids": [
+          7696,
+          7908
+        ],
+        "begun": 1,
+        "exists": 1,
+        "stored": 1
+      },
+      {
+        "symbol": "R28P1",
+        "pids": [
+          13468,
+          5100
+        ],
+        "begun": 1,
+        "exists": 1,
+        "stored": 1
+      },
+      {
+        "symbol": "R28P2",
+        "pids": [
+          15144,
+          12640
+        ],
+        "begun": 1,
+        "exists": 1,
+        "stored": 1
+      },
+      {
+        "symbol": "R28P3",
+        "pids": [
+          19736,
+          8508
+        ],
+        "begun": 1,
+        "exists": 1,
+        "stored": 1
+      },
+      {
+        "symbol": "R28P4",
+        "pids": [
+          4252,
+          13652
+        ],
+        "begun": 1,
+        "exists": 1,
+        "stored": 1
+      },
+      {
+        "symbol": "R28P5",
+        "pids": [
+          5176,
+          8488
+        ],
+        "begun": 1,
+        "exists": 1,
+        "stored": 1
+      },
+      {
+        "symbol": "R28P6",
+        "pids": [
+          16700,
+          12212
+        ],
+        "begun": 1,
+        "exists": 1,
+        "stored": 1
+      },
+      {
+        "symbol": "R28P7",
+        "pids": [
+          13824,
+          18736
+        ],
+        "begun": 1,
+        "exists": 1,
+        "stored": 1
+      },
+      {
+        "symbol": "R28P8",
+        "pids": [
+          14176,
+          3648
+        ],
+        "begun": 1,
+        "exists": 1,
+        "stored": 1
+      },
+      {
+        "symbol": "R28P9",
+        "pids": [
+          6896,
+          15072
+        ],
+        "begun": 1,
+        "exists": 1,
+        "stored": 1
+      },
+      {
+        "symbol": "R28P10",
+        "pids": [
+          19576,
+          6140
+        ],
+        "begun": 1,
+        "exists": 1,
+        "stored": 1
+      },
+      {
+        "symbol": "R28P11",
+        "pids": [
+          10936,
+          20312
+        ],
+        "begun": 1,
+        "exists": 1,
+        "stored": 1
+      }
+    ]
+  },
+  "forced_failure": {
+    "holder_pid": 15660,
+    "holder_begun": false,
+    "holder_exists": false,
+    "follower": {
+      "pid": 19100,
+      "begun": true,
+      "exists": true,
+      "exit_code": 0
+    },
+    "rows": 1
+  },
+  "invalid_schema": {
+    "insert": {
+      "pid": 8092,
+      "begun": false,
+      "exists": false,
+      "exit_code": 0
+    },
+    "column_remained_absent": true,
+    "column_restored": true,
+    "rows": 0
+  },
+  "recovery": {
+    "pid": 13576,
+    "results": [
+      {
+        "symbol": "EUR_USD",
+        "blocked_by": "exposure_unconfirmed",
+        "broker_requests": 0,
+        "reservation_attempted": false,
+        "production_eligible": false,
+        "exposure": "exposure_unconfirmed"
+      },
+      {
+        "symbol": "GBP_USD",
+        "blocked_by": "exposure_unconfirmed",
+        "broker_requests": 0,
+        "reservation_attempted": false,
+        "production_eligible": false,
+        "exposure": "exposure_unconfirmed"
+      },
+      {
+        "symbol": "AUD_USD",
+        "blocked_by": "active_reservation",
+        "broker_requests": 0,
+        "reservation_attempted": false,
+        "production_eligible": false,
+        "exposure": "active_reservation"
+      },
+      {
+        "symbol": "USD_CAD",
+        "blocked_by": "exposure_unconfirmed",
+        "broker_requests": 0,
+        "reservation_attempted": false,
+        "production_eligible": false,
+        "exposure": "exposure_unconfirmed"
+      }
+    ],
+    "exit_code": 0
+  },
+  "risk": {
+    "pid": 7832,
+    "blocked_by": "broker_equity_missing",
+    "broker_requests": 0,
+    "reservation_attempted": false,
+    "production_eligible": false,
+    "phases": [
+      "seam",
+      "session",
+      "position",
+      "exposure",
+      "broker_exit",
+      "permission",
+      "strategy",
+      "indicators",
+      "vote",
+      "direction",
+      "provenance",
+      "market_data",
+      "account",
+      "sizing",
+      "risk",
+      "eligibility",
+      "account_reconciliation"
+    ],
+    "exit_code": 0
+  },
+  "risk_rows": 1
+}

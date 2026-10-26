@@ -1,0 +1,16 @@
+{
+  "pid": 6000,
+  "role": "empty",
+  "ok": true,
+  "rows": 0,
+  "readable": true,
+  "fail_closed": false,
+  "blocked_by": "ai_vote_rejected",
+  "inert_dispatches": 0,
+  "reservation_attempted": false,
+  "route_refusals": [],
+  "socket_blocks": [],
+  "dns_blocks": 0,
+  "dotenv_stubs": 1,
+  "real_broker_calls": 0
+}

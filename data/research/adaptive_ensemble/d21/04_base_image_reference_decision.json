@@ -1,0 +1,16 @@
+{
+  "policy_id": "D21-BASE-REFERENCE-01",
+  "approved_intended_reference": "docker.io/library/python:3.12-slim-bookworm",
+  "registry_hostname": "docker.io",
+  "repository": "library/python",
+  "tag": "3.12-slim-bookworm",
+  "digest": "UNVERIFIED",
+  "registry_response": "NOT_OBTAINED",
+  "index_digest": "UNVERIFIED",
+  "amd64_manifest_digest": "UNVERIFIED",
+  "arm64_manifest_digest": "UNVERIFIED",
+  "provenance": "UNVERIFIED",
+  "security_review": "NOT_PERFORMED",
+  "mutable_tag_content_approved": false,
+  "decision_source": "D.21 stage instruction, decision D21-BASE-01"
+}

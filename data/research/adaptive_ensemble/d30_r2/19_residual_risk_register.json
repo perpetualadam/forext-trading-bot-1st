@@ -1,0 +1,45 @@
+{
+  "risks": [
+    {
+      "item": "single worker termination",
+      "status": "PROVEN_BY_SYNTHETIC_TEST"
+    },
+    {
+      "item": "worker outliving deadline without termination",
+      "status": "PROVEN_BY_SYNTHETIC_TEST",
+      "note": "the tested sleep fixtures were terminated and reaped"
+    },
+    {
+      "item": "descendant containment",
+      "status": "NOT_EVALUATED"
+    },
+    {
+      "item": "windows process tree",
+      "status": "UNVERIFIED"
+    },
+    {
+      "item": "pipe deadlock",
+      "status": "PROVEN_BY_SYNTHETIC_TEST"
+    },
+    {
+      "item": "supervisor-owned counters",
+      "status": "PROVEN_BY_SYNTHETIC_TEST"
+    },
+    {
+      "item": "future token leakage",
+      "status": "DESIGN_ONLY"
+    },
+    {
+      "item": "redirect host escape",
+      "status": "PROVEN_BY_SYNTHETIC_TEST"
+    },
+    {
+      "item": "real DNS TLS HTTP",
+      "status": "UNVERIFIED"
+    },
+    {
+      "item": "network approval",
+      "status": "BLOCKED"
+    }
+  ]
+}

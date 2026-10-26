@@ -1,0 +1,54 @@
+{
+  "stage": "G.14.12",
+  "classification": "NO_SUITABLE_EXISTING_PRINCIPAL_IDENTIFIED",
+  "user_database_enumerated": false,
+  "reason_enumeration_skipped": "A full local-user dump is prohibited. Failure to list other accounts is not proof they do not exist. None was identified as suitable.",
+  "current_token": {
+    "account": "nucbox_m5plus\\brian",
+    "sid": "S-1-5-21-1451533663-3497457457-3930589332-1001",
+    "integrity": "Mandatory Label\\Medium Mandatory Level S-1-16-8192",
+    "administrators": "S-1-5-32-544 present as Group used for deny only",
+    "elevation": "not_elevated",
+    "elevation_ability": "UNKNOWN",
+    "suitable_as_receiver": false,
+    "reason": "This SID is the interactive user. G.14.8 showed a same-user process can replace a directory that user can write. The receiver must not be this SID."
+  },
+  "rejected_without_repurposing": [
+    {
+      "principal": "BUILTIN\\Administrators",
+      "sid": "S-1-5-32-544",
+      "suitable": false,
+      "reason": "An administrator can rewrite DACLs and take ownership. The contract does not use this group as the receiver."
+    },
+    {
+      "principal": "NT AUTHORITY\\SYSTEM",
+      "sid": "S-1-5-18",
+      "suitable": false,
+      "reason": "LocalSystem is not an appropriate artifact receiver. A service identity was not treated as isolation. This account was not queried and is not proposed."
+    },
+    {
+      "principal": "NT AUTHORITY\\LOCAL SERVICE",
+      "sid": "S-1-5-19",
+      "suitable": false,
+      "reason": "Not appropriate. Not queried. Not repurposed."
+    },
+    {
+      "principal": "NT AUTHORITY\\NETWORK SERVICE",
+      "sid": "S-1-5-20",
+      "suitable": false,
+      "reason": "Not appropriate. Not queried. Not repurposed."
+    }
+  ],
+  "candidate_existing_principals": [],
+  "candidate_existing_locations": [],
+  "rejected_locations": [
+    "interactive user temporary directory",
+    "OneDrive project directory",
+    "repository root",
+    "G.14.1 staging directory",
+    "system directories as an artifact destination",
+    "production, operational, and shadow mounts"
+  ],
+  "required_future_inspection": "FUTURE_APPROVAL_REQUIRED before any new account or any ACL read of a path a later prompt names. This stage found no existing principal that meets R1.",
+  "claim_not_made": "This result does not prove the machine has no other local accounts. It proves none was identified under the read-only limits, and the well-known high-privilege identities are not acceptable receivers."
+}

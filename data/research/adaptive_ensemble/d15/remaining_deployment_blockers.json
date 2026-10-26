@@ -1,0 +1,26 @@
+{
+  "deployment_ready": false,
+  "blockers": [
+    "Production startup remains unverified.",
+    "Production container identity remains unverified.",
+    "The running image lacks the working-tree safety fixes.",
+    "Live database schema compatibility remains unverified.",
+    "Requirements remain unpinned.",
+    "No verified dependency lock.",
+    "No verified offline wheelhouse.",
+    "Base-image registry digest remains unverified.",
+    "Runtime target profile remains incomplete.",
+    "Trusted receiving boundary remains unimplemented.",
+    "No verified candidate image.",
+    "No verified rollback target.",
+    "Production operational state remains unverified.",
+    "Production shadow state remains unverified.",
+    "The full integration suite remains unexecuted.",
+    "Historical source-hash conflicts remain.",
+    "Historical tests may encode obsolete defects.",
+    "Research backtests may assume active-by-default strategy behaviour.",
+    "Trading research readiness remains separate from lifecycle correctness.",
+    "No proven permission to activate strategies.",
+    "No authorisation to enable live orders."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "stage": "R.2",
+  "approval": "YES — offline decision-path confirmation, isolated safety tests, and local session inventory",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "working_tree": "already dirty; not cleaned",
+  "output_dir": "data/research/adaptive_ensemble/r2",
+  "output_collision": false,
+  "production_deployment": "NO-GO",
+  "live_trading": "NOT AUTHORISED",
+  "practice_orders": "NOT AUTHORISED",
+  "rollback": "NO-GO",
+  "docker_research": "not continued"
+}

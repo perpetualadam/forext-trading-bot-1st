@@ -1,0 +1,28 @@
+{
+  "combined_layer_reference_bytes": 94726961,
+  "unique_compressed_blob_bytes": 94726961,
+  "maximum_single_in_progress_partial_blob": 28249323,
+  "maximum_retained_verified_bytes": 94726961,
+  "maximum_simultaneous_temporary_bytes_if_one_partial_is_renamed_into_place": 94726961,
+  "second_copy_peak": {
+    "value": null,
+    "status": "PROPOSED_NOT_AUTHORISED",
+    "reason": "A copy-then-delete promotion would add another largest-blob allocation. That implementation is not specified as required."
+  },
+  "filesystem_overhead": {
+    "value": null,
+    "status": "MISSING"
+  },
+  "available_disk_capacity": {
+    "value": null,
+    "status": "MISSING",
+    "reason": "Disk capacity was not measured and must not be invented."
+  },
+  "minimum_free_space_requirement": {
+    "value": null,
+    "status": "MISSING",
+    "reason": "The logical payload is the unique byte total, but cluster size, metadata, and free space were not measured."
+  },
+  "cleanup_policy": "PLANNED_NOT_EXECUTED",
+  "evidence": "VERIFIED_OCI_DESCRIPTOR for logical byte totals"
+}

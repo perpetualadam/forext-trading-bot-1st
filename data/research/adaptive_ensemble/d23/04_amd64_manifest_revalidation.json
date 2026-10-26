@@ -1,0 +1,21 @@
+{
+  "source": "data/research/adaptive_ensemble/d22_r1/15_amd64_raw_manifest.json",
+  "expected_digest": "sha256:2ed6491b93cd49272ee6de2b5a38440c3448360322c089fc23e370722d74179d",
+  "actual_digest": "sha256:2ed6491b93cd49272ee6de2b5a38440c3448360322c089fc23e370722d74179d",
+  "expected_size": 1752,
+  "actual_size": 1752,
+  "parent_descriptor_digest": "sha256:2ed6491b93cd49272ee6de2b5a38440c3448360322c089fc23e370722d74179d",
+  "parent_descriptor_size": 1752,
+  "parent_platform": {
+    "os": "linux",
+    "architecture": "amd64",
+    "variant": null
+  },
+  "media_type": "application/vnd.oci.image.manifest.v1+json",
+  "schema_version": 2,
+  "config_present": true,
+  "layer_count": 4,
+  "config_blob_fetched": false,
+  "layers_fetched": false,
+  "verification_verdict": "LOCAL_AMD64_MANIFEST_REVALIDATED"
+}

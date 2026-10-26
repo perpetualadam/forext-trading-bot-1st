@@ -1,0 +1,13 @@
+{
+  "pid": 18404,
+  "role": "create_state",
+  "ok": true,
+  "begun": true,
+  "client_order_id": "cid-r24-partial",
+  "inert_dispatches": 0,
+  "route_refusals": [],
+  "socket_blocks": [],
+  "dns_blocks": 0,
+  "dotenv_stubs": 1,
+  "real_broker_calls": 0
+}

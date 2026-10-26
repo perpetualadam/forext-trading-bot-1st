@@ -1,0 +1,11 @@
+{
+  "hostname": "production.cloudfront.docker.com",
+  "flags": [
+    "REDIRECT_DESTINATION_NOT_AUTHORISED"
+  ],
+  "host_in_approved_allowlist": false,
+  "redirect_followed": false,
+  "destination_contacted": false,
+  "dns_lookup_performed_for_destination": false,
+  "config_verification": false
+}

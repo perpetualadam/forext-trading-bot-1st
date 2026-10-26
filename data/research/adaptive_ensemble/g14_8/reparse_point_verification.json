@@ -1,0 +1,29 @@
+{
+  "real_junction_before_open": {
+    "executed": true,
+    "api": "cmd mklink /J inside a pytest temporary directory",
+    "result": "symlink_or_reparse",
+    "failed_closed": true,
+    "files_escaped": false
+  },
+  "real_junction_after_open": {
+    "executed": true,
+    "result": "write remained on the opened directory; the junction target stayed empty",
+    "failed_closed": true,
+    "files_escaped": false
+  },
+  "real_directory_symlink": {
+    "executed": false,
+    "error": "NOT_EXECUTED_WITH_REASON: symlink_unavailable:22",
+    "counted_as_passed": false,
+    "developer_mode_changed": false,
+    "administrator_requested": false
+  },
+  "injected_lstat_symlink": {
+    "executed_in": "tests/test_g14_7_integration.py",
+    "proves_kernel_symlink_behavior": false,
+    "result": "workflow rejected the injected stat result"
+  },
+  "other_reparse_tags": "UNVERIFIED. The helper rejects the reparse attribute and does not read a reparse tag.",
+  "classification": "JUNCTION_REJECTION_TESTED_SYMLINK_KERNEL_BEHAVIOR_UNVERIFIED"
+}

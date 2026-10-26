@@ -1,0 +1,30 @@
+{
+  "stage": "G.14.7",
+  "reviewed": "data/research/adaptive_ensemble/g14_6/",
+  "g14_6_classification": "G14_6_OFFLINE_REMEDIATION_COMPLETE_GATE_B_APPROVAL_REQUIRED",
+  "g14_6_findings_rewritten": false,
+  "g14_6_evidence_overwritten": false,
+  "preserved_results": {
+    "findings_g14_5_01_through_07": "remediated in offline tooling",
+    "synthetic_negative_cases": 100,
+    "scoped_tests_passed": 140,
+    "ruff": "passed",
+    "mypy": "passed",
+    "real_network": false,
+    "real_wheelhouse": false,
+    "real_dependency_lock": false,
+    "docker": false,
+    "production_changes": false
+  },
+  "remaining_from_g14_6": [
+    "LIVE_HTTPS_TRANSPORT_NOT_IMPLEMENTED",
+    "ACQUISITION_WORKFLOW_NOT_END_TO_END",
+    "ACQUISITION_FILESYSTEM_BOUNDARY_UNVERIFIED",
+    "TARGET_RUNTIME_COMPATIBILITY_PROFILE_INCOMPLETE",
+    "BASE_IMAGE_DIGEST_UNVERIFIED",
+    "PACKAGE_SOURCE_APPROVAL_REQUIRED",
+    "NO_VERIFIED_ROLLBACK_TARGET"
+  ],
+  "g14_7_scope": "Address the missing synthetic transport, the missing end-to-end workflow, and the filesystem boundary. Do not acquire real wheels, do not create a real lock, do not complete the target profile, and do not approve a package source.",
+  "treated_as_download_permission": false
+}

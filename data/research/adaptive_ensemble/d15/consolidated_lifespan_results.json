@@ -1,0 +1,10 @@
+{
+  "evidence": "ACTUAL_LIFESPAN_ISOLATED",
+  "result": "PASS",
+  "schedules": {
+    "L01-L13": "normal and disabled startup yield, no refusal warning, database retained, tasks drained",
+    "L14-L20": "blocked poll records D12-STOP-01, worker stays alive, database stays open, owned tasks done",
+    "L08-L10": "START_FAILED and an unrecognised status stay non-fatal",
+    "L21-L30": "successful shutdown retains the connection; broker failure releases it; network_after empty"
+  }
+}

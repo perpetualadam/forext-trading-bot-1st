@@ -1,0 +1,22 @@
+{
+  "directory": "data/research/adaptive_ensemble/r52",
+  "files": {
+    "00_preflight.py": "24d917dab79b97366984fd951bfec4fbb2cd2710ea1d4bb8d90cdcf8b2c68047",
+    "01_preflight.json": "e061fede0ed858d76bf10d8b2a58f802ced7ef719ac535f9c36dc028a530affd",
+    "02_r51_hash.md": "f7e415a7c7f55694c9cf523a621cef2576ea771fc642c2d5a9bbb335cd2fc4c6",
+    "03_architecture.md": "ddd8f790f722456b9b52df81a85cc2f4c9066924d7d05455ca1ddf9f7716bfc7",
+    "04_https_factory.md": "831058b0bad488a38869cee2a6ae8bdb9a0b27d04d1a5ee04d57e3e14980fd2c",
+    "05_credentials.md": "8260f4507e5030de64b9ef9dabeb83389f0096babd3f89fb0d53be09b0a23442",
+    "06_synthetic_output.json": "c68f757685137a3f3400ef3a221f36e9b8e28afac18cce34f1377992bda6b518",
+    "07_security_tests.md": "27c6e57cecddfa9697e587547448fa4de489553f69bab55ee486857262f290bc",
+    "08_gbp_caveat.md": "90321306ff4332fcfa0e1d1384f436df09351e8c4d95d4b2fe6ae9a7c669006a",
+    "09_manual_procedure.md": "554a32505b13fdfc51c8fe2a1107277b7de05e249aac7414b93ee1b002a09e40",
+    "10_live_blockers.md": "bffff91e3faa52c511bddb0756883d912d77a4dcfcf373d04f4c2efb0949ba39",
+    "11_test_results.md": "16bd85003173e6841669418d7c937f05788ffd1f063fdebc3bb595e8d8d996b3",
+    "12_next_boundary.md": "305b77463bfcc4ebe7d557e724dd5725fea0f23a25fe3c2bd4ca9846f008398b",
+    "session_entry.py": "59cb2fab00a0a1ea67c26261571498f623e8610a8e4e55ae64ac27a3a750ac56",
+    "stage_r52_report.md": "d1f29a49cc5e15a4144ba34d85ad35f684f0276b73688d66590b92647dce4d13",
+    "test_session.py": "18f3bfbdfbe759b64d13e201294d07faace086df5a94a72a4e2244fc1dfe2962",
+    "validation_log.json": "b55de6460d2c4c5998f241e443c9efc861f339ea832ee3025778e38767ac16fa"
+  }
+}

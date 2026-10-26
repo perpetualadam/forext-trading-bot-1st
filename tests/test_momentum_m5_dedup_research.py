@@ -79,14 +79,12 @@ def _frame() -> pd.DataFrame:
 
 def test_momentum_threshold_unchanged():
     assert MOM_THR == STUB_MOM_THR == 0.0001
-    vote = _quant_stub_vote(
-        {"price": 1.0, "ma_fast": 1.01, "ma_slow": 1.0, "returns": 0.0001, "atr": 0.001}
-    )
-    assert vote["allow"] is False
-    vote = _quant_stub_vote(
-        {"price": 1.0, "ma_fast": 1.01, "ma_slow": 1.0, "returns": 0.00011, "atr": 0.001}
-    )
-    assert vote["allow"] is True and vote["direction"] == "BUY"
+    for returns in (0.0001, 0.00011):
+        vote = _quant_stub_vote(
+            {"price": 1.0, "ma_fast": 1.01, "ma_slow": 1.0, "returns": returns, "atr": 0.001}
+        )
+        assert vote["allow"] is False and vote["direction"] is None
+        assert vote["reason"] == "quant_stub_removed"
 
 
 def test_a0_is_absolute_magnitude_gate():
@@ -108,14 +106,24 @@ def test_a1_requires_sign_agreement_and_does_not_reverse():
     vote = _quant_stub_vote(
         {"price": 1.0, "ma_fast": 1.01, "ma_slow": 1.0, "returns": -0.002, "atr": 0.001}
     )
-    assert vote["direction"] == "BUY"
-    assert vote["allow"] is True  # production A0 still allows opposite sign
+    assert vote["direction"] is None and vote["allow"] is False
 
 
-def test_a0_matches_production_stub_on_sample_rows():
+def test_operational_stub_abstains_and_no_longer_matches_historical_a0():
     frame = _frame()
+    assert bool(frame["stub_allow"].any())
     for _, row in frame.iloc[1:].iterrows():
-        assert vote_matches_a0(row)
+        vote = _quant_stub_vote(
+            {
+                "price": float(row["close"]),
+                "ma_fast": float(row["ma_fast"]),
+                "ma_slow": float(row["ma_slow"]),
+                "returns": float(row["ret_1"]),
+                "atr": float(row["atr"]),
+            }
+        )
+        assert vote["allow"] is False and vote["direction"] is None
+        assert vote_matches_a0(row) is False
 
 
 def test_b1_first_ok_second_blocked_next_candle_eligible():

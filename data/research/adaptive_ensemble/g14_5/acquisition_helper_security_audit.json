@@ -1,0 +1,24 @@
+{
+  "stage": "G.14.5",
+  "file": "tests/g14_4_acquire.py",
+  "lines_reviewed": "1-31",
+  "entrypoint": "assert_destination_allowed",
+  "network_at_import": "ABSENT",
+  "subprocess": "ABSENT",
+  "pip_invocation": "ABSENT",
+  "controls": {
+    "destination_not_in_repository": "IMPLEMENTED",
+    "destination_not_in_onedrive": "IMPLEMENTED",
+    "destination_not_in_staging_context": "IMPLEMENTED",
+    "nonempty_destination": "IMPLEMENTED",
+    "pip_environment_isolation": "MISSING",
+    "redirect_policy": "MISSING",
+    "artifact_host_allowlist": "MISSING",
+    "wheels_only_download": "MISSING",
+    "source_distribution_rejection_at_download": "MISSING",
+    "symlink_rejection_before_resolve": "MISSING",
+    "partial_download_handling": "MISSING"
+  },
+  "resolve_follows_symlinks": true,
+  "classification": "ACQUISITION_HELPER_DOES_NOT_ENFORCE_NETWORK_POLICY"
+}

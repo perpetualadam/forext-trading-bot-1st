@@ -1,0 +1,26 @@
+{
+  "classification": "D30_BLOCKED_PROMPT_INTEGRITY",
+  "gate_a": "BLOCKED",
+  "malformed_requirements_digest_length": 66,
+  "historical_network_requests": 0,
+  "http_client_implemented_in_d30": false,
+  "d30_filenames": [
+    "01_approval_scope.json",
+    "02_baseline_integrity.json",
+    "15_failure_register.json",
+    "16_gate_a_verdict.json",
+    "17_gate_b_verdict.json",
+    "18_gate_c_verdict.json",
+    "19_gate_d_verdict.json",
+    "20_gate_e_verdict.json",
+    "21_gate_f_verdict.json",
+    "22_gate_g_verdict.json",
+    "23_gate_h_verdict.json",
+    "24_gate_i_verdict.json",
+    "25_gate_j_verdict.json",
+    "26_source_integrity_after.json",
+    "27_validation_log.json",
+    "28_stage_d30_report.md"
+  ],
+  "artifacts_modified": false
+}

@@ -1,0 +1,22 @@
+{
+  "label": "PROPOSED_SCHEMA_ONLY",
+  "not_a_resolved_lock": true,
+  "not_installable": true,
+  "resolved_versions": "MISSING",
+  "required_fields": [
+    "direct_versions",
+    "transitive_versions",
+    "markers",
+    "python",
+    "os",
+    "architecture",
+    "artifact_filename",
+    "sha256",
+    "origin",
+    "resolver_name",
+    "resolver_version",
+    "input_manifest_sha256",
+    "generated_at",
+    "lock_sha256"
+  ]
+}

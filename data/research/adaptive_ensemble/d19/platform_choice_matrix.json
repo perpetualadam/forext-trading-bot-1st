@@ -1,0 +1,41 @@
+{
+  "ranked_as_production_ready": false,
+  "choices": [
+    {
+      "platform": "linux/amd64",
+      "meaning": "A future image and wheel set would target 64-bit x86 Linux.",
+      "declared_by_current_configuration": false,
+      "historical_mention": true,
+      "historical_source": "G.14.2 Docker Desktop and local base-image notes. Not a current selection.",
+      "future_hardware_support": "UNVERIFIED",
+      "wheels_verified": false,
+      "base_image_manifest_verified": false,
+      "user_approved": false,
+      "evidence_still_required": "An explicit user statement selecting linux/amd64, then independent image and wheel checks."
+    },
+    {
+      "platform": "linux/arm64",
+      "meaning": "A future image and wheel set would target 64-bit ARM Linux.",
+      "declared_by_current_configuration": false,
+      "historical_mention": false,
+      "future_hardware_support": "UNVERIFIED",
+      "wheels_verified": false,
+      "base_image_manifest_verified": false,
+      "user_approved": false,
+      "evidence_still_required": "An explicit user statement selecting linux/arm64, then independent image and wheel checks."
+    },
+    {
+      "platform": "UNSELECTED",
+      "meaning": "No intended deployment hardware has been established.",
+      "declared_by_current_configuration": true,
+      "declaration": "TARGET_PLATFORM_UNSPECIFIED",
+      "historical_mention": true,
+      "future_hardware_support": "UNVERIFIED",
+      "wheels_verified": false,
+      "base_image_manifest_verified": false,
+      "user_approved": false,
+      "current_status": "This is the recorded state. It is not an approval of a platform.",
+      "evidence_still_required": "An explicit user selection before any registry query."
+    }
+  ]
+}

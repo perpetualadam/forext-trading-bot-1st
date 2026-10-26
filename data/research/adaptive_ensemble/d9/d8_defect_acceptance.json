@@ -1,0 +1,19 @@
+{
+  "defect_id": "D8-CONC-01",
+  "status": "FIXED",
+  "conditions": {
+    "one_successful_connection": true,
+    "recheck_under_lock": true,
+    "one_published_from_empty_globals": true,
+    "one_matching_cursor": true,
+    "both_callers_receive_same_object": true,
+    "no_abandoned_open_connection": true,
+    "failure_cleanup_preserved": true,
+    "release_preserves_newer_generation": true,
+    "no_deadlock": true,
+    "helper_contract_unchanged": true,
+    "no_prohibited_operation": true,
+    "actual_source_exercised": true
+  },
+  "evidence": "serialized_overlap connect_calls 1, returned_ids [1, 1], abandoned_open 0, second_blocked_while_first_connected true"
+}

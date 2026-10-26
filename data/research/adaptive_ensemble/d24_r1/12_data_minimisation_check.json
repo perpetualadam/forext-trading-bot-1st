@@ -1,0 +1,10 @@
+{
+  "full_location_stored": false,
+  "query_string_stored": false,
+  "signed_parameters_stored": false,
+  "bearer_token_stored": false,
+  "authorization_header_stored": false,
+  "cookies_stored": false,
+  "problems": [],
+  "verdict": "PASS"
+}

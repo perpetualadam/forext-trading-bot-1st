@@ -1,0 +1,12 @@
+{
+  "classification": "BORROWER_QUIESCENCE_VERIFIED",
+  "guarantee_a": "A stop request is visible before a new trade read. The check and fetch_all_trades_ordered share _pg_lock, so a stop that wins the lock prevents the query.",
+  "guarantee_b": "A query that already passed the check holds _pg_lock until it finishes. release_connection_after_failed_startup waits for that lock.",
+  "timed_out_worker": "It remains tracked and cannot begin a trade read. A composed release after a blocked lifespan produced no query and no new connection.",
+  "application_compatibility": "app.py ignores the status and does not raise on timeout. On the reachable success path it retains the process connection. On the reachable failure path Telegram has not started.",
+  "limitations": [
+    "Startup failure after Telegram start is not reachable in current app.py.",
+    "A future edit that released the database during an incomplete stop would depend on this Telegram gate. app.py itself still does not read the status."
+  ],
+  "scope_expansion_required": false
+}

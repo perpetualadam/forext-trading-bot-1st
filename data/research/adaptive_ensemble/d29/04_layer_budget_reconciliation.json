@@ -1,0 +1,96 @@
+{
+  "d28_prior_hashes": {
+    "data/research/adaptive_ensemble/d28/14_amd64_layer_descriptor_inventory.json": "d0b34a001f70d2134f0e56e608a4894b3d0fb48fb49714dc2e30118de33a8a1d",
+    "data/research/adaptive_ensemble/d28/15_arm64_layer_descriptor_inventory.json": "b0f204a24d126a18be3eee4448bab82e6e22740e8a9a1a068a30056437aa5f0d",
+    "data/research/adaptive_ensemble/d28/16_future_network_boundary_plan.json": "861e71d6ea7b94e521393e9830ed0618209d050379d0fbc9a3341c7ac3249ab3",
+    "data/research/adaptive_ensemble/d24_r2/05_network_boundary.json": "97bbcbbb3956a31d681d9abd61d2acf474a2a5d668cb2c53d9d745636595bca3",
+    "data/research/adaptive_ensemble/d24_r2/06_request_budget.json": "a05e2ce7ca74375334be9d2bd5c7177bf4d6bc3b51ef3acc0a7e011e3bb7d4ee"
+  },
+  "amd64_declared_bytes": 47558478,
+  "arm64_declared_bytes": 47168483,
+  "combined_declared_bytes": 94726961,
+  "largest_declared_bytes": 28249323,
+  "layers": [
+    {
+      "architecture": "linux/amd64",
+      "order": 1,
+      "media_type": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "compressed_digest": "sha256:7fd1ebe418b5079d4aa36f416af9b143d127bc75b0155d71cb5fd559b5e04d39",
+      "declared_compressed_bytes": 28249323,
+      "response_body_cap_bytes": 28249323,
+      "bytes_local": false,
+      "evidence": "VERIFIED_OCI_DESCRIPTOR"
+    },
+    {
+      "architecture": "linux/amd64",
+      "order": 2,
+      "media_type": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "compressed_digest": "sha256:6e0ba8ba048777f5354b5a7cb497ae5261116fac8246160c06fc045c8300c582",
+      "declared_compressed_bytes": 3342298,
+      "response_body_cap_bytes": 3342298,
+      "bytes_local": false,
+      "evidence": "VERIFIED_OCI_DESCRIPTOR"
+    },
+    {
+      "architecture": "linux/amd64",
+      "order": 3,
+      "media_type": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "compressed_digest": "sha256:86a9e13e035d8e44ae37bfebc52c7fc68898fde19b4b26dd0585f2231fcfaf2c",
+      "declared_compressed_bytes": 15966608,
+      "response_body_cap_bytes": 15966608,
+      "bytes_local": false,
+      "evidence": "VERIFIED_OCI_DESCRIPTOR"
+    },
+    {
+      "architecture": "linux/amd64",
+      "order": 4,
+      "media_type": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "compressed_digest": "sha256:f9d2fb07d6f062d06ddc7aa58191cc5359c728f54af6cebe69a37d2c89e72a0d",
+      "declared_compressed_bytes": 249,
+      "response_body_cap_bytes": 249,
+      "bytes_local": false,
+      "evidence": "VERIFIED_OCI_DESCRIPTOR"
+    },
+    {
+      "architecture": "linux/arm64/v8",
+      "order": 1,
+      "media_type": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "compressed_digest": "sha256:c75f989a229d12b2d2613a5997de9ff3546f664c22da9248720033a2410220f6",
+      "declared_compressed_bytes": 28137179,
+      "response_body_cap_bytes": 28137179,
+      "bytes_local": false,
+      "evidence": "VERIFIED_OCI_DESCRIPTOR"
+    },
+    {
+      "architecture": "linux/arm64/v8",
+      "order": 2,
+      "media_type": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "compressed_digest": "sha256:163c741a70d3da9f9cf2dff63f4790528168fad6ecc0b230a84ec48ba7e3cc34",
+      "declared_compressed_bytes": 3176203,
+      "response_body_cap_bytes": 3176203,
+      "bytes_local": false,
+      "evidence": "VERIFIED_OCI_DESCRIPTOR"
+    },
+    {
+      "architecture": "linux/arm64/v8",
+      "order": 3,
+      "media_type": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "compressed_digest": "sha256:76294804daeb8e71e4d8fa87aa64b374948e3ad22290ffe08d264ecbb5135440",
+      "declared_compressed_bytes": 15854851,
+      "response_body_cap_bytes": 15854851,
+      "bytes_local": false,
+      "evidence": "VERIFIED_OCI_DESCRIPTOR"
+    },
+    {
+      "architecture": "linux/arm64/v8",
+      "order": 4,
+      "media_type": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "compressed_digest": "sha256:ecbed7df0ff7188fbefa7103723ef4f9602cb01c3485baaa84df6f950e32104b",
+      "declared_compressed_bytes": 250,
+      "response_body_cap_bytes": 250,
+      "bytes_local": false,
+      "evidence": "VERIFIED_OCI_DESCRIPTOR"
+    }
+  ],
+  "diff_ids_are_not_download_targets": true
+}

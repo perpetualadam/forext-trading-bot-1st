@@ -1,0 +1,25 @@
+{
+  "result": "TARGET_PLATFORM_UNSPECIFIED",
+  "selected_in_d18": false,
+  "dockerfile_platform": null,
+  "compose_platform": null,
+  "compose_build_platforms": null,
+  "historical_not_used": [
+    {
+      "path": "data/research/adaptive_ensemble/g14_2/stage_g14_2_report.md",
+      "section": "Docker daemon OS/architecture",
+      "recorded": "linux/amd64",
+      "evidence_level": "HISTORICAL_OBSERVATION",
+      "suitable_for_future_target_selection": false,
+      "reason": "Developer Docker Desktop observation, not a current deployment declaration."
+    },
+    {
+      "path": "data/research/adaptive_ensemble/g14_2/stage_g14_2_report.md",
+      "section": "Base image OS/architecture",
+      "recorded": "linux/amd64",
+      "evidence_level": "HISTORICAL_OBSERVATION",
+      "suitable_for_future_target_selection": false,
+      "reason": "Platform of a historical local image, tied to a local image ID."
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "constructed": true,
+  "feature": "return_1",
+  "training_rho": -0.01400216800066352,
+  "positive_association": false,
+  "thresholds": {
+    "low": -0.0001314942240153494,
+    "high": 0.00013350502367956985
+  },
+  "economics": {
+    "recorded": {
+      "n_opportunities": 2053,
+      "n_actions": 650,
+      "mean": -3.5287349789962785e-05,
+      "bootstrap_low": -5.3968933108921133e-05
+    },
+    "half_pip": {
+      "n_opportunities": 2053,
+      "n_actions": 650,
+      "mean": -4.9003753844714027e-05,
+      "bootstrap_low": -6.747097584418977e-05
+    },
+    "one_pip": {
+      "n_opportunities": 2053,
+      "n_actions": 650,
+      "mean": -6.272015789946528e-05,
+      "bootstrap_low": -8.121375441207456e-05
+    }
+  },
+  "always_abstain_mean": 0.0,
+  "always_buy_mean": -0.00015098579177482942,
+  "passes": false,
+  "production_authorised": false
+}

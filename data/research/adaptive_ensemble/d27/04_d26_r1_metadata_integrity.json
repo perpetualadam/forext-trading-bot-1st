@@ -1,0 +1,77 @@
+{
+  "retained_file_hashes": {
+    "04_dependency_allowlist.json": {
+      "size": 2373,
+      "sha256": "385ffc8f9852246721d0453f53939835875e6d771206428dc94f96e578015407"
+    },
+    "07_request_ledger.json": {
+      "size": 5879,
+      "sha256": "f9cc9975e594e5830c28552a21e9bc3b2c3693a61710a4ed0d8b75832a73d21a"
+    },
+    "08_response_validation.json": {
+      "size": 2008,
+      "sha256": "c4bface159194e5e821824d463a62f36552b06ea2909621ea5f15de6756c53de"
+    },
+    "09_project_metadata_inventory.json": {
+      "size": 34192,
+      "sha256": "fbee185a1441c4b86452c8c38cdd31e7da3865725018f201edf01637e2524efa"
+    },
+    "10_distribution_metadata_inventory.json": {
+      "size": 5285752,
+      "sha256": "42733ab0ae74c01dbbc78a8c67befeba084c1c5d6dbbfecc8dba5da302162ffd"
+    },
+    "11_amd64_candidate_matrix.json": {
+      "size": 6445,
+      "sha256": "5f85a76b7dcf140fdfa87c06878c3c2daa66920a781b55b5a2643764d5b7435b"
+    },
+    "12_arm64_candidate_matrix.json": {
+      "size": 6445,
+      "sha256": "d170066b363b3418960f54beab9435d28366743d6343c96e10f1a0f5641e0f50"
+    },
+    "13_cross_platform_comparison.json": {
+      "size": 973,
+      "sha256": "ab9e3f483150bd29a44b7ffedef4c652fda6a687fae0ecfd89e2b020c972ca3d"
+    },
+    "14_metadata_limitations.json": {
+      "size": 240,
+      "sha256": "9bf6500c3440492cf88aa64d4809e70c69a9bb05232eefb853e7babd45f97ea5"
+    },
+    "15_provenance_limitations.json": {
+      "size": 209,
+      "sha256": "93408386eaaca6c8380abcc41e900b2fd8fa0c07ae0d28af6725f5da7d815575"
+    },
+    "29_validation_log.json": {
+      "size": 292,
+      "sha256": "76b483944a293a35509d6882f570d26550065a4901efb15cb612b9ed03223358"
+    },
+    "30_stage_d26_r1_report.md": {
+      "size": 11277,
+      "sha256": "f6494c080bf148a412c6eea470bf811788850cc94e66db76a4bcd6c1cf24950f"
+    }
+  },
+  "projects": [
+    "python-dotenv",
+    "pandas",
+    "numpy",
+    "requests",
+    "psycopg2-binary",
+    "fastapi",
+    "uvicorn",
+    "oandapyv20",
+    "tzdata"
+  ],
+  "ledger_entries": 9,
+  "http_200": 9,
+  "redirects": 0,
+  "authentication_challenges": 0,
+  "response_bytes": 8259830,
+  "release_count": 1098,
+  "distribution_records": 9387,
+  "yanked_records": 124,
+  "historical_amd64_filename_observations": 2209,
+  "historical_arm64_filename_observations": 1574,
+  "raw_http_bodies_retained": false,
+  "original_response_bytes_rehashed": false,
+  "limitation": "D.27 hashed the retained JSON artifacts. It did not rehash the original HTTP bodies.",
+  "discrepancies": []
+}

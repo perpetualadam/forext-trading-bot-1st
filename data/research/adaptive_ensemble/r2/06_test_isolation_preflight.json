@@ -1,0 +1,12 @@
+{
+  "verdict": "PASS",
+  "network_barrier": "socket.socket construction raises R2_NETWORK_BLOCKED. getaddrinfo, gethostbyname, and create_connection raise before any lookup.",
+  "credential_barrier": "dotenv.load_dotenv was replaced with a function that returns false and does not open a file. One call was recorded when execution tests imported config. No .env file was read.",
+  "database": "PERSIST_EXEC_ORDERS=false. PostgreSQL host set to r2-invalid. The duplicate-id test uses memory only.",
+  "writes": "LIVE_SAFETY_STATE_PATH pointed at data/research/adaptive_ensemble/r2/tmp. Pytest base temp was inside r2. Plugin autoload was off. Project conftest was not loaded.",
+  "app_startup": "not performed",
+  "trading_loop": "not imported",
+  "deselected": 2,
+  "blocked_socket_attempts": 5,
+  "external_connections": 0
+}

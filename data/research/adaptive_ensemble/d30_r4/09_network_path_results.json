@@ -1,0 +1,48 @@
+{
+  "results": [
+    {
+      "test_id": "N01",
+      "expected": "discover closed",
+      "actual": "D30_R4_NETWORK_PATH_CLOSED",
+      "result": "PASS"
+    },
+    {
+      "test_id": "N02",
+      "expected": "historical discover closed",
+      "actual": "D30_R1_BLOCKED_CLIENT_SAFETY",
+      "result": "PASS"
+    },
+    {
+      "test_id": "N03",
+      "expected": "policy only",
+      "actual": "policy-only",
+      "result": "PASS"
+    },
+    {
+      "test_id": "N04",
+      "expected": "storage closed",
+      "actual": true,
+      "result": "PASS"
+    },
+    {
+      "test_id": "N05",
+      "expected": "registry GET closed",
+      "actual": true,
+      "result": "PASS"
+    },
+    {
+      "test_id": "N06",
+      "expected": "redirect not followed",
+      "actual": 0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "N07",
+      "expected": "proposal not dispatched",
+      "actual": "not-dispatched",
+      "result": "PASS"
+    }
+  ],
+  "dispatch_count": 0,
+  "network_opened": false
+}

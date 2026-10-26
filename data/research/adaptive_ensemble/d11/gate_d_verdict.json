@@ -1,0 +1,10 @@
+{
+  "gate": "D",
+  "verdict": "PASS",
+  "production_files_changed_by_d11": [
+    "forex_bot/telegram_control.py"
+  ],
+  "diff_vs_head_numstat": "69 insertions, 14 deletions",
+  "command_text_endpoints_or_tokens_in_diff": false,
+  "scope_expansion_required": false
+}

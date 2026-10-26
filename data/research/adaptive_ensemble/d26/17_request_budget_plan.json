@@ -1,0 +1,15 @@
+{
+  "projects": 9,
+  "total_get_requests": 9,
+  "per_project_get_requests": 1,
+  "response_body_cap_bytes": 16777216,
+  "timeout_seconds": 30,
+  "total_duration_seconds": 270,
+  "total_transfer_cap_bytes": 150994944,
+  "redirects_followed": 0,
+  "retries": 0,
+  "concurrency": 1,
+  "why": "Nine direct projects each receive one JSON request. The body cap leaves room for a long release list while remaining finite. Redirects and second requests stop the run instead of enlarging it.",
+  "limitation": "An oversized project document, a redirect, or a need for version-specific JSON cannot be handled inside this budget. The budget is not increased automatically.",
+  "fits_nine_direct_projects_only_when_each_first_response_succeeds": true
+}

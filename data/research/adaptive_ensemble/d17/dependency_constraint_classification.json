@@ -1,0 +1,19 @@
+{
+  "production_requirements": 9,
+  "development_only_requirements": 2,
+  "shared_by_include": 9,
+  "conditional_requirements": 0,
+  "environment_markers": 0,
+  "exact_pins": 0,
+  "bounded_ranges": 1,
+  "lower_bound_only": 11,
+  "unbounded": 0,
+  "native_candidates": [
+    "numpy",
+    "pandas",
+    "psycopg2-binary"
+  ],
+  "extras": [
+    "uvicorn[standard]"
+  ]
+}

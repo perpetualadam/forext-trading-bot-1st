@@ -1,0 +1,70 @@
+{
+  "provenance_sha256": "64590498d141b6135554f1b23c1fe62285fc373464c5faf26f71b28859a7fb9a",
+  "note": "A losing trade is recorded as a stop, timeout, or ambiguous bar. It is not recorded as proof that the regime label was false.",
+  "eur_confirmation_outcomes": {
+    "range": {
+      "stop": 333,
+      "target": 78,
+      "timeout": 150,
+      "ambiguous_intrabar": 0
+    },
+    "trend": {
+      "stop": 2412,
+      "target": 532,
+      "timeout": 120,
+      "ambiguous_intrabar": 10
+    },
+    "breakout": {
+      "stop": 911,
+      "target": 179,
+      "timeout": 24,
+      "ambiguous_intrabar": 5
+    },
+    "selector": {
+      "stop": 753,
+      "target": 144,
+      "timeout": 145,
+      "ambiguous_intrabar": 4
+    }
+  },
+  "eur_confirmation_rejections": {
+    "range": {
+      "cost_filter": 1056,
+      "gap": 3,
+      "entry_invalid": 0
+    },
+    "trend": {
+      "cost_filter": 5161,
+      "gap": 5,
+      "entry_invalid": 0
+    },
+    "breakout": {
+      "cost_filter": 1039,
+      "gap": 1,
+      "entry_invalid": 0
+    },
+    "selector": {
+      "cost_filter": 1301,
+      "gap": 3,
+      "entry_invalid": 0
+    }
+  },
+  "eur_confirmation_excluded": {
+    "range": {
+      "gap_unevaluable": 1,
+      "unresolved": 0
+    },
+    "trend": {
+      "gap_unevaluable": 7,
+      "unresolved": 0
+    },
+    "breakout": {
+      "gap_unevaluable": 2,
+      "unresolved": 0
+    },
+    "selector": {
+      "gap_unevaluable": 1,
+      "unresolved": 0
+    }
+  }
+}

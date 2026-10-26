@@ -1,0 +1,36 @@
+{
+  "stage": "G.14.12",
+  "commands": [
+    "git rev-parse HEAD",
+    "git branch --show-current",
+    "git status --porcelain",
+    "SHA-256 of Dockerfile, .dockerignore, G.10 allowlist, G.10 archive, G.7 archive",
+    "canonical manifest digest of frozen G.10 and G.7 manifests",
+    "tests/g14_1_verify.py verify_directory on the existing staging directory with dockerignore_rules null",
+    "whoami /user",
+    "whoami /groups, filtered to Mandatory Label and BUILTIN\\Administrators"
+  ],
+  "read_only": true,
+  "dynamic_security_tests": 0,
+  "adversarial_scenarios_executed": 0,
+  "docker_commands": 0,
+  "wsl_commands": 0,
+  "vm_commands": 0,
+  "network_requests": 0,
+  "source_files_modified": false,
+  "test_files_modified": false,
+  "existing_artifacts_modified": false,
+  "windows_principal_created": false,
+  "acl_modified": false,
+  "ownership_modified": false,
+  "receiving_directory_created": false,
+  "ipc_created": false,
+  "receiver_implemented": false,
+  "limitations": [
+    "Running container was not inspected",
+    "No DACL was read",
+    "No other local accounts were listed",
+    "UAC elevation ability is unknown",
+    "Design text is not enforcement"
+  ]
+}

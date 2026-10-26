@@ -1,0 +1,7 @@
+{
+  "host": "registry-1.docker.io",
+  "method": "GET",
+  "path": "/v2/library/python/blobs/sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+  "http_status": 307,
+  "result": "OBTAINED"
+}

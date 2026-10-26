@@ -1,0 +1,7 @@
+{
+  "reference": "docker.io/library/python:3.12-slim-bookworm",
+  "index_verified": false,
+  "amd64_manifest_verified": false,
+  "arm64_manifest_verified": false,
+  "stop_reason": "D22_BLOCKED_BASELINE_INTEGRITY"
+}

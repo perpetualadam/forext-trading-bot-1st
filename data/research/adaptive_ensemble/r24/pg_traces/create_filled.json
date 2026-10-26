@@ -1,0 +1,14 @@
+{
+  "pid": 6080,
+  "role": "create_state",
+  "ok": true,
+  "client_order_id": "cid-31fae62234614f0b8380a39c6116fd75",
+  "blocked_by": "",
+  "inert_dispatches": 1,
+  "production_eligible": false,
+  "route_refusals": [],
+  "socket_blocks": [],
+  "dns_blocks": 0,
+  "dotenv_stubs": 1,
+  "real_broker_calls": 0
+}

@@ -1,0 +1,48 @@
+{
+  "stage": "G.14.1",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "expected_head_matched": true,
+  "frozen_hashes": {
+    "Dockerfile": {
+      "sha256": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+      "matched": true
+    },
+    ".dockerignore": {
+      "sha256": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+      "matched": true
+    },
+    "g10_production_allowlist": {
+      "path": "data/research/adaptive_ensemble/g10/production_allowlist.json",
+      "sha256": "b2d0f66f8a696da5488072720f6d8de7ceccfd8c847d54327d4cfff2e10eb7b4",
+      "matched": true
+    },
+    "g10_source_archive": {
+      "path": "data/research/adaptive_ensemble/g10/source_snapshot.tar",
+      "sha256": "d0317de858a00b194bc44408932ad6508eec411fe0179b0196175a2985b12277",
+      "matched": true
+    },
+    "g10_manifest_digest": {
+      "path": "data/research/adaptive_ensemble/g10/source_manifest.json",
+      "sha256": "93c73c21bd6f144e7d656be74128a771c3274025c0e88b8a052ffbc742f417cf",
+      "matched": true,
+      "digest_kind": "canonical_manifest_digest"
+    },
+    "g7_source_archive": {
+      "path": "data/research/adaptive_ensemble/g7/source_snapshot.tar",
+      "sha256": "0ee97accd2d4a8297a053eb26c5138324192ab5b1f700214acf091d0f6487f82",
+      "matched": true
+    },
+    "g7_manifest_digest": {
+      "path": "data/research/adaptive_ensemble/g7/manifest.json",
+      "sha256": "ba8eb86d887b44dd44314c6a45c776639bf11bb27f0e92ba2ce24978c3206989",
+      "matched": true,
+      "digest_kind": "canonical_manifest_digest"
+    }
+  },
+  "historical_allowlist_dockerfile_sha256": "f8d537d84c8ab004c5fc2cbdc5ef58e8141f5ca66a13be6cc5eac38c7c7006a6",
+  "working_tree_dockerfile_uses_g13_hash": true,
+  "allowlist_file_not_modified": true,
+  "unexpected_frozen_hash_changes": [],
+  "classification": "BASELINE_INTACT"
+}

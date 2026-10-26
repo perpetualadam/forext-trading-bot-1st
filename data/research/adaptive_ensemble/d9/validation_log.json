@@ -1,0 +1,36 @@
+{
+  "commands": [
+    "python tests/d9_database_concurrency_runner.py pre_fix",
+    "python -m pytest tests/test_d9_database_concurrency_remediation.py -q --tb=line",
+    "python -m pytest tests/test_d7_resource_cleanup.py tests/test_live_safety_preservation.py tests/test_strategy_activation_defaults.py tests/test_startup_safety_preflight.py -q --tb=line",
+    "python -m pytest tests/test_d5_lifespan_isolation.py tests/test_d6_partial_startup_cleanup.py tests/test_d8_database_concurrency.py -q --tb=line",
+    "python -m ruff check tests/d9_database_concurrency_runner.py tests/test_d9_database_concurrency_remediation.py --select E,F,BLE,SIM"
+  ],
+  "results": {
+    "pre_fix": "D8_CONC_01_REPRODUCED_PRE_FIX",
+    "d9": "6 passed in 3.46s",
+    "d2_d3_d4_d7": "133 passed in 9.83s",
+    "d5_d6_d8": "34 errors in 0.28s; D.5 and D.6 hash-pin blocked; D.8 expected pre-fix hash conflict",
+    "ruff_new_tests": "passed"
+  },
+  "files_read": [
+    "forex_bot/database.py",
+    "forex_bot/app.py",
+    "forex_bot/telegram_control.py",
+    "forex_bot/state.py",
+    "tests/d7_resource_cleanup_runner.py"
+  ],
+  "files_created": [
+    "tests/d9_database_concurrency_runner.py",
+    "tests/test_d9_database_concurrency_remediation.py",
+    "data/research/adaptive_ensemble/d9/"
+  ],
+  "files_modified": ["forex_bot/database.py"],
+  "prohibited_operations": [],
+  "missing_evidence": [
+    "Production startup, the running image, and the live schema were not inspected.",
+    "No run showed a Telegram poller inside a query while release closed the connection.",
+    "D.5 and D.6 did not run past their app.py hash pins.",
+    "D.8 tests did not run past their pre-fix database.py hash pin."
+  ]
+}

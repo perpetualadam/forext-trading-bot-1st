@@ -1,0 +1,72 @@
+{
+  "stage": "D.5",
+  "recorded_at": "2026-10-12",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "expected_git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "head_matches_expected": true,
+  "branch": "main",
+  "working_tree": {
+    "clean": false,
+    "status_line_count": 56,
+    "modified_tracked_count": 9,
+    "untracked_count": 47,
+    "expected_source_modifications": [
+      "forex_bot/app.py",
+      "forex_bot/live_safety.py",
+      "forex_bot/strategy_meta.py"
+    ],
+    "pre_existing_tracked_modifications_left_untouched": [
+      "Dockerfile",
+      "data/research/macro/consensus_pit/prospective/scheduler/audit.jsonl",
+      "data/research/macro/consensus_pit/prospective/scheduler/state.json",
+      "tests/test_g10_snapshot.py",
+      "tests/test_g11_audit.py",
+      "tests/test_macro_prospective_recorder_stage2.py"
+    ],
+    "action": "preserved; no reset, stash, clean, or commit"
+  },
+  "hashes": {
+    "forex_bot/app.py": {
+      "sha256": "f38c304c4692c4a69e537610173e5691c03d49e24c48d6e258f56d1be75ae7b4",
+      "expected": "f38c304c4692c4a69e537610173e5691c03d49e24c48d6e258f56d1be75ae7b4",
+      "size_bytes": 19875,
+      "matches": true,
+      "git_status": "M"
+    },
+    "forex_bot/live_safety.py": {
+      "sha256": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+      "expected": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+      "size_bytes": 22301,
+      "matches": true,
+      "git_status": "M"
+    },
+    "forex_bot/strategy_meta.py": {
+      "sha256": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+      "expected": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+      "size_bytes": 6823,
+      "matches": true,
+      "git_status": "M"
+    }
+  },
+  "existing_test_modules": {
+    "tests/test_startup_safety_preflight.py": {
+      "role": "D.4",
+      "sha256": "1e545d0713a01634c64fd03cb21e2556eb91a5b744d3f62efcc4875f22e79c69",
+      "imports_app": false
+    },
+    "tests/test_strategy_activation_defaults.py": {
+      "role": "D.3",
+      "sha256": "53c5e67ffb900cf50e8a8d1bef303f29c5b624e58878b0942f0d627b77699911",
+      "imports_app": false
+    },
+    "tests/test_live_safety_preservation.py": {
+      "role": "D.2",
+      "sha256": "39dbf55b43fb8400a0ff60f890af903ed83d883f199d09635dd39045a2fcbe4c",
+      "imports_app": false
+    }
+  },
+  "historical_d4_result": "D4_REMEDIATION_COMPLETE_OFFLINE_TESTED",
+  "historical_d4_note": "115 tests passed. Actual lifespan was not executed in D.4.",
+  "baseline_verdict": "PASS",
+  "stop_code": null
+}

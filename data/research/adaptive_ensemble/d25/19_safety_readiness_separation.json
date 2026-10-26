@@ -1,0 +1,48 @@
+{
+  "historical_live_order_authorisation": {
+    "classification": "HISTORICAL_OBSERVATION",
+    "value": "BLOCKED"
+  },
+  "current_production_authorisation": {
+    "classification": "UNVERIFIED",
+    "value": "not independently verified and not accessed"
+  },
+  "historical_strategy_activation": {
+    "classification": "HISTORICAL_OBSERVATION",
+    "value": "six strategies inactive"
+  },
+  "current_strategy_activation": {
+    "classification": "UNVERIFIED",
+    "value": "not accessed"
+  },
+  "local_source_safety_repairs": {
+    "classification": "HISTORICAL_OBSERVATION",
+    "value": "not re-tested and not treated as deployed"
+  },
+  "historical_isolated_tests": {
+    "classification": "HISTORICAL_OBSERVATION",
+    "value": "not rerun"
+  },
+  "actual_production_runtime_safety": {
+    "classification": "UNVERIFIED"
+  },
+  "deployment_receiver_identity": {
+    "classification": "MISSING"
+  },
+  "production_database_schema_compatibility": {
+    "classification": "UNVERIFIED"
+  },
+  "operational_state_compatibility": {
+    "classification": "BLOCKED"
+  },
+  "shadow_state_compatibility": {
+    "classification": "BLOCKED"
+  },
+  "verified_rollback_artifact": {
+    "classification": "MISSING"
+  },
+  "verified_rollback_procedure": {
+    "classification": "MISSING"
+  },
+  "live_trading_authorised": false
+}

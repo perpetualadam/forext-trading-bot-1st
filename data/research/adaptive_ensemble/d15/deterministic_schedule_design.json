@@ -1,0 +1,11 @@
+{
+  "synchronisation": [
+    "threading.Event",
+    "threading.Barrier",
+    "fake poll hold",
+    "fake database lock"
+  ],
+  "bounded_real_wait": "The production stop join is 2.0 seconds. Tests wait for that existing timeout and do not change it.",
+  "maximum_child_lifetime_sec": 180,
+  "result": "PASS"
+}

@@ -1,0 +1,32 @@
+{
+  "directory": "data/research/adaptive_ensemble/r56/phase6_connection_enablement",
+  "excludes_self": true,
+  "file_count": 24,
+  "files": {
+    "01_architecture.md": "0cc2f93405a8aa5a11174c67e3b08e134c1fb7250648559ab54bd85f28a042e8",
+    "02_request_and_credential_security.md": "489434a152325c3143cd5bb1686a4c45aad872badb5d00907091889a415590f7",
+    "03_timeout_and_ipc_evidence.md": "527aa6aa3a4d6161916ab093ffa898e90892b136793e87bee4a0443df8972c1f",
+    "04_test_results.md": "2e715793125388a0e6a4b13a7bc9fcc37d980a8871297c93bd4c8c1ff2668461",
+    "05_future_one_session_procedure.md": "a266ec9d2a79bb6a493e90ed9231d2611f017fd58975bac91d233a2bdd161547",
+    "07_phase6_report.md": "c2e26e1d1f42d786f71475753acec0b9b853a75680de052d9685a8dd3c01d3b0",
+    "08_one_session_activation_preparation.md": "c5caebe7d0c37c5b723c413e7576567d606ad3f55cd50a35da728063fc4b3682",
+    "09_authorisation_fix.md": "94c8288b5aca8ef01c4ff18b28941ad4bdbee3617646b8f36e7633a4095c74a1",
+    "10_real_dispatch_correction.md": "89081e0e4a5bd32806aeb2a6c0fa4438f38a87a9e3249c4973c24c5bc0bc1f12",
+    "11_capability_redemption_fix.md": "1f10987589dea31f0d183210d1330f1a1a733f2508bbac1ee273dd019c794b49",
+    "R56_CONTROLLED_ACTIVATION_REVIEW_REPORT.md": "ef5f283856d9a77edb741abc3e2d7973ab65f7386fb55d4443df7e4012762029",
+    "R56_FINAL_FIVE_BLOCKER_READINESS_REPORT.md": "24a81b4627fabf25df32f997b35db290aa7e882322bd68f0d135edbb75306e4f",
+    "R56_FINAL_TWO_ISSUE_CORRECTION_REPORT.md": "c057230e10b18654065fba74d304959db8e8cd0378bad1c0394b114961e19ef1",
+    "R56_RECORD_PERSISTENCE_FAILURE_FIX_REPORT.md": "e72740d9bc5a9508c3c94b9f963a739410ab7ba2de2adf13695cf010de07e8a8",
+    "credential_ipc.py": "fab8207b6fab2adff13bfc1fb17943e562500d90d7cf3a0d8312f85beac93743",
+    "diagnostic_supervisor.py": "f27b77277de7e2be7be4158430a22bd4dae0585819c98a81500f418dc5f54933",
+    "diagnostic_worker.py": "d166928ce498cfeb11c2bbc1f2877afe0ebdf37717298d8782129fcf34e7b70e",
+    "live_session_gate.py": "ae07d4ca969c8696215510a059e7c5c9e6d66933834b3117080e21207bfeee9a",
+    "offline_entry.py": "dc00f6b20efd1c02e4c795aae3f794222c58f71582acc55f25dde6797ff54100",
+    "one_session_activation.py": "2dd386c5607bf6e2af6a32ad7adfb40f7bb3af7ff07e471632ab5dd26806b3b5",
+    "prepare_one_session.py": "59561926aca5f275ee38dee79206c44c9e8ad02c6f098392c667c95e70e7812d",
+    "real_session_entry.py": "4c0735b40985b43733776e44c996242c64de34b590aa7e4d8d8f6c808b21b72e",
+    "restricted_live_transport.py": "ee9e61464e33158475aea467e1ea43c73df174881b83db9934f7f86f47eab91c",
+    "test_phase6_offline.py": "2f59da90740c3b0d69dbca8ec6526d6ee7efc80735f5b05efb9fee0311dfb0b4"
+  },
+  "schema": "r56.phase6.integrity.1"
+}

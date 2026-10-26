@@ -1,0 +1,31 @@
+{
+  "state": "COMPLETE_SYNTHETIC",
+  "synthetic_marker": "SYNTHETIC_TEST_ONLY",
+  "packages": [
+    {
+      "name": "demo",
+      "version": "1.0.0",
+      "filename": "demo-1.0.0-py3-none-any.whl",
+      "tags": "py3-none-any",
+      "dependencies": [],
+      "hash_recorded_here": false,
+      "hash_meaning": "SHA-256 of build_synthetic_wheel bytes inside the test process only"
+    }
+  ],
+  "redirects": "one same-host HTTPS redirect from /packages/aa/ to /packages/bb/ before the wheel body",
+  "destination": "pytest temporary directory plus child g14-7-synthetic",
+  "dependency_graph": "CONSISTENT_FOR_SYNTHETIC_SET",
+  "production_dependency_graph": "DEPENDENCY_GRAPH_COMPLETENESS_UNVERIFIED",
+  "artifact_verification": "hash, size, zip, WHEEL, METADATA, and RECORD through verify_member_bytes",
+  "lock_file": "synthetic-lock.json",
+  "lock_source_index": "synthetic://fixture",
+  "lock_source_approved": false,
+  "real_network_calls": 0,
+  "real_downloads": false,
+  "third_party_code_executed": false,
+  "installed": false,
+  "proves_pypi_compatibility": false,
+  "filesystem_race_status": "ACQUISITION_FILESYSTEM_BOUNDARY_UNVERIFIED",
+  "post_open_binding": "POST_OPEN_DIRECTORY_HANDLE_BOUND",
+  "initial_lookup": "INITIAL_PATH_LOOKUP_NOT_ATOMIC"
+}

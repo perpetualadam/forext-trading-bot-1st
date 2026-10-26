@@ -1,0 +1,94 @@
+{
+  "checks": [
+    {
+      "check": "host_allowlist",
+      "passed": true
+    },
+    {
+      "check": "method_allowlist",
+      "passed": true
+    },
+    {
+      "check": "repository",
+      "passed": true
+    },
+    {
+      "check": "digest_allowlist_count",
+      "passed": true
+    },
+    {
+      "check": "redirects_disabled",
+      "passed": true
+    },
+    {
+      "check": "proxy_discovery_absent",
+      "passed": true
+    },
+    {
+      "check": "ambient_credentials_absent",
+      "passed": true
+    },
+    {
+      "check": "token_persistence_absent",
+      "passed": true
+    },
+    {
+      "check": "request_counter",
+      "passed": true
+    },
+    {
+      "check": "body_counter",
+      "passed": true
+    },
+    {
+      "check": "connection_timeout",
+      "passed": true
+    },
+    {
+      "check": "inactivity_timeout",
+      "passed": true
+    },
+    {
+      "check": "request_deadline",
+      "passed": true
+    },
+    {
+      "check": "stage_deadline",
+      "passed": true
+    },
+    {
+      "check": "dns_resolution_bounded",
+      "passed": false
+    },
+    {
+      "check": "no_registry_get",
+      "passed": true
+    },
+    {
+      "check": "no_layer_body_read_path",
+      "passed": true
+    },
+    {
+      "check": "no_storage_host_path",
+      "passed": true
+    },
+    {
+      "check": "no_retry",
+      "passed": true
+    },
+    {
+      "check": "sanitised_refusal_before_network",
+      "passed": true
+    }
+  ],
+  "dns_demonstration": {
+    "caller_wait_seconds": 0.059,
+    "deadline_seconds": 0.05,
+    "resolver_still_running_at_deadline": true,
+    "resolver_cancelled": false,
+    "resolver_finished_after_wait": true
+  },
+  "network_contacts": 0,
+  "verdict": "BLOCKED",
+  "reason": "A thread join returns control while the resolver call continues. That does not cancel DNS, so the hard deadline is not enforced."
+}

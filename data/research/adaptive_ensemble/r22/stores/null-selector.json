@@ -1,0 +1,21 @@
+{
+  "orders": [
+    {
+      "broker_order_id": "SIMULATED",
+      "client_order_id": "cid-f46de586001546fea9bfd9d3cf384f48",
+      "fill_price": 1.1,
+      "filled_units": 100000.00000001102,
+      "metadata": {
+        "exposure_safety": "UNCONFIRMED",
+        "simulation": true,
+        "strategy": "mean_reversion"
+      },
+      "reservation_status": "FILLED",
+      "side": "BUY",
+      "status": "FILLED",
+      "symbol": "EUR_USD",
+      "units": 100000.00000001102
+    }
+  ],
+  "schema": "exec_orders_offline_v1"
+}

@@ -1,0 +1,5 @@
+{
+  "gate": "C",
+  "result": "PASS",
+  "meaning": "Current files declare no platform. Research ctypes calls are outside the image."
+}

@@ -1,0 +1,14 @@
+{
+  "target_profile_completeness": "PARTIAL",
+  "base_image_identity": "MISSING",
+  "oci_platform_selection": "MISSING",
+  "python_runtime_identity": "PARTIAL",
+  "python_abi_evidence": "MISSING",
+  "libc_compatibility_evidence": "PARTIAL",
+  "wheel_compatibility_evidence": "MISSING",
+  "native_library_evidence": "PARTIAL",
+  "runtime_configuration_completeness": "PARTIAL",
+  "dependency_resolution_eligibility": "BLOCKED",
+  "candidate_build_eligibility": "BLOCKED",
+  "deployment_eligibility": "BLOCKED"
+}

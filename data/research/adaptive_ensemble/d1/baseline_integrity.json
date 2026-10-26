@@ -1,0 +1,30 @@
+{
+  "stage": "D.1",
+  "result": "MATCH",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "git_head_commit_time": "2026-10-10 10:56:10 +0100",
+  "branch": "main",
+  "head_match": true,
+  "branch_match": true,
+  "porcelain_entry_count": 44,
+  "previous_g14_12_porcelain_entry_count": 43,
+  "porcelain_count_difference_reason": "Untracked data/research/adaptive_ensemble/g14_12/ was added after the G.14.12 count. No commit, reset, or cleanup was performed.",
+  "tracked_modifications": 6,
+  "staged_changes": 0,
+  "deleted_files": 0,
+  "renamed_files": 0,
+  "hashes": {
+    "dockerfile": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+    "dockerignore": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+    "g10_allowlist_file": "b2d0f66f8a696da5488072720f6d8de7ceccfd8c847d54327d4cfff2e10eb7b4",
+    "g10_archive": "d0317de858a00b194bc44408932ad6508eec411fe0179b0196175a2985b12277",
+    "g10_canonical_manifest": "93c73c21bd6f144e7d656be74128a771c3274025c0e88b8a052ffbc742f417cf",
+    "g7_archive": "0ee97accd2d4a8297a053eb26c5138324192ab5b1f700214acf091d0f6487f82",
+    "g7_canonical_manifest": "ba8eb86d887b44dd44314c6a45c776639bf11bb27f0e92ba2ce24978c3206989"
+  },
+  "g7_manifest_path": "data/research/adaptive_ensemble/g7/manifest.json",
+  "g10_manifest_path": "data/research/adaptive_ensemble/g10/source_manifest.json",
+  "canonical_digest_method": "JSON object with manifest_sha256 removed, sort_keys true, separators comma and colon",
+  "unexpected_frozen_changes": false,
+  "production_source_modified_by_this_stage": false
+}

@@ -1,0 +1,33 @@
+{
+  "directory": "data/research/adaptive_ensemble/r55/b2_offline",
+  "branch": "main",
+  "head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "files": {
+    "01_architecture.md": "f50dff81fc1dd0444849e1e2e7db1e08e014d32cbc77a4947a41bf54123368d5",
+    "02_security_review.md": "b9b4bb645b09616856749765fa7c2f1e0ceed1476f572c2921d761c778168e63",
+    "03_evidence_contract.md": "f21eff75fe0719d68cadd27c175f4b566f1567d1e541cd73271b7bf72cbeaa34",
+    "04_test_results.md": "44c33e4795523d1403e90f63a52e19df6ad1d6ef2f737cd5e759479962fcc492",
+    "request_plan.py": "0ec38d19c4460724d9a71418c568b0178947c1b4faad31cff42156af0febe489",
+    "response_validation.py": "e9377a43df8b65b5fb71ad51a40fcaded5eca9084fbcef257311e6463bea6002",
+    "synthetic_fixtures.py": "014960cef817fde3b37134f0a69e559208dd50b53458fa75067325eb8527fcfc",
+    "synthetic_output.json": "147ab2e54fe6d97bc7339ec757f7f839623c6fd57a30db47c13dc6d4481545bf",
+    "synthetic_session.py": "44566d5ca01ece8561809215d283a285cf73fa19d40426386450a50bfc10dfb3",
+    "test_b2_offline.py": "c43c7537e54400bc557e9b7cf004ae44591a0d744d2f35fb8acb3bbb33830446"
+  },
+  "b1_hashes_match": {
+    "r55/b1/session_main.py": true,
+    "r55/b1/transport.py": true,
+    "r55/b1/test_session.py": true
+  },
+  "dependency_pins_match": {
+    "r51/https_adapter.py": true,
+    "r52/session_entry.py": true,
+    "r53/connector.py": true,
+    "r54/session_main.py": true,
+    "r55/session_main.py": true,
+    "r48/readonly_transport.py": true,
+    "r50/connector.py": true,
+    "r50/fixtures.py": true
+  },
+  "notes": "Offline candidate only. This manifest does not authorise a live session, Option B, or production deployment."
+}

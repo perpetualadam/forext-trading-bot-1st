@@ -1,0 +1,24 @@
+{
+  "evidence": "ACTUAL_COMBINED_LIFECYCLE_ISOLATED",
+  "lifespan_a": {
+    "yielded": true,
+    "stored_alive": true,
+    "cleanup_contains": "D12-STOP-01"
+  },
+  "lifespan_b": {
+    "yielded": true,
+    "escaped": "",
+    "same_worker": true,
+    "stop_event_set": true,
+    "connection_reused": true,
+    "refusal_warning": false,
+    "cleanup_contains": "D12-STOP-01"
+  },
+  "lifespan_c": {
+    "yielded": true,
+    "fresh_worker": true,
+    "stored_alive_after_exit": false,
+    "incomplete_diagnostic_after_completed_stop": false
+  },
+  "result": "PASS_BEHAVIOUR_START_REPORTING_UNRESOLVED"
+}

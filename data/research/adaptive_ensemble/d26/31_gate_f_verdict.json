@@ -1,0 +1,5 @@
+{
+  "gate": "F",
+  "verdict": "PASS",
+  "reason": "endpoint patterns and the three activity boundaries were recorded"
+}

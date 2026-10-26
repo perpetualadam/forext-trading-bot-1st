@@ -1,0 +1,39 @@
+{
+  "required_raw_manifests": {
+    "index": {
+      "path": "data/research/adaptive_ensemble/d22_r1/09_index_raw_manifest.json",
+      "present": true,
+      "byte_count": 6546,
+      "sha256": "sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258"
+    },
+    "amd64": {
+      "path": "data/research/adaptive_ensemble/d22_r1/15_amd64_raw_manifest.json",
+      "present": true,
+      "byte_count": 1752,
+      "sha256": "sha256:2ed6491b93cd49272ee6de2b5a38440c3448360322c089fc23e370722d74179d"
+    },
+    "arm64": {
+      "path": "data/research/adaptive_ensemble/d22_r1/19_arm64_raw_manifest.json",
+      "present": true,
+      "byte_count": 1754,
+      "sha256": "sha256:739ba32ae445e8d58f3d90feb85f83bebc8346f8dd280fa1eb5848f4ff1ed163"
+    }
+  },
+  "inspected_records": [
+    "data/research/adaptive_ensemble/d22_r1/21_registry_identity_summary.json",
+    "data/research/adaptive_ensemble/d22_r1/10_index_digest_verification.json",
+    "data/research/adaptive_ensemble/d22_r1/16_amd64_digest_verification.json",
+    "data/research/adaptive_ensemble/d22_r1/20_arm64_digest_verification.json",
+    "data/research/adaptive_ensemble/d22_r1/11_descriptor_inventory.json",
+    "data/research/adaptive_ensemble/d22_r1/12_platform_selection.json",
+    "data/research/adaptive_ensemble/d22_r1/34_stage_d22_r1_report.md",
+    "data/research/adaptive_ensemble/d22/01_baseline_integrity.json"
+  ],
+  "d22_r1_classification": "D22_R1_REGISTRY_IDENTITY_VERIFIED_BOTH_PLATFORMS",
+  "d22_original_classification": "D22_BLOCKED_BASELINE_INTEGRITY",
+  "d22_original_network_requests": 0,
+  "d22_directory_modified": false,
+  "d22_r1_directory_modified": false,
+  "config_blob_files_in_authorised_evidence": false,
+  "replacements_fetched": false
+}

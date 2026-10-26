@@ -1,0 +1,41 @@
+{
+  "commands": [
+    {
+      "command": "python -m ruff check tests/d6_partial_startup_runner.py tests/test_d6_partial_startup_cleanup.py",
+      "result": "All checks passed"
+    },
+    {
+      "command": "python -m pytest tests/test_d6_partial_startup_cleanup.py tests/test_live_safety_preservation.py tests/test_strategy_activation_defaults.py tests/test_startup_safety_preflight.py tests/test_d5_lifespan_isolation.py -q --tb=line",
+      "environment": "PYTHONDONTWRITEBYTECODE=1",
+      "result": "142 passed in 7.65s",
+      "exit_code": 0,
+      "passed": 142,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 7.65
+    }
+  ],
+  "modules": [
+    {"module": "tests/test_d6_partial_startup_cleanup.py", "tests": 12, "passed": 12, "failed": 0, "evidence": "ACTUAL_LIFESPAN_ISOLATED"},
+    {"module": "tests/test_live_safety_preservation.py", "tests": 30, "passed": 30, "failed": 0, "evidence": "ISOLATED_COMPONENT"},
+    {"module": "tests/test_strategy_activation_defaults.py", "tests": 35, "passed": 35, "failed": 0, "evidence": "ISOLATED_COMPONENT"},
+    {"module": "tests/test_startup_safety_preflight.py", "tests": 50, "passed": 50, "failed": 0, "evidence": "STATIC_ONLY"},
+    {"module": "tests/test_d5_lifespan_isolation.py", "tests": 15, "passed": 15, "failed": 0, "evidence": "ACTUAL_LIFESPAN_ISOLATED"}
+  ],
+  "nested": [
+    {
+      "module": "tests/test_live_safety_repair.py",
+      "invocation": "D.6 child process after guards, pytest.main exit code 0",
+      "defined_tests": 23,
+      "skips_in_source": 0,
+      "failed": 0,
+      "network_attempts": [],
+      "evidence": "ISOLATED_COMPONENT"
+    }
+  ],
+  "not_run": ["full suite"],
+  "runner_sha256": {
+    "tests/d6_partial_startup_runner.py": "0f26f2f9de022e47d0a1865f06f2be217c6d903bceb6031c1dc8aa3348734336",
+    "tests/test_d6_partial_startup_cleanup.py": "1fd9c54a98da7f099cfa8b204f234d22f7f61ca7cb5d315db9ce6e8c25498ad9"
+  }
+}

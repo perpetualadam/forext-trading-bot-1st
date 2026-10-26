@@ -1,0 +1,11 @@
+{
+  "recorded_before_edits": true,
+  "sha256": {
+    "forex_bot/ai_ensemble.py": "2893d1a0b7a5ac9aa54407e5a15d6670f8addfd895c339f013cdaab205db0bbc",
+    "forex_bot/rl_agent.py": "912280b9854208b7359b2e264adfdf5b1b454e88afd7b5b5fc3cc0f635091e4e",
+    "forex_bot/session_rules.py": "90023457126ee98a1b02739b188132278d078c24bf5b04f12dec166ea57a4202",
+    "forex_bot/experiment.py": "be71ed6f3b19b73777d4a16026df40f0b3ba23df313215585a736ad178e4166a",
+    "forex_bot/bot_loop.py": "6e953f7a2b0aa93f1f65c7b411d117e74cba6adf523f8514847bc69a7ea5c796",
+    "forex_bot/strategy_meta.py": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d"
+  }
+}

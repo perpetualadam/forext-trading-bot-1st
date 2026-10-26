@@ -1,0 +1,47 @@
+{
+  "maximum": 4,
+  "used": 3,
+  "retries": 0,
+  "requests": [
+    {
+      "method": "GET",
+      "host": "registry-1.docker.io",
+      "path": "/v2/library/python/blobs/sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+      "status": 401,
+      "authorization_sent": false,
+      "byte_count": 157,
+      "content_type": "application/json",
+      "content_encoding": null,
+      "docker_content_digest": null,
+      "timestamp": "2026-10-13T12:00:58Z",
+      "redirect_followed": false
+    },
+    {
+      "method": "GET",
+      "host": "auth.docker.io",
+      "path": "/token",
+      "status": 200,
+      "authorization_sent": false,
+      "byte_count": 5489,
+      "content_type": "application/json",
+      "content_encoding": null,
+      "docker_content_digest": null,
+      "timestamp": "2026-10-13T12:00:59Z",
+      "redirect_followed": false
+    },
+    {
+      "method": "GET",
+      "host": "registry-1.docker.io",
+      "path": "/v2/library/python/blobs/sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+      "status": 307,
+      "authorization_sent": true,
+      "byte_count": null,
+      "content_type": null,
+      "content_encoding": null,
+      "docker_content_digest": null,
+      "timestamp": null,
+      "redirect_followed": false,
+      "record_note": "The redirect handler raised before the request logger ran. Status 307 is the raised stop text. The Location value was not stored and was not requested."
+    }
+  ]
+}

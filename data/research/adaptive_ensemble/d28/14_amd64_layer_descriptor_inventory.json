@@ -1,0 +1,61 @@
+{
+  "manifest": "sha256:2ed6491b93cd49272ee6de2b5a38440c3448360322c089fc23e370722d74179d",
+  "config": "sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+  "layer_count": 4,
+  "diff_id_count": 4,
+  "compressed_total_bytes": 47558478,
+  "layers": [
+    {
+      "order": 1,
+      "media_type": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "compressed_digest": "sha256:7fd1ebe418b5079d4aa36f416af9b143d127bc75b0155d71cb5fd559b5e04d39",
+      "compressed_size": 28249323,
+      "bytes_local": false
+    },
+    {
+      "order": 2,
+      "media_type": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "compressed_digest": "sha256:6e0ba8ba048777f5354b5a7cb497ae5261116fac8246160c06fc045c8300c582",
+      "compressed_size": 3342298,
+      "bytes_local": false
+    },
+    {
+      "order": 3,
+      "media_type": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "compressed_digest": "sha256:86a9e13e035d8e44ae37bfebc52c7fc68898fde19b4b26dd0585f2231fcfaf2c",
+      "compressed_size": 15966608,
+      "bytes_local": false
+    },
+    {
+      "order": 4,
+      "media_type": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "compressed_digest": "sha256:f9d2fb07d6f062d06ddc7aa58191cc5359c728f54af6cebe69a37d2c89e72a0d",
+      "compressed_size": 249,
+      "bytes_local": false
+    }
+  ],
+  "rootfs_diff_ids": [
+    {
+      "order": 1,
+      "uncompressed_diff_id": "sha256:e58989146fcec76699871403b9897b5c014af1ccd85f5a9300a215e7975525d7",
+      "bytes_local": false
+    },
+    {
+      "order": 2,
+      "uncompressed_diff_id": "sha256:916eda96356f5280ba200349e111e70c46d7ec98a4a3dd2c38e88f7b133c17ba",
+      "bytes_local": false
+    },
+    {
+      "order": 3,
+      "uncompressed_diff_id": "sha256:694fd645f7c3f2166f87f2929facc4eccb7e1cfda9bfb5d1373f77e6c9c57ea6",
+      "bytes_local": false
+    },
+    {
+      "order": 4,
+      "uncompressed_diff_id": "sha256:742affd58633b3e2b85ef86583f2775486468b1317f7214d12e193d948421098",
+      "bytes_local": false
+    }
+  ],
+  "compressed_and_uncompressed_digests_are_different_identifiers": true,
+  "relationship": "Same order is expected in OCI, but a compressed digest is not an uncompressed diff ID."
+}

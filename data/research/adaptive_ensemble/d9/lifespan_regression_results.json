@@ -1,0 +1,15 @@
+{
+  "executed": true,
+  "app_py_modified": false,
+  "network": [],
+  "cases": {
+    "corrupt": {"yielded": false, "escaped_type": "StartupSafetyAbort", "connect_calls": 0, "created": 0, "auth": "BLOCKED", "active": []},
+    "baseline": {"yielded": true, "auth": "BLOCKED", "active": [], "created": 4, "pending": 0, "pg_conn_held": true, "application_closed": 0, "harness_closed": 1, "requests": 0},
+    "broker": {"yielded": false, "pg_conn_held": false, "application_closed": 1, "harness_closed": 0, "pending": 0},
+    "shutdown_stop": {"pending": 0, "harness_cancelled": 0, "pg_conn_held": true, "cleanup_errors": ["RuntimeError"]},
+    "await_health": {"pending": 0, "harness_cancelled": 0, "message": "injected task await failure"},
+    "before_yield": {"pending": 0, "pg_conn_held": false, "application_closed": 1, "harness_cancelled": 0},
+    "startup_stop": {"yielded": false, "pending": 0, "pg_conn_held": true, "application_closed": 0, "cleanup_errors": ["RuntimeError"], "message": "injected failure before yield"},
+    "repeat": {"yielded": true, "auth": "BLOCKED", "active": [], "pending": 0}
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "filled": {
+    "kind": "filled",
+    "separate_processes": true,
+    "process_a_exited_before_process_b": true,
+    "process_a": {
+      "pid": 7916,
+      "exit_code": 0,
+      "role": "create",
+      "kind": "filled",
+      "ok": true,
+      "evaluate": true,
+      "functions": [
+        "evaluate",
+        "dispatch_production_iteration",
+        "evaluate_one_instrument_iteration"
+      ],
+      "inert_dispatches": 1,
+      "client_order_id": "cid-3dffe115e1e64b0abe890116dbd47c63",
+      "order_status": "FILLED",
+      "production_eligible": false,
+      "selected_strategy": "scalp",
+      "store_sha256": "aaec08cc43b691b438b5a3ce07b39b1c6bf9252cf05f1e17f094164beb86afae",
+      "postgresql_connection": false
+    },
+    "process_b": {
+      "pid": 2676,
+      "exit_code": 0,
+      "role": "recover",
+      "kind": "filled",
+      "ok": true,
+      "evaluate": true,
+      "functions": [
+        "initialise_application",
+        "evaluate",
+        "dispatch_production_iteration",
+        "evaluate_one_instrument_iteration"
+      ],
+      "recovery_functions": [
+        "read_offline_exec_orders",
+        "select_rows_for_recovery",
+        "ingest_recovery_snapshot"
+      ],
+      "startup_ok": true,
+      "recovered_client_order_id": "cid-3dffe115e1e64b0abe890116dbd47c63",
+      "recovered_status": "FILLED",
+      "recovered_source": "db_recovery",
+      "exposure": "exposure_unconfirmed",
+      "blocked_by": "exposure_unconfirmed",
+      "exposure_read": "exposure_unconfirmed",
+      "reservation_attempted": false,
+      "inert_dispatches": 0,
+      "production_eligible": false,
+      "postgresql_connection": false,
+      "duplicate_order": false
+    },
+    "store": {
+      "path": "C:\\Users\\Brian\\OneDrive\\Desktop\\Forext Trading Bot 1st\\data\\research\\adaptive_ensemble\\r23\\stores\\filled.json",
+      "sha256": "aaec08cc43b691b438b5a3ce07b39b1c6bf9252cf05f1e17f094164beb86afae"
+    },
+    "duplicate_order": false,
+    "network_successes": 0,
+    "postgresql_connections": 0
+  },
+  "unresolved": {
+    "kind": "ambiguous",
+    "separate_processes": true,
+    "process_a_exited_before_process_b": true,
+    "process_a": {
+      "pid": 17492,
+      "exit_code": 0,
+      "role": "create",
+      "kind": "ambiguous",
+      "ok": true,
+      "evaluate": true,
+      "functions": [
+        "evaluate",
+        "dispatch_production_iteration",
+        "evaluate_one_instrument_iteration"
+      ],
+      "inert_dispatches": 1,
+      "client_order_id": "cid-ccf13f0f8c5643379ea6746a85e3d4a7",
+      "order_status": "UNRESOLVED",
+      "production_eligible": false,
+      "selected_strategy": "scalp",
+      "store_sha256": "c6c781094c211b6e323d2a56bfdbbda8c167e398b8e0f5f2b4f71964697ea7d3",
+      "postgresql_connection": false
+    },
+    "process_b": {
+      "pid": 21400,
+      "exit_code": 0,
+      "role": "recover",
+      "kind": "ambiguous",
+      "ok": true,
+      "evaluate": true,
+      "functions": [
+        "initialise_application",
+        "evaluate",
+        "dispatch_production_iteration",
+        "evaluate_one_instrument_iteration"
+      ],
+      "recovery_functions": [
+        "read_offline_exec_orders",
+        "select_rows_for_recovery",
+        "ingest_recovery_snapshot"
+      ],
+      "startup_ok": true,
+      "recovered_client_order_id": "cid-ccf13f0f8c5643379ea6746a85e3d4a7",
+      "recovered_status": "UNRESOLVED",
+      "recovered_source": "db_recovery",
+      "exposure": "exposure_unconfirmed",
+      "blocked_by": "exposure_unconfirmed",
+      "exposure_read": "exposure_unconfirmed",
+      "reservation_attempted": false,
+      "inert_dispatches": 0,
+      "production_eligible": false,
+      "postgresql_connection": false,
+      "duplicate_order": false
+    },
+    "store": {
+      "path": "C:\\Users\\Brian\\OneDrive\\Desktop\\Forext Trading Bot 1st\\data\\research\\adaptive_ensemble\\r23\\stores\\ambiguous.json",
+      "sha256": "c6c781094c211b6e323d2a56bfdbbda8c167e398b8e0f5f2b4f71964697ea7d3"
+    },
+    "duplicate_order": false,
+    "network_successes": 0,
+    "postgresql_connections": 0
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "completed": true,
+  "host": "pypi.org",
+  "scheme": "https",
+  "port": 443,
+  "method": "GET",
+  "tls_verify_mode": 2,
+  "tls_check_hostname": true,
+  "proxy_handler": false,
+  "redirects": "manual stop",
+  "retries": 0,
+  "credentials": false,
+  "cookies": false,
+  "handlers": [
+    "CaptureRedirect",
+    "HTTPSHandler",
+    "HTTPDefaultErrorHandler",
+    "HTTPErrorProcessor"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "architecture": "arm64",
+  "os": "linux",
+  "variant": "v8",
+  "created": "2026-10-06T02:11:13.014797359Z",
+  "author": null,
+  "user": null,
+  "user_present": false,
+  "working_dir": null,
+  "working_dir_present": false,
+  "entrypoint": null,
+  "entrypoint_present": false,
+  "command": [
+    "python3"
+  ],
+  "command_present": true,
+  "environment_names": [
+    "PATH",
+    "LANG",
+    "GPG_KEY",
+    "PYTHON_VERSION",
+    "PYTHON_SHA256"
+  ],
+  "non_secret_environment": {
+    "PATH": "/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "LANG": "C.UTF-8",
+    "PYTHON_VERSION": "3.12.15",
+    "PYTHON_SHA256": "c2c4321961fab0fb999d66e0cecf521c2ab3994c7992873ea99e306c1094fd5a"
+  },
+  "redacted_environment_names": [
+    "GPG_KEY"
+  ],
+  "exposed_ports": null,
+  "volumes": null,
+  "labels": {},
+  "redacted_label_names": [],
+  "rootfs_type": "layers",
+  "rootfs_diff_id_count": 4,
+  "rootfs_diff_ids": [
+    "sha256:dca69811453d69d10b6c0345a5c49147162abe20a2f77802d66efc60667949ea",
+    "sha256:aa7917539601453a983066ad360b759c92c30002edee05749dfe4baa9fa4dde8",
+    "sha256:54e908385c73b1f7a6708f9807d9da4cc2a1e7f4cc4f17e00e6e90a3d8c5007f",
+    "sha256:0e4e1e69caa145889e7738a6089b168f6c66c26184bba2c41b1c6a3e0bb21ff7"
+  ],
+  "history_entry_count": 10,
+  "root_fields": [
+    "architecture",
+    "config",
+    "created",
+    "history",
+    "os",
+    "rootfs",
+    "variant"
+  ],
+  "config_fields": [
+    "Cmd",
+    "Env"
+  ],
+  "absent_config_fields": [
+    "User",
+    "WorkingDir",
+    "Entrypoint",
+    "ExposedPorts",
+    "Volumes",
+    "Labels",
+    "Healthcheck"
+  ]
+}

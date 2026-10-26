@@ -1,0 +1,5 @@
+{
+  "gate": "H",
+  "result": "PASS",
+  "meaning": "The dual policy is ready for a user decision. It is not verified and not deployed."
+}

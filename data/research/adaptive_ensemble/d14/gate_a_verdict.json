@@ -1,0 +1,8 @@
+{
+  "gate": "A",
+  "verdict": "PASS",
+  "production_caller": "forex_bot/app.py lifespan ignores then, after D.14, reports the return value",
+  "other_production_callers": 0,
+  "truthiness_callers": 0,
+  "stop_contract_unchanged": true
+}

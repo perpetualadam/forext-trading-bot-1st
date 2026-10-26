@@ -1,0 +1,41 @@
+{
+  "stage": "R.4",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "working_tree": "dirty_before_stage",
+  "output_directory_before": "absent",
+  "gate_a": "PASS",
+  "protected_hashes_before": {
+    "forex_bot/app.py": "3ff01244ed217e85d211bec819a7ebff9c96fb0412c56e5a768792ab54b31ca1",
+    "forex_bot/telegram_control.py": "d32b560306fe2f86cc7c8ddbb40aa42842f071bd88ea513d77f172a6a0fadf4c",
+    "forex_bot/database.py": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e",
+    "forex_bot/live_safety.py": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+    "forex_bot/strategy_meta.py": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+    "requirements.txt": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a",
+    "requirements-dev.txt": "0562a6853549077197defb3cd8515521b843a041f2a735723ee2903790e3eef5",
+    "Dockerfile": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+    ".dockerignore": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+    "docker-compose.yml": "f0a374774c35b4c63dce23a837572886d1d53331fec388044bc5887367980179"
+  },
+  "protected_match_before_edit": true,
+  "edit_targets": {
+    "forex_bot/bot_loop.py": {
+      "sha256_before": "dcc8ed35f1f1ec9eb4d53e3439ebf46f80868c55aba4ec6ec64ad29fbe9f9128",
+      "already_modified_vs_head": false,
+      "pre_existing_diff": "none"
+    },
+    "forex_bot/oanda_exec.py": {
+      "sha256_before": "f4beb250d81852d8ee4f22af06ab33194c6b4ba1bf6f9b1a6b5d11d3b7b265c8",
+      "already_modified_vs_head": false,
+      "pre_existing_diff": "none",
+      "edited_in_r4": false
+    },
+    "forex_bot/database.py": {
+      "sha256_before": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e",
+      "already_modified_vs_head": true,
+      "pre_existing_diff": "Connection-cleanup helpers already present in the working tree. That difference is the protected baseline. It was kept.",
+      "edited_in_r4": true,
+      "reason": "A new client order id can be refused across restart only if unresolved intent is stored and reloaded. That storage lives in database.py."
+    }
+  }
+}

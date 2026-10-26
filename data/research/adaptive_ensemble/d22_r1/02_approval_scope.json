@@ -1,0 +1,12 @@
+{
+  "platforms": [
+    "linux/amd64",
+    "linux/arm64"
+  ],
+  "policy": "MULTI_PLATFORM_TARGET = linux/amd64 + linux/arm64",
+  "reference": "docker.io/library/python:3.12-slim-bookworm",
+  "d21_record": "EXPLICITLY_APPROVED_INTENDED_TARGETS",
+  "retry_approval": "D.22-R1 stage instruction",
+  "approval_timestamp": null,
+  "deployment_approved": false
+}

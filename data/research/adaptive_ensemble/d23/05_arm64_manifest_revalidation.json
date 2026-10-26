@@ -1,0 +1,22 @@
+{
+  "source": "data/research/adaptive_ensemble/d22_r1/19_arm64_raw_manifest.json",
+  "expected_digest": "sha256:739ba32ae445e8d58f3d90feb85f83bebc8346f8dd280fa1eb5848f4ff1ed163",
+  "actual_digest": "sha256:739ba32ae445e8d58f3d90feb85f83bebc8346f8dd280fa1eb5848f4ff1ed163",
+  "expected_size": 1754,
+  "actual_size": 1754,
+  "parent_descriptor_digest": "sha256:739ba32ae445e8d58f3d90feb85f83bebc8346f8dd280fa1eb5848f4ff1ed163",
+  "parent_descriptor_size": 1754,
+  "parent_platform": {
+    "os": "linux",
+    "architecture": "arm64",
+    "variant": "v8"
+  },
+  "parent_variant": "v8",
+  "media_type": "application/vnd.oci.image.manifest.v1+json",
+  "schema_version": 2,
+  "config_present": true,
+  "layer_count": 4,
+  "config_blob_fetched": false,
+  "layers_fetched": false,
+  "verification_verdict": "LOCAL_ARM64_MANIFEST_REVALIDATED"
+}

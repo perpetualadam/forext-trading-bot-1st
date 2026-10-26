@@ -1,0 +1,26 @@
+{
+  "D29-REVIEW-01": {
+    "original_concern": "The 18-request sequence was too specific.",
+    "new_evidence": "The state machine treats registry, token, redirect, and storage outcomes as optional branches. The numeric ceiling remains a maximum.",
+    "revised_conclusion": "18 is a proposed ceiling for 8 unique digests. It is not a required sequence, and storage requests remain unauthorised.",
+    "closure": "RESOLVED",
+    "remaining_uncertainty": "The live response pattern is NOT_EVALUATED.",
+    "future_approval_dependency": "A later approval must adopt the ceiling explicitly."
+  },
+  "D29-REVIEW-02": {
+    "original_concern": "The 120 second socket timeout was taken from a pip timeout and was treated as if it bounded the whole request.",
+    "new_evidence": "No registry handshake time or layer transfer rate is present in local evidence. The 30 second D.24-R2 timeout covered small config bodies.",
+    "revised_conclusion": "All four numeric time limits are MISSING. The pip timeout is not used.",
+    "closure": "PARTIALLY_RESOLVED",
+    "remaining_uncertainty": "Enforceable numbers require a future user choice or a separately authorised measurement.",
+    "future_approval_dependency": "Network execution cannot start until those numbers are supplied in an approval."
+  },
+  "D29-REVIEW-03": {
+    "original_concern": "The retained total added eight descriptor sizes without proving the digests were unique, and peak temporary storage was not separated.",
+    "new_evidence": "Exact digest comparison produced the unique count, shared set, duplicate count, and byte savings recorded in the deduplication artifact. The largest unique blob is the in-progress partial maximum.",
+    "revised_conclusion": "Logical unique bytes and the single-partial maximum are calculated. Filesystem overhead, free space, and available disk remain unknown.",
+    "closure": "PARTIALLY_RESOLVED",
+    "remaining_uncertainty": "Available disk capacity is MISSING.",
+    "future_approval_dependency": "A future writer must check free space before creating a file."
+  }
+}

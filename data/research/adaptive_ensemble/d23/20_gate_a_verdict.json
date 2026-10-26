@@ -1,0 +1,13 @@
+{
+  "gate": "A",
+  "verdict": "PASS",
+  "meaning": "The offline task completed. Missing runtime metadata was not obtained.",
+  "checks": [
+    "Git HEAD matches d080d897945bc44fa37c02caab504ed707146bec.",
+    "All ten expected digests are 64 hexadecimal characters.",
+    "All ten actual digests match the expected values and the D.21 baseline.",
+    "D.23 was absent before this stage.",
+    "Three D.22-R1 raw manifests are present and match their recorded digests."
+  ],
+  "network_requests": 0
+}

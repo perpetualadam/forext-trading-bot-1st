@@ -1,0 +1,17 @@
+{
+  "historical_limitation": "R.19 saw WinError 5 on data/research/adaptive_ensemble/r10/synthetic_live_safety_state.json during os.replace, then a passing retry. R.20's R.10 run passed on the first attempt: 69 passed, 5 skipped. The file-lock limitation is not closed.",
+  "suites": {
+    "r20": {"passed": 30, "failed": 0, "skipped": 0, "deselected": 0, "exit": 0},
+    "regression_r4_r9": {"passed": 120, "failed": 0, "skipped": 7, "deselected": 1, "exit": 0},
+    "r10": {"passed": 69, "failed": 0, "skipped": 5, "deselected": 0, "exit": 0},
+    "r11": {"passed": 51, "failed": 0, "skipped": 5, "deselected": 0, "exit": 0},
+    "r12": {"passed": 118, "failed": 0, "skipped": 5, "deselected": 0, "exit": 0},
+    "r13": {"passed": 81, "failed": 0, "skipped": 6, "deselected": 0, "exit": 0},
+    "r14": {"passed": 143, "failed": 0, "skipped": 5, "deselected": 0, "exit": 0},
+    "r15": {"passed": 165, "failed": 0, "skipped": 6, "deselected": 0, "exit": 0},
+    "r16": {"passed": 135, "failed": 0, "skipped": 6, "deselected": 0, "exit": 0},
+    "r17": {"passed": 174, "failed": 0, "skipped": 9, "deselected": 0, "exit": 0},
+    "r18": {"passed": 203, "failed": 0, "skipped": 9, "deselected": 0, "exit": 0},
+    "r19": {"passed": 213, "failed": 0, "skipped": 9, "deselected": 0, "exit": 0}
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "stage": "D.3",
+  "files_modified": [
+    {
+      "path": "forex_bot/strategy_meta.py",
+      "change": "Strategy construction defaults inactive. The active setter accepts only boolean True.",
+      "original_sha256": "daffe8ab64cc40016bc337b78da048f10b06314e477f56380bd28f2848995ed1",
+      "final_sha256": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d"
+    }
+  ],
+  "files_added": [
+    "tests/test_strategy_activation_defaults.py"
+  ],
+  "unchanged_this_stage": [
+    "forex_bot/live_safety.py",
+    "forex_bot/app.py",
+    "forex_bot/bot_loop.py",
+    "forex_bot/backtest.py",
+    "Dockerfile",
+    "requirements.txt",
+    "docker-compose.yml"
+  ],
+  "live_safety_sha256": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+  "signal_logic_changed": false,
+  "dependencies_added": 0
+}

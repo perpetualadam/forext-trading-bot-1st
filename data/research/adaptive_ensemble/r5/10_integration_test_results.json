@@ -1,0 +1,29 @@
+{
+  "pytest_exit": 0,
+  "pytest_passed": 65,
+  "pytest_failed": 0,
+  "includes_r4_file": "tests/test_r4_trading_safety.py",
+  "r5_file": "tests/test_r5_integration.py",
+  "evidence_log": "data/research/adaptive_ensemble/r5/pytest_isolation_log.txt",
+  "cases": [
+    {"id": "H01-H03", "status": "PASS", "evidence": "SYNTHETICALLY TESTED"},
+    {"id": "H04-H09", "status": "PASS", "evidence": "SYNTHETICALLY TESTED"},
+    {"id": "H10-H12", "status": "PASS", "evidence": "SYNTHETICALLY TESTED", "limitation": "Gate called directly. evaluate() was not run."},
+    {"id": "H13-H23", "status": "PASS", "evidence": "SYNTHETICALLY TESTED"},
+    {"id": "H24", "status": "PASS", "evidence": "SYNTHETICALLY TESTED", "limitation": "Synthetic snapshot. PostgreSQL was not opened."},
+    {"id": "H25-H27", "status": "PASS", "evidence": "SYNTHETICALLY TESTED"},
+    {"id": "H28", "status": "PASS", "evidence": "SYNTHETICALLY TESTED"},
+    {"id": "H29", "status": "PASS", "evidence": "SYNTHETICALLY TESTED"},
+    {"id": "H30", "status": "PASS", "evidence": "SYNTHETICALLY TESTED", "limitation": "Two threads in one process. The PostgreSQL advisory lock was not executed."},
+    {"id": "H31", "status": "PASS", "evidence": "SYNTHETICALLY TESTED", "limitation": "Fail-closed flag tested without a database transaction."},
+    {"id": "H32", "status": "NOT_EVALUATED", "evidence": "POSTGRESQL_EXECUTION_NOT_EVALUATED"},
+    {"id": "H33", "status": "NOT_EVALUATED", "evidence": "POSTGRESQL_EXECUTION_NOT_EVALUATED"},
+    {"id": "H34", "status": "PASS", "evidence": "SYNTHETICALLY TESTED"},
+    {"id": "H35-H38", "status": "PASS", "evidence": "SYNTHETICALLY TESTED", "limitation": "Strategy gate called directly. The trading loop was not started."},
+    {"id": "H39-H40", "status": "PASS", "evidence": "SYNTHETICALLY TESTED"},
+    {"id": "H41-H44", "status": "PASS", "evidence": "SOURCE ASSERTION EXECUTED", "limitation": "The test checked the source of _evaluate_impl and the loader. The application was not started."},
+    {"id": "H45", "status": "PASS", "evidence": "SYNTHETICALLY TESTED", "limitation": "One blocked IPv6 constructor. No completed connection."},
+    {"id": "H46", "status": "PASS", "evidence": "SYNTHETICALLY TESTED", "actual": "forex_bot.app was not imported"},
+    {"id": "H47", "status": "PASS", "evidence": "HASH CHECK", "actual": "Protected files outside the approved edit set kept their hashes."}
+  ]
+}

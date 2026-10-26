@@ -1,0 +1,13 @@
+r19_exit=0
+regression_exit=0
+r10_exit=1
+r10_retry_exit=0
+r10_retry_note=transient WinError 5 replacing r10/synthetic_live_safety_state.json; retry passed 69/5
+r11_exit=0
+r12_exit=0
+r13_exit=0
+r14_exit=0
+r15_exit=0
+r16_exit=0
+r17_exit=0
+r18_exit=0

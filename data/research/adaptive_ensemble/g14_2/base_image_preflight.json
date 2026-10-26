@@ -1,0 +1,22 @@
+{
+  "stage": "G.14.2",
+  "requested_tag": "python:3.12-slim-bookworm",
+  "locally_available": true,
+  "image_id": "sha256:782412e85d0f0984994c290652577d4018aff08145c85b262bb63dc0c7522254",
+  "repo_digests_field": [
+    "python@sha256:782412e85d0f0984994c290652577d4018aff08145c85b262bb63dc0c7522254"
+  ],
+  "repo_digest_equals_image_id": true,
+  "registry_hostname_present": false,
+  "os_architecture": "linux/amd64",
+  "inspect_size_bytes": 45452267,
+  "image_ls_displayed_size": "189MB",
+  "size_fields_differ": true,
+  "used_by_known_running_container": false,
+  "known_running_container_image_id": "sha256:a905781d872d4a83706c716baa8be6e08c4abef26b2d9f9510a118c2c3039d25",
+  "sufficient_to_pin_a_future_from_instruction": false,
+  "reason": "The RepoDigests entry repeats the local image ID and does not name a registry. It was not confirmed as a distribution manifest digest. No registry was contacted and no digest was invented.",
+  "pull_required_while_this_local_tag_remains": false,
+  "pull_performed": false,
+  "classification": "BASE_IMAGE_DIGEST_UNVERIFIED"
+}

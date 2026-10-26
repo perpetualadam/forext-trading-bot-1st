@@ -1,0 +1,36 @@
+{
+  "commands": [
+    "python -m pytest tests/test_g13_packaging.py tests/test_g13_1_mutations.py tests/test_g14_context.py tests/test_g14_1_staging.py tests/test_g14_3_supply.py tests/test_g14_4_wheelhouse.py tests/test_g14_5_security.py tests/test_g14_6_security.py tests/test_g14_7_integration.py -q --tb=line -rs",
+    "python -m ruff check tests/g14_7_fs.py tests/g14_7_transport.py tests/test_g14_7_integration.py tests/g14_4_verify.py tests/g14_4_acquire.py tests/g14_4_inventory.py",
+    "python -m mypy tests/g14_7_fs.py tests/g14_7_transport.py tests/g14_4_verify.py tests/g14_4_acquire.py tests/g14_4_inventory.py"
+  ],
+  "pytest": {
+    "passed": 201,
+    "failed": 0,
+    "skipped": 2,
+    "warnings": 1,
+    "warning_detail": "zipfile duplicate name a.txt inside the existing G.14.6 malformed-archive test"
+  },
+  "skipped": [
+    {
+      "node": "tests/test_g14_7_integration.py::test_destination_symlink_rejected",
+      "reason": "NOT_EXECUTED_WITH_REASON: symlink_unavailable:22"
+    },
+    {
+      "node": "tests/test_g14_7_integration.py::test_parent_symlink_rejected",
+      "reason": "NOT_EXECUTED_WITH_REASON: symlink_unavailable:22"
+    }
+  ],
+  "ruff": "All checks passed",
+  "mypy": "Success: no issues found in 5 source files",
+  "not_run": [
+    "tests/test_g10_snapshot.py",
+    "historical tests that rewrite G.5 or G.6 evidence"
+  ],
+  "docker": false,
+  "pip": false,
+  "network": false,
+  "synthetic_fixtures": "in-memory wheels from build_synthetic_wheel, marked SYNTHETIC_TEST_ONLY",
+  "unsupported_platform_tests": "real directory symlinks, errno 22; not counted as passed",
+  "unexpected_repository_file_changes_by_tests": false
+}

@@ -1,0 +1,16 @@
+{
+  "forex_bot_app_imported": false,
+  "run_bot_started": false,
+  "oanda_client_created": false,
+  "postgresql_connection": false,
+  "telegram_or_discord": false,
+  "dotenv_stub_calls": 1,
+  "real_database_url_used": false,
+  "socket_attempts_blocked": 3,
+  "dns_policy": "getaddrinfo and gethostbyname raise R8_DNS_BLOCKED",
+  "socket_policy": "socket subclass raises R8_NETWORK_BLOCKED before the real constructor",
+  "families_allowed": [],
+  "persist_exec_orders": "0",
+  "plugins": "autoload disabled, cacheprovider disabled, noconftest",
+  "writes": "r8 runner log, r8 synthetic live-safety file, and approved source/tests"
+}

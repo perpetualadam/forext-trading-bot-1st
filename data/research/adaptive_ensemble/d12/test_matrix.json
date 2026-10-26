@@ -1,0 +1,275 @@
+{
+  "note": "Defect-detection tests passed because they observed the reporting gaps. Those gaps are not safety-invariant passes.",
+  "execution": "16 D.12 tests passed",
+  "safety_invariants": {
+    "T11_T13_application_records_incomplete_stop": "GAP",
+    "T12_application_logs_incomplete_stop": "GAP",
+    "T20_application_handles_start_refusal": "GAP",
+    "T14_tasks_drained": "PASS",
+    "T15_database_retained_on_success": "PASS",
+    "T16_database_released_on_failed_startup": "PASS",
+    "T18_no_duplicate_worker": "PASS",
+    "T24_T26_post_stop_database_protection": "PASS",
+    "T40_T42_d11_ownership": "PASS",
+    "T48_T49_auth_and_strategies": "PASS",
+    "T50_T60_prohibited_operations": "PASS"
+  },
+  "tests": [
+    {
+      "TEST_ID": "T01",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T02",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T03",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T04",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T05",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T06",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T07",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T08",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T09",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T10",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T11",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T12",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T13",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T14",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T15",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T16",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T17",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T18",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T19",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T20",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T21",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T22",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T23",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T24",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T25",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T26",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T27",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T28",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T29",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T30",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T31",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T32",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T33",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T34",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T35",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T36",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T37",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T38",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T39",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T40",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T41",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T42",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T43",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T44",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T45",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T46",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T47",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T48",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T49",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T50",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T51",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T52",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T53",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T54",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T55",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T56",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T57",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T58",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T59",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T60",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T61",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T62",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T63",
+      "result": "recorded in stage_d12_report.md"
+    },
+    {
+      "TEST_ID": "T64",
+      "result": "recorded in stage_d12_report.md"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "stage": "G.14.2",
+  "container_name": "forexttradingbot1st-bot-1",
+  "container_id": "5fcbcff7173eee98f6228b901fab96fd24474038852ef1f4cc3fbccd138edd32",
+  "image_id": "sha256:a905781d872d4a83706c716baa8be6e08c4abef26b2d9f9510a118c2c3039d25",
+  "status": "running",
+  "restart_count": 0,
+  "created": "2026-10-08T22:24:38.050789775Z",
+  "started_at": "2026-10-08T22:24:39.830615859Z",
+  "expected_container_id_matched": true,
+  "expected_image_id_matched": true,
+  "container_modified": false,
+  "environment_values_collected": false,
+  "classification": "RUNNING_PRODUCTION_IDENTITY_MATCHED",
+  "rollback_status": "ROLLBACK_CANDIDATE_PARTIALLY_VERIFIED"
+}

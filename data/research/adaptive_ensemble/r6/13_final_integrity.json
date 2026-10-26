@@ -1,0 +1,16 @@
+{
+  "application_source_modified": false,
+  "existing_tests_modified": false,
+  "existing_research_modified": false,
+  "writes_outside_r6": false,
+  "application_started": false,
+  "trading_loop_started": false,
+  "broker_requests": 0,
+  "network_requests": 0,
+  "dns": 0,
+  "packages_installed": false,
+  "docker": false,
+  "git_commit": false,
+  "tests_executed_this_stage": 0,
+  "protected_hashes_rechecked_after_audit": true
+}

@@ -1,0 +1,10 @@
+{
+  "stage": "G.14.7",
+  "recorded_before_g14_7_edits": true,
+  "tests/g14_4_acquire.py": "0773587232e4974eff0f39c8851bbce5f5a60e766b123ddff3bdf31f2023fc39",
+  "tests/g14_4_verify.py": "d52f4188688b5722bb27aa47266998a39839b34bcc4a2b6aa5816d4a33e15913",
+  "tests/g14_4_inventory.py": "7920d1122e242c21c79193503831d3740f8f064f52d03ab55cffa4ecc4507558",
+  "acquire_modified_in_g14_7": false,
+  "inventory_modified_in_g14_7": false,
+  "verify_modified_in_g14_7": true
+}

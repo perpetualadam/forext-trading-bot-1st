@@ -1,0 +1,67 @@
+{
+  "findings": [
+    {
+      "id": "D17-DEPS-01",
+      "location": "requirements.txt lines 1-9",
+      "evidence": "Nine production requirements are lower bounds. No exact pin.",
+      "level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "network": true,
+      "docker": false,
+      "production_inspection": false
+    },
+    {
+      "id": "D17-DEPS-02",
+      "location": "Dockerfile lines 13-14",
+      "evidence": "pip is upgraded without a pin and requirements are installed without hashes.",
+      "level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "network": true,
+      "docker": false,
+      "production_inspection": false
+    },
+    {
+      "id": "D17-TARGET-01",
+      "location": "Dockerfile line 2",
+      "evidence": "Tag python:3.12-slim-bookworm does not fix patch, architecture, libc version, or registry digest.",
+      "level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "network": true,
+      "docker": false,
+      "production_inspection": false
+    },
+    {
+      "id": "D17-WHEEL-01",
+      "location": "requirements.txt lines 2, 3, and 5",
+      "evidence": "numpy, pandas, and psycopg2-binary need target wheels. No wheel is stored locally.",
+      "level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "network": true,
+      "docker": false,
+      "production_inspection": false
+    },
+    {
+      "id": "D17-LOCK-01",
+      "location": "project dependency files",
+      "evidence": "No lockfile exists. A Windows Python 3.13 host lock would not be the Linux 3.12 target.",
+      "level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "network": true,
+      "docker": false,
+      "production_inspection": false
+    },
+    {
+      "id": "D17-PROV-01",
+      "location": "artifact store",
+      "evidence": "No package artifacts exist, so provenance cannot be recorded.",
+      "level": "MISSING",
+      "network": true,
+      "docker": false,
+      "production_inspection": false
+    },
+    {
+      "id": "D17-SEC-01",
+      "location": "install path",
+      "evidence": "Hash enforcement is absent. No vulnerability review was performed.",
+      "level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "network": true,
+      "docker": false,
+      "production_inspection": false
+    }
+  ]
+}

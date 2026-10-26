@@ -123,6 +123,14 @@ _poller_lock = threading.Lock()
 _poller_started = False
 _poller_thread: threading.Thread | None = None
 _stop_event = threading.Event()
+STOP_COMPLETED = "STOP_COMPLETED"
+STOP_INCOMPLETE_WORKER_ALIVE = "STOP_INCOMPLETE_WORKER_ALIVE"
+STOP_NOT_RUNNING = "STOP_NOT_RUNNING"
+START_STARTED = "START_STARTED"
+START_ALREADY_RUNNING = "START_ALREADY_RUNNING"
+START_REFUSED_PREVIOUS_WORKER = "START_REFUSED_PREVIOUS_WORKER"
+START_DISABLED = "START_DISABLED"
+START_FAILED = "START_FAILED"
 _offset = 0
 _commands_registered = False
 _last_409_log = 0.0
@@ -591,12 +599,26 @@ def cmd_metrics() -> CommandReply:
     return CommandReply(text)
 
 
+def _read_trades_if_running() -> list[dict[str, Any]]:
+    """Return trade rows only when shutdown has not been requested.
+
+    The stop flag is read while the database lock is held, and the helper
+    re-enters that same lock. Release cannot pass between this check and
+    the query. A stop that is already set skips the query entirely.
+    """
+    from forex_bot.database import _pg_lock, fetch_all_trades_ordered
+
+    with _pg_lock:
+        if _stop_event.is_set():
+            return []
+        return fetch_all_trades_ordered()
+
+
 def cmd_trades() -> CommandReply:
     from forex_bot.analytics import analytics
-    from forex_bot.database import fetch_all_trades_ordered
 
     try:
-        rows = fetch_all_trades_ordered()[:8]
+        rows = _read_trades_if_running()[:8]
     except Exception as exc:
         logger.warning("telegram trades fetch failed: %s", exc)
         rows = []
@@ -765,9 +787,7 @@ def cmd_search(query: str = "") -> CommandReply:
 
     trade_hits: list[str] = []
     try:
-        from forex_bot.database import fetch_all_trades_ordered
-
-        rows = fetch_all_trades_ordered()[:40]
+        rows = _read_trades_if_running()[:40]
     except Exception as exc:
         logger.warning("telegram search trades fetch failed: %s", redact_log_text(exc))
         rows = []
@@ -944,6 +964,8 @@ def _send_reply(reply: CommandReply, chat_id: Any) -> None:
 
 def process_update(update: dict[str, Any]) -> bool:
     """Handle one Telegram update. Returns True if a reply was produced."""
+    if _stop_event.is_set():
+        return False
     if not isinstance(update, dict):
         return False
 
@@ -996,6 +1018,8 @@ def process_updates(payload: dict[str, Any] | list[dict[str, Any]]) -> int:
             next_offset = max(next_offset, int(uid) + 1)
         except (TypeError, ValueError):
             pass
+        if _stop_event.is_set():
+            continue
         try:
             process_update(upd)
         except Exception:
@@ -1065,15 +1089,26 @@ def _log_getupdates_409(body: dict[str, Any] | None) -> None:
     )
 
 
+def _forget_worker(thread: threading.Thread) -> None:
+    """Drop the stored worker only when it is still this thread."""
+    global _poller_started, _poller_thread
+    with _poller_lock:
+        if _poller_thread is thread:
+            _poller_thread = None
+            _poller_started = False
+
+
 def _poller_loop() -> None:
     token = (Config.TELEGRAM_TOKEN or "").strip()
     if not token:
+        _forget_worker(threading.current_thread())
         return
     claim_getupdates_owner(_GETUPDATES_OWNER)
     try:
         _poller_loop_inner(token)
     finally:
         release_getupdates_owner(_GETUPDATES_OWNER)
+        _forget_worker(threading.current_thread())
 
 
 def _poller_loop_inner(token: str) -> None:
@@ -1129,6 +1164,8 @@ def _poller_loop_inner(token: str) -> None:
                 _stop_event.wait(getupdates_wait_sec(resp.status_code, body))
                 continue
             process_updates(body if isinstance(body, dict) else {})
+            if _stop_event.is_set():
+                break
         except Exception as exc:
             if _stop_event.is_set():
                 break
@@ -1137,16 +1174,27 @@ def _poller_loop_inner(token: str) -> None:
     logger.info("Telegram command listener stopped")
 
 
-def start_telegram_control() -> None:
-    """Start the getUpdates thread if configured. Never raises to the caller."""
+def start_telegram_control() -> str:
+    """Start the getUpdates thread if configured. Never raises to the caller.
+
+    The return value describes this invocation. A live worker whose stop has
+    been requested returns ``START_REFUSED_PREVIOUS_WORKER`` and leaves the
+    stop event set. A live worker that has not been asked to stop returns
+    ``START_ALREADY_RUNNING``. Neither path creates another worker.
+    """
     global _poller_started, _poller_thread
     if not commands_enabled():
         if telegram_configured():
             logger.info("Telegram commands disabled (TELEGRAM_COMMANDS=0)")
-        return
+        return START_DISABLED
     with _poller_lock:
-        if _poller_started:
-            return
+        if _poller_thread is not None and not _poller_thread.is_alive():
+            _poller_thread = None
+            _poller_started = False
+        if _poller_thread is not None and _poller_thread.is_alive():
+            if _stop_event.is_set():
+                return START_REFUSED_PREVIOUS_WORKER
+            return START_ALREADY_RUNNING
         _stop_event.clear()
         try:
             thread = threading.Thread(
@@ -1154,30 +1202,52 @@ def start_telegram_control() -> None:
                 name="telegram-control",
                 daemon=True,
             )
-            thread.start()
             _poller_thread = thread
             _poller_started = True
+            thread.start()
         except Exception:
+            _poller_thread = None
+            _poller_started = False
             logger.exception("telegram control failed to start (trading continues)")
+            return START_FAILED
+        return START_STARTED
 
 
-def stop_telegram_control() -> None:
-    """Ask the poller to exit and wait briefly so a restart cannot overlap getUpdates."""
+def stop_telegram_control() -> str:
+    """Request poller exit and wait at most two seconds.
+
+    A live worker stays tracked. ``STOP_INCOMPLETE_WORKER_ALIVE`` means the
+    join timed out. ``STOP_COMPLETED`` means that worker has exited.
+    ``STOP_NOT_RUNNING`` means there was no stored worker. The stop event is
+    not cleared here, so a later start cannot revive this worker.
+    """
     global _poller_started, _poller_thread
-    _stop_event.set()
-    thread = None
     with _poller_lock:
+        _stop_event.set()
         thread = _poller_thread
-        _poller_started = False
-        _poller_thread = None
-    if thread is not None and thread.is_alive() and thread is not threading.current_thread():
+    if thread is None:
+        return STOP_NOT_RUNNING
+    if thread is threading.current_thread():
+        return STOP_INCOMPLETE_WORKER_ALIVE
+    if thread.is_alive():
         thread.join(timeout=2.0)
+    with _poller_lock:
+        if thread.is_alive():
+            return STOP_INCOMPLETE_WORKER_ALIVE
+        if _poller_thread is thread:
+            _poller_thread = None
+            _poller_started = False
+        return STOP_COMPLETED
 
 
 def reset_telegram_control_for_tests() -> None:
     global _offset, _commands_registered, _poller_started, _last_409_log
     stop_telegram_control()
     release_getupdates_owner(_GETUPDATES_OWNER)
+    with _poller_lock:
+        alive = _poller_thread is not None and _poller_thread.is_alive()
+    if alive:
+        return
     _offset = 0
     _commands_registered = False
     _poller_started = False

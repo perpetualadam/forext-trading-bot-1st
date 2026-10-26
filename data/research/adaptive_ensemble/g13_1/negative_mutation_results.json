@@ -1,0 +1,32 @@
+{
+  "fixture_scope": "temporary files and in-memory snapshot rows",
+  "production_files_mutated": false,
+  "scenarios": [
+    {"mutation": "change one allowlisted Python file", "rejected": true},
+    {"mutation": "change Dockerfile hash", "rejected": true},
+    {"mutation": "rewrite the Dockerfile allowlist pin", "rejected": true},
+    {"mutation": "remove an allowlisted file", "rejected": true},
+    {"mutation": "add an unauthorised allowlist entry", "rejected": true},
+    {"mutation": "COPY . .", "rejected": true},
+    {"mutation": "whitespace-equivalent COPY forex_bot/", "rejected": true},
+    {"mutation": "unrestricted wildcard COPY", "rejected": true},
+    {"mutation": "duplicate COPY main.py", "rejected": true},
+    {"mutation": "copy .env even when listed", "rejected": true},
+    {"mutation": "copy a test fixture even when listed", "rejected": true},
+    {"mutation": "copy a research artifact even when listed", "rejected": true},
+    {"mutation": "copy an operational-state file even when listed", "rejected": true},
+    {"mutation": "change the startup command", "rejected": true},
+    {"mutation": "change the dependency-installation command", "rejected": true},
+    {"mutation": "path traversal", "rejected": true},
+    {"mutation": "symlink source", "rejected": true},
+    {"mutation": "reparse point", "rejected": true},
+    {"mutation": "JSON-array COPY", "rejected": true, "mode": "unsupported syntax fails closed"}
+  ],
+  "incorrectly_accepted": [],
+  "limitations": [
+    "Creating a real Windows symlink was not required. The symlink test forces Path.is_symlink for the fixture.",
+    "The reparse test forces the reparse attribute through lstat.",
+    "JSON-array and backslash-continued COPY instructions are rejected as unsupported. They are not interpreted.",
+    "The static checker is not a Docker build."
+  ]
+}

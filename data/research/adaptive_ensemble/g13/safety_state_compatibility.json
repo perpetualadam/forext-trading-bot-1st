@@ -1,0 +1,33 @@
+{
+  "source": "forex_bot/live_safety.py",
+  "source_sha256": {
+    "g7": "6e59666960dfec0ff379343c8973e389363faaab49278d9806c160a18ebe8f4f",
+    "g10": "6e59666960dfec0ff379343c8973e389363faaab49278d9806c160a18ebe8f4f",
+    "working_tree": "6e59666960dfec0ff379343c8973e389363faaab49278d9806c160a18ebe8f4f"
+  },
+  "source_bytes_identical_across_g7_g10_and_working_tree": true,
+  "live_file_written": false,
+  "schema_version": 1,
+  "mandatory_fields": [
+    "schema_version == 1",
+    "live_order_authorisation.state in BLOCKED|ALLOWED",
+    "strategies object containing scalp, trend, mean_reversion, swing_trend, swing_mean_reversion, swing_breakout",
+    "each known strategy row has active"
+  ],
+  "optional_fields": [
+    "unknown top-level keys on an otherwise valid document",
+    "strategy sample_count, sharpe, disable_reason, changed_at_utc, loaded_from_durable"
+  ],
+  "unknown_top_level_fields_preserved": true,
+  "unknown_fields_inside_known_strategy_rows_preserved": false,
+  "existing_strategy_flags_preserved_when_document_valid": true,
+  "invalid_or_newer_schema_replaced_with_blank_blocked_document": true,
+  "startup_rewrites_document": true,
+  "atomic_write": "temp file plus os.replace",
+  "persisted_allowed_effective_on_start": "BLOCKED with reason persisted_allowed_ignored_until_operator_action",
+  "missing_file_reason": "default_deny_no_durable_state",
+  "corrupt_file_reason": "corrupt_or_unreadable_state",
+  "strategy_flags_independent_of_effective_order_gate": true,
+  "close_actions_not_gated_by_new_exposure_check": true,
+  "rollback_risk": "A newer schema_version that this parser rejects is overwritten with a blank BLOCKED document and inactive known strategies."
+}

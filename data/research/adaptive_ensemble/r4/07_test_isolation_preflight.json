@@ -1,0 +1,17 @@
+{
+  "gate_e": "PASS",
+  "runner": "data/research/adaptive_ensemble/r4/20_run_offline_tests.py",
+  "pytest_plugins": "autoload disabled, cache provider disabled, conftest not loaded",
+  "app_started": false,
+  "trading_loop_started": false,
+  "broker_client_created": false,
+  "dotenv_stub_calls": 1,
+  "env_file_read": false,
+  "production_database": false,
+  "blocked_socket_constructor_attempts": 1,
+  "successful_network_connections": 0,
+  "dns_lookups_completed": 0,
+  "packages_installed": false,
+  "asyncio_tests_run": false,
+  "note": "Importing the broker module constructs a socket class for an IPv6 probe. The test barrier raised before an operating-system socket was created. That probe is not a broker request."
+}

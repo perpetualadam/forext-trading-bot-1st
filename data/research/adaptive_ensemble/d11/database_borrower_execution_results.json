@@ -1,0 +1,14 @@
+{
+  "suite": "tests/test_d11_database_borrower_quiescence.py threads mode",
+  "result": "included in 31 passed in 30.79s",
+  "observations": {
+    "delayed_poll_after_release": "old connection closed, queries empty, connect delta 0, no published connection, worker exited",
+    "stop_before_helper": "cmd_trades and cmd_search performed no query and no connect",
+    "stop_while_waiting_for_lock": "worker was inside _read_trades_if_running before the query, stop event was set while the foreign lock was held, no query, STOP_COMPLETED",
+    "inflight_query": "lock not free, release had not finished, stop returned INCOMPLETE while the query was still held, release finished only after the query was released",
+    "release_after_completed_stop": "connection closed, no telegram-control threads",
+    "database_exception": "cmd_trades caught the injected execute failure",
+    "direct_helper": "closed connection was not reused",
+    "init_overlap": "connect delta 1 and one connection id"
+  }
+}

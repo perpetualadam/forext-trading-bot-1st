@@ -1,0 +1,21 @@
+{
+  "modes": [
+    "block",
+    "complete",
+    "env_keys",
+    "exception",
+    "extend",
+    "ignore_stop",
+    "late",
+    "malformed",
+    "nonzero",
+    "partial",
+    "secrets",
+    "silent",
+    "stderr_flood",
+    "stdout_flood"
+  ],
+  "message": "one JSON object on stdout, redacted before persistence",
+  "stop_file": "supervisor-owned path inside d30_r2",
+  "worker_may_change_counters": false
+}

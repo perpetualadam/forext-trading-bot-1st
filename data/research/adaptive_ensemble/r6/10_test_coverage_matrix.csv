@@ -1,0 +1,11 @@
+area,kind,representative_files,ran_in_r6,notes
+direction and unresolved gates,isolated helpers,tests/test_r4_trading_safety.py; tests/test_r5_integration.py,no,R.5 reported 65 passed. Historical only.
+strategy defaults,unit,tests/test_strategy_activation_defaults.py,no,Not re-run. Defaults confirmed by reading strategy_meta.py.
+live safety,unit,tests/test_live_safety_preservation.py,no,Not re-run.
+execution safety,unit and async,tests/test_execution_safety.py,no,R.2 async cases failed on the Windows self-pipe under a socket barrier. Do not weaken the barrier.
+lifespan,application startup,tests/d15_lifecycle_runner.py and earlier D harnesses,no,They import forex_bot.app. Not run.
+broker,classification only,oanda_exec tests inside execution safety,no,No real broker test was run.
+database engine,missing,none safe,no,NOT_EVALUATED
+shadow rules,unit,tests/test_shadow_*.py,no,Not the live path.
+macro and research,research,tests/test_macro_*.py and g-stage tests,no,Not required for this audit and not run.
+full suite,mixed,tests/,no,Not run. Some files start the app or expect network.

@@ -1,0 +1,9 @@
+{
+  "protected_match": true,
+  "oci_match": true,
+  "prior_match": true,
+  "network_requests": 0,
+  "sockets_opened": 0,
+  "real_dns": false,
+  "workers_left_alive": false
+}

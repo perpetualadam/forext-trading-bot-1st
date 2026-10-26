@@ -1,0 +1,5 @@
+{
+  "gate": "H",
+  "result": "NOT_RUN",
+  "meaning": "No registry bytes were preserved. Raw manifest files were not created."
+}

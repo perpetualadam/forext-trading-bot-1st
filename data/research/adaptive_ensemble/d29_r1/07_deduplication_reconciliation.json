@@ -1,0 +1,14 @@
+{
+  "total_layer_references": 8,
+  "unique_digests": 8,
+  "duplicate_reference_count": 0,
+  "shared_amd64_arm64_digests": [],
+  "amd64_declared_bytes": 47558478,
+  "arm64_declared_bytes": 47168483,
+  "combined_reference_bytes": 94726961,
+  "unique_compressed_blob_bytes": 94726961,
+  "bytes_saved_by_deduplication": 0,
+  "largest_unique_blob": 28249323,
+  "arithmetic": "exact integer comparison of compressed SHA-256 digests",
+  "evidence": "VERIFIED_OCI_DESCRIPTOR"
+}

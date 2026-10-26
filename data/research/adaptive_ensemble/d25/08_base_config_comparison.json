@@ -1,0 +1,40 @@
+{
+  "shared": [
+    "os",
+    "command",
+    "environment_names",
+    "python_version_declaration",
+    "absent_user",
+    "absent_working_dir",
+    "absent_entrypoint",
+    "absent_ports",
+    "absent_volumes",
+    "absent_labels",
+    "rootfs_diff_id_count",
+    "history_entry_count"
+  ],
+  "differences": [
+    {
+      "field": "architecture",
+      "amd64": "amd64",
+      "arm64": "arm64"
+    },
+    {
+      "field": "variant",
+      "amd64": null,
+      "arm64": "v8"
+    },
+    {
+      "field": "created",
+      "amd64": "2026-10-06T02:04:51.549801942Z",
+      "arm64": "2026-10-06T02:11:13.014797359Z"
+    },
+    {
+      "field": "annotated_base_digest",
+      "amd64": "sha256:a4672c0cb26fbdde88e38fa2dfb6c681942306680e41e4378b28770b6e79ee91",
+      "arm64": "sha256:a1b86db52ce3daef089e45aabe36dfec4091f82464c25c1fdcf03de197cbe82a"
+    }
+  ],
+  "historical_report_agreement": true,
+  "measured_runtime": false
+}

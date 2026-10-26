@@ -1,0 +1,26 @@
+{
+  "stage": "D.7",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "working_tree_was_dirty_before_edit": true,
+  "database_py_git_status_before_edit": "clean",
+  "hashes_before_edit": {
+    "forex_bot/app.py": "f38c304c4692c4a69e537610173e5691c03d49e24c48d6e258f56d1be75ae7b4",
+    "forex_bot/database.py": "98ed215c0a7e7f21ecf938172a45805a3f1b456c5cf49e8d0a8ea9f0d5cbce72",
+    "forex_bot/live_safety.py": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+    "forex_bot/strategy_meta.py": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+    "tests/d5_lifespan_runner.py": "0729bea1df8a59d5dde3c66c396a476a0abb80c9c36213f15f08fcb77f2a3b60",
+    "tests/test_d5_lifespan_isolation.py": "8cf8c712979ad32eac648b4a8f18d65546bf24a72d2a4e6f4f3ff6041bd88dd4",
+    "tests/d6_partial_startup_runner.py": "0f26f2f9de022e47d0a1865f06f2be217c6d903bceb6031c1dc8aa3348734336",
+    "tests/test_d6_partial_startup_cleanup.py": "1fd9c54a98da7f099cfa8b204f234d22f7f61ca7cb5d315db9ce6e8c25498ad9"
+  },
+  "database_py_hash_note": "Calculated from the file before editing. No prior D.6 expected hash existed. Git status showed database.py clean against HEAD.",
+  "expected_hash_mismatches_before_edit": [],
+  "baseline_result": "PASS",
+  "pre_existing_tracked_modifications_preserved": [
+    "Dockerfile",
+    "forex_bot/app.py",
+    "forex_bot/live_safety.py",
+    "forex_bot/strategy_meta.py"
+  ]
+}

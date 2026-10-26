@@ -1,0 +1,13 @@
+{
+  "declaration": "3.12.15",
+  "declaration_evidence": "VERIFIED_CONFIG_DECLARATION",
+  "measured_abi": "MISSING",
+  "observations": {
+    "CANDIDATE_BY_DECLARED_TAGS_ONLY": 1218,
+    "EXCLUDED_BY_DECLARED_TAG": 6788,
+    "AMBIGUOUS": 0,
+    "UNKNOWN": 0
+  },
+  "candidate_rule": "cp312 with cp312 or abi3, or py3/py312 with none or abi3",
+  "compatibility_claimed": false
+}

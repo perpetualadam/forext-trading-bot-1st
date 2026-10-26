@@ -1,0 +1,21 @@
+{
+  "barrier": "raising socket subclass",
+  "allowed_families": [],
+  "forbidden": ["AF_INET", "AF_INET6", "AF_UNIX"],
+  "dotenv": "stubbed before import",
+  "persist_exec_orders": "0",
+  "live_safety_state_path": "data/research/adaptive_ensemble/r12/synthetic_live_safety_state.json",
+  "processes": ["r12", "regression", "r10", "r11"],
+  "r12_blocked_socket_or_dns": 2,
+  "r12_dotenv_stub_calls": 1,
+  "regression_blocked": 5,
+  "regression_dotenv": 1,
+  "r10_blocked": 5,
+  "r10_dotenv": 1,
+  "r11_blocked": 4,
+  "r11_dotenv": 1,
+  "main_imported": false,
+  "run_bot_called": false,
+  "oanda_api_constructed": false,
+  "postgresql_connected": false
+}

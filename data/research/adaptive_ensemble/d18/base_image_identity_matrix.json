@@ -1,0 +1,22 @@
+{
+  "registry_origin": "STATIC_INFERENCE",
+  "repository": "DECLARED_UNVERIFIED",
+  "tag": "DECLARED_UNVERIFIED",
+  "multi_platform_index_digest": "MISSING",
+  "platform_manifest_digest": "MISSING",
+  "image_configuration_digest": "MISSING",
+  "layer_digests": "MISSING",
+  "creation_timestamp": "MISSING",
+  "python_patch": "MISSING",
+  "distribution_revision": "MISSING",
+  "libc_version": "MISSING",
+  "architecture": "MISSING",
+  "provenance": "HISTORICAL_ONLY",
+  "registry_availability": "BLOCKED_BY_SCOPE",
+  "independent_integrity_verification": "MISSING",
+  "notes": {
+    "registry_origin": "Short name python implies a default registry. The hostname is not in the Dockerfile.",
+    "historical_local_id": "sha256:782412e85d0f0984994c290652577d4018aff08145c85b262bb63dc0c7522254",
+    "historical_local_id_is_not_a_registry_digest": true
+  }
+}

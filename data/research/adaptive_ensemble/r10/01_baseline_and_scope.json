@@ -1,0 +1,36 @@
+{
+  "stage": "R.10",
+  "head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "baseline_status": "MATCH",
+  "pre_stage_hashes": {
+    "forex_bot/bot_loop.py": "9fbb8c326c35d312b86b88a3d49f395993c2e1fee303afb15a56d7c14c4b2941",
+    "forex_bot/database.py": "4c289dfaa2ca70077fc314a9bb3f92609ab0a9dbda9db26ff912d80b8d03a4a8",
+    "forex_bot/orders.py": "78c34c86bcc5f1d90d3979b18052a4fc9496a2b3cc2f37589f17ef2b6f7f0dd9",
+    "forex_bot/app.py": "3ff01244ed217e85d211bec819a7ebff9c96fb0412c56e5a768792ab54b31ca1",
+    "forex_bot/telegram_control.py": "d32b560306fe2f86cc7c8ddbb40aa42842f071bd88ea513d77f172a6a0fadf4c",
+    "forex_bot/live_safety.py": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+    "forex_bot/strategy_meta.py": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+    "forex_bot/oanda_exec.py": "f4beb250d81852d8ee4f22af06ab33194c6b4ba1bf6f9b1a6b5d11d3b7b265c8",
+    "requirements.txt": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a",
+    "requirements-dev.txt": "0562a6853549077197defb3cd8515521b843a041f2a735723ee2903790e3eef5",
+    "Dockerfile": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+    ".dockerignore": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+    "docker-compose.yml": "f0a374774c35b4c63dce23a837572886d1d53331fec388044bc5887367980179"
+  },
+  "approved_edit": ["forex_bot/app.py"],
+  "approved_if_needed_unchanged": [
+    "forex_bot/bot_loop.py",
+    "forex_bot/database.py",
+    "forex_bot/orders.py"
+  ],
+  "new_test_files": [
+    "tests/r10_fakes.py",
+    "tests/test_r10_offline_startup.py"
+  ],
+  "output_collision": false,
+  "production_deployment": "NO-GO",
+  "practice_orders": "NOT AUTHORISED",
+  "live_trading": "NOT AUTHORISED",
+  "rollback": "NO-GO"
+}

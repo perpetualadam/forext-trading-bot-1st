@@ -1,0 +1,26 @@
+{
+  "production_files_modified_by_d14": [
+    "forex_bot/telegram_control.py",
+    "forex_bot/app.py"
+  ],
+  "functions_modified": ["start_telegram_control", "lifespan"],
+  "functions_added": ["_note_telegram_start"],
+  "constants_added": [
+    "START_STARTED",
+    "START_ALREADY_RUNNING",
+    "START_REFUSED_PREVIOUS_WORKER",
+    "START_DISABLED",
+    "START_FAILED"
+  ],
+  "stop_telegram_control_changed": false,
+  "worker_creation_policy_changed": false,
+  "database_changed": false,
+  "trading_changed": false,
+  "new_dependencies": false,
+  "new_threads": false,
+  "new_tasks": false,
+  "new_queries": false,
+  "unauthorised_changes": false,
+  "app_sha256_after": "3ff01244ed217e85d211bec819a7ebff9c96fb0412c56e5a768792ab54b31ca1",
+  "telegram_sha256_after": "d32b560306fe2f86cc7c8ddbb40aa42842f071bd88ea513d77f172a6a0fadf4c"
+}

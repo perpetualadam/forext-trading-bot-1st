@@ -1,0 +1,40 @@
+{
+  "account_id": "ACCT-R26",
+  "currency": "USD",
+  "day_baselines": {
+    "2026-01-07": 10000.0
+  },
+  "events": {
+    "trade-restart": {
+      "amount": -200.0,
+      "day": "2026-01-07",
+      "effect": "realised",
+      "id": "trade-restart",
+      "kind": "trade_pl",
+      "reverses": null,
+      "sequence": null,
+      "time": "2026-01-07T11:00:00+00:00"
+    }
+  },
+  "exposure_orders": [],
+  "exposure_positions": [],
+  "peak_equity": 10000.0,
+  "realised_by_day": {
+    "2026-01-07": -200.0
+  },
+  "reconciliation": {
+    "account_id": "ACCT-R26",
+    "as_of": "2026-01-07T12:00:00+00:00",
+    "balance": 10000.0,
+    "currency": "USD",
+    "equity_source": "broker_nav",
+    "last_sequence": null,
+    "nav": 10000.0,
+    "sequence_evidence": "absent",
+    "snapshot_id": "snap-10000.0",
+    "status": "verified",
+    "unrealised": 0.0
+  },
+  "revision": 2,
+  "schema_version": 1
+}

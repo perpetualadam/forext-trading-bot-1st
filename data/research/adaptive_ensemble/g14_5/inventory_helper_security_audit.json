@@ -1,0 +1,12 @@
+{
+  "stage": "G.14.5",
+  "file": "tests/g14_4_inventory.py",
+  "direct_count_check": "IMPLEMENTED",
+  "extras_syntax": "IMPLEMENTED for bracket extras",
+  "environment_markers": "MISSING; the field is hardcoded None at line 43",
+  "direct_url_rejection": "MISSING; a 'name @ https://...' line is stored as a constraint",
+  "vcs_rejection": "MISSING; a 'name @ git+...' line is stored as a constraint",
+  "upper_bound_scan": "present, but '<' is matched as a substring and is not a full specifier parser",
+  "transitive_graph": "not produced; versions remain UNKNOWN",
+  "classification": "INVENTORY_PARSER_DOES_NOT_REJECT_UNSAFE_REQUIREMENT_FORMS"
+}

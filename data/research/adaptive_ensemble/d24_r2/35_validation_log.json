@@ -1,0 +1,43 @@
+{
+  "commands_executed": [
+    "git rev-parse HEAD",
+    "git branch --show-current",
+    "git status --short -- protected files",
+    "Python standard-library HTTPS client"
+  ],
+  "network_request_count": 6,
+  "request_hosts": [
+    "auth.docker.io",
+    "production.cloudfront.docker.com",
+    "registry-1.docker.io"
+  ],
+  "request_methods": [
+    "GET"
+  ],
+  "sanitised_paths": [
+    "/v2/library/python/blobs/sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+    "/token",
+    "/v2/library/python/blobs/sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+    "REDACTED_VALIDATED_STORAGE_URL",
+    "/v2/library/python/blobs/sha256:eb7d16fec874f15b584063275012ac719885a2b87574d124c0da9c156d504629",
+    "REDACTED_VALIDATED_STORAGE_URL"
+  ],
+  "http_statuses": [
+    401,
+    200,
+    307,
+    200,
+    307,
+    200
+  ],
+  "storage_contacted": {
+    "amd64": true,
+    "arm64": true
+  },
+  "registry_token_forwarded_to_storage": false,
+  "amd64_verified": true,
+  "arm64_verified": true,
+  "stop": null,
+  "classification": "D24_R2_CONFIG_VERIFIED_BOTH_PLATFORMS",
+  "docker_commands": 0
+}

@@ -1,0 +1,22 @@
+{
+  "status": "PROPOSED_NOT_AUTHORISED",
+  "combined_reference_bytes": 94726961,
+  "unique_compressed_blob_bytes": 94726961,
+  "largest_unique_blob": 28249323,
+  "per_layer_body_cap": "the declared compressed size of that exact digest",
+  "non_layer_response_cap_bytes": 1048576,
+  "non_layer_cap_evidence": "HISTORICAL_OBSERVATION from the D.29 comparison value and the D.24-R2 config-retrieval cap",
+  "non_layer_response_count_ceiling": 10,
+  "non_layer_count_meaning": "A ceiling, not a prediction that this many non-layer bodies will arrive.",
+  "maximum_request_count": 18,
+  "maximum_cumulative_http_body_bytes": 105212721,
+  "cumulative_formula": "unique blob bytes plus non-layer ceiling times 1048576",
+  "counting_rules": [
+    "Stream every body through a counter.",
+    "Count challenge, token, redirect, and error bodies.",
+    "Count bytes even when a later hash check fails.",
+    "Do not trust Content-Length in place of the counter.",
+    "Stop when one response or the cumulative total exceeds its cap.",
+    "Do not assume a non-layer body occupies the full cap."
+  ]
+}

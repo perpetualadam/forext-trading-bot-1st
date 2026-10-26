@@ -1,0 +1,17 @@
+{
+  "stop_reason": null,
+  "findings": [
+    {
+      "id": "D22R1-HIST-01",
+      "evidence": "Original D.22 remains D22_BLOCKED_BASELINE_INTEGRITY with zero network requests.",
+      "impact": "The first stop is preserved.",
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D22R1-LIMIT-01",
+      "evidence": "Manifest identity does not establish Python patch, ABI, libc, or wheel compatibility.",
+      "impact": "Runtime and dependency verification remain open.",
+      "production_impact": "UNVERIFIED"
+    }
+  ]
+}

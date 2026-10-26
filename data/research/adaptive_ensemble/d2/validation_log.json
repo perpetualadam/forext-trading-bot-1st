@@ -1,0 +1,50 @@
+{
+  "stage": "D.2",
+  "commands": [
+    "python -m pytest -q --tb=short tests/test_live_safety_preservation.py tests/test_live_safety_repair.py",
+    "python -m pytest -q --tb=line tests/test_live_safety_preservation.py tests/test_live_safety_repair.py",
+    "python -m ruff check forex_bot/live_safety.py tests/test_live_safety_preservation.py",
+    "SHA-256 of forex_bot/live_safety.py and tests/test_live_safety_preservation.py",
+    "git diff --stat and git status --porcelain limited to the authorised paths"
+  ],
+  "files_read": [
+    "forex_bot/live_safety.py",
+    "forex_bot/bot_loop.py evolve section",
+    "forex_bot/strategy_meta.py Strategy class",
+    "tests/test_live_safety_preservation.py",
+    "tests/test_live_safety_repair.py selected tests",
+    "tests/conftest.py isolation fixtures"
+  ],
+  "files_modified": [
+    "forex_bot/live_safety.py"
+  ],
+  "files_created": [
+    "tests/test_live_safety_preservation.py",
+    "data/research/adaptive_ensemble/d2/"
+  ],
+  "tests_executed": [
+    "tests/test_live_safety_preservation.py",
+    "tests/test_live_safety_repair.py"
+  ],
+  "final_pytest": "53 passed, 0 failed, 0 skipped",
+  "prohibited_operations_performed": [],
+  "not_performed": [
+    "docker",
+    "wsl",
+    "vm",
+    "network",
+    "pip",
+    "oanda",
+    "postgresql",
+    "data/ops",
+    "data/research/v2_shadow",
+    "application startup",
+    "git commit"
+  ],
+  "missing_evidence": [
+    "Running process startup was not executed.",
+    "The live safety-state file was not read.",
+    "Power-loss durability was not tested.",
+    "Deep-recursion JSON was not given its own fixture."
+  ]
+}

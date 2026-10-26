@@ -1,0 +1,8 @@
+{
+  "summaries_match": true,
+  "journal_ids_match": true,
+  "feature_schema_sha256": "7d15b98d9bfe99136f2de5e05522d9cef623539b38f7ab61e9ea722a24889946",
+  "label_protocol_sha256": "dc914245aa072f1922b656634f473cd1c641cd01fa1f4c217b21ab1decb0ed51",
+  "evaluation_protocol_sha256": "bab4a868f1b789b795c5c124f86f7975d0b6ca9a5c0848b3323f743c2d8f81e9",
+  "source_sha256": "3ae3c4d061792353b94b8d2be73684f950362f135d47926d1bc8c11a24791091"
+}

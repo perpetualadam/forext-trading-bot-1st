@@ -1,0 +1,87 @@
+{
+  "stage": "G.14.10",
+  "dynamic_isolation_tests_executed": false,
+  "docker_commands": [],
+  "wsl_commands": [],
+  "vm_commands": [],
+  "network_requests": false,
+  "commands": [
+    {
+      "command": "git rev-parse HEAD; git branch --show-current; git status --porcelain",
+      "data": "repository metadata",
+      "side_effects": "none",
+      "secrets": "none",
+      "services": "none",
+      "network": "none",
+      "why": "baseline identity and the existing dirty tree"
+    },
+    {
+      "command": "python with PYTHONDONTWRITEBYTECODE=1 hashing authorised files and calling verify_directory",
+      "data": "Dockerfile, dockerignore, G.7 and G.10 frozen files, G.14.1 staging manifest, staging directory bytes",
+      "side_effects": "none; dockerignore_rules was null so forex_bot was not imported",
+      "secrets": "backup files were not hashed",
+      "services": "none",
+      "network": "none",
+      "why": "baseline and staging integrity"
+    },
+    {
+      "command": "Get-ItemProperty HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion selected fields only",
+      "data": "ProductName, EditionID, DisplayVersion, CurrentBuild, CurrentBuildNumber, InstallationType, BuildLabEx",
+      "side_effects": "registry read",
+      "secrets": "ProductId and digital product id were not read",
+      "services": "none",
+      "network": "none",
+      "why": "Windows version evidence"
+    },
+    {
+      "command": "whoami /groups filtered to Mandatory Label and BUILTIN\\Administrators; whoami /priv filtered to ten named privileges",
+      "data": "current process token labels",
+      "side_effects": "token query",
+      "secrets": "full group list and full privilege list were not stored",
+      "services": "none",
+      "network": "none",
+      "why": "elevation and integrity"
+    },
+    {
+      "command": "Get-CimInstance Win32_ComputerSystem HypervisorPresent; Win32_Processor virtualization properties",
+      "data": "local WMI booleans",
+      "side_effects": "read-only CIM query; does not call StartService",
+      "secrets": "manufacturer, model, and other processor fields were not stored",
+      "services": "WMI was queried, not started by this stage",
+      "network": "none",
+      "why": "virtualization presence without a hypervisor CLI"
+    },
+    {
+      "command": "Get-Service vmms, vmcompute, hvhost, LxssManager, WslService",
+      "data": "presence, status, start type",
+      "side_effects": "service status query; services were not started, stopped, or reconfigured",
+      "secrets": "none",
+      "services": "read only",
+      "network": "none",
+      "why": "whether Hyper-V and WSL services are present"
+    },
+    {
+      "command": "Test-Path of System32 wsl.exe, vmcompute.exe, vmms.exe, and the default VirtualBox and VMware Workstation executables",
+      "data": "file existence at those paths",
+      "side_effects": "none; executables were not started",
+      "secrets": "none",
+      "services": "none",
+      "network": "none",
+      "why": "installed-file presence without invoking the tools"
+    }
+  ],
+  "not_run": ["docker", "wsl.exe", "wslconfig", "VBoxManage", "vmware", "Hyper-V management cmdlets", "pip", "network clients", "ruff", "mypy", "pytest"],
+  "source_files_modified": false,
+  "test_files_modified": false,
+  "existing_artifacts_modified": false,
+  "unexpected_files": [],
+  "pycache_created": false,
+  "limitations": [
+    "G.14.8 race tests were not re-executed.",
+    "Docker metadata was not refreshed.",
+    "No distribution list and no VM inventory.",
+    "SLAT and VM monitor WMI values were recorded raw and not interpreted as a block.",
+    "Account UAC elevation ability was not tested.",
+    "Default-path absence is not a full-disk absence proof for VirtualBox or VMware."
+  ]
+}

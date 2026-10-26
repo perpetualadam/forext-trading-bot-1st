@@ -1,0 +1,31 @@
+{
+  "missing_bars_not_filled": true,
+  "partial_boundary_not_counted": true,
+  "rejected": [
+    {
+      "by_pair": {
+        "AUD_USD": "PARTIAL_BOUNDARY",
+        "EUR_USD": "PARTIAL_BOUNDARY",
+        "GBP_USD": "PARTIAL_BOUNDARY",
+        "USD_CAD": "PARTIAL_BOUNDARY",
+        "USD_CHF": "PARTIAL_BOUNDARY",
+        "USD_JPY": "PARTIAL_BOUNDARY"
+      },
+      "session": "2026-09-01",
+      "status": "PARTIAL_BOUNDARY"
+    },
+    {
+      "by_pair": {
+        "AUD_USD": "PARTIAL_BOUNDARY",
+        "EUR_USD": "PARTIAL_BOUNDARY",
+        "GBP_USD": "PARTIAL_BOUNDARY",
+        "USD_CAD": "PARTIAL_BOUNDARY",
+        "USD_CHF": "PARTIAL_BOUNDARY",
+        "USD_JPY": "PARTIAL_BOUNDARY"
+      },
+      "session": "2026-10-09",
+      "status": "PARTIAL_BOUNDARY"
+    }
+  ],
+  "rules_not_changed": true
+}

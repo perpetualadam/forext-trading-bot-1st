@@ -1,0 +1,19 @@
+{
+  "activity_1_metadata_discovery": {
+    "authorised_in_d26": false,
+    "proposed_for_d26_r1": true,
+    "establishes_resolution": false,
+    "establishes_installation": false,
+    "establishes_runtime": false
+  },
+  "activity_2_dependency_resolution": {
+    "authorised_in_d26": false,
+    "included_in_d26_r1": false,
+    "separate_approval_required": true
+  },
+  "activity_3_artifact_verification": {
+    "authorised_in_d26": false,
+    "included_in_d26_r1": false,
+    "separate_approval_required": true
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "rows": [
+    {
+      "transcribed_name": "python-dotenv",
+      "extras_requested": [],
+      "extras_could_introduce_dependencies": "no extra is transcribed",
+      "transitive_requirements": "MISSING",
+      "environment_marker_text_present": false,
+      "versions_unresolved": true
+    },
+    {
+      "transcribed_name": "pandas",
+      "extras_requested": [],
+      "extras_could_introduce_dependencies": "no extra is transcribed",
+      "transitive_requirements": "MISSING",
+      "environment_marker_text_present": false,
+      "versions_unresolved": true
+    },
+    {
+      "transcribed_name": "numpy",
+      "extras_requested": [],
+      "extras_could_introduce_dependencies": "no extra is transcribed",
+      "transitive_requirements": "MISSING",
+      "environment_marker_text_present": false,
+      "versions_unresolved": true
+    },
+    {
+      "transcribed_name": "requests",
+      "extras_requested": [],
+      "extras_could_introduce_dependencies": "no extra is transcribed",
+      "transitive_requirements": "MISSING",
+      "environment_marker_text_present": false,
+      "versions_unresolved": true
+    },
+    {
+      "transcribed_name": "psycopg2-binary",
+      "extras_requested": [],
+      "extras_could_introduce_dependencies": "no extra is transcribed",
+      "transitive_requirements": "MISSING",
+      "environment_marker_text_present": false,
+      "versions_unresolved": true
+    },
+    {
+      "transcribed_name": "fastapi",
+      "extras_requested": [],
+      "extras_could_introduce_dependencies": "no extra is transcribed",
+      "transitive_requirements": "MISSING",
+      "environment_marker_text_present": false,
+      "versions_unresolved": true
+    },
+    {
+      "transcribed_name": "uvicorn",
+      "extras_requested": [
+        "standard"
+      ],
+      "extras_could_introduce_dependencies": "UNVERIFIED",
+      "transitive_requirements": "MISSING",
+      "environment_marker_text_present": false,
+      "versions_unresolved": true
+    },
+    {
+      "transcribed_name": "oandapyV20",
+      "extras_requested": [],
+      "extras_could_introduce_dependencies": "no extra is transcribed",
+      "transitive_requirements": "MISSING",
+      "environment_marker_text_present": false,
+      "versions_unresolved": true
+    },
+    {
+      "transcribed_name": "tzdata",
+      "extras_requested": [],
+      "extras_could_introduce_dependencies": "no extra is transcribed",
+      "transitive_requirements": "MISSING",
+      "environment_marker_text_present": false,
+      "versions_unresolved": true
+    }
+  ],
+  "resolution_performed": false
+}

@@ -1,0 +1,14 @@
+{
+  "label": "CANDIDATE_CLASSIFICATION_NOT_WHEEL_PROOF",
+  "packages": {
+    "python-dotenv": "PURE_PYTHON_CANDIDATE",
+    "pandas": "NATIVE_EXTENSION_CANDIDATE",
+    "numpy": "NATIVE_EXTENSION_CANDIDATE",
+    "requests": "PURE_PYTHON_CANDIDATE",
+    "psycopg2-binary": "NATIVE_EXTENSION_CANDIDATE",
+    "fastapi": "PURE_PYTHON_CANDIDATE",
+    "uvicorn": "MIXED_OR_OPTIONAL_NATIVE",
+    "oandapyV20": "UNKNOWN",
+    "tzdata": "PURE_PYTHON_CANDIDATE"
+  }
+}

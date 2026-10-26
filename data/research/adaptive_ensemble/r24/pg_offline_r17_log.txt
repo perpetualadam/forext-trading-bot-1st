@@ -1,0 +1,32 @@
+........................................................................ [ 39%]
+........................................................................ [ 78%]
+..............................sssssssss                                  [100%]
+============================== warnings summary ===============================
+..\..\..\AppData\Roaming\Python\Python313\site-packages\oandapyV20\endpoints\decorators.py:18
+  C:\Users\Brian\AppData\Roaming\Python\Python313\site-packages\oandapyV20\endpoints\decorators.py:18: SyntaxWarning: invalid escape sequence '\['
+    nw = re.findall('.*?\[(.*)\]', v, flags=re.S)
+
+..\..\..\AppData\Roaming\Python\Python313\site-packages\oandapyV20\endpoints\decorators.py:25
+  C:\Users\Brian\AppData\Roaming\Python\Python313\site-packages\oandapyV20\endpoints\decorators.py:25: SyntaxWarning: invalid escape sequence '\{'
+    allSlots = re.findall("\{(_v3.*?)\}", obj.__doc__)
+
+..\..\..\AppData\Roaming\Python\Python313\site-packages\oandapyV20\types\types.py:40
+  C:\Users\Brian\AppData\Roaming\Python\Python313\site-packages\oandapyV20\types\types.py:40: SyntaxWarning: invalid escape sequence '\d'
+    "-(?P<userID>\d+)-(?P<accountNumber>\d+)", accountID)
+
+..\..\..\AppData\Roaming\Python\Python313\site-packages\oandapyV20\types\types.py:123
+  C:\Users\Brian\AppData\Roaming\Python\Python313\site-packages\oandapyV20\types\types.py:123: SyntaxWarning: invalid escape sequence '\d'
+    "T(?P<hour>\d+):(?P<minute>\d+):(?P<second>\d+)"
+
+..\..\..\AppData\Roaming\Python\Python313\site-packages\oandapyV20\types\types.py:124
+  C:\Users\Brian\AppData\Roaming\Python\Python313\site-packages\oandapyV20\types\types.py:124: SyntaxWarning: invalid escape sequence '\d'
+    "(?:.(?P<subsecond>\d{1,6})|)"
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [9] tests\test_r17_hard_risk_gates.py:174: NOT_EVALUATED
+174 passed, 9 skipped, 5 warnings in 5.92s
+
+exit=0
+blocked=1
+dotenv=1

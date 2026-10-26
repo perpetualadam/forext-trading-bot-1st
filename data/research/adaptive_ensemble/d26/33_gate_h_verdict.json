@@ -1,0 +1,5 @@
+{
+  "gate": "H",
+  "verdict": "PASS",
+  "reason": "validation, wheel-tag, and provenance limits were recorded"
+}

@@ -1,0 +1,15 @@
+{
+  "classification": "TARGET_SELECTION_REQUIRED",
+  "resolution_authorised": false,
+  "blocking_fields": [
+    "T02",
+    "T06",
+    "T07",
+    "T11",
+    "T12",
+    "T16",
+    "T18"
+  ],
+  "permitted_next_step": "User selection of the intended OCI platform and registry.",
+  "prohibited_next_step": "Dependency resolution, image pull, Docker, and production inspection."
+}

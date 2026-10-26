@@ -1,0 +1,253 @@
+{
+  "domains": [
+    {
+      "id": "R01",
+      "classification": "VERIFIED",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "note": "requirements.txt lines 1-9 and requirements-dev.txt lines 1-3 were parsed.",
+      "blocks_locking": false,
+      "blocks_candidate_build": false
+    },
+    {
+      "id": "R02",
+      "classification": "PARTIAL",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "note": "Dev file includes the production file. pytest is dev-only. packaging usage was not found in the scanned tests.",
+      "blocks_locking": false,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R03",
+      "classification": "PARTIAL",
+      "evidence_level": "STATIC_INFERENCE",
+      "note": "Image copy-set third-party imports map to declared packages. Research tree was not fully walked. Host 3.13 stdlib names were the classifier.",
+      "blocks_locking": false,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R04",
+      "classification": "PARTIAL",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "note": "Dockerfile line 2 names Python 3.12 by tag only.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R05",
+      "classification": "MISSING",
+      "evidence_level": "MISSING",
+      "note": "No Python patch release is declared or verified.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R06",
+      "classification": "PARTIAL",
+      "evidence_level": "STATIC_INFERENCE",
+      "note": "The tag contains bookworm. The distribution release is not digest-verified.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R07",
+      "classification": "MISSING",
+      "evidence_level": "MISSING",
+      "note": "CPU architecture is not declared. It was not assumed.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R08",
+      "classification": "MISSING",
+      "evidence_level": "MISSING",
+      "note": "libc family is implied by a glibc Debian tag but the version is unknown.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R09",
+      "classification": "PARTIAL",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "note": "numpy, pandas, and psycopg2-binary are declared. Exact native libraries are unknown.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R10",
+      "classification": "MISSING",
+      "evidence_level": "MISSING",
+      "note": "No project-local wheels exist.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R11",
+      "classification": "PARTIAL",
+      "evidence_level": "STATIC_INFERENCE",
+      "note": "A target-environment hash lock is specified. No resolver was executed or proven installed.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R12",
+      "classification": "MISSING",
+      "evidence_level": "MISSING",
+      "note": "No resolver version is approved.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R13",
+      "classification": "PARTIAL",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "note": "Current manifest hashes are recorded. They are not yet a frozen resolution input.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R14",
+      "classification": "MISSING",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "note": "No production requirement is an exact pin.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R15",
+      "classification": "MISSING",
+      "evidence_level": "MISSING",
+      "note": "No transitive lock exists.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R16",
+      "classification": "MISSING",
+      "evidence_level": "MISSING",
+      "note": "No artifact hashes exist.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R17",
+      "classification": "MISSING",
+      "evidence_level": "MISSING",
+      "note": "No artifact provenance exists.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R18",
+      "classification": "MISSING",
+      "evidence_level": "MISSING",
+      "note": "No wheelhouse exists.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R19",
+      "classification": "MISSING",
+      "evidence_level": "MISSING",
+      "note": "Completeness cannot be checked without artifacts.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R20",
+      "classification": "PARTIAL",
+      "evidence_level": "STATIC_INFERENCE",
+      "note": "An offline installation contract is written. It was not executed.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R21",
+      "classification": "MISSING",
+      "evidence_level": "MISSING",
+      "note": "Offline installation was not run.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R22",
+      "classification": "MISSING",
+      "evidence_level": "MISSING",
+      "note": "Resolution was not repeated.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R23",
+      "classification": "MISSING",
+      "evidence_level": "BLOCKED_BY_SCOPE",
+      "note": "Vulnerability services were not queried. A future review is required.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R24",
+      "classification": "MISSING",
+      "evidence_level": "HISTORICAL_OBSERVATION",
+      "note": "D.16 left the registry digest unverified. It was not queried.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R25",
+      "classification": "MISSING",
+      "evidence_level": "MISSING",
+      "note": "Architecture, patch, libc, and digest remain unknown.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R26",
+      "classification": "PARTIAL",
+      "evidence_level": "STATIC_INFERENCE",
+      "note": "A future resolution approval is drafted and not granted.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R27",
+      "classification": "PARTIAL",
+      "evidence_level": "STATIC_INFERENCE",
+      "note": "A future acquisition approval is drafted and not granted.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R28",
+      "classification": "MISSING",
+      "evidence_level": "MISSING",
+      "note": "Production dependency bytes are not reproducible from current files.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R29",
+      "classification": "MISSING",
+      "evidence_level": "MISSING",
+      "note": "A candidate build is not eligible.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    },
+    {
+      "id": "R30",
+      "classification": "MISSING",
+      "evidence_level": "STATIC_INFERENCE",
+      "note": "Target facts and the artifact closure are not verified.",
+      "blocks_locking": true,
+      "blocks_candidate_build": true
+    }
+  ],
+  "counts": {
+    "total": 30,
+    "VERIFIED": 1,
+    "PARTIAL": 10,
+    "MISSING": 19,
+    "UNVERIFIED": 0,
+    "BLOCKED_BY_SCOPE": 0,
+    "NOT_APPLICABLE": 0
+  }
+}

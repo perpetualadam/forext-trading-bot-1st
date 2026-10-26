@@ -1,0 +1,119 @@
+{
+  "cases": [
+    {
+      "precondition_not_executed": "allow must already be true and earlier returns must have been passed",
+      "rows": [
+        {
+          "evidence": "SYNTHETICALLY REPRODUCED",
+          "input": "missing key",
+          "loop_entered": false,
+          "observed": "BUY",
+          "raw": null,
+          "result": "FAIL",
+          "silently_became_buy": false
+        },
+        {
+          "evidence": "SYNTHETICALLY REPRODUCED",
+          "input": "None",
+          "loop_entered": false,
+          "observed": "BUY",
+          "raw": "None",
+          "result": "FAIL",
+          "silently_became_buy": true
+        },
+        {
+          "evidence": "SYNTHETICALLY REPRODUCED",
+          "input": "empty",
+          "loop_entered": false,
+          "observed": "BUY",
+          "raw": "",
+          "result": "FAIL",
+          "silently_became_buy": true
+        },
+        {
+          "evidence": "SYNTHETICALLY REPRODUCED",
+          "input": "whitespace",
+          "loop_entered": false,
+          "observed": "BUY",
+          "raw": " ",
+          "result": "FAIL",
+          "silently_became_buy": true
+        },
+        {
+          "evidence": "SYNTHETICALLY REPRODUCED",
+          "input": "BUY",
+          "loop_entered": false,
+          "observed": "BUY",
+          "raw": "BUY",
+          "result": "PASS",
+          "silently_became_buy": false
+        },
+        {
+          "evidence": "SYNTHETICALLY REPRODUCED",
+          "input": "SELL",
+          "loop_entered": false,
+          "observed": "SELL",
+          "raw": "SELL",
+          "result": "PASS",
+          "silently_became_buy": false
+        },
+        {
+          "evidence": "SYNTHETICALLY REPRODUCED",
+          "input": "buy",
+          "loop_entered": false,
+          "observed": "BUY",
+          "raw": "buy",
+          "result": "PASS",
+          "silently_became_buy": false
+        },
+        {
+          "evidence": "SYNTHETICALLY REPRODUCED",
+          "input": "sell",
+          "loop_entered": false,
+          "observed": "SELL",
+          "raw": "sell",
+          "result": "PASS",
+          "silently_became_buy": false
+        },
+        {
+          "evidence": "SYNTHETICALLY REPRODUCED",
+          "input": "NO_TRADE",
+          "loop_entered": false,
+          "observed": "BUY",
+          "raw": "NO_TRADE",
+          "result": "FAIL",
+          "silently_became_buy": true
+        },
+        {
+          "evidence": "SYNTHETICALLY REPRODUCED",
+          "input": "UNKNOWN",
+          "loop_entered": false,
+          "observed": "BUY",
+          "raw": "UNKNOWN",
+          "result": "FAIL",
+          "silently_became_buy": true
+        },
+        {
+          "evidence": "SYNTHETICALLY REPRODUCED",
+          "input": "0",
+          "loop_entered": false,
+          "observed": "BUY",
+          "raw": 0,
+          "result": "FAIL",
+          "silently_became_buy": true
+        },
+        {
+          "evidence": "SYNTHETICALLY REPRODUCED",
+          "input": "1",
+          "loop_entered": false,
+          "observed": "BUY",
+          "raw": 1,
+          "result": "FAIL",
+          "silently_became_buy": true
+        }
+      ],
+      "snippet": "direction = str(ai_decision.get(\"direction\", \"BUY\")).upper().strip()\nif direction not in (\"BUY\", \"SELL\"):\n    direction = \"BUY\""
+    }
+  ],
+  "dotenv_calls": 1
+}

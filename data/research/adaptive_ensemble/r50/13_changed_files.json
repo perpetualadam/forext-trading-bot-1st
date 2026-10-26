@@ -1,0 +1,24 @@
+{
+  "directory": "data/research/adaptive_ensemble/r50",
+  "files": {
+    "00_preflight.py": "dafc3703395cdd820e317567368a9f0be74ff1f3e3ca28bb8f758c95c8808e08",
+    "01_preflight.json": "c5db867779cef2970f8a5b90c5ebf06becc14039e74f0a1825960ce277ac7d75",
+    "02_r48_r49_review.md": "324c5a57fb66ef51eb597eb2b1fcca60207f0b9324464e22671ae724f1f8897f",
+    "03_architecture.md": "d8073c9b5f18f4e76d0383e85accd33e3922057b2b5cfbced7f8795e5ea1ee6f",
+    "04_security_tests.md": "6fe8074bb17489cf5e6cf2017d154bf17a0f2337e17408cf9dc3bc373e699e33",
+    "05_gbp_blocker_matrix.md": "6bdb88accaa3d274c0596f38b8ac8347616e448f6edb5e0b01c20e40c52c7d83",
+    "06_synthetic_matrix.json": "594bc5872137294d652d73ec25f3cc8b6767fd058986f15c26d52080b71f3028",
+    "07_ticket_reconciliation.md": "de89eb1123935ad927efcdb5df9b747bbe1b4fd1b0b682415036c2ed4e649747",
+    "08_financing.md": "170c1416b307d1ccabf7828cd2e640f3c8b9ee5265d813acccd6781d8b8a6abf",
+    "09_manual_procedure.md": "9b9769f18b461f92fdd945250c52196172c683e1c01b8bede1590d810b97632a",
+    "10_remaining_work.md": "c54573f93e37a551231e55e7e78d8d4f8a02da2eb65d81e7b5b45ad18ea9aa4c",
+    "11_token_caveat.md": "197805598e3b7e0779480d3447ef518ce3851d90adc00e39b98381a8309dbb3f",
+    "12_test_results.md": "ee23e9a071f349797b6da961effc2b7cad8fce6509ff0f52770a35faa2a24400",
+    "14_next_boundary.md": "7636169e0727a9642d11a3b53986ce9be492c48341d59d6af802ff194cb593c2",
+    "connector.py": "4520a39688001f4947d06a8c18dc0e404df7271c3ca79b0f62d64812fefab5f8",
+    "fixtures.py": "bf03349d425c27f36f989182a051460d4d7da2535937ccd70019fbb4647a42ee",
+    "stage_r50_report.md": "7031ec8b707d0fb4ee72d0c5920bf77318c8451d50730e9fc32076baaf350c17",
+    "test_connector.py": "2247363a877fdc9854c7de516a743424781b4e208100d1a5e8c1244da35ee445",
+    "validation_log.json": "15f9cccad3b1e900e716c6b7d50e61f43c99f9c922bddb094a4f548717c53ee3"
+  }
+}

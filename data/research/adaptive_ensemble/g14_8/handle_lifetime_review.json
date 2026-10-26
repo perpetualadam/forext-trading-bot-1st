@@ -1,0 +1,15 @@
+{
+  "ownership": "DirectoryHandle.close owns the directory kernel handle. The workflow owns file handles returned by write_exclusive and closes them in _close.",
+  "duplication": "The helper does not duplicate handles.",
+  "double_close": "A second DirectoryHandle.close is a no-op. Tested.",
+  "use_after_close": "create and write fail with handle_closed. Tested.",
+  "invalid_handle": "A closed handle is rejected before NtCreateFile. An arbitrary foreign handle value was not probed.",
+  "interrupted_write": "A short WriteFile still fails with interrupted_write. G.14.7 regression passed. The partial file is not deleted.",
+  "deletion_while_open": "os.rmdir succeeded while the child handle was open. The next create failed with handle_create_failed.",
+  "cleanup": "Handles are closed on success and failure. Directories are not deleted by the helper.",
+  "threads": "No lock is taken around the handle. Concurrent calls on one DirectoryHandle were not tested.",
+  "repeated_acquisition": "G.14.7 still rejects a second run into a used destination.",
+  "leaks_observed": "None in the tests that close handles. A process crash before _close is untested.",
+  "historical_directories_removed": false,
+  "classification": "PARTIALLY_VERIFIED"
+}

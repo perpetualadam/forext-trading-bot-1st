@@ -1,0 +1,6 @@
+{
+  "gate": "A",
+  "result": "BLOCKED",
+  "classification": "D22_BLOCKED_BASELINE_INTEGRITY",
+  "meaning": "The D.22 requirements.txt expected digest does not match the D.21 baseline. Network access was not started."
+}

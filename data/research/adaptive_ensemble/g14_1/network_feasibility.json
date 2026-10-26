@@ -1,0 +1,15 @@
+{
+  "stage": "G.14.1",
+  "dockerfile_run_steps": [
+    "pip install --upgrade pip",
+    "pip install --no-cache-dir --prefer-binary --timeout 120 --retries 15 -r requirements.txt"
+  ],
+  "base_image_available_locally": "unknown; Docker was not queried",
+  "wheelhouse_available": false,
+  "pip_upgrade_contacts_an_index": true,
+  "package_index_required_on_a_cold_build": true,
+  "build_cache_contents": "unknown; Docker was not queried",
+  "isolated_from_running_bot_is_not_offline": true,
+  "classification": "NETWORK_REQUIRED",
+  "rationale": "The proposed command leaves network enabled. A cold build must obtain the mutable base image if it is absent and must download unpinned packages. No verified offline input set exists."
+}

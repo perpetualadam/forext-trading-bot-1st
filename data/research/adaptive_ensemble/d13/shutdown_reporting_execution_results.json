@@ -1,0 +1,36 @@
+{
+  "evidence": "ACTUAL_LIFESPAN_ISOLATED",
+  "functions": ["app.lifespan", "stop_telegram_control"],
+  "fake_boundary": "blocked in-process getUpdates",
+  "normal": {
+    "result": "PASS",
+    "yielded": true,
+    "cleanup_errors": [],
+    "stored_alive": false,
+    "connection_open": true,
+    "pending": 0
+  },
+  "incomplete": {
+    "result": "PASS",
+    "stop_status": "STOP_INCOMPLETE_WORKER_ALIVE",
+    "cleanup_errors_contains": "D12-STOP-01",
+    "warning_contains": "polling worker remains alive after bounded join",
+    "stored_alive": true,
+    "connection_open": true,
+    "pending": 0,
+    "elapsed_sec_range": [1.5, 4.5],
+    "escaped_type": ""
+  },
+  "unknown": {
+    "result": "PASS",
+    "label": "SYNTHETIC_FAULT_INJECTION",
+    "cleanup_errors_contains": "D12-STOP-UNKNOWN",
+    "escaped_type": ""
+  },
+  "stop_exception": {
+    "result": "PASS",
+    "status_before_raise": "STOP_COMPLETED",
+    "cleanup_errors_contains": "RuntimeError",
+    "connection_open": true
+  }
+}

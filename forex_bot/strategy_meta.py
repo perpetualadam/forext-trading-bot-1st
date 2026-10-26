@@ -48,11 +48,20 @@ class Strategy:
     def __init__(self, name: str) -> None:
         self.name = name
         self.pnl: list[float] = []
-        self.active = True
+        self._active = False
         self.disable_reason: str | None = None
         self.changed_at_utc: str | None = None
         self.loaded_from_durable: bool = False
         self.authorised_for_live: bool = False
+
+    @property
+    def active(self) -> bool:
+        """True only after an explicit boolean True assignment."""
+        return self._active
+
+    @active.setter
+    def active(self, value: object) -> None:
+        self._active = value is True
 
     def update_pnl(self, pnl: float) -> None:
         self.pnl.append(pnl)
@@ -181,7 +190,7 @@ def select_strategy(symbol: str, routing_df: pd.DataFrame) -> tuple[str | None, 
 
     last_atr = float(routing_df["atr"].iloc[-1])
     med_atr = float(atr_series.median())
-    if med_atr <= 0 or (last_atr != last_atr):  # NaN
+    if med_atr <= 0 or (last_atr != last_atr):  # NaN  # noqa: PLR0124
         name = _select_from_weights(allocate_scoped(SCALP_STRATEGY_KEYS))
         return name, scalp_lb, "scalp"
 

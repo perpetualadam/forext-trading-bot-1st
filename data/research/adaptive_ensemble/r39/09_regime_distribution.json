@@ -1,0 +1,128 @@
+{
+  "AUD_USD": {
+    "counts": {
+      "TREND": 929,
+      "RANGE": 16485,
+      "BREAKOUT": 940,
+      "UNCERTAIN": 6681
+    },
+    "runs": {
+      "TREND": 228,
+      "RANGE": 1223,
+      "BREAKOUT": 716,
+      "UNCERTAIN": 1234
+    },
+    "average_run_bars": {
+      "TREND": 4.074561403508772,
+      "RANGE": 13.47914963205233,
+      "BREAKOUT": 1.312849162011173,
+      "UNCERTAIN": 5.414100486223663
+    },
+    "changes": 3400
+  },
+  "EUR_USD": {
+    "counts": {
+      "TREND": 992,
+      "RANGE": 16157,
+      "BREAKOUT": 951,
+      "UNCERTAIN": 6940
+    },
+    "runs": {
+      "TREND": 252,
+      "RANGE": 1326,
+      "BREAKOUT": 745,
+      "UNCERTAIN": 1403
+    },
+    "average_run_bars": {
+      "TREND": 3.9365079365079363,
+      "RANGE": 12.184766214177978,
+      "BREAKOUT": 1.2765100671140939,
+      "UNCERTAIN": 4.946543121881682
+    },
+    "changes": 3725
+  },
+  "GBP_USD": {
+    "counts": {
+      "TREND": 912,
+      "RANGE": 16350,
+      "BREAKOUT": 990,
+      "UNCERTAIN": 6782
+    },
+    "runs": {
+      "TREND": 257,
+      "RANGE": 1304,
+      "BREAKOUT": 743,
+      "UNCERTAIN": 1287
+    },
+    "average_run_bars": {
+      "TREND": 3.5486381322957197,
+      "RANGE": 12.53834355828221,
+      "BREAKOUT": 1.332436069986541,
+      "UNCERTAIN": 5.26961926961927
+    },
+    "changes": 3590
+  },
+  "USD_CAD": {
+    "counts": {
+      "TREND": 990,
+      "RANGE": 16044,
+      "BREAKOUT": 946,
+      "UNCERTAIN": 7056
+    },
+    "runs": {
+      "TREND": 267,
+      "RANGE": 1278,
+      "BREAKOUT": 744,
+      "UNCERTAIN": 1364
+    },
+    "average_run_bars": {
+      "TREND": 3.707865168539326,
+      "RANGE": 12.553990610328638,
+      "BREAKOUT": 1.271505376344086,
+      "UNCERTAIN": 5.173020527859237
+    },
+    "changes": 3652
+  },
+  "USD_CHF": {
+    "counts": {
+      "TREND": 974,
+      "RANGE": 15304,
+      "BREAKOUT": 980,
+      "UNCERTAIN": 7753
+    },
+    "runs": {
+      "TREND": 269,
+      "RANGE": 1275,
+      "BREAKOUT": 740,
+      "UNCERTAIN": 1340
+    },
+    "average_run_bars": {
+      "TREND": 3.620817843866171,
+      "RANGE": 12.003137254901961,
+      "BREAKOUT": 1.3243243243243243,
+      "UNCERTAIN": 5.785820895522388
+    },
+    "changes": 3623
+  },
+  "USD_JPY": {
+    "counts": {
+      "TREND": 959,
+      "RANGE": 16361,
+      "BREAKOUT": 900,
+      "UNCERTAIN": 6816
+    },
+    "runs": {
+      "TREND": 259,
+      "RANGE": 1195,
+      "BREAKOUT": 687,
+      "UNCERTAIN": 1286
+    },
+    "average_run_bars": {
+      "TREND": 3.7027027027027026,
+      "RANGE": 13.691213389121339,
+      "BREAKOUT": 1.3100436681222707,
+      "UNCERTAIN": 5.300155520995334
+    },
+    "changes": 3426
+  }
+}

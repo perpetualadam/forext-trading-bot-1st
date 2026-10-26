@@ -1,0 +1,32 @@
+{
+  "commands": [
+    "python -m pytest tests/test_d10_telegram_shutdown.py tests/test_d10_database_borrower_quiescence.py -q --tb=line",
+    "python -m pytest tests/test_d11_telegram_shutdown_remediation.py tests/test_d11_database_borrower_quiescence.py -q --tb=line",
+    "python -m pytest tests/test_live_safety_preservation.py tests/test_strategy_activation_defaults.py tests/test_startup_safety_preflight.py tests/test_d7_resource_cleanup.py tests/test_d9_database_concurrency_remediation.py -q --tb=line",
+    "python -m pytest tests/test_live_safety_repair.py -q --tb=line",
+    "python -m pytest tests/test_d5_lifespan_isolation.py tests/test_d6_partial_startup_cleanup.py tests/test_d8_database_concurrency.py tests/test_d10_telegram_shutdown.py tests/test_d10_database_borrower_quiescence.py -q --tb=line",
+    "python -m ruff check on the D.11 runner and tests"
+  ],
+  "results": {
+    "pre_fix_d10": "14 passed in 9.79s",
+    "d11": "31 passed in 30.79s",
+    "d2_d3_d4_d7_d9": "139 passed in 13.96s",
+    "safety_repair": "23 passed in 4.83s",
+    "d5": "15 errors, app.py hash pin",
+    "d6": "12 errors, app.py hash pin",
+    "d8": "7 errors, database.py hash pin",
+    "post_fix_d10": "14 errors, telegram_control.py hash pin",
+    "ruff_d11": "passed"
+  },
+  "prohibited_operations": [],
+  "files_modified_by_d11": [
+    "forex_bot/telegram_control.py",
+    "tests/d11_telegram_shutdown_runner.py",
+    "tests/test_d11_telegram_shutdown_remediation.py",
+    "tests/test_d11_database_borrower_quiescence.py",
+    "data/research/adaptive_ensemble/d11/"
+  ],
+  "missing_evidence": [
+    "Production process, container, database, broker, and Telegram servers were not contacted."
+  ]
+}

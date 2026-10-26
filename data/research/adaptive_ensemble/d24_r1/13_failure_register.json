@@ -1,0 +1,23 @@
+{
+  "stop": null,
+  "classification": "D24_R1_REDIRECT_HOST_DISCOVERED_NOT_CONTACTED",
+  "findings": [
+    {
+      "id": "D24R1-HIST-01",
+      "evidence": "D.24 remains D24_BLOCKED_REGISTRY_RESPONSE. Its Location header was not preserved.",
+      "impact": "This diagnostic does not reclassify D.24 and does not verify config bytes.",
+      "required_action": "Leave D.21 through D.24 unchanged.",
+      "required_approval": "None for preservation.",
+      "production_impact": "UNVERIFIED"
+    },
+    {
+      "id": "D24R1-HOST-01",
+      "evidence": "A redirect hostname was extracted from the AMD64 blob response and was not contacted.",
+      "impact": "The hostname is outside the current allowlist.",
+      "required_action": "Do not contact it without a separate approval that names it.",
+      "required_approval": "A new network-host approval.",
+      "production_impact": "UNVERIFIED",
+      "hostname": "production.cloudfront.docker.com"
+    }
+  ]
+}

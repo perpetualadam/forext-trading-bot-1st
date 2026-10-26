@@ -1,0 +1,31 @@
+{
+  "store": [
+    "project name",
+    "release version",
+    "requires_python",
+    "requires_dist",
+    "filename",
+    "distribution type",
+    "size",
+    "sha256",
+    "yanked",
+    "yank reason presence",
+    "sanitised HTTP status",
+    "request counts",
+    "schema result"
+  ],
+  "drop": [
+    "credentials",
+    "authorization headers",
+    "cookies",
+    "tokens",
+    "query secrets",
+    "file URLs",
+    "unrelated headers",
+    "HTML",
+    "wheel bytes",
+    "source-distribution bytes"
+  ],
+  "url_field_policy": "record that a file URL field existed and discard the value",
+  "unexpected_secret_like_values": "redact"
+}

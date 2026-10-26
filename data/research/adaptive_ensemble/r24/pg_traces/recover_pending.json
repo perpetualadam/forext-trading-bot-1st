@@ -1,0 +1,34 @@
+{
+  "pid": 3156,
+  "role": "recover",
+  "ok": true,
+  "startup_ok": true,
+  "trading_ready": false,
+  "trading_loop_started": false,
+  "recovery_functions": [
+    "get_connection",
+    "load_open_orders_from_db_into_memory",
+    "load_reconcile_state_from_db"
+  ],
+  "orders": [
+    {
+      "client_order_id": "cid-r24-pending",
+      "symbol": "AUD_USD",
+      "status": "PENDING",
+      "source": "db_recovery"
+    }
+  ],
+  "blocked_by": "active_reservation",
+  "reservation_attempted": false,
+  "inert_dispatches": 0,
+  "production_eligible": false,
+  "exposure": "active_reservation",
+  "flat_cleared": false,
+  "exposure_after_flat": "active_reservation",
+  "second_blocked_by": "active_reservation",
+  "route_refusals": [],
+  "socket_blocks": [],
+  "dns_blocks": 0,
+  "dotenv_stubs": 1,
+  "real_broker_calls": 0
+}

@@ -1,0 +1,17 @@
+{
+  "gate": "D",
+  "verdict": "PASS",
+  "entered": true,
+  "entrypoint": "async with forex_bot.app.lifespan(app)",
+  "server_started": false,
+  "actual_lifespan_fault_injection": true,
+  "isolation_violations": [],
+  "cleanup_defects_confirmed": [
+    "D6-DB-01",
+    "D6-DB-02",
+    "D6-TASK-01",
+    "D6-SHUT-01",
+    "D6-SHUT-02"
+  ],
+  "ownership_exception": "D6-OWN-01"
+}

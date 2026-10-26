@@ -1,0 +1,71 @@
+{
+  "stage": "G.14.12",
+  "commands_executed": [
+    {
+      "command": "whoami /user",
+      "target": "current process token",
+      "reads": "account name and user SID",
+      "side_effects": "none",
+      "acl_or_owner_modified": false,
+      "services_started": false,
+      "network": false,
+      "credentials": false,
+      "unrelated_traversal": false,
+      "justification": "Identify the interactive SID that must not be the receiver"
+    },
+    {
+      "command": "whoami /groups filtered to Mandatory Label and BUILTIN\\Administrators",
+      "target": "current process token",
+      "reads": "integrity SID and whether Administrators is deny-only",
+      "side_effects": "none",
+      "acl_or_owner_modified": false,
+      "services_started": false,
+      "network": false,
+      "credentials": false,
+      "unrelated_traversal": false,
+      "justification": "Confirm medium integrity and lack of elevation for this process"
+    }
+  ],
+  "commands_skipped": [
+    {
+      "status": "SKIPPED_UNSAFE_OR_UNVERIFIED",
+      "what": "local user database enumeration",
+      "reason": "Would dump accounts beyond the current token. Prohibited."
+    },
+    {
+      "status": "SKIPPED_UNSAFE_OR_UNVERIFIED",
+      "what": "service logon-account enumeration, including vmms and WslService",
+      "reason": "No single existing service is a candidate receiver. Listing StartName values is not required to reject LocalSystem, LocalService, and NetworkService as inappropriate."
+    },
+    {
+      "status": "SKIPPED_UNSAFE_OR_UNVERIFIED",
+      "what": "directory ownership and DACL reads",
+      "reason": "No authorised non-sensitive candidate path exists. Temp, OneDrive, the repository, staging, system directories, production mounts, Docker volumes, and credential paths were not ACL-scanned. Inventing a path and reading it would not make it protected."
+    },
+    {
+      "status": "SKIPPED_UNSAFE_OR_UNVERIFIED",
+      "what": "ancestor DACL walk",
+      "reason": "There is no receiving directory. A walk of C:\\ or the user profile would be an unrelated traversal."
+    }
+  ],
+  "observed": {
+    "account": "nucbox_m5plus\\brian",
+    "sid": "S-1-5-21-1451533663-3497457457-3930589332-1001",
+    "integrity": "S-1-16-8192 Medium",
+    "administrators_group": "deny only",
+    "elevation": "not_elevated"
+  },
+  "reused_from_g14_10_not_refreshed": [
+    "Windows Professional, build 26200, AMD64",
+    "HypervisorPresent true",
+    "vmms, vmcompute, hvhost, WslService running",
+    "named high privileges absent from that token"
+  ],
+  "unknown": [
+    "whether this account can elevate through UAC",
+    "whether any other local account exists",
+    "every DACL on every possible ancestor",
+    "service binary DACLs",
+    "pipe DACLs, because no pipe exists"
+  ]
+}

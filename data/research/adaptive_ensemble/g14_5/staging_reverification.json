@@ -1,0 +1,14 @@
+{
+  "stage": "G.14.5",
+  "staging_directory": "C:\\Users\\Brian\\AppData\\Local\\Temp\\forext-g14-1-staging-0yifygx2",
+  "expected_files": 63,
+  "actual_files": 63,
+  "expected_bytes": 617279,
+  "actual_bytes": 617279,
+  "manifest_sha256": "8597768f9b351ee5a8b8c3750cb4df12880a25414dfb4e6aab072e1fe2b3b33b",
+  "independent_verification": "PASS",
+  "unexpected_files": [],
+  "sensitive_backups_present": false,
+  "backup_files_opened": false,
+  "staging_modified": false
+}

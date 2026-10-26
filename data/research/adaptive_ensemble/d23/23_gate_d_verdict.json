@@ -1,0 +1,12 @@
+{
+  "gate": "D",
+  "verdict": "PASS",
+  "meaning": "The offline task completed. Missing runtime metadata was not obtained.",
+  "checks": [
+    "ARM64 digest and size match.",
+    "Parent platform is linux/arm64 variant v8.",
+    "Config and layer arrays are present.",
+    "Config blob and layers were not fetched."
+  ],
+  "network_requests": 0
+}

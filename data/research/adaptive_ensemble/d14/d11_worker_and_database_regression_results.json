@@ -1,0 +1,14 @@
+{
+  "evidence": "ACTUAL_COMBINED_LIFECYCLE_ISOLATED",
+  "incomplete_stop_keeps_worker": true,
+  "refused_restart_keeps_stop_event": true,
+  "duplicate_worker": false,
+  "delayed_poll_queries": [],
+  "gate_queries": [],
+  "inflight_release_blocked": true,
+  "inflight_stop": "STOP_INCOMPLETE_WORKER_ALIVE",
+  "open_connections_final": [],
+  "open_cursors_final": [],
+  "use_after_close": [],
+  "result": "PASS"
+}

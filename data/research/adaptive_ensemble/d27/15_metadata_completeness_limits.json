@@ -1,0 +1,7 @@
+{
+  "raw_responses": "not retained",
+  "release_specific_requires_dist": "MISSING",
+  "requires_dist_scope": "project info section of the current reported release only",
+  "wheel_contents": "not inspected",
+  "pep427_conformance": "NOT_CLAIMED"
+}

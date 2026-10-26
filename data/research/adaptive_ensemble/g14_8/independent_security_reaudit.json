@@ -1,0 +1,33 @@
+{
+  "items": [
+    {"item": "trust_anchor", "claim": "The first opened directory is the intended directory", "level": "UNVERIFIED", "reason": "CreateFileW follows the path present at open time"},
+    {"item": "parent_identity", "claim": "The handle's volume serial and file index identify the opened object", "level": "PARTIALLY_VERIFIED", "reason": "GetFileInformationByHandle is queried. It does not recover a pre-open identity."},
+    {"item": "child_identity", "claim": "The child is a non-reparse directory on the parent handle's volume", "level": "PARTIALLY_VERIFIED", "reason": "Observed for a normal create. Cross-volume kernel case not executed."},
+    {"item": "handle_relative_creation", "claim": "The child is created with RootDirectory and FILE_CREATE", "level": "VERIFIED_WITH_ASSUMPTIONS", "reason": "The assumption is that the parent handle is already the intended object."},
+    {"item": "reparse_rejection", "claim": "An opened object with FILE_ATTRIBUTE_REPARSE_POINT is rejected", "level": "PARTIALLY_VERIFIED", "reason": "A real junction was rejected. Other tags were not enumerated."},
+    {"item": "junction_rejection", "claim": "A junction path is not used as a parent", "level": "VERIFIED", "reason": "mklink /J before open failed closed on this machine."},
+    {"item": "symlink_rejection", "claim": "A directory symlink is rejected by the kernel path", "level": "UNVERIFIED", "reason": "os.symlink failed with errno 22 and was not counted as a pass."},
+    {"item": "race_resistance", "claim": "The initial pathname race is closed", "level": "FAILED", "reason": "Pre-open replacement was not detected."},
+    {"item": "post_open_binding", "claim": "Later creates stay on the opened object", "level": "VERIFIED", "reason": "Rename and junction-after-open tests."},
+    {"item": "handle_bound_verification", "claim": "Verification uses handle-read bytes", "level": "VERIFIED", "reason": "G.14.7 regression still completes only through verify_member_bytes."},
+    {"item": "lock_creation", "claim": "The synthetic lock is written through the child handle", "level": "VERIFIED_WITH_ASSUMPTIONS", "reason": "True relative to the opened child. The child follows the unverified parent."},
+    {"item": "failure_handling", "claim": "Closed handles and deleted directories do not create a replacement file", "level": "VERIFIED", "reason": "handle_closed and handle_create_failed tests."},
+    {"item": "handle_closure", "claim": "Directory handles close once", "level": "VERIFIED", "reason": "Double-close test."},
+    {"item": "same_user_resistance", "claim": "Another process as the same user cannot redirect the open", "level": "FAILED", "reason": "The swap required no extra privilege."}
+  ],
+  "critical_findings": [
+    "INITIAL_PATH_RACE_UNVERIFIED: a same-user path replacement before CreateFileW selects the directory that later receives the child, artifacts, and synthetic lock"
+  ],
+  "high_findings": [
+    "DIRECTORY_HANDLE_IDENTITY_UNVERIFIED for the initial parent",
+    "Real directory symlink behavior was not executed",
+    "LIVE_HTTPS_TRANSPORT_NOT_IMPLEMENTED",
+    "PACKAGE_SOURCE_APPROVAL_REQUIRED"
+  ],
+  "medium_findings": [
+    "NTSTATUS values other than 0 and 0xC0000035 are collapsed",
+    "32-bit structure layout was not tested",
+    "ACL contents were not read",
+    "Cross-volume creation was not executed"
+  ]
+}

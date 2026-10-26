@@ -1,0 +1,17 @@
+{
+  "commands": [
+    "git rev-parse HEAD",
+    "git branch --show-current",
+    "targeted git status",
+    "SHA-256 of requirements.txt",
+    "SHA-256 of the other protected files",
+    "comparison with D.21 baseline records"
+  ],
+  "exit_codes_observed": [0],
+  "network_requests": 0,
+  "hosts_contacted": [],
+  "docker_commands": 0,
+  "package_manager_commands": 0,
+  "application_imports": 0,
+  "raw_manifest_files_created": false
+}

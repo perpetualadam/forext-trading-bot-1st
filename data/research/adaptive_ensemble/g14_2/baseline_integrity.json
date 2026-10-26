@@ -1,0 +1,12 @@
+{
+  "stage": "G.14.2",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "expected_head_matched": true,
+  "dockerfile_sha256": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+  "dockerignore_sha256": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+  "g10_allowlist_sha256": "b2d0f66f8a696da5488072720f6d8de7ceccfd8c847d54327d4cfff2e10eb7b4",
+  "staging_manifest_sha256": "8597768f9b351ee5a8b8c3750cb4df12880a25414dfb4e6aab072e1fe2b3b33b",
+  "hashes_matched": true,
+  "working_tree_note": "Dirty tree is the previously recorded G.13 through G.14.1 work plus scheduler files. Frozen hashes were not regenerated."
+}

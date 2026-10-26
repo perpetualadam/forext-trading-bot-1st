@@ -1,0 +1,24 @@
+{
+  "directory": "data/research/adaptive_ensemble/r55/b1",
+  "files": {
+    "00_preflight.py": "208cf4abcc3886619425f8b5863c7e233f3c114816872c5a136eda0b9f5a7efc",
+    "01_preflight.json": "41b799266e666f0595ff5447df13eb09792b8215b9a19b8dd302bf0a620d2b40",
+    "02_prior_hash_verification.md": "e9c40c61da401a6c4dcbe0c14b5886668763834d0fe7e13d16d6778037be2cd5",
+    "04_https_transport.md": "0fe1ae2152f05424dc1950072e503e3426cb913808ba53bd833c868088c9faff",
+    "05_credential_entry.md": "169a8b1e8a420836deb57217b6f7228db5233c8adac4ab42cb8477722dc3988a",
+    "06_synthetic_output.json": "0f7afcde507dbe3ca204b5bffcdb98f8c06e1047d5952215e431a22cef97d28c",
+    "07_security_tests.md": "f35de5cc378483afc24ea16633ca87e57272717639ade9360c02f092e30e1322",
+    "08_request_accounting.md": "2ba7ee2c739297882682745af32adc35017b1b81a69058ee74b918329c38ce8d",
+    "09_manual_procedure.md": "eabc6921f6167fba05d607a1cf20761e042f025b9a8e249ddd795aa8dd2e4f95",
+    "10_source_dependency_review.md": "621c42d1c4381be989662c26c63753c37c97930d9aa8fc8b409257ccd2ec3d58",
+    "12_remaining_blockers.md": "99bb1d0175d92d78e9706457479e81ac222f498281006a75576652227e87cf41",
+    "15_test_attempt_log.md": "aac82810b6635d083d9db4d7f7f1ae85dce3bd4991807d614c9e53a844de63cb",
+    "16_boundary_b2.md": "5bd8877aaec769043851668d0b6ccd08bf7c4dc01db2b147f70382ba3192ce98",
+    "session_main.py": "af9a93edc6779298f819430062e34b48289fced922d65f24a1d62a0982be8a90",
+    "stage_r55_b1_report.md": "06a8509309ef97ee9212b26bd92036a3d8bf1373ff23cd761e8cf594da66c698",
+    "test_session.py": "5f1998d22aee2510014fa831a6eb3f94f0af67ebbcfe7483ce0be523525b6b6d",
+    "transport.py": "3727df8494d6076a5997d88bd5be2a8fb4dc9a0a5f3428c65dc3f0e4002de20a",
+    "14_hashes.json": "23b82641afe1b1fa670e5debc98561e0ac7343f1440ca35b88830862e4732cc2"
+  },
+  "notes": "Updated after offline hardening. This inventory does not authorise Boundary B2."
+}

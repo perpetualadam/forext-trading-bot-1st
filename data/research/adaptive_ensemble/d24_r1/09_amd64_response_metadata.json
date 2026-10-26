@@ -1,0 +1,12 @@
+{
+  "request_number": 3,
+  "http_status": 307,
+  "authentication_used": true,
+  "location_present": true,
+  "redirect_response": true,
+  "redirect_followed": false,
+  "destination_contacted": false,
+  "http_200_received": false,
+  "config_blob_persisted": false,
+  "config_blob_verified": false
+}

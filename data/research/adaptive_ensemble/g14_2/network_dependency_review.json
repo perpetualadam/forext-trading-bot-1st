@@ -1,0 +1,20 @@
+{
+  "stage": "G.14.2",
+  "base_image_locally_available": true,
+  "immutable_registry_digest_established": false,
+  "local_image_id": "sha256:782412e85d0f0984994c290652577d4018aff08145c85b262bb63dc0c7522254",
+  "dependency_downloads_required": true,
+  "verified_wheelhouse": false,
+  "network_none_feasible": false,
+  "network_enabled_build_required": true,
+  "package_installation_hooks_may_execute": true,
+  "default_build_cache_present": "27.36GB",
+  "default_build_cache_acceptable": "usable, but it can reuse an earlier unpinned resolution and does not make the result reproducible",
+  "dependency_resolution_reproducible": false,
+  "requirements_fully_pinned": false,
+  "classifications": [
+    "PYTHON_DEPENDENCY_RESOLUTION_UNPINNED",
+    "NETWORK_REQUIRED",
+    "BASE_IMAGE_DIGEST_UNVERIFIED"
+  ]
+}

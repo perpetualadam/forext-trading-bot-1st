@@ -1,0 +1,9 @@
+{
+  "gate": "A",
+  "verdict": "PASS",
+  "app_imported": false,
+  "lifespan_executed": false,
+  "resource_map": "resource_lifecycle_source_map.md",
+  "windows": "startup_failure_windows.json",
+  "exceptions": "exception_boundary_review.md"
+}

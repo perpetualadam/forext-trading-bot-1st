@@ -1,0 +1,7 @@
+{
+  "evidence": "ACTUAL_COMBINED_LIFECYCLE_ISOLATED",
+  "overlapping_get_connection_connect_delta": 1,
+  "published_identities": 1,
+  "database_py_changed": false,
+  "result": "PASS"
+}

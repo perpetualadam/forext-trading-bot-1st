@@ -1,0 +1,7 @@
+{
+  "evidence": "ACTUAL_LIFESPAN_ISOLATED",
+  "result": "PASS",
+  "E01-E04": "broker RuntimeError escapes and the connection is closed",
+  "E03-E12": "stop, task-await, release, and alert failures stay visible without hiding the primary error",
+  "E13-E19": "incomplete stop is diagnostic only; cancellation leaves no pending owned task; network empty"
+}

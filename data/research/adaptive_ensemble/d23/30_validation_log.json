@@ -1,0 +1,74 @@
+{
+  "commands_executed": [
+    "git rev-parse HEAD",
+    "git branch --show-current",
+    "git status --short -- protected deployment and source files",
+    "Python hashlib and json parsing of local files"
+  ],
+  "files_read": [
+    "ten protected source and deployment files",
+    "Dockerfile",
+    "requirements.txt",
+    "requirements-dev.txt",
+    "data/research/adaptive_ensemble/d21/01_baseline_integrity.json",
+    "data/research/adaptive_ensemble/d21/03_multi_platform_policy_decision.json",
+    "data/research/adaptive_ensemble/d21/22_dependency_boundary.md",
+    "data/research/adaptive_ensemble/d17/native_wheel_risk_matrix.json",
+    "data/research/adaptive_ensemble/d22/01_baseline_integrity.json",
+    "data/research/adaptive_ensemble/d22_r1 raw manifests and digest records"
+  ],
+  "files_created": [
+    "01_baseline_integrity.json",
+    "02_evidence_inventory.json",
+    "03_index_revalidation.json",
+    "04_amd64_manifest_revalidation.json",
+    "05_arm64_manifest_revalidation.json",
+    "06_descriptor_cross_reference.json",
+    "07_amd64_config_descriptor.json",
+    "08_arm64_config_descriptor.json",
+    "09_configuration_identity_matrix.json",
+    "10_runtime_evidence_matrix.json",
+    "11_dockerfile_static_profile.json",
+    "12_native_dependency_limitations.md",
+    "13_future_config_blob_verification_plan.md",
+    "14_future_network_boundary.md",
+    "15_future_runtime_evidence_plan.md",
+    "16_provenance_limitations.md",
+    "17_approval_scope_matrix.json",
+    "18_future_stage_sequence.md",
+    "19_finding_register.json",
+    "20_gate_a_verdict.json",
+    "21_gate_b_verdict.json",
+    "22_gate_c_verdict.json",
+    "23_gate_d_verdict.json",
+    "24_gate_e_verdict.json",
+    "25_gate_f_verdict.json",
+    "26_gate_g_verdict.json",
+    "27_gate_h_verdict.json",
+    "28_gate_i_verdict.json",
+    "29_source_integrity_after.json",
+    "30_validation_log.json",
+    "31_stage_d23_report.md"
+  ],
+  "files_modified": [],
+  "hash_calculations": [
+    "ten protected files before and after",
+    "three D.22-R1 raw manifests before and after"
+  ],
+  "schema_checks": [
+    "index schemaVersion 2",
+    "platform manifest schemaVersion 2",
+    "config digest syntax and positive size"
+  ],
+  "evidence_discrepancies": [],
+  "missing_evidence": [
+    "config blob bytes",
+    "measured Python patch, ABI, and libc",
+    "wheel artifacts",
+    "validated provenance signatures"
+  ],
+  "stop_conditions": [],
+  "network_requests": 0,
+  "docker_commands": 0,
+  "classification": "D23_OFFLINE_EVIDENCE_REVALIDATED_PLANNING_COMPLETE"
+}

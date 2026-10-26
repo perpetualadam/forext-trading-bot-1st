@@ -1,0 +1,23 @@
+{
+  "policy_id": "D21-MULTI-PLATFORM-01",
+  "policy_value": "MULTI_PLATFORM_TARGET = linux/amd64 + linux/arm64",
+  "platforms": [
+    "linux/amd64",
+    "linux/arm64"
+  ],
+  "approval_state": "EXPLICITLY_APPROVED_INTENDED_TARGETS",
+  "scope": "Future Linux VPS deployment compatibility",
+  "out_of_scope": [
+    "current production architecture",
+    "VPS hardware",
+    "base-image compatibility",
+    "dependency compatibility",
+    "candidate images",
+    "production deployment"
+  ],
+  "decision_source": "Explicit user confirmation in the D.21 stage instruction, following the D.20 report",
+  "approval_timestamp": null,
+  "approval_signature": null,
+  "cryptographic_provenance": null,
+  "technical_compatibility_verified": false
+}

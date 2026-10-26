@@ -1,0 +1,4 @@
+{
+  "prefix_invariant": true,
+  "leaky_fixture_rejected": true
+}

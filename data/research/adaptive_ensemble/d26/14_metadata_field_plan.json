@@ -1,0 +1,26 @@
+{
+  "inspect_when_authorised": [
+    "project name",
+    "release version",
+    "requires_python",
+    "requires_dist",
+    "extras",
+    "markers",
+    "filenames",
+    "distribution type",
+    "wheel filename text",
+    "size",
+    "sha256",
+    "upload timestamp",
+    "yanked",
+    "yank reason presence",
+    "provenance indicators",
+    "direct URL presence"
+  ],
+  "does_not_establish": [
+    "package safety",
+    "publisher authenticity",
+    "runtime compatibility",
+    "a resolved graph"
+  ]
+}

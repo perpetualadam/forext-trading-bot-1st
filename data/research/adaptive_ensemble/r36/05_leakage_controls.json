@@ -1,0 +1,5 @@
+{
+  "prefix_invariant_at_1000": true,
+  "leaky_fixture_detected": true,
+  "nominal_embargo_holds": true
+}

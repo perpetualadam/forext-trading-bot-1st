@@ -1,0 +1,28 @@
+{
+  "commands": [
+    {
+      "command": "python -m pytest tests/test_d7_resource_cleanup.py tests/test_live_safety_preservation.py tests/test_strategy_activation_defaults.py tests/test_startup_safety_preflight.py -q --tb=line",
+      "result": "133 passed in 10.86s",
+      "exit_code": 0,
+      "composition": {
+        "d7": 18,
+        "d2_preservation": 30,
+        "d3_activation": 35,
+        "d4_preflight": 50
+      }
+    },
+    {
+      "command": "python -m pytest tests/test_d5_lifespan_isolation.py tests/test_d6_partial_startup_cleanup.py -q --tb=line",
+      "result": "27 errors in 0.27s",
+      "exit_code": 1,
+      "cause": "Both modules pin app.py to f38c304c4692c4a69e537610173e5691c03d49e24c48d6e258f56d1be75ae7b4. The current hash is 08766300dfaf703e7553c69703e5d5f2c90e8efc2b491e6eeff1791ca93e3b44. The runners were not started by those modules."
+    }
+  ],
+  "d7_passed": 18,
+  "d7_failed": 0,
+  "d7_skipped": 0,
+  "d5_runner_replay_inside_d7": "exit 0",
+  "repair_under_d7_guards": "exit 0, network empty",
+  "isolation_violations": [],
+  "application_cleanup_distinguished": true
+}

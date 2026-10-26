@@ -1,0 +1,5 @@
+{
+  "gate": "C",
+  "verdict": "PASS",
+  "basis": "New child runner installs network, filesystem, dotenv, and driver guards before importing forex_bot. Lifecycle waits use events. Pre-fix D.10 tests reproduced the three defects before the edit."
+}

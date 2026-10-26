@@ -1,0 +1,25 @@
+{
+  "deployment": "NO-GO",
+  "live_trading": "NOT_AUTHORISED",
+  "rollback": "NO-GO",
+  "blockers": [
+    "Production startup remains unverified.",
+    "Current production container identity remains unverified.",
+    "The running image lacks the D.2, D.3, D.4, and D.7 source changes.",
+    "Live database schema compatibility remains unverified.",
+    "Requirements remain unpinned.",
+    "No verified dependency lock.",
+    "No verified offline wheelhouse.",
+    "Base-image registry digest remains unverified.",
+    "Runtime target profile remains incomplete.",
+    "Trusted receiving boundary remains unimplemented.",
+    "No verified candidate image.",
+    "No verified rollback target.",
+    "Production operational state remains unverified.",
+    "Production shadow state remains unverified.",
+    "The full integration test suite remains unexecuted.",
+    "Research backtests may rely on the old active-by-default strategy behaviour.",
+    "get_connection still does not hold the database lock across the initial connect.",
+    "A successful shutdown intentionally leaves the process-global database connection open."
+  ]
+}

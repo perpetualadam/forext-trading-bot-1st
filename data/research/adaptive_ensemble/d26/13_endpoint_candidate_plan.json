@@ -1,0 +1,84 @@
+{
+  "in_scope": [
+    {
+      "information": "project release list, requirement declarations, filenames, sizes, and published SHA-256 values",
+      "host": "pypi.org",
+      "path_pattern": "/pypi/{segment}/json",
+      "method": "GET",
+      "accept": "application/json",
+      "response_format": "JSON object",
+      "maximum_body": "16 MiB",
+      "timeout_seconds": 30,
+      "authentication": "none",
+      "redirects": "not followed",
+      "can_expose_file_links": true,
+      "file_links_in_scope": false,
+      "fields": [
+        "info.name",
+        "info.version",
+        "info.requires_python",
+        "info.requires_dist",
+        "info.yanked",
+        "releases filenames",
+        "packagetype",
+        "size",
+        "digests.sha256",
+        "yanked"
+      ],
+      "validation": "stdlib JSON shape and 64-character SHA-256 hex; grammar checks deferred",
+      "failure": "any host, method, size, timeout, or schema breach stops the future stage"
+    }
+  ],
+  "out_of_scope": [
+    {
+      "path_pattern": "/pypi/{segment}/{version}/json",
+      "reason": "versions are not selected and the nine-request budget has no room"
+    },
+    {
+      "path_pattern": "/simple/{segment}/",
+      "reason": "HTML can expose file links and is outside the JSON minimisation plan"
+    }
+  ],
+  "proposed_segments": [
+    {
+      "source_token": "python-dotenv",
+      "proposed_segment": "python-dotenv"
+    },
+    {
+      "source_token": "pandas",
+      "proposed_segment": "pandas"
+    },
+    {
+      "source_token": "numpy",
+      "proposed_segment": "numpy"
+    },
+    {
+      "source_token": "requests",
+      "proposed_segment": "requests"
+    },
+    {
+      "source_token": "psycopg2-binary",
+      "proposed_segment": "psycopg2-binary"
+    },
+    {
+      "source_token": "fastapi",
+      "proposed_segment": "fastapi"
+    },
+    {
+      "source_token": "uvicorn",
+      "proposed_segment": "uvicorn",
+      "extra_not_part_of_segment": "standard"
+    },
+    {
+      "source_token": "oandapyV20",
+      "proposed_segment": "oandapyv20",
+      "normalisation": "PROPOSED_LOWERCASE_ONLY"
+    },
+    {
+      "source_token": "tzdata",
+      "proposed_segment": "tzdata"
+    }
+  ],
+  "concrete_urls_generated": false,
+  "normalisation_certified": false
+}

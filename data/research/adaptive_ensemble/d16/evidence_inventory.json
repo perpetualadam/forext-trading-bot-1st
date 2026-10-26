@@ -1,0 +1,59 @@
+{
+  "current_local": {
+    "requirements.txt": {
+      "present": true,
+      "sha256": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a",
+      "sensitive": false,
+      "level": "CURRENT_LOCAL_FILE_VERIFIED"
+    },
+    "requirements-dev.txt": {
+      "present": true,
+      "sha256": "0562a6853549077197defb3cd8515521b843a041f2a735723ee2903790e3eef5",
+      "sensitive": false,
+      "level": "CURRENT_LOCAL_FILE_VERIFIED"
+    },
+    "Dockerfile": {
+      "present": true,
+      "sha256": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+      "dirty": true,
+      "level": "CURRENT_LOCAL_FILE_VERIFIED"
+    },
+    ".dockerignore": {
+      "present": true,
+      "sha256": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
+      "level": "CURRENT_LOCAL_FILE_VERIFIED"
+    },
+    "docker-compose.yml": {
+      "present": true,
+      "sha256": "f0a374774c35b4c63dce23a837572886d1d53331fec388044bc5887367980179",
+      "sensitive_names": true,
+      "values_read": false,
+      "level": "CURRENT_LOCAL_FILE_VERIFIED"
+    },
+    ".env": {
+      "present": true,
+      "read": false,
+      "level": "BLOCKED_BY_SCOPE"
+    },
+    ".env.example": {
+      "present": true,
+      "read": false,
+      "level": "NOT_APPLICABLE"
+    }
+  },
+  "historical": {
+    "g7_source_sha": "0ee97accd2d4a8297a053eb26c5138324192ab5b1f700214acf091d0f6487f82",
+    "g10_allowlist_sha": "b2d0f66f8a696da5488072720f6d8de7ceccfd8c847d54327d4cfff2e10eb7b4",
+    "g10_manifest_sha": "93c73c21bd6f144e7d656be74128a771c3274025c0e88b8a052ffbc742f417cf",
+    "g14_1_manifest_sha": "8597768f9b351ee5a8b8c3750cb4df12880a25414dfb4e6aab072e1fe2b3b33b",
+    "g14_1_staging_accessed": false
+  },
+  "missing": [
+    "dependency lock",
+    "wheelhouse",
+    "base-image registry digest",
+    "candidate image",
+    "trusted receiver",
+    "verified rollback target"
+  ]
+}

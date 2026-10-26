@@ -1,0 +1,20 @@
+{
+  "items": [
+    {"id": "E01", "behaviour": "six strategies default inactive", "test": "test_t02_all_six_instances_default_inactive", "result": "PASS", "evidence": "pytest_activation.xml"},
+    {"id": "E02", "behaviour": "string true does not activate", "test": "test_t06_string_true_does_not_activate", "result": "PASS", "evidence": "pytest_activation.xml"},
+    {"id": "E03", "behaviour": "numeric 1 does not activate", "test": "test_t08_numeric_one_does_not_activate", "result": "PASS", "evidence": "pytest_activation.xml"},
+    {"id": "E04", "behaviour": "only boolean True activates", "test": "test_t04_explicit_true_remains_supported and test_t05 through test_t12", "result": "PASS", "evidence": "pytest_activation.xml"},
+    {"id": "E05", "behaviour": "inactive strategy stops before sizing", "test": null, "result": "NOT_EVALUATED", "evidence": "SOURCE-TRACED at bot_loop.py 1076-1084. That function was not executed."},
+    {"id": "E06", "behaviour": "inactive strategy stops before order send", "test": null, "result": "NOT_EVALUATED", "evidence": "Same return is before the broker call. Not executed."},
+    {"id": "E07", "behaviour": "live-order authorisation defaults blocked", "test": "test_t17_blocked_authorisation_remains_blocked", "result": "PASS", "evidence": "pytest_activation.xml"},
+    {"id": "E08", "behaviour": "missing authorisation fails closed", "test": "test_t13_missing_activation_field_fails_closed", "result": "PASS", "evidence": "pytest_activation.xml"},
+    {"id": "E09", "behaviour": "invalid authorisation fails closed", "test": "test_t14_invalid_persisted_activation_fails_closed and test_t15", "result": "PASS", "evidence": "pytest_activation.xml"},
+    {"id": "E10", "behaviour": "restart does not silently restore live permission", "test": "initialise_fail_closed ignores persisted ALLOWED", "result": "PASS", "evidence": "SOURCE-TRACED live_safety.py 401-404 and test_t30. The application process was not restarted."},
+    {"id": "E11", "behaviour": "paper execution cannot reach OANDA", "test": "test_paper_kinds_cannot_assert_broker_open and test_paper_mode_cannot_assert_broker_even_with_live_kind", "result": "PASS", "evidence": "Synchronous refusals passed. The async variants failed before the order call because asyncio needed a local pipe."},
+    {"id": "E12", "behaviour": "blocked live path cannot reach OANDA", "test": "test_live_kind_is_blocked_until_authorised", "result": "PASS", "evidence": "pytest_execution.xml. The ALLOWED-path tests were not run."},
+    {"id": "E13", "behaviour": "duplicate client-order ids are rejected", "test": "test_duplicate_client_order_id_does_not_reserve_twice", "result": "PASS", "evidence": "In-memory path only. Database persistence was off."},
+    {"id": "E14", "behaviour": "uncertain results are not treated as failed orders", "test": null, "result": "NOT_EVALUATED", "evidence": "SOURCE-TRACED the opposite risk: bot_loop.py 1527 marks OrderCreateAmbiguous as failed. No test executed that path."},
+    {"id": "E15", "behaviour": "strategy names do not override the shared side", "test": null, "result": "NOT_EVALUATED", "evidence": "SOURCE-TRACED. No runtime test called both the shadow rule and the live vote."},
+    {"id": "E16", "behaviour": "selected tests do not change production state", "test": "path and hash checks", "result": "PASS", "evidence": "Safety file stayed under r2. Protected hashes matched after the run. data/ops was not opened."}
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "requirements": [
+    {
+      "line": 1,
+      "original": "-r requirements.txt",
+      "kind": "include",
+      "package": null,
+      "include": "requirements.txt"
+    },
+    {
+      "line": 2,
+      "original": "packaging>=22.0",
+      "kind": "requirement",
+      "package": "packaging",
+      "extras": [],
+      "version_constraints": ">=22.0",
+      "environment_marker": null,
+      "direct_url": false,
+      "hash_pinning": false,
+      "exact_version_pinning": false,
+      "lower_bound_only": true
+    },
+    {
+      "line": 3,
+      "original": "pytest>=8.3.5,<9",
+      "kind": "requirement",
+      "package": "pytest",
+      "extras": [],
+      "version_constraints": ">=8.3.5,<9",
+      "environment_marker": null,
+      "direct_url": false,
+      "hash_pinning": false,
+      "exact_version_pinning": false,
+      "lower_bound_only": false
+    }
+  ],
+  "included_in_production_inventory": false,
+  "dockerfile_copies_requirements_dev": false
+}

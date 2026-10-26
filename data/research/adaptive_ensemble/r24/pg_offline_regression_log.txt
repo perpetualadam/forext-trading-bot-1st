@@ -1,0 +1,37 @@
+........................................................................ [ 56%]
+....s..........................ss..................ssss                  [100%]
+============================== warnings summary ===============================
+..\..\..\AppData\Roaming\Python\Python313\site-packages\oandapyV20\endpoints\decorators.py:18
+  C:\Users\Brian\AppData\Roaming\Python\Python313\site-packages\oandapyV20\endpoints\decorators.py:18: SyntaxWarning: invalid escape sequence '\['
+    nw = re.findall('.*?\[(.*)\]', v, flags=re.S)
+
+..\..\..\AppData\Roaming\Python\Python313\site-packages\oandapyV20\endpoints\decorators.py:25
+  C:\Users\Brian\AppData\Roaming\Python\Python313\site-packages\oandapyV20\endpoints\decorators.py:25: SyntaxWarning: invalid escape sequence '\{'
+    allSlots = re.findall("\{(_v3.*?)\}", obj.__doc__)
+
+..\..\..\AppData\Roaming\Python\Python313\site-packages\oandapyV20\types\types.py:40
+  C:\Users\Brian\AppData\Roaming\Python\Python313\site-packages\oandapyV20\types\types.py:40: SyntaxWarning: invalid escape sequence '\d'
+    "-(?P<userID>\d+)-(?P<accountNumber>\d+)", accountID)
+
+..\..\..\AppData\Roaming\Python\Python313\site-packages\oandapyV20\types\types.py:123
+  C:\Users\Brian\AppData\Roaming\Python\Python313\site-packages\oandapyV20\types\types.py:123: SyntaxWarning: invalid escape sequence '\d'
+    "T(?P<hour>\d+):(?P<minute>\d+):(?P<second>\d+)"
+
+..\..\..\AppData\Roaming\Python\Python313\site-packages\oandapyV20\types\types.py:124
+  C:\Users\Brian\AppData\Roaming\Python\Python313\site-packages\oandapyV20\types\types.py:124: SyntaxWarning: invalid escape sequence '\d'
+    "(?:.(?P<subsecond>\d{1,6})|)"
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_r7_order_safety.py:182: POSTGRESQL_ENGINE_NOT_EVALUATED
+SKIPPED [1] tests\test_r8_reservation_safety.py:364: POSTGRESQL_ENGINE_NOT_EVALUATED
+SKIPPED [1] tests\test_r8_reservation_safety.py:369: POSTGRESQL_PERSISTENCE_NOT_EVALUATED
+SKIPPED [1] tests\test_r9_position_safety.py:401: POSTGRESQL_POSITION_PERSISTENCE_NOT_EVALUATED
+SKIPPED [1] tests\test_r9_position_safety.py:406: BROKER_FILL_RECONCILIATION_NOT_EVALUATED
+SKIPPED [1] tests\test_r9_position_safety.py:411: APPLICATION_STARTUP_NOT_EVALUATED
+SKIPPED [1] tests\test_r9_position_safety.py:416: BROKER_POSITION_VERIFICATION_NOT_EVALUATED
+120 passed, 7 skipped, 1 deselected, 5 warnings in 2.85s
+
+exit=0
+blocked=5
+dotenv=1

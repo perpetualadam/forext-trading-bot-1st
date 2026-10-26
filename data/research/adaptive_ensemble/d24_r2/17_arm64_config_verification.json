@@ -1,0 +1,12 @@
+{
+  "result": "ARM64_CONFIG_BLOB_VERIFIED",
+  "bytes_obtained": true,
+  "byte_count": 5699,
+  "expected_byte_count": 5699,
+  "computed_digest": "sha256:eb7d16fec874f15b584063275012ac719885a2b87574d124c0da9c156d504629",
+  "expected_digest": "sha256:eb7d16fec874f15b584063275012ac719885a2b87574d124c0da9c156d504629",
+  "parent_manifest": "sha256:739ba32ae445e8d58f3d90feb85f83bebc8346f8dd280fa1eb5848f4ff1ed163",
+  "digest_match": true,
+  "size_match": true,
+  "json_validated": true
+}

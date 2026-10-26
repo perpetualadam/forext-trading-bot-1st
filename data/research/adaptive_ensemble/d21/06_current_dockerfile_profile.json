@@ -1,0 +1,20 @@
+{
+  "from": "python:3.12-slim-bookworm",
+  "from_line": 2,
+  "registry_hostname_in_file": null,
+  "tag": "3.12-slim-bookworm",
+  "digest": null,
+  "platform": null,
+  "python_declaration": "3.12",
+  "stages": 1,
+  "user": null,
+  "workdir": "/app",
+  "workdir_line": 4,
+  "entrypoint": null,
+  "command": "uvicorn forex_bot.app:app --host 0.0.0.0 --port 8000",
+  "command_line": 81,
+  "install_lines": [
+    13,
+    14
+  ]
+}

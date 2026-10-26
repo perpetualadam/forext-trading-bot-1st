@@ -1,0 +1,35 @@
+...............................................................sssss.... [ 97%]
+..                                                                       [100%]
+============================== warnings summary ===============================
+tests/test_r10_offline_startup.py::test_i54_invalid_direction_gate_preserved
+  C:\Users\Brian\AppData\Roaming\Python\Python313\site-packages\oandapyV20\endpoints\decorators.py:18: SyntaxWarning: invalid escape sequence '\['
+    nw = re.findall('.*?\[(.*)\]', v, flags=re.S)
+
+tests/test_r10_offline_startup.py::test_i54_invalid_direction_gate_preserved
+  C:\Users\Brian\AppData\Roaming\Python\Python313\site-packages\oandapyV20\endpoints\decorators.py:25: SyntaxWarning: invalid escape sequence '\{'
+    allSlots = re.findall("\{(_v3.*?)\}", obj.__doc__)
+
+tests/test_r10_offline_startup.py::test_i54_invalid_direction_gate_preserved
+  C:\Users\Brian\AppData\Roaming\Python\Python313\site-packages\oandapyV20\types\types.py:40: SyntaxWarning: invalid escape sequence '\d'
+    "-(?P<userID>\d+)-(?P<accountNumber>\d+)", accountID)
+
+tests/test_r10_offline_startup.py::test_i54_invalid_direction_gate_preserved
+  C:\Users\Brian\AppData\Roaming\Python\Python313\site-packages\oandapyV20\types\types.py:123: SyntaxWarning: invalid escape sequence '\d'
+    "T(?P<hour>\d+):(?P<minute>\d+):(?P<second>\d+)"
+
+tests/test_r10_offline_startup.py::test_i54_invalid_direction_gate_preserved
+  C:\Users\Brian\AppData\Roaming\Python\Python313\site-packages\oandapyV20\types\types.py:124: SyntaxWarning: invalid escape sequence '\d'
+    "(?:.(?P<subsecond>\d{1,6})|)"
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_r10_offline_startup.py:1655: NOT_EVALUATED
+SKIPPED [1] tests\test_r10_offline_startup.py:1670: NOT_EVALUATED
+SKIPPED [1] tests\test_r10_offline_startup.py:1685: NOT_EVALUATED
+SKIPPED [1] tests\test_r10_offline_startup.py:1700: NOT_EVALUATED
+SKIPPED [1] tests\test_r10_offline_startup.py:1715: NOT_EVALUATED
+69 passed, 5 skipped, 5 warnings in 5.28s
+
+exit=0
+blocked=5
+dotenv=1

@@ -1,0 +1,19 @@
+{
+  "classification": "ACTIVE_BORROWER_DEFECT_CONFIRMED",
+  "also_recorded": [
+    "SCOPE_EXPANSION_REQUIRED for any remediation, because D.10 must not edit production source",
+    "Successful lifespan shutdown does not release the database, so the surviving worker is a future borrower of a connection that is still open"
+  ],
+  "why_not_verified": "stop_telegram_control returned while thread 16048 was alive, release then closed connection 1, and that same thread called fetch_all_trades_ordered and published connection 2.",
+  "why_not_unverified": "The post-release query was observed. It is not only a possibility.",
+  "active_borrowers": [
+    "telegram-control thread 16048 during fetch_all_trades_ordered after release"
+  ],
+  "potential_future_borrowers": [
+    "A worker blocked in getUpdates after stop has returned",
+    "Lifespan thread 3836, alive after shutdown, with the startup connection still open"
+  ],
+  "quiescent_observation": "release_connection_after_failed_startup waited until the helper left _pg_lock. That serializes one in-flight query. It does not stop a later query.",
+  "database_release_safety": "Unsafe if release is called after stop returns while the worker can still reach process_updates. The D.9 lock does not establish this quiescence.",
+  "required_future_action": "A separately approved remediation stage for forex_bot/telegram_control.py. Do not start that stage from D.10."
+}

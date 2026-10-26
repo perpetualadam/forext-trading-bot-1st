@@ -1,0 +1,5 @@
+{
+  "gate": "E",
+  "result": "PASS",
+  "meaning": "Static gate completed. Dependency reproducibility is not achieved."
+}

@@ -1,0 +1,14 @@
+{
+  "recorded_after_edits": true,
+  "sha256": {
+    "forex_bot/ai_ensemble.py": "1d8e02e334e07b88eefc834e45390a128bebaa078af98e428df081efcf5857fa",
+    "forex_bot/rl_agent.py": "2f79452b7538e504b4b338c186d137221240d7688bdc26cce185f58405f7043e",
+    "forex_bot/session_rules.py": "1e9ec90f573f1fd8add2a2fa4bab82fe164788242f34e97bbcf428e6f5c4bef1",
+    "forex_bot/experiment.py": "36eb14d5adb0a626f277a0adcc6f08b14163054273bea71e3d9679f535821356",
+    "forex_bot/research/ml_prediction.py": "97ba722204734b480ecc610cc26756a42cabafb9d4ded81070ced146580bd7bc",
+    "forex_bot/research/decision_journal.py": "2b11468a69b015470eb4a57bd9a3585cdb4b1721fde54e8a424c01966e1025c5",
+    "forex_bot/bot_loop.py": "6e953f7a2b0aa93f1f65c7b411d117e74cba6adf523f8514847bc69a7ea5c796",
+    "forex_bot/strategy_meta.py": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d"
+  },
+  "unchanged_pinned_files": ["forex_bot/bot_loop.py", "forex_bot/strategy_meta.py"]
+}

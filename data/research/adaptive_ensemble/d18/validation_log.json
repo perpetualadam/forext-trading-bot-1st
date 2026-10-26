@@ -1,0 +1,15 @@
+{
+  "commands": [
+    "git rev-parse HEAD",
+    "git branch --show-current",
+    "targeted git status",
+    "SHA-256 comparison of ten protected files",
+    "SHA-256 of four local scripts",
+    "static reads of Dockerfile, Compose, requirements, and prior evidence"
+  ],
+  "package_manager_commands": 0,
+  "docker_commands": 0,
+  "network_requests": 0,
+  "application_imports": 0,
+  "lockfiles_created": 0
+}

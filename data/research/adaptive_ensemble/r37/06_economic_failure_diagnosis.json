@@ -1,0 +1,14 @@
+{
+  "validation_confidence_quantiles": {
+    "p50": 0.39304294924848826,
+    "p90": 0.44743673706021625,
+    "p99": 0.6149100124374002,
+    "share_at_least_0.50": 0.028957005289570053
+  },
+  "interpretation": [
+    "Predictive log loss improved slightly in R.36.",
+    "The 0.50 rule abstains on almost every bar because class probabilities stay near one another.",
+    "A lower probability cutoff increased turnover and lost money on the validation slice.",
+    "Those are separate facts about scores, policy, and economics. None of them is a causal proof by itself."
+  ]
+}

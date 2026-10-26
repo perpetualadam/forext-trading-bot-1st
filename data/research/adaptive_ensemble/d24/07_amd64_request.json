@@ -1,0 +1,11 @@
+{
+  "method": "GET",
+  "host": "registry-1.docker.io",
+  "path": "/v2/library/python/blobs/sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+  "sent": true,
+  "attempts": 2,
+  "unauthenticated_status": 401,
+  "authenticated_status": 307,
+  "redirect_followed": false,
+  "result": "NOT_OBTAINED"
+}

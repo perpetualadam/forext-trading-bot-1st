@@ -1,0 +1,5 @@
+{
+  "gate": "C",
+  "result": "PASS",
+  "meaning": "Historical linux/amd64 evidence was recorded and was not treated as approval."
+}

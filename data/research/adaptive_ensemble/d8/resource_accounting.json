@@ -1,0 +1,34 @@
+{
+  "rule": "Application close counts come from the snapshot taken before harness cleanup. Harness close is recorded separately and is not counted as application cleanup.",
+  "defect_accounting": {
+    "unlocked_overlap": {
+      "created": [1, 2],
+      "published": 1,
+      "abandoned_open_before_harness": [2],
+      "application_closed": [],
+      "harness_closed_after_snapshot": [1, 2]
+    },
+    "unlocked_vs_locked": {
+      "created": [3, 4],
+      "published": 3,
+      "abandoned_open_before_harness": [4],
+      "application_closed": [],
+      "harness_closed_after_snapshot": [3, 4]
+    }
+  },
+  "other_schedules": {
+    "both_locked": "created 5, published 5, harness closed 5 after snapshot",
+    "second_fails": "application closed 7, harness closed published 6",
+    "first_fails": "application closed 8, harness closed published 9",
+    "both_fail": "application closed both, harness closed 0",
+    "cleanup_fails": "application close of 12 raised and left it open; application closed 13; harness closed 12; globals stayed empty",
+    "release_during_init": "application did not close 14; harness closed it",
+    "release_borrowed": "application closed the only connection; harness closed 0",
+    "replace_during_close": "application closed 16; 17 was published and open; harness closed 17",
+    "retry": "failed connect created no object; application did not close 18; harness closed 18"
+  },
+  "lifespan_success_path": "A successful startup leaves the published connection open. Harness close of that object is not an application leak.",
+  "lifespan_startup_stop": "Application retained the connection on purpose after Telegram stop failed. Harness closed it afterward.",
+  "workers_still_alive": 0,
+  "unaccounted_connections": 0
+}

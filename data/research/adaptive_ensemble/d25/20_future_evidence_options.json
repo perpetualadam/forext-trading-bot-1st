@@ -1,0 +1,208 @@
+{
+  "executed": false,
+  "options": [
+    {
+      "option": "A",
+      "objective": "Further offline source and metadata analysis.",
+      "evidence_gap_addressed": "Only gaps that can still be read from files already on disk.",
+      "minimum_inputs": [
+        "Existing source, Compose, requirements, and preserved OCI bytes."
+      ],
+      "required_permissions": [
+        "Local read-only file access."
+      ],
+      "network_access": "none",
+      "docker_or_runtime_access": "none",
+      "filesystem_effects": "New research files only.",
+      "potential_side_effects": "None expected if writes stay inside a new research directory.",
+      "safety_controls": [
+        "No imports of application modules.",
+        "No production paths."
+      ],
+      "stop_conditions": [
+        "Missing local file.",
+        "Any need for network, Docker, or execution."
+      ],
+      "expected_artifacts": [
+        "A new research directory."
+      ],
+      "success_criteria": "A named local gap is closed from existing bytes.",
+      "remaining_uncertainties": "ABI, libc, wheels, VPS identity, startup, and provenance remain unavailable offline.",
+      "explicit_user_approval_required": "A new offline stage naming the exact files and output directory.",
+      "executed_in_d25": false
+    },
+    {
+      "option": "B",
+      "objective": "Controlled read-only registry or image-layer metadata inspection.",
+      "evidence_gap_addressed": "Installed package revisions, libc identity, and interpreter files inside the verified base image.",
+      "minimum_inputs": [
+        "The five verified OCI identities.",
+        "An explicit layer or metadata allowlist."
+      ],
+      "required_permissions": [
+        "Named registry and storage hosts.",
+        "GET only.",
+        "No image pull command."
+      ],
+      "network_access": "Approved registry and storage hosts only.",
+      "docker_or_runtime_access": "No Docker daemon and no container execution.",
+      "filesystem_effects": "Preserve approved metadata or layer bytes under a new research directory.",
+      "potential_side_effects": "Layer downloads are large and must not be followed by extraction into a runtime.",
+      "safety_controls": [
+        "Manual redirects.",
+        "No token forwarding to storage.",
+        "No application execution."
+      ],
+      "stop_conditions": [
+        "Unapproved host.",
+        "Unapproved blob.",
+        "Digest mismatch.",
+        "Budget exceeded."
+      ],
+      "expected_artifacts": [
+        "Layer metadata records and digest checks."
+      ],
+      "success_criteria": "The requested layer or package metadata matches its descriptor.",
+      "remaining_uncertainties": "Application wheels, bot startup, VPS identity, and signatures can remain open.",
+      "explicit_user_approval_required": "A stage-specific approval listing hosts, digests, and whether bytes may be stored.",
+      "executed_in_d25": false
+    },
+    {
+      "option": "C",
+      "objective": "Controlled platform-specific dependency metadata verification.",
+      "evidence_gap_addressed": "Exact candidate versions, wheel tags, artifact hashes, and provenance for linux/amd64 and linux/arm64.",
+      "minimum_inputs": [
+        "requirements.txt.",
+        "Explicit platform tags stated as assumptions until ABI and libc are measured."
+      ],
+      "required_permissions": [
+        "Named package index.",
+        "Read-only metadata.",
+        "No installation and no lockfile unless separately approved."
+      ],
+      "network_access": "Approved package index only.",
+      "docker_or_runtime_access": "No Docker and no container execution.",
+      "filesystem_effects": "Save metadata and hashes. Do not install into the environment.",
+      "potential_side_effects": "A resolver can select versions the image cannot load if ABI or libc is assumed.",
+      "safety_controls": [
+        "Separate amd64 and arm64 records.",
+        "No pip install.",
+        "No production changes."
+      ],
+      "stop_conditions": [
+        "Unapproved index.",
+        "Attempted installation.",
+        "Hash mismatch.",
+        "Platform tags changed mid-run."
+      ],
+      "expected_artifacts": [
+        "Per-platform metadata records and hash lists."
+      ],
+      "success_criteria": "Selected artifacts have recorded versions, tags, hashes, and unresolved fields.",
+      "remaining_uncertainties": "Metadata cannot prove the base image libc or a measured SOABI.",
+      "explicit_user_approval_required": "A stage-specific approval naming the index, platform tags, and confirming no install.",
+      "executed_in_d25": false
+    },
+    {
+      "option": "D",
+      "objective": "Controlled candidate image build.",
+      "evidence_gap_addressed": "Whether a final image can be produced for one named platform.",
+      "minimum_inputs": [
+        "Digest-pinned base.",
+        "Locked or hash-verified dependencies.",
+        "A disposable build environment."
+      ],
+      "required_permissions": [
+        "Docker build permission.",
+        "Network only if the approved inputs require it."
+      ],
+      "network_access": "Only if the approved build plan requires it.",
+      "docker_or_runtime_access": "Docker build for a named platform, without deploying the result.",
+      "filesystem_effects": "Local image and build cache.",
+      "potential_side_effects": "A build can consume unpinned dependencies or alter local Docker state.",
+      "safety_controls": [
+        "One platform per approval.",
+        "No push.",
+        "No production Compose."
+      ],
+      "stop_conditions": [
+        "Unpinned input.",
+        "Attempted push.",
+        "Attempted deploy."
+      ],
+      "expected_artifacts": [
+        "Local image digest and build log."
+      ],
+      "success_criteria": "The build completes and its digest is recorded.",
+      "remaining_uncertainties": "A built image is not a production deployment or a live-trading approval.",
+      "explicit_user_approval_required": "A separate build approval after dependency and base-image evidence is sufficient.",
+      "executed_in_d25": false
+    },
+    {
+      "option": "E",
+      "objective": "Isolated runtime compatibility tests.",
+      "evidence_gap_addressed": "Startup, health, interpreter measurement, and native import behaviour.",
+      "minimum_inputs": [
+        "A candidate image built for a named platform.",
+        "No production credentials."
+      ],
+      "required_permissions": [
+        "Container execution in an isolated environment."
+      ],
+      "network_access": "None beyond the approved test fixtures.",
+      "docker_or_runtime_access": "Run the candidate container without the production bot process.",
+      "filesystem_effects": "Test logs and temporary containers.",
+      "potential_side_effects": "A test can contact a broker or database if pointed at real services.",
+      "safety_controls": [
+        "No OANDA.",
+        "No Telegram.",
+        "No production database.",
+        "No live orders."
+      ],
+      "stop_conditions": [
+        "Real credential detected.",
+        "Production endpoint contacted."
+      ],
+      "expected_artifacts": [
+        "Measured version, ABI, import, and health logs."
+      ],
+      "success_criteria": "The named checks pass or fail on recorded evidence.",
+      "remaining_uncertainties": "Isolated success is not production safety or VPS compatibility.",
+      "explicit_user_approval_required": "A separate runtime-test approval with fixtures and prohibited endpoints.",
+      "executed_in_d25": false
+    },
+    {
+      "option": "F",
+      "objective": "Trusted deployment receiver and rollback readiness assessment.",
+      "evidence_gap_addressed": "VPS architecture, receiver identity, and a restorable artifact.",
+      "minimum_inputs": [
+        "An operator inventory.",
+        "A named image digest.",
+        "A rollback procedure."
+      ],
+      "required_permissions": [
+        "Read-only receiver inspection and no live trading."
+      ],
+      "network_access": "Only approved management endpoints, if any are explicitly listed.",
+      "docker_or_runtime_access": "No bot restart and no deployment.",
+      "filesystem_effects": "Assessment records only.",
+      "potential_side_effects": "An inspection can become a deployment if commands are broadened.",
+      "safety_controls": [
+        "No restart.",
+        "No deploy.",
+        "No order placement."
+      ],
+      "stop_conditions": [
+        "Production mutation.",
+        "Missing rollback artifact."
+      ],
+      "expected_artifacts": [
+        "Receiver inventory and rollback gap record."
+      ],
+      "success_criteria": "The host architecture and rollback artifact are either verified or explicitly absent.",
+      "remaining_uncertainties": "Receiver readiness does not authorise live trading.",
+      "explicit_user_approval_required": "A separate receiver and rollback approval.",
+      "executed_in_d25": false
+    }
+  ]
+}

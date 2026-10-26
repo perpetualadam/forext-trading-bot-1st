@@ -1,0 +1,47 @@
+{
+  "stages": [
+    {
+      "stage": "D.22",
+      "classification": "D22_BLOCKED_BASELINE_INTEGRITY",
+      "found_in_existing_evidence": true,
+      "modified_by_d26": false
+    },
+    {
+      "stage": "D.22-R1",
+      "classification": "D22_R1_REGISTRY_IDENTITY_VERIFIED_BOTH_PLATFORMS",
+      "found_in_existing_evidence": true,
+      "modified_by_d26": false
+    },
+    {
+      "stage": "D.23",
+      "classification": "D23_OFFLINE_EVIDENCE_REVALIDATED_PLANNING_COMPLETE",
+      "found_in_existing_evidence": true,
+      "modified_by_d26": false
+    },
+    {
+      "stage": "D.24",
+      "classification": "D24_BLOCKED_REGISTRY_RESPONSE",
+      "found_in_existing_evidence": true,
+      "modified_by_d26": false
+    },
+    {
+      "stage": "D.24-R1",
+      "classification": "D24_R1_REDIRECT_HOST_DISCOVERED_NOT_CONTACTED",
+      "found_in_existing_evidence": true,
+      "modified_by_d26": false
+    },
+    {
+      "stage": "D.24-R2",
+      "classification": "D24_R2_CONFIG_VERIFIED_BOTH_PLATFORMS",
+      "found_in_existing_evidence": true,
+      "modified_by_d26": false
+    },
+    {
+      "stage": "D.25",
+      "classification": "D25_OFFLINE_PLANNING_COMPLETE_GAPS_RECORDED",
+      "found_in_existing_evidence": true,
+      "modified_by_d26": false
+    }
+  ],
+  "classifications_modified": false
+}

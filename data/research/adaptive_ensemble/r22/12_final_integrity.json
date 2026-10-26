@@ -1,0 +1,22 @@
+{
+  "classification": "R22_OFFLINE_RESTART_RECOVERY_INTEGRATED",
+  "head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "bot_loop_sha256": "a8b455dad91c464df8ba030b7f119f3c1795ce289e21b83de0af771309823ac2",
+  "database_sha256": "c6f761104a3ff3fb36a23aa0e90a9f6516c4c802ed233319151c2b27875ff563",
+  "orders_py_unchanged": true,
+  "app_py_unchanged": true,
+  "protected_files_unchanged": true,
+  "actual_recovery_functions": ["initialise_application", "select_rows_for_recovery", "ingest_recovery_snapshot"],
+  "postgresql_tested": false,
+  "postgresql_connections": 0,
+  "oanda_contacted": false,
+  "real_broker_calls": 0,
+  "network_successes": 0,
+  "production_eligible": false,
+  "run_bot_executed": false,
+  "production_deployment": "NO-GO",
+  "practice_orders": "NOT AUTHORISED",
+  "live_trading": "NOT AUTHORISED",
+  "rollback": "NO-GO"
+}

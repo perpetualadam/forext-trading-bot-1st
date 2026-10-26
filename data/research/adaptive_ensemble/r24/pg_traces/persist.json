@@ -1,0 +1,16 @@
+{
+  "pid": 2588,
+  "role": "persist",
+  "ok": true,
+  "begun": true,
+  "duplicate_reported_success": false,
+  "wrote": true,
+  "exists": true,
+  "stored_status": "FILLED",
+  "stored_symbol": "USD_CHF",
+  "route_refusals": [],
+  "socket_blocks": [],
+  "dns_blocks": 0,
+  "dotenv_stubs": 1,
+  "real_broker_calls": 0
+}

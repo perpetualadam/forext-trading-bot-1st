@@ -1,0 +1,15 @@
+{
+  "stage": "D.2",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "live_safety_status_before_edit": "unmodified relative to HEAD",
+  "original_live_safety_sha256": "6e59666960dfec0ff379343c8973e389363faaab49278d9806c160a18ebe8f4f",
+  "matches_d1_hash": true,
+  "d1_porcelain_entries": 44,
+  "porcelain_not_assumed_current": true,
+  "existing_safety_tests_before_edit": [
+    "tests/test_live_safety_repair.py"
+  ],
+  "those_tests_were_already_modified": false,
+  "unexpected_live_safety_change_before_edit": false
+}

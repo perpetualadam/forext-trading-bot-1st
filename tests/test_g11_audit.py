@@ -69,8 +69,32 @@ def test_g10_allowlist_has_not_drifted(tmp_path: Path):
         (ROOT / "data/research/adaptive_ensemble/g10/source_manifest.json").read_text(encoding="utf-8")
     )
     by_path = {row["path"]: row["sha256"] for row in manifest["files"]}
-    assert allowlist_drift(allow["files"], by_path, ROOT) == []
+    # Historical drift detection remains. The authorised G.13 Dockerfile repair is
+    # the only accepted difference, and its hash is pinned rather than ignored.
+    spec = importlib.util.spec_from_file_location("g13_1_baseline", Path(__file__).with_name("g13_1_baseline.py"))
+    if spec is None or spec.loader is None:
+        raise RuntimeError("g13.1 baseline helper is unavailable")
+    baseline = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(baseline)
+    assert hashlib.sha256(
+        (ROOT / "data/research/adaptive_ensemble/g10/production_allowlist.json").read_bytes()
+    ).hexdigest() == baseline.ALLOWLIST_FILE_SHA256
+    assert allowlist_drift(allow["files"], by_path, ROOT) == ["Dockerfile"]
+    assert hashlib.sha256((ROOT / "Dockerfile").read_bytes()).hexdigest() == baseline.AUTHORISED_DOCKERFILE_SHA256
     assert len(allow["files"]) == 63
+    allow_report = baseline.evaluate_allowlist(
+        allow["files"],
+        ROOT,
+        expected_paths={row["path"] for row in allow["files"]},
+        manifest_hashes=by_path,
+    )
+    assert allow_report["ok"], allow_report
+    audit = json.loads(
+        (ROOT / "data/research/adaptive_ensemble/g10/production_dependency_audit.json").read_text(encoding="utf-8")
+    )
+    included = {row["path"] for row in allow["files"]}
+    assert included.isdisjoint(audit["research_only"])
+    assert audit["counts"]["RESEARCH_ONLY"] == 128
     sample = tmp_path / "main.py"
     sample.write_text("changed\n", encoding="utf-8")
     digest = hashlib.sha256(b"original").hexdigest()

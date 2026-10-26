@@ -1,0 +1,7 @@
+{
+  "requirements_txt_expected_length": 64,
+  "requirements_txt_syntax_valid": true,
+  "requirements_txt_local_match": true,
+  "silent_correction_during_d30_r1": false,
+  "all_ten_prompt_digests_valid": true
+}

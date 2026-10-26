@@ -1,0 +1,17 @@
+{
+  "identity": "symbol + first unresolved client_order_id",
+  "transitions": [
+    {"event": "confirmed fill", "result_status": "FILLED", "new_client_id_allowed": true, "automatic_replacement": false},
+    {"event": "confirmed rejection", "result_status": "REJECTED", "new_client_id_allowed": true, "automatic_replacement": false},
+    {"event": "confirmed cancellation", "result_status": "CANCELLED", "new_client_id_allowed": true, "automatic_replacement": false},
+    {"event": "timeout", "result_status": "UNRESOLVED", "new_client_id_allowed": false, "automatic_replacement": false},
+    {"event": "connection reset", "result_status": "UNRESOLVED", "new_client_id_allowed": false, "automatic_replacement": false},
+    {"event": "malformed response", "result_status": "UNRESOLVED", "new_client_id_allowed": false, "automatic_replacement": false},
+    {"event": "duplicate unresolved event", "result_status": "UNRESOLVED", "keeps_original_client_id": true, "automatic_replacement": false},
+    {"event": "restart with unresolved row", "result_status": "UNRESOLVED", "new_client_id_allowed": false, "automatic_replacement": false},
+    {"event": "recovery unreadable or missing", "result_status": "blocked", "new_client_id_allowed": false, "automatic_replacement": false},
+    {"event": "simulated CONFIRMED_ABSENT", "result_status": "released", "new_client_id_created_by_reconciliation": false},
+    {"event": "simulated CONFIRMED_FILL", "result_status": "cleared", "new_client_id_created_by_reconciliation": false},
+    {"event": "reconciliation unavailable", "result_status": "UNRESOLVED", "new_client_id_allowed": false, "automatic_replacement": false}
+  ]
+}

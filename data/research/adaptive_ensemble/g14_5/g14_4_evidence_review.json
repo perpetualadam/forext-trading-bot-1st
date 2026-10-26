@@ -1,0 +1,15 @@
+{
+  "stage": "G.14.5",
+  "g14_4_classification": "G14_4_GATE_A_COMPLETE_GATE_B_APPROVAL_REQUIRED",
+  "interpreted_as_network_approval": false,
+  "documented_controls_are_not_implementation": true,
+  "direct_requirements": 9,
+  "exact_pins": 0,
+  "verified_hashes": 0,
+  "real_wheelhouse": false,
+  "real_lock": false,
+  "proposed_index": "https://pypi.org/simple",
+  "source_approved": false,
+  "synthetic_cases_in_g14_4": 30,
+  "those_cases_do_not_prove_network_safety": true
+}

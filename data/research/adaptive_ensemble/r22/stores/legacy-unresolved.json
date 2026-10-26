@@ -1,0 +1,16 @@
+{
+  "schema": "exec_orders_offline_v1",
+  "orders": [
+    {
+      "client_order_id": "legacy-1",
+      "symbol": "EUR_USD",
+      "side": "BUY",
+      "units": 1.0,
+      "status": "UNRESOLVED",
+      "reservation_status": "UNRESOLVED",
+      "metadata": {
+        "exposure_safety": "UNCONFIRMED"
+      }
+    }
+  ]
+}

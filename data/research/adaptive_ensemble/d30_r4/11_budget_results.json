@@ -1,0 +1,83 @@
+{
+  "results": [
+    {
+      "test_id": "B01",
+      "expected": 20,
+      "actual": 20,
+      "result": "PASS"
+    },
+    {
+      "test_id": "B02",
+      "expected": 16,
+      "actual": 16,
+      "result": "PASS"
+    },
+    {
+      "test_id": "B03",
+      "expected": 1,
+      "actual": 1,
+      "result": "PASS"
+    },
+    {
+      "test_id": "B04",
+      "expected": "storage",
+      "actual": "storage",
+      "result": "PASS"
+    },
+    {
+      "test_id": "B05",
+      "expected": "registry_get",
+      "actual": "registry_get",
+      "result": "PASS"
+    },
+    {
+      "test_id": "B06",
+      "expected": "host",
+      "actual": "host",
+      "result": "PASS"
+    },
+    {
+      "test_id": "B07",
+      "expected": "method",
+      "actual": "method",
+      "result": "PASS"
+    },
+    {
+      "test_id": "B08",
+      "expected": "repository",
+      "actual": "repository",
+      "result": "PASS"
+    },
+    {
+      "test_id": "B09",
+      "expected": "digest",
+      "actual": "digest",
+      "result": "PASS"
+    },
+    {
+      "test_id": "B10",
+      "expected": "layer_body",
+      "actual": "layer_body",
+      "result": "PASS"
+    },
+    {
+      "test_id": "B11",
+      "expected": "retry",
+      "actual": "retry",
+      "result": "PASS"
+    },
+    {
+      "test_id": "B12",
+      "expected": 5,
+      "actual": 5,
+      "result": "PASS"
+    },
+    {
+      "test_id": "B13",
+      "expected": 0,
+      "actual": 0,
+      "result": "PASS"
+    }
+  ],
+  "network_requests": 0
+}

@@ -1,0 +1,65 @@
+{
+  "classification": "R27_OANDA_ACCOUNT_CONTRACT_PARTIAL",
+  "branch": "main",
+  "head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "production_deployment": "NO-GO",
+  "practice_orders": "NOT AUTHORISED",
+  "live_trading": "NOT AUTHORISED",
+  "rollback": "NO-GO",
+  "r27_tests": {"passed": 10, "failed": 0, "skipped": 0, "deselected": 0},
+  "broker_requests_during_invalid_cases": 0,
+  "network_requests": 0,
+  "postgresql_connections": 0,
+  "restart_pids": {
+    "daily_loss_writer": 16184,
+    "daily_loss_reader": 15580,
+    "drawdown_writer": 12088,
+    "drawdown_reader": 19748,
+    "exposure_reader": 5920,
+    "duplicate_replay": 1680,
+    "incomplete_history": 20240
+  },
+  "regressions": {
+    "r27": {"exit": 0, "passed": 10, "failed": 0, "skipped": 0, "deselected": 0},
+    "r26": {"exit": 0, "passed": 9, "failed": 0, "skipped": 0, "deselected": 0},
+    "r25": {"exit": 0, "passed": 10, "failed": 0, "skipped": 0, "deselected": 0},
+    "regression": {"exit": 0, "passed": 120, "failed": 0, "skipped": 7, "deselected": 1},
+    "r10": {"exit": 0, "passed": 69, "failed": 0, "skipped": 5, "deselected": 0},
+    "r11_first": {"exit": 1, "passed": 50, "failed": 1, "skipped": 5, "cause": "WinError 5 on r11 synthetic_live_safety_state.json"},
+    "r11_retry": {"exit": 0, "passed": 51, "failed": 0, "skipped": 5, "deselected": 0},
+    "r12": {"exit": 0, "passed": 118, "failed": 0, "skipped": 5, "deselected": 0},
+    "r13": {"exit": 0, "passed": 81, "failed": 0, "skipped": 6, "deselected": 0},
+    "r14": {"exit": 0, "passed": 143, "failed": 0, "skipped": 5, "deselected": 0},
+    "r15": {"exit": 0, "passed": 165, "failed": 0, "skipped": 6, "deselected": 0},
+    "r16": {"exit": 0, "passed": 135, "failed": 0, "skipped": 6, "deselected": 0},
+    "r17": {"exit": 0, "passed": 174, "failed": 0, "skipped": 9, "deselected": 0},
+    "r18": {"exit": 0, "passed": 203, "failed": 0, "skipped": 9, "deselected": 0},
+    "r19": {"exit": 0, "passed": 213, "failed": 0, "skipped": 9, "deselected": 0},
+    "r20": {"exit": 0, "passed": 30, "failed": 0, "skipped": 0, "deselected": 0},
+    "r21": {"exit": 0, "passed": 24, "failed": 0, "skipped": 0, "deselected": 0},
+    "r22": {"exit": 0, "passed": 20, "failed": 0, "skipped": 0, "deselected": 0},
+    "r23": {"exit": 0, "passed": 15, "failed": 0, "skipped": 0, "deselected": 0},
+    "r24": {"exit": 0, "passed": 14, "failed": 0, "skipped": 0, "deselected": 0}
+  },
+  "hashes": {
+    "forex_bot/bot_loop.py": {
+      "before": "dc7c229fe09c9c2adafdcc1ed4c96c9ad534a67758773069049d3d4c5ce02683",
+      "after": "6e953f7a2b0aa93f1f65c7b411d117e74cba6adf523f8514847bc69a7ea5c796"
+    },
+    "forex_bot/oanda_client.py": {
+      "before": "6d7d5d2b6ce1c228af0629c3e2a8b674b02965c57d1a3ed41c3b4015e531ca2b",
+      "after": "02c917ff7cf8a2b58942a8f2945182c3d2ab55959379973978427c875f464b7a"
+    },
+    "forex_bot/account_reconciliation.py": {
+      "before": "73e2b24bb17f576c5eabb1e4a730483ef89c87d8e419034a5a9c7bf2b4f7164a",
+      "after": "300feb0363a7182cd20dc24effeaee575e9669f35c97e8c567242c2bb5620c72"
+    },
+    "forex_bot/oanda_account_adapter.py": {
+      "before": null,
+      "after": "191466d11e1fac41ef1ccd5603046a3df5c4682f761fde651adcf9229bdf83b5"
+    },
+    "forex_bot/execution_risk.py": "8ffa0ef4b38ded1f0aa72362352d0935f43071b4df85f4531be014c889d09661",
+    "forex_bot/database.py": "0eb8548b70c9ae9a14880de92518ed20ddb8a23c2378cda7ce5da62c3ac998d6"
+  },
+  "r24_deadlock": "unchanged"
+}

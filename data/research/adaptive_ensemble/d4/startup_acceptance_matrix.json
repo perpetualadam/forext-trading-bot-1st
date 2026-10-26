@@ -1,0 +1,16 @@
+{
+  "stage": "D.4",
+  "decision": "live_safety_initialised() after initialise_fail_closed()",
+  "cases": {
+    "A_VALID_SUPPORTED_BLOCKED": "continue; effective authorisation stays BLOCKED",
+    "B_VALID_SUPPORTED_OTHER_AUTH": "continue only because the document is valid; effective authorisation stays BLOCKED",
+    "C_MISSING_FILE": "existing creator may write one BLOCKED document; continue only if that result is valid",
+    "D_CORRUPT_JSON": "abort; bytes unchanged",
+    "E_INVALID_DOCUMENT": "abort; bytes unchanged",
+    "F_FUTURE_SCHEMA": "abort; bytes unchanged",
+    "G_UNREADABLE": "abort; not treated as missing",
+    "H_PERMISSION_OR_FILESYSTEM": "abort; not treated as missing",
+    "I_UNKNOWN": "abort; any false live_safety_initialised() result stops startup"
+  },
+  "blocked_is_not_sufficient": "A BLOCKED effective authorisation on a protected file still aborts."
+}

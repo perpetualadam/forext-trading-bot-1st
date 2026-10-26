@@ -1,0 +1,59 @@
+{
+  "boundaries": [
+    {
+      "id": "A",
+      "name": "source author to builder",
+      "implemented": false,
+      "blocks": true
+    },
+    {
+      "id": "B",
+      "name": "builder to dependency artifacts",
+      "implemented": false,
+      "blocks": true
+    },
+    {
+      "id": "C",
+      "name": "builder to base image",
+      "implemented": false,
+      "blocks": true
+    },
+    {
+      "id": "D",
+      "name": "builder to candidate image",
+      "implemented": false,
+      "blocks": true
+    },
+    {
+      "id": "E",
+      "name": "candidate image to trusted receiver",
+      "implemented": false,
+      "blocks": true
+    },
+    {
+      "id": "F",
+      "name": "trusted receiver to deployment authority",
+      "implemented": false,
+      "blocks": true
+    },
+    {
+      "id": "G",
+      "name": "deployment authority to production container",
+      "implemented": false,
+      "blocks": true
+    },
+    {
+      "id": "H",
+      "name": "production container to persistent state",
+      "implemented": false,
+      "blocks": true
+    },
+    {
+      "id": "I",
+      "name": "deployment authority to rollback target",
+      "implemented": false,
+      "blocks": true
+    }
+  ],
+  "same_account_is_not_independent": true
+}

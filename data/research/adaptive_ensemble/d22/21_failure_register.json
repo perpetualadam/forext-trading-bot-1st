@@ -1,0 +1,12 @@
+{
+  "findings": [
+    {
+      "id": "D22-BASE-01",
+      "evidence": "The D.22 instruction gives a 77-character requirements.txt digest. The D.21 baseline digest is 64 characters and does not match that string. The file on disk matches the D.21 digest.",
+      "impact": "Registry identity verification was not started.",
+      "action": "Do not repair the expected digest inside this stage. Supply a corrected D.22 expected digest in a separate instruction before any registry request.",
+      "approval": "A new stage instruction whose requirements.txt digest matches the D.21 baseline.",
+      "production_impact": "UNVERIFIED"
+    }
+  ]
+}

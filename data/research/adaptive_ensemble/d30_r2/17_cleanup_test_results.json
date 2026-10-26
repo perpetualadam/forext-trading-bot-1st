@@ -1,0 +1,141 @@
+{
+  "results": [
+    {
+      "test_id": "H01",
+      "fixture": "complete",
+      "expected": "reaped",
+      "actual": "PASS",
+      "monotonic_start": 90638.793483,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "H02",
+      "fixture": "block",
+      "expected": "terminated",
+      "actual": "PASS",
+      "monotonic_start": 90638.793492,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "H03",
+      "fixture": "block",
+      "expected": "exit confirmed",
+      "actual": "PASS",
+      "monotonic_start": 90638.793497,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "H04",
+      "fixture": "block",
+      "expected": "no restart",
+      "actual": "1",
+      "monotonic_start": 90638.793502,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "H05",
+      "fixture": "descendants",
+      "expected": "not spawned and not claimed",
+      "actual": "NOT_EVALUATED",
+      "monotonic_start": 90638.793506,
+      "elapsed": 0.0,
+      "result": "NOT_EVALUATED",
+      "containment": "NOT_EVALUATED"
+    },
+    {
+      "test_id": "H06",
+      "fixture": "flood",
+      "expected": "pipes drained",
+      "actual": "PASS",
+      "monotonic_start": 90638.793514,
+      "elapsed": 0.2258,
+      "result": "PASS"
+    },
+    {
+      "test_id": "H07",
+      "fixture": "ledger",
+      "expected": "prior ledger kept",
+      "actual": "kept",
+      "monotonic_start": 90638.79352,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "H08",
+      "fixture": "finally",
+      "expected": "kill path present and terminate tests reaped",
+      "actual": "PASS",
+      "monotonic_start": 90638.793526,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "H09",
+      "fixture": "cleanup verdict",
+      "expected": "live worker is BLOCKED",
+      "actual": "BLOCKED",
+      "monotonic_start": 90638.793543,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "H10",
+      "fixture": "stop files",
+      "expected": "removed",
+      "actual": "0",
+      "monotonic_start": 90638.794492,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "H11",
+      "fixture": "source",
+      "expected": "unchanged",
+      "actual": "match",
+      "monotonic_start": 90638.802475,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "H12",
+      "fixture": "prior evidence",
+      "expected": "unchanged",
+      "actual": "match",
+      "monotonic_start": 90638.802481,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "H13",
+      "fixture": "production paths",
+      "expected": "not referenced by worker",
+      "actual": "absent",
+      "monotonic_start": 90638.802485,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "H14",
+      "fixture": "sockets",
+      "expected": "not opened",
+      "actual": "absent",
+      "monotonic_start": 90638.80249,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "H15",
+      "fixture": "dns",
+      "expected": "not called",
+      "actual": "absent",
+      "monotonic_start": 90638.8025,
+      "elapsed": 0.0,
+      "result": "PASS"
+    }
+  ],
+  "descendant_containment": "NOT_EVALUATED"
+}

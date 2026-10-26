@@ -1,0 +1,11 @@
+{
+  "approval": "YES \u2014 Approve D.24-R2 configuration verification with the explicit CloudFront host allowlist.",
+  "storage_host": "production.cloudfront.docker.com",
+  "storage_independent_requests_permitted": false,
+  "token_may_be_sent_to": [
+    "registry-1.docker.io"
+  ],
+  "token_must_not_be_sent_to": [
+    "production.cloudfront.docker.com"
+  ]
+}

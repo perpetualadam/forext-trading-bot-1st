@@ -1,0 +1,9 @@
+{
+  "classification": "ROLLBACK_NO_GO",
+  "known_good_image": "MISSING",
+  "historical_running_image": "sha256:a905781d872d4a83706c716baa8be6e08c4abef26b2d9f9510a118c2c3039d25",
+  "historical_running_image_contains_d2_d14_fixes": "UNVERIFIED",
+  "historical_unsafe_image_rejected": "sha256:a19a2208fcf30f8fa1cf61442cf021dec6d99d809b6907836c834922bfe3e2a5",
+  "availability_checked": false,
+  "docker_inspected": false
+}

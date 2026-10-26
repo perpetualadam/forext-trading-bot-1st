@@ -1,0 +1,35 @@
+{
+  "stage": "D.3",
+  "commands": [
+    "python -m pytest -q --tb=short tests/test_strategy_activation_defaults.py tests/test_live_safety_preservation.py",
+    "python -m pytest -q --tb=line tests/test_strategy_activation_defaults.py tests/test_live_safety_preservation.py"
+  ],
+  "environment": "PYTHONDONTWRITEBYTECODE=1",
+  "first_run": {
+    "passed": 64,
+    "failed": 1,
+    "failure": "test_t35 matched its own source text. The assertion was replaced with an AST import check. Product code was not changed for that failure."
+  },
+  "final_run": {
+    "passed": 65,
+    "failed": 0,
+    "skipped": 0,
+    "elapsed_seconds": 1.69,
+    "new_tests": 35,
+    "d2_preservation_tests": 30
+  },
+  "not_executed": [
+    "tests/test_live_safety_repair.py imports forex_bot.app",
+    "full test suite",
+    "application lifespan",
+    "broker tests",
+    "database tests"
+  ],
+  "isolation": {
+    "safety_path": "pytest tmp_path via tests/conftest.py LIVE_SAFETY_STATE_PATH",
+    "app_imported": false,
+    "database_module_imported": false,
+    "psycopg2_imported": false
+  },
+  "ruff": "All checks passed for forex_bot/strategy_meta.py and tests/test_strategy_activation_defaults.py"
+}

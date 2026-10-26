@@ -1,0 +1,35 @@
+{
+  "stage": "G.14.10",
+  "target": {
+    "os": "Linux",
+    "architecture": "x86_64/AMD64",
+    "implementation": "CPython",
+    "major_minor": "3.12",
+    "image_tag": "python:3.12-slim-bookworm",
+    "historical_local_image_id": "sha256:782412e85d0f0984994c290652577d4018aff08145c85b262bb63dc0c7522254",
+    "historical_image_id_status": "HISTORICAL_ONLY",
+    "registry_manifest_digest": "UNKNOWN"
+  },
+  "unknown": ["python_patch", "soabi", "glibc", "pip", "native_wheel_tags", "registry_manifest_digest"],
+  "preserved": [
+    "TARGET_RUNTIME_COMPATIBILITY_PROFILE_INCOMPLETE",
+    "BASE_IMAGE_DIGEST_UNVERIFIED",
+    "PIP_TOOLCHAIN_VERSION_UNVERIFIED",
+    "DEPENDENCY_GRAPH_COMPLETENESS_UNVERIFIED"
+  ],
+  "capabilities": {
+    "exact_cpython_identification": {"vm": "THEORETICALLY_POSSIBLE", "wsl": "THEORETICALLY_POSSIBLE", "container": "THEORETICALLY_POSSIBLE", "windows_execution": "UNKNOWN"},
+    "soabi": {"vm": "THEORETICALLY_POSSIBLE", "wsl": "THEORETICALLY_POSSIBLE", "container": "THEORETICALLY_POSSIBLE", "windows_execution": "UNKNOWN"},
+    "glibc": {"vm": "THEORETICALLY_POSSIBLE", "wsl": "THEORETICALLY_POSSIBLE", "container": "THEORETICALLY_POSSIBLE", "windows_execution": "UNKNOWN"},
+    "wheel_tags": {"vm": "THEORETICALLY_POSSIBLE", "wsl": "THEORETICALLY_POSSIBLE", "container": "THEORETICALLY_POSSIBLE", "windows_execution": "UNKNOWN"},
+    "native_wheel_checks": {"vm": "THEORETICALLY_POSSIBLE", "wsl": "THEORETICALLY_POSSIBLE", "container": "THEORETICALLY_POSSIBLE", "windows_execution": "UNKNOWN"},
+    "complete_resolution": {"vm": "UNKNOWN", "wsl": "UNKNOWN", "container": "UNKNOWN", "windows_execution": "UNKNOWN"},
+    "wheels_only": {"vm": "THEORETICALLY_POSSIBLE", "wsl": "THEORETICALLY_POSSIBLE", "container": "THEORETICALLY_POSSIBLE", "windows_execution": "THEORETICALLY_POSSIBLE"},
+    "hash_verified_wheelhouse": {"vm": "UNKNOWN", "wsl": "UNKNOWN", "container": "UNKNOWN", "windows_execution": "UNKNOWN"},
+    "offline_candidate_install": {"vm": "UNKNOWN", "wsl": "UNKNOWN", "container": "UNKNOWN", "windows_execution": "UNKNOWN"},
+    "reproducible_packaging": {"vm": "UNKNOWN", "wsl": "UNKNOWN", "container": "UNKNOWN", "windows_execution": "UNKNOWN"}
+  },
+  "verified_on_this_machine": [],
+  "supported_by_existing_evidence": [],
+  "note": "THEORETICALLY_POSSIBLE means a Linux guest could be asked later. It is not evidence those values were read. Nothing is VERIFIED_ON_THIS_MACHINE. Windows execution is not the Linux target runtime."
+}

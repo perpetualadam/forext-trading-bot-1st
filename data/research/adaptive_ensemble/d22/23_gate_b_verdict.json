@@ -1,0 +1,5 @@
+{
+  "gate": "B",
+  "result": "NOT_RUN",
+  "meaning": "Stopped at Gate A before any request."
+}

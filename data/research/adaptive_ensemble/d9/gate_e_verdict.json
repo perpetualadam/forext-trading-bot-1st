@@ -1,0 +1,10 @@
+{
+  "gate": "E",
+  "verdict": "PASS",
+  "d8_conc_01": "FIXED",
+  "d9_pytest": "6 passed in 3.46s",
+  "d2_d3_d4_d7": "133 passed in 9.83s",
+  "lifespan_executed": true,
+  "prohibited_operation": false,
+  "borrower_quiescence": "BORROWER_QUIESCENCE_UNVERIFIED"
+}

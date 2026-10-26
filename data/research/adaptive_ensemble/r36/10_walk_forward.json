@@ -1,0 +1,76 @@
+{
+  "folds": [
+    {
+      "model": "logistic",
+      "fold": "wf1",
+      "status": "ok",
+      "train_end_position": 15000,
+      "eval_start_position": 15012,
+      "log_loss": 1.060856431301846,
+      "baseline_log_loss": 1.0904811729223105,
+      "brier": 0.6424242222124227,
+      "n": 9892,
+      "prediction_sha256": "5d16a75d5e81ad485dfd2cd82cf6396e1b5eb8a7148a7d7f7d47cdf2e81abfd5"
+    },
+    {
+      "model": "logistic",
+      "fold": "wf2",
+      "status": "ok",
+      "train_end_position": 25000,
+      "eval_start_position": 25012,
+      "log_loss": 1.05052980792815,
+      "baseline_log_loss": 1.0725487502719442,
+      "brier": 0.6366258592503655,
+      "n": 9899,
+      "prediction_sha256": "dcfa02a7322091be820e7dd555ee9743de493bd296ba1c247b45f48dec7549e9"
+    },
+    {
+      "model": "logistic",
+      "fold": "wf3",
+      "status": "ok",
+      "train_end_position": 35000,
+      "eval_start_position": 35012,
+      "log_loss": 1.0403636872613446,
+      "baseline_log_loss": 1.0552102798306484,
+      "brier": 0.6323705915202401,
+      "n": 9623,
+      "prediction_sha256": "6e5e70331c84ca48dcbe9b9d5335a8ce184ef247ce8acc3933f54c4cba167644"
+    },
+    {
+      "model": "xgboost",
+      "fold": "wf1",
+      "status": "ok",
+      "train_end_position": 15000,
+      "eval_start_position": 15012,
+      "log_loss": 1.0586933347904186,
+      "baseline_log_loss": 1.0904811729223105,
+      "brier": 0.6421599544868974,
+      "n": 9892,
+      "prediction_sha256": "08920ce23d99160b2ab4b4a1831977d2335fd4b6bb4b2315738d855ad979e5e1"
+    },
+    {
+      "model": "xgboost",
+      "fold": "wf2",
+      "status": "ok",
+      "train_end_position": 25000,
+      "eval_start_position": 25012,
+      "log_loss": 1.0456244081330202,
+      "baseline_log_loss": 1.0725487502719442,
+      "brier": 0.6344584160216515,
+      "n": 9899,
+      "prediction_sha256": "451d18d18c8ee45a170fb34379fb9a9cff6ed1157483cb4cb9a082d31fb60ae7"
+    },
+    {
+      "model": "xgboost",
+      "fold": "wf3",
+      "status": "ok",
+      "train_end_position": 35000,
+      "eval_start_position": 35012,
+      "log_loss": 1.02858855036436,
+      "baseline_log_loss": 1.0552102798306484,
+      "brier": 0.6257783329586482,
+      "n": 9623,
+      "prediction_sha256": "d5a43a33a73d9500b4b3ea203c916748ed259fb46cddc28439c99e641c5b63e9"
+    }
+  ]
+}

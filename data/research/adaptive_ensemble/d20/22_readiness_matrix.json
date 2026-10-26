@@ -1,0 +1,298 @@
+{
+  "domains": [
+    {
+      "id": "R01",
+      "status": "EXPLICITLY_APPROVED",
+      "evidence": "D.20 instruction selects linux/amd64.",
+      "evidence_level": "EXPLICITLY_APPROVED",
+      "blocks_dependency_resolution": false,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R02",
+      "status": "PROPOSED",
+      "evidence": "linux/arm64 is proposed and not approved.",
+      "evidence_level": "PROPOSED",
+      "blocks_dependency_resolution": false,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R03",
+      "status": "PROPOSED",
+      "evidence": "Dual-platform policy awaits explicit confirmation.",
+      "evidence_level": "PROPOSED",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R04",
+      "status": "EXPLICITLY_APPROVED",
+      "evidence": "Reference docker.io/library/python:3.12-slim-bookworm is approved. Digest is not.",
+      "evidence_level": "EXPLICITLY_APPROVED",
+      "blocks_dependency_resolution": false,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R05",
+      "status": "UNVERIFIED",
+      "evidence": "No AMD64 manifest digest.",
+      "evidence_level": "UNVERIFIED",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R06",
+      "status": "UNVERIFIED",
+      "evidence": "No ARM64 manifest digest. Index presence is unknown.",
+      "evidence_level": "UNVERIFIED",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R07",
+      "status": "MISSING",
+      "evidence": "AMD64 Python patch unknown.",
+      "evidence_level": "MISSING",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R08",
+      "status": "MISSING",
+      "evidence": "ARM64 Python patch unknown.",
+      "evidence_level": "MISSING",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R09",
+      "status": "MISSING",
+      "evidence": "AMD64 ABI unknown.",
+      "evidence_level": "MISSING",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R10",
+      "status": "MISSING",
+      "evidence": "ARM64 ABI unknown.",
+      "evidence_level": "MISSING",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R11",
+      "status": "UNVERIFIED",
+      "evidence": "AMD64 libc unknown.",
+      "evidence_level": "UNVERIFIED",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R12",
+      "status": "UNVERIFIED",
+      "evidence": "ARM64 libc unknown.",
+      "evidence_level": "UNVERIFIED",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R13",
+      "status": "MISSING",
+      "evidence": "No AMD64 wheel evidence.",
+      "evidence_level": "MISSING",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R14",
+      "status": "MISSING",
+      "evidence": "No ARM64 wheel evidence. Absence is not incompatibility.",
+      "evidence_level": "MISSING",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R15",
+      "status": "MISSING",
+      "evidence": "No transitive closure.",
+      "evidence_level": "MISSING",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R16",
+      "status": "PROPOSED",
+      "evidence": "Separate per-platform locks are the audit preference if dual support is later approved. Not approved now.",
+      "evidence_level": "PROPOSED",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R17",
+      "status": "MISSING",
+      "evidence": "No platform artifacts.",
+      "evidence_level": "MISSING",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R18",
+      "status": "UNVERIFIED",
+      "evidence": "No provenance.",
+      "evidence_level": "UNVERIFIED",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R19",
+      "status": "MISSING",
+      "evidence": "No AMD64 candidate image.",
+      "evidence_level": "MISSING",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R20",
+      "status": "MISSING",
+      "evidence": "No ARM64 candidate image.",
+      "evidence_level": "MISSING",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R21",
+      "status": "MISSING",
+      "evidence": "No AMD64 runtime test of a candidate image.",
+      "evidence_level": "MISSING",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R22",
+      "status": "MISSING",
+      "evidence": "No ARM64 runtime test of a candidate image.",
+      "evidence_level": "MISSING",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R23",
+      "status": "UNVERIFIED",
+      "evidence": "No VPS provider or hardware.",
+      "evidence_level": "UNVERIFIED",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R24",
+      "status": "BLOCKED",
+      "evidence": "Deployment authority absent.",
+      "evidence_level": "BLOCKED",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R25",
+      "status": "BLOCKED",
+      "evidence": "No verified rollback.",
+      "evidence_level": "BLOCKED",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    },
+    {
+      "id": "R26",
+      "status": "BLOCKED",
+      "evidence": "Live trading remains unauthorised. Current production state was not verified.",
+      "evidence_level": "BLOCKED",
+      "blocks_dependency_resolution": true,
+      "blocks_candidate_builds": true,
+      "blocks_deployment": true,
+      "required_action": "Do not mark this domain complete.",
+      "required_approval": true
+    }
+  ],
+  "counts": {
+    "total": 26,
+    "EXPLICITLY_APPROVED": 2,
+    "PROPOSED": 3,
+    "UNVERIFIED": 6,
+    "MISSING": 12,
+    "BLOCKED": 3
+  }
+}

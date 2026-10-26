@@ -1,0 +1,29 @@
+{
+  "evidence_run": "isolated D.8 runner, fake psycopg2, real get_connection and real lifespan",
+  "network": [],
+  "requests": 0,
+  "get_connection_module": "forex_bot.database",
+  "schedules": {
+    "unlocked_overlap": {"connect_calls": 2, "published_id": 1, "cursor_connection": 1, "pair_consistent": true, "abandoned_open": 1, "application_closed": 0, "harness_closed": 2, "alive_workers": 0},
+    "unlocked_vs_locked": {"connect_calls": 2, "published_id": 3, "cursor_connection": 3, "pair_consistent": true, "abandoned_open": 1, "application_closed": 0, "harness_closed": 2, "alive_workers": 0},
+    "both_locked": {"connect_calls": 1, "published_id": 5, "cursor_connection": 5, "pair_consistent": true, "abandoned_open": 0, "application_closed": 0, "harness_closed": 1, "alive_workers": 0},
+    "second_fails": {"connect_calls": 2, "published_id": 6, "discarded_id": 7, "abandoned_open": 0, "application_closed": 1, "harness_closed": 1},
+    "first_fails": {"connect_calls": 2, "published_id": 9, "discarded_id": 8, "abandoned_open": 0, "application_closed": 1, "harness_closed": 1},
+    "both_fail": {"connect_calls": 2, "published_id": null, "abandoned_open": 0, "application_closed": 2, "harness_closed": 0},
+    "cleanup_fails": {"connect_calls": 2, "published_id": null, "partial_notes": ["RuntimeError"], "connection_12_closed": false, "connection_13_closed": true, "harness_closed": 1},
+    "release_during_init": {"release_notes_before_publish": [], "published_id": 14, "published_open": true, "abandoned_open": 0, "harness_closed": 1},
+    "release_borrowed": {"borrowed_closed": true, "borrowed_close_calls": 1, "second_release_notes": [], "release_created_connection": false, "harness_closed": 0},
+    "replace_during_close": {"old_id": 16, "new_id": 17, "old_closed": true, "new_open": true, "published_id": 17, "harness_closed": 1},
+    "retry_after_connect_failure": {"first_none": true, "published_id": 18, "published_is_second": true, "connect_calls": 2, "abandoned_open": 0}
+  },
+  "lifespan": {
+    "corrupt": {"yielded": false, "escaped_type": "StartupSafetyAbort", "connect_calls": 0, "created": 0, "auth": "BLOCKED", "active": []},
+    "baseline": {"yielded": true, "auth": "BLOCKED", "active": [], "created": 4, "pending": 0, "pg_conn_held": true, "application_closed": 0, "harness_closed": 1, "requests": 0},
+    "broker": {"yielded": false, "pg_conn_held": false, "application_closed": 1, "harness_closed": 0, "pending": 0, "requests": 0},
+    "shutdown_stop": {"yielded": true, "pending": 0, "harness_cancelled": 0, "pg_conn_held": true, "cleanup_errors": ["RuntimeError"], "message": "injected shutdown failure"},
+    "await_health": {"pending": 0, "harness_cancelled": 0, "pg_conn_held": true, "message": "injected task await failure"},
+    "before_yield": {"pending": 0, "pg_conn_held": false, "application_closed": 1, "harness_cancelled": 0},
+    "startup_stop": {"yielded": false, "pending": 0, "harness_cancelled": 0, "pg_conn_held": true, "application_closed": 0, "harness_closed": 1, "cleanup_errors": ["RuntimeError"], "message": "injected failure before yield"},
+    "repeat": {"yielded": true, "auth": "BLOCKED", "active": [], "pending": 0}
+  }
+}

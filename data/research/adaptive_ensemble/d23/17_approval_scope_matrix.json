@@ -1,0 +1,173 @@
+{
+  "d23_authorised_scope": "Local offline evidence work only.",
+  "rows": [
+    {
+      "action": "Local OCI evidence rehashing",
+      "currently_authorised": true,
+      "previously_authorised": "D.22-R1 calculated the same digests while it was authorised",
+      "explicitly_prohibited_in_d23": false,
+      "separate_approval_required": false,
+      "safety_rationale": "Local byte comparison stays inside the preserved evidence."
+    },
+    {
+      "action": "Local OCI JSON parsing",
+      "currently_authorised": true,
+      "previously_authorised": "D.22-R1 parsed the manifests it retrieved",
+      "explicitly_prohibited_in_d23": false,
+      "separate_approval_required": false,
+      "safety_rationale": "Parsing local JSON does not contact a registry."
+    },
+    {
+      "action": "Config descriptor extraction",
+      "currently_authorised": true,
+      "previously_authorised": "D.22-R1 recorded the config media type and left the blob unretrieved",
+      "explicitly_prohibited_in_d23": false,
+      "separate_approval_required": false,
+      "safety_rationale": "Extraction copies descriptor fields already present in the manifest."
+    },
+    {
+      "action": "Registry index rerequest",
+      "currently_authorised": false,
+      "previously_authorised": "D.22-R1 only",
+      "explicitly_prohibited_in_d23": true,
+      "separate_approval_required": true,
+      "safety_rationale": "A new tag request could observe a different index."
+    },
+    {
+      "action": "Platform manifest rerequest",
+      "currently_authorised": false,
+      "previously_authorised": "D.22-R1 only",
+      "explicitly_prohibited_in_d23": true,
+      "separate_approval_required": true,
+      "safety_rationale": "The local bytes already identify the manifests."
+    },
+    {
+      "action": "Anonymous token request",
+      "currently_authorised": false,
+      "previously_authorised": "D.22-R1 only",
+      "explicitly_prohibited_in_d23": true,
+      "separate_approval_required": true,
+      "safety_rationale": "Token handling is network authentication and is closed for D.23."
+    },
+    {
+      "action": "Config blob request",
+      "currently_authorised": false,
+      "previously_authorised": "Never authorised",
+      "explicitly_prohibited_in_d23": true,
+      "separate_approval_required": true,
+      "safety_rationale": "D.22-R1 stopped at manifests. A blob is a new retrieval."
+    },
+    {
+      "action": "Layer request",
+      "currently_authorised": false,
+      "previously_authorised": "Never authorised",
+      "explicitly_prohibited_in_d23": true,
+      "separate_approval_required": true,
+      "safety_rationale": "Layer bytes are image content and are outside metadata planning."
+    },
+    {
+      "action": "Image pull",
+      "currently_authorised": false,
+      "previously_authorised": "Never authorised",
+      "explicitly_prohibited_in_d23": true,
+      "separate_approval_required": true,
+      "safety_rationale": "A pull retrieves blobs and layers."
+    },
+    {
+      "action": "Docker execution",
+      "currently_authorised": false,
+      "previously_authorised": "Never authorised",
+      "explicitly_prohibited_in_d23": true,
+      "separate_approval_required": true,
+      "safety_rationale": "Docker can pull, build, or inspect production state."
+    },
+    {
+      "action": "Container execution",
+      "currently_authorised": false,
+      "previously_authorised": "Never authorised",
+      "explicitly_prohibited_in_d23": true,
+      "separate_approval_required": true,
+      "safety_rationale": "Running a container is runtime execution."
+    },
+    {
+      "action": "Python runtime execution",
+      "currently_authorised": false,
+      "previously_authorised": "Never authorised for the image runtime",
+      "explicitly_prohibited_in_d23": true,
+      "separate_approval_required": true,
+      "safety_rationale": "An interpreter measurement needs an isolated runtime approval."
+    },
+    {
+      "action": "Dependency metadata query",
+      "currently_authorised": false,
+      "previously_authorised": "Never authorised",
+      "explicitly_prohibited_in_d23": true,
+      "separate_approval_required": true,
+      "safety_rationale": "Package indexes are outside the registry-manifest boundary."
+    },
+    {
+      "action": "Wheel download",
+      "currently_authorised": false,
+      "previously_authorised": "Never authorised",
+      "explicitly_prohibited_in_d23": true,
+      "separate_approval_required": true,
+      "safety_rationale": "Wheels are dependency artifacts."
+    },
+    {
+      "action": "Dependency resolution",
+      "currently_authorised": false,
+      "previously_authorised": "Never authorised",
+      "explicitly_prohibited_in_d23": true,
+      "separate_approval_required": true,
+      "safety_rationale": "Resolution selects versions that are still unpinned."
+    },
+    {
+      "action": "Dependency installation",
+      "currently_authorised": false,
+      "previously_authorised": "Never authorised",
+      "explicitly_prohibited_in_d23": true,
+      "separate_approval_required": true,
+      "safety_rationale": "Installation changes the environment."
+    },
+    {
+      "action": "Image build",
+      "currently_authorised": false,
+      "previously_authorised": "Never authorised",
+      "explicitly_prohibited_in_d23": true,
+      "separate_approval_required": true,
+      "safety_rationale": "A build consumes the mutable tag and unpinned requirements."
+    },
+    {
+      "action": "Production inspection",
+      "currently_authorised": false,
+      "previously_authorised": "Never authorised",
+      "explicitly_prohibited_in_d23": true,
+      "separate_approval_required": true,
+      "safety_rationale": "Current production authorisation is not independently verified."
+    },
+    {
+      "action": "Production deployment",
+      "currently_authorised": false,
+      "previously_authorised": "Never authorised",
+      "explicitly_prohibited_in_d23": true,
+      "separate_approval_required": true,
+      "safety_rationale": "Deployment is a separate NO-GO boundary."
+    },
+    {
+      "action": "Rollback",
+      "currently_authorised": false,
+      "previously_authorised": "Never authorised",
+      "explicitly_prohibited_in_d23": true,
+      "separate_approval_required": true,
+      "safety_rationale": "No verified rollback artifact exists."
+    },
+    {
+      "action": "Live trading",
+      "currently_authorised": false,
+      "previously_authorised": "Historically blocked",
+      "explicitly_prohibited_in_d23": true,
+      "separate_approval_required": true,
+      "safety_rationale": "Historical live-order authorisation remains BLOCKED."
+    }
+  ]
+}

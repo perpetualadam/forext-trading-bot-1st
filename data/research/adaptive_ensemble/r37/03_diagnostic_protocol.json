@@ -1,0 +1,132 @@
+{
+  "sha256": "1584ebf1f3e9309deac4a4d025a930a8013103c1fb1c39cfe64bb4a54be23381",
+  "protocol": {
+    "stage": "R37",
+    "uses_r36_test_for_candidate_selection": false,
+    "uses_r36_test_labels_for_training": false,
+    "maximum_candidate_changes": 2,
+    "candidate_c_not_run": "No training or validation pattern identified a specific feature or hyperparameter defect. A third search is not authorised.",
+    "questions": [
+      "why_full_bar_directional_counts_differ_from_stride_action_counts",
+      "whether_probability_bins_have_a_positive_cost_adjusted_return",
+      "whether_a_pre_registered_48_bar_horizon_changes_the_economic_result"
+    ],
+    "permitted_periods": {
+      "estimation_and_training_end_exclusive": 44743,
+      "candidate_evaluation_end_exclusive": 59657,
+      "r36_test_start": 59657
+    },
+    "candidates": {
+      "A_expected_value_bins": {
+        "model": "logistic_regression_same_hyperparameters_fit_only_on_positions_20_to_15000",
+        "estimation_fold": [
+          15012,
+          25000
+        ],
+        "evaluation_folds": [
+          [
+            25012,
+            35000
+          ],
+          [
+            35012,
+            44731
+          ]
+        ],
+        "bins": [
+          0.35,
+          0.4,
+          0.45,
+          0.5,
+          1.01
+        ],
+        "tradeable_if": "n_at_least_100_and_mean_next_bar_return_above_zero_and_bootstrap_low_above_zero",
+        "if_no_tradeable_bin": "always_abstain_and_reject",
+        "refit_after_evaluation": false,
+        "r36_artifact_used_only_for_count_reconciliation": true
+      },
+      "B_horizon_48": {
+        "family": "logistic_regression_same_hyperparameters_as_r36",
+        "horizon_bars": 48,
+        "embargo_bars": 48,
+        "reason": "R.35 already listed 48 bars. It is the one pre-registered alternative, not a horizon searched on the test slice.",
+        "train": [
+          20,
+          44695
+        ],
+        "validation": [
+          44743,
+          59609
+        ],
+        "walk_forward": [
+          {
+            "train": [
+              20,
+              12000
+            ],
+            "eval": [
+              12048,
+              20000
+            ]
+          },
+          {
+            "train": [
+              20,
+              20000
+            ],
+            "eval": [
+              20048,
+              28000
+            ]
+          },
+          {
+            "train": [
+              20,
+              28000
+            ],
+            "eval": [
+              28048,
+              36000
+            ]
+          }
+        ],
+        "log_loss_not_comparable_to_r36_12_bar_target": true
+      }
+    },
+    "acceptance": [
+      "causal_features_and_labels",
+      "no_training_row_at_or_after_r36_test_start",
+      "reproducible_specification",
+      "at_least_30_nonoverlapping_actions_on_each_reported_evaluation_window",
+      "next_bar_mean_including_abstentions_above_zero",
+      "block_bootstrap_low_above_zero",
+      "half_pip_mean_above_zero",
+      "improvement_not_confined_to_one_window"
+    ],
+    "costs": {
+      "entry": "next_bar_open_bid_ask",
+      "adverse_price_units": [
+        0.0,
+        5e-05,
+        0.0001
+      ],
+      "not_a_full_oanda_spreadbet_cost_model": true
+    },
+    "bootstrap": {
+      "block": 20,
+      "reps": 200,
+      "seed": 3601
+    },
+    "multiple_comparisons": "Two pre-registered candidates. No search over thresholds or horizons after results.",
+    "stop_conditions": [
+      "prediction_hash_mismatch_stops_economic_claims",
+      "no_tradeable_probability_bin_rejects_candidate_A",
+      "candidate_B_fails_acceptance_on_validation_or_walk_forward"
+    ],
+    "feature_schema_sha256": "7d15b98d9bfe99136f2de5e05522d9cef623539b38f7ab61e9ea722a24889946",
+    "label_protocol_sha256": "dc914245aa072f1922b656634f473cd1c641cd01fa1f4c217b21ab1decb0ed51",
+    "evaluation_protocol_sha256": "bab4a868f1b789b795c5c124f86f7975d0b6ca9a5c0848b3323f743c2d8f81e9",
+    "r36_embargo_bars": 12,
+    "production_authorised": false
+  }
+}

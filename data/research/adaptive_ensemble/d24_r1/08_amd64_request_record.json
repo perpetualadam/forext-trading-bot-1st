@@ -1,0 +1,9 @@
+{
+  "method": "GET",
+  "host": "registry-1.docker.io",
+  "path": "/v2/library/python/blobs/sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+  "final_request_number": 3,
+  "final_status": 307,
+  "authentication_used_on_final_request": true,
+  "arm64_requested": false
+}

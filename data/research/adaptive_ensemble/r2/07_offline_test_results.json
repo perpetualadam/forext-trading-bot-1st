@@ -1,0 +1,48 @@
+{
+  "blocked_network_attempts": [
+    "socket",
+    "socket",
+    "socket",
+    "socket",
+    "socket"
+  ],
+  "dotenv_calls": 1,
+  "exit_code": 1,
+  "in_process_active_after_tests": {
+    "mean_reversion": false,
+    "scalp": false,
+    "swing_breakout": false,
+    "swing_mean_reversion": false,
+    "swing_trend": false,
+    "trend": false
+  },
+  "network_attempts": [
+    "socket",
+    "socket",
+    "socket",
+    "socket",
+    "socket"
+  ],
+  "runs": [
+    {
+      "exit_code": 0,
+      "junit": "C:\\Users\\Brian\\OneDrive\\Desktop\\Forext Trading Bot 1st\\data\\research\\adaptive_ensemble\\r2\\pytest_activation.xml",
+      "name": "activation",
+      "paths": [
+        "tests/test_strategy_activation_defaults.py",
+        "tests/test_d15_historical_compatibility.py"
+      ]
+    },
+    {
+      "exit_code": 1,
+      "junit": "C:\\Users\\Brian\\OneDrive\\Desktop\\Forext Trading Bot 1st\\data\\research\\adaptive_ensemble\\r2\\pytest_execution.xml",
+      "name": "execution",
+      "paths": [
+        "tests/test_execution_safety.py",
+        "-k",
+        "not test_live_kind_can_assert_broker_when_authorised and not test_live_open_reaches_sync_place_and_keeps_ids"
+      ]
+    }
+  ],
+  "safety_file_under_r2": true
+}

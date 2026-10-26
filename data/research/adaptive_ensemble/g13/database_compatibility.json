@@ -1,0 +1,35 @@
+{
+  "live_database_inspected": false,
+  "classification": "LIVE_DATABASE_COMPATIBILITY_UNVERIFIED",
+  "source_bytes_identical": true,
+  "database_py_sha256": {
+    "g7": "98ed215c0a7e7f21ecf938172a45805a3f1b456c5cf49e8d0a8ea9f0d5cbce72",
+    "g10": "98ed215c0a7e7f21ecf938172a45805a3f1b456c5cf49e8d0a8ea9f0d5cbce72",
+    "working_tree": "98ed215c0a7e7f21ecf938172a45805a3f1b456c5cf49e8d0a8ea9f0d5cbce72",
+    "running_image_recorded": "98ed215c0a7e7f21ecf938172a45805a3f1b456c5cf49e8d0a8ea9f0d5cbce72"
+  },
+  "tables_defined_in_identical_source": [
+    "trades",
+    "reconcile_metadata",
+    "operational_event_log",
+    "exec_orders",
+    "broker_exit_ledger",
+    "broker_exit_pending"
+  ],
+  "additive_statements_in_source": [
+    "CREATE TABLE IF NOT EXISTS",
+    "ALTER TABLE trades ADD COLUMN IF NOT EXISTS trading_mode",
+    "ALTER TABLE trades ADD COLUMN IF NOT EXISTS execution_kind",
+    "ALTER TABLE trades ADD COLUMN IF NOT EXISTS diagnostics",
+    "ALTER TABLE exec_orders ADD COLUMN IF NOT EXISTS filled_units",
+    "CREATE INDEX IF NOT EXISTS"
+  ],
+  "drop_or_rewrite_statements_in_source": [],
+  "startup_ddl": "get_connection executes the statements above and commits once on first connection.",
+  "backward_compatibility": "STATICALLY_INFERRED_FROM_IDENTICAL_SOURCE",
+  "forward_compatibility": "STATICALLY_INFERRED_FROM_IDENTICAL_SOURCE",
+  "unknown_live_schema_state": true,
+  "unknown_live_data_contents": true,
+  "unverified_runtime_behavior": true,
+  "potential_irreversible_change_in_this_source": false
+}

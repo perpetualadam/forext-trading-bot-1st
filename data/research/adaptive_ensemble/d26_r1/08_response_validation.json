@@ -1,0 +1,67 @@
+{
+  "results": [
+    {
+      "project": "python-dotenv",
+      "http_status": 200,
+      "validation": "PASS",
+      "response_bytes": 112447,
+      "response_sha256": "81740143492657824fa7802bdc67e966220bb18461c997ebc264778c65582359"
+    },
+    {
+      "project": "pandas",
+      "http_status": 200,
+      "validation": "PASS",
+      "response_bytes": 2244167,
+      "response_sha256": "5c86b55b6c5631a3765f6853a4e46dba412b187efbdce71d14d4d14f0dae1a24"
+    },
+    {
+      "project": "numpy",
+      "http_status": 200,
+      "validation": "PASS",
+      "response_bytes": 3729087,
+      "response_sha256": "04d4e3541780ecbe4ba1db99fd3250f11bb69693e0366a134fb59b18237fc69a"
+    },
+    {
+      "project": "requests",
+      "http_status": 200,
+      "validation": "PASS",
+      "response_bytes": 192973,
+      "response_sha256": "bcfc6a202592e4e90f5a28ff002694eaa7c58ba741b76077f432b8bee1480111"
+    },
+    {
+      "project": "psycopg2-binary",
+      "http_status": 200,
+      "validation": "PASS",
+      "response_bytes": 1118630,
+      "response_sha256": "b82539ccb4b7d746c1c25d805fb76019a30ba220e0c9f5d42d2b407ec3a5b741"
+    },
+    {
+      "project": "fastapi",
+      "http_status": 200,
+      "validation": "PASS",
+      "response_bytes": 527280,
+      "response_sha256": "4ca5690a478568a701a62ae25c40cb0345042ea5fbb1a170e2083c43ef47a8e0"
+    },
+    {
+      "project": "uvicorn",
+      "http_status": 200,
+      "validation": "PASS",
+      "response_bytes": 233469,
+      "response_sha256": "f42e1a8b18d6a39d33ba83271d8de49cdb9ecab9d6f3276dbddf20a12e4b9eb4"
+    },
+    {
+      "project": "oandapyv20",
+      "http_status": 200,
+      "validation": "PASS",
+      "response_bytes": 42289,
+      "response_sha256": "902d0d5ad3cfe98e94eb12302216ac5e4baca866974597eaecdd8bf2bc413c91"
+    },
+    {
+      "project": "tzdata",
+      "http_status": 200,
+      "validation": "PASS",
+      "response_bytes": 59488,
+      "response_sha256": "9786d1e238ebb33aac8d5310c636ff3814574db25c7c35df492aade2d936b58e"
+    }
+  ]
+}

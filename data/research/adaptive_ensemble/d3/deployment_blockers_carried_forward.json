@@ -1,0 +1,28 @@
+{
+  "stage": "D.3",
+  "resolved_by_d3": [
+    "In-memory strategy objects no longer start active"
+  ],
+  "carried_forward": [
+    "Current production container identity was not reverified",
+    "Full production image inventory remains incomplete",
+    "The running image does not contain the D.2 or D.3 source edits",
+    "Startup still calls the broker account summary",
+    "Startup still opens PostgreSQL and applies additive DDL",
+    "Lifespan continues after a protected safety file",
+    "Live database schema compatibility is unverified",
+    "Shadow-mount compatibility is unverified",
+    "Python dependencies are unpinned",
+    "No verified dependency lock",
+    "No verified wheelhouse",
+    "Target runtime profile is incomplete",
+    "Base-image registry digest is unverified",
+    "Trusted dependency receiving boundary is not implemented",
+    "No verified candidate image",
+    "No verified rollback target",
+    "Recovery procedure is untested",
+    "Production configuration was not read",
+    "Live operational-state compatibility is unverified",
+    "Research backtests that depended on the old active default need an explicit later change"
+  ]
+}

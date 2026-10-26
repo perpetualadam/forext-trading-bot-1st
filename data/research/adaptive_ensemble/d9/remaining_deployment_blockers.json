@@ -1,0 +1,24 @@
+{
+  "resolved_by_d9": ["D8-CONC-01"],
+  "blockers": [
+    "Production startup remains unverified.",
+    "Production container identity remains unverified.",
+    "The running image lacks the D.2 through D.9 source changes.",
+    "Live database schema compatibility remains unverified.",
+    "Requirements remain unpinned.",
+    "No verified dependency lock.",
+    "No verified offline wheelhouse.",
+    "Base-image registry digest remains unverified.",
+    "Runtime target profile remains incomplete.",
+    "Trusted receiving boundary remains unimplemented.",
+    "No verified candidate image.",
+    "No verified rollback target.",
+    "Production operational state remains unverified.",
+    "Production shadow state remains unverified.",
+    "The full integration test suite remains unexecuted.",
+    "D.5 and D.6 historical hash pins remain.",
+    "D.8 defect-detection tests remain pinned to the pre-fix database.py hash.",
+    "Research backtests may rely on the old active-by-default strategy behaviour.",
+    "BORROWER_QUIESCENCE_UNVERIFIED. Telegram stop joins for at most 2 seconds and does not prove the poller has stopped. Resolving that would require changes outside database.py."
+  ]
+}

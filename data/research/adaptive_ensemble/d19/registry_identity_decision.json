@@ -1,0 +1,23 @@
+{
+  "decision_id": "D19-DECISION-REGISTRY",
+  "candidate_registry_hostname": "docker.io",
+  "candidate_repository": "library/python",
+  "candidate_reference": "docker.io/library/python",
+  "candidate_tag": "3.12-slim-bookworm",
+  "candidate_is_approved": false,
+  "approved_registry": null,
+  "approved_repository": null,
+  "confirmation_status": "PENDING_USER_DECISION",
+  "approval_evidence": null,
+  "registry_identity_verified": false,
+  "tag_immutable": false,
+  "index_digest_verified": false,
+  "platform_manifest_digest_verified": false,
+  "image_provenance_verified": false,
+  "required_future_checks": [
+    "Explicit user confirmation of registry and repository",
+    "Explicit platform selection before any manifest read",
+    "Separate approval for a read-only registry request",
+    "Record index digest and platform manifest digest separately"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "item": "real DNS",
+      "status": "UNVERIFIED"
+    },
+    {
+      "item": "real TLS",
+      "status": "UNVERIFIED"
+    },
+    {
+      "item": "real HTTP",
+      "status": "UNVERIFIED"
+    },
+    {
+      "item": "registry HEAD",
+      "status": "UNVERIFIED"
+    },
+    {
+      "item": "python ABI",
+      "status": "MISSING"
+    },
+    {
+      "item": "libc",
+      "status": "MISSING"
+    },
+    {
+      "item": "production trading safety",
+      "status": "UNVERIFIED"
+    }
+  ]
+}

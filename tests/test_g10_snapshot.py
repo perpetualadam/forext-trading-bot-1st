@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import importlib.util
 import io
 import json
 import tarfile
@@ -40,6 +41,15 @@ G7_TAR = ROOT / "data" / "research" / "adaptive_ensemble" / "g7" / "source_snaps
 
 def _sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _g13_1():
+    spec = importlib.util.spec_from_file_location("g13_1_baseline", Path(__file__).with_name("g13_1_baseline.py"))
+    if spec is None or spec.loader is None:
+        raise RuntimeError("g13.1 baseline helper is unavailable")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def _member(name: str, data: bytes, *, mtime: int = 0, link: str = "") -> tarfile.TarInfo:
@@ -113,7 +123,26 @@ def test_official_archive_is_independently_verified_and_not_rewritten():
     assert result["manifest_sha256"] == recorded["manifest_sha256"]
     assert OFFICIAL_TAR.read_bytes() == before
     fresh = build_manifest()
-    assert fresh["manifest_sha256"] == recorded["manifest_sha256"]
+    # The frozen manifest remains the G.10 archive identity. The working tree may
+    # differ only by the authorised G.13 Dockerfile repair.
+    manifest = json.loads(OFFICIAL_MANIFEST.read_text(encoding="utf-8"))
+    baseline = _g13_1()
+    assert manifest["manifest_sha256"] == baseline.G10_MANIFEST_SHA256
+    assert recorded["manifest_sha256"] == baseline.G10_MANIFEST_SHA256
+    report = baseline.compare_snapshot_files(fresh["files"], manifest["files"])
+    assert report["ok"], report
+    assert fresh["manifest_sha256"] != manifest["manifest_sha256"]
+    allow = json.loads((G10 / "production_allowlist.json").read_text(encoding="utf-8"))
+    assert _sha(G10 / "production_allowlist.json") == baseline.ALLOWLIST_FILE_SHA256
+    assert len(allow["files"]) == baseline.ALLOWLIST_COUNT
+    by_path = {row["path"]: row["sha256"] for row in manifest["files"]}
+    allow_report = baseline.evaluate_allowlist(
+        allow["files"],
+        ROOT,
+        expected_paths={row["path"] for row in allow["files"]},
+        manifest_hashes=by_path,
+    )
+    assert allow_report["ok"], allow_report
 
 
 def test_g7_archive_remains_frozen():

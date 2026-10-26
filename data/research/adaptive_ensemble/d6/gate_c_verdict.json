@@ -1,0 +1,9 @@
+{
+  "gate": "C",
+  "verdict": "PASS",
+  "harness": "tests/d6_partial_startup_runner.py",
+  "real_get_connection_used": true,
+  "psycopg2_connect_is_fake": true,
+  "fallthrough_to_real_broker_or_database": false,
+  "application_cleanup_observed_before_harness_cleanup": true
+}

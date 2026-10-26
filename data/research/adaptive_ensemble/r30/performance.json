@@ -1,0 +1,226 @@
+{
+  "dataset": {
+    "path": "data/historical/EUR_USD_M5.csv",
+    "sha256": "3ae3c4d061792353b94b8d2be73684f950362f135d47926d1bc8c11a24791091",
+    "raw_rows": 74572,
+    "cleaned_rows": 74572,
+    "start": "2025-09-01T00:00:00+00:00",
+    "end": "2026-08-31T23:50:00+00:00",
+    "timezone": "UTC",
+    "duplicate_timestamps": 0,
+    "missing_timestamps": 0,
+    "gaps_longer_than_five_minutes": 73,
+    "exclusions": {
+      "duplicate_timestamps": 0,
+      "bad_timestamp": 0,
+      "bad_quote": 0,
+      "incomplete": 0
+    },
+    "bid_ask": "bid and ask OHLC; signal uses bid; long entries use ask and long exits use bid",
+    "pricing_note": "Unqualified OHLC is the midpoint on the inspected R.29 sample and is not used for fills."
+  },
+  "split": {
+    "rule": "first 70 percent of cleaned bars, by the frozen floor(0.70 * count)",
+    "boundary_index": 52200,
+    "boundary_time": "2026-05-14T06:20:00+00:00",
+    "in_sample_bars": 52200,
+    "out_of_sample_bars": 22372,
+    "in_sample_entries_closed_out_of_sample": 0
+  },
+  "signals": {
+    "BUY": 21122,
+    "SELL": 21360,
+    "none": 32090
+  },
+  "entry_events": 11958,
+  "leakage_checks": {
+    "200": true,
+    "1000": true,
+    "10000": true
+  },
+  "scenarios": {
+    "spread_only": {
+      "slippage_per_side": 0.0,
+      "in_sample": {
+        "trades": 1291,
+        "long": 650,
+        "short": 641,
+        "pnl": -7855.295813562548,
+        "mid_pnl": -1990.2353279282415,
+        "win_rate": 0.26103795507358635,
+        "average_win": 31.98390869559449,
+        "average_loss": -19.61460320418725,
+        "profit_factor": 0.578439984268261,
+        "max_drawdown_fraction": 0.7867261747550757,
+        "max_consecutive_losses": 17,
+        "average_holding_seconds": 5665.8404337722695,
+        "bars_with_position": 23803,
+        "bar_exposure": 0.45599616858237546,
+        "exit_reasons": {
+          "signal_reversal": 1147,
+          "stop": 65,
+          "take_profit": 49,
+          "weekend_flatten": 25,
+          "gap_exit": 5
+        }
+      },
+      "out_of_sample": {
+        "trades": 582,
+        "long": 267,
+        "short": 315,
+        "pnl": -976.8372027330031,
+        "mid_pnl": -122.93795034768314,
+        "win_rate": 0.2268041237113402,
+        "average_win": 7.972372884768828,
+        "average_loss": -4.539575891549191,
+        "profit_factor": 0.5186074252029519,
+        "max_drawdown_fraction": 0.45984772739591523,
+        "max_consecutive_losses": 20,
+        "average_holding_seconds": 5421.649484536082,
+        "bars_with_position": 10510,
+        "bar_exposure": 0.4697836581441087,
+        "exit_reasons": {
+          "signal_reversal": 543,
+          "weekend_flatten": 11,
+          "stop": 10,
+          "gap_exit": 8,
+          "take_profit": 10
+        }
+      },
+      "trades": 1873,
+      "ending_cash": 1167.866983704465,
+      "scheduled_entries": 1903,
+      "cancelled_entries": 30
+    },
+    "slippage_half_pip": {
+      "slippage_per_side": 5e-05,
+      "in_sample": {
+        "trades": 1289,
+        "long": 648,
+        "short": 641,
+        "pnl": -8824.32683082854,
+        "mid_pnl": -1448.9367412279491,
+        "win_rate": 0.24127230411171452,
+        "average_win": 25.539155993373566,
+        "average_loss": -17.144176221643885,
+        "profit_factor": 0.473708800368848,
+        "max_drawdown_fraction": 0.88287309808554,
+        "max_consecutive_losses": 21,
+        "average_holding_seconds": 5678.122575640031,
+        "bars_with_position": 23818,
+        "bar_exposure": 0.45628352490421453,
+        "exit_reasons": {
+          "signal_reversal": 1141,
+          "stop": 70,
+          "take_profit": 48,
+          "weekend_flatten": 25,
+          "gap_exit": 5
+        }
+      },
+      "out_of_sample": {
+        "trades": 585,
+        "long": 269,
+        "short": 316,
+        "pnl": -707.969039741553,
+        "mid_pnl": -77.93134182256874,
+        "win_rate": 0.20170940170940171,
+        "average_win": 3.877426730188476,
+        "average_loss": -2.495728894868936,
+        "profit_factor": 0.3925647676582161,
+        "max_drawdown_fraction": 0.6049569879774666,
+        "max_consecutive_losses": 20,
+        "average_holding_seconds": 5393.846153846154,
+        "bars_with_position": 10510,
+        "bar_exposure": 0.4697836581441087,
+        "exit_reasons": {
+          "signal_reversal": 542,
+          "weekend_flatten": 11,
+          "stop": 14,
+          "gap_exit": 8,
+          "take_profit": 10
+        }
+      },
+      "trades": 1874,
+      "ending_cash": 467.70412942991214,
+      "scheduled_entries": 1904,
+      "cancelled_entries": 30
+    },
+    "slippage_one_pip": {
+      "slippage_per_side": 0.0001,
+      "in_sample": {
+        "trades": 1292,
+        "long": 651,
+        "short": 641,
+        "pnl": -9388.40044672083,
+        "mid_pnl": -1151.134941555185,
+        "win_rate": 0.21594427244582043,
+        "average_win": 21.32916689600233,
+        "average_loss": -15.187364367035128,
+        "profit_factor": 0.387948707740989,
+        "max_drawdown_fraction": 0.939053986847533,
+        "max_consecutive_losses": 25,
+        "average_holding_seconds": 5663.777089783282,
+        "bars_with_position": 23813,
+        "bar_exposure": 0.4561877394636015,
+        "exit_reasons": {
+          "signal_reversal": 1140,
+          "stop": 74,
+          "take_profit": 48,
+          "weekend_flatten": 25,
+          "gap_exit": 5
+        }
+      },
+      "out_of_sample": {
+        "trades": 586,
+        "long": 269,
+        "short": 317,
+        "pnl": -430.20882694792164,
+        "mid_pnl": -37.282624749438824,
+        "win_rate": 0.1757679180887372,
+        "average_win": 1.851193571487141,
+        "average_loss": -1.2908144798567507,
+        "profit_factor": 0.3071002381929958,
+        "max_drawdown_fraction": 0.7052641094725162,
+        "max_consecutive_losses": 20,
+        "average_holding_seconds": 5386.177474402731,
+        "bars_with_position": 10513,
+        "bar_exposure": 0.46991775433577687,
+        "exit_reasons": {
+          "signal_reversal": 541,
+          "weekend_flatten": 11,
+          "stop": 16,
+          "gap_exit": 8,
+          "take_profit": 10
+        }
+      },
+      "trades": 1878,
+      "ending_cash": 181.39072633125892,
+      "scheduled_entries": 1908,
+      "cancelled_entries": 30
+    }
+  },
+  "costs_not_estimated": [
+    "commission",
+    "financing",
+    "swap"
+  ],
+  "activation": {
+    "swing_mean_reversion": false,
+    "swing_trend": false,
+    "scalp": false,
+    "mean_reversion": false,
+    "trend": false,
+    "swing_breakout": false
+  },
+  "authorised_for_live": {
+    "swing_mean_reversion": false,
+    "swing_trend": false,
+    "scalp": false,
+    "mean_reversion": false,
+    "trend": false,
+    "swing_breakout": false
+  },
+  "spec_sha256": "d5db0aa73cb9357c01b75cbbdb2224240026b24493109113f29ff4166839e691",
+  "simulator_sha256": "fad94aed899f146dd780db29e602801100277f922b2793156edd4926ad14c6cc",
+  "signals_py_sha256": "4dc8ce797299e42c200f59e760099a3688ff93f35a1f8ccdfd135ae91b4a7051"
+}

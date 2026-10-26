@@ -1,0 +1,8 @@
+{
+  "evidence": "ACTUAL_LIFESPAN_ISOLATED",
+  "STOP_COMPLETED": "normal cleanup_errors empty, worker not alive",
+  "STOP_NOT_RUNNING": "direct stop return value",
+  "STOP_INCOMPLETE_WORKER_ALIVE": "D12-STOP-01 present, connection open, pending 0, no new exception",
+  "failed_startup_release": "broker failure closes the connection and does not add D12-STOP-01",
+  "result": "PASS"
+}

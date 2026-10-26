@@ -1,0 +1,22 @@
+{
+  "source": "data/research/adaptive_ensemble/g10/production_allowlist.json",
+  "file_count": 63,
+  "categories": {
+    "package_py": 59,
+    "requirements_txt": 1,
+    "main_py": 1,
+    "Dockerfile": 1,
+    "dockerignore": 1
+  },
+  "application_copy_count": 61,
+  "policy_files_not_copied": [".dockerignore", "Dockerfile"],
+  "non_dockerfile_hashes_match": true,
+  "dockerfile_sha256": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+  "missing_files": [],
+  "unexpected_allowlist_entries": [],
+  "symlinks_or_reparse_points": [],
+  "paths_escaping_repository": [],
+  "research_only_paths_in_allowlist": [],
+  "consensus_forecast_paths": [],
+  "allowlist_regenerated": false
+}

@@ -1,0 +1,19 @@
+{
+  "stage": "R.50",
+  "attempt_1": {
+    "command": "python -B -m pytest -p no:cacheprovider --noconftest -q data/research/adaptive_ensemble/r50/test_connector.py",
+    "passed": 25,
+    "failed": 1,
+    "failure": "test_24_gbp_fallback_is_not_applied reported PRESENT for conversion factors after both conversion objects were removed",
+    "assertion_changed": false
+  },
+  "correction": "conversion availability is PRESENT only when a factor value was returned; missing placeholders stay NOT_RETURNED",
+  "attempt_2": {
+    "command": "python -B -m pytest -p no:cacheprovider --noconftest -q data/research/adaptive_ensemble/r50/test_connector.py tests/test_r48_readonly_transport.py data/research/adaptive_ensemble/r49/test_handoff.py",
+    "passed": 38,
+    "failed": 0
+  },
+  "credentials_read": false,
+  "network_request": false,
+  "production_files_edited": false
+}

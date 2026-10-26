@@ -1,0 +1,14 @@
+{
+  "gate_g": "BLOCKED",
+  "classification": "INACTIVE_ENTRY_NOT_EVALUATED",
+  "source_reviewed_return": "forex_bot/bot_loop.py lines 1108-1116",
+  "defaults_tested": true,
+  "all_six_default_active": false,
+  "all_six_default_authorised_for_live": false,
+  "loop_return_executed": false,
+  "reason": "The inactive return is after the live-authorisation check. Reaching it would require passing that check or changing the safety module. Neither was allowed.",
+  "sizing_calls": null,
+  "order_construction_calls": null,
+  "broker_dispatch_calls": null,
+  "note": "Null counts mean the branch was not run. They are not a measured zero from the loop."
+}

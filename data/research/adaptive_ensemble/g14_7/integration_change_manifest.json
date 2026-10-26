@@ -1,0 +1,49 @@
+{
+  "stage": "G.14.7",
+  "production_python": [],
+  "dockerfile": "unchanged",
+  "dockerignore": "unchanged",
+  "requirements_txt": "unchanged",
+  "compose": "unchanged",
+  "staging_context": "unchanged",
+  "g14_4_evidence": "unchanged",
+  "g14_5_evidence": "unchanged",
+  "g14_6_evidence": "unchanged",
+  "historical_findings_rewritten": false,
+  "edits": [
+    {
+      "path": "tests/g14_4_verify.py",
+      "action": "extended",
+      "sha256_before": "d52f4188688b5722bb27aa47266998a39839b34bcc4a2b6aa5816d4a33e15913",
+      "sha256_after": "711b910af4571af13dfc91a8fa86e4d58ba6ee7f52093d049648e828477c4c3f",
+      "reason": "Add verify_member_bytes so the workflow can verify bytes read from a directory handle. verify_wheelhouse still reads a directory when members is omitted. Rejection reasons are unchanged."
+    }
+  ],
+  "unchanged_tooling": [
+    {
+      "path": "tests/g14_4_acquire.py",
+      "sha256": "0773587232e4974eff0f39c8851bbce5f5a60e766b123ddff3bdf31f2023fc39"
+    },
+    {
+      "path": "tests/g14_4_inventory.py",
+      "sha256": "7920d1122e242c21c79193503831d3740f8f064f52d03ab55cffa4ecc4507558"
+    }
+  ],
+  "created": [
+    {
+      "path": "tests/g14_7_fs.py",
+      "sha256": "1b1b3954d32562e91a0dbe8304702dbb14596970a5282d523c894ea0053c77e4",
+      "role": "Windows handle-relative exclusive create and read"
+    },
+    {
+      "path": "tests/g14_7_transport.py",
+      "sha256": "dd619f915f7439236ff74efc7e4e0dd26f154484dfeed6abf2fb6b5313020d86",
+      "role": "Disabled-by-default acquisition workflow and scripted transport"
+    },
+    {
+      "path": "tests/test_g14_7_integration.py",
+      "sha256": "461bbc9c28951a1b1e530856d3f39f971f3a46ba831ef1416c3858b10d965b45",
+      "role": "Offline end-to-end and failure-injection tests"
+    }
+  ]
+}

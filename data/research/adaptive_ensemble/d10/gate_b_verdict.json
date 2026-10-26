@@ -1,0 +1,9 @@
+{
+  "gate": "B",
+  "result": "PASS",
+  "guards_installed_before_production_import": true,
+  "self_check_all_true": true,
+  "network_log_after_scenarios": [],
+  "escaped_threads": [],
+  "socketpair_exception": "Windows asyncio self-pipe only: AF_INET 127.0.0.1 or AF_INET6 ::1, SOCK_STREAM, proto 0, bind port 0, original connect only to that just-bound address."
+}

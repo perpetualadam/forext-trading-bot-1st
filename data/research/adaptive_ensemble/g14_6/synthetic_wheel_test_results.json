@@ -1,0 +1,40 @@
+{
+  "stage": "G.14.6",
+  "real_packages_used": false,
+  "packages_installed": false,
+  "package_code_executed": false,
+  "non_zip_with_matching_hash": "malformed_zip",
+  "archive_cases_failed_closed": [
+    "malformed_zip",
+    "encrypted_entry",
+    "absolute_archive_path",
+    "archive_path_traversal",
+    "duplicate_archive_member",
+    "case_colliding_member",
+    "excessive_uncompressed_size",
+    "excessive_compression_ratio",
+    "excessive_member_count",
+    "missing_metadata",
+    "missing_wheel_metadata",
+    "missing_record",
+    "malformed_metadata",
+    "conflicting_package_name",
+    "conflicting_package_version",
+    "incompatible_wheel_tag",
+    "record_hash_mismatch",
+    "record_size_mismatch",
+    "record_missing_member"
+  ],
+  "graph_cases_failed_closed": [
+    "missing_dependency",
+    "unsatisfied_constraint",
+    "missing_requested_extra",
+    "incompatible_python",
+    "duplicate_package",
+    "conflicting_versions",
+    "missing_wheel",
+    "false_completion_claim",
+    "provenance_unverified"
+  ],
+  "windows_marker_not_used_as_linux_target": true
+}

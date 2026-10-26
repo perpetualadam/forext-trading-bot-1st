@@ -1,0 +1,54 @@
+{
+  "stage": "G.14.9",
+  "dynamic_tests_executed": false,
+  "ruff_executed": false,
+  "mypy_executed": false,
+  "pytest_executed": false,
+  "reason_linters_not_run": "Ruff and Mypy were not run because a cache outside the G.14.9 directory could not be ruled out. G.14.8 already recorded their results. This stage does not claim a new lint result.",
+  "commands": [
+    {
+      "command": "git rev-parse HEAD",
+      "purpose": "read HEAD",
+      "writes": false
+    },
+    {
+      "command": "git branch --show-current",
+      "purpose": "read branch",
+      "writes": false
+    },
+    {
+      "command": "git status --porcelain",
+      "purpose": "record the existing dirty tree",
+      "writes": false
+    },
+    {
+      "command": "python read-only verifier with PYTHONDONTWRITEBYTECODE=1",
+      "purpose": "hash the authorised baseline files, recompute canonical G.7 and G.10 manifest digests, recompute the staging manifest digest, and call tests/g14_1_verify.py verify_directory",
+      "writes": false,
+      "dockerignore_rules": null,
+      "forex_bot_imported": false
+    }
+  ],
+  "static_inspection": [
+    "tests/g14_7_fs.py open_directory, create_directory, write_exclusive",
+    "tests/g14_7_transport.py DEFAULT_TRANSPORT and _validate_destination",
+    "tests/g14_4_acquire.py assert_destination_boundary and reject_member_name",
+    "tests/g14_1_verify.py verify_directory",
+    "data/research/adaptive_ensemble/g14_8 report and race results",
+    "data/research/adaptive_ensemble/g14_1/staged_context_manifest.json"
+  ],
+  "source_files_modified": false,
+  "test_files_modified": false,
+  "existing_artifacts_modified": false,
+  "pycache_created": false,
+  "acquisition_directory_created": false,
+  "environment_created": false,
+  "unexpected_files": [],
+  "limitations": [
+    "No Windows security API was called.",
+    "No junction, symlink, or ACL operation was performed.",
+    "G.14.8 tests were not re-executed. Their recorded results were used.",
+    "Docker, WSL, and hypervisor capabilities were not inspected.",
+    "The running container was not refreshed."
+  ]
+}

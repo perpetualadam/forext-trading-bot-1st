@@ -1,0 +1,22 @@
+{
+  "implemented_in_d26": false,
+  "requirements": [
+    "explicit host allowlist",
+    "https",
+    "port 443",
+    "GET",
+    "default TLS verification",
+    "no credentials",
+    "no proxy",
+    "no automatic redirects",
+    "no retries",
+    "no mirrors",
+    "no downloads",
+    "no resolver",
+    "no installation",
+    "request counting",
+    "timeouts",
+    "body caps",
+    "sanitised logs"
+  ]
+}

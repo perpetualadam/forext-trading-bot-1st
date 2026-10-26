@@ -1,0 +1,10 @@
+{
+  "gate": "B",
+  "verdict": "PASS_SHUTDOWN_SEPARABLE_START_INTERFACE_MISSING",
+  "startup_interface": "D13_START_REPORTING_INTERFACE_MISSING",
+  "scope": "D13_SCOPE_EXPANSION_REQUIRED",
+  "shutdown_reporting": "implemented in app.py from the documented stop return value",
+  "none_policy": "None is an absent status. It produces no warning and no success claim.",
+  "unknown_policy": "any other value records D12-STOP-UNKNOWN and a static warning",
+  "incomplete_policy": "D12-STOP-01 warning plus cleanup diagnostic; no new exception; database release unchanged"
+}

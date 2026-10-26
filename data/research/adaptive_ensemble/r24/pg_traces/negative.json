@@ -1,0 +1,14 @@
+{
+  "pid": 13412,
+  "role": "negative",
+  "ok": true,
+  "refused": true,
+  "route_recorded": true,
+  "route_refusals": [
+    "postgres@localhost:5432/trading"
+  ],
+  "socket_blocks": [],
+  "dns_blocks": 0,
+  "dotenv_stubs": 1,
+  "real_broker_calls": 0
+}

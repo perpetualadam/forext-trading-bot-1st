@@ -1,0 +1,80 @@
+{
+  "commands": [
+    {
+      "command": "python -m ruff check tests/d5_lifespan_runner.py tests/test_d5_lifespan_isolation.py",
+      "result": "All checks passed",
+      "when": "before the passing pytest command"
+    },
+    {
+      "command": "python -m pytest tests/test_d5_lifespan_isolation.py tests/test_live_safety_preservation.py tests/test_strategy_activation_defaults.py tests/test_startup_safety_preflight.py -q --tb=line",
+      "environment": "PYTHONDONTWRITEBYTECODE=1",
+      "result": "130 passed in 4.92s",
+      "exit_code": 0,
+      "passed": 130,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 4.92
+    }
+  ],
+  "modules": [
+    {
+      "module": "tests/test_d5_lifespan_isolation.py",
+      "tests": 15,
+      "passed": 15,
+      "failed": 0,
+      "evidence": "ACTUAL_LIFESPAN_ISOLATED",
+      "sha256": "8cf8c712979ad32eac648b4a8f18d65546bf24a72d2a4e6f4f3ff6041bd88dd4"
+    },
+    {
+      "module": "tests/test_live_safety_preservation.py",
+      "tests": 30,
+      "passed": 30,
+      "failed": 0,
+      "evidence": "ISOLATED_COMPONENT",
+      "sha256": "39dbf55b43fb8400a0ff60f890af903ed83d883f199d09635dd39045a2fcbe4c"
+    },
+    {
+      "module": "tests/test_strategy_activation_defaults.py",
+      "tests": 35,
+      "passed": 35,
+      "failed": 0,
+      "evidence": "ISOLATED_COMPONENT",
+      "sha256": "53c5e67ffb900cf50e8a8d1bef303f29c5b624e58878b0942f0d627b77699911"
+    },
+    {
+      "module": "tests/test_startup_safety_preflight.py",
+      "tests": 50,
+      "passed": 50,
+      "failed": 0,
+      "evidence": "STATIC_ONLY",
+      "sha256": "1e545d0713a01634c64fd03cb21e2556eb91a5b744d3f62efcc4875f22e79c69"
+    }
+  ],
+  "not_run": [
+    {
+      "module": "tests/test_live_safety_repair.py",
+      "reason": "imports oanda_exec, telegram_control, and bot_loop, which imports config and would execute the real dotenv loader. It was not placed under the D.5 harness."
+    },
+    {
+      "module": "full suite",
+      "reason": "not authorised"
+    }
+  ],
+  "runner": {
+    "path": "tests/d5_lifespan_runner.py",
+    "sha256": "0729bea1df8a59d5dde3c66c396a476a0abb80c9c36213f15f08fcb77f2a3b60",
+    "collected_by_pytest": false
+  },
+  "isolation": {
+    "import_guard_before_app": true,
+    "network_attempts_on_passing_run": [],
+    "filesystem_denials_on_passing_run": [],
+    "dependency_replacements_incomplete": [],
+    "actual_lifespan_executed": true
+  },
+  "totals": {
+    "passed": 130,
+    "failed": 0,
+    "skipped": 0
+  }
+}

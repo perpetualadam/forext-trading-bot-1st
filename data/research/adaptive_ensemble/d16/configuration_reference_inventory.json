@@ -1,0 +1,27 @@
+{
+  "values_read": false,
+  "env_file_read": false,
+  "required_names": [
+    "OANDA_ACCESS_TOKEN or OANDA_API_KEY",
+    "OANDA_ACCOUNT_ID",
+    "POSTGRES_HOST",
+    "POSTGRES_DB",
+    "POSTGRES_USER",
+    "POSTGRES_PASS"
+  ],
+  "optional_names": [
+    "TELEGRAM_TOKEN",
+    "TELEGRAM_CHAT_ID",
+    "LIVE_SAFETY_STATE_PATH",
+    "EXECUTION_MODE",
+    "PAPER_TRADING",
+    "TRADING_MODE"
+  ],
+  "safety_path_reference": "LIVE_SAFETY_STATE_PATH default in compose is /app/data/ops/live_safety_state.json",
+  "operational_mount": "./data/ops:/app/data/ops",
+  "shadow_mount": "./data/research/v2_shadow:/app/data/research/v2_shadow",
+  "database_volume": "named volume pgdata",
+  "fallback_literals_present": true,
+  "fallback_values_recorded": false,
+  "production_environment_verified": false
+}

@@ -1,0 +1,22 @@
+{
+  "D10-STOP-01": {
+    "pre_fix": "REPRODUCED",
+    "post_fix": "FIXED",
+    "evidence": "Actual stop_telegram_control on a blocked poller returned STOP_INCOMPLETE_WORKER_ALIVE, kept the thread, and allowed a later stop or exit to be distinguished from the timeout.",
+    "remaining_failure_windows": []
+  },
+  "D10-DB-01": {
+    "pre_fix": "REPRODUCED",
+    "post_fix": "FIXED",
+    "evidence": "Delayed polls, stop-before-dispatch, stop while waiting for _pg_lock, and an in-flight locked query were exercised on the actual worker and database helper. No post-release Telegram query or reconnection occurred.",
+    "remaining_failure_windows": [
+      "app.py still ignores the stop status. Reachable cleanup does not release the database while a Telegram worker exists, because release happens only after startup failure and Telegram start is the last startup statement."
+    ]
+  },
+  "D10-TEL-02": {
+    "pre_fix": "REPRODUCED",
+    "post_fix": "FIXED",
+    "evidence": "Start while the old worker was alive did not create a second thread and did not clear the stop event. Concurrent starts and concurrent start/stop kept one worker. Restart worked after the old worker exited.",
+    "remaining_failure_windows": []
+  }
+}

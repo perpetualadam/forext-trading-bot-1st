@@ -1,0 +1,24 @@
+{
+  "stage": "G.14.8",
+  "recorded_before_g14_8_edits": true,
+  "tests/g14_7_fs.py": "1b1b3954d32562e91a0dbe8304702dbb14596970a5282d523c894ea0053c77e4",
+  "tests/g14_7_transport.py": "dd619f915f7439236ff74efc7e4e0dd26f154484dfeed6abf2fb6b5313020d86",
+  "transport_modified": false,
+  "filesystem_helper_modified": true,
+  "change": {
+    "defect": "Relative NtCreateFile accepted trailing-dot names, trailing-space names, and reserved device names. A closed directory handle was not rejected until the native call failed. New objects were not checked for the parent volume.",
+    "correction": "Reject those names before NtCreateFile. Reject a closed handle before use. Require the new object's volume serial to match the parent handle and reject a reparse attribute on a new file.",
+    "not_claimed": "This does not make the initial CreateFileW pathname open trustworthy.",
+    "demonstrating_tests": [
+      "tests/test_g14_8_filesystem.py::test_ambiguous_names_are_rejected",
+      "tests/test_g14_8_filesystem.py::test_use_after_close_and_double_close",
+      "tests/test_g14_8_filesystem.py::test_child_stays_on_the_parent_volume",
+      "tests/test_g14_8_filesystem.py::test_pre_open_replacement_binds_to_the_substitute"
+    ]
+  },
+  "sha256_after": {
+    "tests/g14_7_fs.py": "b828cc9bf8843a57d82462838ade4259904df641bf880324578576272e6f6980",
+    "tests/g14_7_transport.py": "dd619f915f7439236ff74efc7e4e0dd26f154484dfeed6abf2fb6b5313020d86",
+    "tests/test_g14_8_filesystem.py": "c8f768ba4d2ff2bf2e19ea53cefe96fda2de0c4217c3099f6e91ed2fb228220a"
+  }
+}

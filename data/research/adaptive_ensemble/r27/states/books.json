@@ -1,0 +1,72 @@
+{
+  "account_id": "101-004-1435156-001",
+  "currency": "USD",
+  "day_baselines": {
+    "2026-01-07": 1000000000.0
+  },
+  "events": {
+    "1": {
+      "amount": 0.0,
+      "day": "2026-01-07",
+      "effect": "realised",
+      "id": "1",
+      "kind": "trade_pl",
+      "reverses": null,
+      "sequence": 1,
+      "time": "2026-01-07T11:00:00+00:00"
+    },
+    "2": {
+      "amount": 0.0,
+      "day": "2026-01-07",
+      "effect": "realised",
+      "id": "2",
+      "kind": "trade_pl",
+      "reverses": null,
+      "sequence": 2,
+      "time": "2026-01-07T11:00:00+00:00"
+    },
+    "3": {
+      "amount": 0.0,
+      "day": "2026-01-07",
+      "effect": "realised",
+      "id": "3",
+      "kind": "trade_pl",
+      "reverses": null,
+      "sequence": 3,
+      "time": "2026-01-07T11:00:00+00:00"
+    }
+  },
+  "exposure_orders": [
+    {
+      "id": "700",
+      "notional_account_ccy": 11000000.0,
+      "status": "PENDING",
+      "symbol": "EUR_USD"
+    }
+  ],
+  "exposure_positions": [
+    {
+      "notional_account_ccy": 11.0,
+      "symbol": "EUR_USD"
+    }
+  ],
+  "peak_equity": 10000.0,
+  "realised_by_day": {
+    "2026-01-07": 0.0
+  },
+  "reconciliation": {
+    "account_id": "101-004-1435156-001",
+    "as_of": "2026-01-07T12:00:00+00:00",
+    "balance": 10010.0,
+    "currency": "USD",
+    "equity_source": "broker_nav",
+    "last_sequence": 3,
+    "nav": 10000.0,
+    "sequence_evidence": "contiguous",
+    "snapshot_id": "summary-none-10000.000000",
+    "status": "verified",
+    "unrealised": 0.0
+  },
+  "revision": 4,
+  "schema_version": 1
+}

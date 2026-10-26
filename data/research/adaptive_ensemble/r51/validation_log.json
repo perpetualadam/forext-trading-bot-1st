@@ -1,0 +1,16 @@
+{
+  "stage": "R.51",
+  "attempt_1": {
+    "command": "python -B -m pytest -p no:cacheprovider --noconftest -q data/research/adaptive_ensemble/r51/test_adapter.py",
+    "passed": 11,
+    "failed": 0
+  },
+  "r50_regression": {
+    "passed": 26,
+    "failed": 0
+  },
+  "corrections": [],
+  "credentials_read": false,
+  "network_request": false,
+  "production_files_edited": false
+}

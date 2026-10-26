@@ -1,0 +1,16 @@
+{
+  "suite": "tests/test_d11_database_borrower_quiescence.py lifespan mode",
+  "result": "included in 31 passed in 30.79s",
+  "cases": {
+    "corrupt_and_broker": "startup failed before Telegram. Stop was not called. Database was not held. No worker remained.",
+    "normal": "STOP_COMPLETED, worker gone, database retained, no application close, cleanup errors empty, auth BLOCKED, no strategy active",
+    "repeat": "STOP_COMPLETED, no pending tasks, worker gone",
+    "blocked_shutdown": "STOP_INCOMPLETE_WORKER_ALIVE observed by the test and ignored by app.py. Worker and reference remained. Database retained. A composed release after lifespan returned produced no query and no new connection. The worker then exited.",
+    "stop_raises": "real stop returned STOP_COMPLETED, then the test wrapper raised. app.py recorded RuntimeError, awaited tasks, and retained the database.",
+    "await_health": "task-await RuntimeError recorded, tasks drained, STOP_COMPLETED",
+    "release_fails": "startup failed before Telegram. Release exception recorded. Global connection cleared. Stop was not called.",
+    "startup_failure_after_telegram": "NOT_REACHABLE_IN_CURRENT_SOURCE"
+  },
+  "application_observes_stop_status": false,
+  "incomplete_stop_raises": false
+}

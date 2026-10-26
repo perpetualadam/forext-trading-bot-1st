@@ -1,0 +1,133 @@
+{
+  "logistic": {
+    "counts": {
+      "missed_opportunity": 10087,
+      "correct_abstention": 4461,
+      "incorrect_directional_prediction": 42,
+      "low_confidence_correct": 36,
+      "correct_direction_negative_cost": 5
+    },
+    "by_session_code": {
+      "0": {
+        "missed_opportunity": 3025,
+        "correct_abstention": 1242
+      },
+      "1": {
+        "missed_opportunity": 2381,
+        "correct_abstention": 685,
+        "incorrect_directional_prediction": 3
+      },
+      "2": {
+        "missed_opportunity": 2431,
+        "correct_abstention": 583,
+        "incorrect_directional_prediction": 31,
+        "low_confidence_correct": 32,
+        "correct_direction_negative_cost": 4
+      },
+      "3": {
+        "missed_opportunity": 2250,
+        "correct_abstention": 1951,
+        "incorrect_directional_prediction": 8,
+        "low_confidence_correct": 4,
+        "correct_direction_negative_cost": 1
+      }
+    },
+    "by_volatility_tercile_from_training": {
+      "low": {
+        "missed_opportunity": 4713,
+        "correct_abstention": 2911,
+        "low_confidence_correct": 1
+      },
+      "mid": {
+        "missed_opportunity": 3657,
+        "correct_abstention": 1152
+      },
+      "high": {
+        "missed_opportunity": 1717,
+        "correct_abstention": 398,
+        "incorrect_directional_prediction": 42,
+        "low_confidence_correct": 35,
+        "correct_direction_negative_cost": 5
+      }
+    },
+    "by_spread_tercile_from_training": {
+      "low": {
+        "missed_opportunity": 6971,
+        "correct_abstention": 2819,
+        "low_confidence_correct": 23,
+        "incorrect_directional_prediction": 18,
+        "correct_direction_negative_cost": 1
+      },
+      "mid": {
+        "missed_opportunity": 2720,
+        "correct_abstention": 1056,
+        "incorrect_directional_prediction": 19,
+        "correct_direction_negative_cost": 3,
+        "low_confidence_correct": 11
+      },
+      "high": {
+        "missed_opportunity": 396,
+        "correct_abstention": 586,
+        "incorrect_directional_prediction": 5,
+        "low_confidence_correct": 2,
+        "correct_direction_negative_cost": 1
+      }
+    },
+    "cost_convention": "next_bar_open_entry",
+    "individual_losses_are_not_systematic_proof": true
+  },
+  "xgboost": {
+    "counts": {
+      "missed_opportunity": 10161,
+      "correct_abstention": 4470
+    },
+    "by_session_code": {
+      "0": {
+        "missed_opportunity": 3025,
+        "correct_abstention": 1242
+      },
+      "1": {
+        "missed_opportunity": 2383,
+        "correct_abstention": 686
+      },
+      "2": {
+        "missed_opportunity": 2492,
+        "correct_abstention": 589
+      },
+      "3": {
+        "missed_opportunity": 2261,
+        "correct_abstention": 1953
+      }
+    },
+    "by_volatility_tercile_from_training": {
+      "low": {
+        "missed_opportunity": 4714,
+        "correct_abstention": 2911
+      },
+      "mid": {
+        "missed_opportunity": 3657,
+        "correct_abstention": 1152
+      },
+      "high": {
+        "missed_opportunity": 1790,
+        "correct_abstention": 407
+      }
+    },
+    "by_spread_tercile_from_training": {
+      "low": {
+        "missed_opportunity": 7011,
+        "correct_abstention": 2821
+      },
+      "mid": {
+        "missed_opportunity": 2748,
+        "correct_abstention": 1061
+      },
+      "high": {
+        "missed_opportunity": 402,
+        "correct_abstention": 588
+      }
+    },
+    "cost_convention": "next_bar_open_entry",
+    "individual_losses_are_not_systematic_proof": true
+  }
+}

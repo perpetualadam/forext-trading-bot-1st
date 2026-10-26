@@ -1,0 +1,40 @@
+{
+  "states": [
+    "CREATED",
+    "POLICY_VALIDATED",
+    "TARGET_VALIDATED",
+    "RESOLUTION_VALIDATED",
+    "DESTINATION_VALIDATED",
+    "FETCHING_SYNTHETIC",
+    "ARTIFACTS_RECEIVED",
+    "ARTIFACTS_VERIFIED",
+    "DEPENDENCY_GRAPH_VERIFIED",
+    "SYNTHETIC_LOCK_PREPARED",
+    "COMPLETE_SYNTHETIC",
+    "FAILED_CLOSED"
+  ],
+  "transitions": [
+    ["CREATED", "POLICY_VALIDATED"],
+    ["POLICY_VALIDATED", "TARGET_VALIDATED"],
+    ["TARGET_VALIDATED", "RESOLUTION_VALIDATED"],
+    ["RESOLUTION_VALIDATED", "DESTINATION_VALIDATED"],
+    ["DESTINATION_VALIDATED", "FETCHING_SYNTHETIC"],
+    ["FETCHING_SYNTHETIC", "ARTIFACTS_RECEIVED"],
+    ["ARTIFACTS_RECEIVED", "ARTIFACTS_VERIFIED"],
+    ["ARTIFACTS_VERIFIED", "DEPENDENCY_GRAPH_VERIFIED"],
+    ["DEPENDENCY_GRAPH_VERIFIED", "SYNTHETIC_LOCK_PREPARED"],
+    ["SYNTHETIC_LOCK_PREPARED", "COMPLETE_SYNTHETIC"]
+  ],
+  "failure_transition": "FAILED_CLOSED",
+  "illegal_transition_reason": "illegal_transition",
+  "download_before_destination_validation": false,
+  "verification_before_receipt": false,
+  "lock_before_artifact_and_graph_verification": false,
+  "complete_without_synthetic_marker": false,
+  "hidden_network_transition": false,
+  "successful_runs_require": "ScriptedTransport",
+  "lock_marker": "SYNTHETIC_TEST_ONLY",
+  "lock_source_index": "synthetic://fixture",
+  "lock_source_approved": false,
+  "real_dependency_lock_created": false
+}

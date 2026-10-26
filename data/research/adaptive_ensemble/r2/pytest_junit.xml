@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="1" failures="0" skipped="0" tests="1" time="1.143" timestamp="2026-10-14T23:19:31.234261+01:00" hostname="NucBox_M5PLUS"><testcase classname="" name="tests.test_execution_safety" time="0.000"><error message="collection failure">tests\test_execution_safety.py:5: in &lt;module&gt;
+    import asyncio
+C:\Python313\Lib\asyncio\__init__.py:8: in &lt;module&gt;
+    from .base_events import *
+C:\Python313\Lib\asyncio\base_events.py:34: in &lt;module&gt;
+    import ssl
+C:\Python313\Lib\ssl.py:978: in &lt;module&gt;
+    class SSLSocket(socket):
+E   TypeError: function() argument 'code' must be code, not str</error></testcase></testsuite></testsuites>

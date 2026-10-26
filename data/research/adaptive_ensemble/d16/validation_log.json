@@ -1,0 +1,15 @@
+{
+  "commands": [
+    "git rev-parse HEAD",
+    "git branch --show-current",
+    "git status --short for protected and packaging paths",
+    "local SHA-256 of protected source and packaging files",
+    "static AST import closure against Dockerfile COPY lines",
+    "symlink check of the 61 COPY sources",
+    "sys.version of the host audit interpreter"
+  ],
+  "docker_commands": 0,
+  "network_requests": 0,
+  "imports_of_application_modules": 0,
+  "pip_commands": 0
+}

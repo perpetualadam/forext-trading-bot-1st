@@ -1,0 +1,7 @@
+{
+  "lifespan_a": "yielded, worker alive, cleanup errors empty",
+  "lifespan_b": "yielded, same worker identity, one thread, stop event set, cleanup errors empty, elapsed 1.5 to 4.5 seconds, status text absent from logs",
+  "connection_reused": true,
+  "worker_exit_before_c": "no escaped thread after the fake poll was released",
+  "lifespan_c": "yielded, a different worker was alive inside the lifespan, shutdown then left no live worker and no cleanup error"
+}

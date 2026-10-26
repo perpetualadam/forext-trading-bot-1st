@@ -1,0 +1,13 @@
+{
+  "stage": "R.13",
+  "head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "r13_directory_at_start": "absent",
+  "baseline": "HASH_OK",
+  "pre_hashes": {
+    "forex_bot/app.py": "8d4abc71523794f7d50076f96d5cbefb625a963c01a78d8149e4e411baa244a1",
+    "forex_bot/bot_loop.py": "e63696df64b5f8591eabec4747f1d05d486906342a6841f2c1d1e8266f6083c5",
+    "forex_bot/database.py": "16363fdc26929ed0a6fe71837806ba96c51043df76fa3d524a2d26f80736c486",
+    "forex_bot/orders.py": "fca93e8007d5f25413caf6b7e6493db0a27b4b81cffe78331d3321e9e76db1b4"
+  }
+}

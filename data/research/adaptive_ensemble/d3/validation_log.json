@@ -1,0 +1,43 @@
+{
+  "stage": "D.3",
+  "commands": [
+    "git rev-parse HEAD",
+    "git branch --show-current",
+    "git status --porcelain for strategy_meta.py and live_safety.py",
+    "SHA-256 of strategy_meta.py and live_safety.py before edit",
+    "python -m pytest -q --tb=line tests/test_strategy_activation_defaults.py tests/test_live_safety_preservation.py",
+    "python -m ruff check forex_bot/strategy_meta.py tests/test_strategy_activation_defaults.py",
+    "SHA-256 after edit and limited git status"
+  ],
+  "files_read": [
+    "forex_bot/strategy_meta.py",
+    "forex_bot/app.py lifespan and imports",
+    "forex_bot/bot_loop.py strategy gate and evolve",
+    "forex_bot/backtest.py strategy rebuild",
+    "forex_bot/live_safety.py order gate and pytest restore helper",
+    "forex_bot/database.py get_connection header",
+    "forex_bot/oanda_client.py import header",
+    "forex_bot/execution.py mode header",
+    "forex_bot/config.py dotenv import",
+    "tests/conftest.py"
+  ],
+  "files_created": [
+    "tests/test_strategy_activation_defaults.py",
+    "data/research/adaptive_ensemble/d3/"
+  ],
+  "files_modified": [
+    "forex_bot/strategy_meta.py"
+  ],
+  "tests_executed": [
+    "tests/test_strategy_activation_defaults.py",
+    "tests/test_live_safety_preservation.py"
+  ],
+  "final_pytest": "65 passed, 0 failed, 0 skipped",
+  "prohibited_operations_performed": [],
+  "missing_evidence": [
+    "Real lifespan was not executed",
+    "Production image was not updated",
+    "Live safety file was not read",
+    "Broker and database were not contacted"
+  ]
+}

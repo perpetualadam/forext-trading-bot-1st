@@ -1,0 +1,40 @@
+{
+  "stage": "G.14.2",
+  "images": {
+    "total_count": 11,
+    "active": 4,
+    "size": "33.24GB",
+    "reclaimable": "23.97GB (72%)"
+  },
+  "containers": {
+    "total_count": 5,
+    "active": 3,
+    "size": "94.21kB",
+    "reclaimable": "28.67kB (30%)"
+  },
+  "local_volumes": {
+    "total_count": 16,
+    "active": 3,
+    "size": "4.848GB",
+    "reclaimable": "4.646GB (95%)"
+  },
+  "build_cache": {
+    "total_count": 140,
+    "active": 0,
+    "size": "27.36GB",
+    "reclaimable": "17.98GB"
+  },
+  "docker_data_files_present": [
+    "C:\\Users\\Brian\\AppData\\Local\\Docker\\wsl\\disk\\docker_data.vhdx",
+    "C:\\Users\\Brian\\AppData\\Local\\Docker\\wsl\\main\\ext4.vhdx"
+  ],
+  "docker_data_drive": "C:",
+  "free_space_on_c_gb": 169.65,
+  "context_bytes": 617279,
+  "base_image_displayed_size": "189MB",
+  "base_image_inspect_size_bytes": 45452267,
+  "estimated_candidate_image_size": "unresolved; dependency layers were not downloaded. Planning allowance is several gigabytes, well below free space.",
+  "storage_sufficient_for_one_candidate_build": true,
+  "cleanup_performed": false,
+  "classification": "STORAGE_SUFFICIENT_FOR_ONE_CANDIDATE_BUILD"
+}

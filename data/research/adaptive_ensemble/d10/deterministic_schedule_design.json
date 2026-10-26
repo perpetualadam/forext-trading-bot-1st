@@ -1,0 +1,43 @@
+{
+  "coordination": [
+    "threading.Event",
+    "threading.Lock",
+    "RLock already in database.py"
+  ],
+  "real_join_timeout_sec": 2.0,
+  "join_monkeypatched": false,
+  "blocked_poll_wait_sec": 12,
+  "parent_timeout_sec": 120,
+  "schedules": {
+    "S01": "normal_stop PASS, elapsed 0.0002",
+    "S02": "stop_before_start PASS",
+    "S03": "repeated_stop PASS",
+    "S04": "repeated_start PASS, one thread while the flag is set",
+    "S05": "covered by normal_stop",
+    "S06": "stop_during_blocked_poll, stop returned with thread alive",
+    "S07": "release waited inside the locked query; stop during that hold was not a separate 2s case",
+    "S08": "same lock observation",
+    "S09": "stop_while_other_thread_holds_lock, elapsed 0.3118, worker then exited",
+    "S10": "normal_stop",
+    "S11": "elapsed 2.0135 and 2.006, thread alive",
+    "S12": "same, return value null",
+    "S13": "release after that return closed connection 1",
+    "S14": "release_finished_before_query_release false",
+    "S15": "release completed while thread 16048 was blocked in getUpdates",
+    "S16": "thread 16048 executed FROM trades after release",
+    "S17": "connection 2 published; direct helper 5 then 6",
+    "S18": "old connection not used after close",
+    "S19": "old cursor not used after close",
+    "S20": "corrupt and broker lifespan PASS",
+    "S21": "NOT_REACHABLE_IN_CURRENT_SOURCE",
+    "S22": "normal lifespan PASS; blocked_shutdown left the worker alive",
+    "S23": "injected wrapper after the real stop; tasks still cleaned; connection kept",
+    "S24": "blocked_shutdown thread 3836",
+    "S25": "await_health RuntimeError recorded, pending 0",
+    "S26": "release_fails records RuntimeError and keeps the broker message",
+    "S27": "repeat lifespan PASS",
+    "S28": "threads 13880 and 17184",
+    "S29": "same overlap",
+    "S30": "thread 16048 exited after the fake getUpdates returned and the loop saw the stop event"
+  }
+}

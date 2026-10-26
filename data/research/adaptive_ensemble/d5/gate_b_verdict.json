@@ -1,0 +1,19 @@
+{
+  "gate": "B",
+  "verdict": "PASS",
+  "harness": "tests/d5_lifespan_runner.py",
+  "installed_before_app_import": true,
+  "process": "fresh subprocess with a constructed environment, not a copy of the parent environment",
+  "working_directory": "dedicated temporary directory",
+  "network_denial": "PASS",
+  "filesystem_denial": "PASS",
+  "background_task_denial": "PASS",
+  "dependency_replacement": "PASS",
+  "localhost_exception": "socket.socketpair is reimplemented and may connect only to a loopback port that the same call just bound. All other socket.connect, connect_ex, create_connection, urlopen, and asyncio.open_connection calls raise.",
+  "blocked_codes_not_used": [
+    "DEPENDENCY_ISOLATION_BLOCKED",
+    "NETWORK_ISOLATION_UNVERIFIED",
+    "FILESYSTEM_ISOLATION_UNVERIFIED",
+    "BACKGROUND_TASK_ISOLATION_BLOCKED"
+  ]
+}

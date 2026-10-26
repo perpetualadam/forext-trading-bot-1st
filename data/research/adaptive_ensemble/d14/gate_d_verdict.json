@@ -1,0 +1,7 @@
+{
+  "gate": "D",
+  "verdict": "PASS",
+  "files": ["forex_bot/telegram_control.py", "forex_bot/app.py"],
+  "stop_function_changed": false,
+  "database_changed": false
+}

@@ -1,0 +1,12 @@
+{
+  "stage": "R.53",
+  "r51_sha256": "e08652cbd3b3b352fd7a3908288cb4a7e48a56ab7d17b429d2688698d8848cef",
+  "r52_sha256": "59cb2fab00a0a1ea67c26261571498f623e8610a8e4e55ae64ac27a3a750ac56",
+  "prior_hashes_match": true,
+  "attempt_1": {"passed": 8, "failed": 0},
+  "rerun_after_removing_redundant_assertion": {"passed": 8, "failed": 0},
+  "security_assertions_weakened": false,
+  "credentials_read": false,
+  "network_request": false,
+  "production_files_edited": false
+}

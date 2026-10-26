@@ -1,0 +1,8 @@
+{
+  "status": "NOT_ATTEMPTED",
+  "anonymous_index_request": "NOT_SENT",
+  "bearer_challenge": "NOT_OBTAINED",
+  "token_service_contacted": false,
+  "token_retained_on_disk": false,
+  "credential_access": false
+}

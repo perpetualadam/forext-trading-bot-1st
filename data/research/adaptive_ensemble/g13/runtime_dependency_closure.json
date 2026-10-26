@@ -1,0 +1,47 @@
+{
+  "entrypoints": [
+    "main.py",
+    "uvicorn forex_bot.app:app"
+  ],
+  "python_modules_in_closure": 60,
+  "missing_required": [],
+  "dynamic_dependency_unresolved": [],
+  "uvicorn_string_target": {
+    "reference": "forex_bot.app:app",
+    "classification": "INCLUDED_AND_VERIFIED"
+  },
+  "importlib_sites_in_closure": [],
+  "subprocess_sites_in_closure": [],
+  "file_reads_are_runtime_state": [
+    "forex_bot/live_safety.py durable authorisation document",
+    "forex_bot/decision_repair account risk, selection cursor, audit jsonl, health, and rl q-table under data/ops",
+    "forex_bot/v2_shadow observations, outcomes, and market JSONL under data/research/v2_shadow"
+  ],
+  "optional_and_excluded": [
+    {
+      "path": "forex_bot/live_safety_preflight.py",
+      "classification": "OPTIONAL_AND_EXCLUDED_WITH_JUSTIFICATION",
+      "reason": "Operator preflight tool. Not imported by the startup closure."
+    },
+    {
+      "path": "forex_bot/decision_repair/harness.py",
+      "classification": "OPTIONAL_AND_EXCLUDED_WITH_JUSTIFICATION",
+      "reason": "Test harness. Not imported by the startup closure."
+    },
+    {
+      "path": "forex_bot/v2_shadow/score_offline.py",
+      "classification": "OPTIONAL_AND_EXCLUDED_WITH_JUSTIFICATION",
+      "reason": "Offline research scorer. Not imported by the packaged writer."
+    }
+  ],
+  "research_only_excluded": [
+    "forex_bot/research/",
+    "forex_bot/shadow/",
+    "forex_bot/decision_quality/",
+    "forex_bot/backtest.py",
+    "forex_bot/csv_ohlcv.py"
+  ],
+  "model_files_packaged": [],
+  "nn_pred_loads_external_model": false,
+  "classification_summary": "No MISSING_REQUIRED or DYNAMIC_DEPENDENCY_UNRESOLVED module."
+}

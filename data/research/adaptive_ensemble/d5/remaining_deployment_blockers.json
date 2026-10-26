@@ -1,0 +1,41 @@
+{
+  "startup": [
+    "Isolated lifespan behaviour is verified only inside the D.5 harness.",
+    "Production startup is not verified.",
+    "The running image predates the D.2, D.3, and D.4 source bytes.",
+    "A failure after database or broker initialization, before yield, was not injected."
+  ],
+  "database": [
+    "Live schema was not read.",
+    "No production database connection was made.",
+    "Fake get_connection does not prove the real DDL path."
+  ],
+  "dependencies": [
+    "requirements are unpinned.",
+    "No lockfile or wheelhouse was produced."
+  ],
+  "packaging": [
+    "No candidate image exists.",
+    "Base-image digest is unverified.",
+    "Runtime profile is incomplete.",
+    "Dockerfile remains an older uncommitted modification and was not changed in D.5."
+  ],
+  "rollback": [
+    "No verified rollback image or procedure was executed."
+  ],
+  "production_state": [
+    "Current production safety state was not read.",
+    "Historical live-order authorisation remains BLOCKED with reason operator_preflight_blocked.",
+    "The six strategies remain historically inactive. Current production activation was not reverified.",
+    "Shadow mount and operational mount were not read."
+  ],
+  "research_compatibility": [
+    "Research backtests that construct Strategy objects and skip inactive strategies still open no new trades until an explicit later activation."
+  ],
+  "receiving_boundary": [
+    "No trusted receiving principal was identified in G.14.12."
+  ],
+  "deployment_decision": "NO-GO",
+  "live_trading_decision": "NOT_AUTHORISED",
+  "rollback_decision": "NO-GO"
+}

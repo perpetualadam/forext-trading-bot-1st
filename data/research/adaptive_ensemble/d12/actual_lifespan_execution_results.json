@@ -1,0 +1,7 @@
+{
+  "suite": "16 passed in 16.39s",
+  "normal": "yielded, worker gone, database open, no application close, cleanup errors empty, tasks drained",
+  "blocked": "yielded, stored worker alive, stop event set, elapsed 1.5 to 4.5 seconds, cleanup errors empty, status text absent from logs, database retained, tasks drained, stop function not wrapped",
+  "corrupt_and_broker": "did not yield, worker not alive, database not open",
+  "cancelled": "CancelledError, worker still alive, cleanup errors empty, database open, owned tasks done"
+}

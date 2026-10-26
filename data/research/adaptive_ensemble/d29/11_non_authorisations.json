@@ -1,0 +1,13 @@
+{
+  "network": false,
+  "layer_download": false,
+  "layer_extraction": false,
+  "docker": false,
+  "interpreter_execution": false,
+  "package_installation": false,
+  "production_access": false,
+  "deployment": false,
+  "live_trading": false,
+  "rollback": false,
+  "storage_host_contact": false
+}

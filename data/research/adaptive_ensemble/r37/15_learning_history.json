@@ -1,0 +1,39 @@
+{
+  "advancement": "NO_MODEL_QUALIFIES_FOR_ADVANCEMENT",
+  "production_authorised": false,
+  "records": [
+    {
+      "candidate": "A_expected_value_bins",
+      "motivation": "R.36 validation showed a 0.50 cutoff almost never acts and a 0.40 cutoff lost money.",
+      "change": "Trade only inside probability bins that were positive on an earlier walk-forward fold.",
+      "result": {
+        "windows_passed": 0,
+        "windows_required": 2,
+        "qualifies": false,
+        "production_authorised": false,
+        "validation_status": "unvalidated",
+        "reason": "no_tradeable_probability_bin"
+      },
+      "decision": "reject"
+    },
+    {
+      "candidate": "B_horizon_48",
+      "motivation": "The 12-bar move is often similar in size to the spread.",
+      "change": "Same logistic specification, horizon and embargo set to 48 before evaluation.",
+      "result": {
+        "windows_passed": 0,
+        "windows_required": 4,
+        "qualifies": false,
+        "production_authorised": false,
+        "validation_status": "unvalidated"
+      },
+      "decision": "reject"
+    },
+    {
+      "candidate": "C_not_run",
+      "motivation": "No specific feature defect was established on training or validation evidence.",
+      "change": "none",
+      "decision": "not_run"
+    }
+  ]
+}

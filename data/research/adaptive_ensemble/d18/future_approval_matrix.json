@@ -1,0 +1,74 @@
+{
+  "facts": [
+    {
+      "fact": "CPU architecture",
+      "from_existing_files": false,
+      "needs_selection": true,
+      "registry": false,
+      "image_acquisition": false,
+      "container_execution": false,
+      "production_inspection": false,
+      "package_metadata": false,
+      "privileges": false,
+      "source_change": false,
+      "approval": true,
+      "narrowest_operation": "Explicit user selection of the OCI platform."
+    },
+    {
+      "fact": "Registry hostname",
+      "from_existing_files": false,
+      "needs_selection": true,
+      "registry": false,
+      "image_acquisition": false,
+      "container_execution": false,
+      "production_inspection": false,
+      "package_metadata": false,
+      "privileges": false,
+      "source_change": false,
+      "approval": true,
+      "narrowest_operation": "Confirm the registry as part of target selection. Do not query it in that decision."
+    },
+    {
+      "fact": "Index and platform manifest digests",
+      "from_existing_files": false,
+      "needs_selection": true,
+      "registry": true,
+      "image_acquisition": false,
+      "container_execution": false,
+      "production_inspection": false,
+      "package_metadata": false,
+      "privileges": false,
+      "source_change": false,
+      "approval": true,
+      "narrowest_operation": "Read-only registry manifest request for the selected platform. No pull."
+    },
+    {
+      "fact": "Python patch, distribution revision, libc version",
+      "from_existing_files": false,
+      "needs_selection": true,
+      "registry": true,
+      "image_acquisition": "only if manifest labels omit them",
+      "container_execution": false,
+      "production_inspection": false,
+      "package_metadata": false,
+      "privileges": false,
+      "source_change": false,
+      "approval": true,
+      "narrowest_operation": "Isolated metadata inspection of a fetched base image if labels are insufficient. No bot process."
+    },
+    {
+      "fact": "Wheel tags and native libraries",
+      "from_existing_files": false,
+      "needs_selection": true,
+      "registry": false,
+      "image_acquisition": false,
+      "container_execution": false,
+      "production_inspection": false,
+      "package_metadata": true,
+      "privileges": false,
+      "source_change": false,
+      "approval": true,
+      "narrowest_operation": "After the target profile is verified, a separate package-metadata read. No install."
+    }
+  ]
+}

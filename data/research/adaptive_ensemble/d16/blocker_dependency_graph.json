@@ -1,0 +1,39 @@
+{
+  "order": [
+    "D16-DEPS-01 lock and provenance",
+    "offline artifact acquisition",
+    "D16-PKG-01 base-image digest",
+    "current COPY-set hash manifest",
+    "runtime profile completion",
+    "D16-TRUST-01 receiver",
+    "candidate build attestation",
+    "D16-DB-01 disposable then live schema",
+    "D16-STATE-01 production inspection",
+    "D16-ROLL-01 rollback target",
+    "deployment remains unauthorised"
+  ],
+  "offline_without_new_approval": [
+    "static classification completed in D.16"
+  ],
+  "needs_network": [
+    "lock resolution",
+    "registry digest"
+  ],
+  "needs_docker": [
+    "candidate build",
+    "image availability"
+  ],
+  "needs_production_inspection": [
+    "container identity",
+    "live schema",
+    "state mounts"
+  ],
+  "needs_privilege": [
+    "receiver principal"
+  ],
+  "not_actionable_now": [
+    "deployment",
+    "restart",
+    "rollback"
+  ]
+}

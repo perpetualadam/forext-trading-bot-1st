@@ -1,0 +1,118 @@
+{
+  "approved": [
+    {
+      "item": "AMD64 intended target",
+      "status": "EXPLICITLY_APPROVED",
+      "source": "D21-PLATFORM-01",
+      "scope": "intended support policy or reference only",
+      "further_approval_required_for_action": true
+    },
+    {
+      "item": "ARM64 intended target",
+      "status": "EXPLICITLY_APPROVED",
+      "source": "D21-PLATFORM-02",
+      "scope": "intended support policy or reference only",
+      "further_approval_required_for_action": true
+    },
+    {
+      "item": "Multi-platform policy",
+      "status": "EXPLICITLY_APPROVED",
+      "source": "D21-POLICY-01",
+      "scope": "intended support policy or reference only",
+      "further_approval_required_for_action": true
+    },
+    {
+      "item": "Base-image reference",
+      "status": "EXPLICITLY_APPROVED",
+      "source": "D21-BASE-01",
+      "scope": "intended support policy or reference only",
+      "further_approval_required_for_action": true
+    }
+  ],
+  "unauthorised": [
+    {
+      "item": "Registry read",
+      "status": "NOT_APPROVED",
+      "source": "D.21 instruction section 2 exclusion list",
+      "further_approval_required": true
+    },
+    {
+      "item": "Registry authentication",
+      "status": "NOT_APPROVED",
+      "source": "D.21 instruction section 2 exclusion list",
+      "further_approval_required": true
+    },
+    {
+      "item": "Image manifest retrieval",
+      "status": "NOT_APPROVED",
+      "source": "D.21 instruction section 2 exclusion list",
+      "further_approval_required": true
+    },
+    {
+      "item": "Image pull",
+      "status": "NOT_APPROVED",
+      "source": "D.21 instruction section 2 exclusion list",
+      "further_approval_required": true
+    },
+    {
+      "item": "Docker execution",
+      "status": "NOT_APPROVED",
+      "source": "D.21 instruction section 2 exclusion list",
+      "further_approval_required": true
+    },
+    {
+      "item": "Dependency resolution",
+      "status": "NOT_APPROVED",
+      "source": "D.21 instruction section 2 exclusion list",
+      "further_approval_required": true
+    },
+    {
+      "item": "Lockfile generation",
+      "status": "NOT_APPROVED",
+      "source": "D.21 instruction section 2 exclusion list",
+      "further_approval_required": true
+    },
+    {
+      "item": "Package download",
+      "status": "NOT_APPROVED",
+      "source": "D.21 instruction section 2 exclusion list",
+      "further_approval_required": true
+    },
+    {
+      "item": "Package installation",
+      "status": "NOT_APPROVED",
+      "source": "D.21 instruction section 2 exclusion list",
+      "further_approval_required": true
+    },
+    {
+      "item": "Candidate image build",
+      "status": "NOT_APPROVED",
+      "source": "D.21 instruction section 2 exclusion list",
+      "further_approval_required": true
+    },
+    {
+      "item": "Production inspection",
+      "status": "NOT_APPROVED",
+      "source": "D.21 instruction section 2 exclusion list",
+      "further_approval_required": true
+    },
+    {
+      "item": "Deployment",
+      "status": "NOT_APPROVED",
+      "source": "D.21 instruction section 2 exclusion list",
+      "further_approval_required": true
+    },
+    {
+      "item": "Rollback",
+      "status": "NOT_APPROVED",
+      "source": "D.21 instruction section 2 exclusion list",
+      "further_approval_required": true
+    },
+    {
+      "item": "Live trading",
+      "status": "NOT_APPROVED",
+      "source": "D.21 instruction section 2 exclusion list",
+      "further_approval_required": true
+    }
+  ]
+}

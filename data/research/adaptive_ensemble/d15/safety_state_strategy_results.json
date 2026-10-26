@@ -1,0 +1,15 @@
+{
+  "evidence": "ACTUAL_SOURCE_ISOLATED",
+  "result": "PASS",
+  "authorisation": "BLOCKED",
+  "strategies_inactive_after_initialise": true,
+  "explicit_true_activates": true,
+  "string_true_does_not_activate": true,
+  "unconfirmed_activation": "PermissionError",
+  "corrupt_future_invalid_initialised": false,
+  "protected_bytes_kept": true,
+  "unknown_field_preserved": true,
+  "replace_failure_leaves_initialised_false": true,
+  "temporary_file_left": false,
+  "network_after": []
+}

@@ -1,0 +1,20 @@
+{
+  "threads_child_end": {
+    "open_connections": [],
+    "open_cursors": [],
+    "escaped_telegram_threads": [],
+    "use_after_close": [],
+    "network_after": []
+  },
+  "lifespan_child_end": {
+    "network_after": [],
+    "guard_checks_all_true": true
+  },
+  "distinction": "Application snapshots were recorded before harness join and harness close. A worker exit after the harness released a fake poll is not counted as application cleanup.",
+  "blocked_lifespan_application_snapshot": {
+    "worker_alive": true,
+    "stored_reference_alive": true,
+    "database_retained_by_app": true,
+    "application_close_calls": 0
+  }
+}

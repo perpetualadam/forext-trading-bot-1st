@@ -1,0 +1,7 @@
+name,own_entry_rule_on_live_path,own_exit_rule,own_stop,own_take_profit,own_sizing,own_risk_limit,shadow_entry_rule_exists,reachable_as_live_name,name_sets_trade_side,default_inactive,credible_performance_evidence,classification
+scalp,no,no,no,no,no,no,yes,yes,no,yes,no,SHADOW_ONLY
+trend,no,no,no,no,no,no,yes,yes,no,yes,no,SHADOW_ONLY
+mean_reversion,no,no,no,no,no,no,yes,yes,no,yes,no,SHADOW_ONLY
+swing_trend,no,no,no,no,no,no,yes,yes,no,yes,no,SHADOW_ONLY
+swing_mean_reversion,no,no,no,no,no,no,yes,yes,no,yes,no,SHADOW_ONLY
+swing_breakout,no,no,no,no,no,no,yes,yes,no,yes,no,SHADOW_ONLY

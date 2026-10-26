@@ -1,0 +1,24 @@
+{
+  "approved": [
+    "local research reads",
+    "local source and configuration reads",
+    "sha256 calculations",
+    "OCI JSON parsing",
+    "static Dockerfile and Compose analysis",
+    "static dependency declaration analysis",
+    "static import scan without executing modules",
+    "new files under data/research/adaptive_ensemble/d25/"
+  ],
+  "not_approved": [
+    "network",
+    "registry",
+    "package index",
+    "docker",
+    "layer download",
+    "dependency resolution",
+    "installation",
+    "build",
+    "production access",
+    "live trading"
+  ]
+}

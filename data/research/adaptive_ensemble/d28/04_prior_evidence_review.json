@@ -1,0 +1,21 @@
+{
+  "reviewed_file_hashes": {
+    "data/research/adaptive_ensemble/d25/34_stage_d25_report.md": "639224852270ad6524165c2f08b8d4c97844c2339c647f29bfb6c638df87eec4",
+    "data/research/adaptive_ensemble/d26/38_stage_d26_report.md": "e937ecd472543aefaa1adadb3e36b9b2282fa695910ce4315ed78112fe397181",
+    "data/research/adaptive_ensemble/d26_r1/07_request_ledger.json": "f9cc9975e594e5830c28552a21e9bc3b2c3693a61710a4ed0d8b75832a73d21a",
+    "data/research/adaptive_ensemble/d26_r1/09_project_metadata_inventory.json": "fbee185a1441c4b86452c8c38cdd31e7da3865725018f201edf01637e2524efa",
+    "data/research/adaptive_ensemble/d26_r1/10_distribution_metadata_inventory.json": "42733ab0ae74c01dbbc78a8c67befeba084c1c5d6dbbfecc8dba5da302162ffd",
+    "data/research/adaptive_ensemble/d27/07_wheel_filename_parse_failures.json": "89c239b0d5405e28ddeaf571c1e265e60a0b75f8eb458bcda11967a60c407c3d",
+    "data/research/adaptive_ensemble/d27/08_python312_tag_observations.json": "e6107a6f08ca1ea1e593d1e611cede96ede4cc6f2286372fc53a82d853e21aff",
+    "data/research/adaptive_ensemble/d27/09_amd64_candidate_matrix.json": "8bbb25824ce7ca769aa0480c27e12a7419c70cd0958045d87c452fa02e53a44e",
+    "data/research/adaptive_ensemble/d27/10_arm64_candidate_matrix.json": "cbd6eb9242716aebea3f2d75f561e7d711a4effd2ca7bef4886f50febabb68fd",
+    "data/research/adaptive_ensemble/d27/16_evidence_gap_register.json": "2ad45175dafb9f893c23f501cc5afd07c7cafc852c26721c3589a79390db0b07",
+    "data/research/adaptive_ensemble/d27/31_stage_d27_report.md": "b02120ed5cf81c078486ccf6622fa7061b06896e631213d0245221b1c7694cf9"
+  },
+  "d27_classification": "D27_OFFLINE_WHEEL_EVIDENCE_AUDIT_COMPLETE",
+  "candidate_counts_are_screening_outputs": true,
+  "abi_evidence": "MISSING",
+  "libc_evidence": "UNVERIFIED",
+  "vps_evidence": "MISSING",
+  "final_image_evidence": "MISSING"
+}

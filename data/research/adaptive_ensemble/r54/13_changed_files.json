@@ -1,0 +1,22 @@
+{
+  "directory": "data/research/adaptive_ensemble/r54",
+  "files": {
+    "00_preflight.py": "ba995f34fbb0a9666712cd858e5b98ba2e0251f393d921a3c28007a4253c882a",
+    "01_preflight.json": "18752196125949f5ce9b78b7bc6c2330ca83d4178ef128144b3084133444117b",
+    "02_prior_hash_verification.md": "f2aa2eb919cf72f7e6f83d487301be844db594e84e2152b726e497f9d632756a",
+    "04_https_transport.md": "8e873badf1afd8d621dbfe147d0a57184babb0f50e3d9c79640b07b47fa4562d",
+    "05_credential_entry.md": "0f39352ce9853f21b63d6b36a4a803ba458ae49afa43b309a6003d230ccf57d0",
+    "06_synthetic_output.json": "0f7afcde507dbe3ca204b5bffcdb98f8c06e1047d5952215e431a22cef97d28c",
+    "07_security_tests.md": "6c3b90a5a936535db10357763ea757b283893abd34454987e510f1e4a01f6438",
+    "08_request_accounting.md": "d49674e8c7a9ee0d16e25aac488b71c655e5e0444f9ce8c69c4de62cfc20b06e",
+    "09_manual_procedure.md": "16bfb15907d54a8706cd39a939cbc319792df1c2995a07e68a018add66411ba1",
+    "10_source_dependency_review.md": "1e1fdc50e071f19a62de023557833eae43adb29832ff52de66ce68cadf27a208",
+    "12_remaining_blockers.md": "b6e3d31fd6c08a86d3ee5cc0402d4961e47ffa38942184419bf3e015f7bace72",
+    "14_hashes.json": "405add24cbd5225be7b346fb93f029e9418ad65207bca4a62af5dc2aa5c843de",
+    "15_test_attempt_log.md": "4c754f07fa8c03d095257a33e316ade74c38e188a591fb5a699578bc1934199c",
+    "session_main.py": "50d2dfd2b3c7e2909994e7ccbebfd30d7c50021e8a2a8f70df5f11d78b880280",
+    "stage_r54_report.md": "2f38aee826e0ec80c3a44685fa55836f863a50c1dda7a18dcc89e456ed95be5f",
+    "test_session.py": "332716488b023b55584e389d3567009ead58eb82d7df36cd00b7c76d341925c8"
+  },
+  "notes": "Inventory hash is reported outside this file. R.51 through R.53 were not modified."
+}

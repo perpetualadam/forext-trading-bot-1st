@@ -1,0 +1,37 @@
+{
+  "commands": [
+    "python -m ruff check tests/g13_packaging.py tests/test_g13_packaging.py",
+    "python -m mypy tests/g13_packaging.py tests/test_g13_packaging.py",
+    "python -m pytest -q --tb=line tests/test_live_safety_repair.py tests/test_execution_safety.py tests/test_decision_repair.py tests/test_decision_repair_f1.py tests/test_decision_repair_f2.py tests/test_market_provenance_g5.py tests/test_market_provenance_g6.py tests/test_market_provenance_g7.py tests/test_g7_snapshot.py tests/test_g8_packaging.py tests/test_g8_missing_candles.py tests/test_g9_management.py tests/test_g9_1_candle_exceptions.py tests/test_g10_snapshot.py tests/test_g11_audit.py tests/test_g12_forensics.py tests/test_g12_1_verify.py tests/test_g13_packaging.py tests/test_v2_shadow.py tests/test_v2_shadow_market.py tests/test_macro_prospective_recorder_stage2.py::test_host_store_is_not_a_bot_container_path"
+  ],
+  "g13_tests_passed": 16,
+  "g13_tests_failed": 0,
+  "combined_passed": 239,
+  "combined_failed": 3,
+  "combined_skipped": 0,
+  "warnings": [
+    "datetime.utcnow deprecation in bot_loop.py and session_rules.py during existing tests"
+  ],
+  "ruff_new_modules": "All checks passed",
+  "mypy_new_modules": "No errors reported",
+  "expected_failures": [
+    {
+      "test": "tests/test_g10_snapshot.py::test_official_archive_is_independently_verified_and_not_rewritten",
+      "reason": "Fresh working-tree manifest hash changed because Dockerfile bytes changed. The frozen G.10 archive hash did not change."
+    },
+    {
+      "test": "tests/test_g11_audit.py::test_g10_allowlist_has_not_drifted",
+      "reason": "Drift list is exactly Dockerfile. The other 62 allowlist hashes match."
+    },
+    {
+      "test": "tests/test_macro_prospective_recorder_stage2.py::test_host_store_is_not_a_bot_container_path",
+      "reason": "The test still expects the removed broad COPY forex_bot ./forex_bot instruction."
+    }
+  ],
+  "production_source_modified_to_silence_warnings": false,
+  "g5_g6_test_side_effects_restored": [
+    "data/research/adaptive_ensemble/g5/baseline_integrity.json",
+    "data/research/adaptive_ensemble/g6/baseline_integrity.json",
+    "data/research/adaptive_ensemble/g6/deployment_package.json"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "stage": "G.14.6",
+  "historical_g14_4_and_g14_5_reports_modified": false,
+  "production_packaging_modified": false,
+  "files": [
+    {
+      "path": "tests/g14_4_acquire.py",
+      "sha256_before": "224b3d0bff64985287a3f43b8a2654bf2b11e68f0bff471edcdd1345734c5f9a",
+      "sha256_after": "0773587232e4974eff0f39c8851bbce5f5a60e766b123ddff3bdf31f2023fc39",
+      "functions_added": [
+        "build_acquisition_environment",
+        "select_interpreter",
+        "authorize_url",
+        "authorize_redirect_chain",
+        "assess_wheel_candidate",
+        "prepare_acquisition",
+        "commit_acquisition",
+        "create_exclusive_file"
+      ]
+    },
+    {
+      "path": "tests/g14_4_verify.py",
+      "sha256_before": "c512d597af90ad9451b86315d95aab9e038365531f508d790c16ee52fed9beba",
+      "sha256_after": "d52f4188688b5722bb27aa47266998a39839b34bcc4a2b6aa5816d4a33e15913",
+      "functions_added": ["inspect_wheel_bytes", "assert_dependency_graph", "accept_verified_lock", "build_synthetic_wheel"]
+    },
+    {
+      "path": "tests/g14_4_inventory.py",
+      "sha256_before": "ef2ba453e0dc54e3805ca57e64ccb4bbb4249d3055f74b2ccc69cab103dfcfdd",
+      "sha256_after": "7920d1122e242c21c79193503831d3740f8f064f52d03ab55cffa4ecc4507558",
+      "functions_added": ["parse_requirement_line", "parse_requirement_document", "evaluate_marker", "validate_marker"]
+    }
+  ],
+  "test_migrations": [
+    "tests/test_g14_4_wheelhouse.py now builds a synthetic wheel so the happy path can pass archive checks. Rejection cases were not weakened.",
+    "tests/test_g14_5_security.py kept its test names and now asserts the repaired rejections. The old assertions recorded missing controls."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "gate": "D",
+  "result": "PASS",
+  "basis": "16 D.15 tests passed in 28.16s. Reachable lifespan, Telegram, database, exception, and safety schedules passed.",
+  "not_reachable": [
+    "start_telegram_control does not emit an undocumented status; the application handler was tested with a substituted return",
+    "database.py has no borrower counter"
+  ]
+}

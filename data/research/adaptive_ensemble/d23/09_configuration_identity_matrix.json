@@ -1,0 +1,35 @@
+{
+  "rows": [
+    {
+      "approved_intended_platform": "linux/amd64",
+      "verified_parent_index_digest": "sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258",
+      "verified_parent_platform_manifest_digest": "sha256:2ed6491b93cd49272ee6de2b5a38440c3448360322c089fc23e370722d74179d",
+      "parent_platform_variant": null,
+      "config_descriptor_media_type": "application/vnd.oci.image.config.v1+json",
+      "config_descriptor_digest": "sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+      "config_descriptor_size": 5684,
+      "config_blob_locally_present": false,
+      "config_blob_downloaded_in_d23": false,
+      "config_blob_bytes_verified": false,
+      "config_contents_inspected": false,
+      "runtime_metadata_verified": false,
+      "remaining_approval_required": "Separate approval is required before a config-blob request."
+    },
+    {
+      "approved_intended_platform": "linux/arm64",
+      "verified_parent_index_digest": "sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258",
+      "verified_parent_platform_manifest_digest": "sha256:739ba32ae445e8d58f3d90feb85f83bebc8346f8dd280fa1eb5848f4ff1ed163",
+      "parent_platform_variant": "v8",
+      "config_descriptor_media_type": "application/vnd.oci.image.config.v1+json",
+      "config_descriptor_digest": "sha256:eb7d16fec874f15b584063275012ac719885a2b87574d124c0da9c156d504629",
+      "config_descriptor_size": 5699,
+      "config_blob_locally_present": false,
+      "config_blob_downloaded_in_d23": false,
+      "config_blob_bytes_verified": false,
+      "config_contents_inspected": false,
+      "runtime_metadata_verified": false,
+      "remaining_approval_required": "Separate approval is required before a config-blob request."
+    }
+  ],
+  "descriptor_meaning": "The descriptor records the blob the verified manifest references. It does not prove that the blob was retrieved or validated."
+}

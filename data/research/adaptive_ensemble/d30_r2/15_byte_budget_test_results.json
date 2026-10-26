@@ -1,0 +1,40 @@
+{
+  "results": [
+    {
+      "test_id": "G10",
+      "fixture": "error bytes",
+      "expected": "error bytes counted",
+      "actual": "15",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G11",
+      "fixture": "token bytes",
+      "expected": "token bytes counted",
+      "actual": "22",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G12",
+      "fixture": "body cap",
+      "expected": "excess rejected",
+      "actual": "rejected",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G13",
+      "fixture": "failure",
+      "expected": "counter not reset",
+      "actual": "22",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    }
+  ]
+}

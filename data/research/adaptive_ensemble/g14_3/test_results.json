@@ -1,0 +1,22 @@
+{
+  "stage": "G.14.3",
+  "commands": [
+    "python -m pytest -q --tb=line tests/test_g14_3_supply.py tests/test_g13_packaging.py tests/test_g13_1_mutations.py tests/test_g14_context.py tests/test_g14_1_staging.py",
+    "python -m ruff check tests/g14_3_supply.py tests/test_g14_3_supply.py",
+    "python -m mypy tests/g14_3_supply.py tests/test_g14_3_supply.py"
+  ],
+  "passed": 76,
+  "failed": 0,
+  "skipped": 0,
+  "ruff": "pass",
+  "mypy": "pass on tests/g14_3_supply.py and tests/test_g14_3_supply.py",
+  "g10_snapshot_tests_not_run": "test_g10_snapshot.py was not run because earlier stages showed it can rewrite G.5 and G.6 JSON. G.7 and G.10 archive and manifest digests were hashed directly and matched.",
+  "untested": [
+    "package index resolution",
+    "wheel filenames and hashes",
+    "registry manifest digest",
+    "base-image pip version",
+    "Docker build",
+    "fresh Docker metadata"
+  ]
+}

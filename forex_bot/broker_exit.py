@@ -566,39 +566,25 @@ def account_disappeared_broker_position(pos: Any) -> str:
 
     snap = _position_snapshot(pos)
     sym = normalize_oanda_symbol(str(getattr(pos, "symbol", "") or ""))
-    ids = local_broker_trade_ids(pos)
-    if not ids:
-        posmap.pop(sym, None)
-        _set_pending(sym, "", snap, "no_broker_trade_id")
-        return "pending"
+    from forex_bot.positions import position_management_permitted
 
-    lookups = [resolve_broker_exit(tid) for tid in ids]
-    if any((not lu.ok) or lu.exit is None for lu in lookups):
-        err = next((lu.error for lu in lookups if not lu.ok), "unresolved")
-        posmap.pop(sym, None)
-        _set_pending(sym, ids[0], snap, err)
-        return "pending"
-    if any(not lu.exit.fully_closed for lu in lookups if lu.exit is not None):
-        posmap.pop(sym, None)
-        _set_pending(sym, ids[0], snap, "trade_not_fully_closed")
-        return "pending"
+    resident = posmap.get(sym)
+    if resident is not None and not position_management_permitted(resident):
+        logger.warning("[RECONCILE] refuse to drop observation-only local %s", sym)
+        return "observation"
+    from forex_bot.broker_close_evidence import note_unattributed_broker_flat, operation_from_confirmed_journal
+    from forex_bot.positions import close_confirmed_live_position
 
-    booked_any = False
-    already = True
-    for lu in lookups:
-        resolved = lu.exit
-        assert resolved is not None
-        if is_exit_booked(resolved.closing_transaction_id, resolved.trade_id):
-            continue
-        already = False
-        if _book_resolved_exit(pos, resolved):
-            booked_any = True
-    posmap.pop(sym, None)
-    if booked_any or already:
-        clear_pending_broker_exit(sym)
-        return "already" if already and not booked_any else "booked"
-    _set_pending(sym, ids[0], snap, "book_failed")
-    return "pending"
+    note_unattributed_broker_flat(sym)
+    operation = operation_from_confirmed_journal(sym)
+    removed = close_confirmed_live_position(sym, operation) if operation is not None else None
+    if removed is None:
+        logger.warning(
+            "[RECONCILE] live row retained; broker-flat is not close confirmation | %s",
+            sym,
+        )
+        return "retained"
+    return "booked"
 
 
 def retry_pending_broker_exits(broker_nets: dict[str, float]) -> int:

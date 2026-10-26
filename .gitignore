@@ -20,3 +20,5 @@ oanda sep deets.txt
 main .env example for trading bot.txt
 \# Copy to .env and fill in. docker.txt
 main example .env backup.txt
+one_session.permit
+one_session.consumed

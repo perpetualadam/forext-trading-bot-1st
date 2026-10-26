@@ -1,0 +1,20 @@
+{
+  "database_opened": false,
+  "broker_contacted": false,
+  "loop_exception_handlers_entered": false,
+  "functions_executed": [
+    "classify_order_create_response",
+    "classify_order_create_transport_error",
+    "book_on_ambiguous",
+    "book_on_terminal",
+    "book_on_reconciliation",
+    "new_intent_block_reason",
+    "remember_ambiguous_outcome",
+    "broker_entry_block_reason",
+    "try_begin_order_submission"
+  ],
+  "policy_confirmed_absence": "A simulated CONFIRMED_ABSENT result releases the unresolved intent and does not create a client order id.",
+  "policy_confirmed_fill": "A simulated CONFIRMED_FILL result clears the unresolved intent and does not create a replacement client order id.",
+  "policy_unavailable": "Any other reconciliation result leaves the original client order id blocked.",
+  "results": "F01 through F16 passed. See 08_regression_test_results.json."
+}

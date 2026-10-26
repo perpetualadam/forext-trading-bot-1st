@@ -1,0 +1,369 @@
+{
+  "instructions": [
+    {
+      "line": 2,
+      "instruction": "FROM",
+      "arguments": "python:3.12-slim-bookworm"
+    },
+    {
+      "line": 4,
+      "instruction": "WORKDIR",
+      "arguments": "/app"
+    },
+    {
+      "line": 6,
+      "instruction": "ENV",
+      "arguments": "PYTHONDONTWRITEBYTECODE=1      PYTHONUNBUFFERED=1      PIP_DISABLE_PIP_VERSION_CHECK=1      PIP_DEFAULT_TIMEOUT=120      PIP_RETRIES=15"
+    },
+    {
+      "line": 12,
+      "instruction": "COPY",
+      "arguments": "requirements.txt ."
+    },
+    {
+      "line": 13,
+      "instruction": "RUN",
+      "arguments": "pip install --upgrade pip &&      pip install --no-cache-dir --prefer-binary --timeout 120 --retries 15 -r requirements.txt"
+    },
+    {
+      "line": 17,
+      "instruction": "COPY",
+      "arguments": "forex_bot/__init__.py ./forex_bot/__init__.py"
+    },
+    {
+      "line": 18,
+      "instruction": "COPY",
+      "arguments": "forex_bot/ai_ensemble.py ./forex_bot/ai_ensemble.py"
+    },
+    {
+      "line": 19,
+      "instruction": "COPY",
+      "arguments": "forex_bot/alerts.py ./forex_bot/alerts.py"
+    },
+    {
+      "line": 20,
+      "instruction": "COPY",
+      "arguments": "forex_bot/analytics.py ./forex_bot/analytics.py"
+    },
+    {
+      "line": 21,
+      "instruction": "COPY",
+      "arguments": "forex_bot/anthropic_voter.py ./forex_bot/anthropic_voter.py"
+    },
+    {
+      "line": 22,
+      "instruction": "COPY",
+      "arguments": "forex_bot/app.py ./forex_bot/app.py"
+    },
+    {
+      "line": 23,
+      "instruction": "COPY",
+      "arguments": "forex_bot/bot_loop.py ./forex_bot/bot_loop.py"
+    },
+    {
+      "line": 24,
+      "instruction": "COPY",
+      "arguments": "forex_bot/broker_exit.py ./forex_bot/broker_exit.py"
+    },
+    {
+      "line": 25,
+      "instruction": "COPY",
+      "arguments": "forex_bot/config.py ./forex_bot/config.py"
+    },
+    {
+      "line": 26,
+      "instruction": "COPY",
+      "arguments": "forex_bot/database.py ./forex_bot/database.py"
+    },
+    {
+      "line": 27,
+      "instruction": "COPY",
+      "arguments": "forex_bot/decision_repair/__init__.py ./forex_bot/decision_repair/__init__.py"
+    },
+    {
+      "line": 28,
+      "instruction": "COPY",
+      "arguments": "forex_bot/decision_repair/account_risk.py ./forex_bot/decision_repair/account_risk.py"
+    },
+    {
+      "line": 29,
+      "instruction": "COPY",
+      "arguments": "forex_bot/decision_repair/audit.py ./forex_bot/decision_repair/audit.py"
+    },
+    {
+      "line": 30,
+      "instruction": "COPY",
+      "arguments": "forex_bot/decision_repair/exposure.py ./forex_bot/decision_repair/exposure.py"
+    },
+    {
+      "line": 31,
+      "instruction": "COPY",
+      "arguments": "forex_bot/decision_repair/flags.py ./forex_bot/decision_repair/flags.py"
+    },
+    {
+      "line": 32,
+      "instruction": "COPY",
+      "arguments": "forex_bot/decision_repair/health.py ./forex_bot/decision_repair/health.py"
+    },
+    {
+      "line": 33,
+      "instruction": "COPY",
+      "arguments": "forex_bot/decision_repair/rl_store.py ./forex_bot/decision_repair/rl_store.py"
+    },
+    {
+      "line": 34,
+      "instruction": "COPY",
+      "arguments": "forex_bot/decision_repair/selection.py ./forex_bot/decision_repair/selection.py"
+    },
+    {
+      "line": 35,
+      "instruction": "COPY",
+      "arguments": "forex_bot/decision_skip_log.py ./forex_bot/decision_skip_log.py"
+    },
+    {
+      "line": 36,
+      "instruction": "COPY",
+      "arguments": "forex_bot/entry_geometry.py ./forex_bot/entry_geometry.py"
+    },
+    {
+      "line": 37,
+      "instruction": "COPY",
+      "arguments": "forex_bot/execution.py ./forex_bot/execution.py"
+    },
+    {
+      "line": 38,
+      "instruction": "COPY",
+      "arguments": "forex_bot/execution_metrics.py ./forex_bot/execution_metrics.py"
+    },
+    {
+      "line": 39,
+      "instruction": "COPY",
+      "arguments": "forex_bot/experiment.py ./forex_bot/experiment.py"
+    },
+    {
+      "line": 40,
+      "instruction": "COPY",
+      "arguments": "forex_bot/indicators.py ./forex_bot/indicators.py"
+    },
+    {
+      "line": 41,
+      "instruction": "COPY",
+      "arguments": "forex_bot/live_manage.py ./forex_bot/live_manage.py"
+    },
+    {
+      "line": 42,
+      "instruction": "COPY",
+      "arguments": "forex_bot/live_safety.py ./forex_bot/live_safety.py"
+    },
+    {
+      "line": 43,
+      "instruction": "COPY",
+      "arguments": "forex_bot/log_config.py ./forex_bot/log_config.py"
+    },
+    {
+      "line": 44,
+      "instruction": "COPY",
+      "arguments": "forex_bot/log_redact.py ./forex_bot/log_redact.py"
+    },
+    {
+      "line": 45,
+      "instruction": "COPY",
+      "arguments": "forex_bot/market_provenance.py ./forex_bot/market_provenance.py"
+    },
+    {
+      "line": 46,
+      "instruction": "COPY",
+      "arguments": "forex_bot/nn_pred.py ./forex_bot/nn_pred.py"
+    },
+    {
+      "line": 47,
+      "instruction": "COPY",
+      "arguments": "forex_bot/oanda_client.py ./forex_bot/oanda_client.py"
+    },
+    {
+      "line": 48,
+      "instruction": "COPY",
+      "arguments": "forex_bot/oanda_exec.py ./forex_bot/oanda_exec.py"
+    },
+    {
+      "line": 49,
+      "instruction": "COPY",
+      "arguments": "forex_bot/oanda_rate_limit.py ./forex_bot/oanda_rate_limit.py"
+    },
+    {
+      "line": 50,
+      "instruction": "COPY",
+      "arguments": "forex_bot/openai_voter.py ./forex_bot/openai_voter.py"
+    },
+    {
+      "line": 51,
+      "instruction": "COPY",
+      "arguments": "forex_bot/operational_events.py ./forex_bot/operational_events.py"
+    },
+    {
+      "line": 52,
+      "instruction": "COPY",
+      "arguments": "forex_bot/operational_state.py ./forex_bot/operational_state.py"
+    },
+    {
+      "line": 53,
+      "instruction": "COPY",
+      "arguments": "forex_bot/orders.py ./forex_bot/orders.py"
+    },
+    {
+      "line": 54,
+      "instruction": "COPY",
+      "arguments": "forex_bot/portfolio.py ./forex_bot/portfolio.py"
+    },
+    {
+      "line": 55,
+      "instruction": "COPY",
+      "arguments": "forex_bot/portfolio_exposure.py ./forex_bot/portfolio_exposure.py"
+    },
+    {
+      "line": 56,
+      "instruction": "COPY",
+      "arguments": "forex_bot/positions.py ./forex_bot/positions.py"
+    },
+    {
+      "line": 57,
+      "instruction": "COPY",
+      "arguments": "forex_bot/profit_protection.py ./forex_bot/profit_protection.py"
+    },
+    {
+      "line": 58,
+      "instruction": "COPY",
+      "arguments": "forex_bot/reconciliation.py ./forex_bot/reconciliation.py"
+    },
+    {
+      "line": 59,
+      "instruction": "COPY",
+      "arguments": "forex_bot/rl_agent.py ./forex_bot/rl_agent.py"
+    },
+    {
+      "line": 60,
+      "instruction": "COPY",
+      "arguments": "forex_bot/session_rules.py ./forex_bot/session_rules.py"
+    },
+    {
+      "line": 61,
+      "instruction": "COPY",
+      "arguments": "forex_bot/state.py ./forex_bot/state.py"
+    },
+    {
+      "line": 62,
+      "instruction": "COPY",
+      "arguments": "forex_bot/strategy_meta.py ./forex_bot/strategy_meta.py"
+    },
+    {
+      "line": 63,
+      "instruction": "COPY",
+      "arguments": "forex_bot/symbols.py ./forex_bot/symbols.py"
+    },
+    {
+      "line": 64,
+      "instruction": "COPY",
+      "arguments": "forex_bot/telegram_cloud.py ./forex_bot/telegram_cloud.py"
+    },
+    {
+      "line": 65,
+      "instruction": "COPY",
+      "arguments": "forex_bot/telegram_commands.py ./forex_bot/telegram_commands.py"
+    },
+    {
+      "line": 66,
+      "instruction": "COPY",
+      "arguments": "forex_bot/telegram_control.py ./forex_bot/telegram_control.py"
+    },
+    {
+      "line": 67,
+      "instruction": "COPY",
+      "arguments": "forex_bot/trade_diagnostics.py ./forex_bot/trade_diagnostics.py"
+    },
+    {
+      "line": 68,
+      "instruction": "COPY",
+      "arguments": "forex_bot/trading.py ./forex_bot/trading.py"
+    },
+    {
+      "line": 69,
+      "instruction": "COPY",
+      "arguments": "forex_bot/v2_shadow/__init__.py ./forex_bot/v2_shadow/__init__.py"
+    },
+    {
+      "line": 70,
+      "instruction": "COPY",
+      "arguments": "forex_bot/v2_shadow/contract.py ./forex_bot/v2_shadow/contract.py"
+    },
+    {
+      "line": 71,
+      "instruction": "COPY",
+      "arguments": "forex_bot/v2_shadow/decide.py ./forex_bot/v2_shadow/decide.py"
+    },
+    {
+      "line": 72,
+      "instruction": "COPY",
+      "arguments": "forex_bot/v2_shadow/market.py ./forex_bot/v2_shadow/market.py"
+    },
+    {
+      "line": 73,
+      "instruction": "COPY",
+      "arguments": "forex_bot/v2_shadow/observe.py ./forex_bot/v2_shadow/observe.py"
+    },
+    {
+      "line": 74,
+      "instruction": "COPY",
+      "arguments": "forex_bot/v2_shadow/score.py ./forex_bot/v2_shadow/score.py"
+    },
+    {
+      "line": 75,
+      "instruction": "COPY",
+      "arguments": "forex_bot/v2_shadow/store.py ./forex_bot/v2_shadow/store.py"
+    },
+    {
+      "line": 76,
+      "instruction": "COPY",
+      "arguments": "main.py ./main.py"
+    },
+    {
+      "line": 78,
+      "instruction": "EXPOSE",
+      "arguments": "8000"
+    },
+    {
+      "line": 81,
+      "instruction": "CMD",
+      "arguments": "[\"uvicorn\", \"forex_bot.app:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]"
+    }
+  ],
+  "from": "python:3.12-slim-bookworm",
+  "from_line": 2,
+  "digest_pinned": false,
+  "platform_selected": false,
+  "workdir": [
+    "/app"
+  ],
+  "env": [
+    "PYTHONDONTWRITEBYTECODE=1      PYTHONUNBUFFERED=1      PIP_DISABLE_PIP_VERSION_CHECK=1      PIP_DEFAULT_TIMEOUT=120      PIP_RETRIES=15"
+  ],
+  "arg_count": 0,
+  "user": [],
+  "run": [
+    "pip install --upgrade pip &&      pip install --no-cache-dir --prefer-binary --timeout 120 --retries 15 -r requirements.txt"
+  ],
+  "copy_count": 61,
+  "entrypoint": [],
+  "cmd": [
+    "[\"uvicorn\", \"forex_bot.app:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]"
+  ],
+  "healthcheck": [],
+  "expose": [
+    "8000"
+  ],
+  "pip_upgrade_unpinned": true,
+  "installs_requirements": true,
+  "hash_verified_requirements": false,
+  "offline_wheelhouse": false,
+  "lockfile_referenced": false,
+  "prefer_binary": true
+}

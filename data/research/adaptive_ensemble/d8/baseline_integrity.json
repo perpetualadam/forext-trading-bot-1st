@@ -1,0 +1,50 @@
+{
+  "stage": "D.8",
+  "verdict": "PASS",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "working_tree": "dirty_before_stage_and_preserved",
+  "production_source_modified_by_d8": false,
+  "hashes": {
+    "forex_bot/app.py": {
+      "sha256": "08766300dfaf703e7553c69703e5d5f2c90e8efc2b491e6eeff1791ca93e3b44",
+      "size": 22503,
+      "expected": "08766300dfaf703e7553c69703e5d5f2c90e8efc2b491e6eeff1791ca93e3b44",
+      "match": true
+    },
+    "forex_bot/database.py": {
+      "sha256": "74bb9f5d692ace88bff525f334d7eb8577427bfe75cf5f229f647e60b88979e9",
+      "size": 27525,
+      "expected": "74bb9f5d692ace88bff525f334d7eb8577427bfe75cf5f229f647e60b88979e9",
+      "match": true
+    },
+    "forex_bot/live_safety.py": {
+      "sha256": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+      "size": 22301,
+      "expected": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+      "match": true
+    },
+    "forex_bot/strategy_meta.py": {
+      "sha256": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+      "size": 6823,
+      "expected": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+      "match": true
+    }
+  },
+  "historical_tests": {
+    "tests/d5_lifespan_runner.py": "0729bea1df8a59d5dde3c66c396a476a0abb80c9c36213f15f08fcb77f2a3b60",
+    "tests/test_d5_lifespan_isolation.py": "8cf8c712979ad32eac648b4a8f18d65546bf24a72d2a4e6f4f3ff6041bd88dd4",
+    "tests/d6_partial_startup_runner.py": "0f26f2f9de022e47d0a1865f06f2be217c6d903bceb6031c1dc8aa3348734336",
+    "tests/test_d6_partial_startup_cleanup.py": "1fd9c54a98da7f099cfa8b204f234d22f7f61ca7cb5d315db9ce6e8c25498ad9",
+    "tests/d7_resource_cleanup_runner.py": "20e935d5d6e91844ba6d736081bb01989b88b6208584aafbf3aa2d4aedf2a68e",
+    "tests/test_d7_resource_cleanup.py": "89f9858d9b4fe20d1f7d177f91f7b9481003582d8499efc60f827470778bd8e1"
+  },
+  "d8_files_created": {
+    "tests/d8_concurrency_runner.py": "7cf6533a9bfb66bbf2fd4a077110a59ee1150e5d2ff2b1f341f065ce877fc444",
+    "tests/test_d8_database_concurrency.py": "830db4afab4c9c38c9e188b1aece7aa3819de8b42327326524cd2a24d09cffda"
+  },
+  "existing_d8_files_at_start": [],
+  "d7_reported_classification": "D7_REMEDIATION_COMPLETE_OFFLINE_TESTED",
+  "unexpected_production_hash_changes": [],
+  "notes": "Hashes were rechecked after the D.8 tests. Production source bytes were unchanged. The working tree was already dirty and was not reset, stashed, cleaned, or committed."
+}

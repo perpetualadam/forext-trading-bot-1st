@@ -1,0 +1,14 @@
+{
+  "d22": "D22_BLOCKED_BASELINE_INTEGRITY",
+  "d22_r1": "D22_R1_REGISTRY_IDENTITY_VERIFIED_BOTH_PLATFORMS",
+  "d23": "D23_OFFLINE_EVIDENCE_REVALIDATED_PLANNING_COMPLETE",
+  "d24": "D24_BLOCKED_REGISTRY_RESPONSE",
+  "d24_recorded_sequence": [
+    "401",
+    "token 200",
+    "307"
+  ],
+  "d24_location_preserved": false,
+  "earlier_stages_modified": false,
+  "reclassified": false
+}

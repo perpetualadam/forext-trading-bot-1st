@@ -1,0 +1,11 @@
+{
+  "stops": [
+    {
+      "classification": "D30_BLOCKED_PROMPT_INTEGRITY",
+      "file": "requirements.txt",
+      "defect": "The expected digest in the stage text has 66 hexadecimal characters. SHA-256 syntax requires 64.",
+      "correction_applied": false,
+      "network_requests": 0
+    }
+  ]
+}

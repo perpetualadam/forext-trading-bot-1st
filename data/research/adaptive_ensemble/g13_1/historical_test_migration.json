@@ -1,0 +1,41 @@
+{
+  "files_modified": [
+    "tests/test_g10_snapshot.py",
+    "tests/test_g11_audit.py",
+    "tests/test_macro_prospective_recorder_stage2.py"
+  ],
+  "tests_deleted": [],
+  "frozen_evidence_modified": false,
+  "dockerfile_modified": false,
+  "replacements": [
+    {
+      "test": "test_official_archive_is_independently_verified_and_not_rewritten",
+      "preserved": [
+        "archive bytes unchanged",
+        "verify_archive against the frozen manifest",
+        "recorded archive and manifest digests"
+      ],
+      "replacement": "Every snapshot file except Dockerfile must match the frozen manifest. Dockerfile must be the G.13 hash, and the frozen pin must remain the original hash. The allowlist file hash is pinned."
+    },
+    {
+      "test": "test_g10_allowlist_has_not_drifted",
+      "preserved": [
+        "allowlist_drift synthetic main.py failure",
+        "63-file count",
+        "frozen archive hash test in the same module"
+      ],
+      "replacement": "Drift must be exactly Dockerfile. The working-tree Dockerfile hash is the G.13 constant. The allowlist file hash is pinned. Research-only paths remain disjoint from the allowlist."
+    },
+    {
+      "test": "test_host_store_is_not_a_bot_container_path",
+      "preserved": [
+        "recorder root path",
+        "compose shadow mount and absence of the prospective store",
+        "absence of COPY reports and COPY data",
+        "bot_loop does not reference macro_prospective",
+        "recorded event id"
+      ],
+      "replacement": "The G.13 static checker must accept the Dockerfile, main.py is copied once, and broad, wildcard, credential, research, test, and operational copies are rejected."
+    }
+  ]
+}

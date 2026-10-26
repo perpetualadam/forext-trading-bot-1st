@@ -1,0 +1,26 @@
+{
+  "import_forex_bot_app": "ALLOWED_AFTER_LAZY_BROKER_IMPORTS",
+  "main_py_imported": false,
+  "lifespan_entered": false,
+  "production_ports_called": false,
+  "dotenv": "stubbed before import; startup log dotenv=1 means the stub was called, not that .env was read",
+  "socket_barrier": "raising socket subclass",
+  "families_permitted": [],
+  "startup_process": {
+    "exit": 0,
+    "blocked_attempts": 5,
+    "dotenv_stub_calls": 1
+  },
+  "regression_process": {
+    "exit": 0,
+    "blocked_attempts": 5,
+    "dotenv_stub_calls": 1,
+    "separate_process": true,
+    "reason": "Earlier tests assert forex_bot.app is absent. They run before any R.10 import."
+  },
+  "postgresql_connection": false,
+  "broker_client": false,
+  "telegram_or_discord_connection": false,
+  "dns_success": false,
+  "network_success": false
+}

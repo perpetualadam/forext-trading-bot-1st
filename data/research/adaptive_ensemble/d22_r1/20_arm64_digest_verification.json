@@ -1,0 +1,13 @@
+{
+  "computed": "sha256:739ba32ae445e8d58f3d90feb85f83bebc8346f8dd280fa1eb5848f4ff1ed163",
+  "reported": "sha256:739ba32ae445e8d58f3d90feb85f83bebc8346f8dd280fa1eb5848f4ff1ed163",
+  "reported_matched": true,
+  "reported_present": true,
+  "size_matched": true,
+  "descriptor_matched": true,
+  "config_media_type": "application/vnd.oci.image.config.v1+json",
+  "layer_count": 4,
+  "media_type": "application/vnd.oci.image.manifest.v1+json",
+  "expected": "sha256:739ba32ae445e8d58f3d90feb85f83bebc8346f8dd280fa1eb5848f4ff1ed163",
+  "verdict": "ARM64_MANIFEST_VERIFIED"
+}

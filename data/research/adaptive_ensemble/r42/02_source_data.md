@@ -1,0 +1,14 @@
+# R.42 source-data verification
+
+The descriptive script hashed each local M5 file and compared it with `DATASET_SHA256` in `forex_bot/research/learning/regimes.py` before aggregation.
+
+| Instrument | SHA-256 |
+| --- | --- |
+| AUD_USD | `e639a1f817e4b91973ccfea0ee0c8c3dd5279c722ea665c531ad309b359165e0` |
+| EUR_USD | `3ae3c4d061792353b94b8d2be73684f950362f135d47926d1bc8c11a24791091` |
+| GBP_USD | `ac3ddba51b75f493a08a5ea57e9926e38a5a85b06797de53803e6cd4f8b00d58` |
+| USD_CAD | `a88eb2c440691bd5893a8317b64e6beaf87bb6f3c93b0c6e6a4cd16e53aa9c60` |
+| USD_CHF | `3901a2d50a63ef5ca4d10858145cca7fd70d20d24420761e1b7d2d09f2a127bc` |
+| USD_JPY | `e1b0d3491f873723967315d74e3bd5b707474814a294be4ed50a26e1b8c9805c` |
+
+Span: 2025-09-01 00:00 UTC through 2026-08-31 23:50 UTC. Bid prices. No new market data were collected. The historical files were not copied into this evidence folder.

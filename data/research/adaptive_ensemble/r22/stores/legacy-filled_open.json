@@ -1,0 +1,14 @@
+{
+  "schema": "exec_orders_offline_v1",
+  "orders": [
+    {
+      "client_order_id": "legacy-1",
+      "symbol": "EUR_USD",
+      "side": "BUY",
+      "units": 1.0,
+      "status": "FILLED",
+      "reservation_status": "FILLED",
+      "metadata": {}
+    }
+  ]
+}

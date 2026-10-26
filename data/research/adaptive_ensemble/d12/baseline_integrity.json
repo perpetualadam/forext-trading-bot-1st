@@ -1,0 +1,16 @@
+{
+  "stage": "D.12",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "working_tree": "dirty_from_prior_stages_preserved",
+  "d12_directory_existed_before": false,
+  "hashes_matched_before_runtime": {
+    "forex_bot/app.py": "08766300dfaf703e7553c69703e5d5f2c90e8efc2b491e6eeff1791ca93e3b44",
+    "forex_bot/database.py": "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e",
+    "forex_bot/telegram_control.py": "193a59645c0596b22016164f8cdf1a50b06734a6bd56a014fba9a6910ba68780",
+    "forex_bot/live_safety.py": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+    "forex_bot/strategy_meta.py": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d"
+  },
+  "production_source_modified_by_d12": false,
+  "result": "PASS"
+}

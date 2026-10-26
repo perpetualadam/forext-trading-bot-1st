@@ -1,0 +1,19 @@
+{
+  "registry": "docker.io",
+  "repository": "library/python",
+  "tag": "3.12-slim-bookworm",
+  "oci_platform": "linux/arm64",
+  "reference_approval": "EXPLICIT_USER_DECISION",
+  "index_digest": "UNVERIFIED",
+  "platform_manifest_digest": "UNVERIFIED",
+  "configuration_digest": "UNVERIFIED",
+  "layer_digests": "UNVERIFIED",
+  "manifest_media_type": "UNVERIFIED",
+  "image_metadata": "UNVERIFIED",
+  "python_runtime_metadata": "UNVERIFIED",
+  "distribution_metadata": "UNVERIFIED",
+  "libc_metadata": "UNVERIFIED",
+  "provenance": "UNVERIFIED",
+  "presence_in_remote_index": "UNVERIFIED",
+  "registry_contacted": false
+}

@@ -1,0 +1,26 @@
+{
+  "packages": [
+    {
+      "name": "numpy",
+      "text": "numpy>=1.24.0",
+      "python_312_support": "UNVERIFIED",
+      "wheel_tag": "MISSING",
+      "source_build_risk": "high if no compatible wheel"
+    },
+    {
+      "name": "pandas",
+      "text": "pandas>=2.0.0",
+      "python_312_support": "UNVERIFIED",
+      "wheel_tag": "MISSING",
+      "source_build_risk": "high if no compatible wheel"
+    },
+    {
+      "name": "psycopg2-binary",
+      "text": "psycopg2-binary>=2.9.9",
+      "python_312_support": "UNVERIFIED",
+      "wheel_tag": "MISSING",
+      "source_build_risk": "the binary distribution is the intended artifact; source build is not the selected path"
+    }
+  ],
+  "local_wheels": 0
+}

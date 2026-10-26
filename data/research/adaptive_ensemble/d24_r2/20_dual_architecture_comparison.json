@@ -1,0 +1,31 @@
+{
+  "config_digests_equal": false,
+  "differences": [
+    {
+      "field": "architecture",
+      "amd64": "amd64",
+      "arm64": "arm64",
+      "automatic_defect": false
+    },
+    {
+      "field": "variant",
+      "amd64": null,
+      "arm64": "v8",
+      "automatic_defect": false
+    }
+  ],
+  "shared": [
+    "os",
+    "user",
+    "working_dir",
+    "entrypoint",
+    "command",
+    "environment_names",
+    "non_secret_environment",
+    "exposed_ports",
+    "volumes",
+    "rootfs_diff_id_count",
+    "history_entry_count",
+    "labels"
+  ]
+}

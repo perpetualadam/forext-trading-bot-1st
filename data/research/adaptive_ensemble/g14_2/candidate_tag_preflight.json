@@ -1,0 +1,11 @@
+{
+  "stage": "G.14.2",
+  "proposed_tag": "forexttradingbot1st-g14-candidate:d080d89-4a458b4b",
+  "inspect_result": "No such image",
+  "image_ls_result": "empty",
+  "already_exists": false,
+  "existing_image_id": null,
+  "replacement_tag_required": false,
+  "classification": "CANDIDATE_TAG_AVAILABLE_AT_PREFLIGHT",
+  "must_recheck_immediately_before_build": true
+}

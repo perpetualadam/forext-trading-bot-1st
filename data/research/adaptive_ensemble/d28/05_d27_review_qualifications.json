@@ -1,0 +1,20 @@
+{
+  "D27-REVIEW-01": {
+    "classification": "PARSER_UNRESOLVED",
+    "count": 4,
+    "filenames": [
+      "numpy-1.13.3-2-cp27-none-win32.whl",
+      "numpy-1.13.3-2-cp34-none-win32.whl",
+      "numpy-1.13.3-2-cp35-none-win32.whl",
+      "numpy-1.13.3-2-cp36-none-win32.whl"
+    ],
+    "authoritative_parser": false
+  },
+  "D27-REVIEW-02": {
+    "python312_screening_count": 1218,
+    "amd64_screening_count": 714,
+    "arm64_screening_count": 708,
+    "compatibility_claim": false,
+    "abi3_and_compressed_tags": "require a future standards-based evaluation"
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "method": "The workflow source was traced to the G.14.6 functions it calls. A control is OFFLINE_INTEGRATION_VERIFIED only when a G.14.7 test drives AcquisitionWorkflow.run or a declare_* method into that function and observes the failure or the completion. A mock transport alone is not verification.",
+  "controls": [
+    {
+      "area": "transport",
+      "code": "tests/g14_7_transport.py AcquisitionWorkflow._require_synthetic_transport",
+      "control": "Only ScriptedTransport is accepted. None and any other type fail closed.",
+      "positive": "test_end_to_end_complete_synthetic",
+      "negative": "test_missing_transport, test_real_network_fallback_is_rejected",
+      "bypass": "none found in this module",
+      "level": "OFFLINE_INTEGRATION_VERIFIED",
+      "live": "LIVE_NETWORK_BEHAVIOR_UNVERIFIED"
+    },
+    {
+      "area": "request_policy",
+      "code": "authorize_url called from _validate_policy and authorize_redirect_chain called from _request",
+      "control": "Scheme, host, port, userinfo, path, and role are checked before each exchange.",
+      "positive": "end-to-end index and artifact requests",
+      "negative": "unapproved index and unapproved artifact host",
+      "bypass": "none found; the scripted transport cannot skip the call",
+      "level": "OFFLINE_INTEGRATION_VERIFIED",
+      "live": "LIVE_NETWORK_BEHAVIOR_UNVERIFIED"
+    },
+    {
+      "area": "redirect_policy",
+      "code": "_request loop plus authorize_redirect_chain",
+      "control": "Each location is authorized before the next exchange. Downgrade, third host, and excess hops fail closed.",
+      "positive": "one same-host redirect in the end-to-end run",
+      "negative": "https_downgrade, cross_host_redirect, excessive_redirects",
+      "bypass": "none found; ScriptedTransport.exchange does not follow locations",
+      "level": "OFFLINE_INTEGRATION_VERIFIED",
+      "live": "LIVE_NETWORK_BEHAVIOR_UNVERIFIED"
+    },
+    {
+      "area": "wheels_only",
+      "code": "assess_wheel_candidate during _validate_resolution",
+      "control": "Source distributions, yanked releases, prereleases, and non-any tags are rejected before fetch.",
+      "positive": "demo-1.0.0-py3-none-any.whl",
+      "negative": "source_distribution, yanked_release, unapproved_prerelease, unsupported_wheel_tag",
+      "bypass": "none found",
+      "level": "OFFLINE_INTEGRATION_VERIFIED",
+      "native": "TARGET_COMPATIBILITY_UNVERIFIED"
+    },
+    {
+      "area": "streaming",
+      "code": "_bounded and the retry/redirect loop",
+      "control": "Chunk, artifact, cumulative, header, timeout-field, retry, status, content type, and length checks.",
+      "positive": "end-to-end bounded wheel body",
+      "negative": "oversized_response, truncated_response, interrupted_stream, timeout, retry_exhausted, unexpected_status",
+      "bypass": "limits apply to SyntheticResponse fields, not to a socket reader",
+      "level": "OFFLINE_INTEGRATION_VERIFIED",
+      "live": "LIVE_NETWORK_BEHAVIOR_UNVERIFIED"
+    },
+    {
+      "area": "filesystem",
+      "code": "tests/g14_7_fs.py DirectoryHandle plus assert_destination_boundary",
+      "control": "Post-open creates use NtCreateFile on the opened directory. Reparse handles are rejected.",
+      "positive": "end-to-end create; parent replacement left the substitute directory empty",
+      "negative": "junction, injected reparse, hard link, short write, prohibited paths",
+      "bypass": "the first CreateFileW is still a path lookup",
+      "level": "FILESYSTEM_RACE_RESISTANCE_UNVERIFIED",
+      "post_open_test": "POST_OPEN_DIRECTORY_HANDLE_BOUND"
+    },
+    {
+      "area": "artifact_verification",
+      "code": "verify_member_bytes on handle-read bytes",
+      "control": "Hash, size, ZIP, WHEEL, METADATA, and RECORD must match before the lock is written.",
+      "positive": "end-to-end verification",
+      "negative": "hash_mismatch, size_mismatch, malformed_zip, missing_wheel_metadata, missing_metadata, missing_record, manifest tamper",
+      "bypass": "none found on the workflow path; path-based verify_wheelhouse is not used for completion",
+      "level": "OFFLINE_INTEGRATION_VERIFIED",
+      "real_metadata": "REAL_WHEEL_METADATA_UNVERIFIED"
+    },
+    {
+      "area": "dependency_graph",
+      "code": "assert_dependency_graph inside verify_member_bytes",
+      "control": "Completion requires CONSISTENT_FOR_SYNTHETIC_SET.",
+      "positive": "demo with no dependencies",
+      "negative": "missing_dependency, unsatisfied_constraint, missing_requested_extra, incorrect_environment_marker",
+      "bypass": "declare_graph and declare_lock from the wrong state fail illegal_transition",
+      "level": "OFFLINE_INTEGRATION_VERIFIED",
+      "production": "DEPENDENCY_GRAPH_COMPLETENESS_UNVERIFIED"
+    },
+    {
+      "area": "synthetic_lock",
+      "code": "_prepare_lock and declare_complete",
+      "control": "Lock is written only after verification. Provenance is SYNTHETIC_TEST_ONLY. source_approved is false.",
+      "positive": "synthetic-lock.json in the end-to-end destination",
+      "negative": "false_completion_claim for non-synthetic provenance; no lock after failed verification",
+      "bypass": "none found",
+      "level": "OFFLINE_INTEGRATION_VERIFIED",
+      "production_lock": false
+    },
+    {
+      "area": "state_machine",
+      "code": "_advance and declare_*",
+      "control": "States move only in order. Failures become FAILED_CLOSED.",
+      "positive": "COMPLETE_SYNTHETIC only after the lock evidence exists",
+      "negative": "declare_fetch, declare_verified, declare_graph, declare_lock, declare_complete from CREATED",
+      "bypass": "none found",
+      "level": "OFFLINE_INTEGRATION_VERIFIED"
+    }
+  ],
+  "critical_findings": [],
+  "high_findings": [
+    "INITIAL_PATH_LOOKUP_NOT_ATOMIC: the parent directory is still opened by path",
+    "LIVE_HTTPS_TRANSPORT_NOT_IMPLEMENTED",
+    "PACKAGE_SOURCE_APPROVAL_REQUIRED",
+    "TARGET_RUNTIME_COMPATIBILITY_PROFILE_INCOMPLETE"
+  ],
+  "medium_findings": [
+    "Directory symlink creation returned errno 22 and those OS cases were not executed",
+    "Timeout and retry limits are fields on the synthetic response, not operating-system enforcement"
+  ]
+}

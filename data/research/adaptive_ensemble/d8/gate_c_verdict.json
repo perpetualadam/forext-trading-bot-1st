@@ -1,0 +1,13 @@
+{
+  "gate": "C",
+  "verdict": "PASS",
+  "fake_driver": "in-process psycopg2 module installed before import",
+  "synchronization": ["threading.Barrier", "threading.Event", "threading.RLock"],
+  "sleep_used_as_primary_race_control": false,
+  "real_postgresql": false,
+  "external_emulator": false,
+  "connect_fallthrough": false,
+  "waits_bounded": true,
+  "worker_join_timeout_seconds": 5,
+  "barrier_and_event_timeout_seconds": 3
+}

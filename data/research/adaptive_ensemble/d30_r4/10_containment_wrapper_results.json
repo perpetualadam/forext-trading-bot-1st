@@ -1,0 +1,17 @@
+{
+  "result": {
+    "mode": "complete",
+    "worker_in_job": true,
+    "resume_previous_count": 1,
+    "worker_exit_confirmed": true,
+    "worker_exit_code": 0,
+    "handles_closed": true,
+    "cleanup_blocked": false,
+    "termination_method": "none",
+    "operation_elapsed": 0.1228,
+    "cleanup_duration": 0.0001,
+    "total_elapsed": 0.1328
+  },
+  "wrapper_ok": true,
+  "blocked": null
+}

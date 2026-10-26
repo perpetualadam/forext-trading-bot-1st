@@ -1,0 +1,12 @@
+{
+  "reference": "docker.io/library/python:3.12-slim-bookworm",
+  "classification": "D22_R1_REGISTRY_IDENTITY_VERIFIED_BOTH_PLATFORMS",
+  "reason": null,
+  "index_verified": true,
+  "amd64_manifest_verified": true,
+  "arm64_manifest_verified": true,
+  "python_patch_verified": false,
+  "abi_verified": false,
+  "libc_verified": false,
+  "wheels_verified": false
+}

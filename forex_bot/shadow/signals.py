@@ -33,6 +33,18 @@ def signal_from_indicators(strategy: str, df: pd.DataFrame) -> tuple[str | None,
     close = float(row["close"])
     ma_f = float(row["ma_fast"])
     ma_s = float(row["ma_slow"])
+    observed = (
+        close,
+        ma_f,
+        ma_s,
+        float(row["atr"]),
+        float(row["boll_up"]),
+        float(row["boll_down"]),
+        float(row["high"]),
+        float(row["low"]),
+    )
+    if not all(math.isfinite(v) for v in observed):
+        return None, ShadowReason.INSUFFICIENT_DATA
     if strategy in ("trend", "swing_trend"):
         if ma_f > ma_s and close >= ma_f:
             return "BUY", "ma_fast_above_slow"
@@ -58,6 +70,8 @@ def signal_from_indicators(strategy: str, df: pd.DataFrame) -> tuple[str | None,
             return None, ShadowReason.INSUFFICIENT_DATA
         hi = float(prior["high"].max())
         lo = float(prior["low"].min())
+        if not math.isfinite(hi) or not math.isfinite(lo):
+            return None, ShadowReason.INSUFFICIENT_DATA
         if close > hi:
             return "BUY", "close_above_prior_high"
         if close < lo:

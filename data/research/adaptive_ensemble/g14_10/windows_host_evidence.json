@@ -1,0 +1,50 @@
+{
+  "stage": "G.14.10",
+  "observation": "G.14.10 read-only metadata on 2026-10-11",
+  "independently_reproduced_from_prior_stages": false,
+  "applies_to_this_machine": true,
+  "establishes_security_boundary": false,
+  "os": {
+    "product_name": {"value": "Windows 10 Pro", "status": "OBSERVED", "source": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion ProductName"},
+    "edition_id": {"value": "Professional", "status": "OBSERVED", "source": "EditionID"},
+    "display_version": {"value": "25H2", "status": "OBSERVED", "source": "DisplayVersion"},
+    "current_build": {"value": "26200", "status": "OBSERVED", "source": "CurrentBuild and CurrentBuildNumber"},
+    "installation_type": {"value": "Client", "status": "OBSERVED", "source": "InstallationType"},
+    "build_lab_ex": {"value": "26100.1.amd64fre.ge_release.240331-1435", "status": "OBSERVED", "source": "BuildLabEx"},
+    "build_lab_note": "BuildLabEx and CurrentBuild differ. Both strings were read. This stage does not reconcile them.",
+    "ubr": {"value": null, "status": "UNKNOWN"},
+    "architecture": {"value": "AMD64", "status": "OBSERVED", "source": "PROCESSOR_ARCHITECTURE"}
+  },
+  "process": {
+    "integrity": {"value": "Mandatory Label\\Medium Mandatory Level S-1-16-8192", "status": "OBSERVED", "source": "whoami /groups filtered to Mandatory Label"},
+    "administrators_token": {"value": "BUILTIN\\Administrators present as Group used for deny only", "status": "OBSERVED"},
+    "elevation": {"value": "not_elevated", "status": "OBSERVED", "reason": "Medium integrity together with the deny-only Administrators group on this token."},
+    "account_can_elevate_via_uac": {"value": null, "status": "UNKNOWN", "reason": "Elevation was not requested and was not tested."},
+    "named_privileges_absent": ["SeDebugPrivilege", "SeImpersonatePrivilege", "SeCreateTokenPrivilege", "SeTcbPrivilege", "SeBackupPrivilege", "SeRestorePrivilege", "SeLoadDriverPrivilege", "SeTakeOwnershipPrivilege", "SeRelabelPrivilege", "SeAssignPrimaryTokenPrivilege"],
+    "named_privileges_status": "OBSERVED",
+    "other_privileges": "UNKNOWN",
+    "other_privileges_reason": "whoami /priv was filtered to the named list so the artifact would not dump the whole token."
+  },
+  "virtualization": {
+    "hypervisor_present": {"value": true, "status": "OBSERVED", "source": "Win32_ComputerSystem.HypervisorPresent"},
+    "hypervisor_identity": {"value": null, "status": "UNKNOWN", "reason": "The boolean does not name the hypervisor. No hypervisor management command was run."},
+    "virtualization_firmware_enabled": {"value": true, "status": "OBSERVED", "source": "Win32_Processor.VirtualizationFirmwareEnabled"},
+    "slat_wmi": {"value": false, "status": "OBSERVED", "interpretation": "Raw WMI value only. Not treated as proof that SLAT is absent or that VM creation is blocked."},
+    "vm_monitor_mode_extensions_wmi": {"value": false, "status": "OBSERVED", "interpretation": "Raw WMI value only. Not treated as a capability conclusion."},
+    "vmms": {"presence": "present", "status": "Running", "start_type": "Automatic", "evidence": "OBSERVED"},
+    "vmcompute": {"presence": "present", "status": "Running", "start_type": "Manual", "evidence": "OBSERVED"},
+    "hvhost": {"presence": "present", "status": "Running", "start_type": "Manual", "evidence": "OBSERVED"},
+    "lxss_manager": {"presence": "not_present", "evidence": "OBSERVED", "note": "Older service name. Absence does not by itself mean WSL is absent."},
+    "wsl_service": {"presence": "present", "status": "Running", "start_type": "Automatic", "evidence": "OBSERVED", "note": "Queried once. Case variants resolve to the same service."},
+    "wsl_exe_at_system32": {"value": true, "status": "OBSERVED", "note": "File presence only. wsl.exe was not executed."},
+    "vmcompute_exe": {"value": true, "status": "OBSERVED"},
+    "vmms_exe": {"value": true, "status": "OBSERVED"},
+    "vboxmanage_default_path": {"value": false, "status": "OBSERVED", "note": "Default path only. Other install locations were not searched."},
+    "vmware_workstation_default_path": {"value": false, "status": "OBSERVED", "note": "Default path only. Other install locations were not searched."},
+    "features_enabled_conclusion": "INFERRED_WITH_LIMITATIONS",
+    "features_enabled_limit": "Hyper-V management and host-compute services are running, and WslService is running. That is not a disposable guest, a mount policy, or an isolation proof."
+  },
+  "protected_execution_boundary_already_present": {"value": null, "status": "UNKNOWN", "reason": "No AppContainer, restricted token, separate user, or protected acquisition directory was observed."},
+  "secrets_printed": false,
+  "services_started_or_modified": false
+}

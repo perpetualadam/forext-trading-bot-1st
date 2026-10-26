@@ -1,0 +1,17 @@
+{
+  "head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "r15_directory_at_start": "absent",
+  "pre_bot_loop": "91953e58f9ab131399dd3ec84ebd5217161cfbc773022b42a58154597639528f",
+  "post_bot_loop": "518b5930038e1ef520f17afe3555c9d055efd0ad7acc196d0f3c879b9381c0bd",
+  "unchanged": ["forex_bot/app.py", "forex_bot/database.py", "forex_bot/orders.py", "forex_bot/oanda_exec.py"],
+  "source_modified": ["forex_bot/bot_loop.py"],
+  "tests_added": ["tests/test_r15_adapter_account.py"],
+  "tests_changed": [
+    "tests/test_r8_reservation_safety.py",
+    "tests/test_r10_offline_startup.py",
+    "tests/test_r11_historical_recovery.py",
+    "tests/test_r12_single_iteration.py",
+    "tests/test_r14_decision_path.py"
+  ]
+}

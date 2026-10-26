@@ -1,0 +1,12 @@
+{
+  "gate": "C",
+  "verdict": "PASS",
+  "meaning": "The offline task completed. Missing runtime metadata was not obtained.",
+  "checks": [
+    "AMD64 digest and size match.",
+    "Parent index descriptor matches.",
+    "Config and layer arrays are present.",
+    "Config blob and layers were not fetched."
+  ],
+  "network_requests": 0
+}

@@ -1,0 +1,33 @@
+{
+  "primary_broker_failure": {
+    "escaped_type": "RuntimeError",
+    "yielded": false,
+    "connection_open": false,
+    "d12_stop_01_present": false,
+    "result": "PASS"
+  },
+  "stop_exception": {
+    "escaped_type": "RuntimeError",
+    "cleanup_contains": "RuntimeError",
+    "d12_stop_01_present": false,
+    "connection_open": true,
+    "result": "PASS"
+  },
+  "task_await_error": {
+    "pending": 0,
+    "cleanup_contains": "RuntimeError",
+    "result": "PASS"
+  },
+  "incomplete_stop": {
+    "escaped_type": "",
+    "cleanup_contains": "D12-STOP-01",
+    "result": "PASS"
+  },
+  "cancellation": {
+    "cancel_type": "CancelledError",
+    "pending_owned": 0,
+    "connection_open": true,
+    "cleanup_contains": "D12-STOP-01",
+    "result": "PASS"
+  }
+}

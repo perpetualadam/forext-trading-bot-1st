@@ -1,0 +1,562 @@
+{
+  "additional_eligible_datasets": 0,
+  "normalised_candles": [
+    {
+      "additional": false,
+      "ask_column": "ask_c",
+      "bid_column": "bid_c",
+      "bytes": 1030416,
+      "columns": [
+        "time",
+        "complete",
+        "bid_o",
+        "bid_h",
+        "bid_l",
+        "bid_c",
+        "ask_o",
+        "ask_h",
+        "ask_l",
+        "ask_c",
+        "mid_o",
+        "mid_h",
+        "mid_l",
+        "mid_c"
+      ],
+      "duplicate_timestamps": 0,
+      "earliest": "2026-09-01T00:00:00+00:00",
+      "format": "csv",
+      "invalid_bid_ask_rows": 0,
+      "latest": "2026-10-09T07:00:00+00:00",
+      "out_of_order": false,
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/normalized/AUD_USD_M5.csv",
+      "provenance": "G.3 normalised M5 acquisition used by G.4 prepare()",
+      "rows": 8146,
+      "sha256": "d75312decbb4c72858621a0b5a9af6103f72b01593ae26e9df4ef19a06104583",
+      "timezone": "parsed as UTC"
+    },
+    {
+      "additional": false,
+      "ask_column": "ask_c",
+      "bid_column": "bid_c",
+      "bytes": 1030560,
+      "columns": [
+        "time",
+        "complete",
+        "bid_o",
+        "bid_h",
+        "bid_l",
+        "bid_c",
+        "ask_o",
+        "ask_h",
+        "ask_l",
+        "ask_c",
+        "mid_o",
+        "mid_h",
+        "mid_l",
+        "mid_c"
+      ],
+      "duplicate_timestamps": 0,
+      "earliest": "2026-09-01T00:00:00+00:00",
+      "format": "csv",
+      "invalid_bid_ask_rows": 0,
+      "latest": "2026-10-09T07:00:00+00:00",
+      "out_of_order": false,
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/normalized/EUR_USD_M5.csv",
+      "provenance": "G.3 normalised M5 acquisition used by G.4 prepare()",
+      "rows": 8148,
+      "sha256": "c9016c8443ecc44fd0cf6ed5acb44656eae09ee3ef5b7d9fe9a334152c764b14",
+      "timezone": "parsed as UTC"
+    },
+    {
+      "additional": false,
+      "ask_column": "ask_c",
+      "bid_column": "bid_c",
+      "bytes": 1030501,
+      "columns": [
+        "time",
+        "complete",
+        "bid_o",
+        "bid_h",
+        "bid_l",
+        "bid_c",
+        "ask_o",
+        "ask_h",
+        "ask_l",
+        "ask_c",
+        "mid_o",
+        "mid_h",
+        "mid_l",
+        "mid_c"
+      ],
+      "duplicate_timestamps": 0,
+      "earliest": "2026-09-01T00:00:00+00:00",
+      "format": "csv",
+      "invalid_bid_ask_rows": 0,
+      "latest": "2026-10-09T07:00:00+00:00",
+      "out_of_order": false,
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/normalized/GBP_USD_M5.csv",
+      "provenance": "G.3 normalised M5 acquisition used by G.4 prepare()",
+      "rows": 8148,
+      "sha256": "272c7ff448ff91f587946c8b7a4335bacd04ae488c95f066e4a29cfec700c4f6",
+      "timezone": "parsed as UTC"
+    },
+    {
+      "additional": false,
+      "ask_column": "ask_c",
+      "bid_column": "bid_c",
+      "bytes": 1030126,
+      "columns": [
+        "time",
+        "complete",
+        "bid_o",
+        "bid_h",
+        "bid_l",
+        "bid_c",
+        "ask_o",
+        "ask_h",
+        "ask_l",
+        "ask_c",
+        "mid_o",
+        "mid_h",
+        "mid_l",
+        "mid_c"
+      ],
+      "duplicate_timestamps": 0,
+      "earliest": "2026-09-01T00:00:00+00:00",
+      "format": "csv",
+      "invalid_bid_ask_rows": 0,
+      "latest": "2026-10-09T07:00:00+00:00",
+      "out_of_order": false,
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/normalized/USD_CAD_M5.csv",
+      "provenance": "G.3 normalised M5 acquisition used by G.4 prepare()",
+      "rows": 8147,
+      "sha256": "e8fd5cf2acd20c481167d5ef5d0b77b7beaed9c190a8832c1291ffdee4475743",
+      "timezone": "parsed as UTC"
+    },
+    {
+      "additional": false,
+      "ask_column": "ask_c",
+      "bid_column": "bid_c",
+      "bytes": 1027565,
+      "columns": [
+        "time",
+        "complete",
+        "bid_o",
+        "bid_h",
+        "bid_l",
+        "bid_c",
+        "ask_o",
+        "ask_h",
+        "ask_l",
+        "ask_c",
+        "mid_o",
+        "mid_h",
+        "mid_l",
+        "mid_c"
+      ],
+      "duplicate_timestamps": 0,
+      "earliest": "2026-09-01T00:00:00+00:00",
+      "format": "csv",
+      "invalid_bid_ask_rows": 0,
+      "latest": "2026-10-09T07:00:00+00:00",
+      "out_of_order": false,
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/normalized/USD_CHF_M5.csv",
+      "provenance": "G.3 normalised M5 acquisition used by G.4 prepare()",
+      "rows": 8123,
+      "sha256": "7119ac28e67faaa24246c2bf9e0b8a863092328fa64b0694b4132e6835ea249f",
+      "timezone": "parsed as UTC"
+    },
+    {
+      "additional": false,
+      "ask_column": "ask_c",
+      "bid_column": "bid_c",
+      "bytes": 1029967,
+      "columns": [
+        "time",
+        "complete",
+        "bid_o",
+        "bid_h",
+        "bid_l",
+        "bid_c",
+        "ask_o",
+        "ask_h",
+        "ask_l",
+        "ask_c",
+        "mid_o",
+        "mid_h",
+        "mid_l",
+        "mid_c"
+      ],
+      "duplicate_timestamps": 0,
+      "earliest": "2026-09-01T00:00:00+00:00",
+      "format": "csv",
+      "invalid_bid_ask_rows": 0,
+      "latest": "2026-10-09T07:00:00+00:00",
+      "out_of_order": false,
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/normalized/USD_JPY_M5.csv",
+      "provenance": "G.3 normalised M5 acquisition used by G.4 prepare()",
+      "rows": 8141,
+      "sha256": "542a307964b9a365d28ca923905b5be6595c136261d52e92c154d0d29b35fd42",
+      "timezone": "parsed as UTC"
+    }
+  ],
+  "other_research_tables": [
+    {
+      "bytes": 2016873,
+      "eligible": false,
+      "path": "data/research/directional_replacement_stage1/events_first_qual.csv",
+      "reason": "not the G.3 normalised six-pair M5 set",
+      "sha256": "70a31c50ab04fe602883bcffa2bddb91f5dd92976c7fb9ba4e8e4f58fdeea63b"
+    },
+    {
+      "bytes": 15026,
+      "eligible": false,
+      "path": "data/research/macro_first_print/normalized/events_2025.csv",
+      "reason": "not the G.3 normalised six-pair M5 set",
+      "sha256": "c4fd391b6fbb1e9ee8ef9a4ba8130327ab0f8c75c6d3a8bc497a3f5cf38339f1"
+    },
+    {
+      "bytes": 27547,
+      "eligible": false,
+      "path": "data/research/macro_consensus/pilot/observations.csv",
+      "reason": "not the G.3 normalised six-pair M5 set",
+      "sha256": "eef242343c25df18d8113d212b59ba5263c9198aef34987a8cf98586ab3eca75"
+    }
+  ],
+  "production_paths_skipped": [
+    "data/ops",
+    "data/research/v2_shadow"
+  ],
+  "raw_pages": [
+    {
+      "additional": false,
+      "bytes": 425671,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/AUD_USD/page_000.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "3ced51f27031de732039800c2c92af81443c6aff7ddc36671003e313aa97dce1"
+    },
+    {
+      "additional": false,
+      "bytes": 426058,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/AUD_USD/page_001.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "ea7fcad05c9903924cbb2464cbe062503eac1e7d4a92fe4172fc923d29feab2e"
+    },
+    {
+      "additional": false,
+      "bytes": 425692,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/AUD_USD/page_002.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "b9f310ce34e9b4947d95c6c5a27e40a225b78120cca098f4954d71ccccaa7d98"
+    },
+    {
+      "additional": false,
+      "bytes": 426068,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/AUD_USD/page_003.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "60d8f9a852d2a257925a8fd5d78e2c41ee769025fa28e42b29bc23ac53c18d8f"
+    },
+    {
+      "additional": false,
+      "bytes": 426106,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/AUD_USD/page_004.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "5c542774cb804d10ba73a5d0750962a330b091eb40eda75100d1dc4466b7cd72"
+    },
+    {
+      "additional": false,
+      "bytes": 280428,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/AUD_USD/page_005.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "9304fe47322a4c01a341e0d1fff614e0bc152cb9b73eeb41e2ab6191568edc8b"
+    },
+    {
+      "additional": false,
+      "bytes": 426146,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/EUR_USD/page_000.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "7021bc697e83d4ea00c4a866459407f0cd3a59477413a2bbb3e56876c244e832"
+    },
+    {
+      "additional": false,
+      "bytes": 426236,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/EUR_USD/page_001.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "c1c5adddc3d866f78690f8d817d841cd9ad798205d1488fe149a60f3f0b4ae65"
+    },
+    {
+      "additional": false,
+      "bytes": 426186,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/EUR_USD/page_002.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "c50d999a703623c29525ff3e0baebb910e2dced51885702526a2e4ab8623ffb7"
+    },
+    {
+      "additional": false,
+      "bytes": 426211,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/EUR_USD/page_003.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "47d8acc5255cd29e0dbd9045b67f1ab2e6330bb2181abc4f963dc7eb149d48b1"
+    },
+    {
+      "additional": false,
+      "bytes": 426059,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/EUR_USD/page_004.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "201a23c8919137952a112ddf752a943bc042ab2fe786b6af9622af89ffd8e869"
+    },
+    {
+      "additional": false,
+      "bytes": 280943,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/EUR_USD/page_005.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "877514772503d9235dd9fa685c3ce612faa69405437cc9359d0ba3465d92a525"
+    },
+    {
+      "additional": false,
+      "bytes": 426419,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/GBP_USD/page_000.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "22fc04723be294cc990b2898cf141d1d05b3310aafd22bcb69968be216b66de1"
+    },
+    {
+      "additional": false,
+      "bytes": 426476,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/GBP_USD/page_001.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "f9e068f13b66a9b20f5136177d08155f8aec9197e1fd3f0a887606f99c42e978"
+    },
+    {
+      "additional": false,
+      "bytes": 426366,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/GBP_USD/page_002.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "36e98b8649de1cb41e509ad4fad9b4b64826829c413ffc036b0d2739f1a27266"
+    },
+    {
+      "additional": false,
+      "bytes": 426540,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/GBP_USD/page_003.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "c877b141d0953d89b4ea01049d5957ad088821cb6c25feb7ccbfca1c5e9158af"
+    },
+    {
+      "additional": false,
+      "bytes": 426733,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/GBP_USD/page_004.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "2266f941e629d020d7f92cf9c61e4838855ed2b5e3e2b83191a98b98286ddcb8"
+    },
+    {
+      "additional": false,
+      "bytes": 280790,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/GBP_USD/page_005.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "c56f9279e3969a7c42067cf4521f8dd215d94acb8fe80f01d51ea35696397cb9"
+    },
+    {
+      "additional": false,
+      "bytes": 425529,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CAD/page_000.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "0427296fc7ad8acab9be9c25a033bc81923ff4e1eca5484854a305a941dd4fc0"
+    },
+    {
+      "additional": false,
+      "bytes": 426185,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CAD/page_001.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "3e667d4baa8c03ddda561ae16ac23ff09da31171a4538fc848bf33296f456310"
+    },
+    {
+      "additional": false,
+      "bytes": 426160,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CAD/page_002.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "9f2ac926c0094a4aa6ffa0b084c1c09e8afa6702261551a067df8633fabd5d6e"
+    },
+    {
+      "additional": false,
+      "bytes": 426159,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CAD/page_003.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "d28c68f0e8008beb4e7a11672ce8ebe9c75b9730453384c38abb65afe7d48c19"
+    },
+    {
+      "additional": false,
+      "bytes": 426194,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CAD/page_004.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "612954995327de343eb551aba9a98da254c549eeb6edf63fe780e78bc8b9acde"
+    },
+    {
+      "additional": false,
+      "bytes": 280881,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CAD/page_005.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "0649be7d56d82a443abe61472d5ee7cd5722bcc9dffe1d406b9500439a7b4ae5"
+    },
+    {
+      "additional": false,
+      "bytes": 423883,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CHF/page_000.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "dcf523ec497d5e892e430fe33457b047bb7a0bbcebbf9333cd7319405e2fb0ba"
+    },
+    {
+      "additional": false,
+      "bytes": 424886,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CHF/page_001.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "336202d0838e2009146942fbcd00bbfa4249b9d0f10135cfdf7834863bbb1227"
+    },
+    {
+      "additional": false,
+      "bytes": 424794,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CHF/page_002.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "842b7d5de385a63be2e2e753715a44fc632b1492b3baae8537175d82d81c51be"
+    },
+    {
+      "additional": false,
+      "bytes": 424874,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CHF/page_003.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "21a5e2d5e8912cf875c5c4642adbefaac0dc0b5360f1da564408499df966fc09"
+    },
+    {
+      "additional": false,
+      "bytes": 424388,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CHF/page_004.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "80d4c1189da99ee7d10aa850e53bfab7269abe38a1378e76e6b503f0047d3776"
+    },
+    {
+      "additional": false,
+      "bytes": 280511,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_CHF/page_005.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "54f8a4d9c5992332edc7434ae9465ba9b273ae7a152bdfbcfe68eacaff1b5b95"
+    },
+    {
+      "additional": false,
+      "bytes": 426907,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_JPY/page_000.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "8ef7f4c31f7610c5d66e492c6fd34b5f40275d560b64b7d6106910630373cdf8"
+    },
+    {
+      "additional": false,
+      "bytes": 426297,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_JPY/page_001.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "3a5e6a84f2150e737d24d7badbb666529a55eeb6bd1839412a3073de524085e5"
+    },
+    {
+      "additional": false,
+      "bytes": 426202,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_JPY/page_002.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "5fc2bf5fa46a39fccfa56f351eece0401e50037f3ee979be487af43a02ebfd71"
+    },
+    {
+      "additional": false,
+      "bytes": 427074,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_JPY/page_003.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "1686e0d1d87a745a368cd2324873f9ccaed2ec925a9cbe45f04af487009be53b"
+    },
+    {
+      "additional": false,
+      "bytes": 426599,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_JPY/page_004.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "ab834a28e0999a3ca69a0571eaa4a92f89d86745ad582323d88e5ae06d851108"
+    },
+    {
+      "additional": false,
+      "bytes": 281304,
+      "format": "json",
+      "part_of_g4_g5": true,
+      "path": "data/research/adaptive_ensemble/g3/raw/USD_JPY/page_005.json",
+      "provenance": "G.3 raw acquisition page. Not a second session source.",
+      "sha256": "c538f000b85bb0ac3f88bef5b4947f2cea6f3083810e9744036cc85cebe15da3"
+    }
+  ]
+}

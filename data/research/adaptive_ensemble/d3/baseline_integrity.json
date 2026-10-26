@@ -1,0 +1,13 @@
+{
+  "stage": "D.3",
+  "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "strategy_meta_status_before_edit": "unmodified relative to HEAD",
+  "original_strategy_meta_sha256": "daffe8ab64cc40016bc337b78da048f10b06314e477f56380bd28f2848995ed1",
+  "live_safety_sha256": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
+  "live_safety_matches_d2": true,
+  "d2_classification": "D2_REMEDIATION_COMPLETE_OFFLINE_TESTED",
+  "d2_tests_reported": "53 passed; this stage re-ran the 30 preservation tests",
+  "unexpected_strategy_meta_change_before_edit": false,
+  "live_safety_not_edited_in_d3": true
+}

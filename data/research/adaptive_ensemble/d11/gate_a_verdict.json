@@ -1,0 +1,5 @@
+{
+  "gate": "A",
+  "verdict": "PASS",
+  "basis": "Baseline hashes matched before the edit. Start, stop, poller, dispatch, and database call sites were read before modification."
+}

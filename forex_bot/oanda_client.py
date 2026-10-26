@@ -155,31 +155,27 @@ def fetch_account_summary() -> dict[str, Any] | None:
     try:
         data = _oanda_request(api, r, context="account summary")
     except Exception as exc:
+        _account_summary.clear()
         logger.error("OANDA AccountSummary failed: %s", _format_oanda_error(exc))
         return None
-    acct = data.get("account") if isinstance(data, dict) else None
-    if not isinstance(acct, dict):
+    from forex_bot.oanda_account_adapter import account_core
+
+    parsed = account_core(data, expected_account_id=aid)
+    if isinstance(parsed, str):
+        _account_summary.clear()
+        logger.error("OANDA AccountSummary invalid: %s", parsed)
         return None
-    try:
-        nav = float(str(acct.get("NAV") or acct.get("balance") or "0").replace(",", ""))
-    except (TypeError, ValueError):
-        nav = 0.0
-    try:
-        balance = float(str(acct.get("balance") or "0").replace(",", ""))
-    except (TypeError, ValueError):
-        balance = nav
-    try:
-        margin_av = float(str(acct.get("marginAvailable") or "0").replace(",", ""))
-    except (TypeError, ValueError):
-        margin_av = 0.0
-    currency = str(acct.get("currency") or "").strip().upper()
+    nav = float(parsed["NAV"])
+    balance = float(parsed["balance"])
+    margin_av = parsed.get("marginAvailable")
+    currency = str(parsed["currency"])
     snap = {
-        "id": str(acct.get("id") or aid),
+        "id": str(parsed["id"]),
         "NAV": nav,
         "balance": balance,
         "currency": currency,
         "marginAvailable": margin_av,
-        "alias": str(acct.get("alias") or ""),
+        "alias": str(parsed.get("alias") or ""),
         "host": official_rest_host(),
         "environment": official_env_label(),
     }
@@ -187,12 +183,12 @@ def fetch_account_summary() -> dict[str, Any] | None:
     _account_summary.update(snap)
     set_broker_account(nav, currency)
     logger.info(
-        "[OANDA ACCOUNT] %s NAV=%.2f %s balance=%.2f marginAvailable=%.2f host=%s",
+        "[OANDA ACCOUNT] %s NAV=%.2f %s balance=%.2f marginAvailable=%s host=%s",
         official_env_label(),
         nav,
         currency or "?",
         balance,
-        margin_av,
+        "missing" if margin_av is None else f"{margin_av:.2f}",
         official_rest_host(),
     )
     return snap

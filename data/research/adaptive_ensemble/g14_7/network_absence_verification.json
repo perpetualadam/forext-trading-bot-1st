@@ -1,0 +1,23 @@
+{
+  "network_requests": 0,
+  "dns_lookups": 0,
+  "package_index_contacts": 0,
+  "registry_contacts": 0,
+  "oanda_contacts": 0,
+  "pip_executed": false,
+  "guard": {
+    "socket_connect": "monkeypatched to raise AssertionError NETWORK_BOUNDARY_VIOLATION",
+    "socket_create_connection": "monkeypatched to raise AssertionError NETWORK_BOUNDARY_VIOLATION",
+    "socket_getaddrinfo": "monkeypatched to raise AssertionError NETWORK_BOUNDARY_VIOLATION",
+    "applied_in": "tests/test_g14_7_integration.py autouse fixture"
+  },
+  "guard_self_test": "PASS",
+  "static_import_ban": {
+    "modules": ["tests/g14_7_transport.py", "tests/g14_7_fs.py"],
+    "banned_substrings_absent": ["import socket", "import urllib", "import requests", "import httpx", "import subprocess", "import docker"],
+    "result": "PASS"
+  },
+  "hostile_transport": "rejected with real_network_fallback before exchange",
+  "boundary_violation": false,
+  "classification": "NETWORK_ABSENCE_PASS"
+}

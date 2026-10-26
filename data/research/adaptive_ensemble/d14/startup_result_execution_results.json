@@ -1,0 +1,20 @@
+{
+  "evidence": "ACTUAL_TELEGRAM_FUNCTION_ISOLATED",
+  "T01_DISABLED": "PASS",
+  "T02_STARTED": "PASS",
+  "T03_ALREADY_RUNNING": "PASS",
+  "T04_REFUSED_PREVIOUS_WORKER": "PASS",
+  "T05_no_second_worker": "PASS",
+  "T06_stop_event_remains_set": "PASS",
+  "T07_same_worker_identity": "PASS",
+  "T08_worker_exit": "PASS",
+  "T09_later_start_STARTED": "PASS",
+  "T10_T11_concurrent_one_worker": "PASS",
+  "T12_T13_overlap_refused_event_set": "PASS",
+  "T14_START_FAILED": "PASS",
+  "T15_KeyboardInterrupt_propagates": "PASS",
+  "T16_no_none_on_exercised_paths": "PASS",
+  "T17_network_empty": "PASS",
+  "T18_refusal_query_delta_0": "PASS",
+  "T22_escaped_threads_empty": "PASS"
+}

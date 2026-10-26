@@ -1,0 +1,41 @@
+{
+  "classification": "R9_OFFLINE_POSITION_SAFETY_PARTIAL",
+  "fill_to_position_gap": "blocked in source and synthetic tests; position object is not durable",
+  "postgresql_engine": "NOT_EVALUATED",
+  "broker_reconciliation": "NOT_EVALUATED",
+  "application_startup": "NOT_EVALUATED",
+  "broker_requests": 0,
+  "network_requests_succeeded": 0,
+  "socket_attempts_blocked": 5,
+  "production_database_accessed": false,
+  "postgresql_started": false,
+  "application_started": false,
+  "trading_loop_started": false,
+  "git_commit_or_reset": false,
+  "schema_migration_added": false,
+  "pre_stage_hashes": {
+    "forex_bot/bot_loop.py": "b16bb86a9cd30306a0200c0fab9f105ceeb78f82903ebebd4b3082eea77291c7",
+    "forex_bot/database.py": "6cafdc5aba020b774f6f235b427d34950d373e5427da9c97fcbe1cfcbfc0c7d9",
+    "forex_bot/orders.py": "ed05062d895574fc1ea21d1486f316271165466bf01330cf38e8a42c4c4450b1"
+  },
+  "post_stage_hashes": {
+    "forex_bot/bot_loop.py": "9fbb8c326c35d312b86b88a3d49f395993c2e1fee303afb15a56d7c14c4b2941",
+    "forex_bot/database.py": "4c289dfaa2ca70077fc314a9bb3f92609ab0a9dbda9db26ff912d80b8d03a4a8",
+    "forex_bot/orders.py": "78c34c86bcc5f1d90d3979b18052a4fc9496a2b3cc2f37589f17ef2b6f7f0dd9",
+    "forex_bot/oanda_exec.py": "f4beb250d81852d8ee4f22af06ab33194c6b4ba1bf6f9b1a6b5d11d3b7b265c8"
+  },
+  "cumulative_diff_versus_head": {
+    "note": "Includes earlier dirty work, not only R.9.",
+    "insertions": 972,
+    "deletions": 125
+  },
+  "tests": {
+    "collected": 128,
+    "executed": 120,
+    "passed": 120,
+    "failed": 0,
+    "skipped": 7,
+    "deselected": 1,
+    "not_evaluated": 7
+  }
+}

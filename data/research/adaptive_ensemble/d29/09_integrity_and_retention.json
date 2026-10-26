@@ -1,0 +1,18 @@
+{
+  "stream_hash": "SHA-256 while reading",
+  "fail_closed_on_digest_mismatch": true,
+  "fail_closed_on_size_mismatch": true,
+  "partial_files": "discard and do not reuse",
+  "persist_only": "a layer body whose size and SHA-256 match its manifest descriptor",
+  "do_not_persist": [
+    "token",
+    "401 body",
+    "307 body",
+    "signed URL",
+    "authorization header"
+  ],
+  "extraction": false,
+  "decompression": false,
+  "execution": false,
+  "output_directory": "a future approval must name an empty directory outside earlier evidence and outside production paths"
+}

@@ -1,0 +1,147 @@
+{
+  "sha256": "d3ca79a117f83471eaf2f83acd0a42982e3b1011c2c3a04e3f7d253076dc257b",
+  "protocol": {
+    "stage": "R36",
+    "selection_uses_test": false,
+    "validation_status": "unvalidated",
+    "production_authorised": false,
+    "feature_schema_version": "r35.features.v1",
+    "feature_schema_sha256": "7d15b98d9bfe99136f2de5e05522d9cef623539b38f7ab61e9ea722a24889946",
+    "label_protocol_sha256": "dc914245aa072f1922b656634f473cd1c641cd01fa1f4c217b21ab1decb0ed51",
+    "evaluation_protocol_sha256": "bab4a868f1b789b795c5c124f86f7975d0b6ca9a5c0848b3323f743c2d8f81e9",
+    "horizon_bars": 12,
+    "target": {
+      "name": "r36.cost_adjusted_three_class.v1",
+      "buy": "close_to_close_buy_return > 0 and buy_return > sell_return",
+      "sell": "close_to_close_sell_return > 0 and sell_return > buy_return",
+      "no_trade": "otherwise, including exact ties",
+      "price_unit": "fractional_return",
+      "entry": "decision_bar_ask_or_bid_close",
+      "exit": "bid_or_ask_close_12_bars_later",
+      "threshold_rule": "strictly_positive_cost_adjusted_return",
+      "threshold_not_fit_on_test": true
+    },
+    "next_bar_execution": {
+      "decision": "after_completed_candle",
+      "entry": "next_candle_open_bid_ask",
+      "exit": "close_12_bars_after_the_decision_candle",
+      "gap": "unevaluable_unless_next_bar_is_exactly_300_seconds_later"
+    },
+    "policy": {
+      "a_priori_confidence": 0.5,
+      "validation_threshold_grid": [
+        0.4,
+        0.5,
+        0.6
+      ],
+      "threshold_selection": "highest_stride12_next_bar_mean_with_at_least_30_actions_else_0.50",
+      "tie_break": "higher_threshold",
+      "advancement_uses_threshold": 0.5,
+      "high_confidence": 0.7
+    },
+    "models": {
+      "logistic": {
+        "family": "logistic_regression",
+        "C": 1.0,
+        "solver": "lbfgs",
+        "max_iter": 500,
+        "seed": 36,
+        "preprocessing": "median_imputer_and_standard_scaler_fit_on_training_rows_only"
+      },
+      "lightgbm": {
+        "family": "lightgbm",
+        "status": "use_only_if_already_installed"
+      },
+      "xgboost": {
+        "family": "xgboost",
+        "n_estimators": 60,
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "min_child_weight": 20.0,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "reg_lambda": 1.0,
+        "seed": 36,
+        "device": "cpu",
+        "n_jobs": 1
+      }
+    },
+    "splits": {
+      "train": [
+        20,
+        44731
+      ],
+      "validation": [
+        44743,
+        59645
+      ],
+      "test": [
+        59657,
+        74560
+      ],
+      "embargo_bars": 12,
+      "warmup_bars": 20
+    },
+    "walk_forward": [
+      {
+        "name": "wf1",
+        "train": [
+          20,
+          15000
+        ],
+        "eval": [
+          15012,
+          25000
+        ]
+      },
+      {
+        "name": "wf2",
+        "train": [
+          20,
+          25000
+        ],
+        "eval": [
+          25012,
+          35000
+        ]
+      },
+      {
+        "name": "wf3",
+        "train": [
+          20,
+          35000
+        ],
+        "eval": [
+          35012,
+          44731
+        ]
+      }
+    ],
+    "advancement_requires": [
+      "validation_log_loss_below_frequency_baseline",
+      "validation_brier_below_frequency_baseline",
+      "validation_ece_at_most_0.10",
+      "at_least_30_stride12_validation_actions",
+      "stride12_next_bar_mean_above_zero",
+      "block_bootstrap_lower_bound_above_zero",
+      "half_pip_adverse_mean_above_zero",
+      "at_least_two_walk_forward_folds_not_worse_than_frequency_baseline",
+      "reproducible_refit"
+    ],
+    "bootstrap": {
+      "block": 20,
+      "reps": 200,
+      "seed": 3601,
+      "interval": [
+        0.025,
+        0.975
+      ]
+    },
+    "adverse_price_units": [
+      0.0,
+      5e-05,
+      0.0001
+    ],
+    "research_exposed": true
+  }
+}

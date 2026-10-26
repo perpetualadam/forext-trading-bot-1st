@@ -1,0 +1,6 @@
+{
+  "gate": "C",
+  "verdict": "PASS",
+  "pre_fix": "D.13 tests 8 passed in 17.96s before the edit, including the assertion that no startup-refusal warning was present",
+  "isolation": "D.11 guards installed before forex import"
+}

@@ -1,0 +1,222 @@
+{
+  "domains": [
+    {
+      "id": "R01",
+      "classification": "PARTIAL",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "missing": "Hashes match, but the tree is dirty and HEAD does not identify those bytes.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R02",
+      "classification": "BLOCKED",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "missing": "requirements.txt has lower bounds only.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R03",
+      "classification": "BLOCKED",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "missing": "No lockfile was found.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R04",
+      "classification": "BLOCKED",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "missing": "No wheel or wheelhouse file was found.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R05",
+      "classification": "BLOCKED",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "missing": "No package hashes are recorded.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R06",
+      "classification": "BLOCKED",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "missing": "No package provenance record exists.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R07",
+      "classification": "PARTIAL",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "missing": "Dockerfile names Python 3.12 by tag. Host audit interpreter is 3.13.5. No image digest.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R08",
+      "classification": "BLOCKED",
+      "evidence_level": "HISTORICAL_OBSERVATION",
+      "missing": "Registry digest remains unverified. No registry query was made.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R09",
+      "classification": "PARTIAL",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "missing": "Explicit COPY paths exist and are not symlinks. Dirty files and OneDrive residency remain.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R10",
+      "classification": "PARTIAL",
+      "evidence_level": "STATIC_INFERENCE",
+      "missing": "Current Dockerfile COPY covers the static app import closure. The G.10 hash manifest does not match current bytes.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R11",
+      "classification": "BLOCKED",
+      "evidence_level": "CURRENT_LOCAL_FILE_VERIFIED",
+      "missing": "Unpinned pip install, mutable base tag, no USER, no HEALTHCHECK.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R12",
+      "classification": "BLOCKED",
+      "evidence_level": "MISSING",
+      "missing": "Build toolchain identity is not recorded.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R13",
+      "classification": "BLOCKED",
+      "evidence_level": "MISSING",
+      "missing": "No current candidate manifest exists.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R14",
+      "classification": "BLOCKED",
+      "evidence_level": "MISSING",
+      "missing": "No candidate image exists in permitted evidence.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R15",
+      "classification": "BLOCKED",
+      "evidence_level": "MISSING",
+      "missing": "No candidate digest exists.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R16",
+      "classification": "BLOCKED",
+      "evidence_level": "STATIC_INFERENCE",
+      "missing": "OS, architecture, digest, user, health, and limits are incomplete.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R17",
+      "classification": "BLOCKED",
+      "evidence_level": "CURRENT_LOCAL_SOURCE_VERIFIED",
+      "missing": "Source DDL is documented. Live schema was not inspected.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R18",
+      "classification": "UNVERIFIED",
+      "evidence_level": "BLOCKED_BY_SCOPE",
+      "missing": "Operational-state mount was not read.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R19",
+      "classification": "UNVERIFIED",
+      "evidence_level": "BLOCKED_BY_SCOPE",
+      "missing": "Shadow-state mount was not read.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R20",
+      "classification": "BLOCKED",
+      "evidence_level": "HISTORICAL_OBSERVATION",
+      "missing": "G.14.12 receiver is unverified and unimplemented.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R21",
+      "classification": "BLOCKED",
+      "evidence_level": "HISTORICAL_OBSERVATION",
+      "missing": "No independent verifier is implemented.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R22",
+      "classification": "BLOCKED",
+      "evidence_level": "HISTORICAL_OBSERVATION",
+      "missing": "No deployment authority is implemented.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R23",
+      "classification": "BLOCKED",
+      "evidence_level": "HISTORICAL_OBSERVATION",
+      "missing": "No verified rollback image.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R24",
+      "classification": "PARTIAL",
+      "evidence_level": "HISTORICAL_OBSERVATION",
+      "missing": "Research describes rollback rules. No verified procedure has been executed.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R25",
+      "classification": "BLOCKED",
+      "evidence_level": "MISSING",
+      "missing": "No acceptance record for a candidate deployment exists.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R26",
+      "classification": "UNVERIFIED",
+      "evidence_level": "BLOCKED_BY_SCOPE",
+      "missing": "Current production state was not inspected.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R27",
+      "classification": "PARTIAL",
+      "evidence_level": "HISTORICAL_OBSERVATION",
+      "missing": "D.15 isolated lifecycle tests passed. Production lifecycle was not verified.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R28",
+      "classification": "PARTIAL",
+      "evidence_level": "HISTORICAL_OBSERVATION",
+      "missing": "Research may still assume strategies start active. That was not rechecked here.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R29",
+      "classification": "BLOCKED",
+      "evidence_level": "HISTORICAL_OBSERVATION",
+      "missing": "Historical authorisation is BLOCKED. Current production authorisation is unverified.",
+      "deployment_blocked": true
+    },
+    {
+      "id": "R30",
+      "classification": "BLOCKED",
+      "evidence_level": "STATIC_INFERENCE",
+      "missing": "Safety-critical domains are not VERIFIED_READY.",
+      "deployment_blocked": true
+    }
+  ],
+  "counts": {
+    "total": 30,
+    "VERIFIED_READY": 0,
+    "PARTIAL": 7,
+    "BLOCKED": 20,
+    "UNVERIFIED": 3,
+    "NOT_APPLICABLE": 0
+  }
+}

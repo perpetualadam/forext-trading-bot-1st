@@ -1,0 +1,25 @@
+{
+  "pytest_passed": 12,
+  "pytest_failed": 0,
+  "pytest_skipped": 1,
+  "skip_reason": "POSTGRESQL_ENGINE_NOT_EVALUATED",
+  "used_postgresql": false,
+  "used_mocks_for_engine_claims": false,
+  "cases": [
+    {"id": "H01-H06", "test": "test_h01_h06_reload_keeps_unresolved_identity_and_blocks_a_new_id", "status": "PASS", "postgresql": false, "mocks": false},
+    {"id": "H04", "test": "test_h04_fresh_book_with_recovery_row_stays_blocked", "status": "PASS", "postgresql": false, "mocks": false},
+    {"id": "H07-H08", "test": "test_h07_h08_pending_and_partial_keep_their_status", "status": "PASS", "postgresql": false, "mocks": false},
+    {"id": "H09-H11", "test": "test_h09_h11_unknown_or_corrupt_rows_fail_closed", "status": "PASS", "postgresql": false, "mocks": false},
+    {"id": "H10-H12", "test": "test_h10_h12_missing_recovery_fails_closed", "status": "PASS", "postgresql": false, "mocks": false},
+    {"id": "H13-H16", "test": "test_h13_h16_process_fail_closed_blocks_without_a_database", "status": "PASS", "postgresql": false, "mocks": false, "limitation": "The flag was set directly. A real commit failure was not produced."},
+    {"id": "H17", "test": "test_h17_cancel_does_not_erase_unresolved", "status": "PASS", "postgresql": false, "mocks": false},
+    {"id": "H18-H19", "test": "test_h18_h19_timeout_and_unavailable_reconciliation_stay_blocked", "status": "PASS", "postgresql": false, "mocks": false},
+    {"id": "H20-H22", "test": "test_h20_h22_confirmed_results_do_not_create_replacements", "status": "PASS", "postgresql": false, "mocks": false},
+    {"id": "H23", "test": "test_h23_duplicate_event_keeps_the_first_id", "status": "PASS", "postgresql": false, "mocks": false},
+    {"id": "H24-H28", "test": "test_h24_h31_postgresql_concurrency_and_storage", "status": "NOT_EVALUATED", "postgresql": false, "mocks": false},
+    {"id": "H29", "test": "test_h29_lock_key_is_stable_for_the_same_uppercased_symbol", "status": "PASS", "postgresql": false, "mocks": false, "limitation": "Key math only. Two database sessions were not used."},
+    {"id": "H30-H31", "test": "test_h24_h31_postgresql_concurrency_and_storage", "status": "NOT_EVALUATED", "postgresql": false, "mocks": false},
+    {"id": "H32-H33", "test": "test_h32_h33_no_application_and_no_broker_module_startup", "status": "PASS", "postgresql": false, "mocks": false},
+    {"id": "H34", "status": "PASS", "evidence": "Application hashes unchanged after the stage. No application file was edited."}
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "results": [
+    {
+      "test_id": "G01",
+      "fixture": "reserve",
+      "expected": "increment before dispatch",
+      "actual": "True",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G02",
+      "fixture": "reserve",
+      "expected": "twenty permitted",
+      "actual": "20",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G03",
+      "fixture": "reserve",
+      "expected": "twenty-first rejected",
+      "actual": "True",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G04",
+      "fixture": "head",
+      "expected": "sixteen head ceiling",
+      "actual": "16",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G05",
+      "fixture": "token",
+      "expected": "one token ceiling",
+      "actual": "1",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G06",
+      "fixture": "storage",
+      "expected": "storage rejected",
+      "actual": "rejected",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G07",
+      "fixture": "registry get",
+      "expected": "registry GET rejected",
+      "actual": "rejected",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G08",
+      "fixture": "redirect",
+      "expected": "recorded not followed",
+      "actual": "0",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G09",
+      "fixture": "retry",
+      "expected": "retry rejected",
+      "actual": "rejected",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G14",
+      "fixture": "worker message",
+      "expected": "counters unchanged",
+      "actual": "0",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G15",
+      "fixture": "worker approval",
+      "expected": "forged approval ignored",
+      "actual": "ignored",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G16",
+      "fixture": "method",
+      "expected": "unexpected method rejected",
+      "actual": "rejected",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G17",
+      "fixture": "host",
+      "expected": "unexpected host rejected",
+      "actual": "rejected",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G18",
+      "fixture": "repository",
+      "expected": "unexpected repository rejected",
+      "actual": "rejected",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G19",
+      "fixture": "digest",
+      "expected": "unexpected digest rejected",
+      "actual": "rejected",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    },
+    {
+      "test_id": "G20",
+      "fixture": "layer body",
+      "expected": "layer-body read rejected",
+      "actual": "rejected",
+      "monotonic_start": 90638.653091,
+      "elapsed": 0.0,
+      "result": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "version": "r35.features.v1",
+  "instrument_timeframe": "declared_by_caller",
+  "candle_alignment": "current_completed_candle_inclusive",
+  "normalisation": "none_no_future_statistics",
+  "missing_values": "row_feature_valid_false_when_any_required_value_is_missing",
+  "rolling_std_ddof": 1,
+  "warmup_bars": 20,
+  "features": [
+    {
+      "name": "return_1",
+      "type": "float",
+      "unit": "midpoint_fraction",
+      "lookback": 1
+    },
+    {
+      "name": "rolling_vol_20",
+      "type": "float",
+      "unit": "return_std",
+      "lookback": 20
+    },
+    {
+      "name": "atr_14",
+      "type": "float",
+      "unit": "price",
+      "lookback": 14
+    },
+    {
+      "name": "ma_distance",
+      "type": "float",
+      "unit": "fraction_of_midpoint",
+      "lookback": 20
+    },
+    {
+      "name": "momentum_12",
+      "type": "float",
+      "unit": "midpoint_fraction",
+      "lookback": 12
+    },
+    {
+      "name": "spread",
+      "type": "float",
+      "unit": "price",
+      "lookback": 0
+    },
+    {
+      "name": "hour_utc",
+      "type": "float",
+      "unit": "hour",
+      "lookback": 0
+    },
+    {
+      "name": "session_code",
+      "type": "float",
+      "unit": "bucket",
+      "lookback": 0
+    },
+    {
+      "name": "range_20",
+      "type": "float",
+      "unit": "fraction_of_midpoint",
+      "lookback": 20
+    },
+    {
+      "name": "volume",
+      "type": "float",
+      "unit": "source_volume",
+      "lookback": 0
+    }
+  ]
+}

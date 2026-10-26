@@ -1,0 +1,10 @@
+{
+  "incomplete_stop": "cleanup errors empty",
+  "stop_exception": "RuntimeError recorded, tasks drained, database retained, exception re-raised",
+  "task_await": "RuntimeError recorded, pending tasks 0",
+  "release_on_failed_startup": "startup exception escapes, connection not left open, RuntimeError note recorded",
+  "alert": "RuntimeError recorded and re-raised, database retained",
+  "cancellation": "no cleanup error added for the live worker",
+  "precedence_gap": false,
+  "observability_gap": true
+}

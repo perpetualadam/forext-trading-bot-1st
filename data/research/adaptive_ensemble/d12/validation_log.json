@@ -1,0 +1,22 @@
+{
+  "commands": [
+    "baseline hash and git HEAD",
+    "python -m pytest tests/test_d12_shutdown_contract.py tests/test_d12_repeated_lifespan.py tests/test_d12_database_ownership.py -q --tb=line",
+    "python -m pytest D.2 D.3 D.4 D.7 D.9 D.11 -q --tb=line",
+    "python -m pytest tests/test_live_safety_repair.py -q --tb=line",
+    "python -m pytest D.5 D.6 D.8 D.10 -q --tb=line",
+    "ruff on the D.12 runner and tests"
+  ],
+  "results": {
+    "d12": "16 passed in 16.39s",
+    "d2_d3_d4_d7_d9_d11": "170 passed in 44.05s",
+    "safety_repair": "23 passed in 4.63s",
+    "d5": "15 errors, app.py hash pin",
+    "d6": "12 errors, app.py hash pin",
+    "d8": "7 errors, database.py hash pin",
+    "d10": "14 errors, telegram_control.py hash pin",
+    "ruff_d12": "passed"
+  },
+  "production_files_modified": [],
+  "prohibited_operations": []
+}

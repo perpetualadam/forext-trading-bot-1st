@@ -1,8 +1,8 @@
-"""Lightweight tabular RL hook (bandit-style Q updates per discrete state)."""
+"""Lightweight tabular RL hook. An unverified table cannot approve a direction."""
 
 from __future__ import annotations
 
-import random
+import math
 from typing import Any
 
 _ACTIONS = ("BUY", "SELL", "SKIP")
@@ -26,20 +26,34 @@ class RLAgent:
         return self.q[state]
 
     def decide(self, state: str) -> str:
-        from forex_bot.decision_repair.flags import rl_require_state_enabled
+        """Return one learned action, or UNAVAILABLE when the policy is not verified.
 
-        if rl_require_state_enabled() and not self.persisted_ok:
+        ``persisted_ok`` stays false until a caller has loaded a real policy.
+        This method does not create that flag and does not sample a random action.
+        """
+        if not self.persisted_ok:
             return "UNAVAILABLE"
-        table = self._ensure_state(state)
-        if rl_require_state_enabled():
-            best = max(table.values())
-            candidates = sorted(a for a, v in table.items() if v == best)
-            return candidates[0]
-        if random.random() < self.epsilon:
-            return random.choice(_ACTIONS)
-        best = max(table.values())
-        candidates = [a for a, v in table.items() if v == best]
-        return random.choice(candidates)
+        table = self.q.get(state)
+        if not isinstance(table, dict):
+            return "UNAVAILABLE"
+        scored: dict[str, float] = {}
+        for action in _ACTIONS:
+            if action not in table:
+                return "UNAVAILABLE"
+            try:
+                value = float(table[action])
+            except (TypeError, ValueError):
+                return "UNAVAILABLE"
+            if not math.isfinite(value):
+                return "UNAVAILABLE"
+            scored[action] = value
+        if all(value == 0.0 for value in scored.values()):
+            return "UNAVAILABLE"
+        best = max(scored.values())
+        winners = [action for action, value in scored.items() if value == best]
+        if len(winners) != 1:
+            return "UNAVAILABLE"
+        return winners[0]
 
     def update(self, state: str, action: str, reward: float) -> None:
         if action not in _ACTIONS:

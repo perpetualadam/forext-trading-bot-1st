@@ -1,0 +1,283 @@
+{
+  "files_on_disk": [
+    "AUD_USD_M5.csv",
+    "EUR_USD_M5.csv",
+    "GBP_USD_M5.csv",
+    "USD_CAD_M5.csv",
+    "USD_CHF_M5.csv",
+    "USD_JPY_M5.csv"
+  ],
+  "candidate_pairs_with_local_candles": [],
+  "instruments": [
+    {
+      "instrument": "AUD_USD",
+      "sha256": "e639a1f817e4b91973ccfea0ee0c8c3dd5279c722ea665c531ad309b359165e0",
+      "source_timeframe": "M5",
+      "rows_read": 74563,
+      "rows_kept": 74563,
+      "first": "2025-09-01T00:00:00+00:00",
+      "last": "2026-08-31T23:50:00+00:00",
+      "duplicate_timestamps": 0,
+      "negative_spread_rows": 0,
+      "incomplete_source_rows": 0,
+      "pip_size_local_rule": 0.0001,
+      "median_close_spread_price": 0.0001300000000000745,
+      "gaps": {
+        "steps_over_5_minutes": 81,
+        "steps_over_1_hour_to_48_hours": 3,
+        "steps_over_48_hours": 51,
+        "largest_gap_hours": 49.083333333333336
+      },
+      "h1": {
+        "period_minutes": 60,
+        "expected_constituents": 12,
+        "complete_candles": 6189,
+        "incomplete_buckets": 27,
+        "volume_rule": "sum_of_constituent_m5_volume",
+        "missing_prices_forward_filled": false,
+        "label": "utc_open",
+        "known_at": "utc_open_plus_period"
+      },
+      "h4": {
+        "period_minutes": 240,
+        "expected_constituents": 48,
+        "complete_candles": 1478,
+        "incomplete_buckets": 130,
+        "volume_rule": "sum_of_constituent_m5_volume",
+        "missing_prices_forward_filled": false,
+        "label": "utc_open",
+        "known_at": "utc_open_plus_period"
+      },
+      "first_complete_h1": "2025-09-01 00:00:00+00:00",
+      "last_complete_h1": "2026-08-31 22:00:00+00:00",
+      "first_complete_h4": "2025-09-01 00:00:00+00:00",
+      "last_complete_h4": "2026-08-31 16:00:00+00:00",
+      "trading_backtest_run": false
+    },
+    {
+      "instrument": "EUR_USD",
+      "sha256": "3ae3c4d061792353b94b8d2be73684f950362f135d47926d1bc8c11a24791091",
+      "source_timeframe": "M5",
+      "rows_read": 74572,
+      "rows_kept": 74572,
+      "first": "2025-09-01T00:00:00+00:00",
+      "last": "2026-08-31T23:50:00+00:00",
+      "duplicate_timestamps": 0,
+      "negative_spread_rows": 0,
+      "incomplete_source_rows": 0,
+      "pip_size_local_rule": 0.0001,
+      "median_close_spread_price": 0.00015999999999993797,
+      "gaps": {
+        "steps_over_5_minutes": 73,
+        "steps_over_1_hour_to_48_hours": 3,
+        "steps_over_48_hours": 51,
+        "largest_gap_hours": 49.083333333333336
+      },
+      "h1": {
+        "period_minutes": 60,
+        "expected_constituents": 12,
+        "complete_candles": 6196,
+        "incomplete_buckets": 20,
+        "volume_rule": "sum_of_constituent_m5_volume",
+        "missing_prices_forward_filled": false,
+        "label": "utc_open",
+        "known_at": "utc_open_plus_period"
+      },
+      "h4": {
+        "period_minutes": 240,
+        "expected_constituents": 48,
+        "complete_candles": 1483,
+        "incomplete_buckets": 125,
+        "volume_rule": "sum_of_constituent_m5_volume",
+        "missing_prices_forward_filled": false,
+        "label": "utc_open",
+        "known_at": "utc_open_plus_period"
+      },
+      "first_complete_h1": "2025-09-01 00:00:00+00:00",
+      "last_complete_h1": "2026-08-31 22:00:00+00:00",
+      "first_complete_h4": "2025-09-01 00:00:00+00:00",
+      "last_complete_h4": "2026-08-31 16:00:00+00:00",
+      "trading_backtest_run": false
+    },
+    {
+      "instrument": "GBP_USD",
+      "sha256": "ac3ddba51b75f493a08a5ea57e9926e38a5a85b06797de53803e6cd4f8b00d58",
+      "source_timeframe": "M5",
+      "rows_read": 74555,
+      "rows_kept": 74555,
+      "first": "2025-09-01T00:00:00+00:00",
+      "last": "2026-08-31T23:50:00+00:00",
+      "duplicate_timestamps": 0,
+      "negative_spread_rows": 0,
+      "incomplete_source_rows": 0,
+      "pip_size_local_rule": 0.0001,
+      "median_close_spread_price": 0.0001900000000001345,
+      "gaps": {
+        "steps_over_5_minutes": 87,
+        "steps_over_1_hour_to_48_hours": 3,
+        "steps_over_48_hours": 51,
+        "largest_gap_hours": 49.083333333333336
+      },
+      "h1": {
+        "period_minutes": 60,
+        "expected_constituents": 12,
+        "complete_candles": 6184,
+        "incomplete_buckets": 32,
+        "volume_rule": "sum_of_constituent_m5_volume",
+        "missing_prices_forward_filled": false,
+        "label": "utc_open",
+        "known_at": "utc_open_plus_period"
+      },
+      "h4": {
+        "period_minutes": 240,
+        "expected_constituents": 48,
+        "complete_candles": 1478,
+        "incomplete_buckets": 130,
+        "volume_rule": "sum_of_constituent_m5_volume",
+        "missing_prices_forward_filled": false,
+        "label": "utc_open",
+        "known_at": "utc_open_plus_period"
+      },
+      "first_complete_h1": "2025-09-01 00:00:00+00:00",
+      "last_complete_h1": "2026-08-31 22:00:00+00:00",
+      "first_complete_h4": "2025-09-01 00:00:00+00:00",
+      "last_complete_h4": "2026-08-31 16:00:00+00:00",
+      "trading_backtest_run": false
+    },
+    {
+      "instrument": "USD_CAD",
+      "sha256": "a88eb2c440691bd5893a8317b64e6beaf87bb6f3c93b0c6e6a4cd16e53aa9c60",
+      "source_timeframe": "M5",
+      "rows_read": 74560,
+      "rows_kept": 74560,
+      "first": "2025-09-01T00:00:00+00:00",
+      "last": "2026-08-31T23:50:00+00:00",
+      "duplicate_timestamps": 0,
+      "negative_spread_rows": 0,
+      "incomplete_source_rows": 0,
+      "pip_size_local_rule": 0.0001,
+      "median_close_spread_price": 0.000180000000000069,
+      "gaps": {
+        "steps_over_5_minutes": 82,
+        "steps_over_1_hour_to_48_hours": 3,
+        "steps_over_48_hours": 51,
+        "largest_gap_hours": 49.083333333333336
+      },
+      "h1": {
+        "period_minutes": 60,
+        "expected_constituents": 12,
+        "complete_candles": 6188,
+        "incomplete_buckets": 28,
+        "volume_rule": "sum_of_constituent_m5_volume",
+        "missing_prices_forward_filled": false,
+        "label": "utc_open",
+        "known_at": "utc_open_plus_period"
+      },
+      "h4": {
+        "period_minutes": 240,
+        "expected_constituents": 48,
+        "complete_candles": 1483,
+        "incomplete_buckets": 125,
+        "volume_rule": "sum_of_constituent_m5_volume",
+        "missing_prices_forward_filled": false,
+        "label": "utc_open",
+        "known_at": "utc_open_plus_period"
+      },
+      "first_complete_h1": "2025-09-01 00:00:00+00:00",
+      "last_complete_h1": "2026-08-31 22:00:00+00:00",
+      "first_complete_h4": "2025-09-01 00:00:00+00:00",
+      "last_complete_h4": "2026-08-31 16:00:00+00:00",
+      "trading_backtest_run": false
+    },
+    {
+      "instrument": "USD_CHF",
+      "sha256": "3901a2d50a63ef5ca4d10858145cca7fd70d20d24420761e1b7d2d09f2a127bc",
+      "source_timeframe": "M5",
+      "rows_read": 74514,
+      "rows_kept": 74514,
+      "first": "2025-09-01T00:00:00+00:00",
+      "last": "2026-08-31T23:50:00+00:00",
+      "duplicate_timestamps": 0,
+      "negative_spread_rows": 0,
+      "incomplete_source_rows": 0,
+      "pip_size_local_rule": 0.0001,
+      "median_close_spread_price": 0.00014999999999998348,
+      "gaps": {
+        "steps_over_5_minutes": 116,
+        "steps_over_1_hour_to_48_hours": 3,
+        "steps_over_48_hours": 51,
+        "largest_gap_hours": 49.083333333333336
+      },
+      "h1": {
+        "period_minutes": 60,
+        "expected_constituents": 12,
+        "complete_candles": 6163,
+        "incomplete_buckets": 53,
+        "volume_rule": "sum_of_constituent_m5_volume",
+        "missing_prices_forward_filled": false,
+        "label": "utc_open",
+        "known_at": "utc_open_plus_period"
+      },
+      "h4": {
+        "period_minutes": 240,
+        "expected_constituents": 48,
+        "complete_candles": 1460,
+        "incomplete_buckets": 148,
+        "volume_rule": "sum_of_constituent_m5_volume",
+        "missing_prices_forward_filled": false,
+        "label": "utc_open",
+        "known_at": "utc_open_plus_period"
+      },
+      "first_complete_h1": "2025-09-01 00:00:00+00:00",
+      "last_complete_h1": "2026-08-31 22:00:00+00:00",
+      "first_complete_h4": "2025-09-01 00:00:00+00:00",
+      "last_complete_h4": "2026-08-31 16:00:00+00:00",
+      "trading_backtest_run": false
+    },
+    {
+      "instrument": "USD_JPY",
+      "sha256": "e1b0d3491f873723967315d74e3bd5b707474814a294be4ed50a26e1b8c9805c",
+      "source_timeframe": "M5",
+      "rows_read": 74557,
+      "rows_kept": 74557,
+      "first": "2025-09-01T00:00:00+00:00",
+      "last": "2026-08-31T23:50:00+00:00",
+      "duplicate_timestamps": 0,
+      "negative_spread_rows": 0,
+      "incomplete_source_rows": 0,
+      "pip_size_local_rule": 0.01,
+      "median_close_spread_price": 0.016000000000019554,
+      "gaps": {
+        "steps_over_5_minutes": 85,
+        "steps_over_1_hour_to_48_hours": 3,
+        "steps_over_48_hours": 51,
+        "largest_gap_hours": 49.083333333333336
+      },
+      "h1": {
+        "period_minutes": 60,
+        "expected_constituents": 12,
+        "complete_candles": 6185,
+        "incomplete_buckets": 31,
+        "volume_rule": "sum_of_constituent_m5_volume",
+        "missing_prices_forward_filled": false,
+        "label": "utc_open",
+        "known_at": "utc_open_plus_period"
+      },
+      "h4": {
+        "period_minutes": 240,
+        "expected_constituents": 48,
+        "complete_candles": 1476,
+        "incomplete_buckets": 132,
+        "volume_rule": "sum_of_constituent_m5_volume",
+        "missing_prices_forward_filled": false,
+        "label": "utc_open",
+        "known_at": "utc_open_plus_period"
+      },
+      "first_complete_h1": "2025-09-01 00:00:00+00:00",
+      "last_complete_h1": "2026-08-31 22:00:00+00:00",
+      "first_complete_h4": "2025-09-01 00:00:00+00:00",
+      "last_complete_h4": "2026-08-31 16:00:00+00:00",
+      "trading_backtest_run": false
+    }
+  ]
+}

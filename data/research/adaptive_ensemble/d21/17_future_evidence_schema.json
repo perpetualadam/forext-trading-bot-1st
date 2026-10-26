@@ -1,0 +1,27 @@
+{
+  "schema_only": true,
+  "registry_responses_created": false,
+  "fields": [
+    "request_specification",
+    "request_method",
+    "request_path",
+    "response_status",
+    "response_content_type",
+    "raw_response_bytes",
+    "response_byte_count",
+    "registry_reported_digest",
+    "independently_computed_digest",
+    "descriptor_inventory",
+    "amd64_manifest_evidence",
+    "arm64_manifest_evidence",
+    "tls_verification_status",
+    "redirect_record",
+    "retry_record",
+    "timestamp",
+    "tool_version",
+    "verification_verdict",
+    "limitations"
+  ],
+  "placeholder": "NOT_OBTAINED",
+  "digest_checks": "NOT_PERFORMED"
+}

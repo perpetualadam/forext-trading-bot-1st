@@ -1,0 +1,39 @@
+{
+  "status": "reconciled",
+  "explanation": "Mistake categories count every eligible test bar. The economic action count keeps only bars whose position is a multiple of 12 and whose next bar is evaluable.",
+  "logistic": {
+    "population_full_eligible_rows": 14631,
+    "full_abstentions": 14548,
+    "full_directional_calls": 83,
+    "next_bar_unevaluable": 0,
+    "stride": 12,
+    "stride_opportunities": 1220,
+    "stride_actions": 5,
+    "directional_calls_outside_stride": 78,
+    "overlapping_outcomes": true,
+    "stride_actions_are_not_independent_of_nearby_bars": true
+  },
+  "xgboost": {
+    "population_full_eligible_rows": 14631,
+    "full_abstentions": 14631,
+    "full_directional_calls": 0,
+    "next_bar_unevaluable": 0,
+    "stride": 12,
+    "stride_opportunities": 1220,
+    "stride_actions": 0,
+    "directional_calls_outside_stride": 0,
+    "overlapping_outcomes": true,
+    "stride_actions_are_not_independent_of_nearby_bars": true
+  },
+  "logistic_mistake_counts": {
+    "missed_opportunity": 10087,
+    "correct_abstention": 4461,
+    "incorrect_directional_prediction": 42,
+    "low_confidence_correct": 36,
+    "correct_direction_negative_cost": 5,
+    "denominator_rows": 14631,
+    "denominator_directional_calls": 83
+  },
+  "r36_reported_directional_calls": 83,
+  "r36_reported_stride_actions": 5
+}

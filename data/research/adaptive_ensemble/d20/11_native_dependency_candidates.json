@@ -1,0 +1,17 @@
+{
+  "closure_claimed": false,
+  "candidates": [
+    "numpy",
+    "pandas",
+    "psycopg2-binary",
+    "uvicorn[standard]"
+  ],
+  "possible_transitive_categories": [
+    "event-loop accelerators",
+    "HTTP parsers",
+    "TLS libraries"
+  ],
+  "amd64_wheels_verified": false,
+  "arm64_wheels_verified": false,
+  "availability": "UNVERIFIED"
+}

@@ -1,0 +1,36 @@
+{
+  "stage": "D.2",
+  "files_modified": [
+    {
+      "path": "forex_bot/live_safety.py",
+      "change": "Non-destructive load, unknown-field merge, stricter activation check, fsync on the temporary file",
+      "original_sha256": "6e59666960dfec0ff379343c8973e389363faaab49278d9806c160a18ebe8f4f",
+      "final_sha256": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44"
+    }
+  ],
+  "files_added": [
+    "tests/test_live_safety_preservation.py"
+  ],
+  "files_not_modified": [
+    "forex_bot/app.py",
+    "forex_bot/strategy_meta.py",
+    "forex_bot/bot_loop.py",
+    "forex_bot/execution.py",
+    "forex_bot/oanda_exec.py",
+    "forex_bot/database.py",
+    "Dockerfile",
+    "requirements.txt",
+    "docker-compose.yml"
+  ],
+  "public_signatures_unchanged": [
+    "initialise_fail_closed",
+    "persist_evolve_disable",
+    "operator_set_live_order_authorisation",
+    "operator_set_strategy_active",
+    "live_open_blocked_reason",
+    "assert_new_live_exposure_allowed"
+  ],
+  "new_public_type": "SafetyStateProtected",
+  "schema_version": 1,
+  "dependencies_added": 0
+}

@@ -1,0 +1,50 @@
+{
+  "findings": [
+    {
+      "FINDING_ID": "D12-STOP-01",
+      "classification": "APPLICATION_SHUTDOWN_OBSERVABILITY_GAP",
+      "SEVERITY": "reporting",
+      "SOURCE_FILE": "forex_bot/app.py",
+      "SOURCE_FUNCTION": "lifespan",
+      "SOURCE_LINES": "383-387",
+      "TRIGGER": "stop_telegram_control returns STOP_INCOMPLETE_WORKER_ALIVE",
+      "ACTUAL_SOURCE_REACHABILITY": "SOURCE_REACHABLE",
+      "TEST_SCHEDULE": "S04,S08,S30",
+      "EXPECTED_BEHAVIOUR": "The application should make an incomplete Telegram stop observable without treating a long poll as a fatal shutdown.",
+      "OBSERVED_BEHAVIOUR": "The return value is discarded. The status is not logged. Cleanup errors stay empty. The lifespan returns. Tasks are drained. The database stays published. The worker stays tracked.",
+      "APPLICATION_EFFECT": "Shutdown looks clean while a worker remains alive.",
+      "DATABASE_EFFECT": "No untracked release and no post-stop Telegram query were observed.",
+      "THREAD_EFFECT": "The D.11 reference remains.",
+      "ASYNCIO_TASK_EFFECT": "Owned tasks are still drained.",
+      "RECOMMENDED_REMEDIATION": "Capture the status, log it, and record the status string. Do not raise, do not join forever, and do not release the database while the worker is alive.",
+      "REQUIRED_FUTURE_SOURCE_SCOPE": "forex_bot/app.py",
+      "EVIDENCE_LEVEL": "ACTUAL_LIFESPAN_ISOLATED"
+    },
+    {
+      "FINDING_ID": "D12-START-01",
+      "classification": "APPLICATION_TELEGRAM_STARTUP_OBSERVABILITY_GAP",
+      "SEVERITY": "reporting",
+      "SOURCE_FILE": "forex_bot/app.py",
+      "SOURCE_FUNCTION": "lifespan",
+      "SOURCE_LINES": "367-370",
+      "RELATED_TELEGRAM_LINES": "forex_bot/telegram_control.py 1172-1184",
+      "TRIGGER": "start_telegram_control returns while an older worker is alive",
+      "ACTUAL_SOURCE_REACHABILITY": "ISOLATED_REPRODUCED. A second lifespan in the same process is supported by the code and is not the normal one-process production startup.",
+      "TEST_SCHEDULE": "S10,S11,S12",
+      "EXPECTED_BEHAVIOUR": "A refused Telegram start should be distinguishable from a start that created a worker.",
+      "OBSERVED_BEHAVIOUR": "Start returns None and logs nothing on refusal. The second lifespan yields successfully, keeps one worker, and reuses the database connection.",
+      "APPLICATION_EFFECT": "Startup success does not mean a new Telegram worker started.",
+      "DATABASE_EFFECT": "The process-global connection is reused.",
+      "THREAD_EFFECT": "No duplicate worker.",
+      "ASYNCIO_TASK_EFFECT": "The second lifespan still creates and later drains its own tasks.",
+      "RECOMMENDED_REMEDIATION": "After start, compare the stored thread with the thread that existed before the call and log a refusal. Do not fail trading startup: start is already non-fatal.",
+      "REQUIRED_FUTURE_SOURCE_SCOPE": "forex_bot/app.py",
+      "EVIDENCE_LEVEL": "ACTUAL_COMBINED_LIFECYCLE_ISOLATED"
+    }
+  ],
+  "not_findings": [
+    "DATABASE_OWNERSHIP_GAP",
+    "CLEANUP_ERROR_PRECEDENCE_GAP",
+    "TELEGRAM_STOP_CONTRACT_INCOMPATIBLE"
+  ]
+}

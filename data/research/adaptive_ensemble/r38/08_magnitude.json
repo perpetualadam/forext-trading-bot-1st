@@ -1,0 +1,102 @@
+{
+  "12": {
+    "n_train": 36429,
+    "n_eval": 24624,
+    "model_mae": 0.00029114718907486,
+    "baseline_mae": 0.00033361981238682524,
+    "beats_training_average": true,
+    "scaler_fit_on_training_only": true,
+    "exploratory_absolute_correlations": [
+      {
+        "feature": "return_1",
+        "rho_with_absolute_return": 0.0072106704019209685,
+        "n": 24624
+      },
+      {
+        "feature": "rolling_vol_20",
+        "rho_with_absolute_return": 0.2982304000104382,
+        "n": 24624
+      },
+      {
+        "feature": "atr_14",
+        "rho_with_absolute_return": 0.30260435544246833,
+        "n": 24624
+      },
+      {
+        "feature": "ma_distance",
+        "rho_with_absolute_return": 0.023485773298695715,
+        "n": 24624
+      },
+      {
+        "feature": "momentum_12",
+        "rho_with_absolute_return": 0.02700978085984897,
+        "n": 24624
+      },
+      {
+        "feature": "spread",
+        "rho_with_absolute_return": -0.0274214463409177,
+        "n": 24624
+      },
+      {
+        "feature": "range_20",
+        "rho_with_absolute_return": 0.29389058208798724,
+        "n": 24624
+      },
+      {
+        "feature": "volume",
+        "rho_with_absolute_return": 0.31953733765725945,
+        "n": 24624
+      }
+    ]
+  },
+  "48": {
+    "n_train": 35342,
+    "n_eval": 23460,
+    "model_mae": 0.0006389871894910496,
+    "baseline_mae": 0.0006818808828582643,
+    "beats_training_average": true,
+    "scaler_fit_on_training_only": true,
+    "exploratory_absolute_correlations": [
+      {
+        "feature": "return_1",
+        "rho_with_absolute_return": -0.0021567131195992743,
+        "n": 23460
+      },
+      {
+        "feature": "rolling_vol_20",
+        "rho_with_absolute_return": 0.18626031511964836,
+        "n": 23460
+      },
+      {
+        "feature": "atr_14",
+        "rho_with_absolute_return": 0.20698674405097045,
+        "n": 23460
+      },
+      {
+        "feature": "ma_distance",
+        "rho_with_absolute_return": 0.01951148152932428,
+        "n": 23460
+      },
+      {
+        "feature": "momentum_12",
+        "rho_with_absolute_return": 0.01821594813489614,
+        "n": 23460
+      },
+      {
+        "feature": "spread",
+        "rho_with_absolute_return": -0.011905997924549341,
+        "n": 23460
+      },
+      {
+        "feature": "range_20",
+        "rho_with_absolute_return": 0.197584236957786,
+        "n": 23460
+      },
+      {
+        "feature": "volume",
+        "rho_with_absolute_return": 0.21605250532682793,
+        "n": 23460
+      }
+    ]
+  }
+}

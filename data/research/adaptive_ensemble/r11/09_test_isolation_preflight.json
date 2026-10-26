@@ -1,0 +1,15 @@
+{
+  "main_imported": false,
+  "lifespan_entered": false,
+  "run_bot_executed": false,
+  "dotenv": "stubbed before import",
+  "socket_barrier": "raising socket subclass",
+  "families_permitted": [],
+  "r11_process": {"exit": 0, "blocked_attempts": 4, "dotenv_stub_calls": 1},
+  "regression_process": {"exit": 0, "blocked_attempts": 5, "dotenv_stub_calls": 1},
+  "r10_process": {"exit": 0, "blocked_attempts": 5, "dotenv_stub_calls": 1},
+  "postgresql_connection": false,
+  "broker_client": false,
+  "network_success": false,
+  "dns_success": false
+}

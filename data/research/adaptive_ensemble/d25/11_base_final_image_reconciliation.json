@@ -1,0 +1,142 @@
+{
+  "rows": [
+    {
+      "subject": "architecture",
+      "base_config": "amd64 and arm64/v8 are separate verified configs",
+      "dockerfile": "no platform flag",
+      "compose": "bot service has no platform",
+      "expected_implication": "the build platform is selected outside these files",
+      "evidence_level": "DECLARED_IN_LOCAL_SOURCE",
+      "unverified_question": "which platform a future build would target"
+    },
+    {
+      "subject": "python_version",
+      "base_config": "PYTHON_VERSION declaration 3.12.15",
+      "dockerfile": "mutable tag 3.12-slim-bookworm",
+      "compose": "no Python declaration",
+      "expected_implication": "the final interpreter remains unmeasured",
+      "evidence_level": "VERIFIED_CONFIG_DECLARATION",
+      "unverified_question": "the interpreter version inside a built image"
+    },
+    {
+      "subject": "runtime_user",
+      "base_config": "User absent",
+      "dockerfile": "USER absent",
+      "compose": "user absent",
+      "expected_implication": "no final user was declared or measured",
+      "evidence_level": "MISSING",
+      "unverified_question": "the uid of a running container"
+    },
+    {
+      "subject": "working_directory",
+      "base_config": "WorkingDir absent",
+      "dockerfile": "WORKDIR /app",
+      "compose": "no working_dir override",
+      "expected_implication": "the Dockerfile declares /app for a future build",
+      "evidence_level": "DECLARED_IN_LOCAL_SOURCE",
+      "unverified_question": "the working directory of a built image"
+    },
+    {
+      "subject": "entrypoint",
+      "base_config": "Entrypoint absent",
+      "dockerfile": "ENTRYPOINT absent",
+      "compose": "entrypoint absent",
+      "expected_implication": "no entrypoint was declared",
+      "evidence_level": "DECLARED_IN_LOCAL_SOURCE",
+      "unverified_question": "whether a runtime injects an entrypoint"
+    },
+    {
+      "subject": "command",
+      "base_config": "[\"python3\"]",
+      "dockerfile": [
+        "[\"uvicorn\", \"forex_bot.app:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]"
+      ],
+      "compose": "no command override",
+      "expected_implication": "a future image would carry the Dockerfile CMD unless overridden later",
+      "evidence_level": "DECLARED_IN_LOCAL_SOURCE",
+      "unverified_question": "whether that process starts"
+    },
+    {
+      "subject": "environment",
+      "base_config": [
+        "GPG_KEY",
+        "LANG",
+        "PATH",
+        "PYTHON_SHA256",
+        "PYTHON_VERSION"
+      ],
+      "dockerfile": [
+        "PYTHONDONTWRITEBYTECODE=1      PYTHONUNBUFFERED=1      PIP_DISABLE_PIP_VERSION_CHECK=1      PIP_DEFAULT_TIMEOUT=120      PIP_RETRIES=15"
+      ],
+      "compose": "service environment substitutions, with sensitive defaults redacted",
+      "expected_implication": "final environment is a merge that was not built",
+      "evidence_level": "DECLARED_IN_LOCAL_SOURCE",
+      "unverified_question": "the effective environment of a running container"
+    },
+    {
+      "subject": "exposed_ports",
+      "base_config": "ExposedPorts absent",
+      "dockerfile": [
+        "8000"
+      ],
+      "compose": "host BOT_PORT substitution published to container port 8000",
+      "expected_implication": "Compose declares a port mapping for a future container",
+      "evidence_level": "DECLARED_IN_LOCAL_SOURCE",
+      "unverified_question": "whether the port is listening"
+    },
+    {
+      "subject": "health_behaviour",
+      "base_config": "no healthcheck field",
+      "dockerfile": "HEALTHCHECK absent",
+      "compose": "bot healthcheck absent; db and ollama have healthchecks",
+      "expected_implication": "bot health is not declared",
+      "evidence_level": "MISSING",
+      "unverified_question": "how a bot failure would be detected"
+    },
+    {
+      "subject": "restart_behaviour",
+      "base_config": "not a config field",
+      "dockerfile": "no restart instruction",
+      "compose": "bot and db unset; ollama unless-stopped",
+      "expected_implication": "bot restart policy is not declared",
+      "evidence_level": "DECLARED_IN_LOCAL_SOURCE",
+      "unverified_question": "the engine default on a real host"
+    },
+    {
+      "subject": "dependency_installation",
+      "base_config": "not applicable",
+      "dockerfile": "unpinned pip upgrade and unhashed requirements install",
+      "compose": "no installer override",
+      "expected_implication": "a build would resolve dependencies at build time",
+      "evidence_level": "DECLARED_IN_LOCAL_SOURCE",
+      "unverified_question": "which artifacts that resolution would select"
+    },
+    {
+      "subject": "application_code_inclusion",
+      "base_config": "not applicable",
+      "dockerfile": "61 COPY instructions, including an explicit application allowlist",
+      "compose": "build context '.'",
+      "expected_implication": "the Dockerfile names the files a future build would copy",
+      "evidence_level": "DECLARED_IN_LOCAL_SOURCE",
+      "unverified_question": "the resulting image filesystem"
+    },
+    {
+      "subject": "persistent_storage",
+      "base_config": "Volumes absent",
+      "dockerfile": "no VOLUME instruction",
+      "compose": "v2_shadow and data/ops bind mounts, plus pgdata",
+      "expected_implication": "Compose declares mounts for a future stack",
+      "evidence_level": "DECLARED_IN_LOCAL_SOURCE",
+      "unverified_question": "the contents of those mounts in production"
+    },
+    {
+      "subject": "database_connectivity",
+      "base_config": "not applicable",
+      "dockerfile": "psycopg2-binary is installed only through requirements.txt",
+      "compose": "POSTGRES substitutions and db service postgres:16-alpine",
+      "expected_implication": "connection settings are declared and unresolved",
+      "evidence_level": "DECLARED_IN_LOCAL_SOURCE",
+      "unverified_question": "schema compatibility and a live connection"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "gate": "F",
+  "result": "NOT_RUN",
+  "meaning": "The AMD64 manifest was not requested."
+}

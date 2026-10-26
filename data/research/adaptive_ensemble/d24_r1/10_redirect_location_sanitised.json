@@ -1,0 +1,21 @@
+{
+  "location_present": true,
+  "location_syntactically_valid": true,
+  "classification_flags": [
+    "REDIRECT_DESTINATION_NOT_AUTHORISED"
+  ],
+  "scheme": "https",
+  "hostname": "production.cloudfront.docker.com",
+  "explicit_port": null,
+  "absolute": true,
+  "userinfo_present": false,
+  "query_present": true,
+  "fragment_present": false,
+  "path_present": true,
+  "https": true,
+  "host_differs_from_registry": true,
+  "host_in_approved_allowlist": false,
+  "unexpected_components": [
+    "query"
+  ]
+}

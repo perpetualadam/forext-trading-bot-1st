@@ -1,0 +1,145 @@
+{
+  "rule": "Every row must be PASS before Gate C. The passing Gate C run is additional evidence, not a substitute for a FAIL row.",
+  "rows": [
+    {
+      "dependency": "dotenv.load_dotenv",
+      "original_side_effect": "may open a real .env file at config import",
+      "fake_or_guard": "sys.modules dotenv returns False and does not open files",
+      "installed_before_import": true,
+      "preventive_protection": true,
+      "verification_method": "passing run dotenv_calls_at_import >= 1 and fs_denials empty",
+      "residual_risk": "a later import of the real dotenv package would need the fake to stay in sys.modules",
+      "gate_result": "PASS"
+    },
+    {
+      "dependency": "Config environment capture",
+      "original_side_effect": "copies OANDA, Telegram, and Postgres variables at import",
+      "fake_or_guard": "subprocess environment is synthetic and does not inherit the parent",
+      "installed_before_import": true,
+      "preventive_protection": true,
+      "verification_method": "runner env is constructed; tokens set to empty strings",
+      "residual_risk": "production environment remains unread and unverified",
+      "gate_result": "PASS"
+    },
+    {
+      "dependency": "LIVE_SAFETY_STATE_PATH",
+      "original_side_effect": "default path is data/ops/live_safety_state.json",
+      "fake_or_guard": "absolute temporary path set before import",
+      "installed_before_import": true,
+      "preventive_protection": true,
+      "verification_method": "open guard denies data/ops; passing run had no denials",
+      "residual_risk": "none for this process",
+      "gate_result": "PASS"
+    },
+    {
+      "dependency": "builtins.open",
+      "original_side_effect": "could read .env, credentials, data/ops, or v2_shadow",
+      "fake_or_guard": "deny those names and path fragments",
+      "installed_before_import": true,
+      "preventive_protection": true,
+      "verification_method": "fs_denials empty on the passing run",
+      "residual_risk": "a file outside the deny list could still be read if import needs it; production mounts are on the deny list",
+      "gate_result": "PASS"
+    },
+    {
+      "dependency": "socket.connect and create_connection",
+      "original_side_effect": "TCP connection to a broker, database, or other host",
+      "fake_or_guard": "connect, connect_ex, and create_connection raise",
+      "installed_before_import": true,
+      "preventive_protection": true,
+      "verification_method": "network list empty on the passing run",
+      "residual_risk": "the event-loop self-pipe is the only allowed connect, and only to a port bound in that same call",
+      "gate_result": "PASS"
+    },
+    {
+      "dependency": "urllib and asyncio streams",
+      "original_side_effect": "HTTP or stream connections",
+      "fake_or_guard": "urlopen and asyncio.open_connection raise",
+      "installed_before_import": true,
+      "preventive_protection": true,
+      "verification_method": "no urlopen or open_connection entry in network",
+      "residual_risk": "none observed",
+      "gate_result": "PASS"
+    },
+    {
+      "dependency": "requests",
+      "original_side_effect": "HTTP to OANDA or Telegram",
+      "fake_or_guard": "fake module whose verbs raise",
+      "installed_before_import": true,
+      "preventive_protection": true,
+      "verification_method": "requests count 0",
+      "residual_risk": "none observed",
+      "gate_result": "PASS"
+    },
+    {
+      "dependency": "psycopg2.connect",
+      "original_side_effect": "Postgres TCP connection and later DDL inside get_connection",
+      "fake_or_guard": "fake connect raises; app.get_connection is a recorder",
+      "installed_before_import": true,
+      "preventive_protection": true,
+      "verification_method": "psycopg2.connect count 0",
+      "residual_risk": "the fake get_connection does not exercise real SQL",
+      "gate_result": "PASS"
+    },
+    {
+      "dependency": "build_api and fetch_account_summary",
+      "original_side_effect": "OANDA client and account summary GET",
+      "fake_or_guard": "app-module recorders",
+      "installed_before_import": false,
+      "preventive_protection": true,
+      "verification_method": "counts are 1 on valid startup and 0 on protected startup; requests count 0",
+      "residual_risk": "replacement is before lifespan, which is when these names are called; they are not called at import",
+      "gate_result": "PASS"
+    },
+    {
+      "dependency": "reconciliation",
+      "original_side_effect": "loads oandapy position endpoints and can fetch positions",
+      "fake_or_guard": "pre-seeded fake module",
+      "installed_before_import": false,
+      "preventive_protection": true,
+      "verification_method": "fake counters; real module not required for the run",
+      "residual_risk": "pre-seeded before lifespan, which is the import site",
+      "gate_result": "PASS"
+    },
+    {
+      "dependency": "telegram_control and alert thread",
+      "original_side_effect": "getUpdates thread and alert-sender thread",
+      "fake_or_guard": "fake telegram_control module and app.alert recorder",
+      "installed_before_import": false,
+      "preventive_protection": true,
+      "verification_method": "start and stop counts on the fake; requests count 0",
+      "residual_risk": "pre-seeded before lifespan",
+      "gate_result": "PASS"
+    },
+    {
+      "dependency": "run_bot, health, reconciliation, telegram loops",
+      "original_side_effect": "trading loop, health sleep, reconciliation, Telegram poll",
+      "fake_or_guard": "inert _inner coroutines",
+      "installed_before_import": false,
+      "preventive_protection": true,
+      "verification_method": "four scheduled code names were _inner",
+      "residual_risk": "replacement is before lifespan",
+      "gate_result": "PASS"
+    },
+    {
+      "dependency": "oanda_exec order functions",
+      "original_side_effect": "order submission if called",
+      "fake_or_guard": "wrappers raise",
+      "installed_before_import": false,
+      "preventive_protection": true,
+      "verification_method": "no order_route counts",
+      "residual_risk": "wrappers are installed before lifespan",
+      "gate_result": "PASS"
+    },
+    {
+      "dependency": "concensus-forecast on sys.path",
+      "original_side_effect": "user-site pth adds that project to imports",
+      "fake_or_guard": "path entry removed before forex import; project not read",
+      "installed_before_import": true,
+      "preventive_protection": true,
+      "verification_method": "foreign_project_on_path false",
+      "residual_risk": "none for this process",
+      "gate_result": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "gate": "I",
+  "verdict": "PASS",
+  "meaning": "The offline task completed. Missing runtime metadata was not obtained.",
+  "checks": [
+    "Protected hashes match the Gate A baseline after artifact creation.",
+    "D.22 and D.22-R1 raw manifests remain unchanged.",
+    "No commit, lockfile, wheelhouse, image build, or production change was performed."
+  ],
+  "network_requests": 0
+}

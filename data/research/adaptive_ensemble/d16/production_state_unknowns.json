@@ -1,0 +1,20 @@
+{
+  "inspected": false,
+  "unknowns": [
+    "container identity",
+    "image identity",
+    "restart policy",
+    "running state",
+    "configuration",
+    "live-order authorisation",
+    "strategy activation",
+    "database schema",
+    "database contents",
+    "broker state",
+    "telegram state",
+    "operational state",
+    "shadow state",
+    "volume ownership",
+    "rollback target"
+  ]
+}

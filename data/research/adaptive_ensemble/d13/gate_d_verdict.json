@@ -1,0 +1,13 @@
+{
+  "gate": "D",
+  "verdict": "PASS",
+  "production_file_changed_by_d13": "forex_bot/app.py",
+  "unchanged_production_hashes": [
+    "forex_bot/database.py",
+    "forex_bot/telegram_control.py",
+    "forex_bot/live_safety.py",
+    "forex_bot/strategy_meta.py"
+  ],
+  "startup_refusal_reporting": "not implemented",
+  "reason": "no supported interface distinguishes a refused start from the other None returns"
+}

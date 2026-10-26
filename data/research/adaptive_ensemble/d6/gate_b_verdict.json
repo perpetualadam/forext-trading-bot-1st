@@ -1,0 +1,13 @@
+{
+  "gate": "B",
+  "verdict": "PASS",
+  "d5_runner_modified": false,
+  "socketpair_broader_than_intended": false,
+  "d5_filesystem_gap": "builtins.open is guarded. os.open, os.replace, os.rename, os.remove, os.unlink, and shutil are not guarded in the D.5 runner.",
+  "d6_harness_closes_that_gap": true,
+  "blocked_codes_not_used": [
+    "D6_NETWORK_ISOLATION_BLOCKED",
+    "D6_FILESYSTEM_ISOLATION_BLOCKED",
+    "D6_SUBPROCESS_ISOLATION_BLOCKED"
+  ]
+}

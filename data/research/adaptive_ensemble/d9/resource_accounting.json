@@ -1,0 +1,11 @@
+{
+  "rule": "Snapshot application close counts before harness close.",
+  "pre_fix": {"created": [1, 2], "published": 1, "abandoned_open": [2], "application_closed": [], "harness_closed": [1, 2]},
+  "post_fix_overlap": {"created": [1], "published": 1, "abandoned_open": [], "application_closed": [], "harness_closed": [1]},
+  "both_fail": "application closed both failed connections; harness closed 0",
+  "conn_close_fails": "application close of the failed connection raised; harness closed that object and the later published connection",
+  "release": "application closed the only connection; harness closed 0",
+  "replace": "application closed old id 1; harness closed published id 2 after the snapshot",
+  "unaccounted": 0,
+  "workers_alive": 0
+}

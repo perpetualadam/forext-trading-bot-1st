@@ -1,0 +1,9 @@
+{
+  "stops": [
+    {
+      "classification": "D30_R1_BLOCKED_CLIENT_SAFETY",
+      "reason": "Standard-library name resolution cannot be cancelled within the approved deadline.",
+      "network_requests": 0
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "file": "tests/test_r21_selector_and_order_state.py",
+  "passed": 24,
+  "failed": 0,
+  "skipped": 0,
+  "isolation": {
+    "exit": 0,
+    "blocked_socket_or_dns_attempts": 3,
+    "dotenv_stub_calls": 1,
+    "network_successes": 0,
+    "postgresql_connections": 0,
+    "real_broker_calls": 0
+  },
+  "tests": [
+    "test_01_valid_selector_controls_strategy",
+    "test_02_null_selector_blocks",
+    "test_03_unknown_selector_result_blocks",
+    "test_04_malformed_selector_result_blocks",
+    "test_05_inactive_selector_result_blocks",
+    "test_06_supplied_name_cannot_override_valid_selection",
+    "test_07_supplied_name_cannot_replace_null",
+    "test_08_selector_exception_blocks",
+    "test_09_selector_unavailable_blocks",
+    "test_10_selected_strategy_controls_lookback_and_metadata",
+    "test_11_ai_and_rl_cannot_override_selector_rejection",
+    "test_12_actual_selector_implementation",
+    "test_13_filled_two_cycle_hold",
+    "test_14_ambiguous_order_is_unresolved_with_exposure",
+    "test_15_ambiguous_second_cycle_blocks_without_retry",
+    "test_16_timeout_retains_exposure",
+    "test_17_partial_retains_exposure",
+    "test_18_persistence_failure_blocks",
+    "test_19_historical_filled_remains_held",
+    "test_20_caller_flat_marker_cannot_clear_exposure",
+    "test_21_eligibility_and_adapter_stay_closed",
+    "test_22_no_broker_database_network_or_launcher",
+    "test_23_unauthorised_strategy_rule_remains",
+    "test_24_two_cycle_trace"
+  ],
+  "actual_selector": {
+    "select_strategy_default": null,
+    "select_deterministic_with_scalp_eligible": "scalp",
+    "iteration_strategy_used": "scalp",
+    "production_strategies_activated": false
+  },
+  "injected_selector_cases": ["unknown", "malformed"],
+  "note": "Unknown and malformed values were returned by a test double of select_strategy. They are not outputs of the production selector."
+}

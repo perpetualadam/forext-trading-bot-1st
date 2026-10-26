@@ -1,0 +1,47 @@
+{
+  "levels": [
+    {
+      "level": "wheel filename tags",
+      "current": "MISSING",
+      "future_move": "store filenames from approved metadata, still unverified as compatibility"
+    },
+    {
+      "level": "interpreter-supported tags",
+      "current": "MISSING",
+      "future_move": "measure the interpreter in a separate stage"
+    },
+    {
+      "level": "python ABI compatibility",
+      "current": "MISSING",
+      "future_move": "compare a measured SOABI with a parsed ABI tag"
+    },
+    {
+      "level": "platform compatibility",
+      "current": "MISSING",
+      "future_move": "compare a measured platform with a parsed platform tag"
+    },
+    {
+      "level": "libc compatibility",
+      "current": "UNVERIFIED",
+      "future_move": "measure libc before accepting a manylinux tag"
+    },
+    {
+      "level": "CPU instruction compatibility",
+      "current": "UNVERIFIED",
+      "future_move": "receiver CPU evidence"
+    },
+    {
+      "level": "transitive dependency compatibility",
+      "current": "MISSING",
+      "future_move": "a separately approved resolution"
+    },
+    {
+      "level": "runtime import compatibility",
+      "current": "MISSING",
+      "future_move": "an isolated runtime test"
+    }
+  ],
+  "filename_match_is_not_runtime_proof": true,
+  "index_hash_is_not_publisher_proof": true,
+  "platforms_remain_separate": true
+}

@@ -1,0 +1,19 @@
+{
+  "source_identity": {
+    "git_head": "d080d897945bc44fa37c02caab504ed707146bec",
+    "working_tree": "dirty",
+    "dockerfile_sha256": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
+    "allowlist_sha256": "b2d0f66f8a696da5488072720f6d8de7ceccfd8c847d54327d4cfff2e10eb7b4"
+  },
+  "build_context_identity": "UNRESOLVED until a context that excludes the gitignored env backups is defined and hashed",
+  "image_identity": "not built",
+  "runtime_behavior": "not established by packaging hashes",
+  "base_image_digest": "unknown",
+  "python_dependency_versions": "ranges only",
+  "package_index_behavior": "pip default index, unpinned",
+  "build_arguments": [],
+  "buildkit_configuration": "UNVERIFIED_NO_DOCKER_COMMANDS",
+  "build_cache_behavior": "UNVERIFIED_NO_DOCKER_COMMANDS",
+  "candidate_tag_availability": "CANDIDATE_TAG_AVAILABILITY_UNVERIFIED",
+  "proposed_tag_not_executed": "forexttradingbot1st-g14-candidate:d080d89-4a458b4b"
+}

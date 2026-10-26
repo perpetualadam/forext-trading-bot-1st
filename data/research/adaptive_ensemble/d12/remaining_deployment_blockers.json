@@ -1,0 +1,29 @@
+{
+  "production_startup_verified": false,
+  "production_container_identity_verified": false,
+  "running_image_contains_working_tree_fixes": false,
+  "live_database_schema_verified": false,
+  "requirements_pinned": false,
+  "dependency_lock": false,
+  "offline_wheelhouse": false,
+  "base_image_digest_verified": false,
+  "runtime_target_profile_complete": false,
+  "trusted_receiving_boundary": false,
+  "verified_candidate_image": false,
+  "verified_rollback_target": false,
+  "production_operational_state_verified": false,
+  "production_shadow_state_verified": false,
+  "full_integration_suite_executed": false,
+  "historical_hash_pins_remain": [
+    "D.5",
+    "D.6",
+    "D.8",
+    "D.10"
+  ],
+  "research_backtests_may_assume_active_strategies": true,
+  "application_shutdown_observability": "D12-STOP-01 confirmed, not remediated",
+  "application_telegram_start_refusal": "D12-START-01 confirmed, not remediated",
+  "production_deployment": "NO-GO",
+  "live_trading": "NOT_AUTHORISED",
+  "rollback": "NO-GO"
+}

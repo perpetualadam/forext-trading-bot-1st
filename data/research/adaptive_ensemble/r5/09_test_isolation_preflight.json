@@ -1,0 +1,12 @@
+{
+  "gate_g": "PASS",
+  "pytest_passed_including_r4_regression": 65,
+  "plugins": "autoload off, cache off, conftest not loaded",
+  "app_imported": false,
+  "trading_loop_started": false,
+  "dotenv_stub_calls": 1,
+  "blocked_socket_constructors": 1,
+  "completed_connections": 0,
+  "postgresql_connections": 0,
+  "note": "One IPv6 constructor was blocked during import before an operating-system socket existed."
+}

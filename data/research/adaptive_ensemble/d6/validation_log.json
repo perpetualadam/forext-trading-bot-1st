@@ -1,0 +1,56 @@
+{
+  "commands_executed": [
+    "git rev-parse HEAD",
+    "git branch --show-current",
+    "git status summary",
+    "SHA-256 of app.py, live_safety.py, strategy_meta.py, and the two D.5 test files",
+    "python -m ruff check on the two new D.6 test files",
+    "python -m pytest of the D.6, D.2, D.3, D.4, and D.5 modules"
+  ],
+  "commands_not_executed": [
+    "docker",
+    "docker compose",
+    "wsl",
+    "vm",
+    "uvicorn",
+    "pip",
+    "git commit",
+    "git reset",
+    "git stash",
+    "git clean"
+  ],
+  "files_read": [
+    "forex_bot/app.py lifespan",
+    "forex_bot/database.py get_connection",
+    "forex_bot/config.py import and PostgresConfig",
+    "forex_bot/oanda_exec.py authorisation gate and order entry",
+    "tests/d5_lifespan_runner.py guards",
+    "tests/test_live_safety_repair.py imports and broker-call tests",
+    "tests/conftest.py"
+  ],
+  "files_not_read": [
+    "real .env",
+    "credential files",
+    "production safety state",
+    "data/ops operational mount",
+    "v2_shadow",
+    "production database",
+    "concensus-forecast project files"
+  ],
+  "files_created": [
+    "tests/d6_partial_startup_runner.py",
+    "tests/test_d6_partial_startup_cleanup.py",
+    "data/research/adaptive_ensemble/d6/"
+  ],
+  "files_modified": [],
+  "production_source_modified": false,
+  "d5_files_modified": false,
+  "prohibited_operations": [],
+  "missing_evidence": [
+    "production environment",
+    "production safety state",
+    "refreshed container identity",
+    "a real Postgres connection close on process exit",
+    "full test suite"
+  ]
+}

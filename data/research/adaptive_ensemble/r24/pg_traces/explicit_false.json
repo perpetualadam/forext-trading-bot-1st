@@ -1,0 +1,16 @@
+{
+  "pid": 10656,
+  "role": "explicit_false",
+  "ok": true,
+  "raised": "OrderRecoveryUnreadable",
+  "fail_closed": true,
+  "blocked_by": "recovery_unreadable",
+  "inert_dispatches": 0,
+  "flat_cleared": false,
+  "blocked_after_flat": "recovery_unreadable",
+  "route_refusals": [],
+  "socket_blocks": [],
+  "dns_blocks": 0,
+  "dotenv_stubs": 1,
+  "real_broker_calls": 0
+}

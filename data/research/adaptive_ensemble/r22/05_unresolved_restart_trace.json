@@ -1,0 +1,81 @@
+{
+  "kind": "ambiguous",
+  "instance_a": {
+    "functions": [
+      "evaluate",
+      "dispatch_production_iteration",
+      "evaluate_one_instrument_iteration"
+    ],
+    "inert_dispatches": 1,
+    "order_status": "UNRESOLVED",
+    "client_order_id": "cid-2c3c758aa100420e82a6ab1e8d16eda9",
+    "production_eligible": false,
+    "selected_strategy": "scalp"
+  },
+  "store": {
+    "path": "C:\\Users\\Brian\\OneDrive\\Desktop\\Forext Trading Bot 1st\\data\\research\\adaptive_ensemble\\r22\\stores\\ambiguous.json",
+    "sha256": "f2e1924aef6fb54160cb738ba2d1bd8ff420180783d632ea42b48afb0f2e79a2",
+    "sha256_after_wipe": "f2e1924aef6fb54160cb738ba2d1bd8ff420180783d632ea42b48afb0f2e79a2",
+    "record": {
+      "broker_order_id": "",
+      "client_order_id": "cid-2c3c758aa100420e82a6ab1e8d16eda9",
+      "fill_price": null,
+      "filled_units": null,
+      "metadata": {
+        "exposure_safety": "UNCONFIRMED",
+        "reason": "ambiguous_broker_outcome",
+        "simulation": true,
+        "strategy": "scalp"
+      },
+      "reservation_status": "UNRESOLVED",
+      "side": "BUY",
+      "status": "UNRESOLVED",
+      "symbol": "EUR_USD",
+      "units": 100000.00000001102
+    }
+  },
+  "restart": {
+    "maps_after_wipe": {
+      "orders": 0,
+      "positions": 0,
+      "exposure": 0,
+      "blocking": 0,
+      "unresolved": 0
+    },
+    "file_unchanged": true,
+    "startup_function": "initialise_application",
+    "recovery_functions": [
+      "read_offline_exec_orders",
+      "select_rows_for_recovery",
+      "ingest_recovery_snapshot"
+    ],
+    "provider_calls": [
+      "validate_config",
+      "verify_safety",
+      "persistence",
+      "read_offline_exec_orders",
+      "broker",
+      "market_data",
+      "messaging",
+      "health",
+      "schedule"
+    ],
+    "startup_ok": true,
+    "recovered_source": "db_recovery",
+    "recovered_status": "UNRESOLVED",
+    "recovered_object_is_new": true,
+    "exposure": "exposure_unconfirmed"
+  },
+  "instance_b": {
+    "functions": [
+      "evaluate",
+      "dispatch_production_iteration",
+      "evaluate_one_instrument_iteration"
+    ],
+    "blocked_by": "exposure_unconfirmed",
+    "exposure_read": "exposure_unconfirmed",
+    "reservation_attempted": false,
+    "inert_dispatches": 0,
+    "production_eligible": false
+  }
+}

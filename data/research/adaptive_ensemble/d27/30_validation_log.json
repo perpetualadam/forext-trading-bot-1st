@@ -1,0 +1,23 @@
+{
+  "commands": [
+    "git rev-parse HEAD",
+    "git branch --show-current",
+    "git status --short -- protected files",
+    "python -B standard-library JSON and filename audit"
+  ],
+  "network_requests": 0,
+  "d26_r1_files_hashed": [
+    "04_dependency_allowlist.json",
+    "07_request_ledger.json",
+    "08_response_validation.json",
+    "09_project_metadata_inventory.json",
+    "10_distribution_metadata_inventory.json",
+    "11_amd64_candidate_matrix.json",
+    "12_arm64_candidate_matrix.json",
+    "13_cross_platform_comparison.json",
+    "14_metadata_limitations.json",
+    "15_provenance_limitations.json",
+    "29_validation_log.json",
+    "30_stage_d26_r1_report.md"
+  ]
+}

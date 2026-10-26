@@ -1,0 +1,19 @@
+{
+  "execution_status": "NOT AUTHORISED",
+  "proposed_registry_host": "registry-1.docker.io",
+  "proposed_authentication_host": "auth.docker.io",
+  "storage_host_status": "NOT AUTHORISED",
+  "historical_storage_host": "production.cloudfront.docker.com",
+  "historical_storage_host_evidence": "HISTORICAL_OBSERVATION",
+  "historical_observation_is_approval": false,
+  "redirects_followed_by_this_budget": 0,
+  "future_redirect_rule": "A later execution approval must name the storage host. Until it does, a 307 stops the stage and no storage body is read.",
+  "maximum_redirects_if_a_future_approval_names_one_storage_host": 8,
+  "redirects_per_blob_if_later_approved": 1,
+  "token_sent_to_storage": false,
+  "signed_urls_persisted": false,
+  "tls": "default certificate verification",
+  "proxy": "stop if a proxy is configured; do not record the proxy value",
+  "accept_encoding": "identity",
+  "content_encoding_rule": "stop unless absent or identity"
+}

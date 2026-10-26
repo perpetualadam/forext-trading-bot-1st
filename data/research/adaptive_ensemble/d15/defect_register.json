@@ -1,0 +1,8 @@
+{
+  "new_defects": [],
+  "previously_fixed_reconfirmed": [
+    "D12-START-01",
+    "D12-STOP-01"
+  ],
+  "first_d15_error": "The new safety test imported a helper from the wrong module. That was a test defect, corrected without production changes."
+}

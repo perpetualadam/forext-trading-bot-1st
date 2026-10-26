@@ -1,0 +1,16 @@
+{
+  "approved_hosts": [
+    "registry-1.docker.io",
+    "auth.docker.io"
+  ],
+  "hosts_contacted": [
+    "auth.docker.io",
+    "registry-1.docker.io"
+  ],
+  "proxy_detected": false,
+  "proxy_handler_installed": false,
+  "redirects_followed": 0,
+  "tls_context": "ssl.create_default_context",
+  "timeout_seconds": 30,
+  "body_limit_bytes": 1048576
+}

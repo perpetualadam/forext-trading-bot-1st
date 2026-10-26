@@ -1,0 +1,16 @@
+{
+  "stage": "G.14.6",
+  "source": "data/research/adaptive_ensemble/g14_5/security_findings.json",
+  "prior_classification": "GATE_B_SECURITY_REMEDIATION_REQUIRED",
+  "historical_reports_modified": false,
+  "findings": [
+    {"id": "G14.5-01", "severity": "HIGH", "component": "tests/g14_4_acquire.py"},
+    {"id": "G14.5-02", "severity": "HIGH", "component": "tests/g14_4_acquire.py"},
+    {"id": "G14.5-03", "severity": "HIGH", "component": "tests/g14_4_acquire.py"},
+    {"id": "G14.5-04", "severity": "HIGH", "component": "tests/g14_4_verify.py"},
+    {"id": "G14.5-05", "severity": "HIGH", "component": "tests/g14_4_verify.py"},
+    {"id": "G14.5-06", "severity": "HIGH", "component": "tests/g14_4_inventory.py"},
+    {"id": "G14.5-07", "severity": "MEDIUM", "component": "tests/g14_4_acquire.py"},
+    {"id": "G14.5-08", "severity": "INFORMATIONAL", "component": "tests/g14_4_acquire.py"}
+  ]
+}

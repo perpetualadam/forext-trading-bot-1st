@@ -1,0 +1,62 @@
+{
+  "models": {
+    "logistic": {
+      "artifact_sha256": "6546fea6cd9e4038db6b86cb66de0cc96b6d78c3d8e806482dbe9dfb7c6492de",
+      "prediction_sha256": "27a3eaa45b8d17482d3e70877921e536cd3a3e67bb29a44fc9cc2a07055c88b8",
+      "reproducible": true,
+      "library": "1.7.0",
+      "validation_status": "unvalidated"
+    },
+    "xgboost": {
+      "artifact_sha256": "cd1547e4b4ee354ba323c5c756ff4f42a207009701fbb90ee24f9cbe30e3cdea",
+      "prediction_sha256": "49e4d191086a2568ffc25a75534ee9c38148517394191770e0b2b211e0f58e3f",
+      "reproducible": true,
+      "library": "3.0.3",
+      "validation_status": "unvalidated"
+    }
+  },
+  "journal_samples": {
+    "logistic": [
+      {
+        "research_decision_id": "3381499acb330c9716a91cc3e8104c931d66cbf04811772d009e33a1dbef8edc",
+        "decision": "abstained",
+        "prediction_direction": null,
+        "validation_status": "unvalidated"
+      },
+      {
+        "research_decision_id": "e3e779a64e738c8672576e1dd9bf7979356c31ee6d9b1feacb14db6deba6e031",
+        "decision": "abstained",
+        "prediction_direction": null,
+        "validation_status": "unvalidated"
+      },
+      {
+        "research_decision_id": "d49a25c78a49d1522fbb11eb1e1e03d3ec72ea7614e097087fdeb443d1bd7d08",
+        "decision": "abstained",
+        "prediction_direction": null,
+        "validation_status": "unvalidated"
+      }
+    ],
+    "xgboost": [
+      {
+        "research_decision_id": "3381499acb330c9716a91cc3e8104c931d66cbf04811772d009e33a1dbef8edc",
+        "decision": "abstained",
+        "prediction_direction": null,
+        "validation_status": "unvalidated"
+      },
+      {
+        "research_decision_id": "e3e779a64e738c8672576e1dd9bf7979356c31ee6d9b1feacb14db6deba6e031",
+        "decision": "abstained",
+        "prediction_direction": null,
+        "validation_status": "unvalidated"
+      },
+      {
+        "research_decision_id": "d49a25c78a49d1522fbb11eb1e1e03d3ec72ea7614e097087fdeb443d1bd7d08",
+        "decision": "abstained",
+        "prediction_direction": null,
+        "validation_status": "unvalidated"
+      }
+    ]
+  },
+  "dataset_sha256": "3ae3c4d061792353b94b8d2be73684f950362f135d47926d1bc8c11a24791091",
+  "frozen_protocol_sha256": "d3ca79a117f83471eaf2f83acd0a42982e3b1011c2c3a04e3f7d253076dc257b"
+}

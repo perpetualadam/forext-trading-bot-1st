@@ -1,0 +1,11 @@
+{
+  "gate": "E",
+  "verdict": "PASS",
+  "meaning": "The offline task completed. Missing runtime metadata was not obtained.",
+  "checks": [
+    "Both config descriptors have recognised media types, sha256 digests, and positive sizes.",
+    "Config blobs are not local and were not downloaded.",
+    "Config contents were not inspected."
+  ],
+  "network_requests": 0
+}

@@ -1,0 +1,42 @@
+{
+  "maximum": 3,
+  "used": 3,
+  "retries": 0,
+  "requests": [
+    {
+      "request_number": 1,
+      "method": "GET",
+      "host": "registry-1.docker.io",
+      "path": "/v2/library/python/blobs/sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+      "status": 401,
+      "authorization_sent": false,
+      "byte_count_discarded": 157,
+      "redirect_followed": false,
+      "destination_contacted": false,
+      "timestamp": "2026-10-13T12:25:57Z"
+    },
+    {
+      "request_number": 2,
+      "method": "GET",
+      "host": "auth.docker.io",
+      "path": "/token",
+      "status": 200,
+      "authorization_sent": false,
+      "byte_count_discarded": 5489,
+      "redirect_followed": false,
+      "destination_contacted": false,
+      "timestamp": "2026-10-13T12:25:57Z"
+    },
+    {
+      "request_number": 3,
+      "method": "GET",
+      "host": "registry-1.docker.io",
+      "path": "/v2/library/python/blobs/sha256:4f228bc1cbcfc794e4878312cfc241d368eff55a21c08d1e2bb263116c4ef524",
+      "status": 307,
+      "authorization_sent": true,
+      "redirect_followed": false,
+      "destination_contacted": false,
+      "timestamp": "2026-10-13T12:25:58Z"
+    }
+  ]
+}

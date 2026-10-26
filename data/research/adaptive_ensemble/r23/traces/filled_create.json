@@ -1,0 +1,19 @@
+{
+  "pid": 7916,
+  "role": "create",
+  "kind": "filled",
+  "ok": true,
+  "evaluate": true,
+  "functions": [
+    "evaluate",
+    "dispatch_production_iteration",
+    "evaluate_one_instrument_iteration"
+  ],
+  "inert_dispatches": 1,
+  "client_order_id": "cid-3dffe115e1e64b0abe890116dbd47c63",
+  "order_status": "FILLED",
+  "production_eligible": false,
+  "selected_strategy": "scalp",
+  "store_sha256": "aaec08cc43b691b438b5a3ce07b39b1c6bf9252cf05f1e17f094164beb86afae",
+  "postgresql_connection": false
+}

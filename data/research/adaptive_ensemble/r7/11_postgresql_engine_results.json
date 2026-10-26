@@ -1,0 +1,11 @@
+{
+  "postgresql_engine_used": false,
+  "disposable_cluster_created": false,
+  "statements_executed": 0,
+  "connections_opened": 0,
+  "classification": "POSTGRESQL_ENGINE_NOT_EVALUATED",
+  "binaries_present": true,
+  "server_version_reported_by_binary": "PostgreSQL 18.1",
+  "initdb_version_reported_by_binary": "PostgreSQL 18.0",
+  "reason": "A Windows server cannot be shown to run without a localhost TCP socket or an unproven substitute. The stage forbids that socket. The server was not started."
+}

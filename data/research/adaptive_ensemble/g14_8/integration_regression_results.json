@@ -1,0 +1,18 @@
+{
+  "command": "python -m pytest tests/test_g13_packaging.py tests/test_g13_1_mutations.py tests/test_g14_context.py tests/test_g14_1_staging.py tests/test_g14_3_supply.py tests/test_g14_4_wheelhouse.py tests/test_g14_5_security.py tests/test_g14_6_security.py tests/test_g14_7_integration.py tests/test_g14_8_filesystem.py -q --tb=line -rs",
+  "g14_7_final_state": "COMPLETE_SYNTHETIC",
+  "synthetic_lock_marker": "SYNTHETIC_TEST_ONLY",
+  "network_requests": 0,
+  "dependency_downloads": 0,
+  "third_party_code_executed": false,
+  "production_lock_created": false,
+  "production_packaging_changed": false,
+  "passed": 225,
+  "failed": 0,
+  "skipped": 3,
+  "skipped_reasons": [
+    "tests/test_g14_8_filesystem.py symlink_unavailable:22",
+    "tests/test_g14_7_integration.py destination symlink_unavailable:22",
+    "tests/test_g14_7_integration.py parent symlink_unavailable:22"
+  ]
+}

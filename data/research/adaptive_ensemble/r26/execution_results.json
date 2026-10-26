@@ -1,0 +1,38 @@
+{
+  "classification": "R26_BROKER_RISK_RECONCILIATION_OFFLINE_INTEGRATED",
+  "live_oanda_validated": false,
+  "head": "d080d897945bc44fa37c02caab504ed707146bec",
+  "branch": "main",
+  "hashes": {
+    "forex_bot/account_reconciliation.py": "73e2b24bb17f576c5eabb1e4a730483ef89c87d8e419034a5a9c7bf2b4f7164a",
+    "forex_bot/execution_risk.py": "8ffa0ef4b38ded1f0aa72362352d0935f43071b4df85f4531be014c889d09661",
+    "forex_bot/bot_loop.py": "dc7c229fe09c9c2adafdcc1ed4c96c9ad534a67758773069049d3d4c5ce02683",
+    "forex_bot/database.py": "0eb8548b70c9ae9a14880de92518ed20ddb8a23c2378cda7ce5da62c3ac998d6",
+    "forex_bot/oanda_client.py": "6d7d5d2b6ce1c228af0629c3e2a8b674b02965c57d1a3ed41c3b4015e531ca2b"
+  },
+  "r26_tests": {"passed": 9, "failed": 0, "skipped": 0},
+  "runner_exits": {
+    "r26": 0,
+    "r25": 0,
+    "regression": 0,
+    "r10": 0,
+    "r11": 0,
+    "r12": 0,
+    "r13": 0,
+    "r14": 0,
+    "r15": 0,
+    "r16": 0,
+    "r17": 0,
+    "r18": 0,
+    "r19": 0,
+    "r20": 0,
+    "r21": 0,
+    "r22": 0,
+    "r23": 0,
+    "r24": 0
+  },
+  "blocked_reservation_attempted": false,
+  "blocked_broker_requests": 0,
+  "production_eligible": false,
+  "deadlock": "outstanding; database locking unchanged"
+}

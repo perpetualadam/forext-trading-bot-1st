@@ -1,0 +1,14 @@
+{
+  "gate": "C",
+  "verdict": "PASS",
+  "isolation": "D.13 child loads the D.11 guard installer before importing forex_bot",
+  "pre_fix_d12": "16 passed in 16.66s before app.py was edited",
+  "pre_fix_confirms": [
+    "blocked lifespan left the worker alive",
+    "cleanup_errors was empty",
+    "incomplete status was absent from application logs",
+    "database stayed published",
+    "owned tasks were drained",
+    "second lifespan reached startup with the same worker"
+  ]
+}

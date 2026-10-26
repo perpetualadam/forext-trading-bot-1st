@@ -6,7 +6,7 @@
   "historical_image_not_a_rollback_target": true,
   "revision_contains_repair": false,
   "rollback_target": "none_verified",
-  "source_revision": "f6c4f40ae6b7614379347ed45141ecd5a3d33642",
+  "source_revision": "d080d897945bc44fa37c02caab504ed707146bec",
   "unresolved": [
     "working tree is uncommitted and mixes stages A through G.5",
     "image copy includes forex_bot/research",
