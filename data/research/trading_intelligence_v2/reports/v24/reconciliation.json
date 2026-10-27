@@ -1,0 +1,23 @@
+{
+  "baseline": {
+    "commission": 1521.64704,
+    "conversion_residual": -0.08020995636911354,
+    "funding": 0.0,
+    "gross": -108.11865055802028,
+    "net": -6204.7638534165835,
+    "slippage": 938.932054537182,
+    "spread": 3636.146318277751,
+    "trades": 829
+  },
+  "ledger_records": 30782,
+  "ledger_sha256": "35b17e13286f852e0706cece978d847d308bce5fbe8d4e19e13514276b7f7028",
+  "maximum_residual_account": 1.3362e-11,
+  "waterfall": {
+    "commission_account": 1521.64704,
+    "financing_account": 0.0,
+    "gross_account": -108.11865055805208,
+    "net_account": -6204.763853416985,
+    "slippage_attribution_account": 938.9190832784599,
+    "spread_attribution_account": 3636.0790795804724
+  }
+}

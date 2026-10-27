@@ -1,0 +1,16 @@
+{
+  "reproducible_ledger_sha256": "35b17e13286f852e0706cece978d847d308bce5fbe8d4e19e13514276b7f7028",
+  "identical_complete_runs": 2,
+  "scenarios": 54,
+  "scenario_trades": 30782,
+  "preserved_raw_hashes": 62,
+  "historical_reports_preserved": 60,
+  "frozen_engine_and_runner": "No Git content diff; V23 source pins pass",
+  "operational_changes": false,
+  "production_authorised": false,
+  "source_hash_scheme": "Research LF normalization; operational raw seals unchanged",
+  "operational_raw_hashes": {
+    "bot_loop.py": "2f1c36dc025d114685e4424402f6866c66aa6eb37d28717027c502a4f447118d",
+    "profit_protection.py": "d57dfce057eb8e5bd318fd6a1bb4f36a979c45e6d4cd664a51fdbc6a7f09b51f"
+  }
+}

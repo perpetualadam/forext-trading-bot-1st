@@ -1,0 +1,95 @@
+{
+  "local_windows": [
+    {
+      "name": "v24",
+      "command": [
+        "C:\\Python313\\python.exe",
+        "-I",
+        "-S",
+        "-B",
+        "data\\research\\trading_intelligence_v2\\v24_run.py",
+        "--v24-tests"
+      ],
+      "exit_code": 0,
+      "tests": 73,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "name": "tiv2",
+      "command": [
+        "C:\\Python313\\python.exe",
+        "-I",
+        "-S",
+        "-B",
+        "data\\research\\trading_intelligence_v2\\run.py",
+        "--tests"
+      ],
+      "exit_code": 0,
+      "tests": 72,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "name": "mtf",
+      "command": [
+        "C:\\Python313\\python.exe",
+        "-I",
+        "-S",
+        "-B",
+        "data\\research\\trading_intelligence_v2\\run.py",
+        "--mtf-tests"
+      ],
+      "exit_code": 0,
+      "tests": 73,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "name": "v23",
+      "command": [
+        "C:\\Python313\\python.exe",
+        "-I",
+        "-S",
+        "-B",
+        "data\\research\\trading_intelligence_v2\\run.py",
+        "--v23-tests"
+      ],
+      "exit_code": 0,
+      "tests": 58,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "name": "coordinator",
+      "command": [
+        "C:\\Python313\\python.exe",
+        "-I",
+        "-S",
+        "-B",
+        "offline_exposure\\run_checks.py"
+      ],
+      "exit_code": 0,
+      "tests": 57,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    }
+  ],
+  "ubuntu_v24": {
+    "tests": 73,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "earlier_failures": [
+    "Initial fixture run: 4 failures of 65; unintended stop triggers, fixture corrected",
+    "First sensitivity attempt: exact baseline metric check failed due to factor-1 quote reconstruction rounding; source quotes retained unchanged",
+    "V23 pinned-source check: 1 error; original engine and runner restored, separate V24 observer copies used"
+  ],
+  "hosted": "Pending publication; hosted evidence recorded separately after commit"
+}

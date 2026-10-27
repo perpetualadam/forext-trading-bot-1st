@@ -1,0 +1,962 @@
+[
+  {
+    "account_currency": "USD",
+    "bidask_account": -21.257400000007486,
+    "bidask_quote": -21.257400000007486,
+    "commission_account": 2.2455000000000003,
+    "conversion": {
+      "applied_override": {
+        "EUR_USD": [
+          1790328600,
+          1.138812,
+          1.1389719999999999
+        ]
+      },
+      "book": {
+        "AUD_USD": [
+          1790328300,
+          0.70273,
+          0.70287
+        ],
+        "EUR_USD": [
+          1790328600,
+          1.138812,
+          1.1389719999999999
+        ],
+        "GBP_USD": [
+          1790328300,
+          1.32379,
+          1.32398
+        ],
+        "USD_CAD": [
+          1790328300,
+          1.4143,
+          1.41449
+        ],
+        "USD_CHF": [
+          1790328300,
+          0.82872,
+          0.82885
+        ],
+        "USD_JPY": [
+          1790328300,
+          157.789,
+          157.81
+        ]
+      },
+      "model": "SIGNED_BID_ASK_300S_NOT_OANDA_SETTLEMENT"
+    },
+    "direction": "BUY",
+    "entry_ask": 1.1394,
+    "entry_bid": 1.13925,
+    "entry_fill": 1.1394199999999999,
+    "entry_mid": 1.139325,
+    "entry_timestamp": 1790328000,
+    "execution_account": -22.754399999996256,
+    "exit_ask": 1.1389919999999998,
+    "exit_bid": 1.1388319999999998,
+    "exit_fill": 1.138812,
+    "exit_mid": 1.138912,
+    "exit_quote_status": "INFERRED_FROM_TRIGGER_AND_OPEN_SPREAD_NOT_CONTEMPORANEOUS_QUOTE",
+    "exit_timestamp": 1790328600,
+    "filled_quote": -22.754399999996256,
+    "financing_account": 0.0,
+    "fold": 1,
+    "gross_account": -15.456525,
+    "gross_quote": -15.456525,
+    "gross_residual": 1.23e-13,
+    "instrument": "EUR_USD",
+    "net_account": -24.99989999999626,
+    "quote_currency": "USD",
+    "reconciliation_residual": -1.5683e-12,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_attribution_account": 1.4969999999887724,
+    "spread_attribution_account": 5.800875000007485,
+    "status": "RECONCILED_RESEARCH_ASSUMPTIONS",
+    "strategy": "trend",
+    "timeframe": "M5",
+    "tolerance_account": 1e-07,
+    "trade_id": "98b069179af485c6becb817267102c0a317977c7b9a35fc238b1fd4863098219",
+    "units": 37425
+  },
+  {
+    "account_currency": "USD",
+    "bidask_account": -19.874147999994957,
+    "bidask_quote": -19.874147999994957,
+    "commission_account": 3.02652,
+    "conversion": {
+      "applied_override": {
+        "AUD_USD": [
+          1790330100,
+          0.7025760000000001,
+          0.7027060000000002
+        ]
+      },
+      "book": {
+        "AUD_USD": [
+          1790330100,
+          0.7025760000000001,
+          0.7027060000000002
+        ],
+        "EUR_USD": [
+          1790329800,
+          1.13883,
+          1.13899
+        ],
+        "GBP_USD": [
+          1790329800,
+          1.32335,
+          1.32353
+        ],
+        "USD_CAD": [
+          1790329800,
+          1.41461,
+          1.41479
+        ],
+        "USD_CHF": [
+          1790329800,
+          0.82953,
+          0.82969
+        ],
+        "USD_JPY": [
+          1790329800,
+          158.049,
+          158.064
+        ]
+      },
+      "model": "SIGNED_BID_ASK_300S_NOT_OANDA_SETTLEMENT"
+    },
+    "direction": "BUY",
+    "entry_ask": 0.70299,
+    "entry_bid": 0.70285,
+    "entry_fill": 0.70301,
+    "entry_mid": 0.70292,
+    "entry_timestamp": 1790328900,
+    "execution_account": -21.891827999994955,
+    "exit_ask": 0.7027260000000002,
+    "exit_bid": 0.7025960000000001,
+    "exit_fill": 0.7025760000000001,
+    "exit_mid": 0.7026610000000002,
+    "exit_quote_status": "INFERRED_FROM_TRIGGER_AND_OPEN_SPREAD_NOT_CONTEMPORANEOUS_QUOTE",
+    "exit_timestamp": 1790330100,
+    "filled_quote": -21.891827999994955,
+    "financing_account": 0.0,
+    "fold": 1,
+    "gross_account": -13.064477999989911,
+    "gross_quote": -13.064477999989911,
+    "gross_residual": 6.466e-13,
+    "instrument": "AUD_USD",
+    "net_account": -24.918347999994957,
+    "quote_currency": "USD",
+    "reconciliation_residual": -1.7342e-12,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_attribution_account": 2.01768,
+    "spread_attribution_account": 6.8096700000050445,
+    "status": "RECONCILED_RESEARCH_ASSUMPTIONS",
+    "strategy": "trend",
+    "timeframe": "M5",
+    "tolerance_account": 1e-07,
+    "trade_id": "3f54e90305365fcaddf55b9f555b3cfd7200c46b5f56727321e3ec8c6fbadd35",
+    "units": 50442
+  },
+  {
+    "account_currency": "USD",
+    "bidask_account": -21.52656,
+    "bidask_quote": -21.52656,
+    "commission_account": 1.9932,
+    "conversion": {
+      "applied_override": {
+        "EUR_USD": [
+          1790331000,
+          1.1393579999999999,
+          1.139498
+        ]
+      },
+      "book": {
+        "AUD_USD": [
+          1790330700,
+          0.70277,
+          0.7029
+        ],
+        "EUR_USD": [
+          1790331000,
+          1.1393579999999999,
+          1.139498
+        ],
+        "GBP_USD": [
+          1790330700,
+          1.32429,
+          1.32445
+        ],
+        "USD_CAD": [
+          1790330700,
+          1.41431,
+          1.41449
+        ],
+        "USD_CHF": [
+          1790330700,
+          0.82926,
+          0.82942
+        ],
+        "USD_JPY": [
+          1790330700,
+          157.966,
+          157.984
+        ]
+      },
+      "model": "SIGNED_BID_ASK_300S_NOT_OANDA_SETTLEMENT"
+    },
+    "direction": "SELL",
+    "entry_ask": 1.13899,
+    "entry_bid": 1.13883,
+    "entry_fill": 1.13881,
+    "entry_mid": 1.13891,
+    "entry_timestamp": 1790329800,
+    "execution_account": -22.85536,
+    "exit_ask": 1.139478,
+    "exit_bid": 1.139338,
+    "exit_fill": 1.139498,
+    "exit_mid": 1.139408,
+    "exit_quote_status": "INFERRED_FROM_TRIGGER_AND_OPEN_SPREAD_NOT_CONTEMPORANEOUS_QUOTE",
+    "exit_timestamp": 1790331000,
+    "filled_quote": -22.85536,
+    "financing_account": 0.0,
+    "fold": 1,
+    "gross_account": -16.54356,
+    "gross_quote": -16.54356,
+    "gross_residual": 3.738e-12,
+    "instrument": "EUR_USD",
+    "net_account": -24.84856,
+    "quote_currency": "USD",
+    "reconciliation_residual": 6.644e-12,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_attribution_account": 1.3288,
+    "spread_attribution_account": 4.983,
+    "status": "RECONCILED_RESEARCH_ASSUMPTIONS",
+    "strategy": "trend",
+    "timeframe": "M5",
+    "tolerance_account": 1e-07,
+    "trade_id": "a92d6f568163c00109e46048b224a9f9568e490a13cdceb8e6437d18e3c6480b",
+    "units": 33220
+  },
+  {
+    "account_currency": "USD",
+    "bidask_account": 24.49996,
+    "bidask_quote": 24.49996,
+    "commission_account": 1.79268,
+    "conversion": {
+      "applied_override": {
+        "GBP_USD": [
+          1790331600,
+          1.32454,
+          1.3247300000000002
+        ]
+      },
+      "book": {
+        "AUD_USD": [
+          1790331600,
+          0.70295,
+          0.70307
+        ],
+        "EUR_USD": [
+          1790331600,
+          1.1397,
+          1.13985
+        ],
+        "GBP_USD": [
+          1790331600,
+          1.32454,
+          1.3247300000000002
+        ],
+        "USD_CAD": [
+          1790331600,
+          1.41411,
+          1.41428
+        ],
+        "USD_CHF": [
+          1790331600,
+          0.82941,
+          0.82956
+        ],
+        "USD_JPY": [
+          1790331600,
+          157.871,
+          157.888
+        ]
+      },
+      "model": "SIGNED_BID_ASK_300S_NOT_OANDA_SETTLEMENT"
+    },
+    "direction": "BUY",
+    "entry_ask": 1.32374,
+    "entry_bid": 1.32358,
+    "entry_fill": 1.3237599999999998,
+    "entry_mid": 1.3236599999999998,
+    "entry_timestamp": 1790328000,
+    "execution_account": 23.304840000005974,
+    "exit_ask": 1.32475,
+    "exit_bid": 1.32456,
+    "exit_fill": 1.32454,
+    "exit_mid": 1.324655,
+    "exit_quote_status": "OBSERVED_CLOSE",
+    "exit_timestamp": 1790331600,
+    "filled_quote": 23.304840000005974,
+    "financing_account": 0.0,
+    "fold": 1,
+    "gross_account": 29.728610000005975,
+    "gross_quote": 29.728610000005975,
+    "gross_residual": -3.6096e-12,
+    "instrument": "GBP_USD",
+    "net_account": 21.512160000005977,
+    "quote_currency": "USD",
+    "reconciliation_residual": 7.474e-13,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_attribution_account": 1.1951199999940243,
+    "spread_attribution_account": 5.228650000005976,
+    "status": "RECONCILED_RESEARCH_ASSUMPTIONS",
+    "strategy": "trend",
+    "timeframe": "M5",
+    "tolerance_account": 1e-07,
+    "trade_id": "6aed3138c364a0a6f702636f4172a4516b89ef999e08d373b5271346f1d6055a",
+    "units": 29878
+  },
+  {
+    "account_currency": "USD",
+    "bidask_account": -17.783289502255894,
+    "bidask_quote": -14.74128,
+    "commission_account": 1.84266,
+    "conversion": {
+      "applied_override": {
+        "USD_CHF": [
+          1790333100,
+          0.82894,
+          0.82909
+        ]
+      },
+      "book": {
+        "AUD_USD": [
+          1790333100,
+          0.7029,
+          0.70303
+        ],
+        "EUR_USD": [
+          1790333100,
+          1.13968,
+          1.13984
+        ],
+        "GBP_USD": [
+          1790333100,
+          1.32457,
+          1.32477
+        ],
+        "USD_CAD": [
+          1790333100,
+          1.41365,
+          1.41382
+        ],
+        "USD_CHF": [
+          1790333100,
+          0.82894,
+          0.82909
+        ],
+        "USD_JPY": [
+          1790333100,
+          157.747,
+          157.763
+        ]
+      },
+      "model": "SIGNED_BID_ASK_300S_NOT_OANDA_SETTLEMENT"
+    },
+    "direction": "BUY",
+    "entry_ask": 0.82944,
+    "entry_bid": 0.82929,
+    "entry_fill": 0.82946,
+    "entry_mid": 0.8293649999999999,
+    "entry_timestamp": 1790329500,
+    "execution_account": -19.26523029411055,
+    "exit_ask": 0.82911,
+    "exit_bid": 0.82896,
+    "exit_fill": 0.82894,
+    "exit_mid": 0.829035,
+    "exit_quote_status": "OBSERVED_CLOSE",
+    "exit_timestamp": 1790333100,
+    "filled_quote": -15.96972,
+    "financing_account": 0.0,
+    "fold": 1,
+    "gross_account": -12.226011532797221,
+    "gross_quote": -10.134629999996928,
+    "gross_residual": -1.5363675537433348e-12,
+    "instrument": "USD_CHF",
+    "net_account": -21.10789029411055,
+    "quote_currency": "CHF",
+    "reconciliation_residual": 1.2968239438318818e-12,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_attribution_account": 1.4819407918546577,
+    "spread_attribution_account": 5.557277969458672,
+    "status": "RECONCILED_RESEARCH_ASSUMPTIONS",
+    "strategy": "trend",
+    "timeframe": "M5",
+    "tolerance_account": 1e-07,
+    "trade_id": "9c6ab0654e8a9014a9f6f71a5dcb57cc40b5b928d53755ebd1c8a2476044d9ef",
+    "units": 30711
+  },
+  {
+    "account_currency": "USD",
+    "bidask_account": -21.064946750121877,
+    "bidask_quote": -29.779768000008296,
+    "commission_account": 2.48856,
+    "conversion": {
+      "applied_override": {
+        "USD_CAD": [
+          1790338800,
+          1.4137119999999999,
+          1.4138619999999997
+        ]
+      },
+      "book": {
+        "AUD_USD": [
+          1790338500,
+          0.70278,
+          0.7029
+        ],
+        "EUR_USD": [
+          1790338500,
+          1.13996,
+          1.14011
+        ],
+        "GBP_USD": [
+          1790338500,
+          1.32484,
+          1.32502
+        ],
+        "USD_CAD": [
+          1790338800,
+          1.4137119999999999,
+          1.4138619999999997
+        ],
+        "USD_CHF": [
+          1790338500,
+          0.82827,
+          0.82842
+        ],
+        "USD_JPY": [
+          1790338500,
+          157.67,
+          157.686
+        ]
+      },
+      "model": "SIGNED_BID_ASK_300S_NOT_OANDA_SETTLEMENT"
+    },
+    "direction": "BUY",
+    "entry_ask": 1.41445,
+    "entry_bid": 1.41428,
+    "entry_fill": 1.41447,
+    "entry_mid": 1.414365,
+    "entry_timestamp": 1790336400,
+    "execution_account": -22.238481388008413,
+    "exit_ask": 1.4138819999999996,
+    "exit_bid": 1.4137319999999998,
+    "exit_fill": 1.4137119999999999,
+    "exit_mid": 1.4138069999999998,
+    "exit_quote_status": "INFERRED_FROM_TRIGGER_AND_OPEN_SPREAD_NOT_CONTEMPORANEOUS_QUOTE",
+    "exit_timestamp": 1790338800,
+    "filled_quote": -31.438808000004148,
+    "financing_account": 0.0,
+    "fold": 1,
+    "gross_account": -16.370808198563992,
+    "gross_quote": -23.143608000008296,
+    "gross_residual": -2.3590053130907453e-12,
+    "instrument": "USD_CAD",
+    "net_account": -24.727041388008413,
+    "quote_currency": "CAD",
+    "reconciliation_residual": 1.863187302745397e-12,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_attribution_account": 1.1735346378865374,
+    "spread_attribution_account": 4.694138551557884,
+    "status": "RECONCILED_RESEARCH_ASSUMPTIONS",
+    "strategy": "trend",
+    "timeframe": "M5",
+    "tolerance_account": 1e-07,
+    "trade_id": "88cdd62c51d233b2c376e5600ee139b432bb600b67252c1719de4dd141df8543",
+    "units": 41476
+  },
+  {
+    "account_currency": "USD",
+    "bidask_account": -23.084170452931993,
+    "bidask_quote": -3641.8326,
+    "commission_account": 1.12518,
+    "conversion": {
+      "applied_override": {
+        "USD_JPY": [
+          1790340300,
+          157.76319999999998,
+          157.7782
+        ]
+      },
+      "book": {
+        "AUD_USD": [
+          1790340000,
+          0.70299,
+          0.70312
+        ],
+        "EUR_USD": [
+          1790340000,
+          1.1402,
+          1.14035
+        ],
+        "GBP_USD": [
+          1790340000,
+          1.32543,
+          1.32561
+        ],
+        "USD_CAD": [
+          1790340000,
+          1.41377,
+          1.41394
+        ],
+        "USD_CHF": [
+          1790340000,
+          0.82807,
+          0.82822
+        ],
+        "USD_JPY": [
+          1790340300,
+          157.76319999999998,
+          157.7782
+        ]
+      },
+      "model": "SIGNED_BID_ASK_300S_NOT_OANDA_SETTLEMENT"
+    },
+    "direction": "SELL",
+    "entry_ask": 157.596,
+    "entry_bid": 157.582,
+    "entry_fill": 157.57999999999998,
+    "entry_mid": 157.589,
+    "entry_timestamp": 1790337900,
+    "execution_account": -23.559642552891773,
+    "exit_ask": 157.7762,
+    "exit_bid": 157.76119999999997,
+    "exit_fill": 157.7782,
+    "exit_mid": 157.76869999999997,
+    "exit_quote_status": "INFERRED_FROM_TRIGGER_AND_OPEN_SPREAD_NOT_CONTEMPORANEOUS_QUOTE",
+    "exit_timestamp": 1790340300,
+    "filled_quote": -3716.844600000375,
+    "financing_account": 0.0,
+    "fold": 1,
+    "gross_account": -21.360584090582833,
+    "gross_quote": -3369.9140999994374,
+    "gross_residual": 1.845090089565352e-13,
+    "instrument": "USD_JPY",
+    "net_account": -24.684822552891774,
+    "quote_currency": "JPY",
+    "reconciliation_residual": 7.00071474533084e-13,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_attribution_account": 0.47547209995978196,
+    "spread_attribution_account": 1.7235863623491576,
+    "status": "RECONCILED_RESEARCH_ASSUMPTIONS",
+    "strategy": "trend",
+    "timeframe": "M5",
+    "tolerance_account": 1e-07,
+    "trade_id": "b16748a3c74700f57f5a5d092df4f2452e691183416bdd890694d30d4dab7be3",
+    "units": 18753
+  },
+  {
+    "account_currency": "USD",
+    "bidask_account": -22.709957512272908,
+    "bidask_quote": -3577.9855999991146,
+    "commission_account": 1.32846,
+    "conversion": {
+      "applied_override": {
+        "USD_JPY": [
+          1790340900,
+          157.55140000000003,
+          157.56540000000004
+        ]
+      },
+      "book": {
+        "AUD_USD": [
+          1790340600,
+          0.70268,
+          0.70279
+        ],
+        "EUR_USD": [
+          1790340600,
+          1.14,
+          1.14015
+        ],
+        "GBP_USD": [
+          1790340600,
+          1.32538,
+          1.32557
+        ],
+        "USD_CAD": [
+          1790340600,
+          1.41408,
+          1.41424
+        ],
+        "USD_CHF": [
+          1790340600,
+          0.82844,
+          0.82856
+        ],
+        "USD_JPY": [
+          1790340900,
+          157.55140000000003,
+          157.56540000000004
+        ]
+      },
+      "model": "SIGNED_BID_ASK_300S_NOT_OANDA_SETTLEMENT"
+    },
+    "direction": "BUY",
+    "entry_ask": 157.715,
+    "entry_bid": 157.697,
+    "entry_fill": 157.717,
+    "entry_mid": 157.70600000000002,
+    "entry_timestamp": 1790340300,
+    "execution_account": -23.272085173469325,
+    "exit_ask": 157.56740000000005,
+    "exit_bid": 157.55340000000004,
+    "exit_fill": 157.55140000000003,
+    "exit_mid": 157.56040000000004,
+    "exit_quote_status": "INFERRED_FROM_TRIGGER_AND_OPEN_SPREAD_NOT_CONTEMPORANEOUS_QUOTE",
+    "exit_timestamp": 1790340900,
+    "filled_quote": -3666.549599999336,
+    "financing_account": 0.0,
+    "fold": 1,
+    "gross_account": -20.461446867495667,
+    "gross_quote": -3223.729599999557,
+    "gross_residual": 9.433267225424536e-13,
+    "instrument": "USD_JPY",
+    "net_account": -24.600545173469325,
+    "quote_currency": "JPY",
+    "reconciliation_residual": -1.89961261883553e-12,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_attribution_account": 0.5621276611964184,
+    "spread_attribution_account": 2.248510644777242,
+    "status": "RECONCILED_RESEARCH_ASSUMPTIONS",
+    "strategy": "trend",
+    "timeframe": "M5",
+    "tolerance_account": 1e-07,
+    "trade_id": "2bff192597a078bc39406dd313b5c72a7c02ed73771ba13030f96d024a19267f",
+    "units": 22141
+  },
+  {
+    "account_currency": "USD",
+    "bidask_account": 25.82008,
+    "bidask_quote": 25.82008,
+    "commission_account": 2.97924,
+    "conversion": {
+      "applied_override": {
+        "AUD_USD": [
+          1790341500,
+          0.70238,
+          0.70251
+        ]
+      },
+      "book": {
+        "AUD_USD": [
+          1790341500,
+          0.70238,
+          0.70251
+        ],
+        "EUR_USD": [
+          1790341500,
+          1.13992,
+          1.14006
+        ],
+        "GBP_USD": [
+          1790341500,
+          1.32538,
+          1.32555
+        ],
+        "USD_CAD": [
+          1790341500,
+          1.41397,
+          1.41416
+        ],
+        "USD_CHF": [
+          1790341500,
+          0.82839,
+          0.82855
+        ],
+        "USD_JPY": [
+          1790341500,
+          157.465,
+          157.481
+        ]
+      },
+      "model": "SIGNED_BID_ASK_300S_NOT_OANDA_SETTLEMENT"
+    },
+    "direction": "SELL",
+    "entry_ask": 0.70314,
+    "entry_bid": 0.70301,
+    "entry_fill": 0.70299,
+    "entry_mid": 0.703075,
+    "entry_timestamp": 1790337900,
+    "execution_account": 23.83392,
+    "exit_ask": 0.70249,
+    "exit_bid": 0.70236,
+    "exit_fill": 0.70251,
+    "exit_mid": 0.702425,
+    "exit_quote_status": "OBSERVED_CLOSE",
+    "exit_timestamp": 1790341500,
+    "filled_quote": 23.83392,
+    "financing_account": 0.0,
+    "fold": 1,
+    "gross_account": 32.2751,
+    "gross_quote": 32.2751,
+    "gross_residual": 1.956e-12,
+    "instrument": "AUD_USD",
+    "net_account": 20.85468,
+    "quote_currency": "USD",
+    "reconciliation_residual": 1.79e-12,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_attribution_account": 1.98616,
+    "spread_attribution_account": 6.45502,
+    "status": "RECONCILED_RESEARCH_ASSUMPTIONS",
+    "strategy": "trend",
+    "timeframe": "M5",
+    "tolerance_account": 1e-07,
+    "trade_id": "2d2c4dd1fcae7c8248c9620ff164b34718e28aa7fa8a0b590d7d4f35e460634e",
+    "units": 49654
+  },
+  {
+    "account_currency": "USD",
+    "bidask_account": -9.17915042068541,
+    "bidask_quote": -7.6041,
+    "commission_account": 1.52082,
+    "conversion": {
+      "applied_override": {
+        "USD_CHF": [
+          1790341500,
+          0.82841,
+          0.82857
+        ]
+      },
+      "book": {
+        "AUD_USD": [
+          1790341500,
+          0.70236,
+          0.70249
+        ],
+        "EUR_USD": [
+          1790341500,
+          1.13992,
+          1.14006
+        ],
+        "GBP_USD": [
+          1790341500,
+          1.32538,
+          1.32555
+        ],
+        "USD_CAD": [
+          1790341500,
+          1.41397,
+          1.41416
+        ],
+        "USD_CHF": [
+          1790341500,
+          0.82841,
+          0.82857
+        ],
+        "USD_JPY": [
+          1790341500,
+          157.465,
+          157.481
+        ]
+      },
+      "model": "SIGNED_BID_ASK_300S_NOT_OANDA_SETTLEMENT"
+    },
+    "direction": "SELL",
+    "entry_ask": 0.8284,
+    "entry_bid": 0.82825,
+    "entry_fill": 0.82823,
+    "entry_mid": 0.828325,
+    "entry_timestamp": 1790337900,
+    "execution_account": -10.403037143443465,
+    "exit_ask": 0.82855,
+    "exit_bid": 0.82839,
+    "exit_fill": 0.82857,
+    "exit_mid": 0.82847,
+    "exit_quote_status": "OBSERVED_CLOSE",
+    "exit_timestamp": 1790341500,
+    "filled_quote": -8.61798,
+    "financing_account": 0.0,
+    "fold": 1,
+    "gross_account": -4.4365893699979475,
+    "gross_quote": -3.675315,
+    "gross_residual": -1.8897239482864764e-12,
+    "instrument": "USD_CHF",
+    "net_account": -11.923857143443463,
+    "quote_currency": "CHF",
+    "reconciliation_residual": -2.1401477529242765e-13,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_attribution_account": 1.2238867227580545,
+    "spread_attribution_account": 4.742561050687462,
+    "status": "RECONCILED_RESEARCH_ASSUMPTIONS",
+    "strategy": "trend",
+    "timeframe": "M5",
+    "tolerance_account": 1e-07,
+    "trade_id": "8320708f925b1acb36528a16d825a5085399685155c4f63bdc3828a0d98f47b6",
+    "units": 25347
+  },
+  {
+    "account_currency": "USD",
+    "bidask_account": -20.976798111049533,
+    "bidask_quote": -29.67252000000401,
+    "commission_account": 2.4058800000000002,
+    "conversion": {
+      "applied_override": {
+        "USD_CAD": [
+          1790345100,
+          1.4145400000000001,
+          1.41473
+        ]
+      },
+      "book": {
+        "AUD_USD": [
+          1790344800,
+          0.7026,
+          0.70275
+        ],
+        "EUR_USD": [
+          1790344800,
+          1.14009,
+          1.14026
+        ],
+        "GBP_USD": [
+          1790344800,
+          1.32522,
+          1.32541
+        ],
+        "USD_CAD": [
+          1790345100,
+          1.4145400000000001,
+          1.41473
+        ],
+        "USD_CHF": [
+          1790344800,
+          0.82879,
+          0.82897
+        ],
+        "USD_JPY": [
+          1790344800,
+          157.027,
+          157.048
+        ]
+      },
+      "model": "SIGNED_BID_ASK_300S_NOT_OANDA_SETTLEMENT"
+    },
+    "direction": "SELL",
+    "entry_ask": 1.41415,
+    "entry_bid": 1.41397,
+    "entry_fill": 1.41395,
+    "entry_mid": 1.41406,
+    "entry_timestamp": 1790341500,
+    "execution_account": -22.110679090022195,
+    "exit_ask": 1.4147100000000001,
+    "exit_bid": 1.4145200000000002,
+    "exit_fill": 1.41473,
+    "exit_mid": 1.4146150000000002,
+    "exit_quote_status": "INFERRED_FROM_TRIGGER_AND_OPEN_SPREAD_NOT_CONTEMPORANEOUS_QUOTE",
+    "exit_timestamp": 1790345100,
+    "filled_quote": -31.27644,
+    "financing_account": 0.0,
+    "fold": 1,
+    "gross_account": -15.732598583290693,
+    "gross_quote": -22.25439000000802,
+    "gross_residual": 3.311813352850871e-12,
+    "instrument": "USD_CAD",
+    "net_account": -24.516559090022195,
+    "quote_currency": "CAD",
+    "reconciliation_residual": -8.73340590644324e-14,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_attribution_account": 1.1338809789726625,
+    "spread_attribution_account": 5.24419952775884,
+    "status": "RECONCILED_RESEARCH_ASSUMPTIONS",
+    "strategy": "trend",
+    "timeframe": "M5",
+    "tolerance_account": 1e-07,
+    "trade_id": "8de9d5d831334886dc3cc697c083b8e20383c87b060d64961a8d6c4561fc3054",
+    "units": 40098
+  },
+  {
+    "account_currency": "USD",
+    "bidask_account": -10.33155,
+    "bidask_quote": -10.33155,
+    "commission_account": 1.37754,
+    "conversion": {
+      "applied_override": {
+        "GBP_USD": [
+          1790352000,
+          1.32473,
+          1.3249
+        ]
+      },
+      "book": {
+        "AUD_USD": [
+          1790352000,
+          0.70311,
+          0.70323
+        ],
+        "EUR_USD": [
+          1790352000,
+          1.13993,
+          1.14009
+        ],
+        "GBP_USD": [
+          1790352000,
+          1.32473,
+          1.3249
+        ],
+        "USD_CAD": [
+          1790352000,
+          1.41401,
+          1.41416
+        ],
+        "USD_CHF": [
+          1790352000,
+          0.82812,
+          0.82826
+        ],
+        "USD_JPY": [
+          1790352000,
+          157.168,
+          157.185
+        ]
+      },
+      "model": "SIGNED_BID_ASK_300S_NOT_OANDA_SETTLEMENT"
+    },
+    "direction": "SELL",
+    "entry_ask": 1.32462,
+    "entry_bid": 1.32443,
+    "entry_fill": 1.32441,
+    "entry_mid": 1.324525,
+    "entry_timestamp": 1790348400,
+    "execution_account": -11.24991,
+    "exit_ask": 1.32488,
+    "exit_bid": 1.32471,
+    "exit_fill": 1.3249,
+    "exit_mid": 1.324795,
+    "exit_quote_status": "OBSERVED_CLOSE",
+    "exit_timestamp": 1790352000,
+    "filled_quote": -11.24991,
+    "financing_account": 0.0,
+    "fold": 1,
+    "gross_account": -6.19893,
+    "gross_quote": -6.19893,
+    "gross_residual": 1.73e-13,
+    "instrument": "GBP_USD",
+    "net_account": -12.62745,
+    "quote_currency": "USD",
+    "reconciliation_residual": 2.768e-12,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_attribution_account": 0.91836,
+    "spread_attribution_account": 4.13262,
+    "status": "RECONCILED_RESEARCH_ASSUMPTIONS",
+    "strategy": "trend",
+    "timeframe": "M5",
+    "tolerance_account": 1e-07,
+    "trade_id": "9c27374b0b28e92a8f8592a1daa766fa22f133abcb1475a6884e0e18658b874d",
+    "units": 22959
+  }
+]

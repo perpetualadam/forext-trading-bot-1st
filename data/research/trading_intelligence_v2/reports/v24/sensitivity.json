@@ -1,0 +1,3559 @@
+[
+  {
+    "break_even_cost_per_trade": -0.44000579279445584,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 0.0,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -432.25303838104116,
+        "max_drawdown_account": 574.9834168341913,
+        "net_account": -432.25303838104116,
+        "rejected": {
+          "ALREADY_OPEN": 1527,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 3076,
+          "RISK_OR_MARGIN_SIZE_ZERO": 5,
+          "SESSION_FLAT_WINDOW": 322,
+          "USD_DIRECTION_CAP": 1718,
+          "WARMUP_OR_NONFINITE": 348
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 0.0,
+        "trades": 330
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 102.68869957791637,
+        "max_drawdown_account": 554.1388943331585,
+        "net_account": 102.68869957791637,
+        "rejected": {
+          "ALREADY_OPEN": 2102,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 4010,
+          "RISK_OR_MARGIN_SIZE_ZERO": 21,
+          "SESSION_FLAT_WINDOW": 525,
+          "USD_DIRECTION_CAP": 2231,
+          "WARMUP_OR_NONFINITE": 447
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 0.0,
+        "trades": 419
+      }
+    ],
+    "gross_account": -329.5643388030474,
+    "gross_expectancy": -0.44000579279445584,
+    "max_drawdown_by_fold": [
+      574.9834168341913,
+      554.1388943331585
+    ],
+    "maximum_fold_drawdown": 574.9834168341913,
+    "net_account": -329.5643388030474,
+    "net_expectancy": -0.44000579279445584,
+    "path_sha256": "b04e7220a0dcc79a5665cd6650074c2111b1be51392ad625315bac0dbc57e49c",
+    "profit_factor": 0.9573537176229098,
+    "scenario": "A_MID_THEORETICAL",
+    "slippage_per_trade": 0.0,
+    "spread_per_trade": 0.0,
+    "strategy": "scalp",
+    "timeframe": "M5",
+    "total_cost": 0.0,
+    "trades": 749
+  },
+  {
+    "break_even_cost_per_trade": -0.5033549142467297,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 0.0,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -478.93584035338966,
+        "max_drawdown_account": 613.3343699390261,
+        "net_account": -478.93584035338966,
+        "rejected": {
+          "ALREADY_OPEN": 1545,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 3047,
+          "RISK_OR_MARGIN_SIZE_ZERO": 5,
+          "SESSION_FLAT_WINDOW": 325,
+          "USD_DIRECTION_CAP": 1725,
+          "WARMUP_OR_NONFINITE": 348
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 0.0,
+        "trades": 331
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 101.41965466825658,
+        "max_drawdown_account": 555.4328719108598,
+        "net_account": 101.41965466825658,
+        "rejected": {
+          "ALREADY_OPEN": 2120,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 3972,
+          "RISK_OR_MARGIN_SIZE_ZERO": 21,
+          "SESSION_FLAT_WINDOW": 530,
+          "USD_DIRECTION_CAP": 2246,
+          "WARMUP_OR_NONFINITE": 447
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 0.0,
+        "trades": 419
+      }
+    ],
+    "gross_account": -377.51618568504733,
+    "gross_expectancy": -0.5033549142467297,
+    "max_drawdown_by_fold": [
+      613.3343699390261,
+      555.4328719108598
+    ],
+    "maximum_fold_drawdown": 613.3343699390261,
+    "net_account": -377.51618568504733,
+    "net_expectancy": -0.5033549142467297,
+    "path_sha256": "f21da56526ef4649ab3654e97c77f8b5c11b88b68fea3753159af22cb8582b78",
+    "profit_factor": 0.951188686421903,
+    "scenario": "A_MID_THEORETICAL",
+    "slippage_per_trade": 0.0,
+    "spread_per_trade": 0.0,
+    "strategy": "trend",
+    "timeframe": "M5",
+    "total_cost": 0.0,
+    "trades": 750
+  },
+  {
+    "break_even_cost_per_trade": 0.03680067453904458,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 0.0,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 636.9197911108624,
+        "max_drawdown_account": 302.8363861128728,
+        "net_account": 636.9197911108624,
+        "rejected": {
+          "ALREADY_OPEN": 273,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 6155,
+          "RISK_OR_MARGIN_SIZE_ZERO": 4,
+          "SESSION_FLAT_WINDOW": 39,
+          "USD_DIRECTION_CAP": 299,
+          "WARMUP_OR_NONFINITE": 348
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 0.0,
+        "trades": 208
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -619.8810787993033,
+        "max_drawdown_account": 820.8506215588241,
+        "net_account": -619.8810787993033,
+        "rejected": {
+          "ALREADY_OPEN": 366,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 8201,
+          "SESSION_FLAT_WINDOW": 94,
+          "USD_DIRECTION_CAP": 392,
+          "WARMUP_OR_NONFINITE": 447
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 0.0,
+        "trades": 255
+      }
+    ],
+    "gross_account": 17.03871231157764,
+    "gross_expectancy": 0.03680067453904458,
+    "max_drawdown_by_fold": [
+      302.8363861128728,
+      820.8506215588241
+    ],
+    "maximum_fold_drawdown": 820.8506215588241,
+    "net_account": 17.03871231157764,
+    "net_expectancy": 0.03680067453904458,
+    "path_sha256": "bfe49f4de5b9d3e35f8baf6383ff04269536929c03c96117233c64e88cb21487",
+    "profit_factor": 1.0034672151723905,
+    "scenario": "A_MID_THEORETICAL",
+    "slippage_per_trade": 0.0,
+    "spread_per_trade": 0.0,
+    "strategy": "mean_reversion",
+    "timeframe": "M5",
+    "total_cost": 0.0,
+    "trades": 463
+  },
+  {
+    "break_even_cost_per_trade": -0.4693124341420128,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 0.0,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -214.62749059427009,
+        "max_drawdown_account": 520.4031955257324,
+        "net_account": -214.62749059427009,
+        "rejected": {
+          "ALREADY_OPEN": 1468,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 2956,
+          "RISK_OR_MARGIN_SIZE_ZERO": 2,
+          "SESSION_FLAT_WINDOW": 310,
+          "USD_DIRECTION_CAP": 1606,
+          "WARMUP_OR_NONFINITE": 698
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 0.0,
+        "trades": 286
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -103.0970273198357,
+        "max_drawdown_account": 467.5751061686897,
+        "net_account": -103.0970273198357,
+        "rejected": {
+          "ALREADY_OPEN": 2061,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 4003,
+          "RISK_OR_MARGIN_SIZE_ZERO": 7,
+          "SESSION_FLAT_WINDOW": 508,
+          "USD_DIRECTION_CAP": 1888,
+          "WARMUP_OR_NONFINITE": 897
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 0.0,
+        "trades": 391
+      }
+    ],
+    "gross_account": -317.72451791414267,
+    "gross_expectancy": -0.4693124341420128,
+    "max_drawdown_by_fold": [
+      520.4031955257324,
+      467.5751061686897
+    ],
+    "maximum_fold_drawdown": 520.4031955257324,
+    "net_account": -317.72451791414267,
+    "net_expectancy": -0.4693124341420128,
+    "path_sha256": "a8db4d7e4850db4d1a557c3a64c60dfe44264458ef4132d2406c21317d444371",
+    "profit_factor": 0.9550086470421376,
+    "scenario": "A_MID_THEORETICAL",
+    "slippage_per_trade": 0.0,
+    "spread_per_trade": 0.0,
+    "strategy": "swing_trend",
+    "timeframe": "M5",
+    "total_cost": 0.0,
+    "trades": 677
+  },
+  {
+    "break_even_cost_per_trade": 0.5181245515859761,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 0.0,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 371.10512528085354,
+        "max_drawdown_account": 308.7186528412476,
+        "net_account": 371.10512528085354,
+        "rejected": {
+          "ALREADY_OPEN": 423,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 5798,
+          "SESSION_FLAT_WINDOW": 15,
+          "USD_DIRECTION_CAP": 219,
+          "WARMUP_OR_NONFINITE": 698
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 0.0,
+        "trades": 173
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -169.5546747139072,
+        "max_drawdown_account": 544.7106957362375,
+        "net_account": -169.5546747139072,
+        "rejected": {
+          "ALREADY_OPEN": 534,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 7706,
+          "RISK_OR_MARGIN_SIZE_ZERO": 3,
+          "SESSION_FLAT_WINDOW": 52,
+          "USD_DIRECTION_CAP": 347,
+          "WARMUP_OR_NONFINITE": 897
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 0.0,
+        "trades": 216
+      }
+    ],
+    "gross_account": 201.5504505669447,
+    "gross_expectancy": 0.5181245515859761,
+    "max_drawdown_by_fold": [
+      308.7186528412476,
+      544.7106957362375
+    ],
+    "maximum_fold_drawdown": 544.7106957362375,
+    "net_account": 201.5504505669447,
+    "net_expectancy": 0.5181245515859761,
+    "path_sha256": "eb8d1f8b09b29414ff17655a1e9fdebef3734544070b90ea0a4b60f11f408413",
+    "profit_factor": 1.0447422962023138,
+    "scenario": "A_MID_THEORETICAL",
+    "slippage_per_trade": 0.0,
+    "spread_per_trade": 0.0,
+    "strategy": "swing_mean_reversion",
+    "timeframe": "M5",
+    "total_cost": 0.0,
+    "trades": 389
+  },
+  {
+    "break_even_cost_per_trade": 0.33845841495183304,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 0.0,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 145.9104339326589,
+        "max_drawdown_account": 423.3476659671014,
+        "net_account": 145.9104339326589,
+        "rejected": {
+          "ALREADY_OPEN": 267,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 5837,
+          "SESSION_FLAT_WINDOW": 46,
+          "USD_DIRECTION_CAP": 281,
+          "WARMUP_OR_NONFINITE": 698
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 0.0,
+        "trades": 197
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 6.734311210634657,
+        "max_drawdown_account": 316.54346488735973,
+        "net_account": 6.734311210634657,
+        "rejected": {
+          "ALREADY_OPEN": 311,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 7836,
+          "RISK_OR_MARGIN_SIZE_ZERO": 1,
+          "SESSION_FLAT_WINDOW": 72,
+          "USD_DIRECTION_CAP": 384,
+          "WARMUP_OR_NONFINITE": 897
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 0.0,
+        "trades": 254
+      }
+    ],
+    "gross_account": 152.6447451432767,
+    "gross_expectancy": 0.33845841495183304,
+    "max_drawdown_by_fold": [
+      423.3476659671014,
+      316.54346488735973
+    ],
+    "maximum_fold_drawdown": 423.3476659671014,
+    "net_account": 152.6447451432767,
+    "net_expectancy": 0.33845841495183304,
+    "path_sha256": "f6136e40103c1024ec344ffcd6907b5d99ede79683d8e4673317eb03301f56cc",
+    "profit_factor": 1.0324419556421558,
+    "scenario": "A_MID_THEORETICAL",
+    "slippage_per_trade": 0.0,
+    "spread_per_trade": 0.0,
+    "strategy": "swing_breakout",
+    "timeframe": "M5",
+    "total_cost": 0.0,
+    "trades": 451
+  },
+  {
+    "break_even_cost_per_trade": 0.004881703824360462,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 0.0,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -322.34476542793897,
+        "max_drawdown_account": 513.6485890809126,
+        "net_account": -322.34476542793897,
+        "rejected": {
+          "ALREADY_OPEN": 427,
+          "MTF_WAIT_OR_ABSTAIN": 6012,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "RISK_OR_MARGIN_SIZE_ZERO": 2,
+          "SESSION_FLAT_WINDOW": 147,
+          "USD_DIRECTION_CAP": 492
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 0.0,
+        "trades": 246
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 325.0931646810981,
+        "max_drawdown_account": 239.0542268837653,
+        "net_account": 325.0931646810981,
+        "rejected": {
+          "ALREADY_OPEN": 575,
+          "MTF_WAIT_OR_ABSTAIN": 8037,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "SESSION_FLAT_WINDOW": 204,
+          "USD_DIRECTION_CAP": 622
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 0.0,
+        "trades": 317
+      }
+    ],
+    "gross_account": 2.74839925311494,
+    "gross_expectancy": 0.004881703824360462,
+    "max_drawdown_by_fold": [
+      513.6485890809126,
+      239.0542268837653
+    ],
+    "maximum_fold_drawdown": 513.6485890809126,
+    "net_account": 2.74839925311494,
+    "net_expectancy": 0.004881703824360462,
+    "path_sha256": "0a3d9854c5b7a7336c25b37941ddfb9d8b181aae479d2755ea69c7e7b44b3a01",
+    "profit_factor": 1.0006934054124117,
+    "scenario": "A_MID_THEORETICAL",
+    "slippage_per_trade": 0.0,
+    "spread_per_trade": 0.0,
+    "strategy": "trend",
+    "timeframe": "M15",
+    "total_cost": 0.0,
+    "trades": 563
+  },
+  {
+    "break_even_cost_per_trade": -0.5424589954942837,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 0.0,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -3.3498862670729572,
+        "max_drawdown_account": 176.73533893481363,
+        "net_account": -3.3498862670729572,
+        "rejected": {
+          "ALREADY_OPEN": 109,
+          "MTF_WAIT_OR_ABSTAIN": 6991,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "SESSION_FLAT_WINDOW": 28,
+          "USD_DIRECTION_CAP": 130
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 0.0,
+        "trades": 68
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -79.10388104807004,
+        "max_drawdown_account": 167.2392846171715,
+        "net_account": -79.10388104807004,
+        "rejected": {
+          "ALREADY_OPEN": 131,
+          "MTF_WAIT_OR_ABSTAIN": 9420,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "SESSION_FLAT_WINDOW": 31,
+          "USD_DIRECTION_CAP": 89
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 0.0,
+        "trades": 84
+      }
+    ],
+    "gross_account": -82.45376731513112,
+    "gross_expectancy": -0.5424589954942837,
+    "max_drawdown_by_fold": [
+      176.73533893481363,
+      167.2392846171715
+    ],
+    "maximum_fold_drawdown": 176.73533893481363,
+    "net_account": -82.45376731513112,
+    "net_expectancy": -0.5424589954942837,
+    "path_sha256": "41c71f6f4bac04fefbacb7dcaf06f927d4e1946217859f354e836b7f44109711",
+    "profit_factor": 0.9161209060871934,
+    "scenario": "A_MID_THEORETICAL",
+    "slippage_per_trade": 0.0,
+    "spread_per_trade": 0.0,
+    "strategy": "trend",
+    "timeframe": "H1",
+    "total_cost": 0.0,
+    "trades": 152
+  },
+  {
+    "break_even_cost_per_trade": -1.4866898482426698,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 0.0,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 103.03768465402149,
+        "max_drawdown_account": 35.023254999998244,
+        "net_account": 103.03768465402149,
+        "rejected": {
+          "ALREADY_OPEN": 33,
+          "MTF_WAIT_OR_ABSTAIN": 7250,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "USD_DIRECTION_CAP": 22
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 0.0,
+        "trades": 21
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -166.9653481284539,
+        "max_drawdown_account": 187.07533309683095,
+        "net_account": -166.9653481284539,
+        "rejected": {
+          "ALREADY_OPEN": 30,
+          "MTF_WAIT_OR_ABSTAIN": 9685,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "USD_DIRECTION_CAP": 18
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 0.0,
+        "trades": 22
+      }
+    ],
+    "gross_account": -63.9276634744348,
+    "gross_expectancy": -1.4866898482426698,
+    "max_drawdown_by_fold": [
+      35.023254999998244,
+      187.07533309683095
+    ],
+    "maximum_fold_drawdown": 187.07533309683095,
+    "net_account": -63.9276634744348,
+    "net_expectancy": -1.4866898482426698,
+    "path_sha256": "7e18dc02c416e30d684f79f2e8bb8cc49ef49f83805099882380482194852f22",
+    "profit_factor": 0.7287788767846308,
+    "scenario": "A_MID_THEORETICAL",
+    "slippage_per_trade": 0.0,
+    "spread_per_trade": 0.0,
+    "strategy": "trend",
+    "timeframe": "H4",
+    "total_cost": 0.0,
+    "trades": 43
+  },
+  {
+    "break_even_cost_per_trade": -0.010901695648874441,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 5.200134617780879,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -133.41312360923953,
+        "max_drawdown_account": 2026.2769206673702,
+        "net_account": -1959.4099097213802,
+        "rejected": {
+          "ALREADY_OPEN": 1488,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 3076,
+          "RISK_OR_MARGIN_SIZE_ZERO": 11,
+          "SESSION_FLAT_WINDOW": 322,
+          "USD_DIRECTION_CAP": 1729,
+          "WARMUP_OR_NONFINITE": 348
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 1825.9967861121431,
+        "trades": 352
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 124.60455352483335,
+        "max_drawdown_account": 2394.944829341038,
+        "net_account": -2251.1074315298897,
+        "rejected": {
+          "ALREADY_OPEN": 2058,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 4010,
+          "RISK_OR_MARGIN_SIZE_ZERO": 15,
+          "SESSION_FLAT_WINDOW": 525,
+          "USD_DIRECTION_CAP": 2244,
+          "WARMUP_OR_NONFINITE": 447
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 2375.7119850547265,
+        "trades": 456
+      }
+    ],
+    "gross_account": -8.80857008429055,
+    "gross_expectancy": -0.010901695648874441,
+    "max_drawdown_by_fold": [
+      2026.2769206673702,
+      2394.944829341038
+    ],
+    "maximum_fold_drawdown": 2394.944829341038,
+    "net_account": -4210.51734125124,
+    "net_expectancy": -5.211036313429753,
+    "path_sha256": "06ea0b5c80edbd8234cf68632f7a53bba4f84ee067d391d15b02a7cab48e0eee",
+    "profit_factor": 0.5558745784283899,
+    "scenario": "B_OBSERVED_ONLY",
+    "slippage_per_trade": 0.0,
+    "spread_per_trade": 5.20013461778078,
+    "strategy": "scalp",
+    "timeframe": "M5",
+    "total_cost": 4201.70877116695,
+    "trades": 808
+  },
+  {
+    "break_even_cost_per_trade": -0.016466801580654576,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 5.2013056948971546,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -144.30392283648004,
+        "max_drawdown_account": 2030.1720595603956,
+        "net_account": -1963.3376891926437,
+        "rejected": {
+          "ALREADY_OPEN": 1508,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 3047,
+          "RISK_OR_MARGIN_SIZE_ZERO": 11,
+          "SESSION_FLAT_WINDOW": 325,
+          "USD_DIRECTION_CAP": 1736,
+          "WARMUP_OR_NONFINITE": 348
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 1819.0337663561625,
+        "trades": 351
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 131.01521396077698,
+        "max_drawdown_account": 2391.2791226514464,
+        "net_account": -2247.404715464984,
+        "rejected": {
+          "ALREADY_OPEN": 2076,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 3972,
+          "RISK_OR_MARGIN_SIZE_ZERO": 15,
+          "SESSION_FLAT_WINDOW": 530,
+          "USD_DIRECTION_CAP": 2259,
+          "WARMUP_OR_NONFINITE": 447
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 2378.419929425758,
+        "trades": 456
+      }
+    ],
+    "gross_account": -13.288708875588243,
+    "gross_expectancy": -0.016466801580654576,
+    "max_drawdown_by_fold": [
+      2030.1720595603956,
+      2391.2791226514464
+    ],
+    "maximum_fold_drawdown": 2391.2791226514464,
+    "net_account": -4210.742404657592,
+    "net_expectancy": -5.217772496477808,
+    "path_sha256": "346457dfbb050b7867bcd02a69289faba68ee8d2bb9190d02a515f782c61a177",
+    "profit_factor": 0.5536744212825699,
+    "scenario": "B_OBSERVED_ONLY",
+    "slippage_per_trade": 0.0,
+    "spread_per_trade": 5.201305694897051,
+    "strategy": "trend",
+    "timeframe": "M5",
+    "total_cost": 4197.453695782004,
+    "trades": 807
+  },
+  {
+    "break_even_cost_per_trade": -0.008745720195931263,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 5.598786167266537,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 496.4267307319311,
+        "max_drawdown_account": 831.2060593531241,
+        "net_account": -797.0857874945852,
+        "rejected": {
+          "ALREADY_OPEN": 256,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 6155,
+          "RISK_OR_MARGIN_SIZE_ZERO": 11,
+          "SESSION_FLAT_WINDOW": 39,
+          "USD_DIRECTION_CAP": 290,
+          "WARMUP_OR_NONFINITE": 348
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 1293.5125182265176,
+        "trades": 227
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -501.0619624357975,
+        "max_drawdown_account": 2242.599398306822,
+        "net_account": -2174.9061128606727,
+        "rejected": {
+          "ALREADY_OPEN": 337,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 8201,
+          "RISK_OR_MARGIN_SIZE_ZERO": 1,
+          "SESSION_FLAT_WINDOW": 94,
+          "USD_DIRECTION_CAP": 372,
+          "WARMUP_OR_NONFINITE": 447
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 1673.8441504248738,
+        "trades": 303
+      }
+    ],
+    "gross_account": -4.635231703843569,
+    "gross_expectancy": -0.008745720195931263,
+    "max_drawdown_by_fold": [
+      831.2060593531241,
+      2242.599398306822
+    ],
+    "maximum_fold_drawdown": 2242.599398306822,
+    "net_account": -2971.991900355108,
+    "net_expectancy": -5.607531887462468,
+    "path_sha256": "cc649cc9b4c279c0a1610394c846f03dd82ea38f4a17602b88888bf8060d8c03",
+    "profit_factor": 0.55306779051689,
+    "scenario": "B_OBSERVED_ONLY",
+    "slippage_per_trade": 0.0,
+    "spread_per_trade": 5.598786167266776,
+    "strategy": "mean_reversion",
+    "timeframe": "M5",
+    "total_cost": 2967.3566686512645,
+    "trades": 530
+  },
+  {
+    "break_even_cost_per_trade": -0.18742344758044308,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 5.264993332453073,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -224.48773952073532,
+        "max_drawdown_account": 1901.5819598160078,
+        "net_account": -1830.6479167307057,
+        "rejected": {
+          "ALREADY_OPEN": 1486,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 2956,
+          "RISK_OR_MARGIN_SIZE_ZERO": 3,
+          "SESSION_FLAT_WINDOW": 310,
+          "USD_DIRECTION_CAP": 1563,
+          "WARMUP_OR_NONFINITE": 698
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 1606.1601772099702,
+        "trades": 310
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 90.10512760551772,
+        "max_drawdown_account": 2223.275628370073,
+        "net_account": -2078.734914553292,
+        "rejected": {
+          "ALREADY_OPEN": 2051,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 4003,
+          "RISK_OR_MARGIN_SIZE_ZERO": 6,
+          "SESSION_FLAT_WINDOW": 508,
+          "USD_DIRECTION_CAP": 1883,
+          "WARMUP_OR_NONFINITE": 897
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 2168.840042158811,
+        "trades": 407
+      }
+    ],
+    "gross_account": -134.38261191517768,
+    "gross_expectancy": -0.18742344758044308,
+    "max_drawdown_by_fold": [
+      1901.5819598160078,
+      2223.275628370073
+    ],
+    "maximum_fold_drawdown": 2223.275628370073,
+    "net_account": -3909.382831284031,
+    "net_expectancy": -5.452416780033516,
+    "path_sha256": "213fe57cbdf273a52b5fd52da183740d8c64ec2d358e7fc6c509be1310bc36a7",
+    "profit_factor": 0.534808100759395,
+    "scenario": "B_OBSERVED_ONLY",
+    "slippage_per_trade": 0.0,
+    "spread_per_trade": 5.264993332452972,
+    "strategy": "swing_trend",
+    "timeframe": "M5",
+    "total_cost": 3775.0002193688533,
+    "trades": 717
+  },
+  {
+    "break_even_cost_per_trade": 1.0067503388468066,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 5.715888733592003,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 301.0461621712099,
+        "max_drawdown_account": 977.359799305781,
+        "net_account": -792.6946143503175,
+        "rejected": {
+          "ALREADY_OPEN": 381,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 5798,
+          "SESSION_FLAT_WINDOW": 15,
+          "USD_DIRECTION_CAP": 236,
+          "WARMUP_OR_NONFINITE": 698
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 1093.7407765215273,
+        "trades": 198
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 165.07924471490824,
+        "max_drawdown_account": 1411.4940149785325,
+        "net_account": -1387.6364624167682,
+        "rejected": {
+          "ALREADY_OPEN": 473,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 7706,
+          "RISK_OR_MARGIN_SIZE_ZERO": 12,
+          "SESSION_FLAT_WINDOW": 52,
+          "USD_DIRECTION_CAP": 350,
+          "WARMUP_OR_NONFINITE": 897
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 1552.715707131676,
+        "trades": 265
+      }
+    ],
+    "gross_account": 466.1254068860715,
+    "gross_expectancy": 1.0067503388468066,
+    "max_drawdown_by_fold": [
+      977.359799305781,
+      1411.4940149785325
+    ],
+    "maximum_fold_drawdown": 1411.4940149785325,
+    "net_account": -2180.3310767670255,
+    "net_expectancy": -4.709138394745195,
+    "path_sha256": "790d53c6a84ba64c1f653d30afa0dc400acd3b09ed935ceedf5a3c91ce85db8c",
+    "profit_factor": 0.6448440633310777,
+    "scenario": "B_OBSERVED_ONLY",
+    "slippage_per_trade": 0.0,
+    "spread_per_trade": 5.715888733592232,
+    "strategy": "swing_mean_reversion",
+    "timeframe": "M5",
+    "total_cost": 2646.456483653097,
+    "trades": 463
+  },
+  {
+    "break_even_cost_per_trade": -0.14571166430055113,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 5.619737508935701,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -16.849641539095188,
+        "max_drawdown_account": 1310.1607290274296,
+        "net_account": -1165.057060253551,
+        "rejected": {
+          "ALREADY_OPEN": 260,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 5837,
+          "SESSION_FLAT_WINDOW": 46,
+          "USD_DIRECTION_CAP": 279,
+          "WARMUP_OR_NONFINITE": 698
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 1148.2074187144556,
+        "trades": 206
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -51.92626401081737,
+        "max_drawdown_account": 1724.8757695979148,
+        "net_account": -1556.2349495138453,
+        "rejected": {
+          "ALREADY_OPEN": 305,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 7836,
+          "SESSION_FLAT_WINDOW": 72,
+          "USD_DIRECTION_CAP": 379,
+          "WARMUP_OR_NONFINITE": 897
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 1504.3086855030274,
+        "trades": 266
+      }
+    ],
+    "gross_account": -68.77590554986013,
+    "gross_expectancy": -0.14571166430055113,
+    "max_drawdown_by_fold": [
+      1310.1607290274296,
+      1724.8757695979148
+    ],
+    "maximum_fold_drawdown": 1724.8757695979148,
+    "net_account": -2721.292009767511,
+    "net_expectancy": -5.765449173236252,
+    "path_sha256": "19c07b0d2afb3a3e7b76b5071f92503414f367ba9e537928c73437977d98cea1",
+    "profit_factor": 0.5538650636382709,
+    "scenario": "B_OBSERVED_ONLY",
+    "slippage_per_trade": 0.0,
+    "spread_per_trade": 5.619737508935346,
+    "strategy": "swing_breakout",
+    "timeframe": "M5",
+    "total_cost": 2652.516104217651,
+    "trades": 472
+  },
+  {
+    "break_even_cost_per_trade": 0.18682569903181223,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 3.6424132726638314,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -276.42691230793827,
+        "max_drawdown_account": 1311.4378932441214,
+        "net_account": -1174.684178703659,
+        "rejected": {
+          "ALREADY_OPEN": 425,
+          "MTF_WAIT_OR_ABSTAIN": 6012,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "RISK_OR_MARGIN_SIZE_ZERO": 2,
+          "SESSION_FLAT_WINDOW": 147,
+          "USD_DIRECTION_CAP": 486
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 898.2572663957194,
+        "trades": 254
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 383.6648635521907,
+        "max_drawdown_account": 972.1302738043396,
+        "net_account": -808.8230885610722,
+        "rejected": {
+          "ALREADY_OPEN": 581,
+          "MTF_WAIT_OR_ABSTAIN": 8037,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "SESSION_FLAT_WINDOW": 204,
+          "USD_DIRECTION_CAP": 613
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 1192.4879521132627,
+        "trades": 320
+      }
+    ],
+    "gross_account": 107.23795124426022,
+    "gross_expectancy": 0.18682569903181223,
+    "max_drawdown_by_fold": [
+      1311.4378932441214,
+      972.1302738043396
+    ],
+    "maximum_fold_drawdown": 1311.4378932441214,
+    "net_account": -1983.507267264779,
+    "net_expectancy": -3.455587573632019,
+    "path_sha256": "7d110a34b9a0df586c99eaf1b1afb42f0a6482c3bafcfac57f05792010c7d4f6",
+    "profit_factor": 0.5933407063904358,
+    "scenario": "B_OBSERVED_ONLY",
+    "slippage_per_trade": 0.0,
+    "spread_per_trade": 3.6424132726637324,
+    "strategy": "trend",
+    "timeframe": "M15",
+    "total_cost": 2090.745218509039,
+    "trades": 574
+  },
+  {
+    "break_even_cost_per_trade": -0.6000406542783647,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 1.843334983312044,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -41.903165825175236,
+        "max_drawdown_account": 254.9755260447091,
+        "net_account": -166.4308672767275,
+        "rejected": {
+          "ALREADY_OPEN": 110,
+          "MTF_WAIT_OR_ABSTAIN": 6991,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "SESSION_FLAT_WINDOW": 28,
+          "USD_DIRECTION_CAP": 130
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 124.52770145155226,
+        "trades": 67
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -48.70297297086695,
+        "max_drawdown_account": 224.42474963308268,
+        "net_account": -202.51885399941926,
+        "rejected": {
+          "ALREADY_OPEN": 131,
+          "MTF_WAIT_OR_ABSTAIN": 9420,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "SESSION_FLAT_WINDOW": 31,
+          "USD_DIRECTION_CAP": 89
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 153.8158810285524,
+        "trades": 84
+      }
+    ],
+    "gross_account": -90.60613879603308,
+    "gross_expectancy": -0.6000406542783647,
+    "max_drawdown_by_fold": [
+      254.9755260447091,
+      224.42474963308268
+    ],
+    "maximum_fold_drawdown": 254.9755260447091,
+    "net_account": -368.9497212761517,
+    "net_expectancy": -2.4433756375904085,
+    "path_sha256": "a7ee6d4a1a81f42075ac1017ee21502030f49fb9237ad5cf04c694c6781c6615",
+    "profit_factor": 0.664490794794086,
+    "scenario": "B_OBSERVED_ONLY",
+    "slippage_per_trade": 0.0,
+    "spread_per_trade": 1.8433349833119514,
+    "strategy": "trend",
+    "timeframe": "H1",
+    "total_cost": 278.34358248011864,
+    "trades": 151
+  },
+  {
+    "break_even_cost_per_trade": -1.4192749828176914,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 0.785348423322037,
+    "entry_exit_path_matches_baseline": true,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 102.92986409379338,
+        "max_drawdown_account": 34.910509999997885,
+        "net_account": 85.57486773528227,
+        "rejected": {
+          "ALREADY_OPEN": 33,
+          "MTF_WAIT_OR_ABSTAIN": 7250,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "USD_DIRECTION_CAP": 22
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 17.35499635851112,
+        "trades": 21
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -163.9586883549515,
+        "max_drawdown_account": 198.22573890722197,
+        "net_account": -180.3736741992896,
+        "rejected": {
+          "ALREADY_OPEN": 30,
+          "MTF_WAIT_OR_ABSTAIN": 9685,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "USD_DIRECTION_CAP": 18
+        },
+        "slippage_attribution_account": 0.0,
+        "spread_attribution_account": 16.41498584433813,
+        "trades": 22
+      }
+    ],
+    "gross_account": -61.02882426116073,
+    "gross_expectancy": -1.4192749828176914,
+    "max_drawdown_by_fold": [
+      34.910509999997885,
+      198.22573890722197
+    ],
+    "maximum_fold_drawdown": 198.22573890722197,
+    "net_account": -94.79880646400832,
+    "net_expectancy": -2.2046234061397283,
+    "path_sha256": "d88f9da0ff169b5bc167da6ff120675880d8b773627e9bdd6cf10f2ae7dc96bd",
+    "profit_factor": 0.6262059091976976,
+    "scenario": "B_OBSERVED_ONLY",
+    "slippage_per_trade": 0.0,
+    "spread_per_trade": 0.7853484233220756,
+    "strategy": "trend",
+    "timeframe": "H4",
+    "total_cost": 33.769982202847594,
+    "trades": 43
+  },
+  {
+    "break_even_cost_per_trade": -0.1374747125623437,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 6.157741577340666,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -246.70653591895984,
+        "max_drawdown_account": 2526.7498467916685,
+        "net_account": -2466.7843392374484,
+        "rejected": {
+          "ALREADY_OPEN": 1484,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 3076,
+          "RISK_OR_MARGIN_SIZE_ZERO": 3,
+          "SESSION_FLAT_WINDOW": 322,
+          "USD_DIRECTION_CAP": 1730,
+          "WARMUP_OR_NONFINITE": 348
+        },
+        "slippage_attribution_account": 459.07748800942556,
+        "spread_attribution_account": 1761.0003153090634,
+        "trades": 363
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 132.73999920472997,
+        "max_drawdown_account": 2850.278581791037,
+        "net_account": -2751.9499650926077,
+        "rejected": {
+          "ALREADY_OPEN": 2054,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 4010,
+          "RISK_OR_MARGIN_SIZE_ZERO": 12,
+          "SESSION_FLAT_WINDOW": 525,
+          "USD_DIRECTION_CAP": 2241,
+          "WARMUP_OR_NONFINITE": 447
+        },
+        "slippage_attribution_account": 590.7597957974655,
+        "spread_attribution_account": 2293.9301684998723,
+        "trades": 466
+      }
+    ],
+    "gross_account": -113.96653671418292,
+    "gross_expectancy": -0.1374747125623437,
+    "max_drawdown_by_fold": [
+      2526.7498467916685,
+      2850.278581791037
+    ],
+    "maximum_fold_drawdown": 2850.278581791037,
+    "net_account": -5218.734304329595,
+    "net_expectancy": -6.29521628990301,
+    "path_sha256": "9a5735673aa1fb3a002f50704b7c59ebb25fcef30f457a1786a92f484d311b4a",
+    "profit_factor": 0.47207730884759963,
+    "scenario": "C_OBSERVED_SLIP_02",
+    "slippage_per_trade": 1.26638996840397,
+    "spread_per_trade": 4.891351608937196,
+    "strategy": "scalp",
+    "timeframe": "M5",
+    "total_cost": 5104.767767615412,
+    "trades": 829
+  },
+  {
+    "break_even_cost_per_trade": -0.1394843748093418,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 6.159847472176861,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -253.67697464917205,
+        "max_drawdown_account": 2525.8496561316642,
+        "net_account": -2465.878718643309,
+        "rejected": {
+          "ALREADY_OPEN": 1504,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 3047,
+          "RISK_OR_MARGIN_SIZE_ZERO": 3,
+          "SESSION_FLAT_WINDOW": 325,
+          "USD_DIRECTION_CAP": 1737,
+          "WARMUP_OR_NONFINITE": 348
+        },
+        "slippage_attribution_account": 456.9623638932642,
+        "spread_attribution_account": 1755.2393801008764,
+        "trades": 362
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 138.1839123069852,
+        "max_drawdown_account": 2848.3049934707724,
+        "net_account": -2749.9680506617183,
+        "rejected": {
+          "ALREADY_OPEN": 2072,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 3972,
+          "RISK_OR_MARGIN_SIZE_ZERO": 12,
+          "SESSION_FLAT_WINDOW": 530,
+          "USD_DIRECTION_CAP": 2256,
+          "WARMUP_OR_NONFINITE": 447
+        },
+        "slippage_attribution_account": 591.2144440143622,
+        "spread_attribution_account": 2296.937518954341,
+        "trades": 466
+      }
+    ],
+    "gross_account": -115.49306234213502,
+    "gross_expectancy": -0.1394843748093418,
+    "max_drawdown_by_fold": [
+      2525.8496561316642,
+      2848.3049934707724
+    ],
+    "maximum_fold_drawdown": 2848.3049934707724,
+    "net_account": -5215.846769304576,
+    "net_expectancy": -6.2993318469862025,
+    "path_sha256": "57a41e2b99852b13c20d6d1018b5a8968e87245e67982ce4922584e6100c2991",
+    "profit_factor": 0.4701307350671498,
+    "scenario": "C_OBSERVED_SLIP_02",
+    "slippage_per_trade": 1.2659140192121092,
+    "spread_per_trade": 4.893933452965238,
+    "strategy": "trend",
+    "timeframe": "M5",
+    "total_cost": 5100.353706962441,
+    "trades": 828
+  },
+  {
+    "break_even_cost_per_trade": 0.00041530408062290366,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 6.703259436301842,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 492.2134200567645,
+        "max_drawdown_account": 1139.9855268396677,
+        "net_account": -1116.5695730300163,
+        "rejected": {
+          "ALREADY_OPEN": 246,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 6155,
+          "RISK_OR_MARGIN_SIZE_ZERO": 9,
+          "SESSION_FLAT_WINDOW": 39,
+          "USD_DIRECTION_CAP": 294,
+          "WARMUP_OR_NONFINITE": 348
+        },
+        "slippage_attribution_account": 329.23456873806066,
+        "spread_attribution_account": 1279.5484243487188,
+        "trades": 235
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -491.9858334205864,
+        "max_drawdown_account": 2611.3013487960234,
+        "net_account": -2556.5890114276062,
+        "rejected": {
+          "ALREADY_OPEN": 333,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 8201,
+          "RISK_OR_MARGIN_SIZE_ZERO": 1,
+          "SESSION_FLAT_WINDOW": 94,
+          "USD_DIRECTION_CAP": 366,
+          "WARMUP_OR_NONFINITE": 447
+        },
+        "slippage_attribution_account": 421.6068524892718,
+        "spread_attribution_account": 1642.996325517751,
+        "trades": 313
+      }
+    ],
+    "gross_account": 0.22758663618135122,
+    "gross_expectancy": 0.00041530408062290366,
+    "max_drawdown_by_fold": [
+      1139.9855268396677,
+      2611.3013487960234
+    ],
+    "maximum_fold_drawdown": 2611.3013487960234,
+    "net_account": -3673.158584457228,
+    "net_expectancy": -6.702844132221219,
+    "path_sha256": "1fb5c6d1969dd95241abe1809eea96706d38b8800e338eee6991074ba695a4b8",
+    "profit_factor": 0.47625866359620633,
+    "scenario": "C_OBSERVED_SLIP_02",
+    "slippage_per_trade": 1.3701485788819934,
+    "spread_per_trade": 5.333110857420565,
+    "strategy": "mean_reversion",
+    "timeframe": "M5",
+    "total_cost": 3673.3861710934093,
+    "trades": 548
+  },
+  {
+    "break_even_cost_per_trade": -0.0856153264557214,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 6.298353406029537,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -71.89975548545877,
+        "max_drawdown_account": 2161.8886851703555,
+        "net_account": -2075.221391143749,
+        "rejected": {
+          "ALREADY_OPEN": 1509,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 2956,
+          "RISK_OR_MARGIN_SIZE_ZERO": 2,
+          "SESSION_FLAT_WINDOW": 310,
+          "USD_DIRECTION_CAP": 1530,
+          "WARMUP_OR_NONFINITE": 698
+        },
+        "slippage_attribution_account": 411.2635549176757,
+        "spread_attribution_account": 1592.058080740614,
+        "trades": 321
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 8.287567928922504,
+        "max_drawdown_account": 2765.54676651085,
+        "net_account": -2668.067377093151,
+        "rejected": {
+          "ALREADY_OPEN": 2036,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 4003,
+          "RISK_OR_MARGIN_SIZE_ZERO": 14,
+          "SESSION_FLAT_WINDOW": 508,
+          "USD_DIRECTION_CAP": 1875,
+          "WARMUP_OR_NONFINITE": 897
+        },
+        "slippage_attribution_account": 543.829457417133,
+        "spread_attribution_account": 2132.525487604943,
+        "trades": 422
+      }
+    ],
+    "gross_account": -63.61218755660099,
+    "gross_expectancy": -0.0856153264557214,
+    "max_drawdown_by_fold": [
+      2161.8886851703555,
+      2765.54676651085
+    ],
+    "maximum_fold_drawdown": 2765.54676651085,
+    "net_account": -4743.288768236547,
+    "net_expectancy": -6.3839687324852585,
+    "path_sha256": "8004be46f23c031ebfd5c5bebee7df025878d75e8d8250b195ebf0a81985549e",
+    "profit_factor": 0.4675028037634749,
+    "scenario": "C_OBSERVED_SLIP_02",
+    "slippage_per_trade": 1.2854549291181814,
+    "spread_per_trade": 5.0128984769119205,
+    "strategy": "swing_trend",
+    "timeframe": "M5",
+    "total_cost": 4679.676580679946,
+    "trades": 743
+  },
+  {
+    "break_even_cost_per_trade": 1.0628115986889408,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 6.884888850151963,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 286.83563445479194,
+        "max_drawdown_account": 1231.1893889529383,
+        "net_account": -1067.258651033978,
+        "rejected": {
+          "ALREADY_OPEN": 377,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 5798,
+          "SESSION_FLAT_WINDOW": 15,
+          "USD_DIRECTION_CAP": 234,
+          "WARMUP_OR_NONFINITE": 698
+        },
+        "slippage_attribution_account": 275.7983547916577,
+        "spread_attribution_account": 1078.2959306971125,
+        "trades": 204
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 214.81144012641025,
+        "max_drawdown_account": 1698.4966977912973,
+        "net_account": -1680.761811656904,
+        "rejected": {
+          "ALREADY_OPEN": 470,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 7706,
+          "RISK_OR_MARGIN_SIZE_ZERO": 12,
+          "SESSION_FLAT_WINDOW": 52,
+          "USD_DIRECTION_CAP": 350,
+          "WARMUP_OR_NONFINITE": 897
+        },
+        "slippage_attribution_account": 382.71410659952085,
+        "spread_attribution_account": 1512.859145183794,
+        "trades": 268
+      }
+    ],
+    "gross_account": 501.6470745811801,
+    "gross_expectancy": 1.0628115986889408,
+    "max_drawdown_by_fold": [
+      1231.1893889529383,
+      1698.4966977912973
+    ],
+    "maximum_fold_drawdown": 1698.4966977912973,
+    "net_account": -2748.0204626905465,
+    "net_expectancy": -5.822077251463022,
+    "path_sha256": "09df8cd7bf3aa7f4cc3267656b0c5d61468a600876c0a872b578197ab55c65a9",
+    "profit_factor": 0.5674113455807016,
+    "scenario": "C_OBSERVED_SLIP_02",
+    "slippage_per_trade": 1.3951535198965646,
+    "spread_per_trade": 5.489735330256157,
+    "strategy": "swing_mean_reversion",
+    "timeframe": "M5",
+    "total_cost": 3249.667537271727,
+    "trades": 472
+  },
+  {
+    "break_even_cost_per_trade": -0.09067282537285366,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 6.7006706344878975,
+    "entry_exit_path_matches_baseline": true,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -37.410066809029274,
+        "max_drawdown_account": 1556.3938488439762,
+        "net_account": -1423.8879985390076,
+        "rejected": {
+          "ALREADY_OPEN": 258,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 5837,
+          "SESSION_FLAT_WINDOW": 46,
+          "USD_DIRECTION_CAP": 279,
+          "WARMUP_OR_NONFINITE": 698
+        },
+        "slippage_attribution_account": 282.8819626114842,
+        "spread_attribution_account": 1103.5959691184953,
+        "trades": 208
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -5.750198068416122,
+        "max_drawdown_account": 1940.9582279727183,
+        "net_account": -1808.7914883549029,
+        "rejected": {
+          "ALREADY_OPEN": 305,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 7836,
+          "SESSION_FLAT_WINDOW": 72,
+          "USD_DIRECTION_CAP": 377,
+          "WARMUP_OR_NONFINITE": 897
+        },
+        "slippage_attribution_account": 365.83607579975796,
+        "spread_attribution_account": 1437.2052144867296,
+        "trades": 268
+      }
+    ],
+    "gross_account": -43.16026487747834,
+    "gross_expectancy": -0.09067282537285366,
+    "max_drawdown_by_fold": [
+      1556.3938488439762,
+      1940.9582279727183
+    ],
+    "maximum_fold_drawdown": 1940.9582279727183,
+    "net_account": -3232.6794868937177,
+    "net_expectancy": -6.791343459860752,
+    "path_sha256": "4ff20d110aaa563071095c4661a816850265285748dcd2f01a6448abbfe62767",
+    "profit_factor": 0.4842784508353966,
+    "scenario": "C_OBSERVED_SLIP_02",
+    "slippage_per_trade": 1.3628530218723574,
+    "spread_per_trade": 5.337817612616019,
+    "strategy": "swing_breakout",
+    "timeframe": "M5",
+    "total_cost": 3189.5192220162394,
+    "trades": 476
+  },
+  {
+    "break_even_cost_per_trade": 0.0700272131519524,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 4.415424127567276,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -319.4686305974354,
+        "max_drawdown_account": 1546.7238797871069,
+        "net_account": -1420.3902991971736,
+        "rejected": {
+          "ALREADY_OPEN": 425,
+          "MTF_WAIT_OR_ABSTAIN": 6012,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "RISK_OR_MARGIN_SIZE_ZERO": 2,
+          "SESSION_FLAT_WINDOW": 147,
+          "USD_DIRECTION_CAP": 484
+        },
+        "slippage_attribution_account": 223.88335805709383,
+        "spread_attribution_account": 877.0383105426441,
+        "trades": 256
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 359.8743325861192,
+        "max_drawdown_account": 1226.8243947724768,
+        "net_account": -1086.9037204207402,
+        "rejected": {
+          "ALREADY_OPEN": 577,
+          "MTF_WAIT_OR_ABSTAIN": 8037,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "SESSION_FLAT_WINDOW": 204,
+          "USD_DIRECTION_CAP": 616
+        },
+        "slippage_attribution_account": 293.35185777110723,
+        "spread_attribution_account": 1153.4261952357517,
+        "trades": 321
+      }
+    ],
+    "gross_account": 40.40570198867653,
+    "gross_expectancy": 0.0700272131519524,
+    "max_drawdown_by_fold": [
+      1546.7238797871069,
+      1226.8243947724768
+    ],
+    "maximum_fold_drawdown": 1546.7238797871069,
+    "net_account": -2507.294019617642,
+    "net_expectancy": -4.345396914415324,
+    "path_sha256": "fd0d074469ceb047e1d1592b8cb0c11c9a0a40b783425870635d531bc2adce29",
+    "profit_factor": 0.5062194948758305,
+    "scenario": "C_OBSERVED_SLIP_02",
+    "slippage_per_trade": 0.8964215178998285,
+    "spread_per_trade": 3.5190026096679308,
+    "strategy": "trend",
+    "timeframe": "M15",
+    "total_cost": 2547.6997216063182,
+    "trades": 577
+  },
+  {
+    "break_even_cost_per_trade": -0.5562179887289148,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 2.2829072731281763,
+    "entry_exit_path_matches_baseline": true,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -39.276991614944635,
+        "max_drawdown_account": 275.13764534826623,
+        "net_account": -193.9683630706517,
+        "rejected": {
+          "ALREADY_OPEN": 110,
+          "MTF_WAIT_OR_ABSTAIN": 6991,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "SESSION_FLAT_WINDOW": 28,
+          "USD_DIRECTION_CAP": 130
+        },
+        "slippage_attribution_account": 31.366385614008347,
+        "spread_attribution_account": 123.32498584169882,
+        "trades": 67
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -44.71192468313354,
+        "max_drawdown_account": 255.0470239243732,
+        "net_account": -234.73955146980492,
+        "rejected": {
+          "ALREADY_OPEN": 131,
+          "MTF_WAIT_OR_ABSTAIN": 9420,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "SESSION_FLAT_WINDOW": 31,
+          "USD_DIRECTION_CAP": 89
+        },
+        "slippage_attribution_account": 38.10973403933035,
+        "spread_attribution_account": 151.91789274734109,
+        "trades": 84
+      }
+    ],
+    "gross_account": -83.98891629806614,
+    "gross_expectancy": -0.5562179887289148,
+    "max_drawdown_by_fold": [
+      275.13764534826623,
+      255.0470239243732
+    ],
+    "maximum_fold_drawdown": 275.13764534826623,
+    "net_account": -428.7079145404208,
+    "net_expectancy": -2.8391252618570912,
+    "path_sha256": "5e94885f6b765ace69c1b7ab52e1aae986d9ce0ec20dc5710272621d271e9812",
+    "profit_factor": 0.6181609671673824,
+    "scenario": "C_OBSERVED_SLIP_02",
+    "slippage_per_trade": 0.4601067526711172,
+    "spread_per_trade": 1.8228005204572177,
+    "strategy": "trend",
+    "timeframe": "H1",
+    "total_cost": 344.71899824235464,
+    "trades": 151
+  },
+  {
+    "break_even_cost_per_trade": -1.4116381027921563,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.0,
+    "cost_per_trade": 0.9789397390378408,
+    "entry_exit_path_matches_baseline": true,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 102.33276809864773,
+        "max_drawdown_account": 34.73696999999993,
+        "net_account": 80.63948902274132,
+        "rejected": {
+          "ALREADY_OPEN": 33,
+          "MTF_WAIT_OR_ABSTAIN": 7250,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "USD_DIRECTION_CAP": 22
+        },
+        "slippage_attribution_account": 4.420870464034953,
+        "spread_attribution_account": 17.272408611871462,
+        "trades": 21
+      },
+      {
+        "commission_account": 0.0,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -163.03320651870789,
+        "max_drawdown_account": 200.69834543833895,
+        "net_account": -183.43433622143297,
+        "rejected": {
+          "ALREADY_OPEN": 30,
+          "MTF_WAIT_OR_ABSTAIN": 9685,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "USD_DIRECTION_CAP": 18
+        },
+        "slippage_attribution_account": 4.0520990220419115,
+        "spread_attribution_account": 16.34903068068326,
+        "trades": 22
+      }
+    ],
+    "gross_account": -60.700438420062724,
+    "gross_expectancy": -1.4116381027921563,
+    "max_drawdown_by_fold": [
+      34.73696999999993,
+      200.69834543833895
+    ],
+    "maximum_fold_drawdown": 200.69834543833895,
+    "net_account": -102.79484719868988,
+    "net_expectancy": -2.390577841829997,
+    "path_sha256": "d88f9da0ff169b5bc167da6ff120675880d8b773627e9bdd6cf10f2ae7dc96bd",
+    "profit_factor": 0.6013076812413956,
+    "scenario": "C_OBSERVED_SLIP_02",
+    "slippage_per_trade": 0.19704580200178756,
+    "spread_per_trade": 0.7818939370361564,
+    "strategy": "trend",
+    "timeframe": "H4",
+    "total_cost": 42.094408778627155,
+    "trades": 43
+  },
+  {
+    "break_even_cost_per_trade": -0.13790423554946268,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 1.8333769156626503,
+    "cost_per_trade": 7.349092517726143,
+    "entry_exit_path_matches_baseline": true,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 664.8149400000001,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -226.10541806535815,
+        "max_drawdown_account": 2943.4539946022633,
+        "net_account": -2891.8258798434367,
+        "rejected": {
+          "ALREADY_OPEN": 1483,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 3076,
+          "RISK_OR_MARGIN_SIZE_ZERO": 4,
+          "SESSION_FLAT_WINDOW": 322,
+          "USD_DIRECTION_CAP": 1730,
+          "WARMUP_OR_NONFINITE": 348
+        },
+        "slippage_attribution_account": 413.49312793633027,
+        "spread_attribution_account": 1587.4123938417476,
+        "trades": 363
+      },
+      {
+        "commission_account": 856.8878999999996,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 111.6449025592773,
+        "max_drawdown_account": 3389.1551157687836,
+        "net_account": -3322.381425375727,
+        "rejected": {
+          "ALREADY_OPEN": 2057,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 4010,
+          "RISK_OR_MARGIN_SIZE_ZERO": 5,
+          "SESSION_FLAT_WINDOW": 525,
+          "USD_DIRECTION_CAP": 2244,
+          "WARMUP_OR_NONFINITE": 447
+        },
+        "slippage_attribution_account": 526.7022349851701,
+        "spread_attribution_account": 2050.4361929498336,
+        "trades": 467
+      }
+    ],
+    "gross_account": -114.46051550605402,
+    "gross_expectancy": -0.13790423554946268,
+    "max_drawdown_by_fold": [
+      2943.4539946022633,
+      3389.1551157687836
+    ],
+    "maximum_fold_drawdown": 3389.1551157687836,
+    "net_account": -6214.2073052187525,
+    "net_expectancy": -7.486996753275605,
+    "path_sha256": "2a7a0d6f4668f382182ebff940761f5d431eaf9b31df29c8acaf0d8720d0dda7",
+    "profit_factor": 0.37968997884829564,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_per_trade": 1.1327654974957837,
+    "spread_per_trade": 4.38295010456817,
+    "strategy": "scalp",
+    "timeframe": "M5",
+    "total_cost": 6099.746789712698,
+    "trades": 830
+  },
+  {
+    "break_even_cost_per_trade": -0.13042056762125487,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 1.8355211580217132,
+    "cost_per_trade": 7.354216167501284,
+    "entry_exit_path_matches_baseline": true,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 663.1380600000005,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -227.74108637737604,
+        "max_drawdown_account": 2937.429089862724,
+        "net_account": -2885.754711823247,
+        "rejected": {
+          "ALREADY_OPEN": 1503,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 3047,
+          "RISK_OR_MARGIN_SIZE_ZERO": 4,
+          "SESSION_FLAT_WINDOW": 325,
+          "USD_DIRECTION_CAP": 1737,
+          "WARMUP_OR_NONFINITE": 348
+        },
+        "slippage_attribution_account": 411.831077936651,
+        "spread_attribution_account": 1583.0444875092146,
+        "trades": 362
+      },
+      {
+        "commission_account": 858.5089799999997,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 119.62243581932385,
+        "max_drawdown_account": 3385.7854886434934,
+        "net_account": -3319.0091415937422,
+        "rejected": {
+          "ALREADY_OPEN": 2075,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 3972,
+          "RISK_OR_MARGIN_SIZE_ZERO": 5,
+          "SESSION_FLAT_WINDOW": 530,
+          "USD_DIRECTION_CAP": 2259,
+          "WARMUP_OR_NONFINITE": 447
+        },
+        "slippage_attribution_account": 527.0880053418093,
+        "spread_attribution_account": 2053.034592071257,
+        "trades": 467
+      }
+    ],
+    "gross_account": -108.11865055802028,
+    "gross_expectancy": -0.13042056762125487,
+    "max_drawdown_by_fold": [
+      2937.429089862724,
+      3385.7854886434934
+    ],
+    "maximum_fold_drawdown": 3385.7854886434934,
+    "net_account": -6204.763853416584,
+    "net_expectancy": -7.484636735122539,
+    "path_sha256": "0d9558bb253c424320ca97b471e524554c53e0790a2a2749a7b2eba98e9839a2",
+    "profit_factor": 0.3783202258618766,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_per_trade": 1.1325923803117737,
+    "spread_per_trade": 4.38610262916824,
+    "strategy": "trend",
+    "timeframe": "M5",
+    "total_cost": 6096.6452028585645,
+    "trades": 829
+  },
+  {
+    "break_even_cost_per_trade": 0.08261565277363912,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 1.9688942076502727,
+    "cost_per_trade": 7.957805269400001,
+    "entry_exit_path_matches_baseline": true,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 474.49188000000004,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 518.0201851156787,
+        "max_drawdown_account": 1422.63984610415,
+        "net_account": -1401.8124742671166,
+        "rejected": {
+          "ALREADY_OPEN": 247,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 6155,
+          "SESSION_FLAT_WINDOW": 39,
+          "USD_DIRECTION_CAP": 301,
+          "WARMUP_OR_NONFINITE": 348
+        },
+        "slippage_attribution_account": 295.86210861335223,
+        "spread_attribution_account": 1149.478670769443,
+        "trades": 236
+      },
+      {
+        "commission_account": 606.4310399999997,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -472.66419174295845,
+        "max_drawdown_account": 2954.8613008505436,
+        "net_account": -2921.666625261109,
+        "rejected": {
+          "ALREADY_OPEN": 334,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 8201,
+          "SESSION_FLAT_WINDOW": 94,
+          "USD_DIRECTION_CAP": 366,
+          "WARMUP_OR_NONFINITE": 447
+        },
+        "slippage_attribution_account": 375.8706557408226,
+        "spread_attribution_account": 1466.7007377773225,
+        "trades": 313
+      }
+    ],
+    "gross_account": 45.35599337272788,
+    "gross_expectancy": 0.08261565277363912,
+    "max_drawdown_by_fold": [
+      1422.63984610415,
+      2954.8613008505436
+    ],
+    "maximum_fold_drawdown": 2954.8613008505436,
+    "net_account": -4323.479099527874,
+    "net_expectancy": -7.875189616626364,
+    "path_sha256": "4ff5ec36cc5e151f33948562c80800b8041f6c1d172d6055d719120b7debb807",
+    "profit_factor": 0.39070927520141224,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_per_trade": 1.223556947821812,
+    "spread_per_trade": 4.7653541139285345,
+    "strategy": "mean_reversion",
+    "timeframe": "M5",
+    "total_cost": 4368.835092900601,
+    "trades": 549
+  },
+  {
+    "break_even_cost_per_trade": 0.04818010952889961,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 1.889315147453084,
+    "cost_per_trade": 7.534053812606589,
+    "entry_exit_path_matches_baseline": true,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 609.02124,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -34.31054056053347,
+        "max_drawdown_account": 2531.8532498635705,
+        "net_account": -2461.446446668979,
+        "rejected": {
+          "ALREADY_OPEN": 1507,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 2956,
+          "SESSION_FLAT_WINDOW": 310,
+          "USD_DIRECTION_CAP": 1532,
+          "WARMUP_OR_NONFINITE": 698
+        },
+        "slippage_attribution_account": 373.2301169358506,
+        "spread_attribution_account": 1444.8845491725933,
+        "trades": 323
+      },
+      {
+        "commission_account": 800.4078600000008,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 70.25290226913243,
+        "max_drawdown_account": 3201.3669618030553,
+        "net_account": -3123.0153358272864,
+        "rejected": {
+          "ALREADY_OPEN": 2043,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 4003,
+          "RISK_OR_MARGIN_SIZE_ZERO": 1,
+          "SESSION_FLAT_WINDOW": 508,
+          "USD_DIRECTION_CAP": 1880,
+          "WARMUP_OR_NONFINITE": 897
+        },
+        "slippage_attribution_account": 485.71823279027376,
+        "spread_attribution_account": 1907.1421453061441,
+        "trades": 423
+      }
+    ],
+    "gross_account": 35.94236170855911,
+    "gross_expectancy": 0.04818010952889961,
+    "max_drawdown_by_fold": [
+      2531.8532498635705,
+      3201.3669618030553
+    ],
+    "maximum_fold_drawdown": 3201.3669618030553,
+    "net_account": -5584.461782495956,
+    "net_expectancy": -7.485873703077689,
+    "path_sha256": "1c1f8b8b2ed75caa73d370dd31143f8052ce26db4016f82dfe365c0dd1397aed",
+    "profit_factor": 0.3798507323196607,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_per_trade": 1.1514052945390407,
+    "spread_per_trade": 4.49333337061493,
+    "strategy": "swing_trend",
+    "timeframe": "M5",
+    "total_cost": 5620.404144204515,
+    "trades": 746
+  },
+  {
+    "break_even_cost_per_trade": 0.9849549588339905,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 2.0346660887949257,
+    "cost_per_trade": 8.175002424986298,
+    "entry_exit_path_matches_baseline": true,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 399.7013399999998,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 283.48957182800865,
+        "max_drawdown_account": 1451.4278798063315,
+        "net_account": -1327.8872066391004,
+        "rejected": {
+          "ALREADY_OPEN": 377,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 5798,
+          "SESSION_FLAT_WINDOW": 15,
+          "USD_DIRECTION_CAP": 234,
+          "WARMUP_OR_NONFINITE": 698
+        },
+        "slippage_attribution_account": 246.72171407009816,
+        "spread_attribution_account": 964.9537243970111,
+        "trades": 204
+      },
+      {
+        "commission_account": 562.6957199999999,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 182.39412370048447,
+        "max_drawdown_account": 2094.42182272463,
+        "net_account": -2073.0052448512392,
+        "rejected": {
+          "ALREADY_OPEN": 468,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 7706,
+          "RISK_OR_MARGIN_SIZE_ZERO": 13,
+          "SESSION_FLAT_WINDOW": 52,
+          "USD_DIRECTION_CAP": 350,
+          "WARMUP_OR_NONFINITE": 897
+        },
+        "slippage_attribution_account": 341.26675637999585,
+        "spread_attribution_account": 1351.436892171729,
+        "trades": 269
+      }
+    ],
+    "gross_account": 465.8836955284775,
+    "gross_expectancy": 0.9849549588339905,
+    "max_drawdown_by_fold": [
+      1451.4278798063315,
+      2094.42182272463
+    ],
+    "maximum_fold_drawdown": 2094.42182272463,
+    "net_account": -3400.8924514900414,
+    "net_expectancy": -7.190047466152308,
+    "path_sha256": "b1b10588a853418bfc0a3883af275a1450a8ea4bfc59fa4f9e2d9d5344d15f47",
+    "profit_factor": 0.4675212088546687,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_per_trade": 1.2431045886894165,
+    "spread_per_trade": 4.897231747502621,
+    "strategy": "swing_mean_reversion",
+    "timeframe": "M5",
+    "total_cost": 3866.7761470185187,
+    "trades": 473
+  },
+  {
+    "break_even_cost_per_trade": -0.21572667729446177,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 2.0072739075630257,
+    "cost_per_trade": 7.956270736977061,
+    "entry_exit_path_matches_baseline": true,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 414.7789799999999,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -42.89065164731294,
+        "max_drawdown_account": 1812.6862869142278,
+        "net_account": -1697.785144211686,
+        "rejected": {
+          "ALREADY_OPEN": 258,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 5837,
+          "SESSION_FLAT_WINDOW": 46,
+          "USD_DIRECTION_CAP": 279,
+          "WARMUP_OR_NONFINITE": 698
+        },
+        "slippage_attribution_account": 253.17128681277507,
+        "spread_attribution_account": 986.9442257515987,
+        "trades": 208
+      },
+      {
+        "commission_account": 540.6834000000002,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -59.795246744822194,
+        "max_drawdown_account": 2262.8327763957204,
+        "net_account": -2192.085624981727,
+        "rejected": {
+          "ALREADY_OPEN": 305,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 7836,
+          "SESSION_FLAT_WINDOW": 72,
+          "USD_DIRECTION_CAP": 377,
+          "WARMUP_OR_NONFINITE": 897
+        },
+        "slippage_attribution_account": 322.9363858122563,
+        "spread_attribution_account": 1268.6705924246476,
+        "trades": 268
+      }
+    ],
+    "gross_account": -102.6858983921638,
+    "gross_expectancy": -0.21572667729446177,
+    "max_drawdown_by_fold": [
+      1812.6862869142278,
+      2262.8327763957204
+    ],
+    "maximum_fold_drawdown": 2262.8327763957204,
+    "net_account": -3889.8707691932445,
+    "net_expectancy": -8.171997414271521,
+    "path_sha256": "4ff20d110aaa563071095c4661a816850265285748dcd2f01a6448abbfe62767",
+    "profit_factor": 0.38619599600620913,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_per_trade": 1.2103102366072087,
+    "spread_per_trade": 4.73868659280724,
+    "strategy": "swing_breakout",
+    "timeframe": "M5",
+    "total_cost": 3787.1848708010807,
+    "trades": 476
+  },
+  {
+    "break_even_cost_per_trade": 0.07175986802483687,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 1.34453937716263,
+    "cost_per_trade": 5.4029345310927654,
+    "entry_exit_path_matches_baseline": true,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 341.12129999999996,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -281.4011625795143,
+        "max_drawdown_account": 1751.0923961940225,
+        "net_account": -1642.6315740423852,
+        "rejected": {
+          "ALREADY_OPEN": 426,
+          "MTF_WAIT_OR_ABSTAIN": 6012,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "SESSION_FLAT_WINDOW": 147,
+          "USD_DIRECTION_CAP": 484
+        },
+        "slippage_attribution_account": 207.34845477997135,
+        "spread_attribution_account": 812.7606566828986,
+        "trades": 257
+      },
+      {
+        "commission_account": 436.02246000000025,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 322.8783662978738,
+        "max_drawdown_account": 1522.4178137996696,
+        "net_account": -1438.7873812111266,
+        "rejected": {
+          "ALREADY_OPEN": 577,
+          "MTF_WAIT_OR_ABSTAIN": 8037,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "SESSION_FLAT_WINDOW": 204,
+          "USD_DIRECTION_CAP": 616
+        },
+        "slippage_attribution_account": 268.48437246515954,
+        "spread_attribution_account": 1057.1589150438415,
+        "trades": 321
+      }
+    ],
+    "gross_account": 41.47720371835571,
+    "gross_expectancy": 0.07175986802483687,
+    "max_drawdown_by_fold": [
+      1751.0923961940225,
+      1522.4178137996696
+    ],
+    "maximum_fold_drawdown": 1751.0923961940225,
+    "net_account": -3081.418955253263,
+    "net_expectancy": -5.331174663067929,
+    "path_sha256": "eb8f0a22df8e4f38ca18c227deebe760a47c76ad1479f829b14549fc63b41adb",
+    "profit_factor": 0.4109579763694256,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_per_trade": 0.8232401855452092,
+    "spread_per_trade": 3.2351549683853635,
+    "strategy": "trend",
+    "timeframe": "M15",
+    "total_cost": 3122.8961589716187,
+    "trades": 578
+  },
+  {
+    "break_even_cost_per_trade": -0.5525124726861809,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.7476178807947021,
+    "cost_per_trade": 2.9469431619177553,
+    "entry_exit_path_matches_baseline": true,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 49.18776000000002,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -39.93557219571487,
+        "max_drawdown_account": 312.02856878140665,
+        "net_account": -238.41496759644082,
+        "rejected": {
+          "ALREADY_OPEN": 110,
+          "MTF_WAIT_OR_ABSTAIN": 6991,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "SESSION_FLAT_WINDOW": 28,
+          "USD_DIRECTION_CAP": 130
+        },
+        "slippage_attribution_account": 30.277066294910444,
+        "spread_attribution_account": 119.0145691058154,
+        "trades": 67
+      },
+      {
+        "commission_account": 63.70254,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -43.4938111799099,
+        "max_drawdown_account": 308.0693752638708,
+        "net_account": -290.0028332287884,
+        "rejected": {
+          "ALREADY_OPEN": 131,
+          "MTF_WAIT_OR_ABSTAIN": 9420,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "SESSION_FLAT_WINDOW": 31,
+          "USD_DIRECTION_CAP": 89
+        },
+        "slippage_attribution_account": 36.65943272159614,
+        "spread_attribution_account": 146.1470493272823,
+        "trades": 84
+      }
+    ],
+    "gross_account": -83.42938337561331,
+    "gross_expectancy": -0.5525124726861809,
+    "max_drawdown_by_fold": [
+      312.02856878140665,
+      308.0693752638708
+    ],
+    "maximum_fold_drawdown": 312.02856878140665,
+    "net_account": -528.4178008251944,
+    "net_expectancy": -3.4994556346039363,
+    "path_sha256": "5e94885f6b765ace69c1b7ab52e1aae986d9ce0ec20dc5710272621d271e9812",
+    "profit_factor": 0.5422572369274227,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_per_trade": 0.4432880729569973,
+    "spread_per_trade": 1.7560372081662101,
+    "strategy": "trend",
+    "timeframe": "H1",
+    "total_cost": 444.98841744958105,
+    "trades": 151
+  },
+  {
+    "break_even_cost_per_trade": -1.4019425806009567,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.3311455813953488,
+    "cost_per_trade": 1.295951844648437,
+    "entry_exit_path_matches_baseline": true,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 7.18266,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 100.6237098066058,
+        "max_drawdown_account": 34.245169999998325,
+        "net_account": 72.07437498177052,
+        "rejected": {
+          "ALREADY_OPEN": 33,
+          "MTF_WAIT_OR_ABSTAIN": 7250,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "USD_DIRECTION_CAP": 22
+        },
+        "slippage_attribution_account": 4.35470271079813,
+        "spread_attribution_account": 17.011972114037153,
+        "trades": 21
+      },
+      {
+        "commission_account": 7.056599999999999,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -160.90724077244437,
+        "max_drawdown_account": 204.17855967896685,
+        "net_account": -188.08383526749628,
+        "rejected": {
+          "ALREADY_OPEN": 30,
+          "MTF_WAIT_OR_ABSTAIN": 9685,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "USD_DIRECTION_CAP": 18
+        },
+        "slippage_attribution_account": 3.996241361470769,
+        "spread_attribution_account": 16.12375313358113,
+        "trades": 22
+      }
+    ],
+    "gross_account": -60.28353096584114,
+    "gross_expectancy": -1.4019425806009567,
+    "max_drawdown_by_fold": [
+      34.245169999998325,
+      204.17855967896685
+    ],
+    "maximum_fold_drawdown": 204.17855967896685,
+    "net_account": -116.00946028572393,
+    "net_expectancy": -2.6978944252493937,
+    "path_sha256": "d88f9da0ff169b5bc167da6ff120675880d8b773627e9bdd6cf10f2ae7dc96bd",
+    "profit_factor": 0.560836503969231,
+    "scenario": "D_HYPOTHETICAL_3_PER_100K_SIDE",
+    "slippage_per_trade": 0.19420800168067207,
+    "spread_per_trade": 0.7705982615725182,
+    "strategy": "trend",
+    "timeframe": "H4",
+    "total_cost": 55.725929319882795,
+    "trades": 43
+  },
+  {
+    "break_even_cost_per_trade": 0.22968723351463033,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 1.1205602953846159,
+    "cost_per_trade": 10.008854041532317,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 842.4198000000008,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -3.0447683531283047,
+        "max_drawdown_account": 7528.193996709628,
+        "net_account": -7508.613973392962,
+        "rejected": {
+          "ALREADY_OPEN": 1261,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 3076,
+          "SESSION_FLAT_WINDOW": 322,
+          "USD_DIRECTION_CAP": 1628,
+          "WARMUP_OR_NONFINITE": 348
+        },
+        "slippage_attribution_account": 2598.0589857645587,
+        "spread_attribution_account": 4065.0904192752732,
+        "trades": 691
+      },
+      {
+        "commission_account": 978.4906800000001,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 376.2865228144088,
+        "max_drawdown_account": 8430.7087652607,
+        "net_account": -8382.53208963587,
+        "rejected": {
+          "ALREADY_OPEN": 1689,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 4010,
+          "RISK_OR_MARGIN_SIZE_ZERO": 1,
+          "SESSION_FLAT_WINDOW": 525,
+          "USD_DIRECTION_CAP": 2149,
+          "WARMUP_OR_NONFINITE": 447
+        },
+        "slippage_attribution_account": 3040.180430685111,
+        "spread_attribution_account": 4740.147501765172,
+        "trades": 934
+      }
+    ],
+    "gross_account": 373.2417544612743,
+    "gross_expectancy": 0.22968723351463033,
+    "max_drawdown_by_fold": [
+      7528.193996709628,
+      8430.7087652607
+    ],
+    "maximum_fold_drawdown": 8430.7087652607,
+    "net_account": -15891.14606302874,
+    "net_expectancy": -9.779166808017687,
+    "path_sha256": "5ffe1029132d87757bdb51c2ba092d54e1804b5f0b4a855d666817e07b921558",
+    "profit_factor": 0.07445335539408833,
+    "scenario": "E_STRESS_2X_SPREAD_1_PIP_SIDE",
+    "slippage_per_trade": 3.469685794738258,
+    "spread_per_trade": 5.418607951409505,
+    "strategy": "scalp",
+    "timeframe": "M5",
+    "total_cost": 16264.387817490015,
+    "trades": 1625
+  },
+  {
+    "break_even_cost_per_trade": 0.2518671032171252,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 1.1163380487804886,
+    "cost_per_trade": 9.97619090732402,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 846.2703600000012,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 37.40648306534785,
+        "max_drawdown_account": 7532.423892448172,
+        "net_account": -7512.878659282559,
+        "rejected": {
+          "ALREADY_OPEN": 1270,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 3047,
+          "SESSION_FLAT_WINDOW": 325,
+          "USD_DIRECTION_CAP": 1642,
+          "WARMUP_OR_NONFINITE": 348
+        },
+        "slippage_attribution_account": 2612.9490031740506,
+        "spread_attribution_account": 4091.0657791738513,
+        "trades": 694
+      },
+      {
+        "commission_account": 984.5240399999998,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 375.6555662107485,
+        "max_drawdown_account": 8483.189055077657,
+        "net_account": -8435.012379452859,
+        "rejected": {
+          "ALREADY_OPEN": 1693,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 3972,
+          "RISK_OR_MARGIN_SIZE_ZERO": 1,
+          "SESSION_FLAT_WINDOW": 530,
+          "USD_DIRECTION_CAP": 2166,
+          "WARMUP_OR_NONFINITE": 447
+        },
+        "slippage_attribution_account": 3057.914041151594,
+        "spread_attribution_account": 4768.229864512005,
+        "trades": 946
+      }
+    ],
+    "gross_account": 413.0620492760853,
+    "gross_expectancy": 0.2518671032171252,
+    "max_drawdown_by_fold": [
+      7532.423892448172,
+      8483.189055077657
+    ],
+    "maximum_fold_drawdown": 8483.189055077657,
+    "net_account": -15947.891038735308,
+    "net_expectancy": -9.724323804106895,
+    "path_sha256": "e3c64e71458c4b2519cbe1a67eb6b5cd0d9ce48a81eeedf037bfb299e2dd244b",
+    "profit_factor": 0.07526464916535981,
+    "scenario": "E_STRESS_2X_SPREAD_1_PIP_SIDE",
+    "slippage_per_trade": 3.4578433197107588,
+    "spread_per_trade": 5.402009538832839,
+    "strategy": "trend",
+    "timeframe": "M5",
+    "total_cost": 16360.953088011393,
+    "trades": 1640
+  },
+  {
+    "break_even_cost_per_trade": 0.4433517604393207,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 1.445679602803738,
+    "cost_per_trade": 13.02093212683183,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 557.3416200000001,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 613.2018238557292,
+        "max_drawdown_account": 4407.592884473934,
+        "net_account": -4390.146053543252,
+        "rejected": {
+          "ALREADY_OPEN": 154,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 6155,
+          "SESSION_FLAT_WINDOW": 39,
+          "USD_DIRECTION_CAP": 278,
+          "WARMUP_OR_NONFINITE": 348
+        },
+        "slippage_attribution_account": 1746.0379104692263,
+        "spread_attribution_account": 2699.968346929751,
+        "trades": 352
+      },
+      {
+        "commission_account": 680.1601199999996,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -233.6927169196729,
+        "max_drawdown_account": 6378.191804653483,
+        "net_account": -6376.262740088794,
+        "rejected": {
+          "ALREADY_OPEN": 190,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 8201,
+          "SESSION_FLAT_WINDOW": 94,
+          "USD_DIRECTION_CAP": 319,
+          "WARMUP_OR_NONFINITE": 447
+        },
+        "slippage_attribution_account": 2121.2364785914865,
+        "spread_attribution_account": 3341.173424577632,
+        "trades": 504
+      }
+    ],
+    "gross_account": 379.5091069360585,
+    "gross_expectancy": 0.4433517604393207,
+    "max_drawdown_by_fold": [
+      4407.592884473934,
+      6378.191804653483
+    ],
+    "maximum_fold_drawdown": 6378.191804653483,
+    "net_account": -10766.408793631988,
+    "net_expectancy": -12.57758036639251,
+    "path_sha256": "7632448907d0ade030867f9fc337bf10025c0b0cc0785ae4944d3f60a76f54fa",
+    "profit_factor": 0.09709811551626765,
+    "scenario": "E_STRESS_2X_SPREAD_1_PIP_SIDE",
+    "slippage_per_trade": 4.517843912454103,
+    "spread_per_trade": 7.057408611574045,
+    "strategy": "mean_reversion",
+    "timeframe": "M5",
+    "total_cost": 11145.917900568047,
+    "trades": 856
+  },
+  {
+    "break_even_cost_per_trade": 0.19860366219263348,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 1.1821191026512585,
+    "cost_per_trade": 10.622780479273128,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 799.2990600000008,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 72.78531611217983,
+        "max_drawdown_account": 7175.680910377766,
+        "net_account": -7155.934583866868,
+        "rejected": {
+          "ALREADY_OPEN": 1263,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 2956,
+          "SESSION_FLAT_WINDOW": 310,
+          "USD_DIRECTION_CAP": 1470,
+          "WARMUP_OR_NONFINITE": 698
+        },
+        "slippage_attribution_account": 2482.034052043266,
+        "spread_attribution_account": 3947.3867879357826,
+        "trades": 629
+      },
+      {
+        "commission_account": 939.5981400000005,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 219.36067097327557,
+        "max_drawdown_account": 8240.366733328283,
+        "net_account": -8178.029514058514,
+        "rejected": {
+          "ALREADY_OPEN": 1691,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 4003,
+          "RISK_OR_MARGIN_SIZE_ZERO": 1,
+          "SESSION_FLAT_WINDOW": 508,
+          "USD_DIRECTION_CAP": 1813,
+          "WARMUP_OR_NONFINITE": 897
+        },
+        "slippage_attribution_account": 2875.5109330710266,
+        "spread_attribution_account": 4582.28111196076,
+        "trades": 842
+      }
+    ],
+    "gross_account": 292.14598708536386,
+    "gross_expectancy": 0.19860366219263348,
+    "max_drawdown_by_fold": [
+      7175.680910377766,
+      8240.366733328283
+    ],
+    "maximum_fold_drawdown": 8240.366733328283,
+    "net_account": -15333.964097925409,
+    "net_expectancy": -10.424176817080495,
+    "path_sha256": "b257edf1b9e7a12e208650db4b66bebb6cceddb9d4239e6843c89bebe8adc59d",
+    "profit_factor": 0.06598384743692387,
+    "scenario": "E_STRESS_2X_SPREAD_1_PIP_SIDE",
+    "slippage_per_trade": 3.64211079885404,
+    "spread_per_trade": 5.798550577767875,
+    "strategy": "swing_trend",
+    "timeframe": "M5",
+    "total_cost": 15626.110085010772,
+    "trades": 1471
+  },
+  {
+    "break_even_cost_per_trade": 0.7670276962651714,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 1.5237118518518524,
+    "cost_per_trade": 13.597949264587502,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 517.5825600000002,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 340.76887434385367,
+        "max_drawdown_account": 4336.924628817001,
+        "net_account": -4309.93480654185,
+        "rejected": {
+          "ALREADY_OPEN": 263,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 5798,
+          "SESSION_FLAT_WINDOW": 15,
+          "USD_DIRECTION_CAP": 225,
+          "WARMUP_OR_NONFINITE": 698
+        },
+        "slippage_attribution_account": 1616.4334226450583,
+        "spread_attribution_account": 2516.6876982406425,
+        "trades": 327
+      },
+      {
+        "commission_account": 716.6240400000002,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 280.5235596309281,
+        "max_drawdown_account": 6084.25033868062,
+        "net_account": -6083.11166379927,
+        "rejected": {
+          "ALREADY_OPEN": 291,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 7706,
+          "SESSION_FLAT_WINDOW": 52,
+          "USD_DIRECTION_CAP": 326,
+          "WARMUP_OR_NONFINITE": 897
+        },
+        "slippage_attribution_account": 2194.8000075152204,
+        "spread_attribution_account": 3452.2111759149802,
+        "trades": 483
+      }
+    ],
+    "gross_account": 621.2924339747889,
+    "gross_expectancy": 0.7670276962651714,
+    "max_drawdown_by_fold": [
+      4336.924628817001,
+      6084.25033868062
+    ],
+    "maximum_fold_drawdown": 6084.25033868062,
+    "net_account": -10393.046470341087,
+    "net_expectancy": -12.83092156832233,
+    "path_sha256": "921eeaaae9a8b635de4ddecf216c94744eee96996487b531f9835a4e2bbaabd7",
+    "profit_factor": 0.10667054812791026,
+    "scenario": "E_STRESS_2X_SPREAD_1_PIP_SIDE",
+    "slippage_per_trade": 4.705226456987998,
+    "spread_per_trade": 7.369010955747682,
+    "strategy": "swing_mean_reversion",
+    "timeframe": "M5",
+    "total_cost": 11014.338904315877,
+    "trades": 810
+  },
+  {
+    "break_even_cost_per_trade": -0.3035495772080347,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 1.5499104299583908,
+    "cost_per_trade": 13.694424586946425,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 501.6560400000001,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -180.91972880811093,
+        "max_drawdown_account": 4671.795763180885,
+        "net_account": -4648.812597829199,
+        "rejected": {
+          "ALREADY_OPEN": 198,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 5837,
+          "SESSION_FLAT_WINDOW": 46,
+          "USD_DIRECTION_CAP": 229,
+          "WARMUP_OR_NONFINITE": 698
+        },
+        "slippage_attribution_account": 1544.9328105598338,
+        "spread_attribution_account": 2421.3040184612537,
+        "trades": 318
+      },
+      {
+        "commission_account": 615.8293799999997,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -37.93951635890575,
+        "max_drawdown_account": 5461.324186656572,
+        "net_account": -5443.726774526192,
+        "rejected": {
+          "ALREADY_OPEN": 255,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 7836,
+          "SESSION_FLAT_WINDOW": 72,
+          "USD_DIRECTION_CAP": 292,
+          "WARMUP_OR_NONFINITE": 897
+        },
+        "slippage_attribution_account": 1845.423494917838,
+        "spread_attribution_account": 2944.53438324945,
+        "trades": 403
+      }
+    ],
+    "gross_account": -218.85924516699302,
+    "gross_expectancy": -0.3035495772080347,
+    "max_drawdown_by_fold": [
+      4671.795763180885,
+      5461.324186656572
+    ],
+    "maximum_fold_drawdown": 5461.324186656572,
+    "net_account": -10092.539372355366,
+    "net_expectancy": -13.99797416415446,
+    "path_sha256": "d668fdc91bdb0266e8685598f8714cbc3442573971b7d849d7fa4c553e0322d8",
+    "profit_factor": 0.08590031578995001,
+    "scenario": "E_STRESS_2X_SPREAD_1_PIP_SIDE",
+    "slippage_per_trade": 4.702297233672222,
+    "spread_per_trade": 7.442216923315817,
+    "strategy": "swing_breakout",
+    "timeframe": "M5",
+    "total_cost": 9873.680127188372,
+    "trades": 721
+  },
+  {
+    "break_even_cost_per_trade": 0.012167010208700998,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 1.1456315625,
+    "cost_per_trade": 10.189805834723654,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 338.8000200000001,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -98.36875752280822,
+        "max_drawdown_account": 3147.922307664451,
+        "net_account": -3087.8175035141317,
+        "rejected": {
+          "ALREADY_OPEN": 411,
+          "MTF_WAIT_OR_ABSTAIN": 6012,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "SESSION_FLAT_WINDOW": 147,
+          "USD_DIRECTION_CAP": 468
+        },
+        "slippage_attribution_account": 1033.3224631949647,
+        "spread_attribution_account": 1617.3262627963575,
+        "trades": 288
+      },
+      {
+        "commission_account": 394.40417999999994,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 106.15564405648551,
+        "max_drawdown_account": 3470.442767840196,
+        "net_account": -3425.871344175422,
+        "rejected": {
+          "ALREADY_OPEN": 562,
+          "MTF_WAIT_OR_ABSTAIN": 8037,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "SESSION_FLAT_WINDOW": 204,
+          "USD_DIRECTION_CAP": 600
+        },
+        "slippage_attribution_account": 1215.438355530688,
+        "spread_attribution_account": 1922.1844527012167,
+        "trades": 352
+      }
+    ],
+    "gross_account": 7.786886533568639,
+    "gross_expectancy": 0.012167010208700998,
+    "max_drawdown_by_fold": [
+      3147.922307664451,
+      3470.442767840196
+    ],
+    "maximum_fold_drawdown": 3470.442767840196,
+    "net_account": -6513.68884768957,
+    "net_expectancy": -10.177638824514954,
+    "path_sha256": "a7a4d9f6b08df748144c1a1625893c72151e55ef03a2a93eadf2d7c7a49ff99f",
+    "profit_factor": 0.14273683922092714,
+    "scenario": "E_STRESS_2X_SPREAD_1_PIP_SIDE",
+    "slippage_per_trade": 3.5136887792588327,
+    "spread_per_trade": 5.530485492964959,
+    "strategy": "trend",
+    "timeframe": "M15",
+    "total_cost": 6521.475734223139,
+    "trades": 640
+  },
+  {
+    "break_even_cost_per_trade": -1.1490771360016285,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.7136317647058825,
+    "cost_per_trade": 6.1881031677043215,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 47.386020000000016,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -75.79663402479565,
+        "max_drawdown_account": 536.7641859329015,
+        "net_account": -496.54755593291077,
+        "rejected": {
+          "ALREADY_OPEN": 112,
+          "MTF_WAIT_OR_ABSTAIN": 6991,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "SESSION_FLAT_WINDOW": 28,
+          "USD_DIRECTION_CAP": 128
+        },
+        "slippage_attribution_account": 144.84642780069,
+        "spread_attribution_account": 228.5184741074252,
+        "trades": 67
+      },
+      {
+        "commission_account": 61.79964000000001,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -100.0121677834681,
+        "max_drawdown_account": 629.2133969616079,
+        "net_account": -626.041030534099,
+        "rejected": {
+          "ALREADY_OPEN": 127,
+          "MTF_WAIT_OR_ABSTAIN": 9420,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "SESSION_FLAT_WINDOW": 31,
+          "USD_DIRECTION_CAP": 91
+        },
+        "slippage_attribution_account": 178.7207630179928,
+        "spread_attribution_account": 285.5084597326384,
+        "trades": 86
+      }
+    ],
+    "gross_account": -175.80880180824917,
+    "gross_expectancy": -1.1490771360016285,
+    "max_drawdown_by_fold": [
+      536.7641859329015,
+      629.2133969616079
+    ],
+    "maximum_fold_drawdown": 629.2133969616079,
+    "net_account": -1122.5885864670104,
+    "net_expectancy": -7.33718030370595,
+    "path_sha256": "989833ecf7b0674fec255eeab8addb253edb16a6e18f0f6d20ca1bd1ddfafde5",
+    "profit_factor": 0.2812603073807679,
+    "scenario": "E_STRESS_2X_SPREAD_1_PIP_SIDE",
+    "slippage_per_trade": 2.1148182406449854,
+    "spread_per_trade": 3.359653162353357,
+    "strategy": "trend",
+    "timeframe": "H1",
+    "total_cost": 946.7797846587612,
+    "trades": 153
+  },
+  {
+    "break_even_cost_per_trade": -2.057079822888262,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.32523069767441865,
+    "cost_per_trade": 2.8047332482237093,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 7.044060000000002,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 79.07438601339226,
+        "max_drawdown_account": 59.42514019561895,
+        "net_account": 16.71303332993772,
+        "rejected": {
+          "ALREADY_OPEN": 33,
+          "MTF_WAIT_OR_ABSTAIN": 7250,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "USD_DIRECTION_CAP": 22
+        },
+        "slippage_attribution_account": 21.345672154071515,
+        "spread_attribution_account": 33.97162052938301,
+        "trades": 21
+      },
+      {
+        "commission_account": 6.94086,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -167.5288183975852,
+        "max_drawdown_account": 229.1236003361064,
+        "net_account": -225.77099538775036,
+        "rejected": {
+          "ALREADY_OPEN": 30,
+          "MTF_WAIT_OR_ABSTAIN": 9685,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "USD_DIRECTION_CAP": 18
+        },
+        "slippage_attribution_account": 19.651918421356886,
+        "spread_attribution_account": 31.649398568808238,
+        "trades": 22
+      }
+    ],
+    "gross_account": -88.45443238419526,
+    "gross_expectancy": -2.057079822888262,
+    "max_drawdown_by_fold": [
+      59.42514019561895,
+      229.1236003361064
+    ],
+    "maximum_fold_drawdown": 229.1236003361064,
+    "net_account": -209.05796205781476,
+    "net_expectancy": -4.861813071111971,
+    "path_sha256": "6d33b436810651d03c33d338d7f7e5613fe6e8b7bf5a6cd35fa0421cc073ca9e",
+    "profit_factor": 0.3742811468709355,
+    "scenario": "E_STRESS_2X_SPREAD_1_PIP_SIDE",
+    "slippage_per_trade": 0.9534323389634513,
+    "spread_per_trade": 1.526070211585843,
+    "strategy": "trend",
+    "timeframe": "H4",
+    "total_cost": 120.6035296736195,
+    "trades": 43
+  },
+  {
+    "break_even_cost_per_trade": -0.1412766290595371,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 3.710381588447655,
+    "cost_per_trade": 8.501315118348064,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 1347.7429,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -207.20766981623538,
+        "max_drawdown_account": 3335.8848478834398,
+        "net_account": -3292.747295952152,
+        "rejected": {
+          "ALREADY_OPEN": 1487,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 3076,
+          "SESSION_FLAT_WINDOW": 322,
+          "USD_DIRECTION_CAP": 1730,
+          "WARMUP_OR_NONFINITE": 348
+        },
+        "slippage_attribution_account": 358.9730952367341,
+        "spread_attribution_account": 1378.8236308991864,
+        "trades": 363
+      },
+      {
+        "commission_account": 1735.5842000000011,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 89.8067910677303,
+        "max_drawdown_account": 3944.315114696713,
+        "net_account": -3889.2464461439117,
+        "rejected": {
+          "ALREADY_OPEN": 2059,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 4010,
+          "RISK_OR_MARGIN_SIZE_ZERO": 1,
+          "SESSION_FLAT_WINDOW": 525,
+          "USD_DIRECTION_CAP": 2245,
+          "WARMUP_OR_NONFINITE": 447
+        },
+        "slippage_attribution_account": 457.15621885250056,
+        "spread_attribution_account": 1786.3128183591434,
+        "trades": 468
+      }
+    ],
+    "gross_account": -117.40087874847534,
+    "gross_expectancy": -0.1412766290595371,
+    "max_drawdown_by_fold": [
+      3335.8848478834398,
+      3944.315114696713
+    ],
+    "maximum_fold_drawdown": 3944.315114696713,
+    "net_account": -7181.993742095717,
+    "net_expectancy": -8.642591747407602,
+    "path_sha256": "f9baab2b98c8df1939c665e1eb574d710e42d4026ef4b9944ce7979460bd27de",
+    "profit_factor": 0.2855304253917768,
+    "scenario": "F_US_CORE_7_COMPARATOR_NOT_UK_PLAN",
+    "slippage_per_trade": 0.9821050711061788,
+    "spread_per_trade": 3.8088284587946206,
+    "strategy": "scalp",
+    "timeframe": "M5",
+    "total_cost": 7064.592863347241,
+    "trades": 831
+  },
+  {
+    "break_even_cost_per_trade": -0.1328038844674782,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 3.7144484578313244,
+    "cost_per_trade": 8.50726396174672,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 1344.5266799999986,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -209.1722313861855,
+        "max_drawdown_account": 3329.6065051454034,
+        "net_account": -3286.429200450618,
+        "rejected": {
+          "ALREADY_OPEN": 1507,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 3047,
+          "SESSION_FLAT_WINDOW": 325,
+          "USD_DIRECTION_CAP": 1737,
+          "WARMUP_OR_NONFINITE": 348
+        },
+        "slippage_attribution_account": 357.5820027088323,
+        "spread_attribution_account": 1375.1482863555975,
+        "trades": 362
+      },
+      {
+        "commission_account": 1738.4655400000004,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 98.9450072781436,
+        "max_drawdown_account": 3939.8975269360335,
+        "net_account": -3884.827111907514,
+        "rejected": {
+          "ALREADY_OPEN": 2077,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 3972,
+          "RISK_OR_MARGIN_SIZE_ZERO": 1,
+          "SESSION_FLAT_WINDOW": 530,
+          "USD_DIRECTION_CAP": 2260,
+          "WARMUP_OR_NONFINITE": 447
+        },
+        "slippage_attribution_account": 457.3832946485539,
+        "spread_attribution_account": 1787.9232845371034,
+        "trades": 468
+      }
+    ],
+    "gross_account": -110.22722410800692,
+    "gross_expectancy": -0.1328038844674782,
+    "max_drawdown_by_fold": [
+      3329.6065051454034,
+      3939.8975269360335
+    ],
+    "maximum_fold_drawdown": 3939.8975269360335,
+    "net_account": -7171.256312357785,
+    "net_expectancy": -8.6400678462142,
+    "path_sha256": "a68258002923983d356cdf41c9b9bf2c8580d3515e3b7afe1fe38e4c621ddf8b",
+    "profit_factor": 0.28416778813241206,
+    "scenario": "F_US_CORE_7_COMPARATOR_NOT_UK_PLAN",
+    "slippage_per_trade": 0.9818859004305857,
+    "spread_per_trade": 3.810929603485182,
+    "strategy": "trend",
+    "timeframe": "M5",
+    "total_cost": 7061.0290882497775,
+    "trades": 830
+  },
+  {
+    "break_even_cost_per_trade": 0.10010100377208024,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 3.989466520947177,
+    "cost_per_trade": 9.199015489803006,
+    "entry_exit_path_matches_baseline": true,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 964.7796199999998,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 485.93552409739823,
+        "max_drawdown_account": 1758.558925845473,
+        "net_account": -1740.1566892164446,
+        "rejected": {
+          "ALREADY_OPEN": 247,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 6155,
+          "SESSION_FLAT_WINDOW": 39,
+          "USD_DIRECTION_CAP": 301,
+          "WARMUP_OR_NONFINITE": 348
+        },
+        "slippage_attribution_account": 258.15602524558886,
+        "spread_attribution_account": 1003.156568068255,
+        "trades": 236
+      },
+      {
+        "commission_account": 1225.4375000000002,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -430.9800730265368,
+        "max_drawdown_account": 3276.241556335194,
+        "net_account": -3255.147363614831,
+        "rejected": {
+          "ALREADY_OPEN": 334,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 8201,
+          "SESSION_FLAT_WINDOW": 94,
+          "USD_DIRECTION_CAP": 366,
+          "WARMUP_OR_NONFINITE": 447
+        },
+        "slippage_attribution_account": 325.7344935603128,
+        "spread_attribution_account": 1272.9952970279835,
+        "trades": 313
+      }
+    ],
+    "gross_account": 54.95545107087205,
+    "gross_expectancy": 0.10010100377208024,
+    "max_drawdown_by_fold": [
+      1758.558925845473,
+      3276.241556335194
+    ],
+    "maximum_fold_drawdown": 3276.241556335194,
+    "net_account": -4995.304052830978,
+    "net_expectancy": -9.098914486030926,
+    "path_sha256": "4ff5ec36cc5e151f33948562c80800b8041f6c1d172d6055d719120b7debb807",
+    "profit_factor": 0.29925621595108587,
+    "scenario": "F_US_CORE_7_COMPARATOR_NOT_UK_PLAN",
+    "slippage_per_trade": 1.0635528575699482,
+    "spread_per_trade": 4.145996111286409,
+    "strategy": "mean_reversion",
+    "timeframe": "M5",
+    "total_cost": 5050.259503901851,
+    "trades": 549
+  },
+  {
+    "break_even_cost_per_trade": 0.022108206446959797,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 3.835067978580989,
+    "cost_per_trade": 8.750659158071391,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 1246.4369399999996,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -17.433437980100052,
+        "max_drawdown_account": 2911.6891409414693,
+        "net_account": -2858.5051038527376,
+        "rejected": {
+          "ALREADY_OPEN": 1507,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 2956,
+          "SESSION_FLAT_WINDOW": 310,
+          "USD_DIRECTION_CAP": 1532,
+          "WARMUP_OR_NONFINITE": 698
+        },
+        "slippage_attribution_account": 327.0893348360961,
+        "spread_attribution_account": 1267.5453910365425,
+        "trades": 323
+      },
+      {
+        "commission_account": 1618.3588399999994,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 33.948268196014055,
+        "max_drawdown_account": 3730.8473465531424,
+        "net_account": -3661.722457010973,
+        "rejected": {
+          "ALREADY_OPEN": 2047,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 4003,
+          "SESSION_FLAT_WINDOW": 508,
+          "USD_DIRECTION_CAP": 1876,
+          "WARMUP_OR_NONFINITE": 897
+        },
+        "slippage_attribution_account": 421.31785514815965,
+        "spread_attribution_account": 1655.9940300588287,
+        "trades": 424
+      }
+    ],
+    "gross_account": 16.51483021587897,
+    "gross_expectancy": 0.022108206446959797,
+    "max_drawdown_by_fold": [
+      2911.6891409414693,
+      3730.8473465531424
+    ],
+    "maximum_fold_drawdown": 3730.8473465531424,
+    "net_account": -6520.227560863451,
+    "net_expectancy": -8.728550951624433,
+    "path_sha256": "070b0e48c73cfdf5ff9e1e51244494926d9905775b4b2243f98bf3bf4e7479d3",
+    "profit_factor": 0.28588249534431287,
+    "scenario": "F_US_CORE_7_COMPARATOR_NOT_UK_PLAN",
+    "slippage_per_trade": 1.0018837884662057,
+    "spread_per_trade": 3.9137073910245928,
+    "strategy": "swing_trend",
+    "timeframe": "M5",
+    "total_cost": 6536.7423910793295,
+    "trades": 747
+  },
+  {
+    "break_even_cost_per_trade": 0.8869938247487579,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 4.11573506329114,
+    "cost_per_trade": 9.45014267244904,
+    "entry_exit_path_matches_baseline": false,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 816.2436799999999,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 257.6411612086255,
+        "max_drawdown_account": 1698.9630539869813,
+        "net_account": -1620.2778178988387,
+        "rejected": {
+          "ALREADY_OPEN": 377,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 5798,
+          "SESSION_FLAT_WINDOW": 15,
+          "USD_DIRECTION_CAP": 234,
+          "WARMUP_OR_NONFINITE": 698
+        },
+        "slippage_attribution_account": 216.18056448831877,
+        "spread_attribution_account": 845.4947346191462,
+        "trades": 204
+      },
+      {
+        "commission_account": 1134.6147400000004,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 162.79391172229563,
+        "max_drawdown_account": 2456.5606280044785,
+        "net_account": -2438.6547359113524,
+        "rejected": {
+          "ALREADY_OPEN": 475,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 7706,
+          "SESSION_FLAT_WINDOW": 52,
+          "USD_DIRECTION_CAP": 355,
+          "WARMUP_OR_NONFINITE": 897
+        },
+        "slippage_attribution_account": 295.3281522735116,
+        "spread_attribution_account": 1171.5057553601364,
+        "trades": 270
+      }
+    ],
+    "gross_account": 420.43507293091125,
+    "gross_expectancy": 0.8869938247487579,
+    "max_drawdown_by_fold": [
+      1698.9630539869813,
+      2456.5606280044785
+    ],
+    "maximum_fold_drawdown": 2456.5606280044785,
+    "net_account": -4058.932553809933,
+    "net_expectancy": -8.56314884770028,
+    "path_sha256": "7ff80efb1fbc9e7ceeb289ae932bfc1dc02b04b09daad678bc9ad14a0c5f29df",
+    "profit_factor": 0.3643005800897914,
+    "scenario": "F_US_CORE_7_COMPARATOR_NOT_UK_PLAN",
+    "slippage_per_trade": 1.0791323138435238,
+    "spread_per_trade": 4.255275295314942,
+    "strategy": "swing_mean_reversion",
+    "timeframe": "M5",
+    "total_cost": 4479.367626740845,
+    "trades": 474
+  },
+  {
+    "break_even_cost_per_trade": -0.2874430752951869,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 4.057343529411764,
+    "cost_per_trade": 9.224587612420642,
+    "entry_exit_path_matches_baseline": true,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 842.8151199999994,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -40.47864946265792,
+        "max_drawdown_account": 2061.24752509873,
+        "net_account": -1965.0732261935805,
+        "rejected": {
+          "ALREADY_OPEN": 258,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "NO_SIGNAL": 5837,
+          "SESSION_FLAT_WINDOW": 46,
+          "USD_DIRECTION_CAP": 279,
+          "WARMUP_OR_NONFINITE": 698
+        },
+        "slippage_attribution_account": 220.8658237250368,
+        "spread_attribution_account": 860.913633005885,
+        "trades": 208
+      },
+      {
+        "commission_account": 1088.4804000000004,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -96.34425437782662,
+        "max_drawdown_account": 2597.771963505018,
+        "net_account": -2562.6533811593,
+        "rejected": {
+          "ALREADY_OPEN": 305,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "NO_SIGNAL": 7836,
+          "SESSION_FLAT_WINDOW": 72,
+          "USD_DIRECTION_CAP": 377,
+          "WARMUP_OR_NONFINITE": 897
+        },
+        "slippage_attribution_account": 279.51442125691244,
+        "spread_attribution_account": 1098.3143055245614,
+        "trades": 268
+      }
+    ],
+    "gross_account": -136.82290384050899,
+    "gross_expectancy": -0.2874430752951869,
+    "max_drawdown_by_fold": [
+      2061.24752509873,
+      2597.771963505018
+    ],
+    "maximum_fold_drawdown": 2597.771963505018,
+    "net_account": -4527.726607352734,
+    "net_expectancy": -9.512030687715828,
+    "path_sha256": "4ff20d110aaa563071095c4661a816850265285748dcd2f01a6448abbfe62767",
+    "profit_factor": 0.29208013459195165,
+    "scenario": "F_US_CORE_7_COMPARATOR_NOT_UK_PLAN",
+    "slippage_per_trade": 1.0512190020629184,
+    "spread_per_trade": 4.116025080946316,
+    "strategy": "swing_breakout",
+    "timeframe": "M5",
+    "total_cost": 4390.903703512226,
+    "trades": 476
+  },
+  {
+    "break_even_cost_per_trade": 0.0571910923753303,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 2.8244285467128027,
+    "cost_per_trade": 6.479915614057217,
+    "entry_exit_path_matches_baseline": true,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 721.3043600000002,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -248.76891999258805,
+        "max_drawdown_account": 1980.7240907302285,
+        "net_account": -1892.880620718849,
+        "rejected": {
+          "ALREADY_OPEN": 426,
+          "MTF_WAIT_OR_ABSTAIN": 6012,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "SESSION_FLAT_WINDOW": 147,
+          "USD_DIRECTION_CAP": 484
+        },
+        "slippage_attribution_account": 187.66936056454833,
+        "spread_attribution_account": 735.1379801617118,
+        "trades": 257
+      },
+      {
+        "commission_account": 911.2153399999999,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": 281.8253713855339,
+        "max_drawdown_account": 1872.4405686747878,
+        "net_account": -1819.4541528135028,
+        "rejected": {
+          "ALREADY_OPEN": 577,
+          "MTF_WAIT_OR_ABSTAIN": 8037,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "SESSION_FLAT_WINDOW": 204,
+          "USD_DIRECTION_CAP": 616
+        },
+        "slippage_attribution_account": 240.75745518653994,
+        "spread_attribution_account": 949.3067290124974,
+        "trades": 321
+      }
+    ],
+    "gross_account": 33.056451392940915,
+    "gross_expectancy": 0.0571910923753303,
+    "max_drawdown_by_fold": [
+      1980.7240907302285,
+      1872.4405686747878
+    ],
+    "maximum_fold_drawdown": 1980.7240907302285,
+    "net_account": -3712.3347735321304,
+    "net_expectancy": -6.422724521681887,
+    "path_sha256": "eb8f0a22df8e4f38ca18c227deebe760a47c76ad1479f829b14549fc63b41adb",
+    "profit_factor": 0.31722642853224636,
+    "scenario": "F_US_CORE_7_COMPARATOR_NOT_UK_PLAN",
+    "slippage_per_trade": 0.74122286462126,
+    "spread_per_trade": 2.9142642027235452,
+    "strategy": "trend",
+    "timeframe": "M15",
+    "total_cost": 3745.391224925071,
+    "trades": 578
+  },
+  {
+    "break_even_cost_per_trade": -0.5471557309463672,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 1.6630136423841058,
+    "cost_per_trade": 3.760825587745233,
+    "entry_exit_path_matches_baseline": true,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 109.64309999999998,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": -40.58299410560482,
+        "max_drawdown_account": 357.3179540705605,
+        "net_account": -292.9240435202331,
+        "rejected": {
+          "ALREADY_OPEN": 110,
+          "MTF_WAIT_OR_ABSTAIN": 6991,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "SESSION_FLAT_WINDOW": 28,
+          "USD_DIRECTION_CAP": 130
+        },
+        "slippage_attribution_account": 28.94620642256705,
+        "spread_attribution_account": 113.75174299206134,
+        "trades": 67
+      },
+      {
+        "commission_account": 141.47196,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -42.03752126730742,
+        "max_drawdown_account": 372.87138752754436,
+        "net_account": -357.5811356022316,
+        "rejected": {
+          "ALREADY_OPEN": 131,
+          "MTF_WAIT_OR_ABSTAIN": 9420,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "SESSION_FLAT_WINDOW": 31,
+          "USD_DIRECTION_CAP": 89
+        },
+        "slippage_attribution_account": 34.90510625848999,
+        "spread_attribution_account": 139.166548076434,
+        "trades": 84
+      }
+    ],
+    "gross_account": -82.62051537290144,
+    "gross_expectancy": -0.5471557309463672,
+    "max_drawdown_by_fold": [
+      357.3179540705605,
+      372.87138752754436
+    ],
+    "maximum_fold_drawdown": 372.87138752754436,
+    "net_account": -650.5051791224316,
+    "net_expectancy": -4.3079813186916,
+    "path_sha256": "5e94885f6b765ace69c1b7ab52e1aae986d9ce0ec20dc5710272621d271e9812",
+    "profit_factor": 0.45656774806059386,
+    "scenario": "F_US_CORE_7_COMPARATOR_NOT_UK_PLAN",
+    "slippage_per_trade": 0.42285637537123866,
+    "spread_per_trade": 1.6749555699900354,
+    "strategy": "trend",
+    "timeframe": "H1",
+    "total_cost": 567.8846637495302,
+    "trades": 151
+  },
+  {
+    "break_even_cost_per_trade": -1.3895458066136233,
+    "break_even_interpretation": "Fixed-path average allowable debit; negative means no nonnegative cost is viable",
+    "commission_per_trade": 0.7580088372093023,
+    "cost_per_trade": 1.7046561271362497,
+    "entry_exit_path_matches_baseline": true,
+    "financial_comparison": "FULL_REPLAY_INCLUDING_RESIZING_NOT_ADDITIVE_COUNTERFACTUAL",
+    "folds": [
+      {
+        "commission_account": 16.43096,
+        "financing_account": 0.0,
+        "fold": 1,
+        "gross_account": 98.42002638612996,
+        "max_drawdown_account": 33.61032999999952,
+        "net_account": 61.04131543299347,
+        "rejected": {
+          "ALREADY_OPEN": 33,
+          "MTF_WAIT_OR_ABSTAIN": 7250,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 9,
+          "USD_DIRECTION_CAP": 22
+        },
+        "slippage_attribution_account": 4.269761844263648,
+        "spread_attribution_account": 16.67798910887284,
+        "trades": 21
+      },
+      {
+        "commission_account": 16.16342,
+        "financing_account": 0.0,
+        "fold": 2,
+        "gross_account": -158.17049607051322,
+        "max_drawdown_account": 208.67258032946665,
+        "net_account": -194.09199858423978,
+        "rejected": {
+          "ALREADY_OPEN": 30,
+          "MTF_WAIT_OR_ABSTAIN": 9685,
+          "NO_CONTIGUOUS_COMPLETED_SIGNAL": 14,
+          "USD_DIRECTION_CAP": 18
+        },
+        "slippage_attribution_account": 3.92429723809121,
+        "spread_attribution_account": 15.833785275635337,
+        "trades": 22
+      }
+    ],
+    "gross_account": -59.7504696843858,
+    "gross_expectancy": -1.3895458066136233,
+    "max_drawdown_by_fold": [
+      33.61032999999952,
+      208.67258032946665
+    ],
+    "maximum_fold_drawdown": 208.67258032946665,
+    "net_account": -133.05068315124453,
+    "net_expectancy": -3.0942019337498725,
+    "path_sha256": "d88f9da0ff169b5bc167da6ff120675880d8b773627e9bdd6cf10f2ae7dc96bd",
+    "profit_factor": 0.5114487105508215,
+    "scenario": "F_US_CORE_7_COMPARATOR_NOT_UK_PLAN",
+    "slippage_per_trade": 0.19055951354313624,
+    "spread_per_trade": 0.7560877763839111,
+    "strategy": "trend",
+    "timeframe": "H4",
+    "total_cost": 73.30021346685874,
+    "trades": 43
+  }
+]
