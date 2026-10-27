@@ -28,3 +28,6 @@ main .env example for trading bot.txt
 main example .env backup.txt
 one_session.permit
 one_session.consumed
+
+# Reproducible TIV2 local replay streams and scratch evidence (no market data commits)
+/data/research/trading_intelligence_v2/outputs/

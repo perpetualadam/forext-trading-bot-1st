@@ -1,0 +1,130 @@
+{
+  "forex_bot/ai_ensemble.py": {
+    "ast_sha256": "98ab85fbb4db564ca59f99dcd745c6c722ba2d697e9e8ea5fb013bc8f38d391f",
+    "definitions": [
+      "_unavailable",
+      "_quant_stub_vote",
+      "_aggregate_direction",
+      "LLMVoter",
+      "LocalLLM",
+      "ExternalLLMAPI",
+      "AIEnsemble"
+    ],
+    "entry": [
+      "AIEnsemble",
+      "ExternalLLMAPI",
+      "LocalLLM",
+      "_quant_stub_vote"
+    ],
+    "raw_sha256": "6c9469e0e6417828dee5a41f17ff84345635e73940f13b46f05b9251385c5e7a"
+  },
+  "forex_bot/indicators.py": {
+    "ast_sha256": "0d2afa965466e70100593722f0c676f787f2204b008e47603647d749fe042bc9",
+    "definitions": [
+      "_true_range",
+      "_rsi",
+      "compute_indicators",
+      "latest_atr_price"
+    ],
+    "entry": [
+      "compute_indicators",
+      "latest_atr_price"
+    ],
+    "raw_sha256": "64fe62a7e5fd997b7ea3ecc69b0bbc09ce5d0bc8ede18180a8bd16b209c52fe9"
+  },
+  "forex_bot/profit_protection.py": {
+    "ast_sha256": "f83136b4e0de30d09f9ad4143b11f13afd7ee398a11b399c1bda595e2f7aaade",
+    "definitions": [
+      "_env_bool",
+      "_env_float",
+      "profit_protection_enabled",
+      "profit_protection_trigger_percent",
+      "profit_giveback_atr_multiplier",
+      "profit_protection_atr_period",
+      "profit_giveback_pips",
+      "profit_giveback_min_pips",
+      "profit_giveback_max_pips",
+      "profit_protection_log_ratchet_pips",
+      "pip_size",
+      "unrealized_profit_pips",
+      "update_mae",
+      "note_protection_activation",
+      "current_atr_pips",
+      "atr_to_pips",
+      "resolve_giveback_pips",
+      "update_protected_exit_pips",
+      "original_tp_distance_pips",
+      "activation_trigger_pips",
+      "mfe_meets_activation",
+      "_log_invalid_tp_once",
+      "ProtectionDecision",
+      "_pos_label",
+      "apply_profit_protection"
+    ],
+    "entry": [
+      "apply_profit_protection"
+    ],
+    "raw_sha256": "d57dfce057eb8e5bd318fd6a1bb4f36a979c45e6d4cd664a51fdbc6a7f09b51f"
+  },
+  "forex_bot/rl_agent.py": {
+    "ast_sha256": "e891c3feb6c6e38ede337316398a6821aeedd387712052423ae10e817e8b802b",
+    "definitions": [
+      "RLAgent"
+    ],
+    "entry": [
+      "RLAgent"
+    ],
+    "raw_sha256": "2f79452b7538e504b4b338c186d137221240d7688bdc26cce185f58405f7043e"
+  },
+  "forex_bot/shadow/original.py": {
+    "ast_sha256": "02bdf1698a560883404d989377a3f9dafcea33683b9b8c4b57007af71afdcfaa",
+    "definitions": [
+      "select_name_argmax",
+      "hybrid_family"
+    ],
+    "entry": [
+      "hybrid_family",
+      "select_name_argmax"
+    ],
+    "raw_sha256": "d7cf7a59fc1217ca4dcf33c0643d51dbc8eaa44229da42301938f96904950cb9"
+  },
+  "forex_bot/shadow/reasons.py": {
+    "ast_sha256": "8279a1c3354bb0eb6845edf679d1d0515010022ae956b2aa5f228fd5ec9fa231",
+    "definitions": [
+      "ShadowReason"
+    ],
+    "entry": [
+      "ShadowReason"
+    ],
+    "raw_sha256": "18cac873c0c963816d1dc9d68f9c8dad06d79c9e076536243c493faff2960d56"
+  },
+  "forex_bot/shadow/signals.py": {
+    "ast_sha256": "1e32ec1586f2c3b59a03f295a1eaa6e92ef56484fdfa29cdb13e4dd508505396",
+    "definitions": [
+      "_finite",
+      "signal_from_arrays"
+    ],
+    "entry": [
+      "signal_from_arrays"
+    ],
+    "raw_sha256": "7c986fc22f9968de8eca4471b64bb4c04eb13e45a620cc4a200813e819660de9"
+  },
+  "forex_bot/trading.py": {
+    "ast_sha256": "1956d45a6f71f3129e284c5ac8d76003d72f0e96ddbba65090af645a8e78507f",
+    "constants": {
+      "SL_FALLBACK_PIPS": 20.0,
+      "TP_RISK_REWARD": 2.0
+    },
+    "definitions": [
+      "_env_float",
+      "sl_fallback_pips",
+      "sl_tp_price_distances",
+      "_env_bool",
+      "sl_tp_distance_for_entry"
+    ],
+    "entry": [
+      "sl_tp_distance_for_entry"
+    ],
+    "raw_sha256": "b64d58870b2b4d92e16fb763a694a3e19a3ed17251bb8e435d5ec368871d30fd"
+  }
+}

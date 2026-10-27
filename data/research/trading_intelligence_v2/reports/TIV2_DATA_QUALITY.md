@@ -1,0 +1,14 @@
+# Historical data quality
+
+Primary data: existing adaptive_ensemble/g3 OANDA candle archive. Read locally only; no acquisition requests. Manifest SHA256 c00f24087fdbf9beedbe3bb2651b56fb814af48935ca6e6170e3739dbb59c7eb. All 36 raw-page hashes and every normalized complete candle value matched. This verifies internal chain consistency, not independent broker attestation or untouched research history. Manifest itself labels duration INSUFFICIENT_INDEPENDENT_DURATION and does not promote validation readiness.
+
+- AUD_USD: 8146 rows, 2026-09-01T00:00:00+00:00 to 2026-10-09T07:00:00+00:00; gaps=8; invalid=0; off-precision bid/ask values=0; SHA256 d75312decbb4c72858621a0b5a9af6103f72b01593ae26e9df4ef19a06104583; ALL_COMPLETE_CANDLES_EXACTLY_MATCH.
+- EUR_USD: 8148 rows, 2026-09-01T00:00:00+00:00 to 2026-10-09T07:00:00+00:00; gaps=6; invalid=0; off-precision bid/ask values=0; SHA256 c9016c8443ecc44fd0cf6ed5acb44656eae09ee3ef5b7d9fe9a334152c764b14; ALL_COMPLETE_CANDLES_EXACTLY_MATCH.
+- GBP_USD: 8148 rows, 2026-09-01T00:00:00+00:00 to 2026-10-09T07:00:00+00:00; gaps=6; invalid=0; off-precision bid/ask values=0; SHA256 272c7ff448ff91f587946c8b7a4335bacd04ae488c95f066e4a29cfec700c4f6; ALL_COMPLETE_CANDLES_EXACTLY_MATCH.
+- USD_CAD: 8147 rows, 2026-09-01T00:00:00+00:00 to 2026-10-09T07:00:00+00:00; gaps=7; invalid=0; off-precision bid/ask values=0; SHA256 e8fd5cf2acd20c481167d5ef5d0b77b7beaed9c190a8832c1291ffdee4475743; ALL_COMPLETE_CANDLES_EXACTLY_MATCH.
+- USD_CHF: 8123 rows, 2026-09-01T00:00:00+00:00 to 2026-10-09T07:00:00+00:00; gaps=22; invalid=0; off-precision bid/ask values=0; SHA256 7119ac28e67faaa24246c2bf9e0b8a863092328fa64b0694b4132e6835ea249f; ALL_COMPLETE_CANDLES_EXACTLY_MATCH.
+- USD_JPY: 8141 rows, 2026-09-01T00:00:00+00:00 to 2026-10-09T07:00:00+00:00; gaps=11; invalid=0; off-precision bid/ask values=0; SHA256 542a307964b9a365d28ca923905b5be6595c136261d52e92c154d0d29b35fd42; ALL_COMPLETE_CANDLES_EXACTLY_MATCH.
+
+UTC-aware timestamps, M5 alignment, strict order, duplicate rejection, completed flags, positive finite OHLC, high/low consistency, uncrossed observed bid/ask, instrument precision (JPY three decimals/0.01 pip, others five/0.0001) checked. Spread is observed, not interpolated. Incomplete rows are explicitly excluded and logged; invalid rows abort. No sorting, interpolation or silent price repairs. Gap lists are in outputs/data_quality.json; warm-up resets after every gap. The prior September 2025–August 2026 six-pair archive was also validated for quality, but excluded from profitability evidence because previously examined and its acquisition chain was not reverified. Exact older hashes and ranges are in the compact study_summary.json and frozen_inputs.json.
+
+Status: TIV2_OFFLINE_RESEARCH_PARTIALLY_VERIFIED. Production remains NO-GO. All results are hypothetical archived-data replay, never broker fills. The 29-day archive and short OOS windows do not establish statistical significance or live profitability.

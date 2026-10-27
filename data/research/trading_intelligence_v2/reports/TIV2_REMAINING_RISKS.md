@@ -1,0 +1,5 @@
+# Remaining evidence gaps
+
+29 trading days is insufficient independent duration, with only approximately 10 OOS days total. Archive hash consistency is not independent provenance attestation. Prior inspection and multiple-comparison risks remain. Shadow signals do not reproduce AI/RL production direction. No trained fold-bound AI/RL artifact, calibration or leakage audit exists for these ablations. OHLC intrabar ordering, latency, liquidity, slippage tails, contract-specific margin/funding and holiday calendars remain approximate. No statistical significance, tick-level PP equivalence, cross-process coordinator safety or production fill quality is established. Regime and spread thresholds need preregistered longer independent evaluation; no parameter was tuned to final OOS results here. The wrapper seal mismatch remains separate and unchanged.
+
+Status: TIV2_OFFLINE_RESEARCH_PARTIALLY_VERIFIED. Production remains NO-GO. All results are hypothetical archived-data replay, never broker fills. The 29-day archive and short OOS windows do not establish statistical significance or live profitability.

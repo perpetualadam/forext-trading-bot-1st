@@ -1,0 +1,5 @@
+# Later operational integration proposal
+
+Current integration is research-only through run.py --evaluate. No bot_loop, strategy_meta, risk gate, broker adapter, profit_protection or ownership changes. Next proposed improvement is an observation-only decision-quality diagnostic using the same causal spread/ATR and regime tags, after a longer preregistered independent study. This could attach reasons to candidates before OrderIntent creation, without granting broker authority. Do not activate selection/filter changes based on this report. First obtain longer provenance-attested data, broker-cost/FX validation, tick replay for protection, calibrated fold-bound model artifacts if applicable, and targeted operational integration approval/tests. Operational R.86 wrapper reconciliation requires its own source/seal review. No recovery implementation or R.88 begun.
+
+Status: TIV2_OFFLINE_RESEARCH_PARTIALLY_VERIFIED. Production remains NO-GO. All results are hypothetical archived-data replay, never broker fills. The 29-day archive and short OOS windows do not establish statistical significance or live profitability.

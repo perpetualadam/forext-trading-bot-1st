@@ -1,0 +1,9 @@
+# Offline architecture
+
+Baseline main at a8055c6a9f503a27a8f85d019473f67a3698c3c1. Three pre-existing scheduler files were modified and preserved without content access. Existing untracked exposure proposal/reports were excluded. No operational sources changed.
+
+Reachable production decision chain: bot_loop._evaluate_impl -> strategy_meta.select_strategy -> compute_indicators -> nn_pred/sequence features -> AIEnsemble.vote -> RL entry gate -> risk checks/OrderIntent -> execution adapter. The six strategy names select families and parameters; direction in that path is AI/RL dependent. strategy_meta legacy weighted selection is stochastic; this study uses the existing shadow hybrid_family and deterministic select_name_argmax, with train-only weights. That is a research router comparison, not a faithful replay of the stochastic operational selector.
+
+Integrated research call path: run.py isolation -> study.acquire archive verification -> core.features causal arrays -> adapters.Existing pinned source definitions -> engine.run chronological replay -> training/validation selection -> frozen OOS A/B -> reporting.generate. The package uses stdlib and does not import production module bodies. AST extraction reuses reviewed function dependencies; module-global configuration is replaced with documented fixed research defaults. No model artifacts or account state loaded. Existing backtest.py imports operational config/broker paths and was not invoked. Existing shadow and adaptive_ensemble archives supply reusable rules/data, not live ownership or recovery authority. Forecast nn_pred has a noisy live-price fallback and a sequence backtest mode; neither is a validated fold-bound forecast model here.
+
+Status: TIV2_OFFLINE_RESEARCH_PARTIALLY_VERIFIED. Production remains NO-GO. All results are hypothetical archived-data replay, never broker fills. The 29-day archive and short OOS windows do not establish statistical significance or live profitability.

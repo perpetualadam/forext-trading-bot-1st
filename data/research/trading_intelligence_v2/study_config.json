@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "baseline_head": "a8055c6a9f503a27a8f85d019473f67a3698c3c1",
+  "dataset": "data/research/adaptive_ensemble/g3",
+  "selection_minimum_trades_per_partition": 20,
+  "selection": "positive train and validation R expectancy; highest validation R, alphabetical tie",
+  "policies": ["baseline", "spread", "regime_spread"],
+  "spread_atr_maximum": 0.25,
+  "trend_atr_strength": 0.5,
+  "range_atr_strength": 0.15,
+  "folds": [[0, 0.5, 0.65, 0.8], [0, 0.65, 0.8, 1]],
+  "stress_slippage_pips_per_side": 0.5,
+  "profit_protection": [false, true],
+  "research_alternative_profit_protection": "NOT_JUSTIFIED",
+  "production_integration": false
+}

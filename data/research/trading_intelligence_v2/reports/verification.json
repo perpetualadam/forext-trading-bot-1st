@@ -1,0 +1,62 @@
+{
+  "baseline_head": "a8055c6a9f503a27a8f85d019473f67a3698c3c1",
+  "branch": "main",
+  "local_checks": [
+    {
+      "command": "python -I -S -B data/research/trading_intelligence_v2/run.py --tests",
+      "runtime": "Windows Python 3.13.5",
+      "passed": 72,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "command": "wsl -d Ubuntu --exec /usr/bin/python3 -I -S -B <repository>/data/research/trading_intelligence_v2/run.py --tests",
+      "runtime": "Ubuntu Python 3.12.3",
+      "passed": 72,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "command": "python -I -S -B offline_exposure/run_checks.py",
+      "passed": 57,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "resolved_development_errors": [
+    "Initial 59-check Windows run: one test used an incorrect AI response key; corrected to existing status field.",
+    "Initial Ubuntu run: 62 checks executed and one SourceTests setup error due to Python 3.12/3.13 ast.dump format difference.",
+    "First canonical serializer attempt: one setup error for Ellipsis JSON encoding; fixed explicit literal encoding."
+  ],
+  "tracked_source_files_checked": 446,
+  "existing_files_changed": [
+    ".github/workflows/ci.yml",
+    ".gitignore"
+  ],
+  "protected_source_hashes": {
+    "forex_bot/bot_loop.py": "2f1c36dc025d114685e4424402f6866c66aa6eb37d28717027c502a4f447118d",
+    "forex_bot/profit_protection.py": "d57dfce057eb8e5bd318fd6a1bb4f36a979c45e6d4cd664a51fdbc6a7f09b51f"
+  },
+  "no_operational_sources_changed": true,
+  "no_broker_requests": true,
+  "production": "NO-GO",
+  "historical_hosted_full_suite_baseline": {
+    "run_id": 40422484155,
+    "passed": 2789,
+    "failed": 300,
+    "errors": 144,
+    "skipped": 64,
+    "warnings": 127
+  },
+  "hosted_verification": "Reported after publication against exact commit; see final completion response.",
+  "reproducibility": {
+    "earlier_atr_only_records_sha256": "7511d6806fd1d5ad177f305f666201f4e91b1a87c80a74162b4b5f69d883fdb8",
+    "final_repeated_records_sha256": "c6dd427475a69132a015b4d78a378238845ae4e0a1dbb5177f19c7009bb7ab72",
+    "executed_scenarios": 736,
+    "original_geometry_scenarios": 144,
+    "final_source_hashes_verified": true
+  }
+}

@@ -36,3 +36,18 @@ jobs:
           python-version: "3.12"
       - name: Run isolated offline exposure contract
         run: python -I -S -B offline_exposure/run_checks.py
+
+  trading-intelligence-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run isolated synthetic trading intelligence checks
+        run: python -I -S -B data/research/trading_intelligence_v2/run.py --tests
