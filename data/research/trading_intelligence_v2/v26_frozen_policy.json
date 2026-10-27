@@ -1,0 +1,22 @@
+{
+  "baseline_commit": "45abdacaf57c3a6ad7e1e3921e9e74c71200b3ba",
+  "no_threshold_changes": true,
+  "protection_raw_sha256": "d57dfce057eb8e5bd318fd6a1bb4f36a979c45e6d4cd664a51fdbc6a7f09b51f",
+  "sha256_lf": {
+    "adapters.py": "1474cb924afac712ecb9c5e92471533b344cb26d6a10e6d67598f962f740f3e2",
+    "core.py": "20b19e35c75c9bf07c7fe34ff8df9bb99637eb78d2e37cf23493b072641bd82d",
+    "cost_aware_policies.py": "bc63eae6939c3f072ec746d16e2190d521fa7cf978f9898023f41ddd298bcd86",
+    "cost_ledger.py": "beb303a4a4dc211d410f904b4bf8c2376d03047bb1adc14bdec546ea6d6019ac",
+    "decision_quality.py": "eab3e4dd5c3e09766c5807b55c8b7462dfb95c7cfe1aaf6d50c32d191369835d",
+    "frequency_diagnostics.py": "9904a0c527c13338fc69797473502d4651dc8aeaf76b8908e3b628f48038256f",
+    "historical_manifest.py": "9f09f9148de3eea87239cc474fc9ab2d9f25018d290f9c54e7552a13042d4501",
+    "mtf_features.py": "709d81afe463280fd84e672fb0baa32055d4ff2130949f27b9fd40716a5493f7",
+    "mtf_statistics.py": "662c86cdd1b4fb6dc15a31ed2fb41a576911c2139b87e65fc25cea11c26e3423",
+    "timeframes.py": "a8baf7b8f55dc952f21a6b05c310b5254890c8872f67832234a832dd6b812b6f",
+    "v25_adapter.py": "750baac1ceed9de2566b6b43e087ce799982fe53a462da23c1eaf8f4c5d3e932",
+    "v25_engine.py": "316a3f1295b9e3abb8d2d3a1e16373f78716f404678610ef82f0f27ee9759b5f",
+    "v25_experiment.json": "c2ec6d678f2da41eb3ce223f0ee58267c93d1b74eb668485288c9996caae4be3",
+    "v25_experiment.sha256": "d5efde226b1887b8d4d08f1f5f8b8d5c8fcb32be8f680fc40cbcc1b02d2f12df"
+  },
+  "version": "V26_FROZEN_V25_1"
+}

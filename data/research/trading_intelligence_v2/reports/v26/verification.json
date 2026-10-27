@@ -1,0 +1,18 @@
+{
+  "classification": "TIV26_READ_ONLY_DOWNLOADER_VERIFIED",
+  "scope": "OFFLINE_SYNTHETIC_ONLY",
+  "preserved_existing_raw_hashes": 160,
+  "actual_authenticated_requests": 0,
+  "actual_market_candles_acquired": 0,
+  "acquisition": "NOT_EXECUTED",
+  "independent_strategy_results": "NOT_EXECUTED",
+  "walkforward_results": "NOT_EXECUTED",
+  "fixture_manifest_sha256": "93fd120acb9b27c48f63ff2cb065bc8463669abaf493a74d3b88e6254c6f5618",
+  "fixture_manifest_identical_after_resume": true,
+  "protected_operational_raw_hashes": {
+    "bot_loop.py": "2f1c36dc025d114685e4424402f6866c66aa6eb37d28717027c502a4f447118d",
+    "profit_protection.py": "d57dfce057eb8e5bd318fd6a1bb4f36a979c45e6d4cd664a51fdbc6a7f09b51f",
+    "oanda_client.py": "e08b6df42bc9954e6558d48643fdaf3b66b92b1d255561909eb0100618826923"
+  },
+  "production_authorised": false
+}

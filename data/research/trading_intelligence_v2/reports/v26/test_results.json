@@ -1,0 +1,71 @@
+{
+  "windows": [
+    {
+      "name": "v26",
+      "exit_code": 0,
+      "tests": 99,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "name": "v25",
+      "exit_code": 0,
+      "tests": 78,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "name": "v24",
+      "exit_code": 0,
+      "tests": 73,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "name": "v23",
+      "exit_code": 0,
+      "tests": 58,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "name": "mtf",
+      "exit_code": 0,
+      "tests": 73,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "name": "tiv2",
+      "exit_code": 0,
+      "tests": 72,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "name": "coordinator",
+      "exit_code": 0,
+      "tests": 57,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    }
+  ],
+  "ubuntu_v26": {
+    "tests": 99,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "authenticated_requests": 0,
+  "broker_data_acquisition": "NOT_EXECUTED",
+  "independent_results": "NOT_EXECUTED",
+  "development_failures": [],
+  "hosted_evidence": "Recorded separately after publication"
+}
