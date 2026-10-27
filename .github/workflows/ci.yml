@@ -16,7 +16,43 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements-dev.txt
       - name: Run tests
-        run: python -m pytest -q
+        # These five suites exercise Windows paths, handles and reparse points.
+        # The windows-security job runs every test in them on the native API.
+        run: >-
+          python -m pytest -q
+          --ignore=tests/test_g14_4_wheelhouse.py
+          --ignore=tests/test_g14_5_security.py
+          --ignore=tests/test_g14_6_security.py
+          --ignore=tests/test_g14_7_integration.py
+          --ignore=tests/test_g14_8_filesystem.py
+        env:
+          EXECUTION_MODE: paper
+          TRADING_MODE: practice
+          PAPER_TRADING: "true"
+
+  windows-security:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install -r requirements-dev.txt
+      - name: Run native Windows security suites
+        run: >-
+          python -m pytest -q
+          tests/test_g14_4_wheelhouse.py
+          tests/test_g14_5_security.py
+          tests/test_g14_6_security.py
+          tests/test_g14_7_integration.py
+          tests/test_g14_8_filesystem.py
+          tests/test_g14_filesystem_refusal.py
         env:
           EXECUTION_MODE: paper
           TRADING_MODE: practice
