@@ -1,0 +1,15 @@
+{
+  "paths": [
+    ".github/workflows/ci.yml"
+  ],
+  "line_endings": "Repository text normalization in Git index; working bytes unchanged",
+  "staged_diff_matches_reviewed_diff": true,
+  "working_sha256": "b37d32008e529f6cfc40a618aa9aba66f39dba4752cb975395ac8ddf322d42c2",
+  "staged_sha256": "aafaa3c3eed3d92280da9b84f39822d3fb642b2729e1c67a243060846326a686",
+  "parent_blob_sha256": "7dbb81a3fe7a846ae9775c68761c79a9d047c89f5c8db4353d5e700f4bfb8057",
+  "working_crlf": 38,
+  "working_lf": 38,
+  "staged_crlf": 0,
+  "staged_lf": 38,
+  "same_logical_bytes": true
+}

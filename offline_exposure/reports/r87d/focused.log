@@ -1,0 +1,16 @@
+test_A_simultaneous_publications_and_both_serializations (test_contract.ConcurrencyTests.test_A_simultaneous_publications_and_both_serializations) ... ok
+test_B_overlapping_refreshes_latest_generation_wins (test_contract.ConcurrencyTests.test_B_overlapping_refreshes_latest_generation_wins) ... ok
+test_C_failure_precedes_late_success_in_two_threads (test_contract.ConcurrencyTests.test_C_failure_precedes_late_success_in_two_threads) ... ok
+test_D_refresh_and_dispatch_both_lock_orders (test_contract.ConcurrencyTests.test_D_refresh_and_dispatch_both_lock_orders) ... ok
+test_E_refresh_and_reservation_both_lock_orders (test_contract.ConcurrencyTests.test_E_refresh_and_reservation_both_lock_orders) ... ok
+test_F_rollover_stale_and_duplicate_completions (test_contract.ConcurrencyTests.test_F_rollover_stale_and_duplicate_completions) ... ok
+test_G_malformed_publish_generations_leave_active_refresh_unchanged (test_contract.ConcurrencyTests.test_G_malformed_publish_generations_leave_active_refresh_unchanged) ... ok
+test_H_current_generation_cannot_publish_managed_revision_rollback (test_contract.ConcurrencyTests.test_H_current_generation_cannot_publish_managed_revision_rollback) ... ok
+test_I_malformed_current_completion_consumes_failure_without_overwrite (test_contract.ConcurrencyTests.test_I_malformed_current_completion_consumes_failure_without_overwrite) ... ok
+test_barrier_sentinels (__main__.IsolationChecks.test_barrier_sentinels) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.009s
+
+OK
+RESULT tests=10 failures=0 errors=0 skips=0

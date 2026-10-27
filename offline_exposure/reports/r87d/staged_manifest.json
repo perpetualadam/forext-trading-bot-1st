@@ -1,0 +1,26 @@
+[
+  {
+    "path": "forex_bot/exposure_view.py",
+    "status": "A",
+    "sha256": "ab7b446d7b1491832e311eaf594e4ba70a9e349becef72df88197cbbf6625405",
+    "bytes": 9770
+  },
+  {
+    "path": "offline_exposure/fake_coordinator.py",
+    "status": "A",
+    "sha256": "08ecf35832cea2196d115cf151c0f42b3ca92fa1807c2cdb88047622bda9b2df",
+    "bytes": 5954
+  },
+  {
+    "path": "offline_exposure/run_checks.py",
+    "status": "A",
+    "sha256": "104bc60970b74a9a00dcba52b3715783d7b63b1dd7d358aec39c508c3f2ce04a",
+    "bytes": 4353
+  },
+  {
+    "path": "offline_exposure/test_contract.py",
+    "status": "A",
+    "sha256": "6f1df8e850d3ea0b08ed771d40d1b7e9e29e52a6c318dc061135a9d54b0ce335",
+    "bytes": 37026
+  }
+]

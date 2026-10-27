@@ -1,0 +1,2234 @@
+{
+  "commit": "a8055c6a9f503a27a8f85d019473f67a3698c3c1",
+  "run_id": 40422484155,
+  "job_id": 121920025040,
+  "url": "https://github.com/perpetualadam/forext-trading-bot-1st/actions/runs/40422484155/job/121920025040",
+  "summary": "300 failed, 2789 passed, 64 skipped, 127 warnings, 144 errors in 106.80s (0:01:46)",
+  "nodes": [
+    {
+      "result": "FAILED",
+      "node": "tests/test_broker_exit_accounting.py::test_four_stop_loss_incidents_book_once",
+      "summary": "AssertionError: assert 'GBP_USD' not in {'GBP_USD': Position(symbol='GBP_USD', direction='BUY', units=1.0, entry_price=1.33863, stop_loss=1.33801, take_profit...ck_used=False, observation_only=False, position_instance_id='ec23d97eb8b9428a8ff5d0dc4b113d46', position_generation=1)}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_broker_exit_accounting.py::test_take_profit_manual_other_and_position_close",
+      "summary": "IndexError: list index out of range"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_broker_exit_accounting.py::test_lookup_failure_does_not_book_and_blocks_reopen",
+      "summary": "AssertionError: assert 'GBP_USD' not in {'GBP_USD': Position(symbol='GBP_USD', direction='BUY', units=1.0, entry_price=1.33863, stop_loss=1.33801, take_profit...ck_used=False, observation_only=False, position_instance_id='70bffab43cf4405a9b205de5012ff34a', position_generation=1)}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_broker_exit_accounting.py::test_delayed_visibility_then_books",
+      "summary": "AssertionError: assert None"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_broker_exit_accounting.py::test_malformed_transaction_fails_safe",
+      "summary": "KeyError: 'USD_JPY'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_broker_exit_accounting.py::test_partial_open_trade_not_booked",
+      "summary": "KeyError: 'USD_CAD'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_broker_exit_accounting.py::test_sell_zero_pl_and_missing_pl",
+      "summary": "assert 0 == 1"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_broker_exit_accounting.py::test_multiple_trade_ids_require_all_closed",
+      "summary": "AssertionError: assert 'GBP_USD' not in {'GBP_USD': Position(symbol='GBP_USD', direction='BUY', units=1.0, entry_price=1.33863, stop_loss=1.33801, take_profit...ck_used=False, observation_only=False, position_instance_id='64cd3c3917974677ae703dd84aac59da', position_generation=1)}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_broker_exit_accounting.py::test_restart_ledger_prevents_duplicate_book",
+      "summary": "assert 0 == 1"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_d15_historical_compatibility.py::test_current_protected_hashes_match_d15_baseline",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '3ff01244ed21...792ab54b31ca1'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_d7_resource_cleanup.py::test_t15_t16_t18_failed_initialization_does_not_reuse_or_close_healthy",
+      "summary": "assert False is True"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_d7_resource_cleanup.py::test_t19_t20_release_is_idempotent_and_does_not_connect",
+      "summary": "assert None == 1"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_d7_resource_cleanup.py::test_t61_repair_module_passes_under_isolation",
+      "summary": "assert 1 == 0"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_d7_resource_cleanup.py::test_t59_d5_runner_behavior_still_passes",
+      "summary": "AssertionError: Traceback (most recent call last):"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_decision_quality_equivalence.py::test_reference_is_deterministic_in_process",
+      "summary": "AssertionError: assert 0 >= 1"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_decision_quality_equivalence.py::test_reference_signal_sequence_and_trade_count",
+      "summary": "AssertionError: assert ['NO_SIGNAL',..._SIGNAL', ...] == ['NO_SIGNAL',...GNAL', 'SELL']"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_decision_repair_f1.py::test_audit_covers_missing_data_session_and_auth",
+      "summary": "AssertionError: assert 'LIVE_ORDER_AUTH_BLOCKED' in {'MARKET_SESSION_CLOSED', 'NO_OHLCV', 'RECONCILE_OR_PRETRADE_BLOCKED'}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_decision_repair_f1.py::test_audit_covers_inactive_ai_rl_and_unexpected",
+      "summary": "Failed: DID NOT RAISE <class 'RuntimeError'>"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_decision_repair_f1.py::test_audit_rate_limit_still_records_and_fail_closed_new_exposure",
+      "summary": "AttributeError: 'module' object at forex_bot.bot_loop has no attribute 'last_account_summary'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_decision_repair_f1.py::test_audit_internal_intent_and_mock_broker_outcomes",
+      "summary": "AttributeError: 'module' object at forex_bot.bot_loop has no attribute 'last_account_summary'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_decision_repair_f2.py::test_evaluate_close_records_executed_and_survives_audit_failure",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_entry_execution_geometry.py::test_bot_loop_open_has_single_ordercreate_and_no_retry_loop",
+      "summary": "assert 0 == 1"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_entry_execution_geometry.py::test_oanda_exec_open_is_single_request",
+      "summary": "assert 0 == 1"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_execution_headroom.py::test_bot_loop_uses_same_snapshot_and_skip_before_ordercreate",
+      "summary": "assert 27065 < -1"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_execution_headroom.py::test_ordercreate_fill_is_exactly_one_request",
+      "summary": "TypeError: _place_market_order_open_sync() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_execution_headroom.py::test_ordercreate_cancel_is_exactly_one_request_no_second_attempt",
+      "summary": "TypeError: _place_market_order_open_sync() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_execution_headroom.py::test_ordercreate_malformed_is_exactly_one_request",
+      "summary": "TypeError: _place_market_order_open_sync() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_execution_headroom.py::test_ordercreate_ambiguous_timeout_is_exactly_one_request",
+      "summary": "TypeError: _place_market_order_open_sync() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_execution_headroom.py::test_ordercreate_rejected_is_exactly_one_request",
+      "summary": "TypeError: _place_market_order_open_sync() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_execution_headroom.py::test_async_open_cancel_does_not_look_like_fill",
+      "summary": "TypeError: execute_oanda_market_open() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_execution_headroom.py::test_place_open_source_has_single_request_and_no_loop",
+      "summary": "assert 0 == 1"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_execution_safety.py::test_async_open_refuses_paper_kinds_before_api[window_paper]",
+      "summary": "TypeError: execute_oanda_market_open() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_execution_safety.py::test_async_open_refuses_paper_kinds_before_api[simulated]",
+      "summary": "TypeError: execute_oanda_market_open() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_execution_safety.py::test_async_open_refuses_paper_kinds_before_api[paper]",
+      "summary": "TypeError: execute_oanda_market_open() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_execution_safety.py::test_paper_mode_open_never_calls_sync_place",
+      "summary": "TypeError: execute_oanda_market_open() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_execution_safety.py::test_live_open_reaches_sync_place_and_keeps_ids",
+      "summary": "TypeError: execute_oanda_market_open() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g10_snapshot.py::test_official_archive_is_independently_verified_and_not_rewritten",
+      "summary": "AssertionError: {'changed': ['Dockerfile', 'forex_bot/ai_ensemble.py', 'forex_bot/app.py', 'forex_bot/bot_loop.py', 'forex_bot/broker_...oker_protection.py', 'forex_bot/close_journal.py', 'forex_bot/entry_capture.py', ...], 'missing': [], 'ok': False, ...}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g11_audit.py::test_g10_allowlist_has_not_drifted",
+      "summary": "AssertionError: assert ['Dockerfile'...base.py', ...] == ['Dockerfile']"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g13_packaging.py::test_production_closure_matches_allowlist_python_files",
+      "summary": "AssertionError: assert ['forex_bot/b...4:__import__'] == []"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_4_wheelhouse.py::test_destination_guard_refuses_real_locations",
+      "summary": "AssertionError: Regex pattern did not match."
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_5_security.py::test_inherited_pip_settings_are_not_filtered",
+      "summary": "g14_4_acquire.EnvironmentRejected: untrusted_executable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_6_security.py::test_inherited_environment_is_rejected[PIP_INDEX_URL-inherited_environment_rejected]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'inherited_en...ment_rejected'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_6_security.py::test_inherited_environment_is_rejected[PIP_EXTRA_INDEX_URL-inherited_environment_rejected]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'inherited_en...ment_rejected'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_6_security.py::test_inherited_environment_is_rejected[PIP_FIND_LINKS-inherited_environment_rejected]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'inherited_en...ment_rejected'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_6_security.py::test_inherited_environment_is_rejected[PIP_TRUSTED_HOST-inherited_environment_rejected]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'inherited_en...ment_rejected'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_6_security.py::test_inherited_environment_is_rejected[PIP_CONFIG_FILE-inherited_environment_rejected]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'inherited_en...ment_rejected'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_6_security.py::test_inherited_environment_is_rejected[PIP_PRE-inherited_environment_rejected]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'inherited_en...ment_rejected'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_6_security.py::test_inherited_environment_is_rejected[PIP_NO_BINARY-inherited_environment_rejected]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'inherited_en...ment_rejected'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_6_security.py::test_inherited_environment_is_rejected[PIP_CERT-inherited_environment_rejected]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'inherited_en...ment_rejected'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_6_security.py::test_inherited_environment_is_rejected[HTTPS_PROXY-inherited_environment_rejected]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'inherited_en...ment_rejected'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_6_security.py::test_inherited_environment_is_rejected[PYTHONSTARTUP-inherited_environment_rejected]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'inherited_en...ment_rejected'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_6_security.py::test_inherited_environment_is_rejected[UNEXPECTED_KEY-unexpected_environment]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'unexpected_environment'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_6_security.py::test_credential_like_environment_value_is_rejected",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'credential_value_rejected'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_6_security.py::test_conflicting_candidate_versions_are_rejected",
+      "summary": "g14_4_acquire.EnvironmentRejected: untrusted_executable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_6_security.py::test_missing_wheel_candidate_is_rejected",
+      "summary": "g14_4_acquire.EnvironmentRejected: untrusted_executable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_6_security.py::test_unexpected_package_name_is_rejected",
+      "summary": "g14_4_acquire.EnvironmentRejected: untrusted_executable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_6_security.py::test_filesystem_boundaries_fail_closed",
+      "summary": "AssertionError: assert 'inside_repository' == 'inside_staging_context'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_6_security.py::test_commit_does_not_open_a_socket",
+      "summary": "g14_4_acquire.EnvironmentRejected: untrusted_executable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_end_to_end_complete_synthetic",
+      "summary": "g14_7_transport_under_test.WorkflowRejected: untrusted_executable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[unexpected_artifact_host-artifact-host]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'unexpected_artifact_host'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[https_downgrade-downgrade]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'https_downgrade'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[cross_host_redirect-third-host]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'cross_host_redirect'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[excessive_redirects-redirects]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'excessive_redirects'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[unexpected_status-status]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'unexpected_status'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[timeout-timeout]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'timeout'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[retry_exhausted-retry]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'retry_exhausted'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[oversized_response-oversize]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'oversized_response'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[truncated_response-truncated]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'truncated_response'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[missing_artifact-missing]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'missing_artifact'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[source_distribution-sdist]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'source_distribution'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[yanked_release-yanked]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'yanked_release'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[unapproved_prerelease-prerelease]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'unapproved_prerelease'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[unsupported_wheel_tag-tag]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'unsupported_wheel_tag'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[hash_mismatch-hash]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'hash_mismatch'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[size_mismatch-size]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'size_mismatch'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[malformed_zip-zip]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'malformed_zip'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[missing_wheel_metadata-wheel-meta]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'missing_wheel_metadata'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[missing_metadata-metadata]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'missing_metadata'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[missing_record-record]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'missing_record'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[missing_dependency-dependency]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'missing_dependency'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[incorrect_environment_marker-marker]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'incorrect_environment_marker'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[missing_requested_extra-extra]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'missing_requested_extra'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[interrupted_stream-interrupted]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'interrupted_stream'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[duplicate_filename-duplicate]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'duplicate_filename'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[case_collision-case]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'case_collision'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[false_completion_claim-provenance]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'false_completion_claim'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[path_traversal-relative]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'path_traversal'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[path_traversal-absolute]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'path_traversal'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[sensitive_backup_filename-backup]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'sensitive_backup_filename'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[operational_state_filename-operational-name]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'operational_state_filename'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[destination_not_empty-nonempty]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'destination_not_empty'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[destination_not_empty-manifest]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'destination_not_empty'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[destination_exists-repeat-empty]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'destination_exists'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[inside_repository-repo]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'inside_repository'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[inside_onedrive-onedrive]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'inside_onedrive'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[inside_staging_context-staging]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'inside_staging_context'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[inside_consensus_forecast-consensus]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'inside_consensus_forecast'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_failure_injection[operational_state_path-shadow]",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'operational_state_path'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_conflicting_dependency",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'unsatisfied_constraint'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_manifest_tamper_fails_closed",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'hash_mismatch'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_partial_write_is_not_success",
+      "summary": "AttributeError: None has no attribute 'WriteFile'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_parent_replacement_does_not_redirect",
+      "summary": "g14_7_transport_under_test.WorkflowRejected: untrusted_executable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_hard_link_substitution_rejected",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'unsafe_file_replacement'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_destination_symlink_rejected",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'symlink_or_reparse'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_parent_symlink_rejected",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'symlink_parent'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_injected_destination_symlink",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'symlink_or_reparse'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_injected_parent_symlink",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'symlink_parent'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_injected_reparse_point",
+      "summary": "AssertionError: assert 'untrusted_executable' == 'symlink_or_reparse'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_junction_rejected",
+      "summary": "FileNotFoundError: [Errno 2] No such file or directory: 'cmd'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_7_integration.py::test_repeated_acquisition_rejected",
+      "summary": "g14_7_transport_under_test.WorkflowRejected: untrusted_executable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_pre_open_replacement_binds_to_the_substitute",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_swap_after_lstat_and_before_open",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_rename_after_open_does_not_redirect_writes",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_junction_after_open_does_not_receive_the_write",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_junction_before_open_is_rejected",
+      "summary": "FileNotFoundError: [Errno 2] No such file or directory: 'cmd'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_real_directory_symlink_when_available",
+      "summary": "AssertionError: assert 'handle_api_unavailable' == 'symlink_or_reparse'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_write_after_directory_removal_fails_closed",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_use_after_close_and_double_close",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_duplicate_and_case_collision",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_hard_link_name_is_not_replaced",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_ambiguous_names_are_rejected[../escape.bin-path_traversal]",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_ambiguous_names_are_rejected[C:/outside.bin-path_traversal]",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_ambiguous_names_are_rejected[file:stream-path_traversal]",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_ambiguous_names_are_rejected[\\\\\\\\server\\\\share\\\\x.bin-path_traversal]",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_ambiguous_names_are_rejected[\\\\\\\\?\\\\C:\\\\outside.bin-path_traversal]",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_ambiguous_names_are_rejected[\\\\\\\\.\\\\NUL-path_traversal]",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_ambiguous_names_are_rejected[demo.whl.-trailing_dot_or_space]",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_ambiguous_names_are_rejected[demo.whl -trailing_dot_or_space]",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_ambiguous_names_are_rejected[NUL-reserved_device_name]",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_ambiguous_names_are_rejected[nul.txt-reserved_device_name]",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_ambiguous_names_are_rejected[CON-reserved_device_name]",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_ambiguous_names_are_rejected[COM1-reserved_device_name]",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_ambiguous_names_are_rejected[a\\nb-control_character]",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g14_8_filesystem.py::test_child_stays_on_the_parent_volume",
+      "summary": "g14_7_fs_g148.FilesystemRejected: handle_api_unavailable"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g8_missing_candles.py::test_candle_failure_still_manages_existing_position",
+      "summary": "assert 0 == 1"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g8_missing_candles.py::test_fresh_quote_monitors_without_closing",
+      "summary": "assert 0 == 1"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g8_missing_candles.py::test_stale_quote_does_not_software_close",
+      "summary": "assert 0 == 1"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g8_missing_candles.py::test_weekend_flatten_confirms_only_after_close_returns",
+      "summary": "assert 0 == 1"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_1_candle_exceptions.py::test_runtimeerror_from_fetch_still_manages_and_blocks_entry",
+      "summary": "IndexError: list index out of range"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_1_candle_exceptions.py::test_provenance_rejection_is_not_an_integrity_failure",
+      "summary": "IndexError: list index out of range"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_1_candle_exceptions.py::test_client_request_runtimeerror_becomes_missing_candles",
+      "summary": "AssertionError: assert [] == ['EUR_USD']"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_1_candle_exceptions.py::test_connection_timeout_parse_and_incomplete_frames",
+      "summary": "AssertionError: assert [] == ['EUR_USD']"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_1_candle_exceptions.py::test_quote_and_close_outcomes_with_runtimeerror",
+      "summary": "assert 0 == 1"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_1_candle_exceptions.py::test_weekend_flatten_survives_halt_and_runtimeerror",
+      "summary": "IndexError: list index out of range"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_1_candle_exceptions.py::test_multi_symbol_acquisition_failures_and_integrity_stop",
+      "summary": "AssertionError: assert [] == ['EUR_USD', 'GBP_USD']"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_1_candle_exceptions.py::test_programming_error_after_candles_still_propagates",
+      "summary": "Failed: DID NOT RAISE <class 'RuntimeError'>"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_1_candle_exceptions.py::test_close_sides_timeout_and_blocked_open",
+      "summary": "TypeError: _place_market_order_open_sync() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_management.py::test_missing_empty_exception_and_incomplete_frames_block_entries_and_keep_management",
+      "summary": "assert 0 == 1"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_management.py::test_long_and_short_closes_keep_the_open_side",
+      "summary": "IndexError: list index out of range"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_management.py::test_fresh_stale_missing_and_invalid_management_quotes",
+      "summary": "IndexError: list index out of range"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_management.py::test_weekend_flatten_and_emergency_halt_do_not_need_candles",
+      "summary": "IndexError: list index out of range"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_management.py::test_failed_and_unconfirmed_closes_do_not_clear_the_position",
+      "summary": "assert 0 == 1"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_management.py::test_position_lookup_and_quote_lookup_failures",
+      "summary": "assert [] == [None]"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_management.py::test_multi_instrument_isolation",
+      "summary": "AssertionError: assert [] == ['EUR_USD', 'USD_JPY']"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_management.py::test_untrusted_frames_reach_provenance_and_submit_no_orders",
+      "summary": "assert []"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_management.py::test_direct_open_stays_blocked_and_close_cannot_reverse",
+      "summary": "TypeError: _place_market_order_open_sync() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_g9_management.py::test_close_timeout_is_not_retried_inside_the_broker_call",
+      "summary": "TypeError: _place_market_order_sync() missing 1 required positional argument: 'permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_live_execution_manager.py::test_execute_trade_live_close_requires_broker",
+      "summary": "AssertionError: Regex pattern did not match."
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_live_position_management.py::test_restart_import_does_not_manufacture_mfe",
+      "summary": "KeyError: 'USD_JPY'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_live_safety_repair.py::test_blocked_open_sends_no_broker_request",
+      "summary": "TypeError: _place_market_order_open_sync() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_live_safety_repair.py::test_concurrent_opens_cannot_bypass_gate",
+      "summary": "assert 0 == 12"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_live_safety_repair.py::test_lifespan_initialises_before_background_tasks",
+      "summary": "ValueError: substring not found"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_logic_fixes.py::test_oanda_close_uses_reduce_only",
+      "summary": "TypeError: _place_market_order_sync() missing 1 required positional argument: 'permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_logic_fixes.py::test_oanda_open_attaches_sl_tp",
+      "summary": "TypeError: _place_market_order_open_sync() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_market_provenance_g5.py::test_failed_response_and_order_boundary_without_context",
+      "summary": "TypeError: _place_market_order_open_sync() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_market_provenance_g5.py::test_authorised_sink_still_needs_a_sealed_quote",
+      "summary": "TypeError: _place_market_order_open_sync() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_market_provenance_g5.py::test_bot_loop_does_not_scan_research_paths",
+      "summary": "assert 'synthetic_market' not in '\"\"\"Evaluati...ill_price)\\n'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_market_provenance_g6.py::test_missing_provenance_blocks_open_and_not_close",
+      "summary": "TypeError: _place_market_order_open_sync() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_market_provenance_g6.py::test_failed_close_is_not_reported_as_success",
+      "summary": "TypeError: _place_market_order_sync() missing 1 required positional argument: 'permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_market_provenance_g7.py::test_every_protected_mutation_fails_closed",
+      "summary": "TypeError: _place_market_order_open_sync() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_market_provenance_g7.py::test_derived_columns_and_unchanged_copy_stay_valid",
+      "summary": "TypeError: _place_market_order_open_sync() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_market_provenance_g7.py::test_stale_seal_and_blocked_authorisation",
+      "summary": "TypeError: _place_market_order_open_sync() missing 1 required keyword-only argument: 'entry_permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_market_provenance_g7.py::test_close_does_not_require_entry_seal",
+      "summary": "TypeError: _place_market_order_sync() missing 1 required positional argument: 'permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_market_provenance_g7.py::test_failed_close_still_raises",
+      "summary": "TypeError: _place_market_order_sync() missing 1 required positional argument: 'permit'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r12_single_iteration.py::test_j09_production_strategies_stay_inactive",
+      "summary": "AssertionError: {'blocked_by': '', 'broker_requests': 0, 'phases': (), 'status': 'observed'}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r12_single_iteration.py::test_j69_no_real_network_request",
+      "summary": "AssertionError: {'blocked_by': 'open', 'broker_requests': 0, 'status': 'observed'}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r13_loop_wiring.py::test_g60_inactive_strategy_regression",
+      "summary": "AssertionError: {'blocked_by': 'STRATEGY_INACTIVE', 'broker_requests': 0, 'client_order_id': '', 'details': {'accepted_equity': None, 'account_gate': False, 'adapter_called': False, 'current_equity_used_for_entry': False, ...}, ...}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r13_loop_wiring.py::test_g72_no_strategy_activation",
+      "summary": "AssertionError: {'blocked_by': '', 'broker_requests': 0, 'status': 'observed'}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r13_loop_wiring.py::test_g76_no_external_network",
+      "summary": "AssertionError: {'blocked_by': 'open', 'broker_requests': 0, 'status': 'observed'}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r13_loop_wiring.py::test_g77_no_dns_success",
+      "summary": "socket.gaierror: [Errno -2] Name or service not known"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r14_decision_path.py::test_j01_scalp_inactive",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r14_decision_path.py::test_j02_trend_inactive",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r14_decision_path.py::test_j03_mean_reversion_inactive",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r14_decision_path.py::test_j04_swing_trend_inactive",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r14_decision_path.py::test_j05_swing_mean_reversion_inactive",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r14_decision_path.py::test_j06_swing_breakout_inactive",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r14_decision_path.py::test_j07_unknown_strategy",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r14_decision_path.py::test_j08_missing_strategy",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r14_decision_path.py::test_j09_multiple_enabled_synthetic_configuration",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r14_decision_path.py::test_j12_no_production_activation_change",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r14_decision_path.py::test_j33_no_model_weight_changes",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r14_decision_path.py::test_j56_inactive_strategy_blocks",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r14_decision_path.py::test_j57_unknown_strategy_blocks",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r14_decision_path.py::test_j85_strategy_gate_remains",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r14_decision_path.py::test_j118_production_passes_strategy_inputs",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r14_decision_path.py::test_j134_no_production_strategy_activation",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r15_adapter_account.py::test_j113_strategy_inactive",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r15_adapter_account.py::test_j155_no_lifespan",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r15_adapter_account.py::test_j156_no_strategy_activation",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r16_equity_sources.py::test_h20_no_permission_or_strategy_activation",
+      "summary": "AssertionError: {}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r16_equity_sources.py::test_h32_passing_cap_does_not_bypass_other_gates",
+      "summary": "AssertionError: {'blocked_by': '', 'broker_requests': 1, 'client_order_id': 'cid-35bff0363204463ea88801171a5b6582', 'details': {'accepted_equity': 20000.0, 'account_context': 'isolated_test', 'account_equity': 20000.0, 'account_gate': True, ...}, ...}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r16_equity_sources.py::test_h68_inactive_strategy_blocks",
+      "summary": "AssertionError: {'blocked_by': '', 'broker_requests': 1, 'client_order_id': 'cid-68f3bc00e5664a449fad14bb53b16f9a', 'details': {'accepted_equity': 5000.0, 'account_context': 'isolated_test', 'account_equity': 5000.0, 'account_gate': True, ...}, ...}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r16_equity_sources.py::test_h124_no_lifespan",
+      "summary": "AssertionError: {}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r16_equity_sources.py::test_h125_no_strategy_activation",
+      "summary": "AssertionError: {}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r17_hard_risk_gates.py::test_i074_no_strategy_activation",
+      "summary": "AssertionError: {'risk_gate': 'strategy', 'risk_gate_enabled': True}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r17_hard_risk_gates.py::test_i133_scenario_inactive_strategy",
+      "summary": "AssertionError: {'blocked_by': '', 'broker_requests': 1, 'client_order_id': 'cid-dd9a4e9945fc436f8965699510350cb5', 'details': {'accepted_equity': 10000.0, 'account_context': 'isolated_test', 'account_equity': 10000.0, 'account_gate': True, ...}, ...}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r17_hard_risk_gates.py::test_i162_no_lifespan",
+      "summary": "AssertionError: {'risk_gate': 'lifespan', 'risk_gate_enabled': False}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r17_hard_risk_gates.py::test_i163_no_strategy_activation",
+      "summary": "AssertionError: {'risk_gate': 'strategy', 'risk_gate_enabled': False}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r18_entry_eligibility.py::test_k099_record_does_not_change_strategy_flags",
+      "summary": "AssertionError: {'classification': 'record'}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r18_entry_eligibility.py::test_k159_scenario_inactive_strategy",
+      "summary": "AssertionError: {'blocked_by': '', 'broker_requests': 1, 'client_order_id': 'cid-cfc9c2f53a8b4226bf0bdd123be1af5b', 'details': {'accepted_equity': 10000.0, 'account_context': 'isolated_test', 'account_equity': 10000.0, 'account_gate': True, ...}, ...}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r18_entry_eligibility.py::test_k190_no_lifespan",
+      "summary": "AssertionError: {'classification': 'isolation'}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r18_entry_eligibility.py::test_k191_no_strategy_activation",
+      "summary": "AssertionError: {'classification': 'production'}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r19_adapter_boundary.py::test_k131_strategies_stay_inactive",
+      "summary": "AssertionError: {}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r19_adapter_boundary.py::test_k159_scenario_inactive",
+      "summary": "AssertionError: {}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r19_adapter_boundary.py::test_k199_no_lifespan",
+      "summary": "AssertionError: {}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r19_adapter_boundary.py::test_k200_no_activation",
+      "summary": "AssertionError: {}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r20_two_cycle.py::test_t26_no_launcher_or_run_bot",
+      "summary": "AssertionError: assert <module 'forex_bot.app' from '/home/runner/work/forext-trading-bot-1st/forext-trading-bot-1st/forex_bot/app.py'> is None"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r20_two_cycle.py::test_t27_no_live_permission_change",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r21_selector_and_order_state.py::test_01_valid_selector_controls_strategy",
+      "summary": "AssertionError: assert 'mean_reversion' == 'scalp'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r21_selector_and_order_state.py::test_02_null_selector_blocks",
+      "summary": "AssertionError: assert 'swing_breakout' is None"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r21_selector_and_order_state.py::test_05_inactive_selector_result_blocks",
+      "summary": "assert True is False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r21_selector_and_order_state.py::test_06_supplied_name_cannot_override_valid_selection",
+      "summary": "AssertionError: assert 'mean_reversion' == 'trend'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r21_selector_and_order_state.py::test_07_supplied_name_cannot_replace_null",
+      "summary": "AssertionError: assert 'mean_reversion' is None"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r21_selector_and_order_state.py::test_10_selected_strategy_controls_lookback_and_metadata",
+      "summary": "AssertionError: assert 'mean_reversion' == 'scalp'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r21_selector_and_order_state.py::test_11_ai_and_rl_cannot_override_selector_rejection",
+      "summary": "AssertionError: assert '' == 'NO_STRATEGY_SELECTED'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r21_selector_and_order_state.py::test_12_actual_selector_implementation",
+      "summary": "AssertionError: assert 'swing_trend' is None"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r21_selector_and_order_state.py::test_22_no_broker_database_network_or_launcher",
+      "summary": "Failed: DID NOT RAISE <class 'RuntimeError'>"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r21_selector_and_order_state.py::test_24_two_cycle_trace",
+      "summary": "AssertionError: assert 'mean_reversion' == 'scalp'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r22_restart_recovery.py::test_filled_restart_blocks_on_recovered_exposure",
+      "summary": "AssertionError: assert 'mean_reversion' == 'scalp'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r22_restart_recovery.py::test_null_selector_still_blocks",
+      "summary": "AssertionError: assert '' == 'NO_STRATEGY_SELECTED'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r22_restart_recovery.py::test_no_network_database_or_broker",
+      "summary": "Failed: DID NOT RAISE <class 'RuntimeError'>"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r23_process_restart.py::test_network_barrier_blocks",
+      "summary": "Failed: DID NOT RAISE <class 'RuntimeError'>"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r24_recovery_fail_closed.py::test_read_connection_failure_is_not_an_empty_book",
+      "summary": "AssertionError: assert 'ai_vote_unavailable' == 'recovery_unreadable'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r24_recovery_fail_closed.py::test_read_query_failure_is_an_explicit_failure",
+      "summary": "AssertionError: assert 'ai_vote_unavailable' == 'recovery_unreadable'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r24_recovery_fail_closed.py::test_explicit_failure_result_blocks_without_a_preset_flag",
+      "summary": "assert False is True"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r24_recovery_fail_closed.py::test_empty_success_is_not_a_recovery_failure",
+      "summary": "assert ([] == []"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r24_recovery_fail_closed.py::test_empty_success_clears_only_the_failure_flag",
+      "summary": "assert False is True"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r24_recovery_fail_closed.py::test_failure_persists_across_repeated_evaluations",
+      "summary": "AssertionError: assert 'ai_vote_unavailable' == 'recovery_unreadable'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r24_recovery_fail_closed.py::test_caller_cannot_release_the_failure",
+      "summary": "assert False is True"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r24_recovery_fail_closed.py::test_successful_recovery_clears_failure_and_keeps_exposure",
+      "summary": "assert False is True"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r24_recovery_fail_closed.py::test_network_and_postgres_stay_closed",
+      "summary": "Failed: DID NOT RAISE <class 'RuntimeError'>"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r36_supervised.py::test_libraries_report_missing_lightgbm_without_installing",
+      "summary": "assert None"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r36_supervised.py::test_scaler_and_refit_use_training_rows_only",
+      "summary": "ModuleNotFoundError: No module named 'sklearn'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r36_supervised.py::test_logistic_fit_is_reproducible_and_probabilities_are_valid",
+      "summary": "ModuleNotFoundError: No module named 'sklearn'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r39_regimes.py::test_buy_entry_is_the_next_ask_and_ambiguous_bars_lose",
+      "summary": "assert ([])"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r39_regimes.py::test_a_gap_blocks_entry_and_does_not_open_the_next_signal",
+      "summary": "ValueError: output array is read-only"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r39_regimes.py::test_operational_flags_and_fail_closed_controls_stay_unchanged",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r40_timeframes.py::test_h1_uses_the_first_open_extreme_high_low_and_last_close",
+      "summary": "assert 0 == 1"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r40_timeframes.py::test_h4_alignment_is_four_utc_hours",
+      "summary": "assert 0 == 1"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r40_timeframes.py::test_asof_join_hides_the_unfinished_higher_timeframe_close",
+      "summary": "IndexError: single positional indexer is out-of-bounds"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r40_timeframes.py::test_earlier_h1_candle_is_unchanged_when_later_bars_are_removed",
+      "summary": "IndexError: single positional indexer is out-of-bounds"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r40_timeframes.py::test_pip_rule_and_strategy_flags",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r41_structure.py::test_source_hash_constant_and_h1_h4_alignment",
+      "summary": "AssertionError: assert 'c6d8fbf4045d...8baf949b09e18' == '3ae3c4d06179...8c11a24791091'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r41_structure.py::test_swing_confirmation_delay_tie_and_gap",
+      "summary": "assert 0 == 1"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r41_structure.py::test_structure_labels_and_states_do_not_lead_the_confirmation",
+      "summary": "AssertionError: assert [] == ['UNCERTAIN', 'HIGHER_HIGH']"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r41_structure.py::test_trendline_timing_versions_and_elapsed_weekend",
+      "summary": "assert 0 >= 2"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r41_structure.py::test_touch_break_and_level_availability_are_causal",
+      "summary": "assert []"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r41_structure.py::test_prefix_asof_end_of_data_and_no_signal",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r42_lifecycle.py::test_prefix_hides_later_events_and_keeps_earlier_history",
+      "summary": "AssertionError: assert 'c6d8fbf4045d...8baf949b09e18' == '3ae3c4d06179...8c11a24791091'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r4_trading_safety.py::test_f29_strategies_default_inactive",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r5_integration.py::test_h34_six_strategies_inactive",
+      "summary": "assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r5_integration.py::test_h46_application_module_was_not_imported",
+      "summary": "AssertionError: assert 'forex_bot.app' not in {'__future__': <module '__future__' from '/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/__future__.py'>, '__m...on3.12/site-packages/pytest/__main__.py'>, '_abc': <module '_abc' (built-in)>, '_ast': <module '_ast' (built-in)>, ...}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r7_order_safety.py::test_h32_h33_no_application_and_no_broker_module_startup",
+      "summary": "AssertionError: assert 'forex_bot.app' not in {'__future__': <module '__future__' from '/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/__future__.py'>, '__m...on3.12/site-packages/pytest/__main__.py'>, '_abc': <module '_abc' (built-in)>, '_ast': <module '_ast' (built-in)>, ...}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r8_reservation_safety.py::test_i34_i37_no_broker_startup_database_or_network",
+      "summary": "AssertionError: assert 'forex_bot.app' not in {'__future__': <module '__future__' from '/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/__future__.py'>, '__m...on3.12/site-packages/pytest/__main__.py'>, '_abc': <module '_abc' (built-in)>, '_ast': <module '_ast' (built-in)>, ...}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r8_reservation_safety.py::test_i38_protected_sources_are_unchanged",
+      "summary": "AssertionError: forex_bot/bot_loop.py"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r9_position_safety.py::test_i48_i53_refusal_isolation_and_dispatch_order",
+      "summary": "AssertionError: assert 'forex_bot.app' not in {'__future__': <module '__future__' from '/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/__future__.py'>, '__m...on3.12/site-packages/pytest/__main__.py'>, '_abc': <module '_abc' (built-in)>, '_ast': <module '_ast' (built-in)>, ...}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_r9_position_safety.py::test_i54_protected_sources_are_unchanged",
+      "summary": "AssertionError: forex_bot/oanda_exec.py"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_reconcile_conflict.py::test_displace_then_import_uses_broker_identity",
+      "summary": "KeyError: 'EUR_USD'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_reconcile_conflict.py::test_case_b_conflict_displaces_paper_and_imports_broker",
+      "summary": "AssertionError: assert 'window_paper' == 'reconcile_import'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_reconcile_conflict.py::test_case_c_imports_when_local_empty",
+      "summary": "KeyError: 'EUR_USD'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_reconcile_conflict.py::test_case_d_auto_fix_drops_broker_backed_when_broker_flat",
+      "summary": "AssertionError: assert 'EUR_USD' not in {'EUR_USD': Position(symbol='EUR_USD', direction='SELL', units=2.0, entry_price=1.1542, stop_loss=1.1548, take_profit=...ck_used=False, observation_only=False, position_instance_id='c008e5a4ef61450bba3ea6961bf0453a', position_generation=1)}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_reconcile_conflict.py::test_usd_guard_counts_imported_not_displaced_paper",
+      "summary": "AssertionError: assert False"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_reconcile_conflict.py::test_fallback_sl_tp_not_claimed_as_broker",
+      "summary": "KeyError: 'EUR_USD'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_reconcile_conflict.py::test_trade_details_preferred_for_sl_tp_and_open_time",
+      "summary": "KeyError: 'EUR_USD'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_reconcile_conflict.py::test_mfe_seed_uses_broker_entry_and_does_not_invent_peak",
+      "summary": "KeyError: 'EUR_USD'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_reconcile_conflict.py::test_mfe_seed_from_candles_when_open_time_known",
+      "summary": "KeyError: 'EUR_USD'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_reconcile_conflict.py::test_restart_window_paper_cannot_hide_live_broker_position",
+      "summary": "assert 1.15398 == 1.1542 ± 1.2e-06"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_reconcile_conflict.py::test_gbp_usd_same_conflict_path",
+      "summary": "AssertionError: assert 'window_paper' == 'reconcile_import'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_silent_skip_observability.py::test_obsolete_evaluate_patches_are_retired",
+      "summary": "AssertionError: assert not True"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t15_unclassified_failure_is_not_startup_compatible",
+      "summary": "ValueError: substring not found"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t16_abort_is_before_database_initialization",
+      "summary": "ValueError: substring not found"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t17_abort_is_before_broker_initialization",
+      "summary": "ValueError: substring not found"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t18_abort_is_before_broker_account_request",
+      "summary": "ValueError: substring not found"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t19_abort_is_before_reconciliation",
+      "summary": "ValueError: substring not found"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t20_abort_is_before_scheduler_tasks",
+      "summary": "ValueError: substring not found"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t21_abort_is_before_trading_loop",
+      "summary": "ValueError: substring not found"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t22_abort_is_before_other_background_tasks",
+      "summary": "ValueError: substring not found"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t23_startup_failure_reason_is_observable",
+      "summary": "AssertionError: assert 'reason=%s' in 'async def lifespan(app: FastAPI):\\n    _ = app\\n    _last_cleanup_errors.clear()\\n    from forex_bot.log_config impor... not body_error\\n            and not cancelling\\n            and secondary\\n        ):\\n            raise secondary[0]'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t28_valid_blocked_keeps_downstream_startup_in_source",
+      "summary": "AssertionError: assert 'get_connection()' in 'async def lifespan(app: FastAPI):\\n    _ = app\\n    _last_cleanup_errors.clear()\\n    from forex_bot.log_config impor... not body_error\\n            and not cancelling\\n            and secondary\\n        ):\\n            raise secondary[0]'"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t29_successful_preflight_keeps_existing_order",
+      "summary": "ValueError: substring not found"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t39_no_database_module_loaded",
+      "summary": "AssertionError: assert 'forex_bot.database' not in {'__future__': <module '__future__' from '/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/__future__.py'>, '__m...on3.12/site-packages/pytest/__main__.py'>, '_abc': <module '_abc' (built-in)>, '_ast': <module '_ast' (built-in)>, ...}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t42_application_module_is_not_imported",
+      "summary": "AssertionError: assert 'forex_bot.app' not in {'__future__': <module '__future__' from '/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/__future__.py'>, '__m...on3.12/site-packages/pytest/__main__.py'>, '_abc': <module '_abc' (built-in)>, '_ast': <module '_ast' (built-in)>, ...}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t43_scheduler_module_is_not_imported",
+      "summary": "AssertionError: assert 'forex_bot.bot_loop' not in {'__future__': <module '__future__' from '/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/__future__.py'>, '__m...on3.12/site-packages/pytest/__main__.py'>, '_abc': <module '_abc' (built-in)>, '_ast': <module '_ast' (built-in)>, ...}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t44_trading_loop_is_not_called",
+      "summary": "AssertionError: assert 'forex_bot.bot_loop' not in {'__future__': <module '__future__' from '/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/__future__.py'>, '__m...on3.12/site-packages/pytest/__main__.py'>, '_abc': <module '_abc' (built-in)>, '_ast': <module '_ast' (built-in)>, ...}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t45_order_router_module_is_not_loaded",
+      "summary": "AssertionError: assert 'forex_bot.oanda_exec' not in {'__future__': <module '__future__' from '/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/__future__.py'>, '__m...on3.12/site-packages/pytest/__main__.py'>, '_abc': <module '_abc' (built-in)>, '_ast': <module '_ast' (built-in)>, ...}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t46_account_summary_handler_remains_after_guard",
+      "summary": "ValueError: substring not found"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t47_protected_preflight_does_not_retry_a_write",
+      "summary": "ValueError: substring not found"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_startup_safety_preflight.py::test_t50_abort_precedes_every_prohibited_side_effect",
+      "summary": "ValueError: substring not found"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_strategy_activation_defaults.py::test_t34_no_production_database_access",
+      "summary": "AssertionError: assert 'forex_bot.database' not in {'__future__': <module '__future__' from '/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/__future__.py'>, '__m...on3.12/site-packages/pytest/__main__.py'>, '_abc': <module '_abc' (built-in)>, '_ast': <module '_ast' (built-in)>, ...}"
+    },
+    {
+      "result": "FAILED",
+      "node": "tests/test_strategy_activation_defaults.py::test_t35_application_lifespan_is_not_executed",
+      "summary": "AssertionError: assert 'forex_bot.app' not in {'__future__': <module '__future__' from '/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/__future__.py'>, '__m...on3.12/site-packages/pytest/__main__.py'>, '_abc': <module '_abc' (built-in)>, '_ast': <module '_ast' (built-in)>, ...}"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d10_database_borrower_quiescence.py::test_lifespan_guards",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d10_database_borrower_quiescence.py::test_startup_failure_before_telegram",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d10_database_borrower_quiescence.py::test_normal_shutdown_stops_fast_poller",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d10_database_borrower_quiescence.py::test_blocked_shutdown_leaves_worker_alive",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d10_database_borrower_quiescence.py::test_cleanup_exceptions_are_recorded",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d10_database_borrower_quiescence.py::test_repeated_lifespan_and_unreachable_window",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d10_telegram_shutdown.py::test_baseline_hashes_and_guards",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d10_telegram_shutdown.py::test_stop_before_start_and_normal_stop",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d10_telegram_shutdown.py::test_repeated_stop_and_start",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d10_telegram_shutdown.py::test_stop_returns_while_poll_blocked",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d10_telegram_shutdown.py::test_second_start_overlaps_surviving_worker",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d10_telegram_shutdown.py::test_release_waits_and_foreign_lock",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d10_telegram_shutdown.py::test_direct_reconnect_and_close_failure",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d10_telegram_shutdown.py::test_initialization_lock_still_serializes",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_database_borrower_quiescence.py::test_delayed_poll_does_not_query_after_release",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_database_borrower_quiescence.py::test_stop_before_database_entry",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_database_borrower_quiescence.py::test_stop_while_waiting_for_lock_skips_query",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_database_borrower_quiescence.py::test_inflight_query_blocks_release_until_finished",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_database_borrower_quiescence.py::test_release_after_completed_stop",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_database_borrower_quiescence.py::test_database_exception_stays_inside_command",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_database_borrower_quiescence.py::test_closed_objects_are_not_reused_by_direct_helper",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_database_borrower_quiescence.py::test_d9_lock_overlap_still_single_connection",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_database_borrower_quiescence.py::test_startup_failure_before_telegram_releases_database",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_database_borrower_quiescence.py::test_normal_shutdown_retains_database_and_stops_worker",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_database_borrower_quiescence.py::test_repeated_lifespan",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_database_borrower_quiescence.py::test_blocked_shutdown_is_observable_and_does_not_query",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_database_borrower_quiescence.py::test_stop_exception_still_cleans_tasks",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_database_borrower_quiescence.py::test_task_await_exception_still_cleans_remaining_tasks",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_database_borrower_quiescence.py::test_release_exception_on_startup_failure",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_database_borrower_quiescence.py::test_startup_after_telegram_remains_unreachable",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_database_borrower_quiescence.py::test_lifespan_network_stays_empty",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_telegram_shutdown_remediation.py::test_guards_and_safety_defaults",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_telegram_shutdown_remediation.py::test_s01_normal_stop_completes",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_telegram_shutdown_remediation.py::test_s02_stop_before_start",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_telegram_shutdown_remediation.py::test_s03_repeated_stop",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_telegram_shutdown_remediation.py::test_s04_repeated_start_is_single_worker",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_telegram_shutdown_remediation.py::test_s12_blocked_stop_keeps_worker",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_telegram_shutdown_remediation.py::test_s19_restart_after_worker_exit",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_telegram_shutdown_remediation.py::test_s15_restart_while_alive_does_not_duplicate",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_telegram_shutdown_remediation.py::test_s20_concurrent_starts",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_telegram_shutdown_remediation.py::test_s21_concurrent_stops_keep_one_worker",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_telegram_shutdown_remediation.py::test_s22_concurrent_start_and_stop",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_telegram_shutdown_remediation.py::test_s26_stop_between_updates_skips_database",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_telegram_shutdown_remediation.py::test_s37_poll_exception_exits_without_query",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d11_telegram_shutdown_remediation.py::test_self_stop_does_not_deadlock",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d12_database_ownership.py::test_direct_stop_without_a_worker",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d12_database_ownership.py::test_delayed_poll_does_not_reconnect",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d12_database_ownership.py::test_stop_before_database_entry",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d12_database_ownership.py::test_stop_while_waiting_for_the_database_lock",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d12_database_ownership.py::test_release_waits_for_the_inflight_query",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d12_database_ownership.py::test_initialization_lock_and_final_accounting",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d12_repeated_lifespan.py::test_second_lifespan_refuses_a_second_worker",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d12_repeated_lifespan.py::test_second_lifespan_reuses_the_database",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d12_repeated_lifespan.py::test_third_lifespan_starts_after_the_old_worker_exits",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d12_shutdown_contract.py::test_guards_and_defaults",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d12_shutdown_contract.py::test_normal_stop_drains_tasks_and_retains_database",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d12_shutdown_contract.py::test_incomplete_stop_is_not_reported_by_the_application",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d12_shutdown_contract.py::test_stop_not_running_is_not_a_lifespan_status",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d12_shutdown_contract.py::test_stop_exception_preserves_task_cleanup",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d12_shutdown_contract.py::test_task_await_and_release_and_alert",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d12_shutdown_contract.py::test_cancellation_during_blocked_shutdown",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d13_application_lifespan_reporting.py::test_s24_s27_repeated_lifespan_records_incomplete_stop",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d13_application_lifespan_reporting.py::test_s05_s06_start_refusal_is_not_observable",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d13_application_lifespan_reporting.py::test_s21_s28_s38_s39_database_ownership",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d13_telegram_lifecycle_reporting.py::test_s01_s02_s08_s13_normal_stop_has_no_warning",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d13_telegram_lifecycle_reporting.py::test_s10_s11_s12_s17_s18_s23_incomplete_stop_is_recorded",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d13_telegram_lifecycle_reporting.py::test_s09_s14_stop_not_running_direct",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d13_telegram_lifecycle_reporting.py::test_s16_s19_s20_stop_exception_and_primary_failure",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d13_telegram_lifecycle_reporting.py::test_s03_disabled_and_s15_unknown_and_s04_start_raise",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d14_application_start_reporting.py::test_a01_a04_normal_and_disabled_have_no_refusal",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d14_application_start_reporting.py::test_a07_a16_refusal_is_reported_and_non_fatal",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d14_application_start_reporting.py::test_a17_a21_restart_failure_and_unknown",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d14_lifecycle_regressions.py::test_d13_stop_reporting_remains",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d14_lifecycle_regressions.py::test_d11_d9_database_protections",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d14_telegram_start_contract.py::test_t01_disabled",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d14_telegram_start_contract.py::test_t02_t03_started_and_already_running",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d14_telegram_start_contract.py::test_t04_t08_refused_previous_worker_then_restart",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d14_telegram_start_contract.py::test_t10_t13_concurrent_and_overlap",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d14_telegram_start_contract.py::test_t14_t16_failures_and_no_none",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d15_cleanup_exception_precedence.py::test_e01_e14_primary_errors_and_database_ownership",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d15_cleanup_exception_precedence.py::test_e03_e19_secondary_cleanup_stays_observable",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d15_consolidated_lifecycle.py::test_l01_l13_normal_disabled_and_clean_shutdown",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d15_consolidated_lifecycle.py::test_l14_l20_incomplete_stop_keeps_worker_and_database",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d15_consolidated_lifecycle.py::test_r01_r16_second_lifespan_refuses_same_worker",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d15_consolidated_lifecycle.py::test_r17_r26_third_lifespan_starts_a_new_worker",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d15_consolidated_lifecycle.py::test_l08_l10_handled_and_unknown_start_stay_non_fatal",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d15_consolidated_lifecycle.py::test_s01_s19_safety_state_and_strategy_defaults",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d15_database_borrower_safety.py::test_b01_b13_one_connection_and_failed_initialization",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d15_database_borrower_safety.py::test_b07_b19_queries_release_and_stopped_workers",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d15_telegram_worker_concurrency.py::test_t01_t08_one_worker_and_refused_restart",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d15_telegram_worker_concurrency.py::test_t09_t17_timeout_restart_and_propagated_interrupt",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d15_telegram_worker_concurrency.py::test_t12_t25_repeated_stops_exceptions_and_no_late_query",
+      "summary": "AssertionError"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d5_lifespan_isolation.py::test_runner_completed_without_guard_trip",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d5_lifespan_isolation.py::test_t01_t02_t03_valid_blocked_startup",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d5_lifespan_isolation.py::test_t02_persisted_allowed_stays_blocked",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d5_lifespan_isolation.py::test_t04_t05_corrupt_aborts_and_preserves",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d5_lifespan_isolation.py::test_t06_t07_future_schema_aborts_and_preserves",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d5_lifespan_isolation.py::test_t08_t09_t33_invalid_activation_aborts",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d5_lifespan_isolation.py::test_t10_t11_unreadable_and_permission_are_not_missing",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d5_lifespan_isolation.py::test_t12_t13_missing_file_initialises_inactive",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d5_lifespan_isolation.py::test_t14_t15_failed_write_aborts_before_services",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d5_lifespan_isolation.py::test_t16_through_t26_protected_has_no_downstream",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d5_lifespan_isolation.py::test_t27_t28_t29_valid_order_and_shutdown",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d5_lifespan_isolation.py::test_t30_repeated_protected_startup_preserves_bytes",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d5_lifespan_isolation.py::test_t31_t32_success_then_corrupt_still_aborts",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d5_lifespan_isolation.py::test_t34_protected_does_not_continue",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d5_lifespan_isolation.py::test_t35_through_t47_no_real_services",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d6_partial_startup_cleanup.py::test_t01_t02_baseline_shutdown_cancels_tasks",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d6_partial_startup_cleanup.py::test_t03_database_connect_failure_is_nonfatal",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d6_partial_startup_cleanup.py::test_t04_t05_t06_database_failures_drop_connection_without_close",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d6_partial_startup_cleanup.py::test_t09_t12_fatal_pre_yield_leaves_connection_open",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d6_partial_startup_cleanup.py::test_t10_t11_t25_account_and_reconcile_are_nonfatal",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d6_partial_startup_cleanup.py::test_t13_t14_t15_task_creation_failure_leaves_tasks",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d6_partial_startup_cleanup.py::test_t16_shutdown_failure_skips_task_cancellation",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d6_partial_startup_cleanup.py::test_t18_task_await_failure_skips_later_cancellation",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d6_partial_startup_cleanup.py::test_t19_t44_repeat_after_partial_failure_stays_blocked",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d6_partial_startup_cleanup.py::test_t26_broker_failure_is_not_swallowed",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d6_partial_startup_cleanup.py::test_t27_through_t45_invariants_and_socketpair",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d6_partial_startup_cleanup.py::test_t50_repair_module_under_guard",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == 'f38c304c4692...56d1be75ae7b4'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d7_resource_cleanup.py::test_t01_t03_protected_state_aborts_before_resources",
+      "summary": "AssertionError: Traceback (most recent call last):"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d7_resource_cleanup.py::test_t04_t06_valid_blocked_stays_inactive",
+      "summary": "AssertionError: Traceback (most recent call last):"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d7_resource_cleanup.py::test_t07_connect_failure_keeps_public_contract",
+      "summary": "AssertionError: Traceback (most recent call last):"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d7_resource_cleanup.py::test_t21_t22_t32_fatal_pre_yield_releases_connection_and_tasks",
+      "summary": "AssertionError: Traceback (most recent call last):"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d7_resource_cleanup.py::test_t23_t26_t30_task_creation_failures_cancel_earlier_tasks",
+      "summary": "AssertionError: Traceback (most recent call last):"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d7_resource_cleanup.py::test_t27_t29_t31_shutdown_failures_still_clean_every_task",
+      "summary": "AssertionError: Traceback (most recent call last):"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d7_resource_cleanup.py::test_t33_t35_t55_t64_t65_normal_shutdown_and_single_release",
+      "summary": "AssertionError: Traceback (most recent call last):"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d7_resource_cleanup.py::test_t36_t39_primary_failure_stays_visible_without_authorising",
+      "summary": "AssertionError: Traceback (most recent call last):"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d7_resource_cleanup.py::test_t40_t54_isolation_and_application_cleanup_observed_first",
+      "summary": "AssertionError: Traceback (most recent call last):"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d7_resource_cleanup.py::test_t62_t63_nonfatal_account_and_reconciliation_still_continue",
+      "summary": "AssertionError: Traceback (most recent call last):"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d7_resource_cleanup.py::test_t08_lifespan_database_failures_continue_without_a_held_connection",
+      "summary": "AssertionError: Traceback (most recent call last):"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d7_resource_cleanup.py::test_repeat_startup_after_cleaned_failure_stays_blocked",
+      "summary": "AssertionError: Traceback (most recent call last):"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d8_database_concurrency.py::test_t01_t04_baseline_and_fake_driver",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d8_database_concurrency.py::test_t05_t07_unlocked_overlap_abandons_a_connection",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d8_database_concurrency.py::test_t05_locked_caller_does_not_exclude_unlocked_caller",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d8_database_concurrency.py::test_t11_t12_helpers_holding_the_lock_publish_one_pair",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d8_database_concurrency.py::test_t08_t10_mixed_and_double_failure",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d8_database_concurrency.py::test_t13_t19_release_retry_and_replacement",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d8_database_concurrency.py::test_t31_t44_lifespan_edges",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d9_database_concurrency_remediation.py::test_lock_and_isolation",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d9_database_concurrency_remediation.py::test_overlapping_callers_publish_one_connection",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d9_database_concurrency_remediation.py::test_failures_then_retry",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d9_database_concurrency_remediation.py::test_both_fail_and_healthy_global_survives",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d9_database_concurrency_remediation.py::test_release_replace_and_nested_helper",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    },
+    {
+      "result": "ERROR",
+      "node": "tests/test_d9_database_concurrency_remediation.py::test_lifespan_preserves_cleanup_rules",
+      "summary": "AssertionError: assert '8d4abc715237...4e411baa244a1' == '08766300dfaf...1791ca93e3b44'"
+    }
+  ],
+  "dependencies": [
+    "numpy-2.5.4",
+    "pandas-3.1.0",
+    "pytest-8.4.2"
+  ]
+}

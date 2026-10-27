@@ -1,0 +1,25 @@
+{
+  "baseline_commit": "9ba819cf1f08b92780a19df5f1d8e54df2c2134d",
+  "current_commit": "a8055c6a9f503a27a8f85d019473f67a3698c3c1",
+  "previous_outcomes": {
+    "FAILED": 300,
+    "ERROR": 144
+  },
+  "current_outcomes": {
+    "FAILED": 300,
+    "ERROR": 144
+  },
+  "unchanged_failure_error_nodes": 444,
+  "absent_old_nodes": [],
+  "new_failure_error_nodes": [],
+  "result_type_changes": [],
+  "raw_summary_changes": 9,
+  "normalized_summary_changes": [
+    {
+      "node": "tests/test_r21_selector_and_order_state.py::test_12_actual_selector_implementation",
+      "r87e": "AssertionError: assert 'swing_mean_reversion' is None",
+      "r87f": "AssertionError: assert 'swing_trend' is None"
+    }
+  ],
+  "unchanged_normalized_summaries": 443
+}

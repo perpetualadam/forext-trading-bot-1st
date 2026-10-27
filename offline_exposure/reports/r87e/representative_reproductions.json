@@ -1,0 +1,37 @@
+{
+  "platform": "linux",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "reproductions": [
+    {
+      "case": "actual D15 current-baseline hash assertion",
+      "matched": true,
+      "exception": "AssertionError",
+      "reason": "",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/offline_exposure/reports/r87e/representative_repro.py\", line 56, in reproduce\n  File \"/tmp/r87e-clean-vtf3yr_n/checkout/tests/test_d15_historical_compatibility.py\", line 91, in test_current_protected_hashes_match_d15_baseline\n    assert _sha(relative) == digest\n           ^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+    },
+    {
+      "case": "Windows synthetic interpreter fixture on Linux (extracted guard)",
+      "matched": true,
+      "exception": "EnvironmentRejected",
+      "reason": "untrusted_executable",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/offline_exposure/reports/r87e/representative_repro.py\", line 56, in reproduce\n  File \"/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/offline_exposure/reports/r87e/representative_repro.py\", line 87, in <lambda>\n  File \"/tmp/r87e-clean-vtf3yr_n/checkout/tests/g14_4_acquire.py\", line 108, in select_interpreter\n    raise EnvironmentRejected(\"untrusted_executable\")\nEnvironmentRejected: untrusted_executable\n"
+    },
+    {
+      "case": "Windows filesystem handle guard on Linux (extracted guard)",
+      "matched": true,
+      "exception": "FilesystemRejected",
+      "reason": "handle_api_unavailable",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/offline_exposure/reports/r87e/representative_repro.py\", line 56, in reproduce\n  File \"/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/offline_exposure/reports/r87e/representative_repro.py\", line 92, in <lambda>\n  File \"/tmp/r87e-clean-vtf3yr_n/checkout/tests/g14_7_fs.py\", line 311, in open_directory\n    raise FilesystemRejected(\"handle_api_unavailable\")\nFilesystemRejected: handle_api_unavailable\n"
+    },
+    {
+      "case": "obsolete lifespan text search (source fragment only)",
+      "matched": true,
+      "exception": "ValueError",
+      "reason": "substring not found",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/offline_exposure/reports/r87e/representative_repro.py\", line 56, in reproduce\n  File \"/mnt/c/Users/Brian/OneDrive/Desktop/Forext Trading Bot 1st/offline_exposure/reports/r87e/representative_repro.py\", line 97, in <lambda>\nValueError: substring not found\n"
+    }
+  ],
+  "historical_pins_positive_control": "passed",
+  "application_imports": false,
+  "barrier_sentinels": "passed"
+}

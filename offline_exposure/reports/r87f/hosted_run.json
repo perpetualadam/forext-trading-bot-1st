@@ -1,0 +1,108 @@
+{
+  "commit": "a8055c6a9f503a27a8f85d019473f67a3698c3c1",
+  "run_id": 40422484155,
+  "status": "completed",
+  "conclusion": "failure",
+  "url": "https://github.com/perpetualadam/forext-trading-bot-1st/actions/runs/40422484155",
+  "started": "2026-10-26T23:50:36Z",
+  "updated": "2026-10-26T23:52:59Z",
+  "jobs": [
+    {
+      "id": 121920025040,
+      "name": "test",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/perpetualadam/forext-trading-bot-1st/actions/runs/40422484155/job/121920025040",
+      "started": "2026-10-26T23:50:39Z",
+      "completed": "2026-10-26T23:52:58Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run tests",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 121920025364,
+      "name": "offline-exposure-contract",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/perpetualadam/forext-trading-bot-1st/actions/runs/40422484155/job/121920025364",
+      "started": "2026-10-26T23:50:39Z",
+      "completed": "2026-10-26T23:50:52Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run isolated offline exposure contract",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ]
+}

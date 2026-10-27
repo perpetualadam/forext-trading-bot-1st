@@ -1,0 +1,8 @@
+{
+  "tests/test_decision_repair_f1.py": "3562471022ff07f343c9fd60cc436f7cde7a81e21fb0c9d5c270ae3ebc682450",
+  "tests/test_decision_repair_f2.py": "51fdf8f63ad75ff63cd319232374d5a6e8c7e7cc2ac832ded860aa44229ff047",
+  "tests/test_g8_missing_candles.py": "c901a0308e60333807162699ee7735c6c83046ebad23a4c49efa6d0c2b4a68bf",
+  "tests/test_g9_1_candle_exceptions.py": "1bd09cd6aeeb6d6e93d7006f5d229b32826c4bdde8997b6ac7306cdf4d20a70f",
+  "tests/test_g9_management.py": "cdb646f39f918c0a2e1d7f4f617c5b77bfbfe5232537408328d7b8bdf03757c9",
+  "tests/test_ohlcv_off_event_loop.py": "3f6080d20c8e8dcb6422b474c540cb57e239faea0e89a20112b368fd53b8ebd5"
+}

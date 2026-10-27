@@ -1,0 +1,11 @@
+{
+  "existing_test_job_preserved": true,
+  "new_job_only": true,
+  "new_dependencies": false,
+  "silent_failure_bypass": false,
+  "skipping_conditions": false,
+  "monitored_files": 451,
+  "changed_files": [
+    ".github/workflows/ci.yml"
+  ]
+}

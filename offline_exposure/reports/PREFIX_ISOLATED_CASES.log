@@ -1,0 +1,91 @@
+test_A_simultaneous_publications_and_both_serializations (test_contract.ConcurrencyTests.test_A_simultaneous_publications_and_both_serializations) ... ok
+test_B_overlapping_refreshes_latest_generation_wins (test_contract.ConcurrencyTests.test_B_overlapping_refreshes_latest_generation_wins) ... ok
+test_C_failure_precedes_late_success_in_two_threads (test_contract.ConcurrencyTests.test_C_failure_precedes_late_success_in_two_threads) ... ok
+test_D_refresh_and_dispatch_both_lock_orders (test_contract.ConcurrencyTests.test_D_refresh_and_dispatch_both_lock_orders) ... ok
+test_E_refresh_and_reservation_both_lock_orders (test_contract.ConcurrencyTests.test_E_refresh_and_reservation_both_lock_orders) ... ok
+test_F_rollover_stale_and_duplicate_completions (test_contract.ConcurrencyTests.test_F_rollover_stale_and_duplicate_completions) ... ok
+test_G_malformed_publish_generations_leave_active_refresh_unchanged (test_contract.ConcurrencyTests.test_G_malformed_publish_generations_leave_active_refresh_unchanged) ... 
+  test_G_malformed_publish_generations_leave_active_refresh_unchanged (test_contract.ConcurrencyTests.test_G_malformed_publish_generations_leave_active_refresh_unchanged) (type='float') ... FAIL
+  test_G_malformed_publish_generations_leave_active_refresh_unchanged (test_contract.ConcurrencyTests.test_G_malformed_publish_generations_leave_active_refresh_unchanged) (type='bool') ... FAIL
+test_H_current_generation_cannot_publish_managed_revision_rollback (test_contract.ConcurrencyTests.test_H_current_generation_cannot_publish_managed_revision_rollback) ... FAIL
+test_01_usd_guard_counts_broker_discovery_without_management_authority (test_contract.ContractTests.test_01_usd_guard_counts_broker_discovery_without_management_authority) ... ok
+test_02_restart_window_paper_cannot_hide_live_broker_position (test_contract.ContractTests.test_02_restart_window_paper_cannot_hide_live_broker_position) ... ok
+test_03_paper_only (test_contract.ContractTests.test_03_paper_only) ... ok
+test_04_managed_dedup (test_contract.ContractTests.test_04_managed_dedup) ... ok
+test_05_multiple_trades_and_slots (test_contract.ContractTests.test_05_multiple_trades_and_slots) ... ok
+test_06_opposite_direction (test_contract.ContractTests.test_06_opposite_direction) ... ok
+test_07_partition (test_contract.ContractTests.test_07_partition) ... ok
+test_08_aggregate_and_unknown_managed_id (test_contract.ContractTests.test_08_aggregate_and_unknown_managed_id) ... ok
+test_09_duplicate_and_identity (test_contract.ContractTests.test_09_duplicate_and_identity) ... ok
+test_10_hedge_and_zero (test_contract.ContractTests.test_10_hedge_and_zero) ... ok
+test_11_malformed (test_contract.ContractTests.test_11_malformed) ... ok
+test_12_age_boundaries (test_contract.ContractTests.test_12_age_boundaries) ... ok
+test_13_slow_response (test_contract.ContractTests.test_13_slow_response) ... ok
+test_14_snapshot_states (test_contract.ContractTests.test_14_snapshot_states) ... ok
+test_15_failed_refresh_retains_capacity (test_contract.ContractTests.test_15_failed_refresh_retains_capacity) ... ok
+test_16_flat_and_disagreement (test_contract.ContractTests.test_16_flat_and_disagreement) ... ok
+test_17_latest_generation (test_contract.ContractTests.test_17_latest_generation) ... ok
+test_18_ordered_fill (test_contract.ContractTests.test_18_ordered_fill) ... ok
+test_19_revision (test_contract.ContractTests.test_19_revision) ... ok
+test_20_disabled_cap_and_nonusd_invalid (test_contract.ContractTests.test_20_disabled_cap_and_nonusd_invalid) ... ok
+test_21_deterministic_pure (test_contract.ContractTests.test_21_deterministic_pure) ... ok
+test_22_no_authority_surface (test_contract.ContractTests.test_22_no_authority_surface) ... ok
+test_23_racing_candidates (test_contract.ContractTests.test_23_racing_candidates) ... ok
+test_24_idempotency_and_sides (test_contract.ContractTests.test_24_idempotency_and_sides) ... ok
+test_25_unavailable_and_unapproved_writer (test_contract.ContractTests.test_25_unavailable_and_unapproved_writer) ... ok
+test_26_refresh_dispatch_serialization (test_contract.ContractTests.test_26_refresh_dispatch_serialization) ... ok
+test_27_frozen_release_and_success (test_contract.ContractTests.test_27_frozen_release_and_success) ... ok
+test_28_fill_transfer_and_no_ttl_release (test_contract.ContractTests.test_28_fill_transfer_and_no_ttl_release) ... ok
+test_29_watermark_and_close (test_contract.ContractTests.test_29_watermark_and_close) ... ok
+test_30_local_time_not_ordering (test_contract.ContractTests.test_30_local_time_not_ordering) ... ok
+test_31_no_default_policy_or_continuity (test_contract.ContractTests.test_31_no_default_policy_or_continuity) ... ok
+test_32_clock_and_scheduled_actions (test_contract.ContractTests.test_32_clock_and_scheduled_actions) ... ok
+test_33_actual_source_seal_conflict_is_detected (test_contract.ContractTests.test_33_actual_source_seal_conflict_is_detected) ... ok
+test_34_pending_unknown_and_external_pending_fail_closed (test_contract.ContractTests.test_34_pending_unknown_and_external_pending_fail_closed) ... ok
+test_35_default_direct_entry_denied (test_contract.ContractTests.test_35_default_direct_entry_denied) ... ok
+test_36_cross_process_guarantee_not_claimed (test_contract.ContractTests.test_36_cross_process_guarantee_not_claimed) ... ok
+test_37_same_slot_open_then_close_cannot_erase_original_trade (test_contract.ContractTests.test_37_same_slot_open_then_close_cannot_erase_original_trade) ... ok
+test_38_malformed_numeric_inputs_return_invalidity (test_contract.ContractTests.test_38_malformed_numeric_inputs_return_invalidity) ... ok
+test_39_malformed_revision_and_ordering_numbers (test_contract.ContractTests.test_39_malformed_revision_and_ordering_numbers) ... ok
+test_40_fill_transfer_cannot_drop_unrelated_occupied_slot (test_contract.ContractTests.test_40_fill_transfer_cannot_drop_unrelated_occupied_slot) ... ok
+test_41_fill_transfer_rejects_managed_revision_rollback (test_contract.ContractTests.test_41_fill_transfer_rejects_managed_revision_rollback) ... ok
+test_42_legitimate_fill_transfer_preserves_capacity_and_other_intents (test_contract.ContractTests.test_42_legitimate_fill_transfer_preserves_capacity_and_other_intents) ... ok
+test_43_fill_transfer_rejects_malformed_managed_revision (test_contract.ContractTests.test_43_fill_transfer_rejects_malformed_managed_revision) ... ok
+test_44_publication_without_active_refresh_preserves_state (test_contract.ContractTests.test_44_publication_without_active_refresh_preserves_state) ... ok
+test_45_success_completion_is_single_use (test_contract.ContractTests.test_45_success_completion_is_single_use) ... ok
+test_46_failure_completion_cannot_be_revived (test_contract.ContractTests.test_46_failure_completion_cannot_be_revived) ... ok
+test_47_new_generation_can_complete_after_failed_generation (test_contract.ContractTests.test_47_new_generation_can_complete_after_failed_generation) ... ok
+test_barrier_sentinels (__main__.IsolationChecks.test_barrier_sentinels) ... ok
+
+======================================================================
+FAIL: test_G_malformed_publish_generations_leave_active_refresh_unchanged (test_contract.ConcurrencyTests.test_G_malformed_publish_generations_leave_active_refresh_unchanged) (type='float')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Brian\OneDrive\Desktop\Forext Trading Bot 1st\offline_exposure\test_contract.py", line 686, in test_G_malformed_publish_generations_leave_active_refresh_unchanged
+    self.assertFalse(c.publish(malformed, incoming))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_G_malformed_publish_generations_leave_active_refresh_unchanged (test_contract.ConcurrencyTests.test_G_malformed_publish_generations_leave_active_refresh_unchanged) (type='bool')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Brian\OneDrive\Desktop\Forext Trading Bot 1st\offline_exposure\test_contract.py", line 686, in test_G_malformed_publish_generations_leave_active_refresh_unchanged
+    self.assertFalse(c.publish(malformed, incoming))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_H_current_generation_cannot_publish_managed_revision_rollback (test_contract.ConcurrencyTests.test_H_current_generation_cannot_publish_managed_revision_rollback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Brian\OneDrive\Desktop\Forext Trading Bot 1st\offline_exposure\test_contract.py", line 698, in test_H_current_generation_cannot_publish_managed_revision_rollback
+    self.assertFalse(c.publish(generation, rollback))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 56 tests in 0.024s
+
+FAILED (failures=3)
+RESULT tests=56 failures=3 errors=0 skips=0

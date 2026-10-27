@@ -1,0 +1,27 @@
+--- R86 archive
+
++++ current bot_loop.py
+
+@@ -601,14 +601,19 @@
+
+     return None, NO_OHLCV
+ 
+ 
++def fetch_ohlcv(symbol: str, granularity: str, count: int):
++    """Decision-candle seam. Callers and tests replace this; the client remains the source."""
++    from forex_bot.oanda_client import fetch_ohlcv as client_fetch_ohlcv
++
++    return client_fetch_ohlcv(symbol, granularity, count)
++
++
+ async def _load_decision_candles(symbol: str, count: int):
+     """Load the decision frame. Acquisition failure returns None and never fabricates bars.
+ 
+     The second value is the audit reason that must stay last when no entry is made.
+     ``CycleIntegrityError`` is the only acquisition-call failure that stops the cycle.
+     """
+-    from forex_bot.oanda_client import fetch_ohlcv
+-
+     try:
+         raw = await asyncio.to_thread(fetch_ohlcv, symbol, "M5", count)
+     except CycleIntegrityError:

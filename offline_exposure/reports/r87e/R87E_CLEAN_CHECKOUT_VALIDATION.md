@@ -1,0 +1,11 @@
+# R.87E clean-checkout validation
+
+Actual execution, not a proposal: Ubuntu WSL, 3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0], git version 2.43.0. Native Linux disposable repository `/tmp/r87e-clean-vtf3yr_n/checkout` points to existing commit 9ba819cf1f08b92780a19df5f1d8e54df2c2134d. The helper uses a read-only local Git-object alternate, no remote fetch, no credential config, empty hooks template, exact sparse paths and Git's normal attribute checkout. No source-repository index/ref/history was changed and no commit object was created. The Linux temp fixture is diagnostic only and may not persist across WSL sessions.
+
+All 16 materialized paths are tracked: offline files, pure module, bot_loop, binary R.86 archive, .gitattributes and a small source-only representative set including frozen dataset. No .env, credentials, production journals, permits/markers, unrelated untracked files or replacement historical artifacts are copied. Complete tracked_paths, hashes and permissions are in linux_clean_result.json.
+
+The unmodified offline command returned 0 with 57 tests, 0 failures/errors/skips; unittest duration 0.020s and parent wall duration 0.098480s. The checkout was clean before and after tests/reproductions, and every materialized byte hash stayed unchanged. Native permissions are 0644; Python runs scripts directly, so executable bits are unnecessary. Relative paths and archive access work without repo-local or third-party dependencies.
+
+Critical hashes: bot_loop `2f1c36dc025d114685e4424402f6866c66aa6eb37d28717027c502a4f447118d`; R.86 archive `148335440859321f9a89ac9ee02a264c61ec48cb996282d87424b662728364e5`. Git normalized blob hashes and checkout raw hashes are not conflated. The pure/new Python files are CRLF under the repository's existing rules; bot_loop remains LF and the ZIP binary. The dataset's LF Git blob matches its expected frozen pin while its CRLF checkout matches the observed CI mismatch. No manual normalization or expected-hash edit was used.
+
+This verifies a clean sparse checkout of all offline dependency paths, not the entire broad application suite or a hosted Actions run. Sparse materialization deliberately avoids production-state artifacts. See clean_linux_validation.py for reproducibility and R87E_TEST_RESULTS.md for exact bounded commands.

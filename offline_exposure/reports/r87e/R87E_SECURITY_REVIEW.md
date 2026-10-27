@@ -1,0 +1,11 @@
+# R.87E security and scope review
+
+No operational module, existing test, coordinator, source-hash assertion, .gitattributes, dependency manifest, trading gate, strategy, sizing/SL/TP, profit protection, recovery authority, weekend handling, live permit or consumed marker was changed. The known wrapper is untouched. Only .github/workflows/ci.yml changes among 451 monitored source/config paths; 450 raw hashes match. The new job has no operational imports, custom secrets, dependency install, permission grant or broker-write path. Existing full test job remains intact.
+
+Network use was limited to read-only GitHub metadata/log retrieval through the connector. Tests did not contact OANDA, DNS, PostgreSQL, or production infrastructure. Audit barriers were reviewed and sentinel-tested before project code runs. Source-only reproductions block application imports and state I/O. No .env, API-token values, production SQLite journals or DB state were read. GitHub job logs were reduced to failure evidence and public metadata, not credential stores. Synthetic source test constants are not operator credentials.
+
+Docker availability probing reported a denied default ~/.docker/config.json lookup and an absent daemon; no configuration contents were obtained and Docker was abandoned. WSL enumeration first hit service permissions; approved elevation enabled use of the existing Ubuntu runtime. No environment installation, package installation, upgrade, shell startup profile or external broker request followed. This caveat is recorded rather than falsely claiming no attempted denied lookup occurred.
+
+one_session.permit is absent by metadata. No marker contents were read/hashed or marker written. No source enablement or runtime gate operation occurred. Effective live runtime state was not probed, and production remains NO-GO. Native Linux Git operations occur only in disposable /tmp repositories with a read-only object alternate; source repository HEAD/index/history remain unchanged. The temporary ref points to an existing commit; it creates no commit or publication.
+
+R.87E reports/diagnostic scripts are local and untracked. Unrelated scheduler work and earlier reports remain preserved. Trusted-test audit hooks are not an adversarial OS sandbox. No CI green or trading readiness claim is supported by the isolated suite alone.

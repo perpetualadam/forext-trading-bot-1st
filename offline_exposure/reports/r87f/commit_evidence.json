@@ -1,0 +1,9 @@
+{
+  "head": "a8055c6a9f503a27a8f85d019473f67a3698c3c1",
+  "parent": "9ba819cf1f08b92780a19df5f1d8e54df2c2134d",
+  "fetched_origin_main": "9ba819cf1f08b92780a19df5f1d8e54df2c2134d",
+  "commit_paths": [
+    ".github/workflows/ci.yml"
+  ],
+  "fast_forward": true
+}

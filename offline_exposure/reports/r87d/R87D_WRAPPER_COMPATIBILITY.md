@@ -1,0 +1,11 @@
+# R.87D wrapper compatibility
+
+R.87B restoration is absent from local main and accessible reference commits; it remains external/untransferred work rather than a local staged correction. Current bot_loop raw hash remains 2f1c36dc025d114685e4424402f6866c66aa6eb37d28717027c502a4f447118d; required R.86 hash is a2310a7f2d2aee4b60c3c471cdd56ed48c72e2ed29232047c404209537e58d81. Expected seal unchanged.
+
+Six consumers: tests/test_decision_repair_f1.py, test_decision_repair_f2.py, test_g8_missing_candles.py, test_g9_1_candle_exceptions.py, test_g9_management.py, test_ohlcv_off_event_loop.py. Their current raw hashes are in compatibility_source_hashes.json. They patch bot_loop.fetch_ohlcv, either through a string target or the module object. The sealed implementation imports oanda_client.fetch_ohlcv inside _load_decision_candles immediately before asyncio.to_thread; static call-chain analysis therefore supports patching the client binding in those cases while preserving fake behavior, counters, exception paths and the off-event-loop assertion.
+
+This is static compatibility evidence only. Their actual assertions were inspected in representative fixtures, but the six-file behavioral suite has not been safely executed here. No test was edited or assertion weakened. Changing only patch targets while retaining the wrapper would also work through delegation, but does not verify the restored boundary. Existing module-import/application fixtures require separately verified isolation before execution.
+
+Additional coupling: offline test_33 intentionally detects the current local hash mismatch and checks exact archive identity. Restoring R.86 would require a separately reviewed update of that current-state evidence test; do not silently edit historical assertions to hide a mismatch. Offline-only publication keeps current main unchanged and passes that evidence test; it does not resolve restoration.
+
+Commit B withheld. Proposed future work: separately review client-target migration, verify all six files in disposable isolation against the exact sealed source, reconcile the evidence test's new baseline transparently, and only then obtain operational restoration/merge approval. No replacement, migration or restoration was performed by R.87D.

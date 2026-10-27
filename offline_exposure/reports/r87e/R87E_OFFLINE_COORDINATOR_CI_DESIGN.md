@@ -1,0 +1,9 @@
+# R.87E offline coordinator CI design
+
+Add a separate job offline-exposure-contract to existing CI. Use ubuntu-latest, actions/checkout@v4 with persist-credentials:false, actions/setup-python@v5 with Python 3.12, then python -I -S -B offline_exposure/run_checks.py. Timeout five minutes; contents:read permission. No custom secrets, install step, app startup, permit/marker creation, continue-on-error, shell success masking, skip condition or dependency on the failing test job.
+
+The unmodified runner independently loads three files by exact paths, installs audit hooks before project imports, clears environment, and blocks network/subprocess/DB/dotenv/application imports and writes. It needs only stdlib and the tracked R.86 archive plus current bot_loop source for its mismatch-evidence test. Its nonzero exit code directly fails the step. The test job remains enabled with unchanged logical lines; static checks verify the original prefix and both job names.
+
+Historical assertion test_33 is intentionally a mismatch-detection/current-state pin: current bot_loop must be exactly 2f1c36dc025d114685e4424402f6866c66aa6eb37d28717027c502a4f447118d, archive exactly a2310a7f2d2aee4b60c3c471cdd56ed48c72e2ed29232047c404209537e58d81, and they differ. Passing it is NOT operational R.86 seal acceptance. The archive is tracked; ZIP bytes are binary; bot_loop is explicitly LF in .gitattributes. Native clean checkout verifies those exact bytes without altering expectations. Other source files acquire CRLF according to existing attributes; their raw hashes may differ from local LF blobs and are separately recorded.
+
+The job command passed in a clean Ubuntu/Python 3.12.3 checkout. Hosted Ubuntu 26.04.1/Python 3.12.15 and the Actions orchestration itself have not executed this uncommitted job. Review, separately authorised publication and an exact-SHA successful job are still required before claiming GitHub coverage is established.
