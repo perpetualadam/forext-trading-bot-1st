@@ -48,6 +48,25 @@ def _negative_pnl(n: int = 20) -> list[float]:
     return [-1.0] * n
 
 
+@pytest.fixture
+def unclaimed_entry_intent(monkeypatch):
+    """Reach the auth guard with shape-only evidence, never journal authority."""
+    from forex_bot.entry_journal import EntrySubmissionPermit
+
+    monkeypatch.setattr("forex_bot.startup_recovery.live_management_permitted", lambda: True)
+
+    def must_not_claim(_permit):
+        raise AssertionError("blocked authorisation must precede journal consumption")
+
+    monkeypatch.setattr("forex_bot.entry_journal.claim_entry_permit", must_not_claim)
+    return EntrySubmissionPermit(
+        operation_id="synthetic-unclaimed", owner_token="synthetic-unclaimed",
+        account_binding="synthetic-account", instrument="EUR_USD", direction="BUY",
+        requested_units="2", position_instance_id="synthetic-position",
+        position_generation=1, client_order_id="synthetic-client",
+    )
+
+
 def test_fresh_process_with_no_persisted_state_blocks_live_opens():
     assert not state_path().is_file()
     initialise_fail_closed()
@@ -155,7 +174,7 @@ def test_diagnostics_report_flags_and_sharpe():
     assert "OANDA_ACCESS_TOKEN" not in text
 
 
-def test_blocked_open_sends_no_broker_request(monkeypatch):
+def test_blocked_open_sends_no_broker_request(monkeypatch, unclaimed_entry_intent):
     monkeypatch.setenv("EXECUTION_MODE", "live_broker")
     monkeypatch.setenv("USE_OANDA_LIVE", "true")
     initialise_fail_closed()
@@ -171,7 +190,7 @@ def test_blocked_open_sends_no_broker_request(monkeypatch):
         patch("forex_bot.oanda_exec._account_id", return_value="ACC"),
         pytest.raises(RuntimeError, match="LIVE_ORDER_AUTH"),
     ):
-        _place_market_order_open_sync("EUR_USD", 2.0, "BUY", "cid-block")
+        _place_market_order_open_sync("EUR_USD", 2.0, "BUY", "cid-block", entry_permit=unclaimed_entry_intent)
     assert calls == []
 
 
@@ -186,7 +205,7 @@ def test_every_live_open_path_respects_default_deny(monkeypatch):
     assert_broker_order_allowed(execution_kind="live", action="close")
 
 
-def test_concurrent_opens_cannot_bypass_gate(monkeypatch):
+def test_concurrent_opens_cannot_bypass_gate(monkeypatch, unclaimed_entry_intent):
     monkeypatch.setenv("EXECUTION_MODE", "live_broker")
     monkeypatch.setenv("USE_OANDA_LIVE", "true")
     initialise_fail_closed()
@@ -201,7 +220,7 @@ def test_concurrent_opens_cannot_bypass_gate(monkeypatch):
     def worker():
         try:
             with patch("forex_bot.oanda_exec.get_api", return_value=FakeAPI()):
-                _place_market_order_open_sync("EUR_USD", 1.0, "BUY", "cid-race")
+                _place_market_order_open_sync("EUR_USD", 1.0, "BUY", "cid-race", entry_permit=unclaimed_entry_intent)
             errors.append("opened")
         except RuntimeError as exc:
             errors.append(str(exc))
@@ -367,7 +386,13 @@ def test_lifespan_initialises_before_background_tasks():
 
     from forex_bot import app as appmod
 
-    src = inspect.getsource(appmod.lifespan)
+    src = inspect.getsource(appmod._production_startup_ports)
+    orchestration = inspect.getsource(appmod.initialise_application)
+    lifespan = inspect.getsource(appmod.lifespan)
+    assert "await initialise_application(_production_startup_ports(" in lifespan
+    guard = orchestration.index("await _invoke(ports.verify_safety)")
+    assert guard < orchestration.index("await _invoke(ports.init_persistence)")
+    assert guard < orchestration.index("await _invoke(ports.schedule_trading)")
     assert src.index("initialise_fail_closed") < src.index("create_task(run_bot())")
     assert src.index("initialise_fail_closed") < src.index("create_task(reconciliation_loop())")
     assert "operator_set_live_order_authorisation" not in src
