@@ -100,7 +100,7 @@ def confirmed_swings(
     period_ns = int(pd.Timedelta(period).value)
     times = work["time"].map(_utc)
     available = work["available_at"].map(_utc)
-    time_ns = times.astype("int64").to_numpy()
+    time_ns = times.dt.as_unit("ns").astype("int64").to_numpy()
     highs = work["bid_high"].to_numpy(dtype=float)
     lows = work["bid_low"].to_numpy(dtype=float)
     swings: list[dict] = []
@@ -266,7 +266,7 @@ def trendline_events(candles: pd.DataFrame, lines: list[dict]) -> dict:
     if candles.empty or not lines:
         return {"counts": totals, "examples": examples}
     work = candles.sort_values("available_at").reset_index(drop=True)
-    when_ns = work["available_at"].map(_utc).astype("int64").to_numpy()
+    when_ns = work["available_at"].map(_utc).dt.as_unit("ns").astype("int64").to_numpy()
     high = work["bid_high"].to_numpy(dtype=float)
     low = work["bid_low"].to_numpy(dtype=float)
     close = work["bid_close"].to_numpy(dtype=float)
@@ -352,7 +352,7 @@ def level_interactions(candles: pd.DataFrame, levels: list[dict]) -> dict:
         return {"counts": counts, "examples": examples}
     work = candles.sort_values("available_at").reset_index(drop=True)
     when = work["available_at"].map(_utc)
-    when_ns = when.astype("int64").to_numpy()
+    when_ns = when.dt.as_unit("ns").astype("int64").to_numpy()
     high = work["bid_high"].to_numpy(dtype=float)
     low = work["bid_low"].to_numpy(dtype=float)
     close = work["bid_close"].to_numpy(dtype=float)

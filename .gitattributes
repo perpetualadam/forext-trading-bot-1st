@@ -14,3 +14,5 @@ forex_bot/bot_loop.py text eol=lf
 forex_bot/entry_geometry.py text eol=lf
 forex_bot/indicators.py text eol=lf
 forex_bot/oanda_exec.py text eol=lf
+# Frozen market datasets are sealed against their LF Git blobs.
+data/historical/*_M5.csv text eol=lf

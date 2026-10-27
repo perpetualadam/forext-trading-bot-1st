@@ -31,18 +31,18 @@ def aggregate_bid_ask(frame: pd.DataFrame, period_minutes: int) -> tuple[pd.Data
     if missing:
         raise ValueError("missing_columns:" + ",".join(missing))
     work = frame.copy()
-    work["time"] = pd.to_datetime(work["time"], utc=True, errors="coerce")
+    work["time"] = pd.to_datetime(work["time"], utc=True, errors="coerce").dt.as_unit("ns")
     work = work.dropna(subset=["time"]).sort_values("time").drop_duplicates("time", keep="first")
     expected = period_minutes // 5
     period_ns = period_minutes * 60 * 1_000_000_000
-    bucket_ns = (work["time"].astype("int64") // period_ns) * period_ns
+    bucket_ns = (work["time"].dt.as_unit("ns").astype("int64") // period_ns) * period_ns
     work["bucket"] = pd.to_datetime(bucket_ns, utc=True)
     step = pd.Timedelta(seconds=BAR_SECONDS)
     rows = []
     incomplete = 0
     for start, group in work.groupby("bucket", sort=True):
         group = group.sort_values("time")
-        wanted = pd.date_range(start, periods=expected, freq=step)
+        wanted = pd.date_range(start, periods=expected, freq=step).as_unit("ns")
         have = pd.DatetimeIndex(group["time"])
         flags_ok = True
         if "complete" in group.columns:

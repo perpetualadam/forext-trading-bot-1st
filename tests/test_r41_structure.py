@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 import pandas as pd
+import pytest
 
 from forex_bot.research.learning.structure import (
     K,
@@ -74,10 +75,14 @@ def test_source_hash_constant_and_h1_h4_alignment() -> None:
     assert rejected_report["incomplete_buckets"] >= 1
 
 
-def test_swing_confirmation_delay_tie_and_gap() -> None:
+@pytest.mark.parametrize("unit", ["s", "ms", "us", "ns"])
+def test_swing_confirmation_delay_tie_and_gap(unit: str) -> None:
     highs = [1, 1, 1, 1, 3, 1, 1, 1, 1, 1]
     lows = [0.4, 0.4, 0.4, 0.4, 0.5, 0.4, 0.4, 0.4, 0.4, 0.4]
-    swings, report = confirmed_swings(_candles(highs, lows), period=pd.Timedelta(hours=1), instrument="EUR_USD", timeframe="H1", source_sha256="abc")
+    candles = _candles(highs, lows)
+    candles["time"] = candles["time"].dt.as_unit(unit)
+    candles["available_at"] = candles["available_at"].dt.as_unit(unit)
+    swings, report = confirmed_swings(candles, period=pd.Timedelta(hours=1), instrument="EUR_USD", timeframe="H1", source_sha256="abc")
     assert report["confirmed_swing_highs"] == 1
     assert report["confirmed_swing_lows"] == 0
     swing = swings[0]

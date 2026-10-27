@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import pandas as pd
+import pytest
 
 from forex_bot.research.learning.timeframes import aggregate_bid_ask, research_pip_size, visible_close
 
@@ -44,6 +45,20 @@ def test_h1_uses_the_first_open_extreme_high_low_and_last_close() -> None:
     assert row["bid_close"] == 1.05 + 11 * 0.0001
     assert row["ask_open"] == 1.2
     assert row["volume"] == 12.0
+
+
+@pytest.mark.parametrize("unit", ["s", "ms", "us", "ns"])
+def test_timestamp_resolution_preserves_candle_and_missing_bar_checks(unit: str) -> None:
+    bars = _bars("2026-01-05T00:00:00Z", 24)
+    bars["time"] = bars["time"].dt.as_unit(unit)
+    candles, report = aggregate_bid_ask(bars, 60)
+    assert report["complete_candles"] == 2
+    assert list(candles["time"]) == list(pd.date_range("2026-01-05", periods=2, freq="h", tz="UTC"))
+    assert visible_close(candles, pd.Timestamp("2026-01-05T00:59:59Z")) is None
+    missing, report = aggregate_bid_ask(bars.drop(index=4), 60)
+    assert report["incomplete_buckets"] == 1
+    assert len(missing) == 1
+    assert missing.iloc[0]["time"] == pd.Timestamp("2026-01-05T01:00:00Z")
 
 
 def test_missing_or_incomplete_constituents_are_rejected() -> None:

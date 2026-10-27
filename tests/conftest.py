@@ -55,12 +55,18 @@ def _isolate_live_safety(tmp_path, monkeypatch):
 
     reset_live_safety_for_tests()
     reset_skip_log_for_tests()
+    restore_strategy_runtime_defaults_for_tests()
+    # The legacy helper predates inactive defaults. Each test must explicitly
+    # activate its own synthetic strategy; collection order must grant nothing.
+    for strat in strategies.values():
+        strat.active = False
     pnl_before = {name: list(strat.pnl) for name, strat in strategies.items()}
     yield
     reset_live_safety_for_tests()
     reset_skip_log_for_tests()
     restore_strategy_runtime_defaults_for_tests()
     for name, strat in strategies.items():
+        strat.active = False
         if name in pnl_before:
             strat.pnl[:] = pnl_before[name]
 

@@ -20,7 +20,7 @@ from forex_bot.research.learning.regimes import (
 
 
 def _clock(count: int) -> np.ndarray:
-    return pd.date_range("2026-01-05", periods=count, freq="5min", tz="UTC").astype("int64").to_numpy()
+    return pd.date_range("2026-01-05", periods=count, freq="5min", tz="UTC").as_unit("ns").astype("int64").to_numpy(copy=True)
 
 
 def _flat(count: int, price: float = 1.10, spread: float = 0.0001) -> dict:
