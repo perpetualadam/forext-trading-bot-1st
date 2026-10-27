@@ -1,0 +1,35 @@
+{
+  "approved_root": "C:\\TradingResearchData\\OANDA",
+  "directories": [
+    "raw",
+    "validated",
+    "manifests",
+    "temporary_batches",
+    "research_outputs"
+  ],
+  "prepared": true,
+  "local_fixed_ntfs": true,
+  "outside_repository": true,
+  "outside_known_registered_sync_roots": true,
+  "root_and_created_directories_no_reparse_points": true,
+  "free_gib_approx": 152.8,
+  "protected_dacl": true,
+  "allowed_principals": [
+    "CurrentInteractiveUser",
+    "SYSTEM"
+  ],
+  "other_ordinary_user_grants": 0,
+  "representative_sandbox_listing": "DENIED",
+  "privileged_access_caveat": "SYSTEM and privileged administrators can access or take ownership; no absolute confidentiality claim",
+  "synthetic_atomic_publication": true,
+  "synthetic_hash_matches": true,
+  "synthetic_sha256": "46f0cb00f968ba4e4eac65e9588959b23f4a8d839667ec013852563ee97b7ccc",
+  "raw_files": 0,
+  "validated_files": 0,
+  "manifest_files": 0,
+  "market_data_files": 0,
+  "credential_files": 0,
+  "downloader_external_root_adapter": "NOT_IMPLEMENTED_V26_ROOT_POLICY_UNCHANGED",
+  "metadata_query_note": "Initial sandbox WMI query denied; host .NET DriveInfo supplied local filesystem/free-space metadata",
+  "verified_date_utc": "2026-10-27"
+}

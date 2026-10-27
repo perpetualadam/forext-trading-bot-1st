@@ -126,3 +126,18 @@ jobs:
           python-version: "3.12"
       - name: Run isolated synthetic read-only historical acquisition checks
         run: python -I -S -B data/research/trading_intelligence_v2/v26_run.py --tests
+
+  trading-intelligence-v26b-preparation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run isolated LIVE-host preparation and boundary checks
+        run: python -I -S -B data/research/trading_intelligence_v2/v26b_run.py --tests

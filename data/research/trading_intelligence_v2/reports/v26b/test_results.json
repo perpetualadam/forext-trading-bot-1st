@@ -1,0 +1,50 @@
+{
+  "windows": [
+    {
+      "suite": "v26b",
+      "tests": 46,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "exit_code": 0
+    },
+    {
+      "suite": "v26",
+      "tests": 99,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "exit_code": 0
+    }
+  ],
+  "ubuntu_v26b": {
+    "tests": 46,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "native_windows_storage": {
+    "atomic_publish": true,
+    "hash_verified": true,
+    "user_system_acl_verified": true,
+    "unprivileged_listing_denied": true
+  },
+  "authenticated_requests": 0,
+  "unauthenticated_api_probes": 0,
+  "boundary_limit": "Start-time models pass; completion-time model deliberately exposes one missing bar. Real contract unresolved.",
+  "source_retrieval_issues": [
+    "instrument-ep404",
+    "Direct API-licence and website-terms byte retrieval406; web PDF review succeeded"
+  ],
+  "earlier_command_issues": [
+    "Sandbox WMI metadata query denied; used host DriveInfo",
+    "Ignored-directory inventory traversal denied; used tracked-file inventory"
+  ],
+  "fresh_source_copy": {
+    "tests": 46,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "outputs_parent_initially_absent": true
+  }
+}

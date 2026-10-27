@@ -1,0 +1,79 @@
+[
+  {
+    "name": "instrument_endpoint",
+    "url": "https://developer.oanda.com/rest-live-v20/instrument-ep/",
+    "retrieved_utc": "2026-10-27T17:12:58.048105+00:00",
+    "status": 404,
+    "error": "PUBLIC_DOCUMENT_HTTP_ERROR"
+  },
+  {
+    "name": "pricing",
+    "url": "https://developer.oanda.com/rest-live-v20/pricing-ep/",
+    "retrieved_utc": "2026-10-27T17:12:58.336717+00:00",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "bytes": 67743,
+    "sha256": "6832e2154a1c663754fdc5536f4f222d56a9c6e81cda7dce41f3839131326174"
+  },
+  {
+    "name": "guide",
+    "url": "https://developer.oanda.com/rest-live-v20/development-guide/",
+    "retrieved_utc": "2026-10-27T17:12:58.663252+00:00",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "bytes": 39484,
+    "sha256": "a2583a4d7e438af7f858faf1e429ef8a80550dafc67d18d9c541f8b81c7a8ff1"
+  },
+  {
+    "name": "authentication",
+    "url": "https://developer.oanda.com/rest-live-v20/authentication/",
+    "retrieved_utc": "2026-10-27T17:12:58.863141+00:00",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "bytes": 36220,
+    "sha256": "73fcfe8dad5c89cef4c40736c64907e553fba135f82779e01096660299b72573"
+  },
+  {
+    "name": "candle_schema",
+    "url": "https://developer.oanda.com/rest-live-v20/instrument-df/",
+    "retrieved_utc": "2026-10-27T17:12:59.059685+00:00",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "bytes": 41409,
+    "sha256": "f6613dba71cd5753701d95783dfe19699594d0109df898de5ac83339f8af065c"
+  },
+  {
+    "name": "primitives",
+    "url": "https://developer.oanda.com/rest-live-v20/primitives-df/",
+    "retrieved_utc": "2026-10-27T17:12:59.291227+00:00",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "bytes": 55721,
+    "sha256": "5aa3d33cef6c3ac833ac92dd353e379d0fa97021c9eac4175f14726e5fdf7206"
+  },
+  {
+    "name": "openapi",
+    "url": "https://raw.githubusercontent.com/oanda/v20-openapi/master/yaml/v20.yaml",
+    "retrieved_utc": "2026-10-27T17:12:59.465762+00:00",
+    "status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "bytes": 619259,
+    "sha256": "f1a16f1ea81ea77189e1c61badadfdab4df464ae6b3214f1f4463f4a694b5f1e"
+  },
+  {
+    "name": "uk_api_license",
+    "url": "https://legal.oanda.com/?code=api_licence_agreement&language=en",
+    "retrieved_utc": "2026-10-27T17:13:00.955479+00:00",
+    "status": 406,
+    "error": "PUBLIC_DOCUMENT_HTTP_ERROR",
+    "web_review": "Official PDF readable through web document extraction; direct byte archival returned406, raw SHA256 unavailable"
+  },
+  {
+    "name": "uk_website_terms",
+    "url": "https://legal.oanda.com/?code=terms_of_use_oel&language=en",
+    "retrieved_utc": "2026-10-27T17:13:01.159054+00:00",
+    "status": 406,
+    "error": "PUBLIC_DOCUMENT_HTTP_ERROR",
+    "web_review": "Official PDF readable through web document extraction; direct byte archival returned406, raw SHA256 unavailable"
+  }
+]

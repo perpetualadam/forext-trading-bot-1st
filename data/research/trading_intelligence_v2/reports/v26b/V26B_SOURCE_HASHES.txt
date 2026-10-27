@@ -1,0 +1,26 @@
+SHA256 LF-normalized research source; no new operational seal
+oanda_history.py 0495121134c2338d149426b83498921d9e0273e9181e186642ebdd828edf6a4a
+oanda_history_transport.py 04999ef8ef5bba75c8cfd656b039e70116f3e1ec6ba1e2ca7a365a372e916d75
+oanda_history_resume.py c92309f5d2b836b9243cbcce91208d6c34e5c62c87f034581a06d485545de81d
+oanda_history_manifest.py c657612d72bdbeaf94ae808150190043379fc5daca56b4fccd25cf6e78139749
+oanda_history_integration.py 5594748fb27a28cf0789a6cec6fb64a4029a847c3d1976b20fe91778e487f016
+v26_run.py b2758f79792d48a8fd1189fc9a0ae55c9f2e9cb45ec8c5043bbb7777f8b580b3
+test_v26.py 4c417c9dd0b19e4b4e9dcd37f62eb2267e94a617f3d876fa91d03bdd9d210d69
+v26b_run.py a1dfe510331e6345226039956da259e8b8a61f8b10ccf8f9778e1cc6e48b10b5
+test_v26b.py 87643608583180389e6b3f28b64433579742304c8763471967267a8e4f0b219c
+
+Public raw documentation bytes (retrieved2026-10-27); unavailable is not a hash
+instrument_endpoint HTTP_404 UNAVAILABLE https://developer.oanda.com/rest-live-v20/instrument-ep/
+pricing HTTP_200 6832e2154a1c663754fdc5536f4f222d56a9c6e81cda7dce41f3839131326174 https://developer.oanda.com/rest-live-v20/pricing-ep/
+guide HTTP_200 a2583a4d7e438af7f858faf1e429ef8a80550dafc67d18d9c541f8b81c7a8ff1 https://developer.oanda.com/rest-live-v20/development-guide/
+authentication HTTP_200 73fcfe8dad5c89cef4c40736c64907e553fba135f82779e01096660299b72573 https://developer.oanda.com/rest-live-v20/authentication/
+candle_schema HTTP_200 f6613dba71cd5753701d95783dfe19699594d0109df898de5ac83339f8af065c https://developer.oanda.com/rest-live-v20/instrument-df/
+primitives HTTP_200 5aa3d33cef6c3ac833ac92dd353e379d0fa97021c9eac4175f14726e5fdf7206 https://developer.oanda.com/rest-live-v20/primitives-df/
+openapi HTTP_200 f1a16f1ea81ea77189e1c61badadfdab4df464ae6b3214f1f4463f4a694b5f1e https://raw.githubusercontent.com/oanda/v20-openapi/master/yaml/v20.yaml
+uk_api_license HTTP_406 UNAVAILABLE https://legal.oanda.com/?code=api_licence_agreement&language=en
+uk_website_terms HTTP_406 UNAVAILABLE https://legal.oanda.com/?code=terms_of_use_oel&language=en
+
+Protected operational raw bytes, unchanged; no new seal
+forex_bot/bot_loop.py 2f1c36dc025d114685e4424402f6866c66aa6eb37d28717027c502a4f447118d
+forex_bot/profit_protection.py d57dfce057eb8e5bd318fd6a1bb4f36a979c45e6d4cd664a51fdbc6a7f09b51f
+forex_bot/oanda_client.py e08b6df42bc9954e6558d48643fdaf3b66b92b1d255561909eb0100618826923
