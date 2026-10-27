@@ -1,0 +1,226 @@
+[
+  {
+    "pricing": "OBSERVED_BID_ASK_ONLY",
+    "timeframe": "M5",
+    "policy": "B_SPREAD_ATR",
+    "net_expectancy_difference": 1.267811161127402,
+    "net_portfolio_difference": 3381.250524234006
+  },
+  {
+    "pricing": "OBSERVED_BID_ASK_ONLY",
+    "timeframe": "M5",
+    "policy": "C_COST_TARGET",
+    "net_expectancy_difference": 0.0,
+    "net_portfolio_difference": 0.0
+  },
+  {
+    "pricing": "OBSERVED_BID_ASK_ONLY",
+    "timeframe": "M5",
+    "policy": "D_HTF",
+    "net_expectancy_difference": -3.2578269397527713,
+    "net_portfolio_difference": 3091.963279075155
+  },
+  {
+    "pricing": "OBSERVED_BID_ASK_ONLY",
+    "timeframe": "M5",
+    "policy": "E_EXACT_VOTES",
+    "net_expectancy_difference": 0.0,
+    "net_portfolio_difference": 0.0
+  },
+  {
+    "pricing": "OBSERVED_BID_ASK_ONLY",
+    "timeframe": "M15",
+    "policy": "B_SPREAD_ATR",
+    "net_expectancy_difference": 0.09928361498018745,
+    "net_portfolio_difference": 798.7319698606825
+  },
+  {
+    "pricing": "OBSERVED_BID_ASK_ONLY",
+    "timeframe": "M15",
+    "policy": "C_COST_TARGET",
+    "net_expectancy_difference": 0.0,
+    "net_portfolio_difference": 0.0
+  },
+  {
+    "pricing": "OBSERVED_BID_ASK_ONLY",
+    "timeframe": "M15",
+    "policy": "D_HTF",
+    "net_expectancy_difference": -2.910317482207606,
+    "net_portfolio_difference": 1200.5009453965054
+  },
+  {
+    "pricing": "OBSERVED_BID_ASK_ONLY",
+    "timeframe": "M15",
+    "policy": "E_EXACT_VOTES",
+    "net_expectancy_difference": 0.0,
+    "net_portfolio_difference": 0.0
+  },
+  {
+    "pricing": "OBSERVED_BID_ASK_ONLY",
+    "timeframe": "H1",
+    "policy": "B_SPREAD_ATR",
+    "net_expectancy_difference": -0.4474092588016738,
+    "net_portfolio_difference": -64.66801318266062
+  },
+  {
+    "pricing": "OBSERVED_BID_ASK_ONLY",
+    "timeframe": "H1",
+    "policy": "C_COST_TARGET",
+    "net_expectancy_difference": 0.0,
+    "net_portfolio_difference": 0.0
+  },
+  {
+    "pricing": "OBSERVED_BID_ASK_ONLY",
+    "timeframe": "H1",
+    "policy": "D_HTF",
+    "net_expectancy_difference": -3.5128957645522796,
+    "net_portfolio_difference": 59.223608364731945
+  },
+  {
+    "pricing": "OBSERVED_BID_ASK_ONLY",
+    "timeframe": "H1",
+    "policy": "E_EXACT_VOTES",
+    "net_expectancy_difference": 0.0,
+    "net_portfolio_difference": 0.0
+  },
+  {
+    "pricing": "OBSERVED_BID_ASK_ONLY",
+    "timeframe": "H4",
+    "policy": "B_SPREAD_ATR",
+    "net_expectancy_difference": 0.0,
+    "net_portfolio_difference": 0.0
+  },
+  {
+    "pricing": "OBSERVED_BID_ASK_ONLY",
+    "timeframe": "H4",
+    "policy": "C_COST_TARGET",
+    "net_expectancy_difference": 0.0,
+    "net_portfolio_difference": 0.0
+  },
+  {
+    "pricing": "OBSERVED_BID_ASK_ONLY",
+    "timeframe": "H4",
+    "policy": "D_HTF",
+    "net_expectancy_difference": 2.1241081460056024,
+    "net_portfolio_difference": 93.02747074105754
+  },
+  {
+    "pricing": "OBSERVED_BID_ASK_ONLY",
+    "timeframe": "H4",
+    "policy": "E_EXACT_VOTES",
+    "net_expectancy_difference": 0.0,
+    "net_portfolio_difference": 0.0
+  },
+  {
+    "pricing": "HYPOTHETICAL_STRESS",
+    "timeframe": "M5",
+    "policy": "B_SPREAD_ATR",
+    "net_expectancy_difference": 2.1063093157592636,
+    "net_portfolio_difference": 5956.553808728766
+  },
+  {
+    "pricing": "HYPOTHETICAL_STRESS",
+    "timeframe": "M5",
+    "policy": "C_COST_TARGET",
+    "net_expectancy_difference": 0.8284891367477005,
+    "net_portfolio_difference": 2976.668845652751
+  },
+  {
+    "pricing": "HYPOTHETICAL_STRESS",
+    "timeframe": "M5",
+    "policy": "D_HTF",
+    "net_expectancy_difference": -3.6618193490170707,
+    "net_portfolio_difference": 5677.49670784256
+  },
+  {
+    "pricing": "HYPOTHETICAL_STRESS",
+    "timeframe": "M5",
+    "policy": "E_EXACT_VOTES",
+    "net_expectancy_difference": 0.0,
+    "net_portfolio_difference": 0.0
+  },
+  {
+    "pricing": "HYPOTHETICAL_STRESS",
+    "timeframe": "M15",
+    "policy": "B_SPREAD_ATR",
+    "net_expectancy_difference": 1.0293275818958056,
+    "net_portfolio_difference": 1797.851283282022
+  },
+  {
+    "pricing": "HYPOTHETICAL_STRESS",
+    "timeframe": "M15",
+    "policy": "C_COST_TARGET",
+    "net_expectancy_difference": 0.227927899327109,
+    "net_portfolio_difference": 417.4372945903219
+  },
+  {
+    "pricing": "HYPOTHETICAL_STRESS",
+    "timeframe": "M15",
+    "policy": "D_HTF",
+    "net_expectancy_difference": -3.121109521567612,
+    "net_portfolio_difference": 2501.90360584072
+  },
+  {
+    "pricing": "HYPOTHETICAL_STRESS",
+    "timeframe": "M15",
+    "policy": "E_EXACT_VOTES",
+    "net_expectancy_difference": 0.0,
+    "net_portfolio_difference": 0.0
+  },
+  {
+    "pricing": "HYPOTHETICAL_STRESS",
+    "timeframe": "H1",
+    "policy": "B_SPREAD_ATR",
+    "net_expectancy_difference": -0.34836700177967295,
+    "net_portfolio_difference": -48.21143614285688
+  },
+  {
+    "pricing": "HYPOTHETICAL_STRESS",
+    "timeframe": "H1",
+    "policy": "C_COST_TARGET",
+    "net_expectancy_difference": 0.0,
+    "net_portfolio_difference": 0.0
+  },
+  {
+    "pricing": "HYPOTHETICAL_STRESS",
+    "timeframe": "H1",
+    "policy": "D_HTF",
+    "net_expectancy_difference": -3.528579635674954,
+    "net_portfolio_difference": 216.83165723021648
+  },
+  {
+    "pricing": "HYPOTHETICAL_STRESS",
+    "timeframe": "H1",
+    "policy": "E_EXACT_VOTES",
+    "net_expectancy_difference": 0.0,
+    "net_portfolio_difference": 0.0
+  },
+  {
+    "pricing": "HYPOTHETICAL_STRESS",
+    "timeframe": "H4",
+    "policy": "B_SPREAD_ATR",
+    "net_expectancy_difference": 0.0,
+    "net_portfolio_difference": 0.0
+  },
+  {
+    "pricing": "HYPOTHETICAL_STRESS",
+    "timeframe": "H4",
+    "policy": "C_COST_TARGET",
+    "net_expectancy_difference": 0.0,
+    "net_portfolio_difference": 0.0
+  },
+  {
+    "pricing": "HYPOTHETICAL_STRESS",
+    "timeframe": "H4",
+    "policy": "D_HTF",
+    "net_expectancy_difference": 2.012933655378192,
+    "net_portfolio_difference": 106.59689732685801
+  },
+  {
+    "pricing": "HYPOTHETICAL_STRESS",
+    "timeframe": "H4",
+    "policy": "E_EXACT_VOTES",
+    "net_expectancy_difference": 0.0,
+    "net_portfolio_difference": 0.0
+  }
+]

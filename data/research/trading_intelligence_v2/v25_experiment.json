@@ -1,0 +1,59 @@
+{
+  "costs": "Reuse V24 execution and independent Decimal ledger; no separate spread debit",
+  "data": "Existing 29-day archive, PREVIOUSLY_EXAMINED; no tuning, fitting or independent inference",
+  "disabled_scenarios": [
+    "DOCUMENTED_SPREAD_ONLY",
+    "DOCUMENTED_COMMISSION_PLAN"
+  ],
+  "hold": {
+    "H1": 4,
+    "H4": 4,
+    "M15": 4,
+    "M5": 12
+  },
+  "original_control": {
+    "commission": 3,
+    "slippage": 0.2
+  },
+  "policies": {
+    "A": "Unchanged baseline",
+    "B": {
+      "spread_atr_max": 0.25
+    },
+    "C": {
+      "cost_target_max": 0.25
+    },
+    "D": "All completed M15/H1/H4 trend states agree; unavailable abstains",
+    "E": "Exact same-time predicate votes only; no cross-time suppression, no scalp/trend equivalence claim",
+    "F": "Disabled without fresh training and validation"
+  },
+  "pricing": {
+    "HYPOTHETICAL_STRESS": {
+      "commission": 3,
+      "slippage": 0.5
+    },
+    "OBSERVED_BID_ASK_ONLY": {
+      "commission": 0,
+      "slippage": 0
+    }
+  },
+  "protection": "Unmodified source; fixed A-only comparison under both pricing cases",
+  "selector": "No actual fitting: independent data unavailable; synthetic lifecycle only",
+  "statistics": {
+    "block_days": 2,
+    "family": 32,
+    "purpose": "Exploratory paired daily portfolio differences; no advantage claim",
+    "repeats": 2000,
+    "seed": 25
+  },
+  "status": "DESIGN_INFORMED_BY_PREVIOUSLY_EXAMINED_HISTORY_NOT_INDEPENDENT_PREREGISTRATION",
+  "strategies": "Trend portfolio across four timeframes; other five M5 standalone-strategy portfolios unfiltered for frequency diagnostics only",
+  "threshold_rationale": "Two fixed illustrative quarter-budget hypotheses; no threshold search, no statistical optimality claim. Frozen before first V25 archive replay.",
+  "timeframes": [
+    "M5",
+    "M15",
+    "H1",
+    "H4"
+  ],
+  "version": "V25_FIXED_EXPLORATORY_1"
+}

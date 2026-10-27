@@ -1,0 +1,17 @@
+{
+  "classification": "TIV25_COST_AWARE_RESEARCH_PARTIALLY_VERIFIED",
+  "complete_identical_replays": 2,
+  "scenario_count": 57,
+  "ledger_records": 19356,
+  "max_ledger_residual": 1.3362e-11,
+  "records_sha256": "31f1db65c44aa3708127e97e90a210330e4a273cb1c06fa734d7bd0e20d96589",
+  "trade_ledger_digest": "0d4094b3a3227f9ac9307cc31bb8f3b16c9c57850f6052d2f287931397b4d343",
+  "protocol_sha256": "c2ec6d678f2da41eb3ce223f0ee58267c93d1b74eb668485288c9996caae4be3",
+  "preserved_existing_raw_hashes": 124,
+  "source_receipt_matches_final_source": true,
+  "production_authorised": false,
+  "operational_raw_hashes": {
+    "bot_loop.py": "2f1c36dc025d114685e4424402f6866c66aa6eb37d28717027c502a4f447118d",
+    "profit_protection.py": "d57dfce057eb8e5bd318fd6a1bb4f36a979c45e6d4cd664a51fdbc6a7f09b51f"
+  }
+}

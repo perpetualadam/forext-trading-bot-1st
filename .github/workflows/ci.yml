@@ -96,3 +96,18 @@ jobs:
           python-version: "3.12"
       - name: Run isolated cost-accounting and execution checks
         run: python -I -S -B data/research/trading_intelligence_v2/v24_run.py --v24-tests
+
+  trading-intelligence-v25-decisions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run isolated causal cost-aware decision checks
+        run: python -I -S -B data/research/trading_intelligence_v2/v25_run.py --v25-tests
