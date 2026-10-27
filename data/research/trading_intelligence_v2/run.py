@@ -28,7 +28,9 @@ SOURCES = {ROOT / p for p in (
     "forex_bot/ai_ensemble.py", "forex_bot/rl_agent.py", "forex_bot/profit_protection.py",
     "forex_bot/indicators.py", "forex_bot/trading.py")}
 INPUTS = [ROOT / "data/historical", ROOT / "data/research/adaptive_ensemble/g3"]
-WRITES = [PACKAGE / "outputs", PACKAGE / "reports", TEMP]
+MTF_MODE=sys.argv[1:] in (["--mtf-tests"],["--mtf-evaluate"])
+WRITES = ([PACKAGE / "outputs/mtf", PACKAGE / "reports/mtf", TEMP] if MTF_MODE
+          else [PACKAGE / "outputs", PACKAGE / "reports", TEMP])
 
 
 def inside(path, roots):
@@ -66,8 +68,9 @@ spec = importlib.util.spec_from_file_location("tiv2", PACKAGE / "__init__.py", s
 module = importlib.util.module_from_spec(spec)
 sys.modules['tiv2'] = module
 spec.loader.exec_module(module)
-if sys.argv[1:] == ["--tests"]:
-    tests_spec = importlib.util.spec_from_file_location("tiv2.test_contract", PACKAGE / "test_contract.py")
+if sys.argv[1:] in (["--tests"],["--mtf-tests"]):
+    test_name='test_mtf' if MTF_MODE else 'test_contract'
+    tests_spec = importlib.util.spec_from_file_location("tiv2."+test_name, PACKAGE / (test_name+'.py'))
     tests = importlib.util.module_from_spec(tests_spec)
     sys.modules[tests_spec.name] = tests
     tests.TEMP = TEMP
@@ -79,5 +82,8 @@ if sys.argv[1:] == ["--tests"]:
 elif sys.argv[1:] == ["--evaluate"]:
     from tiv2.study import run
     run(ROOT, PACKAGE)
+elif sys.argv[1:] == ["--mtf-evaluate"]:
+    from tiv2.mtf_walkforward import run
+    run(ROOT, PACKAGE)
 else:
-    raise SystemExit("usage: python -I -S -B data/research/trading_intelligence_v2/run.py --tests|--evaluate")
+    raise SystemExit("usage: python -I -S -B data/research/trading_intelligence_v2/run.py --tests|--evaluate|--mtf-tests|--mtf-evaluate")

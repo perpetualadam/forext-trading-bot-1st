@@ -117,7 +117,7 @@ def read_csv(path):
     return bars, quality
 
 
-def features(bars, lookback):
+def features(bars, lookback, *, step_seconds=300, weekend_continuity=False):
     """Stdlib adapter of compute_indicators' warmed-up MA/ATR/BB formulas.
 
     Only periods used by the existing shadow rule are computed. Unchanged
@@ -134,7 +134,12 @@ def features(bars, lookback):
     fast, slow, atr_n = max(3, lookback // 10), max(4, lookback // 2), max(7, min(30, lookback // 5))
     previous = None
     for i, b in enumerate(bars):
-        if previous is not None and b.t - previous.t != 300:
+        weekend_gap = (previous is not None and weekend_continuity
+                       and 86400 <= b.t - previous.t <= 3 * 86400
+                       and utc(previous.t).weekday() == 4 and utc(previous.t).hour >= 16
+                       and ((utc(b.t).weekday() == 6 and utc(b.t).hour >= 20)
+                            or (utc(b.t).weekday() == 0 and utc(b.t).hour <= 4)))
+        if previous is not None and b.t - previous.t != step_seconds and not weekend_gap:
             closes.clear(); ranges.clear(); history.clear(); prior_atrs.clear()
         tr = b.h - b.l if not history else max(b.h - b.l, abs(b.h - history[-1].c), abs(b.l - history[-1].c))
         highs = [r.h for r in list(history)[-20:]]

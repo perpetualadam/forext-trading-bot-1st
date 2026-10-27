@@ -1,0 +1,8 @@
+# Chronological walk-forward
+
+- Fold 1: train ['2026-09-01T00:00:00+00:00', '2026-09-19T03:30:00+00:00']; validation ['2026-09-21T03:30:00+00:00', '2026-09-23T09:20:00+00:00']; test ['2026-09-25T09:20:00+00:00', '2026-10-01T15:15:00+00:00'].
+- Fold 2: train ['2026-09-01T00:00:00+00:00', '2026-09-23T09:20:00+00:00']; validation ['2026-09-25T09:20:00+00:00', '2026-09-29T15:15:00+00:00']; test ['2026-10-01T15:15:00+00:00', '2026-10-09T07:05:00+00:00'].
+
+The original TIV2 nonoverlapping test windows remain identical across candidates. Train/validation end 48 hours before the next partition (maximum candidate holding horizon: 12 H4 bars). Every replay starts and ends flat; no training/validation trade enters a test account. The purge is deliberately conservative with daily flattening; it reduces an already short fitting sample. Causal indicator warm-up may read earlier observed history, never future labels. Training weights/context maps and validation holding choices are persisted before each test begins. The final 20% is chronologically held out of this fit, but had already been examined in TIV2; no new untouched final period is available. All 144 normal-cost M5 baseline cells matched original metrics exactly. Results are exploratory, not independent confirmation.
+
+Classification: TIV22_MTF_RESEARCH_PARTIALLY_VERIFIED. Production NO-GO. Archived-market replay, not broker fills. This 29-day archive was already examined during TIV2; these are chronologically out-of-fit comparisons, not a fresh independently untouched dataset. No reliable profitability or operational advantage is established.

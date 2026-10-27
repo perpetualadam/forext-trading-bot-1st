@@ -1,0 +1,2036 @@
+[
+  {
+    "final_rules": [],
+    "fold": 1,
+    "holding": [
+      {
+        "holding": 12,
+        "pair": "EUR_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "scalp",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "EUR_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "EUR_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "EUR_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "EUR_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "EUR_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_breakout",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 12,
+        "pair": "GBP_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "scalp",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "GBP_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "GBP_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "GBP_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "GBP_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "GBP_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_breakout",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_JPY",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "scalp",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_JPY",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_JPY",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_JPY",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_JPY",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_JPY",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_breakout",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 12,
+        "pair": "AUD_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "scalp",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "AUD_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "AUD_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "AUD_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "AUD_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "AUD_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_breakout",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CAD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "scalp",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CAD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CAD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CAD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CAD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CAD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_breakout",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CHF",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "scalp",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CHF",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CHF",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CHF",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CHF",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CHF",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_breakout",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H4"
+      }
+    ],
+    "train_end": 1789788600,
+    "train_rules": [],
+    "validation_end": 1790155200
+  },
+  {
+    "final_rules": [],
+    "fold": 2,
+    "holding": [
+      {
+        "holding": 12,
+        "pair": "EUR_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "scalp",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "EUR_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "EUR_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "EUR_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "EUR_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "EUR_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_breakout",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "EUR_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 12,
+        "pair": "GBP_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "scalp",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "GBP_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "GBP_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "GBP_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "GBP_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "GBP_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_breakout",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "GBP_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_JPY",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "scalp",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_JPY",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_JPY",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_JPY",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_JPY",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_JPY",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_breakout",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_JPY",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 12,
+        "pair": "AUD_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "scalp",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "AUD_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "AUD_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "AUD_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "AUD_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "AUD_USD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_breakout",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "AUD_USD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CAD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "scalp",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CAD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CAD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CAD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CAD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CAD",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_breakout",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CAD",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CHF",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "scalp",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CHF",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CHF",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CHF",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_trend",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CHF",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 12,
+        "pair": "USD_CHF",
+        "status": "IMMUTABLE_TIV2_BASELINE",
+        "strategy": "swing_breakout",
+        "timeframe": "M5"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "M15"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H1"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "scalp",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_trend",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_mean_reversion",
+        "timeframe": "H4"
+      },
+      {
+        "holding": 4,
+        "pair": "USD_CHF",
+        "status": "PREDECLARED_FALLBACK_NOT_VALIDATED",
+        "strategy": "swing_breakout",
+        "timeframe": "H4"
+      }
+    ],
+    "train_end": 1790155200,
+    "train_rules": [],
+    "validation_end": 1790694900
+  }
+]

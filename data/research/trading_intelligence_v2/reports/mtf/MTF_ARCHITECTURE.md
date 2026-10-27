@@ -1,0 +1,7 @@
+# Research architecture
+
+Baseline main 0b246c254a37394f4a1c0b348d7210a8fc65c95a. Existing three scheduler modifications and untracked exposure documents/reports were preserved. No scheduler contents, credentials, journals, model stores, broker endpoints or operational execution modules were accessed by the runner. Original TIV2 reports and machine summary are read-only in MTF mode.
+
+Executable path: run.py --mtf-evaluate -> original study.acquire (local archive verification) -> timeframes.aggregate -> mtf_features.prepare/Provider -> unchanged shadow rule definitions through Existing -> existing engine.run M5 event phases -> mtf_selector training and validation veto -> frozen OOS comparison -> mtf_statistics -> mtf_reporting. Engine extension accepts completed signal bundles and per-position holding limits; fill ordering, FX, cash risk, USD slots, margin and exit rules are shared. Optional hook defaults preserve the original path. No parallel fill simulator, operational selector or broker management authority was added. M5-only native execution is checked against every matching original baseline test cell before results are accepted.
+
+Classification: TIV22_MTF_RESEARCH_PARTIALLY_VERIFIED. Production NO-GO. Archived-market replay, not broker fills. This 29-day archive was already examined during TIV2; these are chronologically out-of-fit comparisons, not a fresh independently untouched dataset. No reliable profitability or operational advantage is established.

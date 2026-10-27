@@ -85,7 +85,8 @@ def metrics(trades, marks=(), initial=10000):
 
 
 def run(data, packs, existing, window, *, strategy='trend', policy=Filter(), protection=False,
-        config=Config(), instruments=None, weights=None, record=None, entry_geometry='atr_research'):
+        config=Config(), instruments=None, weights=None, record=None, entry_geometry='atr_research',
+        decision_provider=None, cost_breakdown=False):
     """Events: open quotes -> opening exits -> entries -> intrabar -> closes.
 
     No capacity or P/L from a later bar phase can fund an earlier entry. All
@@ -155,6 +156,12 @@ def run(data, packs, existing, window, *, strategy='trend', policy=Filter(), pro
                  'exit_reason': reason, 'protection': protection,
                  'protected_exit_pips': getattr(p, 'profit_protection_exit_pips', None),
                  'funding_assumption_account': funding}
+        if decision_provider is not None or cost_breakdown:
+            spread_cost=-quotes.convert(-(p.entry_spread+spread)*p.units/2,quote,cfg.account,when,override=fx)
+            slippage_cost=-quotes.convert(-2*slip*p.units,quote,cfg.account,when,override=fx)
+            trade.update(spread_cost_account=spread_cost,slippage_cost_account=slippage_cost,
+                         commission_account=p.entry_fee+fees,
+                         conversion_cost_residual=trade['cost_account']-spread_cost-slippage_cost-p.entry_fee-fees-funding)
         trades.append(trade)
         if record:
             record('trade', trade)
@@ -188,7 +195,12 @@ def run(data, packs, existing, window, *, strategy='trend', policy=Filter(), pro
                 count_reason('NO_CONTIGUOUS_COMPLETED_SIGNAL'); continue
             j = i - 1
             selected = strategy
-            if strategy == 'hybrid_research':
+            supplied = decision_provider(pair, t) if decision_provider is not None else None
+            if decision_provider is not None and supplied is None:
+                count_reason('MTF_WAIT_OR_ABSTAIN'); continue
+            if supplied is not None:
+                selected = supplied['strategy']
+            elif strategy == 'hybrid_research':
                 base = packs[pair][50]
                 family = existing.hybrid_family(base['atr'][j], base['atr_median'][j])
                 names = ('scalp', 'trend', 'mean_reversion') if family == 'scalp' else ('swing_trend', 'swing_mean_reversion', 'swing_breakout')
@@ -198,7 +210,14 @@ def run(data, packs, existing, window, *, strategy='trend', policy=Filter(), pro
             if selected is None:
                 count_reason('TRAIN_VALIDATION_ABSTAIN'); continue
             lb = 100 if selected.startswith('swing_') else 50
-            pack = packs[pair][lb]
+            pack = supplied['pack'] if supplied is not None else packs[pair][lb]
+            if supplied is not None:
+                j = supplied['index']
+            signal_bar = supplied['bar'] if supplied is not None else data[pair][j]
+            if supplied is not None and (supplied['metadata']['signal_available_at']!=t
+                    or signal_bar.t>=t or signal_bar.complete is not True
+                    or type(supplied['hold_bars']) is not int or supplied['hold_bars']<1):
+                raise ResearchRejected('invalid_or_future_MTF_decision')
             side, detail = existing.signal(selected, j, pack)
             if side is None:
                 count_reason(str(detail)); continue
@@ -207,17 +226,19 @@ def run(data, packs, existing, window, *, strategy='trend', policy=Filter(), pro
             target_distance=stop_distance*cfg.reward_risk
             if entry_geometry=='source_default':
                 stop_distance,target_distance=existing.entry_distances(pair,atr)
-            candidate = {'pair': pair, 'signal_time': t, 'bar_start': data[pair][j].t,
+            candidate = {'pair': pair, 'signal_time': t, 'bar_start': signal_bar.t,
                          'strategy': selected, 'direction': side, 'signal_detail': str(detail),
                          'regime': pack['regime'][j], 'volatility': pack['volatility'][j],
                          'momentum': pack['momentum'][j], 'confidence': None,
-                         'entry_reference': (data[pair][j].bc + data[pair][j].ac) / 2,
+                         'entry_reference': (signal_bar.bc + signal_bar.ac) / 2,
                          'stop_distance': stop_distance, 'target_distance': target_distance,
                          'entry_geometry':entry_geometry,
-                         'spread_reference': data[pair][j].ac - data[pair][j].bc,
+                         'spread_reference': signal_bar.ac - signal_bar.bc,
                          'slippage_pips_side': cfg.slippage_pips, 'expected_reward_risk': cfg.reward_risk,
                          'atr': atr, 'data_quality': 'COMPLETE_OBSERVED_BID_ASK', 'session': session(t)}
-            reason = quality_filter(selected, pack, j, data[pair][j], policy)
+            if supplied is not None:
+                candidate.update(supplied['metadata'])
+            reason = quality_filter(selected, pack, j, signal_bar, policy)
             clock = utc(t)
             cutoff = cfg.flatten_hour_utc * 60 + cfg.flatten_minute
             if clock.weekday() >= 5 or clock.hour * 60 + clock.minute >= cutoff:
@@ -263,6 +284,8 @@ def run(data, packs, existing, window, *, strategy='trend', policy=Filter(), pro
                                 entry_fee=fee_unit * units, initial_risk=risk_unit * units,
                                 notional=notional_unit * units, margin=notional_unit * units / cfg.leverage,
                                 max_profit_pips=0.0, pending=None, candidate=candidate)
+            p.hold_bars = supplied['hold_bars'] if supplied is not None else cfg.max_hold_bars
+            p.entry_spread=b.ao-b.bo
             cash -= p.entry_fee
             positions[pair] = p
             peaks['positions'] = max(peaks['positions'], len(positions))
@@ -288,7 +311,7 @@ def run(data, packs, existing, window, *, strategy='trend', policy=Filter(), pro
             p = positions[pair]
             clock = utc(t + 300)
             if (clock.hour * 60 + clock.minute >= cfg.flatten_hour_utc * 60 + cfg.flatten_minute
-                    or t + 300 - p.open_time >= cfg.max_hold_bars * 300 or t + 300 >= window[1]):
+                    or t + 300 - p.open_time >= p.hold_bars * 300 or t + 300 >= window[1]):
                 close(pair, b, b.bc if p.sign == 1 else b.ac, t + 300, 'TIME_OR_SESSION_EXIT')
                 continue
             if protection:

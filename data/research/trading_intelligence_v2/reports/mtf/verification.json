@@ -1,0 +1,100 @@
+{
+  "classification": "TIV22_MTF_RESEARCH_PARTIALLY_VERIFIED",
+  "production": "NO-GO",
+  "baseline_head": "0b246c254a37394f4a1c0b348d7210a8fc65c95a",
+  "local_checks": [
+    {
+      "command": "python -I -S -B data/research/trading_intelligence_v2/run.py --mtf-tests",
+      "runtime": "Windows Python 3.13.5",
+      "passed": 73,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "command": "wsl -d Ubuntu --exec /usr/bin/python3 -I -S -B <repository>/data/research/trading_intelligence_v2/run.py --mtf-tests",
+      "runtime": "Ubuntu Python 3.12.3",
+      "passed": 73,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "command": "python -I -S -B data/research/trading_intelligence_v2/run.py --tests",
+      "passed": 72,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "command": "python -I -S -B offline_exposure/run_checks.py",
+      "passed": 57,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "source_integrity": {
+    "existing_files_checked": 488,
+    "changed_existing_files": [
+      ".github/workflows/ci.yml",
+      "data/research/trading_intelligence_v2/core.py",
+      "data/research/trading_intelligence_v2/engine.py",
+      "data/research/trading_intelligence_v2/run.py"
+    ],
+    "original_report_artifacts_preserved": 16,
+    "operational_source_changes": [],
+    "protected_raw_hashes": {
+      "forex_bot/bot_loop.py": "2f1c36dc025d114685e4424402f6866c66aa6eb37d28717027c502a4f447118d",
+      "forex_bot/profit_protection.py": "d57dfce057eb8e5bd318fd6a1bb4f36a979c45e6d4cd664a51fdbc6a7f09b51f"
+    }
+  },
+  "reproducibility": {
+    "prior_complete_replays": 2,
+    "prior_repeated_record_hash": "8019cf19e0e201ec5b0f66d5f93934c50b677ad42a2235d877558dcac038f67b",
+    "classification_rows_corrected": 134800,
+    "final_record_hash": "be2f2be103a3971e84af0dfc312d0f79d9bc0f1c676aa7c27e829bed3a8ea3b4",
+    "independently_transformed_stream_hash_matches": true,
+    "economic_result_rows_unchanged": 3940,
+    "original_M5_baseline_cells_exact": 144,
+    "final_complete_replays": 2,
+    "final_repeated_record_hash": "be2f2be103a3971e84af0dfc312d0f79d9bc0f1c676aa7c27e829bed3a8ea3b4",
+    "final_source_hashes_verified": true
+  },
+  "study": {
+    "scenarios": 3940,
+    "unhandled_errors": 0,
+    "paired_comparisons": 1312,
+    "minimum_holm_adjusted_p": 1,
+    "D1_performance": "UNAVAILABLE",
+    "historical_months_independently_attested": "NOT_ESTABLISHED"
+  },
+  "publication": "Exact commit and hosted job conclusions are verified after publication and reported in the completion response; local passes are not hosted verification.",
+  "resolved_development_failures": [
+    {
+      "test": "test_opposing_entry_and_single_context_labelled_conflict",
+      "red_run": {
+        "tests": 71,
+        "failures": 1,
+        "errors": 0,
+        "skips": 0
+      },
+      "cause": "Opposed entry/context correctly rejected but logged SELL instead of CONFLICT",
+      "correction": "Explicit CONFLICT label; no trade, return, risk, selection or timing changes"
+    },
+    {
+      "tests": [
+        "test_truthy_completion_is_not_complete",
+        "test_boolean_prices_are_not_market_prices"
+      ],
+      "red_run": {
+        "tests": 73,
+        "failures": 4,
+        "errors": 0,
+        "skips": 0
+      },
+      "cause": "Truthy completion flags and boolean OHLC values were accepted by the pure aggregation API",
+      "correction": "Require an explicit True completion flag, integer UTC timestamps and numeric non-boolean prices before aggregation; verified archive unchanged"
+    }
+  ]
+}

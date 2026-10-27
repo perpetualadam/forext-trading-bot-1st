@@ -1,0 +1,19 @@
+{
+  "baseline_head": "0b246c254a37394f4a1c0b348d7210a8fc65c95a",
+  "entry_timeframes": ["M5", "M15", "H1", "H4"],
+  "D1_performance": "DISABLED_UNVERIFIED_SESSION_CALENDAR_AND_INSUFFICIENT_DURATION",
+  "holding_candidates_entry_bars": {"M5": [12], "M15": [4, 12], "H1": [4, 12], "H4": [4, 12]},
+  "fallback_holding_entry_bars": {"M5": 12, "M15": 4, "H1": 4, "H4": 4},
+  "purge_seconds": 172800,
+  "execution_geometry": "atr_research",
+  "base_slippage_pips_side": 0.2,
+  "stress_slippage_pips_side": 0.5,
+  "commission_account_per_100k_side": 3,
+  "context_minimum_train_trades": 10,
+  "validation_minimum_trades": 20,
+  "selection_lower_bound_multiplier": 1.96,
+  "context_trend_strength_atr": 0.5,
+  "bootstrap_repeats": 2000,
+  "bootstrap_seed": 22,
+  "production_integration": false
+}
