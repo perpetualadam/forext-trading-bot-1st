@@ -14,5 +14,32 @@
     "profit_protection.py": "d57dfce057eb8e5bd318fd6a1bb4f36a979c45e6d4cd664a51fdbc6a7f09b51f",
     "oanda_client.py": "e08b6df42bc9954e6558d48643fdaf3b66b92b1d255561909eb0100618826923"
   },
-  "production_authorised": false
+  "production_authorised": false,
+  "fresh_checkout_regression": {
+    "windows": {
+      "tests": 99,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "outputs_parent_absent_before": true
+    },
+    "ubuntu": {
+      "tests": 99,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "outputs_parent_absent_before": true
+    }
+  },
+  "initial_hosted_failure": {
+    "run_id": 40542848799,
+    "commit": "7eb8aeaedd5b1d1f98451f4e2fe6c59199b48416",
+    "job": "trading-intelligence-v26-history",
+    "tests": 99,
+    "failures": 0,
+    "errors": 20,
+    "skips": 0,
+    "cause": "Ignored outputs parent missing in clean checkout; audit correctly refused parent creation",
+    "correction": "Bootstrap four fixed structural directories before audit installation; no data access allowance changed"
+  }
 }

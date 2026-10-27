@@ -249,7 +249,7 @@ Targeted tests exercise allowlists before send, redirects, token redaction, scop
 approval refusal, mocked HTTPS backend, rate/retry/timeout budgets, cancellation,
 JSON/price/time validation, partial publication, original retrieval-time resume,
 hash tampering, writer exclusion, six-pair aggregation and independence gates.
-Executed results and earlier-version regressions are recorded in test_results.json;
+Initial hosted V26 run on7eb8aea:99 tests,20 setup errors because the ignored outputs parent did not exist in a clean checkout. Fixed structural-directory bootstrap before audit installation; no access barrier widened. A separate fresh-copy run reproduces clean-checkout conditions. Executed results and earlier-version regressions are recorded in test_results.json;
 cross-platform findings and raw source preservation are in verification.json.
 Hosted outcomes are recorded separately after publication. Historical full-suite
 failures remain visible; overall CI must not be described as green if they persist.''',

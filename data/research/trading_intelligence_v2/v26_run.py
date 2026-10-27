@@ -67,6 +67,13 @@ def audit(event, args):
             raise PermissionError("TIV2_MUTATION_BLOCKED")
 
 
+# Bootstrap only these fixed structural directories before the audit hook.
+# A clean checkout has no ignored outputs/ parent; no data files are opened here.
+for directory in (PACKAGE/'outputs', PACKAGE/'outputs/v26', PACKAGE/'reports', PACKAGE/'reports/v26'):
+    if directory.is_symlink() or getattr(directory,'is_junction',lambda:False)() or directory.resolve()!=directory:
+        raise PermissionError('TIV26_BOOTSTRAP_LINK_REFUSED')
+    directory.mkdir(exist_ok=True)
+
 sys.addaudithook(audit)
 spec = importlib.util.spec_from_file_location("tiv2", PACKAGE / "__init__.py", submodule_search_locations=[str(PACKAGE)])
 module = importlib.util.module_from_spec(spec)

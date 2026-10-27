@@ -66,6 +66,34 @@
   "authenticated_requests": 0,
   "broker_data_acquisition": "NOT_EXECUTED",
   "independent_results": "NOT_EXECUTED",
-  "development_failures": [],
-  "hosted_evidence": "Recorded separately after publication"
+  "development_failures": [
+    {
+      "run_id": 40542848799,
+      "commit": "7eb8aeaedd5b1d1f98451f4e2fe6c59199b48416",
+      "job": "trading-intelligence-v26-history",
+      "tests": 99,
+      "failures": 0,
+      "errors": 20,
+      "skips": 0,
+      "cause": "Ignored outputs parent missing in clean checkout; audit correctly refused parent creation",
+      "correction": "Bootstrap four fixed structural directories before audit installation; no data access allowance changed"
+    }
+  ],
+  "hosted_evidence": "Recorded separately after publication",
+  "fresh_checkout_regression": {
+    "windows": {
+      "tests": 99,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "outputs_parent_absent_before": true
+    },
+    "ubuntu": {
+      "tests": 99,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "outputs_parent_absent_before": true
+    }
+  }
 }
