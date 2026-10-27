@@ -124,30 +124,44 @@ class CandleTransport:
         approved_request(method,host,path,params)
         import http.client
         import ssl
-        from urllib.parse import urlencode
         connection=None
         try:
             deadline=time.monotonic()+30
             connection=http.client.HTTPSConnection(host,timeout=15,context=ssl.create_default_context())
-            connection.request('GET',path+'?'+urlencode(params),headers={
-                'Authorization':'Bearer '+self.__token,'Accept-Datetime-Format':'RFC3339',
-                'Accept':'application/json','Accept-Encoding':'identity'})
-            response=connection.getresponse()
-            if response.status!=200:
-                return Response(response.status,b'',response.getheader('Retry-After'))
-            chunks=[];size=0
-            while True:
-                remaining=deadline-time.monotonic()
-                if remaining<=0: raise TimeoutError()
-                if connection.sock is not None: connection.sock.settimeout(min(15,remaining))
-                chunk=response.read1(min(65536,MAX_BODY+1-size))
-                if not chunk: break
-                chunks.append(chunk);size+=len(chunk)
-                if size>MAX_BODY: raise ResearchRejected('BODY_SIZE_REFUSED')
-            return Response(response.status,b''.join(chunks),content_type=response.getheader('Content-Type',''))
+            return _exchange_get(connection,host,path,params,self.__token,deadline)
         except ResearchRejected: raise
         except Exception:
             # Never expose arbitrary SDK/TLS exceptions, headers or error bodies.
             raise OSError('REDACTED_TRANSPORT_FAILURE') from None
         finally:
             if connection is not None: connection.close()
+
+
+def _exchange_get(connection,host,path,params,token,deadline):
+    """Shared wire exchange; no connection factory/host override in the public API.
+
+    Production constructs its normal verified connection above. Only the separate
+    synthetic fixture adapter supplies a loopback connection for offline tests.
+    """
+    from urllib.parse import urlencode
+    approved_request('GET',host,path,params)
+    if time.monotonic()>=deadline:raise TimeoutError()
+    connection.request('GET',path+'?'+urlencode(params),headers={
+        'Authorization':'Bearer '+token,'Accept-Datetime-Format':'RFC3339',
+        'Accept':'application/json','Accept-Encoding':'identity'})
+    response=connection.getresponse()
+    if response.status!=200:return Response(response.status,b'',response.getheader('Retry-After'))
+    length=getattr(response,'length',None) # existing injected response protocol need not expose framing state
+    if length is not None and length>MAX_BODY:raise ResearchRejected('BODY_SIZE_REFUSED')
+    chunks=[];size=0
+    while True:
+        remaining=deadline-time.monotonic()
+        if remaining<=0:raise TimeoutError()
+        if connection.sock is not None:connection.sock.settimeout(min(15,remaining))
+        chunk=response.read1(min(65536,MAX_BODY+1-size))
+        if not chunk:
+            if getattr(response,'length',None) not in (None,0):raise ResearchRejected('INCOMPLETE_HTTP_BODY')
+            break
+        chunks.append(chunk);size+=len(chunk)
+        if size>MAX_BODY:raise ResearchRejected('BODY_SIZE_REFUSED')
+    return Response(response.status,b''.join(chunks),content_type=response.getheader('Content-Type',''))

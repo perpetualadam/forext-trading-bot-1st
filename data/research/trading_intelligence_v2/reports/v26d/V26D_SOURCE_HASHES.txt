@@ -1,0 +1,37 @@
+V2.6D source integrity, 2026-10-27
+Baseline 0157e18369b700043c357b10c1565c9b69378554
+Research/workflow SHA-256: CRLF normalised to LF; operational seals: raw bytes.
+Before snapshot: 227 files; 223 unchanged; 4 authorised changes listed below.
+
+CHANGED .github/workflows/ci.yml
+CHANGED data/research/trading_intelligence_v2/oanda_history_transport.py
+CHANGED data/research/trading_intelligence_v2/oneshot.py
+CHANGED data/research/trading_intelligence_v2/oneshot_worker.py
+
+Current source/workflow hashes:
+e4d614fc6b191a7e0ac4b2b8a7ad74dbca538616a7fea225d666faa6396b2ec4  LF  data/research/trading_intelligence_v2/oneshot.py
+70b1cff9455fc0319fc0f4620e5b55bea9b443d88771f9d7ef7b126195e5f58f  LF  data/research/trading_intelligence_v2/oneshot_archive.py
+c23643cd3022346e9f422fdc2cc34d1b73b623b8e24ca22111324930bff9eab6  LF  data/research/trading_intelligence_v2/oneshot_bridge.py
+ae594f4ad99d560bad6bec5b7de60eaadee15917833df4c27aaeb1c21bf7cbb1  LF  data/research/trading_intelligence_v2/oneshot_https_fixture.py
+9d3c5b1df63d114d5f05c79d2522ed7fe0bb9d78517c31e91e82bbc7b6cdb200  LF  data/research/trading_intelligence_v2/oneshot_response.py
+97c091506849177628932ddf74f3538449d9d8f4e201a8ff321bbc3a313f5227  LF  data/research/trading_intelligence_v2/oneshot_transport.py
+b77b84017de5de7dc7919252a71725ad80f843668ce52d3dc4eea3c90177c892  LF  data/research/trading_intelligence_v2/oneshot_windows.py
+6247f83c76e7d4e7aa094141cc1e89229a7b9ac472dd095732ca30f3aec68d2a  LF  data/research/trading_intelligence_v2/oneshot_worker.py
+57d450f064b02c50cd48e7d856225bbf880574e646f29916bb1dc382cd83a425  LF  data/research/trading_intelligence_v2/https_test_server.py
+c6932d2aee0a80e1ae5b1cc61d8e7ad0e6526f0f7c7cc3969edd0bc40d1ad2ba  LF  data/research/trading_intelligence_v2/test_v26c.py
+f2303733170c726fddc9b7b099c9f38272c36648136f0326c246a65751dcbca0  LF  data/research/trading_intelligence_v2/test_v26d.py
+81f17e2946296a1fa785bc4573ea85b073168d6095db50cd1356a07c60e31a71  LF  data/research/trading_intelligence_v2/v26c_run.py
+577a060924180e9274fe79e688cc2aeba9891be858b8ffb4ac430555d6cb21c8  LF  data/research/trading_intelligence_v2/v26c_native_check.py
+7b74b71960bff75d1fffd891d3c4b76476808933b3cca9571c9afe4cf0fe6a50  LF  data/research/trading_intelligence_v2/v26d_run.py
+8b4c6bd7330e00379eb8b167d696b2dd918140cd59a257a7524cddfcde7fb973  LF  data/research/trading_intelligence_v2/oanda_history_transport.py
+6623f8b4084c720b75d90bbb8dd3f22878764912bdc9b03f901da731bbb304e3  LF  .github/workflows/ci.yml
+
+Protected operational sources (unchanged):
+2f1c36dc025d114685e4424402f6866c66aa6eb37d28717027c502a4f447118d  RAW  forex_bot/bot_loop.py
+d57dfce057eb8e5bd318fd6a1bb4f36a979c45e6d4cd664a51fdbc6a7f09b51f  RAW  forex_bot/profit_protection.py
+e08b6df42bc9954e6558d48643fdaf3b66b92b1d255561909eb0100618826923  RAW  forex_bot/oanda_client.py
+
+Existing R.86 reference (not changed or reproduced by restoration):
+a2310a7f2d2aee4b60c3c471cdd56ed48c72e2ed29232047c404209537e58d81
+Local bot_loop.py raw mismatch predates this task and remains separate.
+Historical C reports, tests and all other snapshotted research files are preserved.

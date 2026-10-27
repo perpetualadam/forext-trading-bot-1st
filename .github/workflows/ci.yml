@@ -141,3 +141,33 @@ jobs:
           python-version: "3.12"
       - name: Run isolated LIVE-host preparation and boundary checks
         run: python -I -S -B data/research/trading_intelligence_v2/v26b_run.py --tests
+
+  trading-intelligence-v26c-oneshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run isolated synthetic one-shot process and crash checks
+        run: python -I -S -B data/research/trading_intelligence_v2/v26c_run.py --tests
+
+  trading-intelligence-v26d-https:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run isolated loopback TLS and one-shot acquisition checks
+        run: python -I -S -B data/research/trading_intelligence_v2/v26d_run.py --tests

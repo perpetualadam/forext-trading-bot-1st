@@ -1,0 +1,23 @@
+V2.6C source verification, 2026-10-27
+Research/workflow hashes: UTF-8 bytes with CRLF normalised to LF.
+Protected operational hashes: raw bytes; no operational edits.
+Baseline: 0157e18369b700043c357b10c1565c9b69378554
+Preserved pre-existing research/protected sources: 210 / 210
+
+fa41d40e5f9a4c234777cf6acf583642b693da7474a816be91889aa74eb4e92e  LF  data/research/trading_intelligence_v2/oneshot.py
+70b1cff9455fc0319fc0f4620e5b55bea9b443d88771f9d7ef7b126195e5f58f  LF  data/research/trading_intelligence_v2/oneshot_archive.py
+9d3c5b1df63d114d5f05c79d2522ed7fe0bb9d78517c31e91e82bbc7b6cdb200  LF  data/research/trading_intelligence_v2/oneshot_response.py
+97c091506849177628932ddf74f3538449d9d8f4e201a8ff321bbc3a313f5227  LF  data/research/trading_intelligence_v2/oneshot_transport.py
+b77b84017de5de7dc7919252a71725ad80f843668ce52d3dc4eea3c90177c892  LF  data/research/trading_intelligence_v2/oneshot_windows.py
+5656442cf765ab1220fbe0f68482f48f51a5d999109086e9b0f8ecf37ad82f2a  LF  data/research/trading_intelligence_v2/oneshot_worker.py
+c6932d2aee0a80e1ae5b1cc61d8e7ad0e6526f0f7c7cc3969edd0bc40d1ad2ba  LF  data/research/trading_intelligence_v2/test_v26c.py
+81f17e2946296a1fa785bc4573ea85b073168d6095db50cd1356a07c60e31a71  LF  data/research/trading_intelligence_v2/v26c_run.py
+577a060924180e9274fe79e688cc2aeba9891be858b8ffb4ac430555d6cb21c8  LF  data/research/trading_intelligence_v2/v26c_native_check.py
+94835a1817948ff49ceb75fd8e5a86957485e0561204cbcae93f5fcbb8caa924  LF  .github/workflows/ci.yml
+2f1c36dc025d114685e4424402f6866c66aa6eb37d28717027c502a4f447118d  RAW  forex_bot/bot_loop.py
+d57dfce057eb8e5bd318fd6a1bb4f36a979c45e6d4cd664a51fdbc6a7f09b51f  RAW  forex_bot/profit_protection.py
+e08b6df42bc9954e6558d48643fdaf3b66b92b1d255561909eb0100618826923  RAW  forex_bot/oanda_client.py
+
+Required sealed R.86 reference (not changed):
+a2310a7f2d2aee4b60c3c471cdd56ed48c72e2ed29232047c404209537e58d81
+Existing local bot_loop.py mismatch predates V2.6C; restoration remains separate.
