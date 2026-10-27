@@ -19,7 +19,7 @@ jobs:
         # These five suites exercise Windows paths, handles and reparse points.
         # The windows-security job runs every test in them on the native API.
         run: >-
-          python -m pytest -q
+          python scripts/run_ci_tests.py
           --ignore=tests/test_g14_4_wheelhouse.py
           --ignore=tests/test_g14_5_security.py
           --ignore=tests/test_g14_6_security.py

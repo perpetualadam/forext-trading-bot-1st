@@ -68,12 +68,29 @@ def _inactive() -> None:
 def _lifespan_source() -> str:
     source = _APP_PATH.read_text(encoding="utf-8")
     tree = ast.parse(source)
-    for node in tree.body:
-        if isinstance(node, ast.AsyncFunctionDef) and node.name == "lifespan":
-            segment = ast.get_source_segment(source, node)
-            assert segment is not None
-            return segment
-    raise AssertionError("lifespan not found")
+    functions = {
+        node.name: ast.get_source_segment(source, node)
+        for node in tree.body
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+    }
+    # The guard and resource callbacks moved into production ports. Check their
+    # real caller as well as their bodies, without importing the application.
+    lifespan = functions["lifespan"]
+    initialise = functions["initialise_application"]
+    ports = functions["_production_startup_ports"]
+    assert lifespan is not None and initialise is not None and ports is not None
+    assert "await initialise_application(_production_startup_ports(" in lifespan
+    guard = initialise.index("await _invoke(ports.verify_safety)")
+    for callback in (
+        "init_persistence", "recover_orders", "init_broker", "init_market_data",
+        "init_messaging", "init_health", "schedule_trading",
+    ):
+        assert guard < initialise.index(f"ports.{callback}")
+        assert f"{callback}={callback}" in ports
+    assert "verify_safety=verify_safety" in ports
+    # Scope guard-relative checks to safety and downstream callbacks; the
+    # independent configuration guard may correctly raise before safety.
+    return ports[ports.index("    def verify_safety()") :]
 
 
 def _abort_before(fragment: str) -> None:
@@ -318,7 +335,7 @@ def test_t29_successful_preflight_keeps_existing_order() -> None:
         "load_open_orders_from_db_into_memory()",
         "load_reconcile_state_from_db()",
         "build_api()",
-        "await asyncio.to_thread(fetch_account_summary)",
+        "await asyncio.to_thread(_oanda_client().fetch_account_summary)",
         "await asyncio.to_thread(run_reconciliation_once)",
         "create_task(reconciliation_loop())",
         "create_task(run_bot())",
