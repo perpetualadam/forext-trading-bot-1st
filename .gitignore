@@ -31,3 +31,4 @@ one_session.consumed
 
 # Reproducible TIV2 local replay streams and scratch evidence (no market data commits)
 /data/research/trading_intelligence_v2/outputs/
+/data/research/trading_intelligence_v2/inputs/v23/

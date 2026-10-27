@@ -1,0 +1,16 @@
+{
+  "classification": "TIV23_RESEARCH_PARTIALLY_VERIFIED",
+  "experiment_sha256": "d4321068690ee1e893630a64ca671a600c55728879e9205a635dd9a85cbc7439",
+  "independence": {
+    "AUD_USD": "PREVIOUSLY_EXAMINED",
+    "EUR_USD": "PREVIOUSLY_EXAMINED",
+    "GBP_USD": "PREVIOUSLY_EXAMINED",
+    "USD_CAD": "PREVIOUSLY_EXAMINED",
+    "USD_CHF": "PREVIOUSLY_EXAMINED",
+    "USD_JPY": "PREVIOUSLY_EXAMINED"
+  },
+  "mode": "EXPLORATORY_PREVIOUSLY_EXAMINED",
+  "scenarios": 2912,
+  "trades_sha256": "1a8914bc7e0cd9b6ed262ade780c56d1db3ecc914a0ebd34079f8ef2fc38bd22",
+  "unchanged_baseline_checks": 2912
+}

@@ -1,0 +1,5 @@
+# Dependence, uncertainty and multiplicity
+
+Strategies and policy variants overlap substantially; raw trade counts are not independent sample sizes. Comparisons use paired daily marked-equity P/L by fold, two-trading-day moving-block bootstrap (2,000 seeded replicates) and Holm adjustment across 1308 comparisons. Unadjusted bootstrap intervals are illustrative, not validated simultaneous confidence intervals. Block independence, stationarity and symmetry assumptions are not verified in this short archive; no formal significance or calibrated probability is claimed. Insufficient/constant data produces undefined values. Matched trade-R correlations and PP differences remain descriptive. Unchanged folds expose positive-to-negative reversals rather than hiding them in aggregate values. No strategy is promoted based on a positive aggregate estimate or lower turnover. Independent assessment remains incomplete.
+
+TIV23_RESEARCH_PARTIALLY_VERIFIED. Production remains NO-GO. No new independent archive was acquired. Existing data is PREVIOUSLY_EXAMINED; these diagnostics are exploratory, not independent validation, policy optimisation or proof of future profitability.

@@ -66,3 +66,18 @@ jobs:
           python-version: "3.12"
       - name: Run isolated multi-timeframe research checks
         run: python -I -S -B data/research/trading_intelligence_v2/run.py --mtf-tests
+
+  trading-intelligence-v23-diagnostics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run isolated provenance and trade-diagnostic checks
+        run: python -I -S -B data/research/trading_intelligence_v2/run.py --v23-tests

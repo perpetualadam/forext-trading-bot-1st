@@ -1,0 +1,155 @@
+{
+  "acquisition_decision": "No confirmed provider permission; user directed importer plus explicitly exploratory existing-archive diagnostics",
+  "baseline_head": "d12f5b6b95072b5f750acbeb855abbf87abeec31",
+  "confirmation": [
+    [
+      "B_M5_M15",
+      "M5",
+      [
+        "M15"
+      ],
+      1
+    ],
+    [
+      "C_M5_H1",
+      "M5",
+      [
+        "H1"
+      ],
+      1
+    ],
+    [
+      "D_M5_H4",
+      "M5",
+      [
+        "H4"
+      ],
+      1
+    ],
+    [
+      "E_M15_H1",
+      "M15",
+      [
+        "H1"
+      ],
+      1
+    ],
+    [
+      "F_H1_H4",
+      "H1",
+      [
+        "H4"
+      ],
+      1
+    ],
+    [
+      "G_AGREEMENT",
+      "M5",
+      [
+        "M15",
+        "H1",
+        "H4"
+      ],
+      2
+    ]
+  ],
+  "costs": {
+    "base_slippage": 0.2,
+    "commission_account_per_100k_side": 3,
+    "stress_slippage": 0.5
+  },
+  "diagnostic_hypotheses": {
+    "distant_target_entry_ATR": 4,
+    "early_stop_entry_bars": 1,
+    "excessive_spread_entry_ATR": 0.25,
+    "low_volatility_small_gross_R": 0.25,
+    "narrow_stop_entry_ATR": 1
+  },
+  "execution": {
+    "account": "USD",
+    "commission_per_100k_side": 3.0,
+    "flatten_hour_utc": 20,
+    "flatten_minute": 55,
+    "initial": 10000.0,
+    "leverage": 20.0,
+    "margin_fraction": 0.8,
+    "max_hold_bars": 12,
+    "max_positions": 6,
+    "min_stop_pips": 4.0,
+    "portfolio_risk": 0.02,
+    "reward_risk": 2.0,
+    "risk_fraction": 0.0025,
+    "slippage_pips": 0.2,
+    "stop_atr": 2.0,
+    "usd_slots": 2
+  },
+  "fold_rule": "unchanged core.periods; two nonoverlapping test windows; flat partition boundaries",
+  "holding": {
+    "H1": 4,
+    "H4": 4,
+    "M15": 4,
+    "M5": 12
+  },
+  "independent_requirements": {
+    "controlled_first_access": true,
+    "full_prior_history_review": true,
+    "minimum_months_target": 12,
+    "preferred_months": [
+      24,
+      36
+    ],
+    "results_based_date_selection": false
+  },
+  "no_AI_RL_training": true,
+  "no_new_indicators": true,
+  "production_authorised": false,
+  "profit_protection": {
+    "ATR_period": 14,
+    "ATR_timeframe": "M5",
+    "activation_original_TP_fraction": 0.67,
+    "fallback_pips": 4,
+    "multiplier": 0.5,
+    "source": "unchanged existing pinned definitions"
+  },
+  "selection": "No fitting or optimisation; frozen fixed controls and B-G only; unapproved adaptive/AI/RL abstain",
+  "source_hashes": {
+    "__init__.py": "32ef654908553b1ca0e2db5de347884e36e7a8af67a2a07c5db7ef5c5e5f76f2",
+    "adapters.py": "1474cb924afac712ecb9c5e92471533b344cb26d6a10e6d67598f962f740f3e2",
+    "core.py": "20b19e35c75c9bf07c7fe34ff8df9bb99637eb78d2e37cf23493b072641bd82d",
+    "engine.py": "00936db92f1c71bca0ec805c1a8bfc2104b7af924c9b7190950ea69740ea5ea6",
+    "historical_import.py": "284f251d883cd013701603324775568960467a8d03c53aebb23d78ff07d06e47",
+    "historical_manifest.py": "9f09f9148de3eea87239cc474fc9ab2d9f25018d290f9c54e7552a13042d4501",
+    "historical_quality.py": "0b66a6801b29e8b53e02cb3d20b8a0ce22241592aabf210242ba6dc9d52e829f",
+    "historical_sources.py": "c7d6f22a77a96dcf5314bbe21a725ae600170cc8dc56d064aeaf320ef16fa602",
+    "mtf_features.py": "709d81afe463280fd84e672fb0baa32055d4ff2130949f27b9fd40716a5493f7",
+    "mtf_reporting.py": "a2a6402caf4e0aba09b3f31750c08774b694d41dd49b9d39c4b30e0589fc760b",
+    "mtf_selector.py": "8338b216ae4d2f99c9c0afe7b1e30aa696b145d95bdb9907ccec851ac92ba299",
+    "mtf_statistics.py": "662c86cdd1b4fb6dc15a31ed2fb41a576911c2139b87e65fc25cea11c26e3423",
+    "mtf_walkforward.py": "5e2d8ce1ceb3f7baad71f20f31439c0d4c11c0b52502edcff8539de51d12f54e",
+    "reporting.py": "d2b789509d65ecc980772edf3c16ff0ba262b71ee3ad8535a4017bfec3683c76",
+    "run.py": "e040b9eb16f33db1bda1d796fe79f83a44b6e32ea4a36bdc19de9f9ce7a95495",
+    "strategy_overlap.py": "13c6a6b8635b195765bd2d95703e28f819bb92e927889ed0fc240186a9a2ef15",
+    "study.py": "a7259ccdd05cc54886b8bbeb178196d154365ffaf12a4d74a17c5ec7a255c7bb",
+    "test_contract.py": "0516675a3c12e1a60268525870f90304959b967964fb73e3a298a0745452e13b",
+    "test_mtf.py": "871e82e85004808c97e951bdeb2cea3098a2ca9f27b868f2382c399aa1739ec4",
+    "test_v23.py": "4dfe41b34de5afa529172348128dbfdbaf0aab50c28a61f07cec8284b2106739",
+    "timeframes.py": "a8baf7b8f55dc952f21a6b05c310b5254890c8872f67832234a832dd6b812b6f",
+    "trade_diagnostics.py": "ec306c2c307d371325de1b55316acdccd5753f9d3c0b21d71bc028ec45255fab",
+    "v23_pipeline.py": "4bbedad34ceea74bb8d5cca4da48f2027131f56d8fff06efca7b07a2b1535bcd",
+    "v23_reporting.py": "002b24f0127ad0987512b2c9b2751ab931ca4184ea23fc41c4a8a1bb9da25056"
+  },
+  "source_pin_scheme": "SHA256_LF_NORMALIZED_RESEARCH_TEXT_NOT_OPERATIONAL_SEALS",
+  "statistics": {
+    "block_trading_days": 2,
+    "multiple_comparisons": "Holm full policy family; exploratory assumptions",
+    "replicates": 2000,
+    "seed": 22
+  },
+  "timeframes": [
+    "M5",
+    "M15",
+    "H1",
+    "H4"
+  ],
+  "version": "TIV23_FROZEN_V1"
+}

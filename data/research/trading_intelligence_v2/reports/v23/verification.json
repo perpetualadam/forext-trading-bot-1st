@@ -1,0 +1,83 @@
+{
+  "classification": "TIV23_RESEARCH_PARTIALLY_VERIFIED",
+  "mode": "EXPLORATORY_PREVIOUSLY_EXAMINED",
+  "production": "NO-GO",
+  "baseline_head": "d12f5b6b95072b5f750acbeb855abbf87abeec31",
+  "local_checks": [
+    {
+      "command": "python -I -S -B data/research/trading_intelligence_v2/run.py --v23-tests",
+      "runtime": "Windows Python 3.13.5",
+      "passed": 58,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "command": "wsl -d Ubuntu --exec /usr/bin/python3 -I -S -B <repository>/data/research/trading_intelligence_v2/run.py --v23-tests",
+      "runtime": "Ubuntu Python 3.12.3",
+      "passed": 58,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "command": "python -I -S -B data/research/trading_intelligence_v2/run.py --tests",
+      "passed": 72,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "command": "python -I -S -B data/research/trading_intelligence_v2/run.py --mtf-tests",
+      "passed": 73,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "command": "python -I -S -B offline_exposure/run_checks.py",
+      "passed": 57,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "experiment_sha256": "d4321068690ee1e893630a64ca671a600c55728879e9205a635dd9a85cbc7439",
+  "repeated_complete_runs": 2,
+  "scenarios_per_run": 2912,
+  "unchanged_V22_baseline_cells": 2912,
+  "unique_diagnostic_trade_records": 97536,
+  "repeated_trade_stream_sha256": "1a8914bc7e0cd9b6ed262ade780c56d1db3ecc914a0ebd34079f8ef2fc38bd22",
+  "accounting_and_excursion_bounds_verified": true,
+  "inspection_timestamps_not_after_exit": true,
+  "source_integrity": {
+    "existing_files_checked": 515,
+    "changed_existing_files": [
+      ".github/workflows/ci.yml",
+      ".gitignore",
+      "data/research/trading_intelligence_v2/run.py"
+    ],
+    "original_report_artifacts_preserved": 35,
+    "operational_source_changes": [],
+    "protected_raw_hashes": {
+      "forex_bot/bot_loop.py": "2f1c36dc025d114685e4424402f6866c66aa6eb37d28717027c502a4f447118d",
+      "forex_bot/profit_protection.py": "d57dfce057eb8e5bd318fd6a1bb4f36a979c45e6d4cd664a51fdbc6a7f09b51f"
+    }
+  },
+  "acquisition": {
+    "new_market_downloads": 0,
+    "new_independent_months": 0,
+    "reason": "User confirmed no provider permission and instructed importer plus exploratory diagnostics"
+  },
+  "publication": "Exact published SHA and hosted checks verified after push; see completion response and ignored outputs/v23/hosted_verification.json",
+  "initial_preregistration_sha256": "292c96c3bdc0a4242061f27743fbb43c111042e49842b2f8ed84f21c72a24aff",
+  "diagnostic_amendment": {
+    "reason": "Zero-gross is flat, not positive; strategy, execution, holding, exit, risk, costs, selection and statistical parameters unchanged",
+    "financial_parameters_unchanged": true,
+    "resolved_red_assertion": "Zero gross was incorrectly labelled positive gross; direct isolated reproduction failed before correction",
+    "initial_diagnostic_and_test_sources_archived_with_matching_hashes": true,
+    "initial_report_renderer": "Fingerprint retained; optional reconstruction rejected because it did not match, so no unverified source copy retained"
+  },
+  "initial_protocol_repeated_hash": "b5c1a3df238d8195698ee14d42f432640ebcd6ab2da5dfec1354483d9cb760bb",
+  "final_protocol_repeated_runs": 2
+}

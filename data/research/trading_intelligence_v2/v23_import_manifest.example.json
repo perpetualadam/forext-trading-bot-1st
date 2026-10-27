@@ -1,0 +1,69 @@
+{
+  "_status": "EXAMPLE_ONLY_NOT_APPROVED_NOT_MARKET_DATA",
+  "_instructions": [
+    "Copy this contract to ignored inputs/v23/approved_manifest.json only after obtaining and reviewing the required data rights.",
+    "Populate provider identity, applicable rights evidence, aware retrieval times and exact SHA256 for every original source file.",
+    "CSV header and formats are defined in historical_import.SCHEMA. No inferred asks, synthetic midpoint extrema, sorting, deduplication or incomplete rows.",
+    "Independence requires full prior-design exposure review and controlled first access; changing an assertion cannot establish its truth.",
+    "Do not include credentials, account identifiers or licence keys. No downloader is active."
+  ],
+  "provider": null,
+  "provider_identity_url": null,
+  "terms_url": null,
+  "terms_evidence": null,
+  "permitted_use": "offline_research_and_derived_results",
+  "rights_reviewed": false,
+  "provenance_verified": false,
+  "research_history_complete": false,
+  "controlled_first_access": false,
+  "independence_evidence": null,
+  "previously_examined": false,
+  "schema": "OBSERVED_M5_BID_ASK_MID_V1",
+  "timestamp_convention": "UTC_START_AWARE",
+  "completion_evidence": "explicit_source_complete_flag",
+  "holiday_windows": [],
+  "files": [
+    {
+      "instrument": "EUR_USD",
+      "path": "EUR_USD_M5.csv",
+      "sha256": null,
+      "source_url": null,
+      "retrieved_utc": null
+    },
+    {
+      "instrument": "GBP_USD",
+      "path": "GBP_USD_M5.csv",
+      "sha256": null,
+      "source_url": null,
+      "retrieved_utc": null
+    },
+    {
+      "instrument": "USD_JPY",
+      "path": "USD_JPY_M5.csv",
+      "sha256": null,
+      "source_url": null,
+      "retrieved_utc": null
+    },
+    {
+      "instrument": "AUD_USD",
+      "path": "AUD_USD_M5.csv",
+      "sha256": null,
+      "source_url": null,
+      "retrieved_utc": null
+    },
+    {
+      "instrument": "USD_CAD",
+      "path": "USD_CAD_M5.csv",
+      "sha256": null,
+      "source_url": null,
+      "retrieved_utc": null
+    },
+    {
+      "instrument": "USD_CHF",
+      "path": "USD_CHF_M5.csv",
+      "sha256": null,
+      "source_url": null,
+      "retrieved_utc": null
+    }
+  ]
+}

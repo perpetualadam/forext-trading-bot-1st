@@ -28,8 +28,11 @@ SOURCES = {ROOT / p for p in (
     "forex_bot/ai_ensemble.py", "forex_bot/rl_agent.py", "forex_bot/profit_protection.py",
     "forex_bot/indicators.py", "forex_bot/trading.py")}
 INPUTS = [ROOT / "data/historical", ROOT / "data/research/adaptive_ensemble/g3"]
+INPUTS.append(PACKAGE/'inputs/v23')
 MTF_MODE=sys.argv[1:] in (["--mtf-tests"],["--mtf-evaluate"])
-WRITES = ([PACKAGE / "outputs/mtf", PACKAGE / "reports/mtf", TEMP] if MTF_MODE
+V23_MODE=len(sys.argv)>1 and sys.argv[1] in ('--v23-tests','--v23-evaluate')
+WRITES = ([PACKAGE/'outputs/v23',PACKAGE/'reports/v23',TEMP] if V23_MODE else
+          [PACKAGE / "outputs/mtf", PACKAGE / "reports/mtf", TEMP] if MTF_MODE
           else [PACKAGE / "outputs", PACKAGE / "reports", TEMP])
 
 
@@ -68,8 +71,8 @@ spec = importlib.util.spec_from_file_location("tiv2", PACKAGE / "__init__.py", s
 module = importlib.util.module_from_spec(spec)
 sys.modules['tiv2'] = module
 spec.loader.exec_module(module)
-if sys.argv[1:] in (["--tests"],["--mtf-tests"]):
-    test_name='test_mtf' if MTF_MODE else 'test_contract'
+if sys.argv[1:] in (["--tests"],["--mtf-tests"],["--v23-tests"]):
+    test_name='test_v23' if V23_MODE else 'test_mtf' if MTF_MODE else 'test_contract'
     tests_spec = importlib.util.spec_from_file_location("tiv2."+test_name, PACKAGE / (test_name+'.py'))
     tests = importlib.util.module_from_spec(tests_spec)
     sys.modules[tests_spec.name] = tests
@@ -85,5 +88,16 @@ elif sys.argv[1:] == ["--evaluate"]:
 elif sys.argv[1:] == ["--mtf-evaluate"]:
     from tiv2.mtf_walkforward import run
     run(ROOT, PACKAGE)
+elif V23_MODE and sys.argv[1]=='--v23-evaluate':
+    from tiv2.v23_pipeline import run
+    if sys.argv[2:]==['--exploratory']:
+        run(ROOT,PACKAGE,exploratory=True)
+    elif len(sys.argv) in (4,5) and sys.argv[2]=='--manifest' and (len(sys.argv)==4 or sys.argv[4]=='--allow-reproduction'):
+        manifest=(ROOT/sys.argv[3]).resolve()
+        if not manifest.is_relative_to((PACKAGE/'inputs/v23').resolve()):
+            raise SystemExit('manifest must be inside data/research/trading_intelligence_v2/inputs/v23')
+        run(ROOT,PACKAGE,manifest=manifest,allow_reproduction=len(sys.argv)==5)
+    else:
+        raise SystemExit('V23 requires --exploratory or --manifest <approved local manifest>; no implicit independence claim')
 else:
-    raise SystemExit("usage: python -I -S -B data/research/trading_intelligence_v2/run.py --tests|--evaluate|--mtf-tests|--mtf-evaluate")
+    raise SystemExit("usage: run.py --tests|--evaluate|--mtf-tests|--mtf-evaluate|--v23-tests|--v23-evaluate --exploratory|--v23-evaluate --manifest <path>")

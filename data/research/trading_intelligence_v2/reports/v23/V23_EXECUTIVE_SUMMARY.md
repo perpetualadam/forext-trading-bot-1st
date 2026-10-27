@@ -1,0 +1,5 @@
+# V2.3 research outcome
+
+Built a strict licensed-data importer, explicit independence gate, preregistered frozen replay, strategy-overlap matrix and trade-level loss diagnostics. User confirmed no applicable provider permission and directed importer/exploratory work; no new download was attempted. Executed 2912 controlled scenarios with 2912 matching V2.2 baseline cells. The original strategies, fills, risk, holding, costs and profit protection are unchanged; diagnostic observation never feeds candidate selection. Results describe existing shadow rules, not live AI/RL trading directions. No independent conclusions about timeframe superiority or profit protection are available. Full strategy-specific gross/net results and overlap measurements follow; do not choose winners from this examined period.
+
+TIV23_RESEARCH_PARTIALLY_VERIFIED. Production remains NO-GO. No new independent archive was acquired. Existing data is PREVIOUSLY_EXAMINED; these diagnostics are exploratory, not independent validation, policy optimisation or proof of future profitability.
