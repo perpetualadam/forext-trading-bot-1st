@@ -16,6 +16,15 @@ import subprocess
 import sys
 
 
+# This suite asserts that its launcher's socket/DNS barrier is already active.
+# Its own r13 mode runs the entire module without a -k expression or exclusions.
+STAGE_RUNNERS = {
+    "tests/test_r13_loop_wiring.py": (
+        "data/research/adaptive_ensemble/r13/20_run_offline_tests.py", "r13"
+    ),
+}
+
+
 def main() -> int:
     root = Path(__file__).resolve().parents[1]
     environment = dict(os.environ, PYTHON_DOTENV_DISABLED="1")
@@ -52,8 +61,14 @@ def main() -> int:
         temporary = [] if options.basetemp is None else [
             "--basetemp", str(options.basetemp / Path(module).stem)
         ]
+        stage = STAGE_RUNNERS.get(module.replace("\\", "/"))
+        command = (
+            [sys.executable, "-B", *stage]
+            if stage is not None else
+            [sys.executable, "-m", "pytest", "-q", module, *arguments, *temporary]
+        )
         result = subprocess.run(
-            [sys.executable, "-m", "pytest", "-q", module, *arguments, *temporary],
+            command,
             cwd=root,
             env=environment,
         )
