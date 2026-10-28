@@ -106,10 +106,11 @@ def main():
             elif fault=='out_of_range':raw=encoded(payload(start=begin-300,count=1))
             return Response(200,raw)
         if 'https_fixture' in start:
-            from tiv2.oneshot_https_fixture import fetch_https_fixture,validate_binding
+            from tiv2.oneshot_https_fixture import validate_binding
+            from tiv2.oanda_existing_readonly import fetch_synthetic_candles
             validate_binding(start['https_fixture'])
             LOOPBACK_PORT=start['https_fixture']['port']
-            raw=fetch_https_fixture(start['https_fixture'],secret,start['deadline'],checkpoint)
+            raw=fetch_synthetic_candles(start['https_fixture'],secret,start['deadline'],checkpoint)
         else:raw=fetch_fixture_once(sender)
         if secret.encode() in raw:raise ValueError()
         transition(archive,'RESPONSE_RECEIVED',1);checkpoint('after_response');checkpoint('validation')

@@ -26,8 +26,10 @@ import unittest.mock
 import urllib.parse
 import uuid
 
-if sys.argv[1:] not in (['--tests'],['--native-tests']):raise SystemExit('usage: v26d_run.py --tests | --native-tests')
-NATIVE=sys.argv[1:]==['--native-tests']
+if sys.argv[1:] not in (['--tests'],['--native-tests'],['--v26e-tests'],['--native-v26e-tests']):
+    raise SystemExit('usage: v26d_run.py --tests | --native-tests | --v26e-tests | --native-v26e-tests')
+V26E=sys.argv[1:] in (['--v26e-tests'],['--native-v26e-tests'])
+NATIVE=sys.argv[1:] in (['--native-tests'],['--native-v26e-tests'])
 if NATIVE and os.name!='nt':raise SystemExit('NATIVE_WINDOWS_REQUIRED')
 PACKAGE=Path(__file__).resolve().parent;STDLIB=Path(os.__file__).resolve().parent
 BASE=PACKAGE/'outputs/v26c/fixtures'
@@ -44,6 +46,10 @@ from tiv2.oneshot_archive import NATIVE_FIXTURES,APPROVED
 WORKER=PACKAGE/'oneshot_worker.py'
 OPENSSL=r'C:\Program Files\Git\usr\bin\openssl.exe' if os.name=='nt' else '/usr/bin/openssl'
 WRITES=[BASE]+([NATIVE_FIXTURES] if NATIVE else [])
+# Only source text for the requested static compatibility audit; never import
+# these modules or permit .env/configuration-value reads in parent or worker.
+AUDIT_SOURCES={PACKAGE.parents[2]/p for p in (
+    'forex_bot/oanda_client.py','forex_bot/oanda_candles_read.py','forex_bot/config.py')} if V26E else set()
 
 
 def within(path,roots):return any(path==r or path.is_relative_to(r) for r in roots)
@@ -88,14 +94,15 @@ def audit(event,args):
             raise PermissionError('V26D_PRIVATE_STATE_REFUSED')
         if write and not within(path,WRITES):raise PermissionError('V26D_WRITE_REFUSED')
         reads=[STDLIB,PACKAGE]+([Path(APPROVED)] if NATIVE else [])
-        if not write and not within(path,reads):raise PermissionError('V26D_READ_REFUSED')
+        if not write and path not in AUDIT_SOURCES and not within(path,reads):raise PermissionError('V26D_READ_REFUSED')
     if event in {'os.rename','os.remove','os.mkdir','os.rmdir','os.link','os.symlink','os.chmod','os.truncate'}:
         for value in args[:2] if event in {'os.rename','os.link','os.symlink'} else args[:1]:
             if not within(Path(value).absolute(),WRITES):raise PermissionError('V26D_MUTATION_REFUSED')
 
 
 sys.addaudithook(audit)
-spec=importlib.util.spec_from_file_location('tiv2.test_v26d',PACKAGE/'test_v26d.py')
+test_name='test_v26e' if V26E else 'test_v26d'
+spec=importlib.util.spec_from_file_location('tiv2.'+test_name,PACKAGE/(test_name+'.py'))
 tests=importlib.util.module_from_spec(spec);sys.modules[spec.name]=tests;tests.NATIVE=NATIVE
 spec.loader.exec_module(tests)
 result=unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromModule(tests))

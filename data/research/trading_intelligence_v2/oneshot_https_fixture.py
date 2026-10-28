@@ -12,6 +12,7 @@ from .oneshot import SPEC,request_guard
 from .oneshot_archive import Refused
 from .oneshot_bridge import validate_synthetic
 from .oanda_history_transport import CandleTransport,_exchange_get
+from .oanda_history_manifest import encoded,decode
 
 
 def validate_binding(binding):
@@ -24,8 +25,14 @@ def validate_binding(binding):
         raise Refused('INVALID_LOOPBACK_FIXTURE')
 
 
-def fetch_https_fixture(binding,secret,deadline,checkpoint=lambda phase:None):
-    validate_binding(binding);validate_synthetic(secret);request_guard(**SPEC)
+def fetch_https_fixture(binding,secret,deadline,checkpoint=lambda phase:None,*,_request=None):
+    validate_binding(binding);validate_synthetic(secret)
+    try:
+        request=decode(encoded(SPEC if _request is None else _request))
+        if type(request) is not dict or set(request)!={'method','host','path','params'}:raise ValueError()
+        request_guard(**request)
+    except (TypeError,ValueError,OverflowError,Refused):
+        raise Refused('EXACT_REQUEST_REQUIRED') from None
     if type(deadline) not in (int,float) or not math.isfinite(deadline):raise Refused('INVALID_DEADLINE')
     context=ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
     if binding['verification']!='untrusted':context.load_verify_locations(cadata=binding['certificate'])
@@ -55,4 +62,4 @@ def fetch_https_fixture(binding,secret,deadline,checkpoint=lambda phase:None):
         except OSError as error:raise Refused('FIXTURE_WIRE_REFUSED') from error
         finally:connection.close()
     transport=CandleTransport(environment='live',sender=sender,attempts=1)
-    return transport.request(**SPEC)
+    return transport.request(**request)
