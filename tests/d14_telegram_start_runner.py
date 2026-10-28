@@ -11,6 +11,7 @@ import threading
 import time
 import traceback
 from pathlib import Path
+from current_lifecycle_fixtures import fresh_live_worker
 
 
 def _load_d12():
@@ -70,7 +71,7 @@ def _direct(tc: object) -> dict[str, object]:
     results.append(blocked_start)
     if not D11.IN_POLL.wait(5):
         raise TimeoutError("blocked poller did not enter the fake poll")
-    blocked_ident = getattr(tc._poller_thread, "ident", None)
+    blocked_worker = tc._poller_thread
     stopped = D11._stop_timed(tc)
     before_queries = _queries()
     refused = tc.start_telegram_control()
@@ -79,7 +80,7 @@ def _direct(tc: object) -> dict[str, object]:
         "result": refused,
         "threads": len(D11._threads()),
         "ident": getattr(tc._poller_thread, "ident", None),
-        "same_ident": getattr(tc._poller_thread, "ident", None) == blocked_ident,
+        "same_ident": tc._poller_thread is blocked_worker,
         "stop_event": tc._stop_event.is_set(),
         "query_delta": _queries() - before_queries,
         "stop": stopped,
@@ -91,7 +92,7 @@ def _direct(tc: object) -> dict[str, object]:
     D11.IN_POLL.clear()
     replaced = tc.start_telegram_control()
     results.append(replaced)
-    replaced_ident = getattr(tc._poller_thread, "ident", None)
+    replaced_fresh = fresh_live_worker(blocked_worker, tc._poller_thread)
     D11._contain(tc)
 
     concurrent: list[object] = []
@@ -178,7 +179,7 @@ def _direct(tc: object) -> dict[str, object]:
         "refused": refused_view,
         "worker_exit": exited,
         "replaced": replaced,
-        "replaced_fresh": replaced_ident not in {None, blocked_ident},
+        "replaced_fresh": replaced_fresh,
         "concurrent": concurrent,
         "concurrent_threads": concurrent_threads,
         "overlap_start": overlap_start,
@@ -245,7 +246,7 @@ def _lifespan(appmod: object, database: object, tc: object) -> dict[str, object]
             yielded_a = True
             await asyncio.to_thread(D11.IN_POLL.wait, 5)
         snap_a = D12._snapshot(appmod, database, tc)
-        ident_a = snap_a["stored_ident"]
+        worker_a = tc._poller_thread
         D12.LOGS.lines.clear()
         yielded_b = False
         escaped_b = ""
@@ -255,6 +256,7 @@ def _lifespan(appmod: object, database: object, tc: object) -> dict[str, object]
         except Exception as exc:  # noqa: BLE001
             escaped_b = type(exc).__name__
         snap_b = D12._snapshot(appmod, database, tc)
+        worker_b = tc._poller_thread
         refusal_text = "\n".join(D12.LOGS.lines)
         D11.BLOCK_POLLS = 0
         D11.RELEASE_POLL.set()
@@ -267,6 +269,7 @@ def _lifespan(appmod: object, database: object, tc: object) -> dict[str, object]
             yielded_c = True
             await asyncio.to_thread(D11.FIRST_POLL.wait, 5)
             snap_c = D12._snapshot(appmod, database, tc)
+            fresh_worker = fresh_live_worker(worker_a, tc._poller_thread)
         third_warnings = _warning_count("\n".join(D12.LOGS.lines))
         snap_c_after = D12._snapshot(appmod, database, tc)
         tc.start_telegram_control = real  # type: ignore[attr-defined]
@@ -320,7 +323,7 @@ def _lifespan(appmod: object, database: object, tc: object) -> dict[str, object]
             "yielded_b": yielded_b,
             "escaped_b": escaped_b,
             "snap_b": snap_b,
-            "same_worker": snap_b["stored_ident"] == ident_a,
+            "same_worker": worker_b is worker_a,
             "refusal_logged": "D12-START-01" in refusal_text,
             "refusal_phrase": "previous polling worker remains alive" in refusal_text,
             "worker_exit": exited,
@@ -328,7 +331,7 @@ def _lifespan(appmod: object, database: object, tc: object) -> dict[str, object]
             "snap_c": snap_c,
             "snap_c_after": snap_c_after,
             "third_warnings": third_warnings,
-            "fresh_worker": snap_c.get("stored_ident") not in {None, ident_a},
+            "fresh_worker": fresh_worker,
             "connection_reused": snap_a["connection_id"] == snap_b["connection_id"],
             "failed_yielded": failed_yielded,
             "failed_escaped": failed_escaped,

@@ -14,6 +14,7 @@ import traceback
 import types
 from pathlib import Path
 from current_lifecycle_fixtures import wire_current_startup
+from current_lifecycle_fixtures import fresh_live_worker
 
 
 def _load_d11():
@@ -353,6 +354,7 @@ def _repeated(
             await asyncio.to_thread(D11.IN_POLL.wait, 5)
         snap_a = _snapshot(appmod, database, tc)
         ident_a = snap_a["stored_ident"]
+        worker_a = tc._poller_thread
         yielded_b = False
         escaped_b = ""
         started_b = time.perf_counter()
@@ -363,11 +365,13 @@ def _repeated(
             escaped_b = type(exc).__name__
         elapsed_b = round(time.perf_counter() - started_b, 4)
         snap_b = _snapshot(appmod, database, tc)
+        worker_b = tc._poller_thread
         D11.BLOCK_POLLS = 0
         D11.RELEASE_POLL.set()
         exited = D11._join_named("telegram-control", 3)
         D11.FIRST_POLL.clear()
         yielded_c = False
+        fresh_worker = False
         escaped_c = ""
         snap_c: dict[str, object] = {}
         try:
@@ -375,6 +379,7 @@ def _repeated(
                 yielded_c = True
                 await asyncio.to_thread(D11.FIRST_POLL.wait, 5)
                 snap_c = _snapshot(appmod, database, tc)
+                fresh_worker = fresh_live_worker(worker_a, tc._poller_thread)
         except Exception as exc:  # noqa: BLE001
             escaped_c = type(exc).__name__
         snap_c_after = _snapshot(appmod, database, tc)
@@ -387,7 +392,7 @@ def _repeated(
             "escaped_b": escaped_b,
             "elapsed_b": elapsed_b,
             "snap_b": snap_b,
-            "same_worker": snap_b["stored_ident"] == ident_a,
+            "same_worker": worker_b is worker_a,
             "thread_count_b": len(snap_b["threads"]),  # type: ignore[arg-type]
             "worker_exit_before_c": exited,
             "yielded_c": yielded_c,
@@ -395,7 +400,7 @@ def _repeated(
             "snap_c": snap_c,
             "snap_c_after": snap_c_after,
             "thread_count_c": len(snap_c.get("threads", [])),  # type: ignore[arg-type]
-            "fresh_worker": snap_c.get("stored_ident") not in {None, ident_a},
+            "fresh_worker": fresh_worker,
             "connection_reused_ab": snap_a["connection_id"] == snap_b["connection_id"],
             "harness": harness,
             "evidence": "ACTUAL_COMBINED_LIFECYCLE_ISOLATED",

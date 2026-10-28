@@ -9,6 +9,15 @@ import sys
 import types
 
 
+def fresh_live_worker(previous, current):
+    """Thread identifiers can be recycled; retain and compare worker objects."""
+    return (
+        previous is not None and current is not None
+        and current is not previous
+        and not previous.is_alive() and current.is_alive()
+    )
+
+
 def schema_ready_cursor(cls):
     """An installed synthetic schema answers the new read-only readiness query."""
     execute = cls.execute

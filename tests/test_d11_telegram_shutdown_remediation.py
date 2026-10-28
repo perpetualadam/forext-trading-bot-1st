@@ -234,4 +234,4 @@ def test_self_stop_does_not_deadlock(report: dict) -> None:
     assert row["return_value"] == "STOP_INCOMPLETE_WORKER_ALIVE"
     assert row["worker_alive"] is False
     assert row["restart_thread_count"] == 1
-    assert row["restart_ident"] != row["old_ident"]
+    assert row["fresh_worker"] is True

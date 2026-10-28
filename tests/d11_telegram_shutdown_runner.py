@@ -18,6 +18,7 @@ import types
 import urllib.request
 from pathlib import Path
 from current_lifecycle_fixtures import wire_current_startup
+from current_lifecycle_fixtures import fresh_live_worker
 from current_lifecycle_fixtures import schema_ready_cursor
 
 NETWORK: list[str] = []
@@ -1183,6 +1184,7 @@ def _run_threads(database: types.ModuleType, tc: types.ModuleType) -> dict[str, 
         "restart_thread_count": len(_threads()),
         "restart_ident": getattr(tc._poller_thread, "ident", None),  # type: ignore[attr-defined]
         "old_ident": self_worker.ident,
+        "fresh_worker": fresh_live_worker(self_worker, tc._poller_thread),
         "harness": _contain(tc),
     }
 
