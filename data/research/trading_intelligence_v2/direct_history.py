@@ -11,6 +11,7 @@ from .oneshot_archive import APPROVED,Refused
 from .oanda_existing_readonly import candle_request
 from .oneshot_credentials import validate_token
 from .confirmation_input import read_confirmation
+from .token_input import read_hidden_token,entry_remaining
 
 CONFIRMATION='CONFIRM ONE HISTORICAL EUR_USD REQUEST'
 
@@ -45,27 +46,10 @@ class TerminalCredentialProvider:
     def __repr__(self):return '<TerminalCredentialProvider DISABLED REDACTED>'
     def credential(self,reservation=None,*,deadline=None):
         authority.require_live_reservation(reservation)
-        from .oneshot_network import remaining
-        remaining(deadline)
+        entry_remaining(deadline)
         if not sys.stdin.isatty() or not sys.stdout.isatty():raise Refused('INTERACTIVE_TERMINAL_REQUIRED')
-        console=_console();value=''
-        print('API token: ',end='',flush=True)
-        try:
-            while True:
-                budget=remaining(deadline)
-                if not console.kbhit():time.sleep(min(.01,budget));continue
-                character=console.getwch()
-                if character=='\x03':raise KeyboardInterrupt()
-                if character in ('\r','\n'):
-                    if not 16<=len(value)<=128:raise Refused('CREDENTIAL_INPUT_REFUSED')
-                    return validate_token(value)
-                if character=='\b':value=value[:-1];continue
-                if len(character)!=1 or not character.isascii() or not character.isprintable():
-                    raise Refused('CREDENTIAL_INPUT_REFUSED')
-                value+=character
-                if len(value)>128:raise Refused('CREDENTIAL_INPUT_REFUSED')
-        finally:
-            value='';print('',flush=True)
+        return read_hidden_token(_console(),deadline=deadline)
+
 
 
 def run_approved_session(reservation):
