@@ -10,6 +10,7 @@ from .oneshot import SPEC,run_once
 from .oneshot_archive import APPROVED,Refused
 from .oanda_existing_readonly import candle_request
 from .oneshot_credentials import validate_token
+from .confirmation_input import read_confirmation
 
 CONFIRMATION='CONFIRM ONE HISTORICAL EUR_USD REQUEST'
 
@@ -71,7 +72,7 @@ def run_approved_session(reservation):
     """Future admitted entry; no current invocation can obtain such admission."""
     print(render_plan(),flush=True)
     authority.require_live_reservation(reservation)
-    if input('Confirmation: ')!=CONFIRMATION:raise Refused('HISTORICAL_CONFIRMATION_REFUSED')
+    read_confirmation(CONFIRMATION)
     result=run_once(APPROVED,synthetic_secret=None,seconds=15.0,
         _credential_provider=TerminalCredentialProvider(),_live_reservation=reservation)
     print('Historical session: '+result['kind'],flush=True)
