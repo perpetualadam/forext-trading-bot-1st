@@ -32,3 +32,10 @@ one_session.consumed
 # Reproducible TIV2 local replay streams and scratch evidence (no market data commits)
 /data/research/trading_intelligence_v2/outputs/
 /data/research/trading_intelligence_v2/inputs/v23/
+
+# Live scheduler bookkeeping stays local; configuration and evidence stay tracked.
+/data/research/macro/consensus_pit/prospective/scheduler/audit.jsonl
+/data/research/macro/consensus_pit/prospective/scheduler/state.json
+/data/research/macro/consensus_pit/prospective/scheduler/state.json.tmp
+/data/research/macro/consensus_pit/prospective/scheduler/state.json.*.tmp
+/data/research/macro/consensus_pit/prospective/scheduler/collect.lock

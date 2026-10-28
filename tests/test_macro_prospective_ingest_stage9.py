@@ -197,13 +197,21 @@ def test_copied_bytes_retain_identical_sha256(tmp_path):
     assert dest.read_bytes() == payload
 
 
-def test_no_network_scheduler_and_production_unchanged(tmp_path):
+@pytest.mark.parametrize("runtime_exists", [False, True])
+def test_no_network_scheduler_and_production_unchanged(tmp_path, runtime_exists):
     rec = _rec(tmp_path)
+    # Own these fixtures: the live host scheduler may update its own files.
+    # A fresh checkout has no runtime files; a resumed store must retain them.
+    runtime = [rec.root / "scheduler" / name for name in ("state.json", "audit.jsonl")]
+    if runtime_exists:
+        runtime[0].parent.mkdir(parents=True, exist_ok=True)
+        runtime[0].write_bytes(b'{"processed":{"preserve":true}}\n')
+        runtime[1].write_bytes(b'{"event":"PRESERVE_RUNTIME_AUDIT"}\n')
+    before_runtime = [path.read_bytes() if path.exists() else None for path in runtime]
     before_cfg = (REAL_ROOT / "config.json").read_text(encoding="utf-8")
     before_reg = (REAL_ROOT / "source_registry" / "sources.json").read_text(encoding="utf-8")
     before_task = (REAL_ROOT / "scheduler" / "windows_task_installed.json").read_text(encoding="utf-8")
     before_obs = (REAL_ROOT / "observations" / "observations.jsonl").read_text(encoding="utf-8")
-    before_sched = (REAL_ROOT / "scheduler" / "state.json").read_text(encoding="utf-8")
     _seed_t48(rec)
     _ingest_t24(rec)
     src = Path("reports/decision_quality/_macro_prospective_ingest_stage9.py").read_text(encoding="utf-8").lower()
@@ -223,7 +231,7 @@ def test_no_network_scheduler_and_production_unchanged(tmp_path):
     assert (REAL_ROOT / "config.json").read_text(encoding="utf-8") == before_cfg
     assert (REAL_ROOT / "source_registry" / "sources.json").read_text(encoding="utf-8") == before_reg
     assert (REAL_ROOT / "scheduler" / "windows_task_installed.json").read_text(encoding="utf-8") == before_task
-    assert (REAL_ROOT / "scheduler" / "state.json").read_text(encoding="utf-8") == before_sched
+    assert [path.read_bytes() if path.exists() else None for path in runtime] == before_runtime
     after_obs = (REAL_ROOT / "observations" / "observations.jsonl").read_text(encoding="utf-8")
     assert before_obs == after_obs
     cfg = json.loads(before_cfg)
