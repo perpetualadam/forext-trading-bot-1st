@@ -8,6 +8,7 @@ import email.utils
 import hashlib
 import http.client
 import importlib.util
+import ipaddress
 import json
 import math
 import os
@@ -26,10 +27,11 @@ import unittest.mock
 import urllib.parse
 import uuid
 
-if sys.argv[1:] not in (['--tests'],['--native-tests'],['--v26e-tests'],['--native-v26e-tests']):
-    raise SystemExit('usage: v26d_run.py --tests | --native-tests | --v26e-tests | --native-v26e-tests')
-V26E=sys.argv[1:] in (['--v26e-tests'],['--native-v26e-tests'])
-NATIVE=sys.argv[1:] in (['--native-tests'],['--native-v26e-tests'])
+if sys.argv[1:] not in (['--tests'],['--native-tests'],['--v26e-tests'],['--native-v26e-tests'],['--v26g-tests'],['--native-v26g-tests']):
+    raise SystemExit('usage: v26d_run.py --tests | --native-tests | --v26e-tests | --native-v26e-tests | --v26g-tests | --native-v26g-tests')
+V26G=sys.argv[1:] in (['--v26g-tests'],['--native-v26g-tests'])
+V26E=V26G or sys.argv[1:] in (['--v26e-tests'],['--native-v26e-tests'])
+NATIVE=sys.argv[1:] in (['--native-tests'],['--native-v26e-tests'],['--native-v26g-tests'])
 if NATIVE and os.name!='nt':raise SystemExit('NATIVE_WINDOWS_REQUIRED')
 PACKAGE=Path(__file__).resolve().parent;STDLIB=Path(os.__file__).resolve().parent
 BASE=PACKAGE/'outputs/v26c/fixtures'
@@ -101,7 +103,7 @@ def audit(event,args):
 
 
 sys.addaudithook(audit)
-test_name='test_v26e' if V26E else 'test_v26d'
+test_name='test_v26g' if V26G else 'test_v26e' if V26E else 'test_v26d'
 spec=importlib.util.spec_from_file_location('tiv2.'+test_name,PACKAGE/(test_name+'.py'))
 tests=importlib.util.module_from_spec(spec);sys.modules[spec.name]=tests;tests.NATIVE=NATIVE
 spec.loader.exec_module(tests)

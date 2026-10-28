@@ -60,20 +60,28 @@ def transition(archive,state,attempts):
     archive.put('journal.json',encoded({'version':1,'state':state,'spec':SPEC_HASH,'attempts':attempts}),replace=True)
 
 
-def reserve(archive,checkpoint=lambda phase:None):
+def reserve(archive,checkpoint=lambda phase:None,*,_live_reservation=None):
     """Caller holds OS lock until worker completion. No reset/recovery path.
 
     A claimed grant is immutable consumed evidence even if the next journal
     publication tears. An interrupted .pending file also refuses further writes.
     """
+    if _live_reservation is not None:
+        from .oneshot_authorisation import require_live_reservation
+        require_live_reservation(_live_reservation)
     value=journal(archive)
     if value['state']!='AUTHORISED_NOT_CONSUMED' or value['attempts']!=0:raise Refused('SESSION_NOT_UNUSED')
     if archive.path('grant.claimed.json').exists():raise Refused('GRANT_ALREADY_CLAIMED')
     grant=decode(archive.read('grant.json'))
     # Only synthetic grants are understood at this stage. No grant schema for
     # authenticated execution is accepted until separate evidence review.
-    if (not archive.synthetic or type(grant) is not dict or grant.get('synthetic') is not True or
-        grant!={'synthetic':True,'spec':SPEC_HASH,'identity':archive.identity}):
+    if _live_reservation is not None:
+        from .oneshot_authorisation import require_live_reservation
+        require_live_reservation({'reservation':_live_reservation,'grant':grant,
+                                 'identity':archive.identity,'spec':SPEC_HASH})
+        if archive.synthetic:raise Refused('AUTHENTICATED_EXECUTION_DISABLED')
+    elif (not archive.synthetic or type(grant) is not dict or grant.get('synthetic') is not True or
+          grant!={'synthetic':True,'spec':SPEC_HASH,'identity':archive.identity}):
         raise Refused('AUTHORISATION_NOT_APPROVED')
     archive.rename('grant.json','grant.claimed.json')
     with archive.path('grant.claimed.json').open('r+b') as stream:os.fsync(stream.fileno())
@@ -94,11 +102,28 @@ def _readlines(pipe,messages):
     except Exception:messages.put({'kind':'INVALID_WORKER_MESSAGE'})
 
 
-def run_once(root,*,synthetic_secret,seconds=15.0,fault='',pin=None,
-             _credential_provider=None,_https_fixture=None,_started=None):
-    """Fixture-only bridge; synthetic_secret is never an argv/env/file value.
+def claim_reserved_worker(archive,reservation):
+    """Real-only one-use worker claim using the original journal, no new ledger.
 
-    All archive I/O, preparation, validation and persistence occur in the child.
+    Supervisor reserved before Popen. The worker holds the original archive lock
+    and consumes the only attempt before asking for credentials. A second worker
+    cannot enter this state, including after failure before network dispatch.
+    """
+    from .oneshot_authorisation import require_live_reservation
+    require_live_reservation(reservation)
+    require_live_reservation({'reservation':reservation,'identity':archive.identity,
+                             'claimed_grant':decode(archive.read('grant.claimed.json'))})
+    if archive.synthetic or journal(archive)['state']!='REQUEST_RESERVED' or journal(archive)['attempts']!=0:
+        raise Refused('SESSION_NOT_UNUSED')
+    transition(archive,'REQUEST_ATTEMPTED',1)
+
+
+def run_once(root,*,synthetic_secret,seconds=15.0,fault='',pin=None,
+             _credential_provider=None,_https_fixture=None,_started=None,_live_reservation=None):
+    """Fenced bridge with synthetic entry and a permanently gated real branch.
+
+    Synthetic archive I/O occurs in the child. The dormant real branch reserves
+    in the supervisor before worker startup and holds native identity handles.
     The process fence is attached before startup or the in-memory secret is sent.
     Cleanup time is reserved inside the requested total budget. OS scheduling and
     uninterruptible kernel operations are not a hard real-time guarantee.
@@ -109,16 +134,29 @@ def run_once(root,*,synthetic_secret,seconds=15.0,fault='',pin=None,
     if type(seconds) not in (int,float) or not math.isfinite(seconds) or not 0.5<=seconds<=15:
         raise Refused('INVALID_DEADLINE')
     from .oneshot_bridge import SyntheticCredentialProvider,validate_synthetic
-    if _credential_provider is None:validate_synthetic(synthetic_secret)
+    live=_live_reservation is not None
+    if live:
+        from .oneshot_authorisation import require_live_reservation
+        from .oneshot_credentials import ReservedCredentialProvider
+        require_live_reservation(_live_reservation)
+        if (seconds!=15 or type(_credential_provider) is not ReservedCredentialProvider or synthetic_secret is not None or
+            _https_fixture is not None or fault):raise Refused('AUTHENTICATED_EXECUTION_DISABLED')
+    elif _credential_provider is None:validate_synthetic(synthetic_secret)
     elif type(_credential_provider) is not SyntheticCredentialProvider or synthetic_secret is not None:
         raise Refused('SYNTHETIC_PROVIDER_REQUIRED')
     if fault not in FAULTS:raise Refused('UNKNOWN_FIXTURE_FAULT')
     deadline=started+seconds;work_deadline=deadline-min(1.0,seconds/3)
-    process=None;job=None;messages=queue.Queue();result={'kind':'OUTCOME_UNKNOWN'}
+    process=None;job=None;native_archive=None;messages=queue.Queue();result={'kind':'OUTCOME_UNKNOWN'}
     try:
+        if live:
+            # No worker exists until the exact native archive has durably claimed
+            # the grant. Retain identity handles through the entire fenced run.
+            native_archive=Archive(root,pin=pin)
+            with native_archive.locked():reserve(native_archive,_live_reservation=_live_reservation)
+            if time.monotonic()>=work_deadline:raise Refused('PREPARATION_DEADLINE_EXHAUSTED')
         # Winsock needs the OS bootstrap directory even in an otherwise empty
         # Windows child environment. No parent variables or credentials copied.
-        child_env={'SystemRoot':r'C:\Windows'} if os.name=='nt' and _https_fixture is not None else {}
+        child_env={'SystemRoot':r'C:\Windows'} if os.name=='nt' and (_https_fixture is not None or live) else {}
         process=subprocess.Popen([sys.executable,'-I','-S','-B',str(WORKER),'--worker'],
             stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,
             env=child_env,start_new_session=os.name!='nt',close_fds=True)
@@ -131,6 +169,7 @@ def run_once(root,*,synthetic_secret,seconds=15.0,fault='',pin=None,
             if len(raw)>2048:raise Refused('WORKER_PACKET_TOO_LARGE')
             process.stdin.write(raw);process.stdin.flush()
         startup={'root':str(Path(root).absolute()),'fault':fault,'pin':pin}
+        if live:startup.update(live_reservation=_live_reservation,deadline=work_deadline)
         if _https_fixture is not None:startup.update(https_fixture=_https_fixture,deadline=work_deadline)
         send(startup)
         while time.monotonic()<work_deadline:
@@ -142,9 +181,14 @@ def run_once(root,*,synthetic_secret,seconds=15.0,fault='',pin=None,
                     except queue.Empty:break
                 else:continue
             if message.get('kind')=='RESERVED':
-                value=_credential_provider.credential() if _credential_provider is not None else synthetic_secret
-                validate_synthetic(value)
-                send({'synthetic_secret':value})
+                if live:
+                    from .oneshot_credentials import validate_token
+                    value=_credential_provider.credential(_live_reservation);validate_token(value)
+                    send({'credential':value})
+                else:
+                    value=_credential_provider.credential() if _credential_provider is not None else synthetic_secret
+                    validate_synthetic(value)
+                    send({'synthetic_secret':value})
             elif message.get('kind') in ('DONE','REFUSED'):
                 result=message;break
             else:break
@@ -169,6 +213,7 @@ def run_once(root,*,synthetic_secret,seconds=15.0,fault='',pin=None,
                 if pipe:
                     try:pipe.close()
                     except OSError:pass
+        if native_archive is not None:native_archive.close()
         result={**result,'worker_pid':process.pid if process else None,
                 'worker_exited':process is None or process.poll() is not None,
                 'elapsed':time.monotonic()-started}

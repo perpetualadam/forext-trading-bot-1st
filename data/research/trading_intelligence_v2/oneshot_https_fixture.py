@@ -26,40 +26,5 @@ def validate_binding(binding):
 
 
 def fetch_https_fixture(binding,secret,deadline,checkpoint=lambda phase:None,*,_request=None):
-    validate_binding(binding);validate_synthetic(secret)
-    try:
-        request=decode(encoded(SPEC if _request is None else _request))
-        if type(request) is not dict or set(request)!={'method','host','path','params'}:raise ValueError()
-        request_guard(**request)
-    except (TypeError,ValueError,OverflowError,Refused):
-        raise Refused('EXACT_REQUEST_REQUIRED') from None
-    if type(deadline) not in (int,float) or not math.isfinite(deadline):raise Refused('INVALID_DEADLINE')
-    context=ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
-    if binding['verification']!='untrusted':context.load_verify_locations(cadata=binding['certificate'])
-    # check_hostname and CERT_REQUIRED stay enabled, including rejection tests.
-    hostname='wrong.invalid' if binding['verification']=='hostname_mismatch' else 'localhost'
-    class LoopbackConnection(http.client.HTTPSConnection):
-        def send(self,data):
-            super().send(data)
-            # A fixture fault here is genuinely after HTTP bytes entered TLS,
-            # not merely before constructing the request. Remote receipt varies.
-            checkpoint('during_dispatch')
-        def connect(self):
-            if self._tunnel_host:raise Refused('TUNNEL_REFUSED')
-            sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-            try:
-                remaining=deadline-time.monotonic()
-                if remaining<=0:raise TimeoutError()
-                sock.settimeout(min(15,remaining));sock.connect(('127.0.0.1',binding['port']))
-                self.sock=context.wrap_socket(sock,server_hostname=hostname)
-            except BaseException:sock.close();raise
-    def sender(method,host,path,params):
-        request_guard(method,host,path,params)
-        remaining=deadline-time.monotonic()
-        if remaining<=0:raise TimeoutError()
-        connection=LoopbackConnection('127.0.0.1',port=binding['port'],timeout=min(15,remaining),context=context)
-        try:return _exchange_get(connection,host,path,params,secret,deadline)
-        except OSError as error:raise Refused('FIXTURE_WIRE_REFUSED') from error
-        finally:connection.close()
-    transport=CandleTransport(environment='live',sender=sender,attempts=1)
-    return transport.request(**request)
+    from .oneshot_network import fetch_synthetic
+    return fetch_synthetic(binding,secret,deadline,checkpoint,request=_request)

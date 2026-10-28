@@ -1,4 +1,4 @@
-"""Disposable synthetic worker. Never accepts OANDA transport or credentials."""
+"""Disposable worker. Real entry is unreachable behind the refusing live gate."""
 import datetime
 import decimal
 import email.utils
@@ -21,10 +21,14 @@ FIXTURES=PACKAGE/'outputs/v26c/fixtures'
 NATIVE_FIXTURES=Path(r'C:\TradingResearchData\OANDA\research_outputs\v26c_synthetic_sessions')
 BINDING=Path(r'C:\TradingResearchData\OANDA\manifests\v26c_archive_binding.json')
 LOOPBACK_PORT=None
+LIVE_POLICY=None
+LIVE_APPROVED=False
+LIVE_ROOT=Path(r'C:\TradingResearchData\OANDA')
 
 
 def audit(event,args):
     if event.startswith('socket.'):
+        if LIVE_POLICY is not None and LIVE_POLICY.permits(event,args):return
         if (event=='socket.__new__' and LOOPBACK_PORT is not None and args[1]==socket.AF_INET and
             args[2]==socket.SOCK_STREAM and args[3] in (0,socket.IPPROTO_TCP)):return
         if event=='socket.connect' and LOOPBACK_PORT is not None and args[1]==('127.0.0.1',LOOPBACK_PORT):return
@@ -39,13 +43,13 @@ def audit(event,args):
         path=Path(name).resolve();write=flags&(os.O_WRONLY|os.O_RDWR|os.O_CREAT|os.O_TRUNC|os.O_APPEND)
         if path.name.lower().startswith('.env') or path.suffix in {'.db','.sqlite','.permit','.consumed'}:
             raise PermissionError('WORKER_STATE_REFUSED')
-        if write and not any(path.is_relative_to(p) for p in (FIXTURES,NATIVE_FIXTURES)):
+        if write and not (LIVE_APPROVED and path.is_relative_to(LIVE_ROOT)) and not any(path.is_relative_to(p) for p in (FIXTURES,NATIVE_FIXTURES)):
             raise PermissionError('WORKER_WRITE_REFUSED')
-        if not write and path!=BINDING and not any(path.is_relative_to(p) for p in (STDLIB,PACKAGE,NATIVE_FIXTURES)):
+        if not write and not (LIVE_APPROVED and path.is_relative_to(LIVE_ROOT)) and path!=BINDING and not any(path.is_relative_to(p) for p in (STDLIB,PACKAGE,NATIVE_FIXTURES)):
             raise PermissionError('WORKER_READ_REFUSED')
     if event in {'os.rename','os.remove','os.mkdir','os.rmdir','os.link','os.symlink','os.chmod','os.truncate'}:
         for name in args[:2] if event in {'os.rename','os.link','os.symlink'} else args[:1]:
-            if not any(Path(name).resolve().is_relative_to(p) for p in (FIXTURES,NATIVE_FIXTURES)):
+            if not (LIVE_APPROVED and Path(name).resolve().is_relative_to(LIVE_ROOT)) and not any(Path(name).resolve().is_relative_to(p) for p in (FIXTURES,NATIVE_FIXTURES)):
                 raise PermissionError('WORKER_MUTATION_REFUSED')
 
 
@@ -59,7 +63,7 @@ def packet():
 
 
 def main():
-    global LOOPBACK_PORT
+    global LOOPBACK_PORT,LIVE_POLICY,LIVE_APPROVED
     if sys.argv[1:]!=['--worker']:raise ValueError()
     os.environ.clear()
     if os.name=='nt':os.environ['SystemRoot']=r'C:\Windows'
@@ -69,7 +73,7 @@ def main():
     if os.name=='nt':
         from tiv2 import oneshot_windows
     sys.addaudithook(audit)
-    from tiv2.oneshot import reserve,transition,request_guard,SPEC,FAULTS
+    from tiv2.oneshot import reserve,claim_reserved_worker,transition,request_guard,SPEC,FAULTS
     from tiv2.oneshot_archive import Archive
     from tiv2.history_fixtures import payload
     from tiv2.oneshot_transport import fetch_fixture_once
@@ -78,21 +82,30 @@ def main():
     from tiv2.core import timestamp
     from tiv2.oneshot_bridge import validate_synthetic
     start=packet();fault=start['fault']
+    live='live_reservation' in start
+    if live:
+        from tiv2.oneshot_authorisation import require_live_reservation
+        require_live_reservation(start['live_reservation'])
+        LIVE_APPROVED=True
     if fault not in FAULTS:raise ValueError()
     def checkpoint(phase):
         if fault=='crash_'+phase:os._exit(123)
         if fault=='stall_'+phase:threading.Event().wait()
     checkpoint('preparation')
-    with Archive(start['root'],synthetic=True,pin=start['pin']) as archive,archive.locked():
-        reserve(archive,checkpoint)
+    with Archive(start['root'],synthetic=not live,pin=start['pin']) as archive,archive.locked():
+        if live:claim_reserved_worker(archive,start['live_reservation'])
+        else:reserve(archive,checkpoint)
         emit({'kind':'RESERVED'})
-        secret=packet()['synthetic_secret']
-        validate_synthetic(secret)
+        secret=packet()['credential' if live else 'synthetic_secret']
+        if live:
+            from tiv2.oneshot_credentials import validate_token
+            validate_token(secret)
+        else:validate_synthetic(secret)
         request_guard(**SPEC)
         checkpoint('before_dispatch')
-        transition(archive,'REQUEST_ATTEMPTED',1)
-        # Durable fixture evidence of dispatch; never an actual HTTP operation.
-        archive.put('synthetic_dispatch.json',encoded({'synthetic':True,'attempts':1}))
+        if not live:transition(archive,'REQUEST_ATTEMPTED',1)
+        # Explicit fixture evidence only; never publish real provenance as synthetic.
+        if not live:archive.put('synthetic_dispatch.json',encoded({'synthetic':True,'attempts':1}))
         begin=timestamp(SPEC['params']['from']);end=timestamp(SPEC['params']['to'])+1
         def sender(method,host,path,params):
             request_guard(method,host,path,params)
@@ -105,7 +118,12 @@ def main():
                 obj=json.loads(raw);obj['candles'][-1]['complete']=False;raw=encoded(obj)
             elif fault=='out_of_range':raw=encoded(payload(start=begin-300,count=1))
             return Response(200,raw)
-        if 'https_fixture' in start:
+        if live:
+            from tiv2.oneshot_network import LiveSocketPolicy,fetch_live
+            LIVE_POLICY=LiveSocketPolicy(start['live_reservation'])
+            raw=fetch_live(reservation=start['live_reservation'],token=secret,
+                           deadline=start['deadline'],_policy=LIVE_POLICY)
+        elif 'https_fixture' in start:
             from tiv2.oneshot_https_fixture import validate_binding
             from tiv2.oanda_existing_readonly import fetch_synthetic_candles
             validate_binding(start['https_fixture'])
@@ -114,12 +132,13 @@ def main():
         else:raw=fetch_fixture_once(sender)
         if secret.encode() in raw:raise ValueError()
         transition(archive,'RESPONSE_RECEIVED',1);checkpoint('after_response');checkpoint('validation')
-        rows,report=validated(raw,'EUR_USD',begin,end,timestamp('2026-10-27T00:00:00Z'))
-        if 'https_fixture' in start:
+        retrieved=time.time() if live else timestamp('2026-10-27T00:00:00Z')
+        rows,report=validated(raw,'EUR_USD',begin,end,retrieved)
+        if live or 'https_fixture' in start:
             from tiv2.oneshot_response import publish_candles
             archive.after_pending=lambda name:checkpoint('archive_publication') if name=='raw/v26c_https.json' else None
             publish_candles(archive,raw,name='v26c_https',start=begin,end=end,
-                            retrieved=timestamp('2026-10-27T00:00:00Z'),synthetic=True)
+                            retrieved=retrieved,synthetic=not live)
         else:
             archive.after_pending=lambda name:checkpoint('archive_publication') if name=='raw.json' else None
             raw_hash=archive.put('raw.json',raw);row_hash=archive.put('validated.json',encoded(rows))

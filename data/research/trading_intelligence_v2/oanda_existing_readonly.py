@@ -18,7 +18,9 @@ class ExistingOandaCredentialProvider:
     The controller still accepts only its exact SyntheticCredentialProvider.
     """
     __slots__=()
-    def credential(self):raise Refused(STATE)
+    def credential(self):
+        from .oneshot_credentials import ReservedCredentialProvider
+        return ReservedCredentialProvider().credential()
     def __repr__(self):return '<ExistingOandaCredentialProvider DISABLED REDACTED>'
 
 
