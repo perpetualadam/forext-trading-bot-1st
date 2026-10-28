@@ -1,7 +1,7 @@
-"""One exact future LIVE connection, sharing the tested fixture wire exchange.
+"""One exact admitted LIVE connection, sharing the tested fixture wire exchange.
 
 No public sender/factory, host, endpoint, proxy or token-source override. Real
-entry is unreachable until a separate reservation validator is implemented.
+entry requires a source-bound, role-checked durable worker reservation.
 """
 import http.client
 import ipaddress
@@ -17,12 +17,13 @@ from .oanda_history_transport import CandleTransport,_exchange_get
 
 HOST='api-fxtrade.oanda.com'
 PORT=443
+_DISPATCHED=set()
 
 
 class LiveSocketPolicy:
     """Exact worker audit scope, unavailable without a real reservation."""
     def __init__(self,reservation):
-        authority.require_live_reservation(reservation)
+        authority.require_role(reservation,'network')
         self.resolving=False;self.resolved=False;self.address=None;self.family=None;self.connected=False
     def permits(self,event,args):
         if event=='socket.getaddrinfo' and self.resolving and not self.resolved:
@@ -64,16 +65,20 @@ def select_address(records):
 
 class _LiveConnection(http.client.HTTPSConnection):
     def __init__(self,reservation,deadline,policy=None):
-        authority.require_live_reservation(reservation)
+        authority.require_role(reservation,'network')
+        if policy is not None and type(policy) is not LiveSocketPolicy:raise Refused('NETWORK_POLICY_REQUIRED')
+        if authority.admitted(reservation):
+            if reservation['session'] in _DISPATCHED:raise Refused('SECOND_REQUEST_REFUSED')
+            _DISPATCHED.add(reservation['session'])
         self._policy=policy if policy is not None else LiveSocketPolicy(reservation)
-        self._reservation=reservation;self._deadline=deadline;self._connected=False
+        self._reservation=reservation;self._deadline=deadline;self._connected=False;self._request_sent=False
         super().__init__(HOST,port=PORT,timeout=remaining(deadline),context=ssl.create_default_context())
     def connect(self):
-        authority.require_live_reservation(self._reservation)
+        authority.require_role(self._reservation,'network')
         if self._connected or self._tunnel_host:raise Refused('SECOND_CONNECTION_REFUSED')
         self._connected=True
-        # This resolution and socket operations remain denied by today's worker
-        # audit policy. Future activation must allow only these exact operations.
+        # The installed worker policy permits only this exact DNS operation and
+        # the one validated address; no proxy, alternate host or reconnect.
         remaining(self._deadline)
         self._policy.resolving=True
         try:records=socket.getaddrinfo(HOST,PORT,socket.AF_UNSPEC,socket.SOCK_STREAM,socket.IPPROTO_TCP)
@@ -86,6 +91,19 @@ class _LiveConnection(http.client.HTTPSConnection):
             sock.settimeout(remaining(self._deadline))
             self.sock=self._context.wrap_socket(sock,server_hostname=HOST)
         except BaseException:sock.close();raise
+
+    def request(self,method,url,body=None,headers=None,*,encode_chunked=False):
+        from urllib.parse import urlencode
+        from .oneshot_credentials import validate_token
+        authority.require_role(self._reservation,'network')
+        expected={'Authorization','Accept-Datetime-Format','Accept','Accept-Encoding'}
+        if (self._request_sent or method!='GET' or url!=SPEC['path']+'?'+urlencode(SPEC['params']) or
+            body is not None or encode_chunked or type(headers) is not dict or set(headers)!=expected or
+            headers['Accept-Datetime-Format']!='RFC3339' or headers['Accept']!='application/json' or
+            headers['Accept-Encoding']!='identity' or type(headers['Authorization']) is not str or not headers['Authorization'].startswith('Bearer ')):
+            raise Refused('EXACT_REQUEST_REQUIRED')
+        validate_token(headers['Authorization'][7:]);remaining(self._deadline);self._request_sent=True
+        return super().request(method,url,body=body,headers=headers,encode_chunked=False)
 
 
 def _exchange(connection,secret,deadline,request):
@@ -103,7 +121,7 @@ def _exchange(connection,secret,deadline,request):
 
 
 def fetch_live(*,reservation,token,deadline,_policy=None):
-    authority.require_live_reservation(reservation)
+    authority.require_role(reservation,'network')
     from .oneshot_credentials import validate_token
     secret=validate_token(token)
     request_guard(**SPEC);remaining(deadline)

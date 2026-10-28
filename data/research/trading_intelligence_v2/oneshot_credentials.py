@@ -1,7 +1,7 @@
-"""In-memory real-token implementation behind the unimplemented live gate.
+"""Legacy environment provider, unavailable to every admitted real/test session.
 
 Never import operational configuration or dotenv. Tests replace the exact getter
-with synthetic values; ordinary calls refuse before even querying the environment.
+with synthetic values; ordinary calls refuse before querying the environment. Real sessions use terminal input.
 """
 import os
 import re
@@ -19,6 +19,7 @@ class ReservedCredentialProvider:
     __slots__=()
     def __repr__(self):return '<ReservedCredentialProvider DISABLED REDACTED>'
     def credential(self,reservation=None):
+        if authority.admitted(reservation):raise Refused('TERMINAL_CREDENTIALS_REQUIRED')
         authority.require_live_reservation(reservation)
         # Reached only after a future approved validator accepts a durable
         # controller-bound reservation. No token field is stored on this object.

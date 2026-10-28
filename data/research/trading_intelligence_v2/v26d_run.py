@@ -27,12 +27,13 @@ import unittest.mock
 import urllib.parse
 import uuid
 
-if sys.argv[1:] not in (['--tests'],['--native-tests'],['--v26e-tests'],['--native-v26e-tests'],['--v26g-tests'],['--native-v26g-tests'],['--v27-tests'],['--native-v27-tests']):
+if sys.argv[1:] not in (['--tests'],['--native-tests'],['--v26e-tests'],['--native-v26e-tests'],['--v26g-tests'],['--native-v26g-tests'],['--v27-tests'],['--native-v27-tests'],['--activation-tests'],['--native-activation-tests']):
     raise SystemExit('usage: v26d_run.py --tests | --native-tests | --v26e-tests | --native-v26e-tests | --v26g-tests | --native-v26g-tests | --v27-tests | --native-v27-tests')
-V27=sys.argv[1:] in (['--v27-tests'],['--native-v27-tests'])
+ACTIVATION=sys.argv[1:] in (['--activation-tests'],['--native-activation-tests'])
+V27=ACTIVATION or sys.argv[1:] in (['--v27-tests'],['--native-v27-tests'])
 V26G=V27 or sys.argv[1:] in (['--v26g-tests'],['--native-v26g-tests'])
 V26E=V26G or sys.argv[1:] in (['--v26e-tests'],['--native-v26e-tests'])
-NATIVE=sys.argv[1:] in (['--native-tests'],['--native-v26e-tests'],['--native-v26g-tests'],['--native-v27-tests'])
+NATIVE=sys.argv[1:] in (['--native-tests'],['--native-v26e-tests'],['--native-v26g-tests'],['--native-v27-tests'],['--native-activation-tests'])
 if NATIVE and os.name!='nt':raise SystemExit('NATIVE_WINDOWS_REQUIRED')
 PACKAGE=Path(__file__).resolve().parent;STDLIB=Path(os.__file__).resolve().parent
 BASE=PACKAGE/'outputs/v26c/fixtures'
@@ -71,6 +72,12 @@ def audit(event,args):
     if event=='subprocess.Popen':
         executable,argv,cwd,env=args
         worker=[sys.executable,'-I','-S','-B',str(WORKER),'--worker']
+        if ACTIVATION:
+            base_exe=getattr(sys,'_base_executable',sys.executable)
+            direct=[base_exe,'-I','-S','-B',str(WORKER),'--worker']
+            if executable in (None,base_exe) and argv in (direct,subprocess.list2cmdline(direct)):
+                if env!=({'SystemRoot':r'C:\Windows'} if os.name=='nt' else {}):raise PermissionError('V26D_SUBPROCESS_ENV_REFUSED')
+                return
         if executable in (None,sys.executable) and argv in (worker,subprocess.list2cmdline(worker)):
             if env!=({'SystemRoot':r'C:\Windows'} if os.name=='nt' else {}):
                 raise PermissionError('V26D_SUBPROCESS_ENV_REFUSED')
@@ -108,7 +115,7 @@ def audit(event,args):
 
 
 sys.addaudithook(audit)
-test_name='test_v27' if V27 else 'test_v26g' if V26G else 'test_v26e' if V26E else 'test_v26d'
+test_name='test_v27_activation' if ACTIVATION else 'test_v27' if V27 else 'test_v26g' if V26G else 'test_v26e' if V26E else 'test_v26d'
 spec=importlib.util.spec_from_file_location('tiv2.'+test_name,PACKAGE/(test_name+'.py'))
 tests=importlib.util.module_from_spec(spec);sys.modules[spec.name]=tests;tests.NATIVE=NATIVE
 spec.loader.exec_module(tests)

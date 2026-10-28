@@ -1,8 +1,7 @@
-"""Disposable one-shot supervisor. No executable authenticated entry point.
+"""Exact one-shot supervisor with source-bound interactive real admission.
 
-The fixed live specification is review material. Endpoint/terms evidence remains
-unapproved; real execution is deliberately unavailable in this stage. Synthetic
-workers exercise the reservation/deadline state machine, never OANDA HTTP.
+No trading capability. The real branch requires the exact native grant, durable
+reservation, worker identity and terminal-only credential delivery.
 """
 import json
 import math
@@ -79,7 +78,7 @@ def reserve(archive,checkpoint=lambda phase:None,*,_live_reservation=None):
         from .oneshot_authorisation import require_live_reservation
         require_live_reservation({'reservation':_live_reservation,'grant':grant,
                                  'identity':archive.identity,'spec':SPEC_HASH})
-        if archive.synthetic:raise Refused('AUTHENTICATED_EXECUTION_DISABLED')
+        if archive.synthetic!=(_live_reservation.get('mode')=='OFFLINE_TEST'):raise Refused('GRANT_SCOPE_REFUSED')
     elif (not archive.synthetic or type(grant) is not dict or grant.get('synthetic') is not True or
           grant!={'synthetic':True,'spec':SPEC_HASH,'identity':archive.identity}):
         raise Refused('AUTHORISATION_NOT_APPROVED')
@@ -113,14 +112,17 @@ def claim_reserved_worker(archive,reservation):
     require_live_reservation(reservation)
     require_live_reservation({'reservation':reservation,'identity':archive.identity,
                              'claimed_grant':decode(archive.read('grant.claimed.json'))})
-    if archive.synthetic or journal(archive)['state']!='REQUEST_RESERVED' or journal(archive)['attempts']!=0:
+    fixture=type(reservation) is dict and reservation.get('mode')=='OFFLINE_TEST'
+    if archive.synthetic!=fixture or journal(archive)['state']!='REQUEST_RESERVED' or journal(archive)['attempts']!=0:
         raise Refused('SESSION_NOT_UNUSED')
+    from .oneshot_authorisation import admitted,bind_worker
+    if admitted(reservation):bind_worker(archive,reservation)
     transition(archive,'REQUEST_ATTEMPTED',1)
 
 
 def run_once(root,*,synthetic_secret,seconds=15.0,fault='',pin=None,
              _credential_provider=None,_https_fixture=None,_started=None,_live_reservation=None):
-    """Fenced bridge with synthetic entry and a permanently gated real branch.
+    """Fenced bridge with synthetic entry and a source-bound real branch.
 
     Synthetic archive I/O occurs in the child. The dormant real branch reserves
     in the supervisor before worker startup and holds native identity handles.
@@ -128,37 +130,52 @@ def run_once(root,*,synthetic_secret,seconds=15.0,fault='',pin=None,
     Cleanup time is reserved inside the requested total budget. OS scheduling and
     uninterruptible kernel operations are not a hard real-time guarantee.
     """
-    now=time.monotonic();started=now if _started is None else _started
+    now=time.monotonic()
+    if _started is None and type(_live_reservation) is dict:_started=_live_reservation.get('started',now)
+    started=now if _started is None else _started
     if type(started) not in (int,float) or not math.isfinite(started) or started>now:
         raise Refused('INVALID_START_TIME')
     if type(seconds) not in (int,float) or not math.isfinite(seconds) or not 0.5<=seconds<=15:
         raise Refused('INVALID_DEADLINE')
     from .oneshot_bridge import SyntheticCredentialProvider,validate_synthetic
     live=_live_reservation is not None
+    from .oneshot_authorisation import admitted
+    phased=live and admitted(_live_reservation)
+    fixture_live=live and type(_live_reservation) is dict and _live_reservation.get('mode')=='OFFLINE_TEST'
     if live:
         from .oneshot_authorisation import require_live_reservation
         from .oneshot_credentials import ReservedCredentialProvider
         require_live_reservation(_live_reservation)
         from .direct_history import TerminalCredentialProvider
-        if (seconds!=15 or type(_credential_provider) not in (ReservedCredentialProvider,TerminalCredentialProvider) or synthetic_secret is not None or
-            _https_fixture is not None or fault):raise Refused('AUTHENTICATED_EXECUTION_DISABLED')
+        if fixture_live:
+            from .oneshot_https_fixture import validate_binding
+            if type(_credential_provider) is not SyntheticCredentialProvider:raise Refused('SYNTHETIC_PROVIDER_REQUIRED')
+            validate_binding(_https_fixture)
+        elif type(_live_reservation) is dict and type(_credential_provider) is not TerminalCredentialProvider:
+            raise Refused('TERMINAL_CREDENTIALS_REQUIRED')
+        if ((not fixture_live and seconds!=15) or type(_credential_provider) not in (ReservedCredentialProvider,TerminalCredentialProvider,SyntheticCredentialProvider) or synthetic_secret is not None or
+            (not fixture_live and (_https_fixture is not None or fault))):raise Refused('AUTHENTICATED_EXECUTION_DISABLED')
     elif _credential_provider is None:validate_synthetic(synthetic_secret)
     elif type(_credential_provider) is not SyntheticCredentialProvider or synthetic_secret is not None:
         raise Refused('SYNTHETIC_PROVIDER_REQUIRED')
     if fault not in FAULTS:raise Refused('UNKNOWN_FIXTURE_FAULT')
-    deadline=started+seconds;work_deadline=deadline-min(1.0,seconds/3)
+    deadline=started+(15 if phased else seconds);work_deadline=deadline-min(1.0,seconds/3)
+    acquisition_started=None
     process=None;job=None;native_archive=None;messages=queue.Queue();result={'kind':'OUTCOME_UNKNOWN'}
     try:
         if live:
             # No worker exists until the exact native archive has durably claimed
             # the grant. Retain identity handles through the entire fenced run.
-            native_archive=Archive(root,pin=pin)
+            native_archive=Archive(root,synthetic=fixture_live,pin=pin)
             with native_archive.locked():reserve(native_archive,_live_reservation=_live_reservation)
             if time.monotonic()>=work_deadline:raise Refused('PREPARATION_DEADLINE_EXHAUSTED')
         # Winsock needs the OS bootstrap directory even in an otherwise empty
         # Windows child environment. No parent variables or credentials copied.
         child_env={'SystemRoot':r'C:\Windows'} if os.name=='nt' and (_https_fixture is not None or live) else {}
-        process=subprocess.Popen([sys.executable,'-I','-S','-B',str(WORKER),'--worker'],
+        # Windows venv redirectors introduce an intermediate PID. Admitted
+        # sessions need the direct trusted interpreter for exact worker binding.
+        worker_exe=getattr(sys,'_base_executable',sys.executable) if live and os.name=='nt' else sys.executable
+        process=subprocess.Popen([worker_exe,'-I','-S','-B',str(WORKER),'--worker'],
             stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,
             env=child_env,start_new_session=os.name!='nt',close_fds=True)
         if os.name=='nt':
@@ -173,6 +190,7 @@ def run_once(root,*,synthetic_secret,seconds=15.0,fault='',pin=None,
         if live:startup.update(live_reservation=_live_reservation,deadline=work_deadline)
         if _https_fixture is not None:startup.update(https_fixture=_https_fixture,deadline=work_deadline)
         send(startup)
+        credential_sent=False
         while time.monotonic()<work_deadline:
             try:message=messages.get(timeout=min(.02,max(0.001,work_deadline-time.monotonic())))
             except queue.Empty:
@@ -182,13 +200,29 @@ def run_once(root,*,synthetic_secret,seconds=15.0,fault='',pin=None,
                     except queue.Empty:break
                 else:continue
             if message.get('kind')=='RESERVED':
+                if credential_sent:raise Refused('DUPLICATE_WORKER_MESSAGE')
+                credential_sent=True
                 if live:
+                    from .oneshot_authorisation import admitted,require_role
+                    if admitted(_live_reservation):require_role(_live_reservation,'credential',worker_pid=process.pid)
                     from .oneshot_credentials import validate_token
-                    if type(_credential_provider) is TerminalCredentialProvider:
+                    if phased:
+                        claim=decode(native_archive.read('worker.claimed.json'))
+                        work_deadline=claim['credential_deadline'];deadline=work_deadline+1
+                    if fixture_live:
+                        value=_credential_provider.credential();validate_synthetic(value)
+                    elif type(_credential_provider) is TerminalCredentialProvider:
                         value=_credential_provider.credential(_live_reservation,deadline=work_deadline)
                     else:value=_credential_provider.credential(_live_reservation)
                     validate_token(value)
+                    if phased:
+                        if time.monotonic()>=work_deadline:raise Refused('TOKEN_ENTRY_TIMEOUT')
+                        from .oneshot_authorisation import begin_acquisition
+                        phase=begin_acquisition(native_archive,_live_reservation,process.pid,seconds)
+                        acquisition_started=phase['started'];deadline=phase['deadline']
+                        work_deadline=deadline-min(1.0,seconds/3)
                     send({'credential':value})
+                    value=None
                 else:
                     value=_credential_provider.credential() if _credential_provider is not None else synthetic_secret
                     validate_synthetic(value)
@@ -197,7 +231,8 @@ def run_once(root,*,synthetic_secret,seconds=15.0,fault='',pin=None,
                 result=message;break
             else:break
     except Exception as error:
-        result={'kind':'OUTCOME_UNKNOWN','local_error':type(error).__name__}
+        result={'kind':'TOKEN_ENTRY_TIMEOUT' if phased and type(error) is Refused and str(error)=='TOKEN_ENTRY_TIMEOUT' else 'OUTCOME_UNKNOWN',
+                'local_error':type(error).__name__}
     finally:
         if process is not None:
             # Always fence, even after DONE: no background child may remain.
@@ -218,10 +253,11 @@ def run_once(root,*,synthetic_secret,seconds=15.0,fault='',pin=None,
                     try:pipe.close()
                     except OSError:pass
         if native_archive is not None:native_archive.close()
+        elapsed=time.monotonic()-(acquisition_started if acquisition_started is not None else started)
         result={**result,'worker_pid':process.pid if process else None,
                 'worker_exited':process is None or process.poll() is not None,
-                'elapsed':time.monotonic()-started}
-        if result['elapsed']>seconds:result['kind']='DEADLINE_OVERRUN'
+                'elapsed':elapsed,'total_elapsed':time.monotonic()-started}
+        if time.monotonic()>deadline:result['kind']='DEADLINE_OVERRUN'
     return result
 
 
