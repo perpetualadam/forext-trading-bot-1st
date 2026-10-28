@@ -76,6 +76,22 @@ Confirm on `GET /system`: `execution_mode` is `paper_broker` or `live_broker`, `
 
 See [DEPLOYMENT.md](DEPLOYMENT.md) for Docker.
 
+## Offline research tests
+
+Use the managed launcher for the original V2, multi-timeframe, and V2.3 suites:
+
+```sh
+python -I -S -B data/research/trading_intelligence_v2/managed_run.py --tests
+python -I -S -B data/research/trading_intelligence_v2/managed_run.py --mtf-tests
+python -I -S -B data/research/trading_intelligence_v2/managed_run.py --v23-tests
+```
+
+The original `run.py` is an immutable V2.3 research reference; invoke it through
+`managed_run.py` so its temporary workspace is cleaned on exit. The V2.4, V2.5,
+V2.6, and V2.6B entrypoints manage their workspaces directly. Cleanup keeps the
+audit barriers active, refuses links and replaced workspace roots, and reports
+cleanup failures instead of silently leaving directories behind.
+
 ## Telegram control
 
 If `TELEGRAM_TOKEN` (or `TELEGRAM_BOT_TOKEN`) and `TELEGRAM_CHAT_ID` are set, the bot keeps the existing outbound alerts and also listens for commands from that chat. Send `/start` or `/help` to pin a keyboard with P/L, drawdown, status, start, stop, positions, account, system, windows, metrics, trades, risk, experiment, and reconcile.
