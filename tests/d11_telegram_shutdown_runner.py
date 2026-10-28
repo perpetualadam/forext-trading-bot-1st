@@ -17,6 +17,8 @@ import traceback
 import types
 import urllib.request
 from pathlib import Path
+from current_lifecycle_fixtures import wire_current_startup
+from current_lifecycle_fixtures import schema_ready_cursor
 
 NETWORK: list[str] = []
 FS_DENIALS: list[str] = []
@@ -64,6 +66,7 @@ _REAL_SYSTEM = os.system
 _REAL_POPEN = subprocess.Popen
 
 
+@schema_ready_cursor
 class FakeCursor:
     def __init__(self, connection_id: int) -> None:
         global NEXT_CURSOR
@@ -1303,7 +1306,8 @@ def _lifespan_cases(
     appmod.reconciliation_loop = fake_async("reconciliation_loop")  # type: ignore[attr-defined]
     appmod.health_snapshot_loop = fake_async("health_snapshot_loop")  # type: ignore[attr-defined]
     appmod.telegram_inbound_loop = fake_async("telegram_inbound_loop")  # type: ignore[attr-defined]
-    orders = sys.modules["forex_bot.orders"]
+    wire_current_startup(appmod)
+    orders = __import__("importlib").import_module("forex_bot.orders")
     orders.load_open_orders_from_db_into_memory = record("load_open_orders")  # type: ignore[attr-defined]
     reconciliation = types.ModuleType("forex_bot.reconciliation")
     reconciliation.load_reconcile_state_from_db = record("load_reconcile")  # type: ignore[attr-defined]

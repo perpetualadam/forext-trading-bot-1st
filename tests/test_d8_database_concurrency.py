@@ -15,22 +15,22 @@ ROOT = Path(__file__).resolve().parents[1]
 RUNNER = Path(__file__).resolve().parent / "d8_concurrency_runner.py"
 EXPECTED = {
     "forex_bot/app.py": (
-        "08766300dfaf703e7553c69703e5d5f2c90e8efc2b491e6eeff1791ca93e3b44"
+        '1883d3c94a570b66782b7079bcd64d7657c83c0cd6faa385cab7a65bc2d56bd1'
     ),
     "forex_bot/database.py": (
-        "74bb9f5d692ace88bff525f334d7eb8577427bfe75cf5f229f647e60b88979e9"
+        'be83fc2a485af0f392203562a8286082587b0824f235557b6036e69f661f840d'
     ),
     "forex_bot/live_safety.py": (
-        "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44"
+        'e4310d1cd694c3f2a8791b308666fa15ae6ba1a82bdc67a99c5788ffe70ad546'
     ),
     "forex_bot/strategy_meta.py": (
-        "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d"
+        'b45b2f7e7f684686eddd2ddf9f2d6d1c3919678ec128c38665f38c99c3ab3222'
     ),
 }
 
 
 def _sha(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def _child_env(work: Path, safety: Path) -> dict[str, str]:
@@ -141,86 +141,104 @@ def test_t01_t04_baseline_and_fake_driver(report: dict) -> None:
         assert row["alive_workers"] == 0, name
 
 
-def test_t05_t07_unlocked_overlap_abandons_a_connection(report: dict) -> None:
-    row = _sched(report, "unlocked_overlap")
-    assert row["connect_calls"] == 2
-    assert row["abandoned_open"] == 1
+def test_t05_t07_unlocked_overlap_publishes_one_connection(report: dict) -> None:
+    row = _sched(report, "serialized_overlap")
+    assert row["second_blocked_while_first_connected"] is True
+    assert row["connects_while_held"] == 1
+    assert row["connect_calls"] == 1
+    assert row["cursors_created"] == 1
+    assert row["abandoned_open"] == 0
+    assert row["pair_consistent"] is True
     assert row["published_open"] is True
-    assert row["pair_consistent"] is True
+    assert row["application_closed"] == 0
+    assert row["harness_closed"] == 1
     assert row["worker_errors"] == []
-    assert row["application_closed"] == 0
-    assert row["harness_closed"] == 2
+    assert row["returned_ids"] == [row["published_id"], row["published_id"]]
 
 
-def test_t05_locked_caller_does_not_exclude_unlocked_caller(report: dict) -> None:
-    row = _sched(report, "unlocked_vs_locked")
-    assert row["connect_calls"] == 2
-    assert row["abandoned_open"] == 1
-    assert row["pair_consistent"] is True
-    assert row["application_closed"] == 0
-    assert row["harness_closed"] == 2
+def test_t05_locked_helper_and_unlocked_caller_share_one_connection(report: dict) -> None:
+    row = _sched(report, "nested_waits")
+    assert row["helper_blocked"] is True
+    assert row["connects_while_held"] == 1
+    assert row["connect_calls"] == 1
+    assert row["abandoned_open"] == 0
+    assert row["worker_errors"] == []
 
 
 def test_t11_t12_helpers_holding_the_lock_publish_one_pair(report: dict) -> None:
-    row = _sched(report, "both_locked")
-    assert row["connect_calls"] == 1
+    row = _sched(report, "nested_helper")
+    assert row["helper_rows"] == []
+    assert row["second_helper_rows"] == []
+    assert row["connects_after_second_helper"] == 1
     assert row["abandoned_open"] == 0
-    assert row["published_open"] is True
     assert row["pair_consistent"] is True
-    assert row["harness_closed"] == 1
-    ids = {worker["returned_id"] for worker in row["workers"]}
-    assert ids == {row["published_id"]}
 
 
-def test_t08_t10_mixed_and_double_failure(report: dict) -> None:
-    second = _sched(report, "second_fails")
-    first = _sched(report, "first_fails")
+def test_t08_t10_initialization_failures_clean_up_before_retry(report: dict) -> None:
+    for name in ("cursor_fails", "sql_fails", "commit_fails"):
+        row = _sched(report, name)
+        assert row["first_none"] is True, name
+        assert row["published_is_second"] is True, name
+        assert row["abandoned_open"] == 0, name
+        assert row["pair_consistent"] is True, name
+        assert row["connect_calls"] == 2, name
+        assert row["partial_notes"] == [], name
+        assert row["notes_after_first"] == [], name
+    rollback = _sched(report, "rollback_fails")
+    assert rollback["first_none"] is True
+    assert rollback["published_is_second"] is True
+    assert "RuntimeError" in rollback["notes_after_first"]
+    assert rollback["abandoned_open"] == 0
+    cursor_close = _sched(report, "cursor_close_fails")
+    assert "RuntimeError" in cursor_close["notes_after_first"]
+    assert cursor_close["published_is_second"] is True
+    assert cursor_close["abandoned_open"] == 0
+    conn_close = _sched(report, "conn_close_fails")
+    assert "RuntimeError" in conn_close["notes_after_first"]
+    assert conn_close["published_is_second"] is True
+    assert conn_close["abandoned_open"] == 0
+    assert conn_close["harness_closed"] == 2
+
+def test_t08_t10_both_fail_and_healthy_global_survives(report: dict) -> None:
     both = _sched(report, "both_fail")
-    cleanup = _sched(report, "cleanup_fails")
-    for row in (second, first):
-        assert row["connect_calls"] == 2
-        assert row["published_open"] is True
-        assert row["abandoned_open"] == 0
-        assert row["application_closed"] >= 1
-        assert row["harness_closed"] == 1
-        assert row["worker_errors"] == []
+    assert both["first_none"] is True
+    assert both["second_none"] is True
     assert both["published_id"] is None
     assert both["abandoned_open"] == 0
     assert both["application_closed"] == 2
     assert both["harness_closed"] == 0
-    assert both["worker_errors"] == []
-    assert cleanup["published_id"] is None
-    assert "RuntimeError" in cleanup["partial_notes"]
-    assert cleanup["harness_closed"] == 1
-    survivor = [
-        row
-        for row in cleanup["connections"]
-        if row["close_calls"] and not row["closed"]
-    ]
-    assert len(survivor) == 1
+    healthy = _sched(report, "failed_cleanup_keeps_healthy")
+    assert healthy["failed_none"] is True
+    assert healthy["global_still_healthy"] is True
+    assert healthy["abandoned_open"] == 0
 
 
 def test_t13_t19_release_retry_and_replacement(report: dict) -> None:
-    during = _sched(report, "release_during_init")
-    borrowed = _sched(report, "release_borrowed")
+    release = _sched(report, "release")
     replaced = _sched(report, "replace_during_close")
-    retry = _sched(report, "retry_after_connect_failure")
-    assert during["release_notes_before_publish"] == []
-    assert during["published_open"] is True
-    assert during["abandoned_open"] == 0
-    assert borrowed["borrowed_closed"] is True
-    assert borrowed["borrowed_close_calls"] == 1
-    assert borrowed["second_release_notes"] == []
-    assert borrowed["release_created_connection"] is False
-    assert borrowed["harness_closed"] == 0
+    nested = _sched(report, "nested_helper")
+    waiting = _sched(report, "nested_waits")
+    assert release["borrowed_closed"] is True
+    assert release["second_release_notes"] == []
+    assert release["release_created_connection"] is False
+    assert release["harness_closed"] == 0
     assert replaced["old_closed"] is True
     assert replaced["new_open"] is True
     assert replaced["published_id"] == replaced["new_id"]
     assert replaced["published_id"] != replaced["old_id"]
-    assert retry["first_none"] is True
-    assert retry["published_is_second"] is True
-    assert retry["connect_calls"] == 2
-    assert retry["abandoned_open"] == 0
+    assert nested["helper_rows"] == []
+    assert nested["second_helper_rows"] == []
+    assert nested["connects_after_second_helper"] == 1
+    assert nested["abandoned_open"] == 0
+    assert waiting["helper_blocked"] is True
+    assert waiting["connects_while_held"] == 1
+    assert waiting["connect_calls"] == 1
+    assert waiting["abandoned_open"] == 0
+    assert waiting["worker_errors"] == []
+    for row in report["schedules"].values():
+        assert row["requests"] == 0
+        assert row["network"] == []
+        assert row["alive_workers"] == 0
 
 
 def test_t31_t44_lifespan_edges(lifespan_report: dict) -> None:

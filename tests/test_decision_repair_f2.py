@@ -373,7 +373,7 @@ def test_evaluate_close_records_executed_and_survives_audit_failure(monkeypatch,
         return -1.0
 
     monkeypatch.setattr("forex_bot.bot_loop.execute_trade", _exec)
-    monkeypatch.setattr("forex_bot.bot_loop.close_position", lambda symbol: closed.append(symbol))
+    monkeypatch.setattr("forex_bot.bot_loop.close_position", lambda symbol: closed.append(symbol) or pos)
     monkeypatch.setattr("forex_bot.bot_loop.rl_agent.update", lambda *_a, **_k: None)
     asyncio.run(evaluate("EUR_USD"))
     assert closed == ["EUR_USD"]

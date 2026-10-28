@@ -15,16 +15,16 @@ ROOT = Path(__file__).resolve().parents[1]
 RUNNER = Path(__file__).resolve().parent / "d13_telegram_reporting_runner.py"
 UNCHANGED = {
     "forex_bot/database.py": (
-        "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e"
+        'be83fc2a485af0f392203562a8286082587b0824f235557b6036e69f661f840d'
     ),
     "forex_bot/telegram_control.py": (
-        "193a59645c0596b22016164f8cdf1a50b06734a6bd56a014fba9a6910ba68780"
+        '0447f31e36b63ccc586391f1a1a3b04bc4d16445d1a0bcf405ca7f3e2bb4b6fe'
     ),
     "forex_bot/live_safety.py": (
-        "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44"
+        'e4310d1cd694c3f2a8791b308666fa15ae6ba1a82bdc67a99c5788ffe70ad546'
     ),
     "forex_bot/strategy_meta.py": (
-        "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d"
+        'b45b2f7e7f684686eddd2ddf9f2d6d1c3919678ec128c38665f38c99c3ab3222'
     ),
 }
 
@@ -87,7 +87,7 @@ def _child_env(work: Path, safety: Path) -> dict[str, str]:
 def run_d13(tmp_path_factory: pytest.TempPathFactory, mode: str) -> dict:
     for rel, digest in UNCHANGED.items():
         path = ROOT / rel
-        actual = hashlib.sha256(path.read_bytes()).hexdigest()
+        actual = hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
         assert actual == digest
     work = tmp_path_factory.mktemp(f"d13-{mode}")
     out = work / "report.json"

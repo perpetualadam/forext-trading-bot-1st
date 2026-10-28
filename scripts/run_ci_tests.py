@@ -23,6 +23,12 @@ STAGE_RUNNERS = {
         "data/research/adaptive_ensemble/r13/20_run_offline_tests.py", "r13"
     ),
 }
+GUARDED_STAGES = {
+    "test_r8_reservation_safety.py", "test_r9_position_safety.py",
+    "test_r12_single_iteration.py", "test_r21_selector_and_order_state.py",
+    "test_r22_restart_recovery.py", "test_r23_process_restart.py",
+    "test_r24_recovery_fail_closed.py",
+}
 
 
 def main() -> int:
@@ -67,6 +73,8 @@ def main() -> int:
             if stage is not None else
             [sys.executable, "-m", "pytest", "-q", module, *arguments, *temporary]
         )
+        if Path(module).name in GUARDED_STAGES:
+            command = [sys.executable, "-B", "scripts/run_guarded_test_module.py", module]
         result = subprocess.run(
             command,
             cwd=root,

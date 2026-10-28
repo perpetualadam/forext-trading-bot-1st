@@ -249,13 +249,11 @@ def test_helpers_do_not_reference_network_clients() -> None:
             assert banned not in source
 
 
-def test_staging_context_remains_when_present() -> None:
-    if not STAGING.is_dir():
-        pytest.skip("local staging directory is absent")
+def test_historical_staging_context_matches(historical_staging_root) -> None:
     verifier = _load("g14_1_verify")
     manifest = json.loads(
         (ROOT / "data/research/adaptive_ensemble/g14_1/staged_context_manifest.json").read_text(encoding="utf-8")
     )
-    checked = verifier.verify_directory(STAGING, manifest["files"])
+    checked = verifier.verify_directory(historical_staging_root, manifest["files"])
     assert checked["file_count"] == 63
     assert checked["independent_verification"] == "PASS"

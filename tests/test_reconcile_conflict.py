@@ -64,6 +64,7 @@ def _live(symbol: str = "EUR_USD", *, entry: float = 1.15420, units: float = 2.0
 
 def _reset(rec_mod=rec):
     positions.clear()
+    posmod.broker_observations.clear()
     posmod._displaced_paper.clear()
     rec_mod._have_broker_snapshot = False
     rec_mod._last_broker_nets = {}
@@ -101,6 +102,7 @@ def _patch_broker(monkeypatch, detail: dict, pending=None, trade=None, *, order_
         rec._last_trade_ids = {
             rec._norm_inst(k): ["555"] for k, (net, _avg) in detail.items() if abs(float(net)) > 1e-9
         }
+        rec._remember_broker_snapshot(detail)
         return dict(detail)
 
     def fake_tx(xid):
@@ -155,8 +157,10 @@ def test_displace_then_import_uses_broker_identity():
         broker_trade_ids="555",
         broker_order_id="555",
     )
-    pos = positions["EUR_USD"]
+    pos = posmod.broker_observations["EUR_USD"]
     assert pos.execution_kind == "reconcile_import"
+    assert pos.observation_only is True
+    assert not posmod.position_management_permitted(pos)
     assert pos.broker_order is True
     assert pos.entry_price == pytest.approx(1.15420)
     assert pos.direction == "SELL"
@@ -178,8 +182,10 @@ def test_case_b_conflict_displaces_paper_and_imports_broker(monkeypatch, caplog)
     )
     caplog.set_level(logging.INFO)
     mismatches = rec.reconcile_positions_log_only()
-    pos = positions["EUR_USD"]
+    pos = posmod.broker_observations["EUR_USD"]
     assert pos.execution_kind == "reconcile_import"
+    assert pos.observation_only is True
+    assert not posmod.position_management_permitted(pos)
     assert pos.entry_price == pytest.approx(1.15420)
     assert pos.direction == "SELL"
     assert pos.units == pytest.approx(2.0)
@@ -188,10 +194,10 @@ def test_case_b_conflict_displaces_paper_and_imports_broker(monkeypatch, caplog)
     assert pos.sl_source == "broker_pending"
     assert pos.tp_source == "broker_pending"
     assert pos.broker_order is True
-    assert last_displaced_paper()[-1]["execution_kind"] == "window_paper"
-    assert last_displaced_paper()[-1]["entry_price"] == pytest.approx(1.15398)
+    assert last_displaced_paper() == []
+    assert positions["EUR_USD"].entry_price == pytest.approx(1.15398)
     assert calls == []
-    assert not any(m[0] == "EUR_USD" and "paper-like" in m[2] for m in mismatches)
+    assert any(m[0] == "EUR_USD" and m[1] == "critical" and "paper-like" in m[2] for m in mismatches)
     assert any("RECONCILE CONFLICT" in r.message for r in caplog.records)
 
 
@@ -211,8 +217,10 @@ def test_case_a_match_keeps_live_identity(monkeypatch):
 def test_case_c_imports_when_local_empty(monkeypatch):
     _patch_broker(monkeypatch, {"EUR_USD": (-2.0, 1.15420)})
     rec.reconcile_positions_log_only()
-    pos = positions["EUR_USD"]
+    pos = posmod.broker_observations["EUR_USD"]
     assert pos.execution_kind == "reconcile_import"
+    assert pos.observation_only is True
+    assert not posmod.position_management_permitted(pos)
     assert pos.broker_order is True
     assert pos.entry_price == pytest.approx(1.15420)
     assert pos.direction == "SELL"
@@ -231,10 +239,10 @@ def test_case_d_auto_fix_drops_broker_backed_when_broker_flat(monkeypatch):
     open_position(_live())
     _patch_broker(monkeypatch, {})
     rec.reconcile_positions_log_only()
-    assert "EUR_USD" not in positions
-    pend = pending_broker_exits()
-    assert "EUR_USD" in pend
-    assert pend["EUR_USD"].last_error == "trade_details_unavailable"
+    assert positions["EUR_USD"].execution_kind == "live"
+    from forex_bot.broker_close_evidence import broker_flat_note
+    assert broker_flat_note("EUR_USD")
+    assert pending_broker_exits() == {}
 
 
 def test_case_e_preserves_paper_when_broker_flat(monkeypatch, caplog):
@@ -266,22 +274,25 @@ def test_paper_open_blocked_when_local_already_broker_backed():
     assert why is not None
 
 
-def test_usd_guard_counts_imported_not_displaced_paper(monkeypatch):
-    open_position(_paper())
-    _patch_broker(monkeypatch, {"EUR_USD": (-2.0, 1.15420)})
+def test_observation_blocks_paper_without_granting_managed_book_authority(monkeypatch):
+    paper = _paper()
+    open_position(paper)
+    calls = _patch_broker(monkeypatch, {"EUR_USD": (-2.0, 1.15420)})
     rec.reconcile_positions_log_only()
-    assert is_broker_backed(positions["EUR_USD"])
-    d = usd_direction_guard_decision("GBP_USD", "SELL")
-    assert d["same_direction_count"] == 1
-    assert d["exceeds"] is False
-    displaced = last_displaced_paper()
-    assert displaced and displaced[-1]["execution_kind"] == "window_paper"
+    observation = posmod.broker_observations["EUR_USD"]
+    assert positions["EUR_USD"] is paper
+    assert observation.observation_only is True
+    assert not posmod.position_management_permitted(observation)
+    assert rec.paper_open_blocked_reason("EUR_USD") is not None
+    assert usd_direction_guard_decision("GBP_USD", "SELL")["same_direction_count"] == 0
+    assert last_displaced_paper() == []
+    assert calls == []
 
 
 def test_fallback_sl_tp_not_claimed_as_broker(monkeypatch):
     _patch_broker(monkeypatch, {"EUR_USD": (-2.0, 1.15420)}, pending=[], trade=None)
     rec.reconcile_positions_log_only()
-    pos = positions["EUR_USD"]
+    pos = posmod.broker_observations["EUR_USD"]
     assert pos.sl_source == "local_fallback"
     assert pos.tp_source == "local_fallback"
     assert pos.entry_price == pytest.approx(1.15420)
@@ -298,7 +309,7 @@ def test_trade_details_preferred_for_sl_tp_and_open_time(monkeypatch):
     }
     _patch_broker(monkeypatch, {"EUR_USD": (-2.0, 1.15420)}, trade=trade)
     rec.reconcile_positions_log_only()
-    pos = positions["EUR_USD"]
+    pos = posmod.broker_observations["EUR_USD"]
     assert pos.sl_source == "broker_trade"
     assert pos.tp_source == "broker_trade"
     assert pos.stop_loss == pytest.approx(1.15490)
@@ -309,16 +320,10 @@ def test_trade_details_preferred_for_sl_tp_and_open_time(monkeypatch):
 
 
 def test_mfe_seed_uses_broker_entry_and_does_not_invent_peak():
-    import_position_from_broker(
-        "EUR_USD",
-        -2.0,
-        1.15420,
-        1.15480,
-        1.15200,
-        sl_source="broker_pending",
-        tp_source="broker_pending",
-        open_time=1_700_000_000.0,
-    )
+    managed = _live()
+    managed.open_time = 1_700_000_000.0
+    managed.profit_protection_seeded = True
+    open_position(managed)
     pos = positions["EUR_USD"]
     assert pos.profit_protection_seeded is True
     assert pos.max_profit_pips == pytest.approx(0.0)
@@ -335,14 +340,10 @@ def test_mfe_seed_uses_broker_entry_and_does_not_invent_peak():
 def test_mfe_seed_from_candles_when_open_time_known():
     opened = rec._parse_oanda_open_time("2026-09-15T17:11:22.000000000Z")
     assert opened is not None
-    import_position_from_broker(
-        "EUR_USD",
-        -2.0,
-        1.15420,
-        1.15480,
-        1.15200,
-        open_time=opened,
-    )
+    managed = _live()
+    managed.open_time = opened
+    managed.profit_protection_seeded = True
+    open_position(managed)
     pos = positions["EUR_USD"]
     assert pos.profit_protection_seeded is True
     ohlcv = pd.DataFrame(
@@ -371,10 +372,11 @@ def test_restart_window_paper_cannot_hide_live_broker_position(monkeypatch):
     assert live_before_restart.execution_kind == "live"
     # 3. Process restart loses in-memory state.
     positions.clear()
+    posmod.broker_observations.clear()
     # 4. Local window_paper occupies the only symbol slot.
     open_position(_paper(entry=1.15398))
     assert positions["EUR_USD"].execution_kind == "window_paper"
-    # 5–8. Reconciliation sees OANDA EUR_USD, conflicts, displaces paper, imports broker.
+    # 5–8. Reconciliation records broker exposure without displacing the paper slot.
     _patch_broker(
         monkeypatch,
         {"EUR_USD": (-2.0, 1.15420)},
@@ -392,36 +394,36 @@ def test_restart_window_paper_cannot_hide_live_broker_position(monkeypatch):
         order_calls=calls,
     )
     rec.reconcile_positions_log_only()
-    pos = positions["EUR_USD"]
+    pos = posmod.broker_observations["EUR_USD"]
     # 9–10. Broker entry/side/units; marked broker-backed / reconcile_import.
     assert pos.entry_price == pytest.approx(1.15420)
     assert pos.direction == "SELL"
     assert pos.units == pytest.approx(2.0)
     assert pos.execution_kind == "reconcile_import"
+    assert pos.observation_only is True
+    assert not posmod.position_management_permitted(pos)
     assert pos.broker_order is True
     assert is_broker_backed(pos)
     assert pos.sl_source == "broker_trade"
     assert pos.tp_source == "broker_trade"
     assert pos.stop_loss == pytest.approx(1.15480)
     assert pos.take_profit == pytest.approx(1.15200)
-    # 11. Imported broker position participates in live USD-direction guard.
+    # 11. The broker snapshot remains visible without granting managed-book authority.
     d = usd_direction_guard_decision("GBP_USD", "SELL")
-    assert d["same_direction_count"] == 1
-    # 12. Paper no longer in the active slot / live management.
+    assert d["same_direction_count"] == 0
+    assert rec._last_broker_nets["EUR_USD"] == -2.0
+    assert not posmod.position_management_permitted(pos)
+    # 12. Observation and paper identity remain separate.
     assert not is_paper_like(pos)
-    assert last_displaced_paper()[-1]["execution_kind"] == "window_paper"
-    assert last_displaced_paper()[-1]["entry_price"] == pytest.approx(1.15398)
+    assert last_displaced_paper() == []
+    assert positions["EUR_USD"].entry_price == pytest.approx(1.15398)
     # 13–14. No new broker order; existing SL/TP not modified (no order APIs called).
     assert calls == []
-    # 15. Restart import does not invent MFE; current closeout can raise it later.
+    # 15. Restart observations cannot manufacture managed MFE.
     assert pos.profit_protection_seeded is True
     assert pos.max_profit_pips == pytest.approx(0.0)
-    seed = seed_position_mfe(pos, 1.15370, None, include_partial_entry_bar=False)
-    assert seed == "already"
-    from forex_bot.profit_protection import apply_profit_protection
-
-    d_pp = apply_profit_protection(pos, 1.15370)
-    assert d_pp.max_profit_pips == pytest.approx(5.0, abs=0.05)
+    assert not posmod.position_management_permitted(pos)
+    assert positions["EUR_USD"].execution_kind == "window_paper"
     assert rec.paper_open_blocked_reason("EUR_USD") is not None
 
 
@@ -429,8 +431,10 @@ def test_gbp_usd_same_conflict_path(monkeypatch):
     open_position(_paper("GBP_USD", entry=1.34700))
     _patch_broker(monkeypatch, {"GBP_USD": (-1.0, 1.34765)})
     rec.reconcile_positions_log_only()
-    pos = positions["GBP_USD"]
+    pos = posmod.broker_observations["GBP_USD"]
     assert pos.execution_kind == "reconcile_import"
+    assert pos.observation_only is True
+    assert not posmod.position_management_permitted(pos)
     assert pos.entry_price == pytest.approx(1.34765)
     assert pos.units == pytest.approx(1.0)
 

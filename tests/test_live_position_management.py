@@ -284,7 +284,13 @@ def test_restart_import_does_not_manufacture_mfe():
         open_time=FILL_1621,
         broker_order_id="1621",
     )
-    pos = positions["USD_JPY"]
+    from forex_bot.positions import broker_observations, position_management_permitted
+    observation = broker_observations["USD_JPY"]
+    assert observation.observation_only is True
+    assert not position_management_permitted(observation)
+    assert "USD_JPY" not in positions
+    assert observation.max_profit_pips == 0.0
+    pos = _pos(symbol="USD_JPY", direction="BUY", entry=156.757, sl=156.6988, tp=156.8734, open_time=FILL_1621, broker_id="1621")
     assert pos.profit_protection_seeded is True
     assert pos.max_profit_pips == pytest.approx(0.0)
     raise_mfe_from_post_entry_ohlcv(pos, _partial_usd_jpy_ohlcv())

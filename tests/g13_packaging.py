@@ -7,11 +7,12 @@ import hashlib
 import json
 import os
 import stat
+import sys
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-ALLOWLIST_PATH = ROOT / "data" / "research" / "adaptive_ensemble" / "g10" / "production_allowlist.json"
+ALLOWLIST_PATH = ROOT / "tests" / "fixtures" / "current_production_allowlist.json"
 DOCKERIGNORE = ROOT / ".dockerignore"
 
 POLICY_NOT_COPIED = frozenset({"Dockerfile", ".dockerignore"})
@@ -156,11 +157,11 @@ def resolve_import(current: str, node: ast.AST) -> list[str]:
     if full and full[0] == "forex_bot":
         module = ".".join(full)
         found.extend(_module_candidates(module) or [f"MISSING:{module}"])
-    if node.level and not node.module:
+    if full and full[0] == "forex_bot":
         for alias in node.names:
             if alias.name == "*":
                 continue
-            module = ".".join([*base, alias.name])
+            module = ".".join([*full, alias.name])
             if module.startswith("forex_bot"):
                 candidates = _module_candidates(module)
                 if candidates:
@@ -195,7 +196,15 @@ def production_closure(root: Path | None = None) -> dict[str, Any]:
             if isinstance(node, ast.Call):
                 label = getattr(node.func, "attr", None) or getattr(node.func, "id", None)
                 if label in {"import_module", "__import__"}:
-                    dynamic.append(f"{rel}:{node.lineno}:{label}")
+                    # Literal standard-library imports add no application files.
+                    literal_stdlib = (
+                        len(node.args) == 1 and not node.keywords
+                        and isinstance(node.args[0], ast.Constant)
+                        and isinstance(node.args[0].value, str)
+                        and node.args[0].value.split(".")[0] in sys.stdlib_module_names
+                    )
+                    if not literal_stdlib:
+                        dynamic.append(f"{rel}:{node.lineno}:{label}")
                 if label in {"open", "read_text", "read_bytes", "files"}:
                     file_reads.append(f"{rel}:{node.lineno}:{label}")
     text_markers = []

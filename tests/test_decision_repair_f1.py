@@ -120,6 +120,9 @@ def _enable_audit(monkeypatch, tmp_path: Path) -> Path:
 
 
 def _patch_session_open(monkeypatch, raw: pd.DataFrame) -> None:
+    # Unit-test legacy audit emission downstream of the shared entry decision.
+    # The production dispatcher and its refusal contracts are tested separately.
+    monkeypatch.setattr("forex_bot.bot_loop.dispatch_production_iteration", lambda *_a, **_k: {"status": "continue_existing_production_broker"})
     monkeypatch.setattr("forex_bot.bot_loop.fetch_ohlcv", lambda *_a, **_k: raw)
     monkeypatch.setattr("forex_bot.bot_loop.in_active_session", lambda *_a, **_k: True)
     monkeypatch.setattr("forex_bot.bot_loop.flatten_for_weekend", lambda: False)
@@ -281,7 +284,7 @@ def test_audit_rate_limit_still_records_and_fail_closed_new_exposure(monkeypatch
     monkeypatch.setattr("forex_bot.bot_loop.portfolio_risk_cap_exceeded", lambda *_a, **_k: False)
     monkeypatch.setattr("forex_bot.bot_loop.usd_direction_guard_decision", lambda *_a, **_k: {"exceeds": False})
     monkeypatch.setattr("forex_bot.bot_loop.current_equity", lambda: 10_000.0)
-    monkeypatch.setattr("forex_bot.bot_loop.last_account_summary", lambda: {"currency": "GBP", "NAV": 10_000.0})
+    monkeypatch.setattr("forex_bot.oanda_client.last_account_summary", lambda: {"currency": "GBP", "NAV": 10_000.0})
     monkeypatch.setattr("forex_bot.reconciliation.paper_open_blocked_reason", lambda *_a, **_k: None)
     monkeypatch.setattr("forex_bot.bot_loop.apply_latency", lambda: asyncio.sleep(0, result=0))
     monkeypatch.setattr("forex_bot.bot_loop.apply_market_impact", lambda *_a, **_k: (1.10, 0.0))
@@ -336,7 +339,7 @@ def test_audit_internal_intent_and_mock_broker_outcomes(monkeypatch, tmp_path):
     monkeypatch.setattr("forex_bot.bot_loop.portfolio_risk_cap_exceeded", lambda *_a, **_k: False)
     monkeypatch.setattr("forex_bot.bot_loop.usd_direction_guard_decision", lambda *_a, **_k: {"exceeds": False})
     monkeypatch.setattr("forex_bot.bot_loop.current_equity", lambda: 10_000.0)
-    monkeypatch.setattr("forex_bot.bot_loop.last_account_summary", lambda: {"currency": "GBP", "NAV": 10_000.0})
+    monkeypatch.setattr("forex_bot.oanda_client.last_account_summary", lambda: {"currency": "GBP", "NAV": 10_000.0})
     monkeypatch.setattr("forex_bot.reconciliation.paper_open_blocked_reason", lambda *_a, **_k: None)
 
     async def _lat():
@@ -381,10 +384,13 @@ def test_audit_internal_intent_and_mock_broker_outcomes(monkeypatch, tmp_path):
     )
     monkeypatch.setattr("forex_bot.bot_loop.format_entry_geometry_line", lambda *_a, **_k: "geom")
 
+    broker_calls = []
+
     async def _ack(*_a, **_k):
+        broker_calls.append("ack")
         return (1.1001, 2.0, "oid-1", 0.0, 1.0)
 
-    monkeypatch.setattr("forex_bot.bot_loop.oanda_exec.execute_oanda_market_open", _ack)
+    monkeypatch.setattr("forex_bot.oanda_exec.execute_oanda_market_open", _ack)
     monkeypatch.setattr("forex_bot.bot_loop.finalize_order_fill", lambda *_a, **_k: None)
     monkeypatch.setattr("forex_bot.bot_loop.record_fill_quality", lambda **_k: None)
     monkeypatch.setattr("forex_bot.bot_loop.format_entry_fill_geometry_line", lambda **_k: "fill")
@@ -397,24 +403,30 @@ def test_audit_internal_intent_and_mock_broker_outcomes(monkeypatch, tmp_path):
     bind_live_frame(raw, instrument="EUR_USD", host=official_rest_host())
     asyncio.run(evaluate("EUR_USD"))
     ack_rows = _read_audit(dest)
-    assert any(r.get("submission_status") == "acknowledged" and r.get("broker_ack") for r in ack_rows)
-    assert any(r.get("order_submitted") for r in ack_rows)
+    assert ack_rows
+    assert all(not r.get("broker_ack") for r in ack_rows)
+    assert all(not r.get("order_submitted") for r in ack_rows)
+    assert broker_calls == []
 
     dest.write_text("", encoding="utf-8")
 
     async def _fail(*_a, **_k):
+        broker_calls.append("fail")
         raise OrderCreateOutcomeError(
             OrderCreateClassification(outcome="rejected", error_message="mock reject"),
             "mock reject",
         )
 
-    monkeypatch.setattr("forex_bot.bot_loop.oanda_exec.execute_oanda_market_open", _fail)
+    monkeypatch.setattr("forex_bot.oanda_exec.execute_oanda_market_open", _fail)
     monkeypatch.setattr("forex_bot.bot_loop.mark_order_failed_or_cancelled", lambda *_a, **_k: None)
     monkeypatch.setattr("forex_bot.bot_loop.record_fill_failure", lambda: None)
     asyncio.run(evaluate("EUR_USD"))
     fail_rows = _read_audit(dest)
-    assert any(r.get("submission_status") == "failed" for r in fail_rows)
-    assert any(r.get("explicit_rejection_reason") == "BROKER_SUBMISSION_FAILED" for r in fail_rows)
+    assert fail_rows
+    assert all(not r.get("broker_ack") for r in fail_rows)
+    assert all(not r.get("order_submitted") for r in fail_rows)
+    assert all(r.get("explicit_rejection_reason") != "BROKER_SUBMISSION_FAILED" for r in fail_rows)
+    assert broker_calls == []
 
 
 def test_incomplete_candle_is_rejected(monkeypatch, tmp_path):

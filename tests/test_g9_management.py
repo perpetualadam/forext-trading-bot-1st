@@ -102,6 +102,11 @@ class _Seen:
         self.synthetic = 0
 
 
+@pytest.fixture(autouse=True)
+def _current_close_context(monkeypatch, managed_close_transport):
+    monkeypatch.setitem(globals(), "_CURRENT_CLOSE_TRANSPORT", managed_close_transport)
+
+
 def _install(
     monkeypatch: pytest.MonkeyPatch,
     seen: _Seen,
@@ -197,6 +202,7 @@ def _install(
         "forex_bot.oanda_exec.get_api",
         lambda: (_ for _ in ()).throw(AssertionError("broker client requested")),
     )
+    _CURRENT_CLOSE_TRANSPORT(positions, seen, close_error, with_kwargs=True)
 
 
 def _no_quotes() -> dict:
@@ -521,6 +527,7 @@ def test_multi_instrument_isolation(monkeypatch: pytest.MonkeyPatch) -> None:
     assert len(middle.execute) == 3
 
     failed_close = _Seen()
+    failing_book = {name: _position(name, "BUY") for name in symbols}
 
     async def _execute(symbol, *_args, **_kwargs):
         failed_close.execute.append((symbol,))
@@ -532,13 +539,13 @@ def test_multi_instrument_isolation(monkeypatch: pytest.MonkeyPatch) -> None:
         monkeypatch,
         failed_close,
         candles={"EUR_USD": None, "GBP_USD": None, "USD_JPY": None},
-        positions={name: _position(name, "BUY") for name in symbols},
+        positions=failing_book,
         weekend=True,
         quote_for=lambda: {name: _quote(name) for name in symbols},
     )
-    monkeypatch.setattr(bot_loop, "execute_trade", _execute)
+    _CURRENT_CLOSE_TRANSPORT(failing_book, failed_close, lambda symbol: TimeoutError("unconfirmed") if symbol == "EUR_USD" else None, with_kwargs=True)
     asyncio.run(bot_loop._cycle_symbols(symbols))
-    assert [item[0] for item in failed_close.execute] == symbols
+    assert [item[0][0] for item in failed_close.execute] == symbols
     assert failed_close.closed == ["GBP_USD", "USD_JPY"]
 
 
@@ -596,6 +603,9 @@ def _sealed() -> pd.DataFrame:
 
 
 def _drive_entry(monkeypatch: pytest.MonkeyPatch, frame: pd.DataFrame) -> list[str]:
+    # Isolate the downstream provenance gate; no production producer is granted.
+    monkeypatch.setattr(bot_loop, "dispatch_production_iteration", lambda *_a, **_k: {"status": "continue_existing_production_broker"})
+    monkeypatch.setattr("forex_bot.database.exposure_entry_block_reason", lambda *_a, **_k: None)
     reasons: list[str] = []
     reached: list[str] = []
     real = decision_frame_rejection
@@ -687,7 +697,7 @@ def test_untrusted_frames_reach_provenance_and_submit_no_orders(
         assert live_order_auth_state() == AUTH_BLOCKED
 
 
-def test_direct_open_stays_blocked_and_close_cannot_reverse(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_direct_open_stays_blocked_and_close_cannot_reverse(monkeypatch: pytest.MonkeyPatch, entry_intent_factory, close_intent_factory) -> None:
     calls: list[dict] = []
 
     class FakeAPI:
@@ -704,23 +714,23 @@ def test_direct_open_stays_blocked_and_close_cannot_reverse(monkeypatch: pytest.
     monkeypatch.setenv("OANDA_ACCESS_TOKEN", "not-a-real-token")
     with pytest.raises(RuntimeError, match="LIVE_ORDER_AUTH"):
         _place_market_order_open_sync(
-            "EUR_USD", 1.0, "BUY", "cid", entry_quote=mint_live_quote()
+            "EUR_USD", 1.0, "BUY", "cid", entry_quote=mint_live_quote(), entry_permit=entry_intent_factory(units=1, client_order_id="cid")
         )
     assert calls == []
-    _place_market_order_sync("EUR_USD", 3.0, "BUY")
-    _place_market_order_sync("EUR_USD", 2.0, "SELL")
+    _place_market_order_sync("EUR_USD", 3.0, "BUY", close_intent_factory(units=3.0, direction="BUY"))
+    _place_market_order_sync("EUR_USD", 2.0, "SELL", close_intent_factory(units=2.0, direction="SELL"))
     assert calls == [{"longUnits": "3"}, {"shortUnits": "2"}]
     assert all("positionFill" not in item for item in calls)
     calls.clear()
     with pytest.raises(RuntimeError, match="uncertain position direction"):
-        _place_market_order_sync("EUR_USD", 1.0, "FLAT")
+        _place_market_order_sync("EUR_USD", 1.0, "FLAT", close_intent_factory())
     with pytest.raises(RuntimeError, match="uncertain position size"):
-        _place_market_order_sync("EUR_USD", float("nan"), "BUY")
+        _place_market_order_sync("EUR_USD", float("nan"), "BUY", close_intent_factory())
     assert calls == []
     assert live_order_auth_state() == AUTH_BLOCKED
 
 
-def test_close_timeout_is_not_retried_inside_the_broker_call(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_close_timeout_is_not_retried_inside_the_broker_call(monkeypatch: pytest.MonkeyPatch, entry_intent_factory, close_intent_factory) -> None:
     calls = {"n": 0}
 
     class FakeAPI:
@@ -731,14 +741,17 @@ def test_close_timeout_is_not_retried_inside_the_broker_call(monkeypatch: pytest
     monkeypatch.setattr("forex_bot.oanda_exec.get_api", lambda: FakeAPI())
     monkeypatch.setattr("forex_bot.oanda_exec._account_id", lambda: "ACC")
     monkeypatch.setattr("forex_bot.oanda_rate_limit.acquire_oanda_rest_slot", lambda: None)
-    with pytest.raises(RuntimeError, match="timed out"):
-        _place_market_order_sync("EUR_USD", 1.0, "BUY")
+    with pytest.raises(TimeoutError, match="timed out"):
+        _place_market_order_sync("EUR_USD", 1.0, "BUY", close_intent_factory(units=1.0, direction="BUY"))
     assert calls["n"] == 1
 
 
 def test_frozen_g7_snapshot_and_g8_dockerignore_are_unchanged() -> None:
     def _sha(path) -> str:
-        return hashlib.sha256(path.read_bytes()).hexdigest()
+        payload = path.read_bytes()
+        if path.name == ".dockerignore":
+            payload = payload.replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")
+        return hashlib.sha256(payload).hexdigest()
 
     manifest = json.loads((G7 / "manifest.json").read_text(encoding="utf-8"))
     assert manifest["manifest_sha256"] == (

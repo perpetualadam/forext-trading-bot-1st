@@ -107,43 +107,66 @@ def assert_backtests_equivalent(a, b, *, atr_tol: float = 1e-10) -> None:
     assert [_trade_tuple(t) for t in a.trades] == [_trade_tuple(t) for t in b.trades]
 
 
-def test_reference_is_deterministic_in_process():
+@pytest.fixture
+def synthetic_reference(monkeypatch):
+    """An explicit two-signal research policy; production voters stay disabled."""
+    import pandas as pd
+    from forex_bot.decision_quality import signal
+    original = signal.production_quant_decision
+    frame = _fixture()
+    frame["time"] = pd.date_range("2026-01-05T10:00:00", periods=len(frame), freq="5min")
+    for column in ("open", "high", "low", "close"):
+        frame[column] = 1.1
+    frame["high"] = 1.10001
+    frame["low"] = 1.09999
+    frame.loc[81, "high"] = 1.11
+    frame.loc[81, "low"] = 1.08
+
+    def policy(raw, lookback):
+        vote = original(raw, lookback)
+        # Wait for the deliberately extreme exit bar to leave the ATR window.
+        side = {81: "BUY", 120: "SELL"}.get(len(raw))
+        vote.update(allow=side is not None, direction=side, confidence=0.9 if side else 0.0)
+        return vote
+    monkeypatch.setattr(signal, "seeded_select_strategy", lambda *_a: ("trend", 60, "synthetic-test"))
+    monkeypatch.setattr(signal, "production_quant_decision", policy)
+    return frame
+
+
+def test_reference_is_deterministic_and_default_voters_fail_closed():
+    from forex_bot.decision_quality.signal import production_quant_decision
     df = _fixture()
     a = _run(df)
     b = _run(df)
     assert_backtests_equivalent(a, b)
-    assert a.signals >= 1
-    assert len(a.trades) >= 1
-    assert set(s.decision for s in a.snapshots) <= {"BUY", "SELL", "NO_SIGNAL"}
+    assert a.signals == 0
+    assert a.trades == []
+    assert all(s.decision == "NO_SIGNAL" for s in a.snapshots)
+    vote = production_quant_decision(df, 60)
+    assert vote["allow"] is False and vote["direction"] is None
+    assert vote["reason"] == "quant_stub_removed"
 
 
-def test_reference_signal_sequence_and_trade_count():
-    df = _fixture()
-    r = _run(df)
-    assert [s.decision for s in r.snapshots] == [
-        "NO_SIGNAL",
-        "BUY",
-        "NO_SIGNAL",
-        "NO_SIGNAL",
-        "SELL",
-    ]
+def test_reference_signal_sequence_and_trade_count(synthetic_reference):
+    r = _run(synthetic_reference)
     assert r.signals == 2
     assert len(r.trades) == 2
     assert [t.snapshot.decision for t in r.trades] == ["BUY", "SELL"]
-    assert [t.exit_reason for t in r.trades] == ["sl", "eod"]
+    assert [t.exit_reason for t in r.trades] == ["ambiguous_sl_tp", "eod"]
+    assert r.trades[0].ambiguous is True
+    assert r.trades[0].realised_pips < 0
+    assert_backtests_equivalent(r, _run(synthetic_reference))
 
 
-def test_reference_sl_tp_sides_and_exits():
-    df = _fixture()
-    r = _run(df)
+def test_reference_sl_tp_sides_and_exits(synthetic_reference):
+    r = _run(synthetic_reference)
+    assert len(r.trades) == 2
     for t in r.trades:
         s = t.snapshot
         if s.side == "BUY":
-            assert s.take_profit > s.entry_price
-            assert s.stop_loss < s.entry_price
+            assert s.take_profit > s.entry_price > s.stop_loss
         else:
-            assert s.take_profit < s.entry_price
-            assert s.stop_loss > s.entry_price
+            assert s.take_profit < s.entry_price < s.stop_loss
         assert t.exit_time >= t.entry_time
         assert t.realised_pips is not None
         assert t.mfe_pips >= 0

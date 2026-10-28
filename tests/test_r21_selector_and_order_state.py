@@ -442,7 +442,15 @@ def test_22_no_broker_database_network_or_launcher(monkeypatch: pytest.MonkeyPat
     assert calls == []
     assert database._pg_conn is None
     assert "run_bot" not in result["phases"]
-    assert "_cycle_symbols" in inspect.getsource(run_bot)
+    # The current launcher recovers before its first cycle, then uses the same
+    # guarded cycle helper on subsequent iterations.
+    from forex_bot.bot_loop import run_startup_and_one_iteration, _execute_bot_cycle
+    source = inspect.getsource(run_bot)
+    assert source.index("await run_startup_and_one_iteration") < source.index("while True:")
+    assert "await _execute_bot_cycle" in source
+    startup = inspect.getsource(run_startup_and_one_iteration)
+    assert startup.index("execute_startup_sequence(") < startup.index("await _execute_bot_cycle")
+    assert "_cycle_symbols" in inspect.getsource(_execute_bot_cycle)
     assert sys.modules.get("main") is None
     assert inspect.getsource(run_bot).count("execute_oanda_market_open") == 0
 

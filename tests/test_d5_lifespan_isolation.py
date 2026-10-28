@@ -14,9 +14,9 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 RUNNER = Path(__file__).resolve().parent / "d5_lifespan_runner.py"
 EXPECTED = {
-    "app.py": "f38c304c4692c4a69e537610173e5691c03d49e24c48d6e258f56d1be75ae7b4",
-    "live_safety.py": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
-    "strategy_meta.py": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
+    "app.py": '1883d3c94a570b66782b7079bcd64d7657c83c0cd6faa385cab7a65bc2d56bd1',
+    "live_safety.py": 'e4310d1cd694c3f2a8791b308666fa15ae6ba1a82bdc67a99c5788ffe70ad546',
+    "strategy_meta.py": 'b45b2f7e7f684686eddd2ddf9f2d6d1c3919678ec128c38665f38c99c3ab3222',
 }
 DOWNSTREAM = (
     "get_connection",
@@ -35,7 +35,7 @@ DOWNSTREAM = (
 
 
 def _sha(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def _case(report: dict, name: str) -> dict:

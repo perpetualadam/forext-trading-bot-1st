@@ -13,6 +13,7 @@ import time
 import traceback
 import types
 from pathlib import Path
+from current_lifecycle_fixtures import wire_current_startup
 
 
 def _load_d11():
@@ -43,7 +44,10 @@ LOGS = _LogGrab()
 def _status_mentions(lines: list[str]) -> dict[str, bool]:
     text = "\n".join(lines)
     return {
-        "incomplete": "STOP_INCOMPLETE_WORKER_ALIVE" in text,
+        "incomplete": (
+            "STOP_INCOMPLETE_WORKER_ALIVE" in text
+            or "D12-STOP-01 Telegram shutdown incomplete:" in text
+        ),
         "completed": "STOP_COMPLETED" in text,
         "not_running": "STOP_NOT_RUNNING" in text,
         "worker_alive_words": "worker remains alive" in text.lower(),
@@ -106,7 +110,8 @@ def _prepare(appmod: types.ModuleType) -> list[asyncio.Task[object]]:
     appmod.reconciliation_loop = fake_async("reconciliation_loop")  # type: ignore[attr-defined]
     appmod.health_snapshot_loop = fake_async("health_snapshot_loop")  # type: ignore[attr-defined]
     appmod.telegram_inbound_loop = fake_async("telegram_inbound_loop")  # type: ignore[attr-defined]
-    orders = sys.modules["forex_bot.orders"]
+    wire_current_startup(appmod)
+    orders = __import__("importlib").import_module("forex_bot.orders")
     orders.load_open_orders_from_db_into_memory = record("load_open_orders")  # type: ignore[attr-defined]
     reconciliation = types.ModuleType("forex_bot.reconciliation")
     reconciliation.load_reconcile_state_from_db = record("load_reconcile")  # type: ignore[attr-defined]

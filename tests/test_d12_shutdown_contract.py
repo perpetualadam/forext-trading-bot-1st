@@ -41,7 +41,7 @@ def test_normal_stop_drains_tasks_and_retains_database(report: dict) -> None:
     assert row["status_in_logs"]["incomplete"] is False
 
 
-def test_incomplete_stop_is_not_reported_by_the_application(report: dict) -> None:
+def test_incomplete_stop_is_reported_by_the_application(report: dict) -> None:
     row = report["cases"]["blocked"]
     assert row["yielded"] is True
     assert row["escaped_type"] == ""
@@ -49,8 +49,8 @@ def test_incomplete_stop_is_not_reported_by_the_application(report: dict) -> Non
     assert row["stop_event"] is True
     assert 1.5 <= row["elapsed_sec"] <= 4.5
     assert row["pending"] == 0
-    assert row["cleanup_errors"] == []
-    assert row["status_in_logs"]["incomplete"] is False
+    assert row["cleanup_errors"] == ["D12-STOP-01"]
+    assert row["status_in_logs"]["incomplete"] is True
     assert row["connection_open"] is True
     assert row["application_close_calls"] == 0
     assert row["stop_wrapped"] is False
@@ -95,6 +95,6 @@ def test_cancellation_during_blocked_shutdown(report: dict) -> None:
     row = report["cases"]["cancelled"]
     assert row["cancel_type"] == "CancelledError"
     assert row["stored_alive"] is True
-    assert row["cleanup_errors"] == []
+    assert row["cleanup_errors"] == ["D12-STOP-01"]
     assert row["connection_open"] is True
     assert row["pending_owned"] == 0

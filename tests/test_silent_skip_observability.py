@@ -152,13 +152,15 @@ def test_selected_strategy_still_returned_when_active(restore_strategy_state):
     assert strategies[name].active is True
 
 
-def test_obsolete_evaluate_patches_are_retired():
-    """The old evaluate() monkeypatches targeted fetch_ohlcv on bot_loop.
-
-    That attribute is gone. Replaying evaluate() here would call the live
-    candle path. Shared-path sizing remains covered by the R.34 fail-closed tests.
-    """
+def test_candle_seam_delegates_without_reviving_the_retired_voter(monkeypatch):
     import forex_bot.bot_loop as bot_loop
-
-    assert not hasattr(bot_loop, "fetch_ohlcv")
+    import forex_bot.oanda_client as client
+    sentinel = object()
+    calls = []
+    def fake_fetch(*args):
+        calls.append(args)
+        return sentinel
+    monkeypatch.setattr(client, "fetch_ohlcv", fake_fetch)
+    assert bot_loop.fetch_ohlcv("EUR_USD", "M5", 50) is sentinel
+    assert calls == [("EUR_USD", "M5", 50)]
     _assert_retired(_quant_stub_vote(_payload()))

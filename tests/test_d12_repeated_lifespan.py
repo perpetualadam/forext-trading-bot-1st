@@ -24,15 +24,15 @@ def test_second_lifespan_refuses_a_second_worker(report: dict) -> None:
     cases = report["cases"]
     assert cases["yielded_a"] is True
     assert cases["snap_a"]["stored_alive"] is True
-    assert cases["snap_a"]["cleanup_errors"] == []
+    assert cases["snap_a"]["cleanup_errors"] == ["D12-STOP-01"]
     assert cases["yielded_b"] is True
     assert cases["escaped_b"] == ""
     assert cases["same_worker"] is True
     assert cases["thread_count_b"] == 1
     assert cases["snap_b"]["stored_alive"] is True
     assert cases["snap_b"]["stop_event"] is True
-    assert cases["snap_b"]["cleanup_errors"] == []
-    assert cases["snap_b"]["status_in_logs"]["incomplete"] is False
+    assert cases["snap_b"]["cleanup_errors"] == ["D12-STOP-01"]
+    assert cases["snap_b"]["status_in_logs"]["incomplete"] is True
     assert 1.5 <= cases["elapsed_b"] <= 4.5
 
 

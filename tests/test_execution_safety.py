@@ -79,7 +79,7 @@ def test_async_open_refuses_paper_kinds_before_api(monkeypatch, kind):
 
     async def _run():
         await execute_oanda_market_open(
-            "EUR_USD", 2.0, "SELL", "cid-x", execution_kind=kind
+            "EUR_USD", 2.0, "SELL", "cid-x", execution_kind=kind, entry_permit=None
         )
 
     with pytest.raises(RuntimeError, match="local-only"):
@@ -100,7 +100,7 @@ def test_paper_mode_open_never_calls_sync_place(monkeypatch):
 
     async def _run():
         await execute_oanda_market_open(
-            "EUR_USD", 2.0, "SELL", "cid-x", execution_kind="live"
+            "EUR_USD", 2.0, "SELL", "cid-x", execution_kind="live", entry_permit=None
         )
 
     with pytest.raises(RuntimeError, match="paper"):
@@ -108,12 +108,12 @@ def test_paper_mode_open_never_calls_sync_place(monkeypatch):
     assert called["n"] == 0
 
 
-def test_live_open_reaches_sync_place_and_keeps_ids(monkeypatch, allow_live_order_create):
+def test_live_open_reaches_sync_place_and_keeps_ids(monkeypatch, allow_live_order_create, entry_intent_factory):
     monkeypatch.setenv("EXECUTION_MODE", "live_broker")
     monkeypatch.setenv("OANDA_ACCESS_TOKEN", "tok")
 
     def fake_place(*_a, **_k):
-        return (1.15398, 2.0, "tx-99", float("nan"))
+        return (1.15398, 2.0, "tx-99", float("nan"), None)
 
     monkeypatch.setattr("forex_bot.oanda_exec._place_market_order_open_sync", fake_place)
 
@@ -127,6 +127,7 @@ def test_live_open_reaches_sync_place_and_keeps_ids(monkeypatch, allow_live_orde
             "cid-live-1",
             execution_kind="live",
             entry_quote=mint_live_quote("EUR_USD"),
+            entry_permit=entry_intent_factory(direction="SELL", client_order_id="cid-live-1"),
         )
 
     fp, uf, oid, _pl, _ts = asyncio.run(_run())

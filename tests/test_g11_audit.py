@@ -61,7 +61,7 @@ def test_mutation_inventory_keeps_open_and_close_only():
     assert "oanda_orders.OrderCancel" not in source
 
 
-def test_g10_allowlist_has_not_drifted(tmp_path: Path):
+def test_g10_allowlist_has_not_drifted(tmp_path: Path, historical_packaging_root):
     allow = json.loads(
         (ROOT / "data/research/adaptive_ensemble/g10/production_allowlist.json").read_text(encoding="utf-8")
     )
@@ -79,12 +79,12 @@ def test_g10_allowlist_has_not_drifted(tmp_path: Path):
     assert hashlib.sha256(
         (ROOT / "data/research/adaptive_ensemble/g10/production_allowlist.json").read_bytes()
     ).hexdigest() == baseline.ALLOWLIST_FILE_SHA256
-    assert allowlist_drift(allow["files"], by_path, ROOT) == ["Dockerfile"]
-    assert hashlib.sha256((ROOT / "Dockerfile").read_bytes()).hexdigest() == baseline.AUTHORISED_DOCKERFILE_SHA256
+    assert allowlist_drift(allow["files"], by_path, historical_packaging_root) == ["Dockerfile"]
+    assert hashlib.sha256((historical_packaging_root / "Dockerfile").read_bytes()).hexdigest() == baseline.AUTHORISED_DOCKERFILE_SHA256
     assert len(allow["files"]) == 63
     allow_report = baseline.evaluate_allowlist(
         allow["files"],
-        ROOT,
+        historical_packaging_root,
         expected_paths={row["path"] for row in allow["files"]},
         manifest_hashes=by_path,
     )

@@ -15,25 +15,25 @@ ROOT = Path(__file__).resolve().parents[1]
 RUNNER = Path(__file__).resolve().parent / "d10_telegram_shutdown_runner.py"
 EXPECTED = {
     "forex_bot/app.py": (
-        "08766300dfaf703e7553c69703e5d5f2c90e8efc2b491e6eeff1791ca93e3b44"
+        '1883d3c94a570b66782b7079bcd64d7657c83c0cd6faa385cab7a65bc2d56bd1'
     ),
     "forex_bot/database.py": (
-        "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e"
+        'be83fc2a485af0f392203562a8286082587b0824f235557b6036e69f661f840d'
     ),
     "forex_bot/telegram_control.py": (
-        "270f2b48bbbc1c50b1bb89ae338716803c5e2772fada3b1aa39153fb8b300014"
+        '0447f31e36b63ccc586391f1a1a3b04bc4d16445d1a0bcf405ca7f3e2bb4b6fe'
     ),
     "forex_bot/live_safety.py": (
-        "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44"
+        'e4310d1cd694c3f2a8791b308666fa15ae6ba1a82bdc67a99c5788ffe70ad546'
     ),
     "forex_bot/strategy_meta.py": (
-        "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d"
+        'b45b2f7e7f684686eddd2ddf9f2d6d1c3919678ec128c38665f38c99c3ab3222'
     ),
 }
 
 
 def _sha(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def _child_env(work: Path, safety: Path) -> dict[str, str]:
@@ -135,7 +135,7 @@ def test_baseline_hashes_and_guards(report: dict) -> None:
 
 def test_stop_before_start_and_normal_stop(report: dict) -> None:
     idle = _sched(report, "stop_before_start")["application"]
-    assert idle["return_value"] is None
+    assert idle["return_value"] == "STOP_NOT_RUNNING"
     assert idle["alive_after"] is False
     normal = _sched(report, "normal_stop")["application"]
     assert normal["alive_after"] is False
@@ -146,7 +146,7 @@ def test_stop_before_start_and_normal_stop(report: dict) -> None:
 
 def test_repeated_stop_and_start(report: dict) -> None:
     again = _sched(report, "repeated_stop")["application"]
-    assert again["return_value"] is None
+    assert again["return_value"] == "STOP_NOT_RUNNING"
     assert again["alive_after"] is False
     repeated = _sched(report, "repeated_start")["application"]
     assert repeated["thread_count"] == 1
@@ -159,26 +159,25 @@ def test_stop_returns_while_poll_blocked(report: dict) -> None:
     assert stop["alive_after"] is True
     assert stop["elapsed_sec"] >= 1.5
     assert stop["elapsed_sec"] < 5
-    assert stop["return_value"] is None
-    assert stop["stored_thread_cleared"] is True
-    assert stop["started_flag"] is False
+    assert stop["return_value"] == "STOP_INCOMPLETE_WORKER_ALIVE"
+    assert stop["stored_thread_cleared"] is False
+    assert stop["started_flag"] is True
     assert stop["stop_event_set"] is True
     assert row["database_after_stop_before_release"]["connection_open"] is True
     assert row["old_closed"] is True
-    assert row["queries_after_release"]
-    assert row["queries_after_release"][0]["caller"] == "telegram-control"
-    assert row["queries_after_release"][0]["caller_alive"] is True
-    assert row["new_connection_id"] != row["old_connection_id"]
+    assert row["queries_after_release"] == []
+    assert row["new_connection_id"] is None
     assert row["use_after_close"] == []
     assert row["harness"]["escaped"] == []
 
 
-def test_second_start_overlaps_surviving_worker(report: dict) -> None:
+def test_second_start_refuses_surviving_worker(report: dict) -> None:
     row = _sched(report, "restart_after_incomplete_stop")
     assert row["application_stop"]["alive_after"] is True
     assert row["application_stop"]["elapsed_sec"] >= 1.5
-    assert row["stop_event_after_second_start"] is False
-    assert row["thread_count"] >= 2
+    assert row["stop_event_after_second_start"] is True
+    assert row["thread_count"] == 1
+    assert row["second_start_return"] == "START_REFUSED_PREVIOUS_WORKER"
     assert row["harness"]["escaped"] == []
 
 

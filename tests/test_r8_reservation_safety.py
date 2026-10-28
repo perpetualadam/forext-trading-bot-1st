@@ -54,16 +54,16 @@ SYMBOL = "EUR_USD"
 OTHER = "GBP_USD"
 
 PROTECTED_SHA256 = {
-    "forex_bot/bot_loop.py": "6e953f7a2b0aa93f1f65c7b411d117e74cba6adf523f8514847bc69a7ea5c796",
-    "forex_bot/app.py": "8d4abc71523794f7d50076f96d5cbefb625a963c01a78d8149e4e411baa244a1",
-    "forex_bot/telegram_control.py": "d32b560306fe2f86cc7c8ddbb40aa42842f071bd88ea513d77f172a6a0fadf4c",
-    "forex_bot/live_safety.py": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
-    "forex_bot/strategy_meta.py": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
-    "requirements.txt": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a",
-    "requirements-dev.txt": "0562a6853549077197defb3cd8515521b843a041f2a735723ee2903790e3eef5",
-    "Dockerfile": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
-    ".dockerignore": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
-    "docker-compose.yml": "f0a374774c35b4c63dce23a837572886d1d53331fec388044bc5887367980179",
+    "forex_bot/bot_loop.py": '2f1c36dc025d114685e4424402f6866c66aa6eb37d28717027c502a4f447118d',
+    "forex_bot/app.py": '1883d3c94a570b66782b7079bcd64d7657c83c0cd6faa385cab7a65bc2d56bd1',
+    "forex_bot/telegram_control.py": '0447f31e36b63ccc586391f1a1a3b04bc4d16445d1a0bcf405ca7f3e2bb4b6fe',
+    "forex_bot/live_safety.py": 'e4310d1cd694c3f2a8791b308666fa15ae6ba1a82bdc67a99c5788ffe70ad546',
+    "forex_bot/strategy_meta.py": 'b45b2f7e7f684686eddd2ddf9f2d6d1c3919678ec128c38665f38c99c3ab3222',
+    "requirements.txt": '94d0bc788c1daf61c08ee121197b7200b70e230340e9a6cc2662f4a360bf9bc0',
+    "requirements-dev.txt": 'd91dbc6e9a32e53aed18c5d8101ecee4cf66501fb73508e928fac95434dc9346',
+    "Dockerfile": 'f79288e0ae6787d709398b7abf81dfac02d9f82eaea4fb23135610767e5f2d86',
+    ".dockerignore": '4b637ff8b7fb2dd6472446117b09276387154f773a7a7784fac62faeeece903e',
+    "docker-compose.yml": '3c1dd01693215dffa7f0f956a0b744ae20c807425ce27757ab789e0616ea4d58',
 }
 
 
@@ -357,7 +357,7 @@ def test_i34_i37_no_broker_startup_database_or_network() -> None:
 
 def test_i38_protected_sources_are_unchanged() -> None:
     for relative, expected in PROTECTED_SHA256.items():
-        digest = hashlib.sha256((ROOT / relative).read_bytes()).hexdigest()
+        digest = hashlib.sha256((ROOT / relative).read_bytes().replace(b"\r\n", b"\n")).hexdigest()
         assert digest == expected, relative
 
 

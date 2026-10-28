@@ -329,9 +329,12 @@ def test_bot_loop_uses_same_snapshot_and_skip_before_ordercreate():
     src = inspect.getsource(bot_loop._evaluate_impl)
     broker = src.split('if fill_path == "broker":', 1)[-1]
     assert broker.find("fetch_entry_pricing") < broker.find("resolve_live_entry_geometry")
-    assert broker.find("if skip_reason is not None") < broker.find("execute_oanda_market_open")
+    assert broker.find("if skip_reason is not None") < broker.find("legacy broker tail is not a dispatch path")
     assert broker.count("fetch_entry_pricing") == 1
-    assert broker.count("execute_oanda_market_open") == 1
+    assert broker.count("execute_oanda_market_open") == 0
+    adapter = inspect.getsource(bot_loop.production_execution_adapter)
+    assert adapter.count("execute_oanda_market_open") == 1
+    assert adapter.index("production_adapter_refusal(") < adapter.index("begin_entry_submission(") < adapter.index("execute_oanda_market_open(")
     resolve_src = inspect.getsource(eg.resolve_live_entry_geometry)
     assert "sl_trigger_clearance" in resolve_src
     assert "fetch_entry_pricing" not in resolve_src
@@ -455,7 +458,7 @@ def test_transport_timeout_is_ambiguous_v20_400_is_rejected():
     assert amb5.outcome == OUTCOME_AMBIGUOUS_TRANSPORT
 
 
-def _open_with_api(response_or_exc, calls: list):
+def _open_with_api(response_or_exc, calls: list, entry_intent_factory, *, permit=None):
     class FakeAPI:
         def request(self, r):
             calls.append(r)
@@ -478,46 +481,55 @@ def _open_with_api(response_or_exc, calls: list):
             stop_loss=1.09900,
             take_profit=1.10200,
             entry_quote=mint_live_quote("EUR_USD"),
+            entry_permit=permit if permit is not None else entry_intent_factory(),
         )
 
 
-def test_ordercreate_fill_is_exactly_one_request(allow_live_order_create):
+def test_ordercreate_fill_is_exactly_one_request(allow_live_order_create, entry_intent_factory):
     calls: list = []
-    fp, uf, oid, _pl, _ts = _open_with_api(_fill_response(), calls)
+    fp, uf, oid, _pl, _ts = _open_with_api(_fill_response(), calls, entry_intent_factory)
     assert len(calls) == 1
     assert fp == pytest.approx(1.1)
     assert oid == "11"
 
 
-def test_ordercreate_cancel_is_exactly_one_request_no_second_attempt(allow_live_order_create):
+def test_ordercreate_cancel_is_exactly_one_request_no_second_attempt(allow_live_order_create, entry_intent_factory):
     calls: list = []
     with pytest.raises(OrderCreateCancelled):
-        _open_with_api(_cancel_response(), calls)
+        _open_with_api(_cancel_response(), calls, entry_intent_factory)
     assert len(calls) == 1
 
 
-def test_ordercreate_malformed_is_exactly_one_request(allow_live_order_create):
+def test_ordercreate_malformed_is_exactly_one_request(allow_live_order_create, entry_intent_factory):
     calls: list = []
     with pytest.raises(OrderCreateMalformed):
-        _open_with_api({"lastTransactionID": "1"}, calls)
+        _open_with_api({"lastTransactionID": "1"}, calls, entry_intent_factory)
     assert len(calls) == 1
 
 
-def test_ordercreate_ambiguous_timeout_is_exactly_one_request(allow_live_order_create):
+def test_ordercreate_ambiguous_timeout_is_exactly_one_request(allow_live_order_create, entry_intent_factory):
+    from forex_bot.entry_journal import entry_row
     calls: list = []
-    with pytest.raises(OrderCreateAmbiguous):
-        _open_with_api(TimeoutError("read timed out"), calls)
+    permit = entry_intent_factory()
+    with pytest.raises(TimeoutError):
+        _open_with_api(TimeoutError("read timed out"), calls, entry_intent_factory, permit=permit)
+    assert len(calls) == 1
+    row = entry_row(permit.operation_id)
+    assert row["outcome"] == "ENTRY_OUTCOME_AMBIGUOUS"
+    assert row["error_classification"] == "timeout"
+    with pytest.raises(RuntimeError):
+        _open_with_api(_fill_response(), calls, entry_intent_factory, permit=permit)
     assert len(calls) == 1
 
 
-def test_ordercreate_rejected_is_exactly_one_request(allow_live_order_create):
+def test_ordercreate_rejected_is_exactly_one_request(allow_live_order_create, entry_intent_factory):
     calls: list = []
     with pytest.raises(OrderCreateRejected):
-        _open_with_api(V20Error(400, '{"errorMessage":"rejected"}'), calls)
+        _open_with_api(V20Error(400, '{"errorMessage":"rejected"}'), calls, entry_intent_factory)
     assert len(calls) == 1
 
 
-def test_async_open_cancel_does_not_look_like_fill(monkeypatch, allow_live_order_create):
+def test_async_open_cancel_does_not_look_like_fill(monkeypatch, allow_live_order_create, entry_intent_factory):
     monkeypatch.setenv("EXECUTION_MODE", "live_broker")
     monkeypatch.setenv("OANDA_ACCESS_TOKEN", "tok")
 
@@ -541,6 +553,7 @@ def test_async_open_cancel_does_not_look_like_fill(monkeypatch, allow_live_order
             "cid-x",
             execution_kind="live",
             entry_quote=mint_live_quote("EUR_USD"),
+            entry_permit=entry_intent_factory(),
         )
 
     with pytest.raises(OrderCreateCancelled):
@@ -548,7 +561,9 @@ def test_async_open_cancel_does_not_look_like_fill(monkeypatch, allow_live_order
 
 
 def test_place_open_source_has_single_request_and_no_loop():
-    src = inspect.getsource(_place_market_order_open_sync)
+    from forex_bot.oanda_exec import _submit_order_create
+    src = inspect.getsource(_submit_order_create)
     assert src.count("api.request") == 1
+    assert inspect.getsource(_place_market_order_open_sync).count("_submit_order_create(") == 1
     assert "while " not in src
     assert "for _" not in src

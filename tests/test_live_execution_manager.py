@@ -85,5 +85,5 @@ def test_execute_trade_live_close_requires_broker(monkeypatch):
             exit_price=1.101,
         )
 
-    with pytest.raises(RuntimeError, match="broker"):
+    with pytest.raises(RuntimeError, match="journal submission authority"):
         asyncio.run(_run())

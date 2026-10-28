@@ -17,6 +17,8 @@ import traceback
 import types
 import urllib.request
 from pathlib import Path
+from current_lifecycle_fixtures import wire_current_startup
+from current_lifecycle_fixtures import schema_ready_cursor
 
 INJECT = ""
 COUNTS: dict[str, int] = {}
@@ -40,6 +42,7 @@ _ORIG_CONNECT = socket.socket.connect
 _ORIG_GETADDRINFO = socket.getaddrinfo
 
 
+@schema_ready_cursor
 class FakeCursor:
     def __init__(self) -> None:
         self.closed = False
@@ -366,8 +369,9 @@ def _install_call_fakes(appmod: types.ModuleType) -> None:
     appmod.reconciliation_loop = _fake_async("reconciliation_loop")  # type: ignore[attr-defined]
     appmod.health_snapshot_loop = _fake_async("health_snapshot_loop")  # type: ignore[attr-defined]
     appmod.telegram_inbound_loop = _fake_async("telegram_inbound_loop")  # type: ignore[attr-defined]
+    wire_current_startup(appmod)
 
-    orders = sys.modules["forex_bot.orders"]
+    orders = __import__("importlib").import_module("forex_bot.orders")
     orders.load_open_orders_from_db_into_memory = record("load_open_orders")  # type: ignore[attr-defined]
 
     reconciliation = types.ModuleType("forex_bot.reconciliation")

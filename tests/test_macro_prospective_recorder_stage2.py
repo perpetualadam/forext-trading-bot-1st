@@ -453,7 +453,7 @@ def test_host_store_is_not_a_bot_container_path():
     baseline = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(baseline)
     allow = json.loads(
-        (root / "data/research/adaptive_ensemble/g10/production_allowlist.json").read_text(encoding="utf-8")
+        (root / "tests/fixtures/current_production_allowlist.json").read_text(encoding="utf-8")
     )
     rules = baseline._packaging().dockerignore_rules()
     packaging = baseline.packaging_problems(

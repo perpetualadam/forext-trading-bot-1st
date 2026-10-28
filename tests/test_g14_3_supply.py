@@ -118,25 +118,23 @@ def test_manifest_inventory_excludes_backup_names_and_matches_digest() -> None:
     assert ".env" not in names
 
 
-def test_real_staging_directory_still_matches_when_present() -> None:
-    if not STAGING.is_dir():
-        pytest.skip("local staging directory is absent")
+def test_historical_staging_directory_matches(historical_staging_root) -> None:
     manifest = json.loads(
         (ROOT / "data/research/adaptive_ensemble/g14_1/staged_context_manifest.json").read_text(encoding="utf-8")
     )
-    checked = VERIFY.verify_directory(STAGING, manifest["files"])
+    checked = VERIFY.verify_directory(historical_staging_root, manifest["files"])
     assert checked["file_count"] == 63
     assert checked["independent_verification"] == "PASS"
 
 
-def test_production_packaging_hashes_remain_authorised() -> None:
+def test_historical_packaging_hashes_remain_authorised(historical_packaging_root) -> None:
     expected = {
         "Dockerfile": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
         ".dockerignore": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
         "requirements.txt": "45bc21ba5d8f336c0da5092024cee96103f0251d7c7f55e70056a7c55d194b0a",
     }
     for rel, digest in expected.items():
-        assert hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() == digest
+        assert hashlib.sha256((historical_packaging_root / rel).read_bytes()).hexdigest() == digest
 
 
 def test_analysis_module_does_not_reference_network_clients() -> None:

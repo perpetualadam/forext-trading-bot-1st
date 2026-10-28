@@ -15,16 +15,16 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 RUNNER = Path(__file__).resolve().parent / "d6_partial_startup_runner.py"
 EXPECTED = {
-    "forex_bot/app.py": "f38c304c4692c4a69e537610173e5691c03d49e24c48d6e258f56d1be75ae7b4",
-    "forex_bot/live_safety.py": "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44",
-    "forex_bot/strategy_meta.py": "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d",
-    "tests/test_d5_lifespan_isolation.py": "8cf8c712979ad32eac648b4a8f18d65546bf24a72d2a4e6f4f3ff6041bd88dd4",
-    "tests/d5_lifespan_runner.py": "0729bea1df8a59d5dde3c66c396a476a0abb80c9c36213f15f08fcb77f2a3b60",
+    "forex_bot/app.py": '1883d3c94a570b66782b7079bcd64d7657c83c0cd6faa385cab7a65bc2d56bd1',
+    "forex_bot/live_safety.py": 'e4310d1cd694c3f2a8791b308666fa15ae6ba1a82bdc67a99c5788ffe70ad546',
+    "forex_bot/strategy_meta.py": 'b45b2f7e7f684686eddd2ddf9f2d6d1c3919678ec128c38665f38c99c3ab3222',
+    "tests/test_d5_lifespan_isolation.py": '645eaab27cdbf9071cb510ff85fd35f6f5c1c521c6f44578ae6580f90e598d4b',
+    "tests/d5_lifespan_runner.py": '47f09ae4dc5de0e18529decedd88adcdcb8be08c9eb60bb2f079e8a70806ad18',
 }
 
 
 def _sha(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def _child_env(work: Path, safety: Path) -> dict[str, str]:
@@ -138,29 +138,29 @@ def test_t03_database_connect_failure_is_nonfatal(report: dict) -> None:
     assert case["tasks_cancelled_by_application"] == 4
 
 
-def test_t04_t05_t06_database_failures_drop_connection_without_close(report: dict) -> None:
+def test_t04_t05_t06_database_failures_close_partial_connection(report: dict) -> None:
     for name in ("db_cursor", "db_execute", "db_commit"):
         case = _case(report, name)
         conn = _conn(case)
         assert case["yielded"] is True
         assert case["escaped_type"] == ""
-        assert conn["closed"] is False
-        assert conn["close_calls"] == 0
-        assert conn["rollbacks"] == 0
+        assert conn["closed"] is True
+        assert conn["close_calls"] == 1
+        assert conn["rollbacks"] == 1
         assert case["pg_conn_held"] is False
-        assert case["harness_closed_connections"] == 1
+        assert case["harness_closed_connections"] == 0
         assert case["tasks_pending_after_application"] == 0
 
 
-def test_t09_t12_fatal_pre_yield_leaves_connection_open(report: dict) -> None:
+def test_t09_t12_fatal_pre_yield_releases_connection(report: dict) -> None:
     for name in ("broker", "before_tasks"):
         case = _case(report, name)
         assert case["yielded"] is False
         assert case["escaped_type"] == "RuntimeError"
         assert case["tasks_created"] == 0
-        assert _conn(case)["close_calls"] == 0
-        assert case["pg_conn_held"] is True
-        assert case["harness_closed_connections"] == 1
+        assert _conn(case)["close_calls"] == 1
+        assert case["pg_conn_held"] is False
+        assert case["harness_closed_connections"] == 0
 
 
 def test_t10_t11_t25_account_and_reconcile_are_nonfatal(report: dict) -> None:
@@ -171,40 +171,40 @@ def test_t10_t11_t25_account_and_reconcile_are_nonfatal(report: dict) -> None:
         assert case["tasks_cancelled_by_application"] == 4
 
 
-def test_t13_t14_t15_task_creation_failure_leaves_tasks(report: dict) -> None:
+def test_t13_t14_t15_task_creation_failure_cancels_owned_tasks(report: dict) -> None:
     expected = {"after_first": 1, "later_task": 3, "before_yield": 4}
     for name, pending in expected.items():
         case = _case(report, name)
         assert case["yielded"] is False
-        assert case["tasks_pending_after_application"] == pending
-        assert case["tasks_cancelled_by_application"] == 0
-        assert case["harness_cancelled"] == pending
+        assert case["tasks_pending_after_application"] == 0
+        assert case["tasks_cancelled_by_application"] == pending
+        assert case["harness_cancelled"] == 0
 
 
-def test_t16_shutdown_failure_skips_task_cancellation(report: dict) -> None:
+def test_t16_shutdown_failure_preserves_task_cancellation(report: dict) -> None:
     case = _case(report, "shutdown_stop")
     assert case["yielded"] is True
     assert case["escaped_type"] == "RuntimeError"
     assert "injected shutdown failure" in case["message"]
-    assert case["tasks_pending_after_application"] == 4
-    assert case["tasks_cancelled_by_application"] == 0
-    assert case["harness_cancelled"] == 4
+    assert case["tasks_pending_after_application"] == 0
+    assert case["tasks_cancelled_by_application"] == 4
+    assert case["harness_cancelled"] == 0
 
 
-def test_t18_task_await_failure_skips_later_cancellation(report: dict) -> None:
+def test_t18_task_await_failure_preserves_later_cancellation(report: dict) -> None:
     case = _case(report, "await_health")
     assert case["yielded"] is True
     assert "injected task await failure" in case["message"]
-    assert case["tasks_pending_after_application"] == 3
-    assert case["tasks_cancelled_by_application"] == 0
-    assert case["harness_cancelled"] == 3
+    assert case["tasks_pending_after_application"] == 0
+    assert case["tasks_cancelled_by_application"] == 3
+    assert case["harness_cancelled"] == 0
 
 
 def test_t19_t44_repeat_after_partial_failure_stays_blocked(report: dict) -> None:
     first = _case(report, "repeat_first")
     second = _case(report, "repeat_second")
     assert first["yielded"] is False
-    assert first["tasks_pending_after_application"] == 1
+    assert first["tasks_pending_after_application"] == 0
     assert second["yielded"] is True
     assert second["file_auth"] == "BLOCKED"
     assert second["auth"] == "BLOCKED"

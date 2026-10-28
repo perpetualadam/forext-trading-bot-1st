@@ -1,0 +1,306 @@
+{
+  "file_count": 75,
+  "hash_encoding": "UTF-8, LF line endings",
+  "files": [
+    {
+      "path": ".dockerignore",
+      "sha256": "4b637ff8b7fb2dd6472446117b09276387154f773a7a7784fac62faeeece903e"
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "f79288e0ae6787d709398b7abf81dfac02d9f82eaea4fb23135610767e5f2d86"
+    },
+    {
+      "path": "forex_bot/__init__.py",
+      "sha256": "c662dffaed5f8fceae87c39b2b23de22bd8de8692bb451990023958bb52e1f59"
+    },
+    {
+      "path": "forex_bot/account_reconciliation.py",
+      "sha256": "d35ef7ce609f1f38cbccd8f2f1e858b37e88b50747c97f2b3a4bee243c2c7810"
+    },
+    {
+      "path": "forex_bot/ai_ensemble.py",
+      "sha256": "6c9469e0e6417828dee5a41f17ff84345635e73940f13b46f05b9251385c5e7a"
+    },
+    {
+      "path": "forex_bot/alerts.py",
+      "sha256": "c126cae63f96d10a6fafd80e5370caec5a6231cf1cf977f7ef52caf67767da21"
+    },
+    {
+      "path": "forex_bot/analytics.py",
+      "sha256": "c2c5e9b5ea4b405bf61a9a560eec0768607a9fa7a593dfc732fe5794abe34523"
+    },
+    {
+      "path": "forex_bot/anthropic_voter.py",
+      "sha256": "b8a7184682d9def927d8421155c737d07ee8529694ef4c16196f47505dde4d7f"
+    },
+    {
+      "path": "forex_bot/app.py",
+      "sha256": "1883d3c94a570b66782b7079bcd64d7657c83c0cd6faa385cab7a65bc2d56bd1"
+    },
+    {
+      "path": "forex_bot/bot_loop.py",
+      "sha256": "2f1c36dc025d114685e4424402f6866c66aa6eb37d28717027c502a4f447118d"
+    },
+    {
+      "path": "forex_bot/broker_close_evidence.py",
+      "sha256": "31e54c3c32990c3fa8b4819310681d156e2582a83647ad382cd9f6806bc313bc"
+    },
+    {
+      "path": "forex_bot/broker_entry_evidence.py",
+      "sha256": "537f504d381b13821dd6bfa7f4c35b743e66c3fbceeced4c9ae3253f92944132"
+    },
+    {
+      "path": "forex_bot/broker_exit.py",
+      "sha256": "2480ba690cd31c7d8014ea6a73a99230087a6d5c8b85b7635924ea44ca8274ac"
+    },
+    {
+      "path": "forex_bot/broker_protection.py",
+      "sha256": "73c839aa79da4934d45655b898c060db21687e11745b1a6604bc7f12137b5586"
+    },
+    {
+      "path": "forex_bot/close_journal.py",
+      "sha256": "c516ae9182c1d947f36e6aa72816dcfd5c6f571cdddc64484060e24cbc262fd6"
+    },
+    {
+      "path": "forex_bot/config.py",
+      "sha256": "c5643d475958ff94138690371aea7c7cc35e892a5d5b11661f335c388a74bb76"
+    },
+    {
+      "path": "forex_bot/database.py",
+      "sha256": "be83fc2a485af0f392203562a8286082587b0824f235557b6036e69f661f840d"
+    },
+    {
+      "path": "forex_bot/decision_repair/__init__.py",
+      "sha256": "832971c5b833ab3af3fd90bc5b7552cef000120623834a344a5f7556c8cc8c29"
+    },
+    {
+      "path": "forex_bot/decision_repair/account_risk.py",
+      "sha256": "eee6d0ef309bab6ab5e40720f8f4983fe37d6e23af900bb68aa81d124097dc24"
+    },
+    {
+      "path": "forex_bot/decision_repair/audit.py",
+      "sha256": "2a28be392d257135eb8508bde0dcf756023e592624d40ba51970768fbbb3be35"
+    },
+    {
+      "path": "forex_bot/decision_repair/exposure.py",
+      "sha256": "3ecfa1c6bf8823ca2e2f24f21a8ec5c822c672a26e719ee40e86e1fd8d39320e"
+    },
+    {
+      "path": "forex_bot/decision_repair/flags.py",
+      "sha256": "7d8db32986240c6d46125abb1027ad1f21a96b7728582c4ad10938abbb8739d0"
+    },
+    {
+      "path": "forex_bot/decision_repair/health.py",
+      "sha256": "8fe8c2a5dc622fceef2e7a279f3966baafd1b39cf01aa61bcef3aae00e634c9e"
+    },
+    {
+      "path": "forex_bot/decision_repair/rl_store.py",
+      "sha256": "c4eac9d74c3ce3590f84604a4e396c7f0d3c4e2306e5d88a7710ec6e9711928f"
+    },
+    {
+      "path": "forex_bot/decision_repair/selection.py",
+      "sha256": "cbccca4ed0db49e53036e613e606e19699f7e8664441dcbb3dc9a4eb1d753a0b"
+    },
+    {
+      "path": "forex_bot/decision_skip_log.py",
+      "sha256": "91e8ef835dc59a04251b44036ac22e324789ef788ecf28ba2c5ac3caa2024a55"
+    },
+    {
+      "path": "forex_bot/entry_capture.py",
+      "sha256": "164fa6ed36fccea914f0fd87553f80c06184c4f8fe5d49d80b28455f267ccc09"
+    },
+    {
+      "path": "forex_bot/entry_geometry.py",
+      "sha256": "2de81213403d2092fab201a4704bb10ae85bdc861c9c854bac6e385e406e204c"
+    },
+    {
+      "path": "forex_bot/entry_journal.py",
+      "sha256": "ae99335ac800cb03a2697fcbd6b1187659db5a9a8d56647f9a048a9591ad850a"
+    },
+    {
+      "path": "forex_bot/execution.py",
+      "sha256": "3ee8c673952cbec42d563ef679c43f0eb0e7dfda45f5285ee56e0a14a7e9b46c"
+    },
+    {
+      "path": "forex_bot/execution_metrics.py",
+      "sha256": "f10e550fcec718e16bd8796c84b93cb8d5aedcd12734f7afcf944fe55f8ce0a4"
+    },
+    {
+      "path": "forex_bot/execution_risk.py",
+      "sha256": "5911c79a8f10fb7bf41df275d3e9970118d48c30ec763e8f486475c8e7dbf8f1"
+    },
+    {
+      "path": "forex_bot/experiment.py",
+      "sha256": "5972ff8dbe74b9d9b4510a63150374ee58fc9e99171653a2d8512ed6d1121a4d"
+    },
+    {
+      "path": "forex_bot/indicators.py",
+      "sha256": "64fe62a7e5fd997b7ea3ecc69b0bbc09ce5d0bc8ede18180a8bd16b209c52fe9"
+    },
+    {
+      "path": "forex_bot/live_manage.py",
+      "sha256": "cd67747738aae6bf2f63318e5931a976748e53938bd62e28f066abae27764abf"
+    },
+    {
+      "path": "forex_bot/live_safety.py",
+      "sha256": "e4310d1cd694c3f2a8791b308666fa15ae6ba1a82bdc67a99c5788ffe70ad546"
+    },
+    {
+      "path": "forex_bot/log_config.py",
+      "sha256": "65ce56509d91a5980e1224e69029aac0b20888fa1b6569e7e9229234f6a96f5f"
+    },
+    {
+      "path": "forex_bot/log_redact.py",
+      "sha256": "732fb0ef993aff2e9f45e12062a70084906e6d3972849edf587be198de41d88b"
+    },
+    {
+      "path": "forex_bot/market_provenance.py",
+      "sha256": "4b4fbaa9fa163003bf7c93d25260c16ccc0266fa1824bc47891306777748c8c5"
+    },
+    {
+      "path": "forex_bot/nn_pred.py",
+      "sha256": "e8288293cf5a5cc1d94cef7c073b5ccd2f0807768aba24b5d16b1e9388885c87"
+    },
+    {
+      "path": "forex_bot/oanda_account_adapter.py",
+      "sha256": "f34ce444392da439f0e30c1ed2503585984089b01079e2dead432d3cf7a2d221"
+    },
+    {
+      "path": "forex_bot/oanda_client.py",
+      "sha256": "e08b6df42bc9954e6558d48643fdaf3b66b92b1d255561909eb0100618826923"
+    },
+    {
+      "path": "forex_bot/oanda_exec.py",
+      "sha256": "e83bcc1095aba3f1c06cd625fb01fc0823698f348c0cd517d929928b559701c5"
+    },
+    {
+      "path": "forex_bot/oanda_rate_limit.py",
+      "sha256": "6c32a10a4fd00a2627226df3acf645334e77cb06a1433859ff4b389378fb2da1"
+    },
+    {
+      "path": "forex_bot/openai_voter.py",
+      "sha256": "503a6dd212c790e5723ef13288b431feda616fd120a2667423d06556909bae33"
+    },
+    {
+      "path": "forex_bot/operational_events.py",
+      "sha256": "23649fb1bc1ccec211b2afac24483cb42bd169b84f2e2b9134c11615f7e46862"
+    },
+    {
+      "path": "forex_bot/operational_state.py",
+      "sha256": "dbd28b6f076ad24748befcb44e18d6329143b4c084f330c534e5ee7a837be9f1"
+    },
+    {
+      "path": "forex_bot/orders.py",
+      "sha256": "827ff6675bff7e205e0165911ab9ea74eb7104caa14c19628d1d6509877a9a0a"
+    },
+    {
+      "path": "forex_bot/portfolio.py",
+      "sha256": "33359c40abc70b592f2366fa5fd5cf2645a04bc0b3cec73a0fc0bb13030fbbb5"
+    },
+    {
+      "path": "forex_bot/portfolio_exposure.py",
+      "sha256": "15d73dc2f6fe91ed1ef322d314f741fe79d92c27a10a17ebee4e3638b6e9497e"
+    },
+    {
+      "path": "forex_bot/position_recovery.py",
+      "sha256": "d9563c6ca66b7320bb218e203d3d63ddbc48c82d24833b9a1d59e8dd59c1b0ab"
+    },
+    {
+      "path": "forex_bot/positions.py",
+      "sha256": "569fb364b02fd219d2200fed0779b7db382ff2af0dc0e4fd53ae01dec085d274"
+    },
+    {
+      "path": "forex_bot/profit_protection.py",
+      "sha256": "3c7ace044871a9a47772428c82bafe3feaf6dfcabd3161ee24291dcdf23d04b0"
+    },
+    {
+      "path": "forex_bot/reconciliation.py",
+      "sha256": "daeb62c4c77222ebee8a48d1b052f4ada4f2d179a311d685717566d08f12f763"
+    },
+    {
+      "path": "forex_bot/recovery_owner_lock.py",
+      "sha256": "3615c490a5647be0e55ae6e910d8463200f60eb0335f243bb4655c449b17d83d"
+    },
+    {
+      "path": "forex_bot/rl_agent.py",
+      "sha256": "b350c093e590f1e3189e3e92a3854cd5b74239f5ea3e67cf526b6984f2c622dd"
+    },
+    {
+      "path": "forex_bot/session_rules.py",
+      "sha256": "b2034b2662d45687db9102f7c4506b5a61521c770044e6162b87ed54a6e56d72"
+    },
+    {
+      "path": "forex_bot/startup_recovery.py",
+      "sha256": "a7af957a37824203a4401c811639e88d8d1f4a44f5c9f1ffb485f953f355b94d"
+    },
+    {
+      "path": "forex_bot/state.py",
+      "sha256": "d7f6966d84ccbf9eedd3da347f48b6026708c9c865a5c7b9dd8d5460b2376055"
+    },
+    {
+      "path": "forex_bot/strategy_meta.py",
+      "sha256": "b45b2f7e7f684686eddd2ddf9f2d6d1c3919678ec128c38665f38c99c3ab3222"
+    },
+    {
+      "path": "forex_bot/symbols.py",
+      "sha256": "e8fa3c8622a4ed79b845311ad0abd651cc43f9b3dfdeec64212b7bcb9df6a2d0"
+    },
+    {
+      "path": "forex_bot/telegram_cloud.py",
+      "sha256": "5654c8632a915c7835b7e41bb9cc338546abd196358c9cb22cf97de9dd29003b"
+    },
+    {
+      "path": "forex_bot/telegram_commands.py",
+      "sha256": "aac2172d284f1c9a836df2d6f05a41efb3f4e357a042988d02e78661e07d6a92"
+    },
+    {
+      "path": "forex_bot/telegram_control.py",
+      "sha256": "0447f31e36b63ccc586391f1a1a3b04bc4d16445d1a0bcf405ca7f3e2bb4b6fe"
+    },
+    {
+      "path": "forex_bot/trade_diagnostics.py",
+      "sha256": "276897c6f5134f021cfc4b10c5a8756ff3f7fd31040a0aa459ab2abbec73fa16"
+    },
+    {
+      "path": "forex_bot/trading.py",
+      "sha256": "508b06328439f248ee66fbe29e5b3fb208c18f3d6a7b2144d7a2aa4cbb433612"
+    },
+    {
+      "path": "forex_bot/v2_shadow/__init__.py",
+      "sha256": "1965af131139b352f1d62f90b671ca1f096300a8bd9f73044af742d2e806a145"
+    },
+    {
+      "path": "forex_bot/v2_shadow/contract.py",
+      "sha256": "51e59aba771b269b94bfa5ab4f43efc19b05b00ef1d4d76e68da1e847d2facbc"
+    },
+    {
+      "path": "forex_bot/v2_shadow/decide.py",
+      "sha256": "e179ab2df740708f76eb63ac3cd9f8c5d92c30a4def9df290b47cafcef094126"
+    },
+    {
+      "path": "forex_bot/v2_shadow/market.py",
+      "sha256": "0c13029fbc89abbd0f95842ef880cabf73284d89e0c5ef93cab13e9da3990a2b"
+    },
+    {
+      "path": "forex_bot/v2_shadow/observe.py",
+      "sha256": "c852ac2efe87e3901c7106b6425275b22c44e80aa617fbff3855fb5bb70e27a0"
+    },
+    {
+      "path": "forex_bot/v2_shadow/score.py",
+      "sha256": "61167e97be2dbe87721a6f04cd950095ad07d8bd68f3c6af8de2684d60c0f3a6"
+    },
+    {
+      "path": "forex_bot/v2_shadow/store.py",
+      "sha256": "b4e2bec319b171c11491589d15e08ad16dc95ae48fff6df9b9aa3718502349a9"
+    },
+    {
+      "path": "main.py",
+      "sha256": "47d8f94927ce383a3b2e738e1d4025d3d9e2a127c598e43e028da57d92c70693"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "94d0bc788c1daf61c08ee121197b7200b70e230340e9a6cc2662f4a360bf9bc0"
+    }
+  ]
+}

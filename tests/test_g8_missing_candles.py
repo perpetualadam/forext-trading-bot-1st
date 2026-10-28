@@ -7,6 +7,7 @@ import time
 from datetime import datetime, timezone
 
 import pandas as pd
+import pytest
 
 from forex_bot import bot_loop
 from forex_bot.live_manage import ManageQuote
@@ -56,6 +57,11 @@ def _quote(*, fresh: bool, direction: str) -> ManageQuote:
         time_epoch=time.time() - age,
         tradeable=True,
     )
+
+
+@pytest.fixture(autouse=True)
+def _current_close_context(monkeypatch, managed_close_transport):
+    monkeypatch.setitem(globals(), "_CURRENT_CLOSE_TRANSPORT", managed_close_transport)
 
 
 def _install(monkeypatch, *, candles, position, weekend: bool, fresh: bool, close_result):
@@ -114,6 +120,7 @@ def _install(monkeypatch, *, candles, position, weekend: bool, fresh: bool, clos
             just_ratcheted=False,
         ),
     )
+    _CURRENT_CLOSE_TRANSPORT({"EUR_USD": position}, seen, close_result if isinstance(close_result, Exception) else None)
     return seen
 
 

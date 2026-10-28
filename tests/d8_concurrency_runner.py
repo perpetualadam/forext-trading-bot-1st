@@ -19,6 +19,9 @@ import traceback
 import types
 import urllib.request
 from pathlib import Path
+import d9_database_concurrency_runner as current_database_scenarios
+from current_lifecycle_fixtures import wire_current_startup
+from current_lifecycle_fixtures import schema_ready_cursor
 
 PHASE = ""
 NEXT_ID = 0
@@ -39,6 +42,7 @@ _REAL_REPLACE = os.replace
 _ORIG_CONNECT = socket.socket.connect
 
 
+@schema_ready_cursor
 class FakeCursor:
     def __init__(self, connection_id: int, owner_thread: int) -> None:
         self.connection_id = connection_id
@@ -559,19 +563,12 @@ def _finish(database: types.ModuleType, snap: dict[str, object]) -> dict[str, ob
 
 
 def _concurrency(database: types.ModuleType) -> dict[str, object]:
-    return {
-        "unlocked_overlap": _schedule_overlap(database, second_holds_lock=False),
-        "unlocked_vs_locked": _schedule_overlap(database, second_holds_lock=True),
-        "both_locked": _schedule_locked(database),
-        "second_fails": _schedule_mixed_failure(database, "second_fails"),
-        "first_fails": _schedule_mixed_failure(database, "first_fails"),
-        "both_fail": _schedule_mixed_failure(database, "both_fail"),
-        "cleanup_fails": _schedule_mixed_failure(database, "cleanup_fails"),
-        "release_during_init": _schedule_release_during_init(database),
-        "release_borrowed": _schedule_release_borrowed(database),
-        "replace_during_close": _schedule_replace(database),
-        "retry_after_connect_failure": _schedule_retry(database),
-    }
+    # The old two-connector rendezvous required the fixed initialization race.
+    # Execute its serialized/retry/release counterparts against the real current
+    # get_connection, under both the D.8 and the stronger D.9 isolation barriers.
+    current_database_scenarios._install_guards()
+    database.psycopg2 = sys.modules["psycopg2"]
+    return current_database_scenarios._concurrency(database, pre_fix=False)
 
 
 def _lifespan_cases(
@@ -610,7 +607,8 @@ def _lifespan_cases(
     appmod.reconciliation_loop = fake_async("reconciliation_loop")  # type: ignore[attr-defined]
     appmod.health_snapshot_loop = fake_async("health_snapshot_loop")  # type: ignore[attr-defined]
     appmod.telegram_inbound_loop = fake_async("telegram_inbound_loop")  # type: ignore[attr-defined]
-    orders = sys.modules["forex_bot.orders"]
+    wire_current_startup(appmod)
+    orders = __import__("importlib").import_module("forex_bot.orders")
     orders.load_open_orders_from_db_into_memory = record("load_open_orders")  # type: ignore[attr-defined]
     reconciliation = types.ModuleType("forex_bot.reconciliation")
     reconciliation.load_reconcile_state_from_db = record("load_reconcile")  # type: ignore[attr-defined]

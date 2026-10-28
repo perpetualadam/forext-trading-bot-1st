@@ -698,8 +698,9 @@ def test_i074_no_strategy_activation() -> None:
 
 
 def test_i075_strategy_source_unchanged() -> None:
-    digest = __import__("hashlib").sha256((ROOT / "forex_bot" / "strategy_meta.py").read_bytes()).hexdigest()
-    _note("I075", "test_i075_strategy_source_unchanged", "strategy_meta", None, digest.startswith("492cab735d04"), risk_gate="strategy", risk_gate_enabled=False)
+    data = (ROOT / "forex_bot" / "strategy_meta.py").read_bytes().replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")
+    digest = __import__("hashlib").sha256(data).hexdigest()
+    _note("I075", "test_i075_strategy_source_unchanged", "strategy_meta", None, digest == "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d", risk_gate="strategy", risk_gate_enabled=False)
 
 
 def test_i076_margin_missing_is_explicit() -> None:

@@ -17,6 +17,8 @@ import traceback
 import types
 import urllib.request
 from pathlib import Path
+from current_lifecycle_fixtures import wire_current_startup
+from current_lifecycle_fixtures import schema_ready_cursor
 
 NETWORK: list[str] = []
 FS_DENIALS: list[str] = []
@@ -60,6 +62,7 @@ _REAL_SYSTEM = os.system
 _REAL_POPEN = subprocess.Popen
 
 
+@schema_ready_cursor
 class FakeCursor:
     def __init__(self, connection_id: int) -> None:
         global NEXT_CURSOR
@@ -733,8 +736,11 @@ def _run_threads(database: types.ModuleType, tc: types.ModuleType) -> dict[str, 
     BLOCK_POLLS = 0
     before_queries = len(QUERIES)
     RELEASE_POLL.set()
-    if not TRADE_QUERY.wait(5):
-        raise TimeoutError("poller did not query after release")
+    stopped_worker = tc._poller_thread
+    if stopped_worker is not None:
+        stopped_worker.join(timeout=3)
+        if stopped_worker.is_alive():
+            raise TimeoutError("stopped poller did not exit after release")
     later = [row for row in QUERIES[before_queries:] if row["generation"] >= 1]
     published = database._pg_conn  # type: ignore[attr-defined]
     schedules["stop_during_blocked_poll"] = {
@@ -836,7 +842,7 @@ def _run_threads(database: types.ModuleType, tc: types.ModuleType) -> dict[str, 
     entered = False
     deadline = time.perf_counter() + 3
     while time.perf_counter() < deadline:
-        if _poller_in("fetch_all_trades_ordered") and not TRADE_QUERY.is_set():
+        if _poller_in("_read_trades_if_running") and not TRADE_QUERY.is_set():
             entered = True
             break
         threading.Event().wait(0.05)
@@ -979,7 +985,8 @@ def _lifespan_cases(
     appmod.reconciliation_loop = fake_async("reconciliation_loop")  # type: ignore[attr-defined]
     appmod.health_snapshot_loop = fake_async("health_snapshot_loop")  # type: ignore[attr-defined]
     appmod.telegram_inbound_loop = fake_async("telegram_inbound_loop")  # type: ignore[attr-defined]
-    orders = sys.modules["forex_bot.orders"]
+    wire_current_startup(appmod)
+    orders = __import__("importlib").import_module("forex_bot.orders")
     orders.load_open_orders_from_db_into_memory = record("load_open_orders")  # type: ignore[attr-defined]
     reconciliation = types.ModuleType("forex_bot.reconciliation")
     reconciliation.load_reconcile_state_from_db = record("load_reconcile")  # type: ignore[attr-defined]

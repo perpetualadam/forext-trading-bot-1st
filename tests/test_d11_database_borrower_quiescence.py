@@ -150,7 +150,7 @@ def test_blocked_shutdown_is_observable_and_does_not_query(lifespan: dict) -> No
     assert row["stop_event"] is True
     assert row["pg_conn_held"] is True
     assert row["application_close_calls"] == 0
-    assert row["cleanup_errors"] == []
+    assert row["cleanup_errors"] == ["D12-STOP-01"]
     probe = row["post_application_probe"]
     assert probe["label"] == "composed_after_lifespan_returned"
     assert probe["queries"] == []

@@ -165,7 +165,7 @@ def test_cache_and_csv_and_research_substitution(tmp_path):
     assert bind_synthetic_frame(_frame()).attrs["market_provenance"].classification == SYNTHETIC_TEST
 
 
-def test_failed_response_and_order_boundary_without_context(monkeypatch):
+def test_failed_response_and_order_boundary_without_context(monkeypatch, entry_intent_factory):
     calls: list[str] = []
 
     def sink(*_a, **_k):
@@ -176,13 +176,13 @@ def test_failed_response_and_order_boundary_without_context(monkeypatch):
     from forex_bot.oanda_exec import _place_market_order_open_sync
 
     with pytest.raises(RuntimeError, match="LIVE_ORDER_AUTH"):
-        _place_market_order_open_sync("EUR_USD", 1.0, "BUY", "cid", entry_quote=mint_live_quote())
+        _place_market_order_open_sync("EUR_USD", 1.0, "BUY", "cid", entry_quote=mint_live_quote(), entry_permit=entry_intent_factory(units=1, client_order_id="cid"))
     assert calls == []
     assert live_order_auth_state() == AUTH_BLOCKED
     assert order_quote_rejection(mint_live_quote(), "EUR_USD") is None
 
 
-def test_authorised_sink_still_needs_a_sealed_quote(monkeypatch, allow_live_order_create):
+def test_authorised_sink_still_needs_a_sealed_quote(monkeypatch, allow_live_order_create, entry_intent_factory):
     monkeypatch.setenv("EXECUTION_MODE", "live_broker")
     monkeypatch.setenv("USE_OANDA_LIVE", "true")
     monkeypatch.setenv("OANDA_ACCESS_TOKEN", "not-a-real-token")
@@ -211,7 +211,7 @@ def test_authorised_sink_still_needs_a_sealed_quote(monkeypatch, allow_live_orde
     from forex_bot.oanda_exec import _place_market_order_open_sync
 
     with pytest.raises(ProvenanceRejected, match="missing_provenance"):
-        _place_market_order_open_sync("EUR_USD", 1.0, "BUY", "cid-missing")
+        _place_market_order_open_sync("EUR_USD", 1.0, "BUY", "cid-missing", entry_permit=entry_intent_factory(units=1, client_order_id="cid-missing"))
     assert calls == []
     _place_market_order_open_sync(
         "EUR_USD",
@@ -219,6 +219,7 @@ def test_authorised_sink_still_needs_a_sealed_quote(monkeypatch, allow_live_orde
         "BUY",
         "cid-ok",
         entry_quote=mint_live_quote(),
+        entry_permit=entry_intent_factory(units=1, client_order_id="cid-ok"),
     )
     assert calls == ["order"]
 
@@ -232,7 +233,11 @@ def test_bot_loop_does_not_scan_research_paths():
     src = inspect.getsource(bot_loop) + inspect.getsource(ox)
     assert "data/research" not in src
     assert "load_ohlcv_csv" not in src
-    assert "synthetic_market" not in src
+    import ast
+    tree = ast.parse(src)
+    assert not any(isinstance(node, ast.ImportFrom) and "synthetic_market" in (node.module or "") for node in ast.walk(tree))
+    assert not any(isinstance(node, ast.Name) and node.id == "synthetic_market" for node in ast.walk(tree))
+    assert "synthetic_market_data_is_not_broker_verified" in src
 
 
 def test_g5_reports_preserve_prior_hashes():

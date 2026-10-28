@@ -70,6 +70,11 @@ class _Seen:
         self.synthetic = 0
 
 
+@pytest.fixture(autouse=True)
+def _current_close_context(monkeypatch, managed_close_transport):
+    monkeypatch.setitem(globals(), "_CURRENT_CLOSE_TRANSPORT", managed_close_transport)
+
+
 def _install(
     monkeypatch: pytest.MonkeyPatch,
     seen: _Seen,
@@ -156,6 +161,7 @@ def _install(
         "forex_bot.oanda_exec.get_api",
         lambda: (_ for _ in ()).throw(AssertionError("broker client requested")),
     )
+    _CURRENT_CLOSE_TRANSPORT(positions, seen, close_error, with_kwargs=False)
 
 
 def _run(symbol: str = "EUR_USD") -> None:
@@ -422,6 +428,7 @@ def test_multi_symbol_acquisition_failures_and_integrity_stop(monkeypatch: pytes
 
 
 def test_programming_error_after_candles_still_propagates(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(bot_loop, "dispatch_production_iteration", lambda *_a, **_k: {"status": "continue_existing_production_broker"})
     monkeypatch.setattr(bot_loop, "fetch_ohlcv", lambda *_a, **_k: _frame())
     monkeypatch.setattr(bot_loop, "get_position", lambda _symbol: None)
     monkeypatch.setattr(bot_loop, "flatten_for_weekend", lambda: False)
@@ -457,7 +464,7 @@ def test_cycle_integrity_from_fetch_is_not_swallowed(monkeypatch: pytest.MonkeyP
     assert seen == ["EUR_USD"]
 
 
-def test_close_sides_timeout_and_blocked_open(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_close_sides_timeout_and_blocked_open(monkeypatch: pytest.MonkeyPatch, entry_intent_factory, close_intent_factory) -> None:
     calls: list[dict] = []
 
     class FakeAPI:
@@ -475,20 +482,23 @@ def test_close_sides_timeout_and_blocked_open(monkeypatch: pytest.MonkeyPatch) -
     monkeypatch.setenv("USE_OANDA_LIVE", "true")
     monkeypatch.setenv("OANDA_ACCESS_TOKEN", "not-a-real-token")
     with pytest.raises(RuntimeError, match="LIVE_ORDER_AUTH"):
-        _place_market_order_open_sync("EUR_USD", 1.0, "BUY", "cid", entry_quote=mint_live_quote())
+        _place_market_order_open_sync("EUR_USD", 1.0, "BUY", "cid", entry_quote=mint_live_quote(), entry_permit=entry_intent_factory(units=1, client_order_id="cid"))
     assert calls == []
-    with pytest.raises(RuntimeError, match="timed out"):
-        _place_market_order_sync("EUR_USD", 3.0, "BUY")
+    with pytest.raises(TimeoutError, match="timed out"):
+        _place_market_order_sync("EUR_USD", 3.0, "BUY", close_intent_factory(units=3.0, direction="BUY"))
     assert calls == [{"longUnits": "3"}]
     calls.clear()
-    _place_market_order_sync("EUR_USD", 2.0, "SELL")
+    _place_market_order_sync("EUR_USD", 2.0, "SELL", close_intent_factory(units=2.0, direction="SELL"))
     assert calls == [{"shortUnits": "2"}]
     assert live_order_auth_state() == AUTH_BLOCKED
 
 
 def test_frozen_artifacts_remain() -> None:
     def _sha(path: Path) -> str:
-        return hashlib.sha256(path.read_bytes()).hexdigest()
+        payload = path.read_bytes()
+        if path.name == ".dockerignore":
+            payload = payload.replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")
+        return hashlib.sha256(payload).hexdigest()
 
     manifest = json.loads(
         (ROOT / "data/research/adaptive_ensemble/g7/manifest.json").read_text(encoding="utf-8")

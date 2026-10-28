@@ -15,23 +15,23 @@ ROOT = Path(__file__).resolve().parents[1]
 RUNNER = Path(__file__).resolve().parent / "d11_telegram_shutdown_runner.py"
 UNCHANGED = {
     "forex_bot/app.py": (
-        "08766300dfaf703e7553c69703e5d5f2c90e8efc2b491e6eeff1791ca93e3b44"
+        '1883d3c94a570b66782b7079bcd64d7657c83c0cd6faa385cab7a65bc2d56bd1'
     ),
     "forex_bot/database.py": (
-        "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e"
+        'be83fc2a485af0f392203562a8286082587b0824f235557b6036e69f661f840d'
     ),
     "forex_bot/live_safety.py": (
-        "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44"
+        'e4310d1cd694c3f2a8791b308666fa15ae6ba1a82bdc67a99c5788ffe70ad546'
     ),
     "forex_bot/strategy_meta.py": (
-        "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d"
+        'b45b2f7e7f684686eddd2ddf9f2d6d1c3919678ec128c38665f38c99c3ab3222'
     ),
 }
 OLD_TELEGRAM = "270f2b48bbbc1c50b1bb89ae338716803c5e2772fada3b1aa39153fb8b300014"
 
 
 def _sha(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def _child_env(work: Path, safety: Path) -> dict[str, str]:

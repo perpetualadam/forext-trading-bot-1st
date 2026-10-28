@@ -83,7 +83,7 @@ def _install_sink(monkeypatch: pytest.MonkeyPatch) -> list[str]:
     return calls
 
 
-def _assert_no_exposure(calls: list[str]) -> None:
+def _assert_no_exposure(calls: list[str], permit) -> None:
     from forex_bot.oanda_exec import _place_market_order_open_sync
 
     with pytest.raises(RuntimeError, match="LIVE_ORDER_AUTH"):
@@ -93,13 +93,15 @@ def _assert_no_exposure(calls: list[str]) -> None:
             "BUY",
             "cid",
             entry_quote=mint_live_quote(),
+            entry_permit=permit,
         )
     assert calls == []
     assert live_order_auth_state() == AUTH_BLOCKED
 
 
-def test_every_protected_mutation_fails_closed(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_every_protected_mutation_fails_closed(monkeypatch: pytest.MonkeyPatch, entry_intent_factory) -> None:
     calls = _install_sink(monkeypatch)
+    permit = entry_intent_factory(units=1, client_order_id="cid")
     base = _sealed()
     cases: list[tuple[str, pd.DataFrame, str]] = []
 
@@ -194,11 +196,12 @@ def test_every_protected_mutation_fails_closed(monkeypatch: pytest.MonkeyPatch) 
         symbol = "GBP_USD" if name == "instrument" else "EUR_USD"
         got = decision_frame_rejection(frame, symbol)
         assert got == expected, name
-        _assert_no_exposure(calls)
+        _assert_no_exposure(calls, permit)
 
 
-def test_derived_columns_and_unchanged_copy_stay_valid(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_derived_columns_and_unchanged_copy_stay_valid(monkeypatch: pytest.MonkeyPatch, entry_intent_factory) -> None:
     calls = _install_sink(monkeypatch)
+    permit = entry_intent_factory(units=1, client_order_id="cid")
     base = _sealed()
     derived = _clone(base)
     derived["ma_fast"] = 1.1
@@ -209,22 +212,23 @@ def test_derived_columns_and_unchanged_copy_stay_valid(monkeypatch: pytest.Monke
         copied.attrs["market_provenance"] = base.attrs["market_provenance"]
     assert decision_frame_rejection(copied, "EUR_USD") is None
     assert copied.attrs["market_provenance"].model_version == MODEL_VERSION
-    _assert_no_exposure(calls)
+    _assert_no_exposure(calls, permit)
 
 
-def test_stale_seal_and_blocked_authorisation(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_stale_seal_and_blocked_authorisation(monkeypatch: pytest.MonkeyPatch, entry_intent_factory) -> None:
     calls = _install_sink(monkeypatch)
+    permit = entry_intent_factory(units=1, client_order_id="cid")
     stale = _sealed()
     stale.attrs["market_provenance"].acquired_mono = time.monotonic() - 10_000
     assert decision_frame_rejection(stale, "EUR_USD") == "stale_acquisition"
     fresh = _sealed()
     assert decision_frame_rejection(fresh, "EUR_USD") is None
-    _assert_no_exposure(calls)
+    _assert_no_exposure(calls, permit)
     with pytest.raises(ProvenanceRejected, match="caller_supplied_label"):
         provenance_from_label("OANDA_LIVE_VERIFIED")
 
 
-def test_close_does_not_require_entry_seal(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_close_does_not_require_entry_seal(monkeypatch: pytest.MonkeyPatch, close_intent_factory) -> None:
     calls: list[dict] = []
 
     class FakeAPI:
@@ -238,14 +242,14 @@ def test_close_does_not_require_entry_seal(monkeypatch: pytest.MonkeyPatch) -> N
     monkeypatch.setattr("forex_bot.oanda_rate_limit.acquire_oanda_rest_slot", lambda: None)
     from forex_bot.oanda_exec import _place_market_order_sync
 
-    _place_market_order_sync("EUR_USD", 1.0, "BUY")
+    _place_market_order_sync("EUR_USD", 1.0, "BUY", close_intent_factory())
     assert calls == [{"longUnits": "1"}]
     calls.clear()
-    _place_market_order_sync("EUR_USD", 2.0, "SELL")
+    _place_market_order_sync("EUR_USD", 2.0, "SELL", close_intent_factory(units=2, direction="SELL"))
     assert calls == [{"shortUnits": "2"}]
 
 
-def test_failed_close_still_raises(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_failed_close_still_raises(monkeypatch: pytest.MonkeyPatch, close_intent_factory) -> None:
     class FakeAPI:
         def request(self, _req):
             raise TimeoutError("read timed out")
@@ -255,8 +259,8 @@ def test_failed_close_still_raises(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr("forex_bot.oanda_rate_limit.acquire_oanda_rest_slot", lambda: None)
     from forex_bot.oanda_exec import _place_market_order_sync
 
-    with pytest.raises(RuntimeError, match="timed out"):
-        _place_market_order_sync("EUR_USD", 1.0, "BUY")
+    with pytest.raises(TimeoutError, match="timed out"):
+        _place_market_order_sync("EUR_USD", 1.0, "BUY", close_intent_factory())
 
 
 def test_stale_manage_quote_and_broker_stops() -> None:

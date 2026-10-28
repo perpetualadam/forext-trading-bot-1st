@@ -15,13 +15,18 @@ RUN pip install --upgrade pip && \
 
 # Production application files: explicit audited allowlist.
 COPY forex_bot/__init__.py ./forex_bot/__init__.py
+COPY forex_bot/account_reconciliation.py ./forex_bot/account_reconciliation.py
 COPY forex_bot/ai_ensemble.py ./forex_bot/ai_ensemble.py
 COPY forex_bot/alerts.py ./forex_bot/alerts.py
 COPY forex_bot/analytics.py ./forex_bot/analytics.py
 COPY forex_bot/anthropic_voter.py ./forex_bot/anthropic_voter.py
 COPY forex_bot/app.py ./forex_bot/app.py
 COPY forex_bot/bot_loop.py ./forex_bot/bot_loop.py
+COPY forex_bot/broker_close_evidence.py ./forex_bot/broker_close_evidence.py
+COPY forex_bot/broker_entry_evidence.py ./forex_bot/broker_entry_evidence.py
 COPY forex_bot/broker_exit.py ./forex_bot/broker_exit.py
+COPY forex_bot/broker_protection.py ./forex_bot/broker_protection.py
+COPY forex_bot/close_journal.py ./forex_bot/close_journal.py
 COPY forex_bot/config.py ./forex_bot/config.py
 COPY forex_bot/database.py ./forex_bot/database.py
 COPY forex_bot/decision_repair/__init__.py ./forex_bot/decision_repair/__init__.py
@@ -33,9 +38,12 @@ COPY forex_bot/decision_repair/health.py ./forex_bot/decision_repair/health.py
 COPY forex_bot/decision_repair/rl_store.py ./forex_bot/decision_repair/rl_store.py
 COPY forex_bot/decision_repair/selection.py ./forex_bot/decision_repair/selection.py
 COPY forex_bot/decision_skip_log.py ./forex_bot/decision_skip_log.py
+COPY forex_bot/entry_capture.py ./forex_bot/entry_capture.py
 COPY forex_bot/entry_geometry.py ./forex_bot/entry_geometry.py
+COPY forex_bot/entry_journal.py ./forex_bot/entry_journal.py
 COPY forex_bot/execution.py ./forex_bot/execution.py
 COPY forex_bot/execution_metrics.py ./forex_bot/execution_metrics.py
+COPY forex_bot/execution_risk.py ./forex_bot/execution_risk.py
 COPY forex_bot/experiment.py ./forex_bot/experiment.py
 COPY forex_bot/indicators.py ./forex_bot/indicators.py
 COPY forex_bot/live_manage.py ./forex_bot/live_manage.py
@@ -44,6 +52,7 @@ COPY forex_bot/log_config.py ./forex_bot/log_config.py
 COPY forex_bot/log_redact.py ./forex_bot/log_redact.py
 COPY forex_bot/market_provenance.py ./forex_bot/market_provenance.py
 COPY forex_bot/nn_pred.py ./forex_bot/nn_pred.py
+COPY forex_bot/oanda_account_adapter.py ./forex_bot/oanda_account_adapter.py
 COPY forex_bot/oanda_client.py ./forex_bot/oanda_client.py
 COPY forex_bot/oanda_exec.py ./forex_bot/oanda_exec.py
 COPY forex_bot/oanda_rate_limit.py ./forex_bot/oanda_rate_limit.py
@@ -53,11 +62,14 @@ COPY forex_bot/operational_state.py ./forex_bot/operational_state.py
 COPY forex_bot/orders.py ./forex_bot/orders.py
 COPY forex_bot/portfolio.py ./forex_bot/portfolio.py
 COPY forex_bot/portfolio_exposure.py ./forex_bot/portfolio_exposure.py
+COPY forex_bot/position_recovery.py ./forex_bot/position_recovery.py
 COPY forex_bot/positions.py ./forex_bot/positions.py
 COPY forex_bot/profit_protection.py ./forex_bot/profit_protection.py
 COPY forex_bot/reconciliation.py ./forex_bot/reconciliation.py
+COPY forex_bot/recovery_owner_lock.py ./forex_bot/recovery_owner_lock.py
 COPY forex_bot/rl_agent.py ./forex_bot/rl_agent.py
 COPY forex_bot/session_rules.py ./forex_bot/session_rules.py
+COPY forex_bot/startup_recovery.py ./forex_bot/startup_recovery.py
 COPY forex_bot/state.py ./forex_bot/state.py
 COPY forex_bot/strategy_meta.py ./forex_bot/strategy_meta.py
 COPY forex_bot/symbols.py ./forex_bot/symbols.py

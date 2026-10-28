@@ -69,7 +69,7 @@ def test_earlier_bar_mutation_invalidates_seal():
     assert decision_frame_rejection(frame, "EUR_USD") == "tampered_payload"
 
 
-def test_missing_provenance_blocks_open_and_not_close(monkeypatch):
+def test_missing_provenance_blocks_open_and_not_close(monkeypatch, entry_intent_factory, close_intent_factory):
     calls: list[dict] = []
 
     class FakeAPI:
@@ -90,17 +90,17 @@ def test_missing_provenance_blocks_open_and_not_close(monkeypatch):
     )
 
     with pytest.raises(RuntimeError, match="LIVE_ORDER_AUTH"):
-        _place_market_order_open_sync("EUR_USD", 1.0, "BUY", "cid", entry_quote=mint_live_quote())
+        _place_market_order_open_sync("EUR_USD", 1.0, "BUY", "cid", entry_quote=mint_live_quote(), entry_permit=entry_intent_factory(units=1, client_order_id="cid"))
     assert calls == []
-    _place_market_order_sync("EUR_USD", 1.0, "BUY")
+    _place_market_order_sync("EUR_USD", 1.0, "BUY", close_intent_factory())
     assert calls == [{"longUnits": "1"}]
     calls.clear()
-    _place_market_order_sync("EUR_USD", 2.0, "SELL")
+    _place_market_order_sync("EUR_USD", 2.0, "SELL", close_intent_factory(units=2, direction="SELL"))
     assert calls == [{"shortUnits": "2"}]
     assert live_order_auth_state() == AUTH_BLOCKED
 
 
-def test_failed_close_is_not_reported_as_success(monkeypatch):
+def test_failed_close_is_not_reported_as_success(monkeypatch, close_intent_factory):
     class FakeAPI:
         def request(self, _req):
             raise TimeoutError("read timed out")
@@ -110,8 +110,8 @@ def test_failed_close_is_not_reported_as_success(monkeypatch):
     monkeypatch.setattr("forex_bot.oanda_rate_limit.acquire_oanda_rest_slot", lambda: None)
     from forex_bot.oanda_exec import _place_market_order_sync
 
-    with pytest.raises(RuntimeError, match="timed out"):
-        _place_market_order_sync("EUR_USD", 1.0, "BUY")
+    with pytest.raises(TimeoutError, match="timed out"):
+        _place_market_order_sync("EUR_USD", 1.0, "BUY", close_intent_factory())
 
 
 def test_restart_ignores_persisted_allowed_and_keeps_strategies_inactive():

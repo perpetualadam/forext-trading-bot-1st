@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import importlib.util
+import hashlib
 import os
 import stat
 import sys
@@ -58,15 +59,16 @@ def _verify(text: str, root: Path, rules: list[dict] | None = None) -> dict:
 def test_repository_dockerfile_matches_audited_allowlist() -> None:
     document = load_allowlist()
     paths = allowlist_paths(document)
-    assert document["file_count"] == 63
-    assert len(paths) == 63
+    assert document["file_count"] == len(paths)
+    assert len(paths) == len(set(paths))
+    assert all(not path.startswith(("forex_bot/research/", "tests/", "data/")) for path in paths)
     dockerfile = (ROOT / "Dockerfile").read_text(encoding="utf-8")
     assert sha256_file(ROOT / "Dockerfile") != ORIGINAL_DOCKERFILE_SHA256
     assert "COPY forex_bot ./forex_bot" not in dockerfile
     assert dockerfile.count("COPY main.py ") == 1
     result = verify_dockerfile(dockerfile, paths=paths, root=ROOT, rules=dockerignore_rules())
     assert result["ok"], result
-    assert result["copy_count"] == 61
+    assert result["copy_count"] == len(paths) - 2
     assert result["main_py_copies"] == 1
     assert set(parse_copies(dockerfile.replace("\r\n", "\n"))) == {
         (rel, "./main.py" if rel == "main.py" else "." if rel == "requirements.txt" else f"./{rel}")
@@ -87,6 +89,25 @@ def test_production_closure_matches_allowlist_python_files() -> None:
     assert closure["missing"] == []
     assert closure["dynamic_calls"] == []
     assert set(closure["modules"]) == python_files
+
+
+def test_current_packaging_source_seals() -> None:
+    for row in load_allowlist()["files"]:
+        data = (ROOT / row["path"]).read_bytes().replace(b"\r\n", b"\n")
+        assert hashlib.sha256(data).hexdigest() == row["sha256"], row["path"]
+
+
+def test_computed_import_remains_a_packaging_failure(tmp_path, monkeypatch) -> None:
+    monkeypatch.setattr(g13_packaging, "ENTRY_MODULES", ("main.py",))
+    (tmp_path / "main.py").write_text('__import__("uuid")\n__import__(runtime_name)\n')
+    closure = production_closure(tmp_path)
+    assert closure["dynamic_calls"] == ["main.py:2:__import__"]
+
+
+def test_package_import_includes_the_requested_module() -> None:
+    import ast
+    imports = g13_packaging.resolve_import("main.py", ast.parse("from forex_bot import startup_recovery").body[0])
+    assert "forex_bot/startup_recovery.py" in imports
 
 
 def test_missing_allowlist_entry(tmp_path: Path) -> None:

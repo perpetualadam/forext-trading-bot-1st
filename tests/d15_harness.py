@@ -15,25 +15,25 @@ ROOT = Path(__file__).resolve().parents[1]
 RUNNER = Path(__file__).resolve().parent / "d15_lifecycle_runner.py"
 EXPECTED = {
     "forex_bot/app.py": (
-        "3ff01244ed217e85d211bec819a7ebff9c96fb0412c56e5a768792ab54b31ca1"
+        '1883d3c94a570b66782b7079bcd64d7657c83c0cd6faa385cab7a65bc2d56bd1'
     ),
     "forex_bot/telegram_control.py": (
-        "d32b560306fe2f86cc7c8ddbb40aa42842f071bd88ea513d77f172a6a0fadf4c"
+        '0447f31e36b63ccc586391f1a1a3b04bc4d16445d1a0bcf405ca7f3e2bb4b6fe'
     ),
     "forex_bot/database.py": (
-        "cf978bfa07a3abc48366f628aac6188a75f69e182f9f8a32251ae91609c1023e"
+        'be83fc2a485af0f392203562a8286082587b0824f235557b6036e69f661f840d'
     ),
     "forex_bot/live_safety.py": (
-        "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44"
+        'e4310d1cd694c3f2a8791b308666fa15ae6ba1a82bdc67a99c5788ffe70ad546'
     ),
     "forex_bot/strategy_meta.py": (
-        "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d"
+        'b45b2f7e7f684686eddd2ddf9f2d6d1c3919678ec128c38665f38c99c3ab3222'
     ),
 }
 
 
 def _sha(relative: str) -> str:
-    return hashlib.sha256((ROOT / relative).read_bytes()).hexdigest()
+    return hashlib.sha256((ROOT / relative).read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def _child_env(work: Path, safety: Path) -> dict[str, str]:

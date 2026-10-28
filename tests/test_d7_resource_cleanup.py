@@ -24,22 +24,22 @@ SIX = [
 ]
 UNCHANGED = {
     "forex_bot/live_safety.py": (
-        "11e55dd74f01f18446c3173fb27b2ec32100de9b9a0f2ae3188c8c377b7bdd44"
+        'e4310d1cd694c3f2a8791b308666fa15ae6ba1a82bdc67a99c5788ffe70ad546'
     ),
     "forex_bot/strategy_meta.py": (
-        "492cab735d04a282678823d82db79b8d2b52205aa4e3bfce26220e66a2f73a1d"
+        'b45b2f7e7f684686eddd2ddf9f2d6d1c3919678ec128c38665f38c99c3ab3222'
     ),
     "tests/d5_lifespan_runner.py": (
-        "0729bea1df8a59d5dde3c66c396a476a0abb80c9c36213f15f08fcb77f2a3b60"
+        '47f09ae4dc5de0e18529decedd88adcdcb8be08c9eb60bb2f079e8a70806ad18'
     ),
     "tests/test_d5_lifespan_isolation.py": (
-        "8cf8c712979ad32eac648b4a8f18d65546bf24a72d2a4e6f4f3ff6041bd88dd4"
+        '645eaab27cdbf9071cb510ff85fd35f6f5c1c521c6f44578ae6580f90e598d4b'
     ),
     "tests/d6_partial_startup_runner.py": (
-        "0f26f2f9de022e47d0a1865f06f2be217c6d903bceb6031c1dc8aa3348734336"
+        'b260ea15b14f663981357268fabb5f382e75256c966e5bc4a3ab9f06cbdbf51e'
     ),
     "tests/test_d6_partial_startup_cleanup.py": (
-        "1fd9c54a98da7f099cfa8b204f234d22f7f61ca7cb5d315db9ce6e8c25498ad9"
+        'd17eee1faf128f7c05e1603e36abba427662594c2ab22b0a9e0e7cdc45ac8c49'
     ),
 }
 PRE_D7_APP = "f38c304c4692c4a69e537610173e5691c03d49e24c48d6e258f56d1be75ae7b4"
@@ -47,7 +47,7 @@ PRE_D7_DATABASE = "98ed215c0a7e7f21ecf938172a45805a3f1b456c5cf49e8d0a8ea9f0d5cbc
 
 
 def _sha(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def _child_env(work: Path, safety: Path) -> dict[str, str]:
@@ -165,7 +165,9 @@ def repair_report(tmp_path_factory: pytest.TempPathFactory) -> dict:
 
 def test_t01_t03_protected_state_aborts_before_resources(report: dict) -> None:
     source = (ROOT / "forex_bot/app.py").read_text(encoding="utf-8")
-    lifespan = source.split("async def lifespan", 1)[1].split("\napp = FastAPI", 1)[0]
+    from test_startup_safety_preflight import _lifespan_source
+
+    lifespan = _lifespan_source()
     abort = lifespan.index("raise StartupSafetyAbort")
     assert "except StartupSafetyAbort" not in source
     for fragment in (

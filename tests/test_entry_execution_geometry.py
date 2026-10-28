@@ -439,7 +439,10 @@ def test_bot_loop_open_has_single_ordercreate_and_no_retry_loop():
     import forex_bot.bot_loop as bot_loop
 
     src = inspect.getsource(bot_loop._evaluate_impl)
-    assert src.count("execute_oanda_market_open") == 1
+    assert src.count("execute_oanda_market_open") == 0
+    adapter = inspect.getsource(bot_loop.production_execution_adapter)
+    assert adapter.count("execute_oanda_market_open") == 1
+    assert adapter.index("production_adapter_refusal(") < adapter.index("begin_entry_submission(") < adapter.index("execute_oanda_market_open(")
     assert "for _retry" not in src
     assert "while True" not in src.split("if fill_path == \"broker\":", 1)[-1][:2500]
 
@@ -447,8 +450,9 @@ def test_bot_loop_open_has_single_ordercreate_and_no_retry_loop():
 def test_oanda_exec_open_is_single_request():
     import forex_bot.oanda_exec as ox
 
-    src = inspect.getsource(ox._place_market_order_open_sync)
+    src = inspect.getsource(ox._submit_order_create)
     assert src.count("api.request") == 1
+    assert inspect.getsource(ox._place_market_order_open_sync).count("_submit_order_create(") == 1
     assert "while " not in src
     assert "retry" not in src.lower()
 

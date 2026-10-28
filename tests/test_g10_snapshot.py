@@ -105,7 +105,8 @@ def _write_pair(directory: Path, blob: bytes, manifest: dict[str, object]) -> tu
     return tar_path, manifest_path
 
 
-def test_two_temporary_candidates_are_identical(tmp_path: Path):
+def test_two_temporary_candidates_are_identical(tmp_path: Path, historical_packaging_root, monkeypatch):
+    monkeypatch.setattr("forex_bot.research.adaptive_ensemble.g10_snapshot.ROOT", historical_packaging_root)
     first = write_candidate(tmp_path / "a" / "source_snapshot.tar", tmp_path / "a" / "source_manifest.json")
     second = write_candidate(tmp_path / "b" / "source_snapshot.tar", tmp_path / "b" / "source_manifest.json")
     assert first["manifest_sha256"] == second["manifest_sha256"]
@@ -114,7 +115,8 @@ def test_two_temporary_candidates_are_identical(tmp_path: Path):
     assert all(not row["path"].startswith("data/") for row in first["files"])
 
 
-def test_official_archive_is_independently_verified_and_not_rewritten():
+def test_official_archive_is_independently_verified_and_not_rewritten(historical_packaging_root, monkeypatch):
+    monkeypatch.setattr("forex_bot.research.adaptive_ensemble.g10_snapshot.ROOT", historical_packaging_root)
     before = OFFICIAL_TAR.read_bytes()
     recorded = json.loads((G10 / "snapshot_verification.json").read_text(encoding="utf-8"))
     result = verify_archive(OFFICIAL_TAR, OFFICIAL_MANIFEST, expected_archive_sha256=recorded["archive_sha256"])
@@ -138,7 +140,7 @@ def test_official_archive_is_independently_verified_and_not_rewritten():
     by_path = {row["path"]: row["sha256"] for row in manifest["files"]}
     allow_report = baseline.evaluate_allowlist(
         allow["files"],
-        ROOT,
+        historical_packaging_root,
         expected_paths={row["path"] for row in allow["files"]},
         manifest_hashes=by_path,
     )

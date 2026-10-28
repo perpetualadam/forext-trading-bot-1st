@@ -253,7 +253,7 @@ def test_dockerfile_copy_set_matches_the_allowlist() -> None:
     assert "pip install --upgrade pip" in text
     assert "pip install --no-cache-dir --prefer-binary --timeout 120 --retries 15 -r requirements.txt" in text
     assert 'CMD ["uvicorn", "forex_bot.app:app", "--host", "0.0.0.0", "--port", "8000"]' in text
-    payload = json.loads((ROOT / "data/research/adaptive_ensemble/g10/production_allowlist.json").read_text(encoding="utf-8"))
+    payload = json.loads((ROOT / "tests/fixtures/current_production_allowlist.json").read_text(encoding="utf-8"))
     allow = {row["path"] for row in payload["files"]}
     assert set(sources) | {"Dockerfile", ".dockerignore"} == allow
     for source, _dest in copies:
@@ -282,7 +282,7 @@ def test_hash_mismatch_and_dockerignore_exclusion_are_rejected(tmp_path: Path) -
         )
 
 
-def test_frozen_hashes_match_authorised_values() -> None:
+def test_frozen_hashes_match_authorised_values(historical_packaging_root) -> None:
     expected = {
         "Dockerfile": "4a458b4b393930938831896b5157d26109126dee6c5f64cc46a80fbc0c1463ad",
         ".dockerignore": "5e8bf75905ffe08b364ee39c20cf031b40b9be8ab74dac497a00d1d93d4fd2fd",
@@ -291,4 +291,4 @@ def test_frozen_hashes_match_authorised_values() -> None:
         "data/research/adaptive_ensemble/g7/source_snapshot.tar": "0ee97accd2d4a8297a053eb26c5138324192ab5b1f700214acf091d0f6487f82",
     }
     for rel, digest in expected.items():
-        assert _sha((ROOT / rel).read_bytes()) == digest
+        assert _sha(((ROOT if rel.startswith("data/") else historical_packaging_root) / rel).read_bytes()) == digest
