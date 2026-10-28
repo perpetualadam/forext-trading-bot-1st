@@ -139,7 +139,8 @@ def run_once(root,*,synthetic_secret,seconds=15.0,fault='',pin=None,
         from .oneshot_authorisation import require_live_reservation
         from .oneshot_credentials import ReservedCredentialProvider
         require_live_reservation(_live_reservation)
-        if (seconds!=15 or type(_credential_provider) is not ReservedCredentialProvider or synthetic_secret is not None or
+        from .direct_history import TerminalCredentialProvider
+        if (seconds!=15 or type(_credential_provider) not in (ReservedCredentialProvider,TerminalCredentialProvider) or synthetic_secret is not None or
             _https_fixture is not None or fault):raise Refused('AUTHENTICATED_EXECUTION_DISABLED')
     elif _credential_provider is None:validate_synthetic(synthetic_secret)
     elif type(_credential_provider) is not SyntheticCredentialProvider or synthetic_secret is not None:
@@ -183,7 +184,10 @@ def run_once(root,*,synthetic_secret,seconds=15.0,fault='',pin=None,
             if message.get('kind')=='RESERVED':
                 if live:
                     from .oneshot_credentials import validate_token
-                    value=_credential_provider.credential(_live_reservation);validate_token(value)
+                    if type(_credential_provider) is TerminalCredentialProvider:
+                        value=_credential_provider.credential(_live_reservation,deadline=work_deadline)
+                    else:value=_credential_provider.credential(_live_reservation)
+                    validate_token(value)
                     send({'credential':value})
                 else:
                     value=_credential_provider.credential() if _credential_provider is not None else synthetic_secret

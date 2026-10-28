@@ -27,11 +27,12 @@ import unittest.mock
 import urllib.parse
 import uuid
 
-if sys.argv[1:] not in (['--tests'],['--native-tests'],['--v26e-tests'],['--native-v26e-tests'],['--v26g-tests'],['--native-v26g-tests']):
-    raise SystemExit('usage: v26d_run.py --tests | --native-tests | --v26e-tests | --native-v26e-tests | --v26g-tests | --native-v26g-tests')
-V26G=sys.argv[1:] in (['--v26g-tests'],['--native-v26g-tests'])
+if sys.argv[1:] not in (['--tests'],['--native-tests'],['--v26e-tests'],['--native-v26e-tests'],['--v26g-tests'],['--native-v26g-tests'],['--v27-tests'],['--native-v27-tests']):
+    raise SystemExit('usage: v26d_run.py --tests | --native-tests | --v26e-tests | --native-v26e-tests | --v26g-tests | --native-v26g-tests | --v27-tests | --native-v27-tests')
+V27=sys.argv[1:] in (['--v27-tests'],['--native-v27-tests'])
+V26G=V27 or sys.argv[1:] in (['--v26g-tests'],['--native-v26g-tests'])
 V26E=V26G or sys.argv[1:] in (['--v26e-tests'],['--native-v26e-tests'])
-NATIVE=sys.argv[1:] in (['--native-tests'],['--native-v26e-tests'],['--native-v26g-tests'])
+NATIVE=sys.argv[1:] in (['--native-tests'],['--native-v26e-tests'],['--native-v26g-tests'],['--native-v27-tests'])
 if NATIVE and os.name!='nt':raise SystemExit('NATIVE_WINDOWS_REQUIRED')
 PACKAGE=Path(__file__).resolve().parent;STDLIB=Path(os.__file__).resolve().parent
 BASE=PACKAGE/'outputs/v26c/fixtures'
@@ -52,6 +53,10 @@ WRITES=[BASE]+([NATIVE_FIXTURES] if NATIVE else [])
 # these modules or permit .env/configuration-value reads in parent or worker.
 AUDIT_SOURCES={PACKAGE.parents[2]/p for p in (
     'forex_bot/oanda_client.py','forex_bot/oanda_candles_read.py','forex_bot/config.py')} if V26E else set()
+if V27:
+    AUDIT_SOURCES.update(PACKAGE.parent/'adaptive_ensemble/r56/phase6_connection_enablement'/p
+        for p in ('real_session_entry.py','credential_ipc.py','live_session_gate.py',
+                  'diagnostic_supervisor.py','restricted_live_transport.py','one_session_activation.py'))
 
 
 def within(path,roots):return any(path==r or path.is_relative_to(r) for r in roots)
@@ -103,7 +108,7 @@ def audit(event,args):
 
 
 sys.addaudithook(audit)
-test_name='test_v26g' if V26G else 'test_v26e' if V26E else 'test_v26d'
+test_name='test_v27' if V27 else 'test_v26g' if V26G else 'test_v26e' if V26E else 'test_v26d'
 spec=importlib.util.spec_from_file_location('tiv2.'+test_name,PACKAGE/(test_name+'.py'))
 tests=importlib.util.module_from_spec(spec);sys.modules[spec.name]=tests;tests.NATIVE=NATIVE
 spec.loader.exec_module(tests)

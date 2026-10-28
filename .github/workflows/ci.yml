@@ -255,3 +255,18 @@ jobs:
           python-version: "3.12"
       - name: Verify disabled real bridge with synthetic HTTPS only
         run: python -I -S -B data/research/trading_intelligence_v2/v26d_run.py --v26g-tests
+
+  trading-intelligence-v27-terminal-history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify terminal historical workflow without real credentials
+        run: python -I -S -B data/research/trading_intelligence_v2/v26d_run.py --v27-tests
