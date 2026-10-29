@@ -221,6 +221,11 @@ def main():
 if __name__=='__main__':
     try:main()
     except BaseException as error:
+        if sys.argv[1:]==['--bounded-worker']:
+            from tiv2.failure_diagnostics import classify
+            failure=classify(error,'STARTUP')
+            emit(dict(kind='REFUSED',cause=failure.legacy_kind,reason=failure.reason,stage=failure.stage))
+            raise SystemExit(1)
         # No exception body, raw HTTP body, path or synthetic secret is emitted.
         cause=error.__cause__ or error
         trace=cause.__traceback__

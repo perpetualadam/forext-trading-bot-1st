@@ -27,6 +27,10 @@ import unittest.mock
 import urllib.parse
 import uuid
 
+DIAGNOSTIC_V28D=sys.argv[1:] in (['--v28d-diagnostic-tests'],['--native-v28d-diagnostic-tests'])
+if DIAGNOSTIC_V28D:sys.argv[1]='--native-bounded-tests' if sys.argv[1]=='--native-v28d-diagnostic-tests' else '--bounded-tests'
+RESEARCH_V28D=sys.argv[1:]==['--v28d-research-tests']
+if RESEARCH_V28D:sys.argv[1]='--bounded-tests'
 BOUNDED_GUARDS=sys.argv[1:]==['--native-bounded-guard-tests']
 if BOUNDED_GUARDS:sys.argv[1]='--native-bounded-tests'
 BOUNDED_TEST=sys.argv[1:] in (['--bounded-tests'],['--native-bounded-tests'])
@@ -86,6 +90,10 @@ def audit(event,args):
     if event=='subprocess.Popen':
         executable,argv,cwd,env=args
         worker=[sys.executable,'-I','-S','-B',str(WORKER),'--worker']+([PILOT_FLAG] if PILOT_FLAG is not None else [])
+        if DIAGNOSTIC_V28D:
+            exe=getattr(sys,'_base_executable',sys.executable)
+            probe=[exe,'-I','-S','-B',str(PACKAGE/'test_v28d_diagnostics.py'),'--fixture-diagnostic-probe']
+            if executable in (None,exe) and argv in (probe,subprocess.list2cmdline(probe)) and env==({'SystemRoot':r'C:\Windows'} if os.name=='nt' else {}):return
         if BOUNDED_TEST:
             probe=[getattr(sys,'_base_executable',sys.executable),'-I','-S','-B',str(PACKAGE/'test_v28c.py'),'--fixture-lock-probe']
             if executable in (None,probe[0]) and argv in (probe,subprocess.list2cmdline(probe)) and env=={'SystemRoot':r'C:\Windows'}:return
@@ -141,7 +149,7 @@ def audit(event,args):
 
 
 sys.addaudithook(audit)
-test_name='test_v28c' if BOUNDED_TEST else 'test_v28a_native' if PILOT_TEST else 'test_v27_rollover' if ROLLOVER else 'test_v27_activation' if ACTIVATION else 'test_v27' if V27 else 'test_v26g' if V26G else 'test_v26e' if V26E else 'test_v26d'
+test_name='test_v28d_diagnostics' if DIAGNOSTIC_V28D else 'test_v28d_research' if RESEARCH_V28D else 'test_v28c' if BOUNDED_TEST else 'test_v28a_native' if PILOT_TEST else 'test_v27_rollover' if ROLLOVER else 'test_v27_activation' if ACTIVATION else 'test_v27' if V27 else 'test_v26g' if V26G else 'test_v26e' if V26E else 'test_v26d'
 spec=importlib.util.spec_from_file_location('tiv2.'+test_name,PACKAGE/(test_name+'.py'))
 tests=importlib.util.module_from_spec(spec);sys.modules[spec.name]=tests;tests.NATIVE=NATIVE
 spec.loader.exec_module(tests)

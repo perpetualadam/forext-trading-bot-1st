@@ -1,0 +1,1033 @@
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -330,3 +330,7 @@
+           python-version: "3.12"
+       - name: Verify finite catalogue with synthetic credentials and loopback HTTPS
+         run: python -I -S -B data/research/trading_intelligence_v2/v26d_run.py --bounded-tests
++      - name: Verify V28D credential-safe bounded failure diagnostics
++        run: python -I -S -B data/research/trading_intelligence_v2/v26d_run.py --v28d-diagnostic-tests
++      - name: Verify V28D offline partial merge and remaining catalogue
++        run: python -I -S -B data/research/trading_intelligence_v2/v28d_research_run.py
+diff --git a/data/research/trading_intelligence_v2/bounded_acquisition.py b/data/research/trading_intelligence_v2/bounded_acquisition.py
+--- a/data/research/trading_intelligence_v2/bounded_acquisition.py
++++ b/data/research/trading_intelligence_v2/bounded_acquisition.py
+@@ -162,7 +162,7 @@
+         if i<value['next'] and w['state']!='COMPLETED':raise Refused('PREDECESSOR_NOT_COMPLETED')
+         if i>value['next'] and w['state']!='NEVER':raise Refused('OUT_OF_ORDER_WINDOW')
+     if value['attempts']!=spent or value['next']!=completed:raise Refused('REQUEST_BUDGET_INCONSISTENT')
+-    if any(ar.path(n+'.pending').exists() for n in ('grant.json','grant.claimed.json','journal.json','worker.claimed.json','acquisition.json','result.json')):raise Refused('AMBIGUOUS_PUBLICATION')
++    if any(ar.path(n+'.pending').exists() for n in ('grant.json','grant.claimed.json','journal.json','worker.claimed.json','acquisition.json','result.json','diagnostic.json')):raise Refused('AMBIGUOUS_PUBLICATION')
+     return value
+ 
+ 
+@@ -277,7 +277,7 @@
+ def worker_main(packet,emit,scope):
+     start=packet(4096);cap=start['reservation'];fixture=cap.get('mode')=='OFFLINE_TEST';fault=start.get('fault','')
+     if cap.get('version')!=4 or (fault and not fixture):raise Refused('BOUNDED_WORKER_ENTRY_REFUSED')
+-    allowed={'','crash_before_dispatch','crash_during_dispatch','crash_after_response','stall_after_response','invalid_schema','credential_echo'}
++    allowed={'','crash_before_dispatch','crash_during_dispatch','crash_after_response','stall_after_response','invalid_schema','credential_echo','archive_write_failure','crash_during_transmission','connect_timeout'}
+     if fault not in allowed:raise Refused('FIXTURE_FAULT_REFUSED')
+     root=Path(cap['root']).absolute();scope.configure_session_reads(root)
+     if str(root)!=start['root']:raise Refused('BOUNDED_ROOT_REFUSED')
+@@ -287,7 +287,9 @@
+         from .oneshot_https_fixture import validate_binding
+         validate_binding(start['https_fixture']);scope.LOOPBACK_PORT=start['https_fixture']['port']
+     elif 'https_fixture' in start:raise Refused('LIVE_CANNOT_USE_FIXTURE')
+-    secret=None
++    secret=None;diagnostic_stage='TOKEN'
++    from .failure_diagnostics import Context,classify
++    context=Context(lambda stage:emit(dict(kind='STAGE',stage=stage,index=index)))
+     with Archive(root,synthetic=fixture,pin=start['pin']) as ar,ar.locked():
+         ar.put('worker.claimed.json',encoded(dict(session=cap['session'],source=cap['source'],pid=os.getpid(),parent=os.getppid(),credential_deadline=time.monotonic()+cap['limits']['token'])))
+         state=ledger(ar,cap);state['state']='ACTIVE';ar.put('journal.json',encoded(state),replace=True);emit({'kind':'RESERVED'})
+@@ -313,22 +315,29 @@
+                 if state['next']!=index or w['state']!='RESERVED' or w['worker']!=os.getpid():raise Refused('DURABLE_WINDOW_RESERVATION_REQUIRED')
+                 if fault=='crash_before_dispatch':os._exit(123)
+                 if last_started is not None and time.monotonic()-last_started<cap['limits']['spacing']:raise Refused('RATE_LIMIT_REFUSED')
++                diagnostic_stage='ACCOUNTING'
+                 state['windows'][index].update(state='ATTEMPTED',http_attempts=1,dispatched=time.monotonic())
+                 ar.put('journal.json',encoded(state),replace=True);last_started=state['windows'][index]['dispatched'];emit({'kind':'WINDOW_STARTED','index':index})
+                 request=spec(index);guard(cap,request);deadline=w['deadline']-min(1,cap['limits']['request']/3)
+                 if fault=='crash_during_dispatch':os._exit(123)
+                 if fixture:
+                     from .oneshot_network import fetch_synthetic
+-                    raw=fetch_synthetic(start['https_fixture'],secret,deadline,request=request,_bounded=cap)
++                    if fault=='connect_timeout':
++                        from .failure_diagnostics import Failure
++                        raise Failure('CONNECT_TIMEOUT','CONNECT')
++                    def checkpoint(stage):
++                        if fault=='crash_during_transmission' and stage=='during_dispatch':os._exit(123)
++                    raw=fetch_synthetic(start['https_fixture'],secret,deadline,checkpoint=checkpoint,request=request,_bounded=cap,_diagnostic=context)
+                 else:
+                     from .oneshot_network import LiveSocketPolicy,fetch_live
+                     scope.LIVE_POLICY=LiveSocketPolicy(cap)
+-                    raw=fetch_live(reservation=cap,token=secret,deadline=deadline,_policy=scope.LIVE_POLICY)
++                    raw=fetch_live(reservation=cap,token=secret,deadline=deadline,_policy=scope.LIVE_POLICY,_diagnostic=context)
+                 # Pace from response completion, conservatively guaranteeing spacing
+                 # between actual requests even when pre-dispatch validation varies.
+                 last_started=time.monotonic()
+                 if fault=='crash_after_response':os._exit(123)
+                 if fault=='stall_after_response':threading.Event().wait()
++                diagnostic_stage='VALIDATION';context.set('VALIDATION')
+                 if fault=='invalid_schema':raw=b'{}'
+                 if fault=='credential_echo':raw=secret.encode()
+                 if secret.encode() in raw:raise Refused('CREDENTIAL_RESPONSE_REFUSED')
+@@ -338,7 +347,10 @@
+                 guard(cap,request)
+                 from .oneshot_response import publish_candles
+                 name='v26c_year_'+str(index).zfill(3)
++                diagnostic_stage='ARCHIVE';context.set('ARCHIVE')
++                if fault=='archive_write_failure':raise OSError('SYNTHETIC_ARCHIVE_FAILURE')
+                 publish_candles(ar,raw,name=name,start=begin,end=end,retrieved=retrieved,synthetic=fixture,_bounded=(cap,index))
++                diagnostic_stage='ACCOUNTING';context.set('ACCOUNTING')
+                 state=ledger(ar,cap)
+                 if time.monotonic()>=w['deadline']-min(1,cap['limits']['request']/3):raise Refused('WINDOW_DEADLINE')
+                 state['windows'][index].update(state='COMPLETED',manifest_sha256=digest(ar.read('manifests/'+name+'.json')),finished=time.monotonic())
+@@ -348,7 +360,8 @@
+         except BaseException as error:
+             # Fixed, redacted classification only; raw/token/exception text never
+             # enters a durable failure record or the parent protocol.
+-            emit({'kind':'REFUSED','cause':type(error).__name__})
++            failure=classify(error,context.stage if context.stage!='UNKNOWN' else diagnostic_stage)
++            emit({'kind':'REFUSED','cause':failure.legacy_kind,'reason':failure.reason,'stage':failure.stage})
+             raise
+         finally:secret=None
+ 
+@@ -360,6 +373,7 @@
+     from .direct_history import TerminalCredentialProvider
+     from .oneshot_credentials import validate_token
+     from .session_namespace import acquisition_lock,block_unfenced
++    from .failure_diagnostics import REASONS,STAGES,classify,record
+     verify(cap)
+     fixture=cap['mode']=='OFFLINE_TEST'
+     if os.getpid()!=cap['parent'] or (fixture and type(provider) is not SyntheticCredentialProvider) or (not fixture and (type(provider) is not TerminalCredentialProvider or https_fixture is not None or fault)):
+@@ -368,6 +382,7 @@
+         from .oneshot_https_fixture import validate_binding
+         validate_binding(https_fixture)
+     process=job=None;messages=queue.Queue();result={'kind':'OUTCOME_UNKNOWN'};claimed=False;token_sent=False
++    reason='UNKNOWN_FAILURE';last_stage='STARTUP';active_index=None;aggregate_deadline=None
+     deadline=cap['started']+cap['limits']['startup'];work_deadline=deadline-min(1,cap['limits']['startup']/3)
+     with acquisition_lock(ar) as lease:
+         def check_lock():
+@@ -397,39 +412,52 @@
+                 check_lock()
+                 try:message=messages.get(timeout=min(.02,max(.001,work_deadline-time.monotonic())))
+                 except queue.Empty:
+-                    if process.poll() is not None:break
++                    if process.poll() is not None:reason='WORKER_CRASHED';break
+                     continue
+                 kind=message.get('kind')
++                if kind=='STAGE':
++                    if message.get('stage') not in STAGES or type(message.get('index')) is not int or message['index']!=active_index:raise Refused('BOUNDED_WORKER_PROTOCOL_REFUSED')
++                    last_stage=message['stage'];continue
+                 if kind=='RESERVED':
+                     if token_sent:raise Refused('DUPLICATE_TOKEN_REQUEST')
+                     role(cap,'credential',worker_pid=process.pid);worker=decode(ar.read('worker.claimed.json'))
++                    last_stage='TOKEN'
+                     deadline=worker['credential_deadline'];work_deadline=deadline
+                     token=provider.credential() if fixture else provider.credential(cap,deadline=deadline)
+                     validate_token(token)
+                     if time.monotonic()>=deadline:raise Refused('TOKEN_ENTRY_TIMEOUT')
+                     role(cap,'credential',worker_pid=process.pid)
+-                    started=time.monotonic();deadline=started+cap['limits']['session'];work_deadline=deadline-1
++                    started=time.monotonic();deadline=started+cap['limits']['session'];aggregate_deadline=deadline;work_deadline=deadline-1
+                     ar.put('acquisition.json',encoded(dict(session=cap['session'],source=cap['source'],parent=os.getpid(),worker=process.pid,started=started,deadline=deadline)))
+                     send(dict(credential=token),1024);token=None;token_sent=True
+                 elif kind=='NEED_WINDOW':
+                     if not token_sent:raise Refused('TOKEN_NOT_ENTERED')
+-                    w=claim_window(ar,cap,message.get('index'),process.pid)
++                    last_stage='RESERVATION';active_index=message.get('index')
++                    w=claim_window(ar,cap,active_index,process.pid)
+                     deadline=min(w['deadline'],phase(ar,cap)['deadline']);work_deadline=deadline-min(1,cap['limits']['request']/3)
+                     send(dict(reserved=message['index']))
+                 elif kind=='WINDOW_STARTED':
+                     if message.get('index')!=ledger(ar,cap)['next']:raise Refused('WINDOW_INDEX_CHANGED')
+                 elif kind=='WINDOW_DONE':
++                    last_stage='ACCOUNTING'
+                     verify(cap);verify_completed(ar,cap,message.get('index'));phase(ar,cap)
+                     if time.monotonic()>=work_deadline:raise Refused('WINDOW_DEADLINE')
+                     send(dict(continue_after=message['index']))
+-                    deadline=phase(ar,cap)['deadline'];work_deadline=deadline-1
++                    deadline=phase(ar,cap)['deadline'];work_deadline=deadline-1;active_index=None
+                 elif kind=='DONE':
+                     state=ledger(ar,cap)
+                     if state['next']!=106 or state['attempts']!=106 or message.get('completed')!=106:raise Refused('INCOMPLETE_CATALOGUE')
+                     result={'kind':'DONE','completed':106};break
+-                elif kind=='REFUSED':result={'kind':'FAILED' if message.get('cause')=='ResearchRejected' else 'OUTCOME_UNKNOWN'};break
++                elif kind=='REFUSED':
++                    result={'kind':'FAILED' if message.get('cause')=='ResearchRejected' else 'OUTCOME_UNKNOWN'}
++                    reason=message.get('reason') if message.get('reason') in REASONS else 'UNKNOWN_FAILURE'
++                    last_stage=message.get('stage') if message.get('stage') in STAGES else last_stage
++                    break
+                 else:raise Refused('BOUNDED_WORKER_PROTOCOL_REFUSED')
++            if result['kind']!='DONE' and reason=='UNKNOWN_FAILURE' and time.monotonic()>=work_deadline:
++                reason='SESSION_DEADLINE_EXCEEDED' if aggregate_deadline is not None and work_deadline>=aggregate_deadline-1 else 'WORKER_DEADLINE_EXCEEDED' if token_sent else 'STARTUP_DEADLINE_EXCEEDED'
+         except BaseException as error:
++            failure=classify(error,last_stage);reason=failure.reason
+             result={'kind':'TOKEN_ENTRY_TIMEOUT' if type(error) is Refused and str(error)=='TOKEN_ENTRY_TIMEOUT' else 'OUTCOME_UNKNOWN'}
+             if result['kind']=='TOKEN_ENTRY_TIMEOUT':
+                 # No acquisition starts after input expires. A separate one-second
+@@ -452,13 +480,37 @@
+                 for pipe in (process.stdin,process.stdout) if process.poll() is not None else ():
+                     if pipe:pipe.close()
+             result['worker_exited']=process is None or process.poll() is not None
+-            if time.monotonic()>deadline:result['kind']='DEADLINE_OVERRUN'
++            if time.monotonic()>deadline:
++                result['kind']='DEADLINE_OVERRUN'
++                if reason=='UNKNOWN_FAILURE':reason='WORKER_DEADLINE_EXCEEDED'
+             if claimed:
+                 if not result['worker_exited'] or result['kind']=='FENCING_UNCONFIRMED':block_unfenced(ar,cap)
+-                state=ledger(ar,cap)
+-                if state['next']<106 and state['windows'][state['next']]['state'] in ('RESERVED','ATTEMPTED'):
+-                    state['windows'][state['next']]['state']='FAILED' if result['kind']=='FAILED' else 'UNKNOWN'
+-                state['state']='SESSION_CONSUMED' if result['kind']=='DONE' else 'OUTCOME_UNKNOWN'
+-                ar.put('journal.json',encoded(state),replace=True)
+-                ar.put('result.json',encoded(dict(version=1,session=cap['session'],source=cap['source'],catalogue=CATALOGUE_HASH,kind=result['kind'],attempts=state['attempts'],completed=state['next'],worker_exited=result['worker_exited'],grant_sha256=digest(ar.read('grant.claimed.json')))))
++                if result['kind']=='FENCING_UNCONFIRMED' or not result['worker_exited']:reason='FENCING_UNCONFIRMED';last_stage='CLEANUP'
++                state=None
++                try:state=ledger(ar,cap)
++                except Exception:
++                    reason='ACCOUNTING_INCONSISTENT';last_stage='ACCOUNTING'
++                    if result['kind']=='DONE':result['kind']='OUTCOME_UNKNOWN'
++                if state is not None:
++                    if state['next']<106 and state['windows'][state['next']]['state'] in ('RESERVED','ATTEMPTED'):
++                        state['windows'][state['next']]['state']='FAILED' if result['kind']=='FAILED' else 'UNKNOWN'
++                    state['state']='SESSION_CONSUMED' if result['kind']=='DONE' else 'OUTCOME_UNKNOWN'
++                    try:ar.put('journal.json',encoded(state),replace=True)
++                    except Exception:
++                        reason='ARCHIVE_PUBLICATION_FAILED';last_stage='ARCHIVE'
++                        if result['kind']=='DONE':result['kind']='OUTCOME_UNKNOWN'
++                summary=dict(version=1,session=cap['session'],source=cap['source'],catalogue=CATALOGUE_HASH,kind=result['kind'],attempts=state['attempts'] if state else None,completed=state['next'] if state else None,worker_exited=result['worker_exited'],grant_sha256=digest(ar.read('grant.claimed.json')))
++                if result['kind']!='DONE':
++                    index=active_index if type(active_index) is int and 0<=active_index<106 else None
++                    summary['failure_reason']=reason;summary['failure_stage']=last_stage
++                    try:summary['diagnostic_sha256']=ar.put('diagnostic.json',encoded(record(cap,reason,last_stage,index)))
++                    except Exception:summary['diagnostic_publication']='FAILED_NO_FALLBACK'
++                try:ar.put('result.json',encoded(summary))
++                except Exception:
++                    if result['kind']=='DONE':result['kind']='OUTCOME_UNKNOWN'
++                    if not ar.path('diagnostic.json').exists() and not ar.path('diagnostic.json.pending').exists():
++                        try:ar.put('diagnostic.json',encoded(record(cap,'ARCHIVE_PUBLICATION_FAILED','ARCHIVE',active_index if type(active_index) is int and 0<=active_index<106 else None)))
++                        except Exception:pass
++                    # A claimed grant/pending evidence remains spent even when
++                    # the device cannot durably accept final diagnostic writes.
+     return result
+diff --git a/data/research/trading_intelligence_v2/failure_diagnostics.py b/data/research/trading_intelligence_v2/failure_diagnostics.py
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/failure_diagnostics.py
+@@ -0,0 +1,69 @@
++"""Bounded diagnostic codes only. No exception text, bodies, headers or secrets."""
++import ssl
++import re
++from .oneshot_archive import Refused
++from .core import ResearchRejected
++from .oanda_history_manifest import encoded,decode,digest
++REASONS=frozenset({'CONNECT_TIMEOUT','CONNECT_REFUSED','DNS_FAILURE','TLS_FAILURE','TLS_TIMEOUT','HTTP_STATUS_REJECTED','RESPONSE_HEADERS_TIMEOUT','RESPONSE_BODY_TIMEOUT','RESPONSE_TRUNCATED','RESPONSE_SCHEMA_INVALID','ARCHIVE_PUBLICATION_FAILED','WORKER_CRASHED','WORKER_DEADLINE_EXCEEDED','SESSION_DEADLINE_EXCEEDED','STARTUP_DEADLINE_EXCEEDED','TOKEN_ENTRY_TIMEOUT','GLOBAL_LOCK_LOST','SOURCE_BINDING_INVALID','ACCOUNTING_INCONSISTENT','FENCING_UNCONFIRMED','USER_INTERRUPTED','UNKNOWN_FAILURE'})
++STAGES=frozenset({'STARTUP','TOKEN','RESERVATION','CONNECT','DNS','TLS','TRANSMIT','HEADERS','BODY','HTTP','VALIDATION','ARCHIVE','ACCOUNTING','SUPERVISION','CLEANUP','UNKNOWN'})
++CAUSES=frozenset({'ResearchRejected','Refused','Other'})
++
++class Failure(Refused):
++    def __init__(self,reason,stage,legacy_kind='Refused'):
++        self.reason=reason if reason in REASONS else 'UNKNOWN_FAILURE'
++        self.stage=stage if stage in STAGES else 'UNKNOWN'
++        self.legacy_kind=legacy_kind if legacy_kind in CAUSES else 'Other'
++        super().__init__('REDACTED_DIAGNOSTIC_FAILURE')
++
++
++def classify(error,stage):
++    if isinstance(error,Failure):return error
++    kind='ResearchRejected' if isinstance(error,ResearchRejected) else 'Refused' if isinstance(error,Refused) else 'Other'
++    reason='UNKNOWN_FAILURE'
++    if isinstance(error,KeyboardInterrupt):reason='USER_INTERRUPTED'
++    elif isinstance(error,ssl.SSLError):reason='TLS_FAILURE'
++    elif isinstance(error,TimeoutError):reason={'CONNECT':'CONNECT_TIMEOUT','TLS':'TLS_TIMEOUT','HEADERS':'RESPONSE_HEADERS_TIMEOUT','BODY':'RESPONSE_BODY_TIMEOUT'}.get(stage,'UNKNOWN_FAILURE')
++    elif isinstance(error,ConnectionRefusedError):reason='CONNECT_REFUSED'
++    elif stage=='ARCHIVE' and isinstance(error,(OSError,Refused)):reason='ARCHIVE_PUBLICATION_FAILED'
++    elif isinstance(error,(ResearchRejected,Refused)):
++        # Compare only exact known in-repository codes; never persist this string.
++        code=str(error)
++        if code in {'REDIRECT_REFUSED','HTTP_RETRY_EXHAUSTED','HTTP_REQUEST_REFUSED'}:reason='HTTP_STATUS_REJECTED'
++        elif code=='INCOMPLETE_HTTP_BODY':reason='RESPONSE_TRUNCATED'
++        elif code=='GLOBAL_LOCK_LOST':reason='GLOBAL_LOCK_LOST'
++        elif code in {'APPROVED_SOURCE_SEAL_REQUIRED','CATALOGUE_CHANGED','BOUNDED_IDENTITY_CHANGED','BOUNDED_PREPARATION_REFUSED','STALE_BOUNDED_APPROVAL','IDENTITY_CHANGED'}:reason='SOURCE_BINDING_INVALID'
++        elif code in {'BOUNDED_JOURNAL_REFUSED','WINDOW_STATE_REFUSED','WINDOW_ATTEMPT_INCONSISTENT','PREDECESSOR_NOT_COMPLETED','OUT_OF_ORDER_WINDOW','REQUEST_BUDGET_INCONSISTENT','AMBIGUOUS_PUBLICATION','SPENT_MARKER_CORRUPTED','COMPLETED_WINDOW_CORRUPTED'}:reason='ACCOUNTING_INCONSISTENT'
++        elif code=='TOKEN_ENTRY_TIMEOUT':reason='TOKEN_ENTRY_TIMEOUT'
++        elif code in {'WINDOW_DEADLINE','DEADLINE_EXHAUSTED'}:reason='WORKER_DEADLINE_EXCEEDED'
++        elif code=='BOUNDED_SESSION_DEADLINE':reason='SESSION_DEADLINE_EXCEEDED'
++        elif stage=='VALIDATION':reason='RESPONSE_SCHEMA_INVALID'
++    return Failure(reason,stage,kind)
++
++class Context:
++    """Only current fixed stage is retained; never captures function arguments."""
++    def __init__(self,notify=None):self.stage='UNKNOWN';self.notify=notify
++    def set(self,stage):
++        if stage not in STAGES:raise Failure('UNKNOWN_FAILURE','UNKNOWN')
++        self.stage=stage
++        if self.notify:self.notify(stage)
++    def call(self,stage,operation):
++        self.set(stage)
++        try:return operation()
++        except Exception as error:raise classify(error,stage) from None
++
++
++def record(cap,reason,stage,index):
++    if (type(cap.get('session')) is not str or not re.fullmatch('[0-9a-f]{32}',cap['session']) or
++        any(type(cap.get(k)) is not str or not re.fullmatch('[0-9a-f]{64}',cap[k]) for k in ('source','catalogue'))):raise Refused('DIAGNOSTIC_BINDING_REFUSED')
++    if reason not in REASONS or stage not in STAGES or index is not None and (type(index) is not int or not 0<=index<106):
++        raise Refused('DIAGNOSTIC_METADATA_REFUSED')
++    return dict(version=1,session=cap['session'],source=cap['source'],catalogue=cap['catalogue'],reason=reason,stage=stage,window_index=index,outcome='UNKNOWN_NO_RETRY',retry_allowed=False)
++
++
++def read_verified(ar):
++    if ar.path('diagnostic.json.pending').exists() or ar.path('result.json.pending').exists():raise Refused('DIAGNOSTIC_PUBLICATION_AMBIGUOUS')
++    result=decode(ar.read('result.json'));raw=ar.read('diagnostic.json');value=decode(raw)
++    if (result.get('diagnostic_sha256')!=digest(raw) or result.get('failure_reason')!=value.get('reason') or result.get('failure_stage')!=value.get('stage') or set(value)!={'version','session','source','catalogue','reason','stage','window_index','outcome','retry_allowed'} or
++        type(value['version']) is not int or value['version']!=1 or value!=record(dict(session=result.get('session'),source=result.get('source'),catalogue=result.get('catalogue')),value['reason'],value['stage'],value['window_index'])):
++        raise Refused('DIAGNOSTIC_INTEGRITY_REFUSED')
++    return value
+diff --git a/data/research/trading_intelligence_v2/oanda_history_transport.py b/data/research/trading_intelligence_v2/oanda_history_transport.py
+--- a/data/research/trading_intelligence_v2/oanda_history_transport.py
++++ b/data/research/trading_intelligence_v2/oanda_history_transport.py
+@@ -141,7 +141,7 @@
+             if connection is not None: connection.close()
+ 
+ 
+-def _exchange_get(connection,host,path,params,token,deadline):
++def _exchange_get(connection,host,path,params,token,deadline,*,_diagnostics=None):
+     """Shared wire exchange; no connection factory/host override in the public API.
+ 
+     Production constructs its normal verified connection above. Only the separate
+@@ -150,13 +150,18 @@
+     from urllib.parse import urlencode
+     approved_request('GET',host,path,params)
+     if time.monotonic()>=deadline:raise TimeoutError()
++    if _diagnostics is not None:_diagnostics.set('TRANSMIT')
+     connection.request('GET',path+'?'+urlencode(params),headers={
+         'Authorization':'Bearer '+token,'Accept-Datetime-Format':'RFC3339',
+         'Accept':'application/json','Accept-Encoding':'identity'})
++    if _diagnostics is not None:_diagnostics.set('HEADERS')
+     response=connection.getresponse()
+-    if response.status!=200:return Response(response.status,b'',response.getheader('Retry-After'))
++    if response.status!=200:
++        if _diagnostics is not None:_diagnostics.set('HTTP')
++        return Response(response.status,b'',response.getheader('Retry-After'))
+     length=getattr(response,'length',None) # existing injected response protocol need not expose framing state
+     if length is not None and length>MAX_BODY:raise ResearchRejected('BODY_SIZE_REFUSED')
++    if _diagnostics is not None:_diagnostics.set('BODY')
+     chunks=[];size=0
+     while True:
+         remaining=deadline-time.monotonic()
+diff --git a/data/research/trading_intelligence_v2/oneshot_archive.py b/data/research/trading_intelligence_v2/oneshot_archive.py
+--- a/data/research/trading_intelligence_v2/oneshot_archive.py
++++ b/data/research/trading_intelligence_v2/oneshot_archive.py
+@@ -74,7 +74,7 @@
+             if self.session_id is not None and self.path('request.json').exists():
+                 if decode(self.read('request.json')).get('kind')=='BOUNDED_106':
+                     from .bounded_acquisition import budget_guard
+-                    self.publication_guard=lambda relative,value:budget_guard(self,len(value),accounting=relative in ('journal.json','result.json'))
++                    self.publication_guard=lambda relative,value:budget_guard(self,len(value),accounting=relative in ('journal.json','result.json','diagnostic.json'))
+         except BaseException:self.close();raise
+ 
+     def _session_identity(self,pin):
+diff --git a/data/research/trading_intelligence_v2/oneshot_authorisation.py b/data/research/trading_intelligence_v2/oneshot_authorisation.py
+--- a/data/research/trading_intelligence_v2/oneshot_authorisation.py
++++ b/data/research/trading_intelligence_v2/oneshot_authorisation.py
+@@ -28,12 +28,12 @@
+     'oneshot_https_fixture.py','oneshot_response.py','oanda_existing_readonly.py',
+     'oanda_history_transport.py','oanda_history_manifest.py','core.py',
+     'history_fixtures.py','historical_manifest.py','confirmation_input.py','token_input.py','session_namespace.py','request_profile.py',
+-    'bounded_acquisition.py','bounded_history_entry.py','historical_sources.py','oanda_research_import.py',
++    'bounded_acquisition.py','bounded_history_entry.py','historical_sources.py','oanda_research_import.py','failure_diagnostics.py',
+     'reports/v28b/V28B_REQUEST_WINDOWS.json')
+ RIGHTS_PHRASE='I CONFIRM ACCOUNT ENTITLEMENT AND PRIVATE RESEARCH RETENTION'
+ ENDPOINT_PHRASE='I ACCEPT ONE NON-ACCOUNT ENDPOINT CONNECTIVITY CHECK'
+ FIELDS={'version','mode','root','session','spec','source','identity','issued','expires','parent','conditions','started'}
+-SESSION_FILES=('journal.json','grant.json','grant.claimed.json','worker.claimed.json','acquisition.json','result.json')
++SESSION_FILES=('journal.json','grant.json','grant.claimed.json','worker.claimed.json','acquisition.json','result.json','diagnostic.json')
+ PREPARATION_SECONDS=15
+ TOKEN_SECONDS=120
+ ACQUISITION_SECONDS=15
+diff --git a/data/research/trading_intelligence_v2/oneshot_network.py b/data/research/trading_intelligence_v2/oneshot_network.py
+--- a/data/research/trading_intelligence_v2/oneshot_network.py
++++ b/data/research/trading_intelligence_v2/oneshot_network.py
+@@ -64,7 +64,7 @@
+ 
+ 
+ class _LiveConnection(http.client.HTTPSConnection):
+-    def __init__(self,reservation,deadline,policy=None):
++    def __init__(self,reservation,deadline,policy=None,diagnostic=None):
+         authority.require_role(reservation,'network')
+         if policy is not None and type(policy) is not LiveSocketPolicy:raise Refused('NETWORK_POLICY_REQUIRED')
+         if authority.admitted(reservation):
+@@ -79,6 +79,7 @@
+         if type(reservation) is dict and reservation.get('version')==4:
+             from .bounded_acquisition import request_for
+             self._spec=request_for(reservation)
++        self._diagnostic=diagnostic
+         self._reservation=reservation;self._deadline=deadline;self._connected=False;self._request_sent=False
+         super().__init__(HOST,port=PORT,timeout=remaining(deadline),context=ssl.create_default_context())
+     def connect(self):
+@@ -89,16 +90,30 @@
+         # the one validated address; no proxy, alternate host or reconnect.
+         remaining(self._deadline)
+         self._policy.resolving=True
++        if self._diagnostic is not None:self._diagnostic.set('DNS')
+         try:records=socket.getaddrinfo(HOST,PORT,socket.AF_UNSPEC,socket.SOCK_STREAM,socket.IPPROTO_TCP)
++        except socket.gaierror:
++            if self._diagnostic is not None:
++                from .failure_diagnostics import Failure
++                raise Failure('DNS_FAILURE','DNS') from None
++            raise
+         finally:self._policy.resolving=False
+         family,address=select_address(records)
+         self._policy.family=family;self._policy.address=address
+         sock=socket.socket(family,socket.SOCK_STREAM,socket.IPPROTO_TCP)
+         try:
++            if self._diagnostic is not None:self._diagnostic.set('CONNECT')
+             sock.settimeout(remaining(self._deadline));sock.connect(address)
+             sock.settimeout(remaining(self._deadline))
++            if self._diagnostic is not None:self._diagnostic.set('TLS')
+             self.sock=self._context.wrap_socket(sock,server_hostname=HOST)
+-        except BaseException:sock.close();raise
++            if self._diagnostic is not None:self._diagnostic.set('TRANSMIT')
++        except BaseException as error:
++            sock.close()
++            if self._diagnostic is not None:
++                from .failure_diagnostics import classify
++                raise classify(error,self._diagnostic.stage) from None
++            raise
+ 
+     def request(self,method,url,body=None,headers=None,*,encode_chunked=False):
+         from urllib.parse import urlencode
+@@ -114,7 +129,7 @@
+         return super().request(method,url,body=body,headers=headers,encode_chunked=False)
+ 
+ 
+-def _exchange(connection,secret,deadline,request,*,reservation=None):
++def _exchange(connection,secret,deadline,request,*,reservation=None,diagnostic=None):
+     """Single transport attempt shared by real implementation and fixture path."""
+     def check(value):
+         if type(reservation) is dict and reservation.get('version')==4:
+@@ -127,13 +142,23 @@
+         nonlocal used
+         if used:raise Refused('SECOND_REQUEST_REFUSED')
+         used=True;check(dict(method=method,host=host,path=path,params=params));remaining(deadline)
+-        try:return _exchange_get(connection,host,path,params,secret,deadline)
+-        except OSError as error:raise Refused('WIRE_REFUSED') from error
++        try:return _exchange_get(connection,host,path,params,secret,deadline,_diagnostics=diagnostic)
++        except Exception as error:
++            if diagnostic is not None:
++                from .failure_diagnostics import classify
++                raise classify(error,diagnostic.stage) from None
++            if isinstance(error,OSError):raise Refused('WIRE_REFUSED') from error
++            raise
+         finally:connection.close()
+-    return CandleTransport(environment='live',sender=sender,attempts=1).request(**request)
+-
+-
+-def fetch_live(*,reservation,token,deadline,_policy=None):
++    try:return CandleTransport(environment='live',sender=sender,attempts=1).request(**request)
++    except Exception as error:
++        if diagnostic is not None:
++            from .failure_diagnostics import classify
++            raise classify(error,diagnostic.stage) from None
++        raise
++
++
++def fetch_live(*,reservation,token,deadline,_policy=None,_diagnostic=None):
+     authority.require_role(reservation,'network')
+     from .oneshot_credentials import validate_token
+     secret=validate_token(token)
+@@ -143,11 +168,15 @@
+         request=request_for(reservation)
+     else:request_guard(**request)
+     remaining(deadline)
+-    try:return _exchange(_LiveConnection(reservation,deadline,_policy),secret,deadline,request,reservation=reservation)
+-    except Exception:raise Refused('LIVE_TRANSPORT_REFUSED') from None
+-
+-
+-def fetch_synthetic(binding,secret,deadline,checkpoint=lambda phase:None,*,request=None,_bounded=None):
++    try:return _exchange(_LiveConnection(reservation,deadline,_policy,_diagnostic),secret,deadline,request,reservation=reservation,diagnostic=_diagnostic)
++    except Exception as error:
++        if _diagnostic is not None:
++            from .failure_diagnostics import classify
++            failure=classify(error,_diagnostic.stage);failure.legacy_kind='Refused';raise failure from None
++        raise Refused('LIVE_TRANSPORT_REFUSED') from None
++
++
++def fetch_synthetic(binding,secret,deadline,checkpoint=lambda phase:None,*,request=None,_bounded=None,_diagnostic=None):
+     """Fixture only: cannot select another host or accept a real credential."""
+     from .oneshot_https_fixture import validate_binding
+     from .oneshot_bridge import validate_synthetic
+@@ -171,9 +200,17 @@
+             if self._tunnel_host:raise Refused('TUNNEL_REFUSED')
+             sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+             try:
++                if _diagnostic is not None:_diagnostic.set('CONNECT')
+                 sock.settimeout(remaining(deadline));sock.connect(('127.0.0.1',binding['port']))
++                if _diagnostic is not None:_diagnostic.set('TLS')
+                 self.sock=context.wrap_socket(sock,server_hostname=hostname)
+-            except BaseException:sock.close();raise
++                if _diagnostic is not None:_diagnostic.set('TRANSMIT')
++            except BaseException as error:
++                sock.close()
++                if _diagnostic is not None:
++                    from .failure_diagnostics import classify
++                    raise classify(error,_diagnostic.stage) from None
++                raise
+     connection=LoopbackConnection('127.0.0.1',port=binding['port'],timeout=remaining(deadline),context=context)
+-    try:return _exchange(connection,secret,deadline,value,reservation=_bounded)
++    try:return _exchange(connection,secret,deadline,value,reservation=_bounded,diagnostic=_diagnostic)
+     except OSError as error:raise Refused('FIXTURE_WIRE_REFUSED') from error
+diff --git a/data/research/trading_intelligence_v2/oneshot_worker.py b/data/research/trading_intelligence_v2/oneshot_worker.py
+--- a/data/research/trading_intelligence_v2/oneshot_worker.py
++++ b/data/research/trading_intelligence_v2/oneshot_worker.py
+@@ -221,6 +221,11 @@
+ if __name__=='__main__':
+     try:main()
+     except BaseException as error:
++        if sys.argv[1:]==['--bounded-worker']:
++            from tiv2.failure_diagnostics import classify
++            failure=classify(error,'STARTUP')
++            emit(dict(kind='REFUSED',cause=failure.legacy_kind,reason=failure.reason,stage=failure.stage))
++            raise SystemExit(1)
+         # No exception body, raw HTTP body, path or synthetic secret is emitted.
+         cause=error.__cause__ or error
+         trace=cause.__traceback__
+diff --git a/data/research/trading_intelligence_v2/partial_history.py b/data/research/trading_intelligence_v2/partial_history.py
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/partial_history.py
+@@ -0,0 +1,77 @@
++"""Read-only adapter for the verified completed prefix of the consumed V2.8C run."""
++from .core import ResearchRejected,timestamp,iso
++from .oanda_history_manifest import decode,encoded,digest
++from .oanda_research_import import import_bundle
++from .pilot_history import Window,merge_imported_batches
++
++SESSION='6fc23c0be49741a3a066ccc948d1b5fa'
++SOURCE='9a8b0960f0beefe7fb7fbd116cfa320bdfe6b18a2414c936b370a8c3c58445f2'
++CATALOGUE='2d5f5b38efb65a0cffd5f63ad38a7da62344d653bdba84dad9438cf1eac96bf9'
++
++
++def verify_parent(request,grant,journal,result,rights):
++    req,g,j,res,r=(decode(x) for x in (request,grant,journal,result,rights))
++    if (req.get('session')!=SESSION or req.get('source')!=SOURCE or req.get('catalogue')!=CATALOGUE or
++        req.get('kind')!='BOUNDED_106' or req.get('authorises_execution') is not False or
++        req.get('rights')!=digest(rights) or g.get('mode')!='LIVE' or g.get('version')!=4 or
++        g.get('session')!=SESSION or g.get('source')!=SOURCE or g.get('catalogue')!=CATALOGUE or
++        g.get('identity')!=digest(encoded(req.get('identity'))) or g.get('rights')!=digest(rights) or
++        j.get('session')!=SESSION or j.get('source')!=SOURCE or j.get('catalogue')!=CATALOGUE or
++        j.get('state')!='OUTCOME_UNKNOWN' or j.get('attempts')!=40 or j.get('next')!=39 or
++        res.get('session')!=SESSION or res.get('source')!=SOURCE or res.get('catalogue')!=CATALOGUE or
++        res.get('kind')!='OUTCOME_UNKNOWN' or res.get('attempts')!=40 or res.get('completed')!=39 or
++        res.get('worker_exited') is not True or res.get('grant_sha256')!=digest(grant) or
++        r.get('catalogue_sha256')!=CATALOGUE or r.get('source_seal')!=SOURCE or r.get('proposal_id')!=SESSION or
++        r.get('scope_reviewed') is not True or r.get('public_distribution_allowed') is not False):
++        raise ResearchRejected('partial_parent_binding_refused')
++    from .bounded_acquisition import spec,LIMITS
++    if req.get('limits')!=LIMITS or g.get('limits')!=LIMITS or len(j.get('windows',[]))!=106:
++        raise ResearchRejected('partial_parent_budget_refused')
++    for i,w in enumerate(j['windows']):
++        state='COMPLETED' if i<39 else 'UNKNOWN' if i==39 else 'NEVER'
++        if (type(w.get('index')) is not int or w['index']!=i or w.get('spec')!=digest(encoded(spec(i))) or
++            w.get('state')!=state or type(w.get('http_attempts')) is not int or w['http_attempts']!=(1 if i<40 else 0)):
++            raise ResearchRejected('partial_window_accounting_refused')
++    return req,j,r
++
++
++def merge_partial(request,grant,journal,result,rights,bundles):
++    """No invented DONE/grants, no changed rights gate, no incomplete window import."""
++    req,j,r=verify_parent(request,grant,journal,result,rights)
++    if type(bundles) is not tuple or len(bundles)!=39:raise ResearchRejected('exact_completed_prefix_required')
++    from .bounded_acquisition import spec
++    windows=[];imports=[];identities=[]
++    for i,bundle in enumerate(bundles):
++        if set(bundle)!={'manifest','raw','validated','review'}:raise ResearchRejected('partial_bundle_shape_refused')
++        manifest=decode(bundle['manifest']);w=j['windows'][i];s=spec(i)
++        if (manifest.get('index')!=i or manifest.get('source')!=SOURCE or manifest.get('catalogue')!=CATALOGUE or
++            digest(bundle['manifest'])!=w.get('manifest_sha256') or
++            manifest.get('raw')!='raw/v26c_year_'+str(i).zfill(3)+'.json' or
++            manifest.get('validated')!='validated/v26c_year_'+str(i).zfill(3)+'.json'):
++            raise ResearchRejected('partial_completed_manifest_binding_refused')
++        review=bundle['review']
++        if any(review.get(k)!=r.get(k) for k in r) or review.get('previously_examined') is not True:
++            raise ResearchRejected('partial_original_rights_required')
++        imported=import_bundle(request,bundle['manifest'],bundle['raw'],bundle['validated'],review=review,independent_required=False)
++        if imported['validation']['incomplete'] or imported['validation']['validation_failures']:
++            raise ResearchRejected('partial_incomplete_batch_refused')
++        windows.append(Window(SESSION,timestamp(s['params']['from']),timestamp(s['params']['to'])+1,SOURCE));imports.append(imported)
++        identities.append(dict(session=SESSION,index=i,window_number=i+1,specification=s,spec_sha256=w['spec'],manifest_sha256=digest(bundle['manifest']),raw_sha256=manifest['raw_sha256'],validated_sha256=manifest['validated_sha256'],candles=len(imported['records'])))
++    merged=merge_imported_batches(tuple(windows),tuple(imports),start=windows[0].start,end=windows[-1].end,classification='PREVIOUSLY_EXAMINED_INDEPENDENCE_UNVERIFIED')
++    merged.update(source_acquisition_status='PARTIAL_OUTCOME_UNKNOWN',source_session=SESSION,source_seal=SOURCE,catalogue_sha256=CATALOGUE,source_batches=identities,source_evidence_sha256={k:digest(v) for k,v in dict(request=request,claimed_grant=grant,journal=journal,result=result,rights=rights).items()},scope_start=iso(windows[0].start),scope_end_exclusive=iso(windows[-1].end),missing_window_40=dict(start=spec(39)['params']['from'],end_exclusive=iso(timestamp(spec(39)['params']['to'])+1),state='OUTCOME_UNKNOWN',dispatch='UNKNOWN',retry_allowed=False),unattempted_remainder=dict(first_window=41,last_window=106,start=spec(40)['params']['from'],end_exclusive='2025-09-01T00:00:00+00:00'),rights_evidence=r,verified_market_closures=[],gap_classification='UNVERIFIED_MARKET_CLOSURE_OR_MISSING; NO HOLIDAY/WEEKEND REPAIR')
++    return merged
++
++
++def remaining_catalogue(original_bytes,journal_bytes):
++    if digest(original_bytes.replace(b'\r\n',b'\n'))!=CATALOGUE:raise ResearchRejected('original_catalogue_changed')
++    parent=decode(original_bytes);j=decode(journal_bytes)
++    if j.get('session')!=SESSION or j.get('catalogue')!=CATALOGUE or j.get('state')!='OUTCOME_UNKNOWN' or j.get('attempts')!=40 or j.get('next')!=39:
++        raise ResearchRejected('remaining_parent_state_refused')
++    windows=parent['windows'];records=[]
++    for i in range(106):
++        w=j['windows'][i];expected='COMPLETED' if i<39 else 'UNKNOWN' if i==39 else 'NEVER'
++        if w.get('index')!=i or w.get('state')!=expected or w.get('spec')!=digest(encoded(windows[i]['specification'])) or w.get('http_attempts')!=(1 if i<40 else 0):
++            raise ResearchRejected('remaining_attempt_state_refused')
++        if i>=40:records.append(dict(original_window=i+1,original_index=i,specification=windows[i]['specification'],spec_sha256=w['spec'],maximum_candles=windows[i]['maximum_candles']))
++    if len(records)!=66 or sum(x['maximum_candles'] for x in records)!=65120:raise ResearchRejected('remaining_scope_refused')
++    return dict(version='V28D_REMAINING_OFFLINE_CATALOGUE_1',parent_session=SESSION,parent_catalogue_sha256=CATALOGUE,parent_source_seal=SOURCE,parent_journal_sha256=digest(journal_bytes),parent_status='PARTIAL_OUTCOME_UNKNOWN',start='2025-01-17T21:20:00Z',end_exclusive='2025-09-01T00:00:00Z',request_count=66,maximum_future_attempts_after_separate_approval=66,currently_authorised_attempts=0,authorises_execution=False,activation_supported=False,requires_new_source_bound_approval=True,archive_destination_policy='NEW_SEPARATELY_APPROVED_PROTECTED_NAMESPACE_ONLY',archive_root=r'C:\TradingResearchData\OANDA',limits=dict(startup=15,token=120,request=15,session=1800,spacing=1,bytes=268435456,attempts=66),retries=0,redirects=False,proxies=False,pagination=False,fallback=False,stop_on_failure=True,automatic_resume=False,overwriting_existing_artifacts=False,window_40=dict(state='OUTCOME_UNKNOWN',start=windows[39]['specification']['params']['from'],end_inclusive=windows[39]['specification']['params']['to'],retry_allowed=False),windows=records,windows_sha256=digest(encoded(records)))
+diff --git a/data/research/trading_intelligence_v2/pilot_history.py b/data/research/trading_intelligence_v2/pilot_history.py
+--- a/data/research/trading_intelligence_v2/pilot_history.py
++++ b/data/research/trading_intelligence_v2/pilot_history.py
+@@ -75,7 +75,7 @@
+             raise ResearchRejected('merge_plan_boundary_refused')
+     if type(bundles) is not tuple or len(bundles) != len(windows):
+         raise ResearchRejected('three_completed_pilot_batches_required' if len(windows)==3 else 'all_completed_planned_batches_required')
+-    records, reports, seen = [], [], set()
++    imported_batches = []
+     for window, bundle in zip(windows, bundles):
+         request, journal, result = (decode(bundle[k]) for k in ('request', 'journal', 'result'))
+         if (request.get('session') != window.session or request.get('source') != source or
+@@ -93,6 +93,18 @@
+             raise ResearchRejected('pilot_cross_session_authority_refused')
+         imported = import_bundle(bundle['request'], bundle['manifest'], bundle['raw'],
+                                  bundle['validated'], review=bundle['review'], independent_required=False)
++        imported_batches.append(imported)
++    return merge_imported_batches(windows, tuple(imported_batches), start=start, end=end, classification=classification)
++
++
++def merge_imported_batches(windows, imported_batches, *, start, end, classification):
++    """Combine already provenance-checked importer results; never grant authority."""
++    if len(windows)!=len(imported_batches) or not windows or windows[0].start!=start or windows[-1].end!=end:
++        raise ResearchRejected('merge_plan_coverage_refused')
++    if any(w.start%300 or w.end%300 or not 0<w.end-w.start<=300000 or i and windows[i-1].end!=w.start for i,w in enumerate(windows)):
++        raise ResearchRejected('merge_plan_boundary_refused')
++    records, reports, seen = [], [], set()
++    for window, imported in zip(windows, imported_batches):
+         for row in imported['records']:
+             t = timestamp(row['time'])
+             if t in seen:
+diff --git a/data/research/trading_intelligence_v2/reports/v27_activation/source_seal.json b/data/research/trading_intelligence_v2/reports/v27_activation/source_seal.json
+--- a/data/research/trading_intelligence_v2/reports/v27_activation/source_seal.json
++++ b/data/research/trading_intelligence_v2/reports/v27_activation/source_seal.json
+@@ -1,34 +1,35 @@
+ {
+   "authorises_execution": false,
+-  "baseline": "52568b3e2a69c36296f7b3fe2fc502b9c5a290eb",
++  "baseline": "4c99b5f7b38eecb8872947ce395499bce516487c",
+   "sources": {
+     "__init__.py": "32ef654908553b1ca0e2db5de347884e36e7a8af67a2a07c5db7ef5c5e5f76f2",
+-    "oneshot_authorisation.py": "9258beb74359a259adfd360b80afbd8f6d29c1b7cc0d20b52dc2fb30f47a195b",
++    "oneshot_authorisation.py": "4e78d9f1c147b44a44cdd9e2870f4d9cc231373ea30b844982bb2668a045bf35",
+     "oneshot.py": "db954c4ca4b63c9a9865dd1c70f514baf48070d3145a2e36eb7b72a8e4feb538",
+-    "oneshot_worker.py": "97504dc9ff73addaeefb30606ea84689f6ae5dafd9f9dbe6bb15ece10cdd7bbb",
++    "oneshot_worker.py": "5f5516965f8423916437cf0859ed9be58ae793e23eec13a5b59898e0db4fe5fe",
+     "direct_history.py": "091a85dd2ee3339ac2683934b19010603ca1b060d9db4126a8280372ee90e8a1",
+     "historical_session_entry.py": "f5d09ff21a763a4da2dfc142511f79a8759784d4977a9885be474786ec36e16a",
+     "oneshot_credentials.py": "0d90920a10b5ff99b6670bff4dddca171e097de7b1102544cbf22041f78c90a6",
+-    "oneshot_network.py": "5a68f6f95bde36d7d3be1e535426bd95a7c257a0d975a4830433be3da447a819",
+-    "oneshot_archive.py": "a35377336b25f0e13865fb7ed17f62cb4e5d593781619c82d5636cd7442eab33",
++    "oneshot_network.py": "838249bf17d48c2d033d7d5c4c19ba8ed9945c9bcb4ce09ad8ed5b46f823e563",
++    "oneshot_archive.py": "b407cab99bda2a12b98064bfcac775f806090b769323dd439953519716455303",
+     "oneshot_windows.py": "b77b84017de5de7dc7919252a71725ad80f843668ce52d3dc4eea3c90177c892",
+     "oneshot_bridge.py": "c23643cd3022346e9f422fdc2cc34d1b73b623b8e24ca22111324930bff9eab6",
+     "oneshot_https_fixture.py": "054ce2bf18cfd88d46e849e71b78b22ed135b459618855de1d7bd6292c19b7b1",
+     "oneshot_response.py": "9be0cdb8f12352e7574b1f779f5c6ea4486435f4797174cc9928921a1394df4f",
+     "oanda_existing_readonly.py": "27f03a4320514e9a70b9726cb1f42ac33f1b11a79ddd18b644b98cd8f9ff3590",
+-    "oanda_history_transport.py": "baf7229c77ffe278587da78dffb8fe3251586c60680333a0a97d88fb115b5c45",
++    "oanda_history_transport.py": "51b77e87f17a5c20b417acc8570d5eefa940f41417b963c8553460dca3613fb2",
+     "oanda_history_manifest.py": "c657612d72bdbeaf94ae808150190043379fc5daca56b4fccd25cf6e78139749",
+     "core.py": "20b19e35c75c9bf07c7fe34ff8df9bb99637eb78d2e37cf23493b072641bd82d",
+     "history_fixtures.py": "af0d04cfcc4a4c09484fbb5ba4e795e94f1c7d4725338ed69f38f78b8a807425",
+     "historical_manifest.py": "9f09f9148de3eea87239cc474fc9ab2d9f25018d290f9c54e7552a13042d4501",
+     "confirmation_input.py": "6da5262b5139f06d17fe5b199383d3427740e778d0797363b05c3028ffdc4310",
+     "token_input.py": "5b57157d7d80a34a15f041e89fd71855f58871394ffb797af2ba0af3388c54ff",
+-    "session_namespace.py": "263e0b89c083d9e0ccff4c8e60ba7e52450a4d83cb692a71ddd810f1e2f482ae",
++    "session_namespace.py": "9f7a80b65c1b744ac321f1d68e5fff16850c51564df7571864e1bd1cce261ee4",
+     "request_profile.py": "da9a886ea4e0053e7e76fcca5af6f85c26c46fc5f790fe1675fd275b2a8162d1",
+-    "bounded_acquisition.py": "d1a4e1473bb8b1fcfca9beb3b8d2ec9393caa928222f149149cb9bf9367df167",
++    "bounded_acquisition.py": "46f485162f099e96a8f0b361d826d8bcebb1f36fa9cea7ddc647ede63dd906e1",
+     "bounded_history_entry.py": "88f03c193474eec23aea0b05595aa65ad5545c17778ef4bf9cf0f67914fb9c64",
+     "historical_sources.py": "c7d6f22a77a96dcf5314bbe21a725ae600170cc8dc56d064aeaf320ef16fa602",
+     "oanda_research_import.py": "addd2fdede6d9977c82a3b257ec36255fc2a85eb0f8caf683774b5e46df0a223",
++    "failure_diagnostics.py": "b49a04ba02f4a6a6b215ee6df45a8f34a1f8191c2daa55efcd1c92d782f97c8a",
+     "reports/v28b/V28B_REQUEST_WINDOWS.json": "2d5f5b38efb65a0cffd5f63ad38a7da62344d653bdba84dad9438cf1eac96bf9"
+   },
+   "spec": "001d36b1a63e8c71c0dfb5977ded513eaa0ba450d96b2bdd0120d84e5241d229",
+diff --git a/data/research/trading_intelligence_v2/reports/v28d/V28D_FAILURE_DIAGNOSTICS.md b/data/research/trading_intelligence_v2/reports/v28d/V28D_FAILURE_DIAGNOSTICS.md
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/reports/v28d/V28D_FAILURE_DIAGNOSTICS.md
+@@ -0,0 +1,17 @@
++# V2.8D failure diagnostics — LOCAL, publication approval required
++
++failure_diagnostics.py adds a small enumerated metadata encoder/classifier and current-stage context to the existing bounded worker/supervisor. No new HTTP client, credential system, archive, journal or downloader is introduced. The existing exchange optionally reports bounded stages; legacy calls retain their previous exception paths. The bounded connection distinguishes observed DNS/connect/TLS errors; exchange stages distinguish headers/body and fixed HTTP rejection/truncation codes. Validation/publication/accounting failures retain their actual stages.
++
++Persisted diagnostic.json contains only version, session UUID, source/catalogue hashes, predefined reason/stage, optional bounded window index, UNKNOWN_NO_RETRY and retry_allowed=false. The existing result.json records its SHA-256 plus matching reason/stage. The reader checks exact shape, enums, bindings, hash and absence of interrupted publication. A separate process can reopen and verify it after the worker exits.
++
++No token, authorization header, IPC payload, account identifier, complete header set, raw body, environment/configuration value or arbitrary exception string enters diagnostic metadata. Exception strings are compared only to exact trusted in-repository codes and are never persisted. Unknown exceptions remain UNKNOWN_FAILURE. Worker startup exceptions use fixed categories rather than arbitrary exception-class names. stderr remains discarded; safe stage/reason packets provide the needed evidence without logging raw tracebacks.
++
++Connect timeouts and TLS failures are reported only from typed/stage-supported errors. A parent watchdog that fences a blocked worker reports WORKER_DEADLINE_EXCEEDED with the last observed stage; this does not claim a specific underlying network cause. Aggregate expiry is SESSION_DEADLINE_EXCEEDED. WORKER_CRASHED means unexpected process exit before a final protocol result, not proof of an OS-native crash. GLOBAL_LOCK_LOST, SOURCE_BINDING_INVALID and ACCOUNTING_INCONSISTENT use exact known conditions. A stage is the last observed phase, not a guarantee of the exact instruction executing at termination.
++
++The existing journal, global lock, durable reservation, per-window spent markers and single-use checks remain. Diagnostic reason codes never authorise retry, skip or resume. Corrupt accounting is not repaired: null counts plus a safe diagnostic can be published while original claimed/pending evidence stays spent. Interrupted diagnostic/result publication remains an ambiguity requiring review; there is no alternate storage fallback or automatic overwrite. A physically unwritable disk cannot guarantee diagnostic persistence; claimed authority and pending records still prevent reuse.
++
++The 15/120/15-second stage limits, 1,800-second aggregate budget, one-second pacing and 256 MiB cap remain unchanged. Diagnostic bytes use existing reserved accounting headroom. Real grants were not created. All runtime fault hooks are OFFLINE_TEST-only; LIVE fault injection remains refused.
++
++The local source seal is 9511b6a2d834510080f73275da3d64b8951185e0a841487723c56df2a18434d4, based on published baseline 4c99b5f7b38eecb8872947ce395499bce516487c. Historical evidence retains its original seal 9a8b0960f0beefe7fb7fbd116cfa320bdfe6b18a2414c936b370a8c3c58445f2. The consumed runtime selector was not altered; it is now stale against local diagnostic code and remains unusable. Publication of worker/supervisor, transport hooks, failure-state handling and seal changes requires separate approval.
++
++This diagnostic change does not retroactively establish window 40's failure cause. Its HTTP dispatch and outcome remain unknown. No replay is permitted.
+diff --git a/data/research/trading_intelligence_v2/reports/v28d/V28D_FINAL_DECISION.md b/data/research/trading_intelligence_v2/reports/v28d/V28D_FINAL_DECISION.md
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/reports/v28d/V28D_FINAL_DECISION.md
+@@ -0,0 +1,22 @@
++# V2.8D final decision
++
++**TIV28D_PARTIAL_ARCHIVE_AND_DIAGNOSTICS_VERIFIED** — offline only.
++
++1. All 39 completed batches independently pass session/index/spec/source/catalogue, one-attempt accounting, raw/validated/manifest hashes, candle completion/OHLC/precision/order and duplicate/overlap checks. Original SHA-256 and modification times are unchanged.
++2. The partial dataset was atomically saved in a fresh protected research_outputs directory and independently reopened/recomputed in a separate process.
++3. Count 27,213; canonical records SHA-256 `81b006a153237ac42dabbbd817a5e56b80493cb82b89bd0db4705a207a64a8a9`. Stored gzip SHA-256 `007d85b7c95176a830ddeddf799c58f29401960773c924754f25a2a1bc174ab0`. Exact path is in V28D_PARTIAL_ARCHIVE.md; no market data is placed in Git.
++4. Window 40 and parent remain OUTCOME_UNKNOWN, with consumed authority and all 40 spent reservations preserved. No retry or reinterpretation as unused/confirmed failure.
++5. Fixed reason/stage diagnostics are added to the existing exchange, worker and supervisor, atomically published via the existing Archive and hash-linked from result.json. No new network stack, archive or journal.
++6. Future observed failure classes can be reported with bounded metadata; unsupported causes stay UNKNOWN_FAILURE. No raw exception strings, credential/header/IPC/body/environment/configuration/account data is persisted. The original window-40 cause remains unknown; diagnostics are not retroactively added to it.
++7. No diagnostic or failure path grants permission to retry. Claimed authority, marker accounting, pending-file refusal, global locking and fencing remain. Failed final writes never create an alternate authority/store.
++8. Remaining catalogue is exactly original windows 41–106, 66 entries and 65,120 calendar slots, from 2025-01-17T21:20:00Z to 2025-09-01T00:00:00Z exclusive. Exact original specification bytes/hashes are retained; windows 1–40 excluded. It is non-authorising, not activated and not supported by the current hardcoded 106-window runtime.
++9. No operational trading, R.56 or frozen strategy files changed. The three unrelated existing scheduler modifications and local runtime selector are excluded. Scheduler remains enabled.
++10. 285 focused tests pass, plus real archive/saved-derivative/independent-process verification. No real credential or authenticated OANDA request was used.
++11. Nothing committed or pushed. Non-authorising research changes are eligible under category A; this integrated local package remains uncommitted because worker/source-seal and shared CI/test support require category-B approval. No force push.
++12. Separate publication approval is required for the bounded supervisor, diagnostic encoder, transport hooks, worker, archive accounting, unused/pending guards and source seal, with their direct test/runner/CI support. V28D_SHA256.json separates categories and exact paths; V28D_SOURCE.diff captures the proposal against 4c99b5f7b38eecb8872947ce395499bce516487c.
++13. Before another acquisition: review/publish diagnostic changes; separately review compatible immutable 66-window admission support and its source seal (not implemented/activated here); bind rights to the new catalogue; create a new separately approved proposal/namespace/authority with fresh terminal attestations/token. Never reuse the consumed session or include window 40. No new grant or session proposal was created in this task.
++14. The private partial dataset supports exploratory diagnostics and later existing bid/ask cost accounting. It is previously examined/independence-unverified, retains unknown weekend/holiday/missing periods, is not complete 12-month history and establishes no profitability. No strategy optimisation/tournament was run.
++
++The diagnostic source seal changed locally to 9511b6a2d834510080f73275da3d64b8951185e0a841487723c56df2a18434d4. The old consumed selector retains its original source and is stale; it was not silently activated or rewritten.
++
++**No authenticated OANDA requests. No replay of window 40. No trading. Production remains NO-GO.**
+diff --git a/data/research/trading_intelligence_v2/reports/v28d/V28D_PARTIAL_ARCHIVE.md b/data/research/trading_intelligence_v2/reports/v28d/V28D_PARTIAL_ARCHIVE.md
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/reports/v28d/V28D_PARTIAL_ARCHIVE.md
+@@ -0,0 +1,19 @@
++# V2.8D partial archive
++
++The 39 original completed batches were independently revalidated against their exact request/index, session/identity, original source seal and catalogue, LIVE claimed grant, durable one-attempt completion, raw/validated/manifest hashes, strict candle validation and previously captured file hashes/modification times. Original files were not rewritten. Window 40 and overall parent remain OUTCOME_UNKNOWN and consumed; no new diagnostic was retrofitted to them.
++
++Saved private derivative: `C:\TradingResearchData\OANDA\research_outputs\v28d_partial_eurusd_5461c06197674665a4aa6f84ffebc718\candles.json.gz`.
++Manifest: `C:\TradingResearchData\OANDA\research_outputs\v28d_partial_eurusd_5461c06197674665a4aa6f84ffebc718\manifest.json`.
++Count: **27,213** completed EUR_USD M5 candles; full original bid/ask/mid OHLC strings, no duplicates or overlaps.
++Observed coverage: 2024-09-01T21:00:00Z through 2025-01-14T09:55:00Z.
++Canonical uncompressed records SHA-256: `81b006a153237ac42dabbbd817a5e56b80493cb82b89bd0db4705a207a64a8a9`.
++Stored gzip file SHA-256: `007d85b7c95176a830ddeddf799c58f29401960773c924754f25a2a1bc174ab0`.
++Manifest SHA-256: `54782a07b77b340180f1dd6bf37ac8c1a99a6f06ee94a3ebd05ec9ea37bb2c12`.
++
++The existing importer is used for each independently reviewed manifest; the original pilot merger's ordered-record/gap accumulator is shared without relaxing its existing complete-session checks. A separate bounded-prefix adapter validates the actual OUTCOME_UNKNOWN parent and its completed windows; it never fabricates DONE records or grants. Exactly 39 manifests are admitted; incomplete/unknown windows are refused.
++
++Publication uses existing protected Archive.put pending-file/write-through publication, a fresh exclusive output directory and a manifest committed last. Gzip is deterministic (mtime=0); records remain the existing research-import schema. A fresh process reopened the derivative, revalidated/remerged all 39 source batches, and compared identical canonical records and hashes. No original archive relocation or fallback occurred.
++
++The derivative manifest records all 39 batch identities/specifications/hashes, original request/grant/journal/result/rights hashes, preserved rights conditions, missing-period reports, explicitly unresolved window 40 and unattempted tail. Status is PARTIAL_OUTCOME_UNKNOWN; complete_12_month_history=false. Weekend-containing gaps remain unverified; no independent holiday/session calendar was introduced and no candle was invented. Within the 39-window planned prefix there are 39,000 calendar slots and 27,213 observed completed candles; missing slots are retained as unknown closure/missing evidence, not declared verified closures.
++
++Rights remain private local research only under the previously reviewed catalogue-specific evidence and conditions, with per-manifest provenance/hash checks. Raw and merged market data stay outside OneDrive/Git. No external publication/redistribution or perpetual post-termination retention is inferred. Independence is PREVIOUSLY_EXAMINED_INDEPENDENCE_UNVERIFIED. Frozen V2.5 policy/cost/evaluation gates remain; no optimisation or strategy tournament was run.
+diff --git a/data/research/trading_intelligence_v2/reports/v28d/V28D_REMAINING_CATALOGUE.json b/data/research/trading_intelligence_v2/reports/v28d/V28D_REMAINING_CATALOGUE.json
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/reports/v28d/V28D_REMAINING_CATALOGUE.json
+@@ -0,0 +1 @@
++{"activation_supported":false,"archive_destination_policy":"NEW_SEPARATELY_APPROVED_PROTECTED_NAMESPACE_ONLY","archive_root":"C:\\TradingResearchData\\OANDA","authorises_execution":false,"automatic_resume":false,"currently_authorised_attempts":0,"end_exclusive":"2025-09-01T00:00:00Z","fallback":false,"limits":{"attempts":66,"bytes":268435456,"request":15,"session":1800,"spacing":1,"startup":15,"token":120},"maximum_future_attempts_after_separate_approval":66,"overwriting_existing_artifacts":false,"pagination":false,"parent_catalogue_sha256":"2d5f5b38efb65a0cffd5f63ad38a7da62344d653bdba84dad9438cf1eac96bf9","parent_journal_sha256":"b4c0637508cb62e3d46a49640e8757ed714fc64bf5ddc8a10ffe68fe77863fe4","parent_session":"6fc23c0be49741a3a066ccc948d1b5fa","parent_source_seal":"9a8b0960f0beefe7fb7fbd116cfa320bdfe6b18a2414c936b370a8c3c58445f2","parent_status":"PARTIAL_OUTCOME_UNKNOWN","proxies":false,"redirects":false,"request_count":66,"requires_new_source_bound_approval":true,"retries":0,"start":"2025-01-17T21:20:00Z","stop_on_failure":true,"version":"V28D_REMAINING_OFFLINE_CATALOGUE_1","window_40":{"end_inclusive":"2025-01-17T21:19:59+00:00","retry_allowed":false,"start":"2025-01-14T10:00:00+00:00","state":"OUTCOME_UNKNOWN"},"windows":[{"maximum_candles":1000,"original_index":40,"original_window":41,"spec_sha256":"e43b5d701beb7612dec42c843e576bf4621d94a1c5890e75e95b5e82bd338856","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-01-17T21:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-01-21T08:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":41,"original_window":42,"spec_sha256":"1b2b53b91e6788181d05c460c607049e269f15bfcb0531c31c02b3a8c23ebd6f","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-01-21T08:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-01-24T19:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":42,"original_window":43,"spec_sha256":"68ae25d77c2fd6a6b235b33b0f87064cf6ad404a6dae3aae2966f1e50f2a0e8c","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-01-24T20:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-01-28T07:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":43,"original_window":44,"spec_sha256":"c188e4865fc2b2410425a0982f1ca44cde8599b34ffc79271ded595036226dbe","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-01-28T07:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-01-31T18:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":44,"original_window":45,"spec_sha256":"f76f6c4128dd65b22b898fc0715e9bf0aea0e17ba1abbfa2c8d881f858c41964","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-01-31T18:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-02-04T05:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":45,"original_window":46,"spec_sha256":"3d68fb8efa8b76bebaea5495e6f0f2920e03093346bcf91deb921a8fb53ce294","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-02-04T06:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-02-07T17:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":46,"original_window":47,"spec_sha256":"033be9730e780882c7ebc59d516b35176872b3aaf9a9d93aa1d60cad90e28ea8","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-02-07T17:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-02-11T04:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":47,"original_window":48,"spec_sha256":"5d8191da57ae65f60e0ee67a2cbb9eeda167d4b21917fd70dd9a13ab3b844be5","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-02-11T04:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-02-14T15:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":48,"original_window":49,"spec_sha256":"e45726d5b6219890ea7cc71ef8e843e9f6b362a7bb4582fac8b98a5eea566354","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-02-14T16:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-02-18T03:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":49,"original_window":50,"spec_sha256":"ec4eb2d644a09078e7d79af178e2da4b96a35cdb393dc0a049b54eb63296103d","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-02-18T03:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-02-21T14:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":50,"original_window":51,"spec_sha256":"15049b11e38c678cefaa6ff1ff434965882dc13e0cccea01b684d90ec9555c4a","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-02-21T14:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-02-25T01:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":51,"original_window":52,"spec_sha256":"84c7e6455fa830f25b3a2cd64b237fa346478c9428758b125ea72272dd179b41","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-02-25T02:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-02-28T13:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":52,"original_window":53,"spec_sha256":"148d6a9d122d11fc508a1ee302380b62e1f2aac4fd8ac93ead745901501c4b90","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-02-28T13:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-03-04T00:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":53,"original_window":54,"spec_sha256":"3cf9fef0889ec445a96fab4f649c9e6b9b7fe7f3ef8e31a31fcd009c225933c7","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-03-04T00:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-03-07T11:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":54,"original_window":55,"spec_sha256":"13ad477987f9f8134a8f3bd39eef15565a12920aced27d54bb7484da4bed4e97","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-03-07T12:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-03-10T23:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":55,"original_window":56,"spec_sha256":"c8a542c0c6af9c297a4f1c1cace2c3310e407d4507826b63c676de8fdbb7b48c","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-03-10T23:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-03-14T10:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":56,"original_window":57,"spec_sha256":"256fc81fb8f790ba5fe5f6e1f59e86279b665e108842c8298e8830b5702d7b90","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-03-14T10:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-03-17T21:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":57,"original_window":58,"spec_sha256":"6748ab9944edb69fe0add3b948f842f3980c5c3187272b6d0ccb4d036592b957","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-03-17T22:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-03-21T09:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":58,"original_window":59,"spec_sha256":"1ddf11d47cffdeed6a66794531280795fa31f6e1c2203f99a19b3ab09f0a8b43","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-03-21T09:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-03-24T20:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":59,"original_window":60,"spec_sha256":"26585474b492c96cb0a62e2af625d86c2d8d46dfeb88d8781738dcca54c3f2ae","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-03-24T20:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-03-28T07:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":60,"original_window":61,"spec_sha256":"0b187b5a73f70911428fc282020a5d164945e69c6fb58d952e862829c9e4a754","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-03-28T08:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-03-31T19:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":61,"original_window":62,"spec_sha256":"84fd6d664aea4721db9e6fc3077aaaae1e75421745798a1bd7b06d7449566600","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-03-31T19:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-04-04T06:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":62,"original_window":63,"spec_sha256":"f7705e40cd0a737b24f5b5ac557731db8c72711301d0ee4e614ddeb65d53f4cd","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-04-04T06:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-04-07T17:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":63,"original_window":64,"spec_sha256":"b4dcb4cf408c73ea3673e3418fea11cbea582ddce8598fed9b52a286fabfee70","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-04-07T18:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-04-11T05:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":64,"original_window":65,"spec_sha256":"391d8e0cc7cdd02ba35fd1d799479a489172aa7e80d4bf1bed84dd16ce05ee93","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-04-11T05:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-04-14T16:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":65,"original_window":66,"spec_sha256":"8726be2954d9ac61fc095e267c87c3f3cc0e7b117147a6be2356ace49235aa91","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-04-14T16:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-04-18T03:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":66,"original_window":67,"spec_sha256":"81b4a50f95afed04785d12052f9da8b61b3f2c83eb131e40248ec91812ea329a","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-04-18T04:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-04-21T15:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":67,"original_window":68,"spec_sha256":"9b60755c8ea06ef1f8d7ed9c99ae801e440678ec0b1c65c151392acc82258a18","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-04-21T15:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-04-25T02:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":68,"original_window":69,"spec_sha256":"614a36e6044a91d187bc0937a0ee27fdc645b4275de84b318f5b7b660263bcf5","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-04-25T02:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-04-28T13:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":69,"original_window":70,"spec_sha256":"20c8ce188f60fb8a638a57e1ad7ae4d9186c6ccd35e178189edacb730dceaaa1","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-04-28T14:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-05-02T01:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":70,"original_window":71,"spec_sha256":"4412ba95701d9fb350614b554dc27391056baf4e7910b6db53f4a4ce691280c0","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-05-02T01:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-05-05T12:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":71,"original_window":72,"spec_sha256":"93bd45a0007a2bc596dc3f48317b3ca5908cd9e07dcbfc612eceb92e2b6b0d7d","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-05-05T12:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-05-08T23:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":72,"original_window":73,"spec_sha256":"f8f6026fc8b37436642345183c1fe7aa628d23cb23251d071f4bae2622a88f85","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-05-09T00:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-05-12T11:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":73,"original_window":74,"spec_sha256":"14576ac88c14b56b2cddaadc59925fa1354d2893fc0ee14073fef605c6acfe32","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-05-12T11:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-05-15T22:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":74,"original_window":75,"spec_sha256":"39677685ce7c3b0d65246fafe3f6f1d537ba6d571e1e928eb6de202ddbcc7caf","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-05-15T22:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-05-19T09:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":75,"original_window":76,"spec_sha256":"2928b086795a5a5d750ea760ee6abef35c2ec44e87e7dccb4dd111b0a35af779","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-05-19T10:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-05-22T21:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":76,"original_window":77,"spec_sha256":"c4c619d638aefc2218f5769d8335d52781b2b47daeab42ba8a7b05f27e8c3b4b","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-05-22T21:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-05-26T08:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":77,"original_window":78,"spec_sha256":"78ac38566880b79a69a14d14e3f4cc027a0b12269edc4e19df123a02f0d7c05c","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-05-26T08:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-05-29T19:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":78,"original_window":79,"spec_sha256":"1515c7321fd4f88c85eafc8fe2618a9a11ef4cf4f2b60bd68f6b79a75cde42c8","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-05-29T20:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-06-02T07:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":79,"original_window":80,"spec_sha256":"42ed7aabfa991c5879e9bb4ccad7a1f3c7e8e417cabe7d78fbfcb0f30e9f00df","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-06-02T07:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-06-05T18:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":80,"original_window":81,"spec_sha256":"2516502796db4207659a8bb6d44683f2dec1f9da3e77181e7cf829a4942a9c68","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-06-05T18:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-06-09T05:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":81,"original_window":82,"spec_sha256":"4f6e3a77a21db83b95014f5f6eed35bcbb0d50396e574f570fbe51e79ca034f8","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-06-09T06:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-06-12T17:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":82,"original_window":83,"spec_sha256":"c15a52a9a7499c88c64af6bbd2826078afcb5f868c08a40ac73893d0683a9d71","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-06-12T17:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-06-16T04:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":83,"original_window":84,"spec_sha256":"4b702322392ee0973c45e54b9b63210280201be77a90c0081fd01227c6b572de","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-06-16T04:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-06-19T15:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":84,"original_window":85,"spec_sha256":"f9e905083ab883ac1f77203c1063e7179c8ec78d0d23e1ef73e48268249c4fa7","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-06-19T16:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-06-23T03:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":85,"original_window":86,"spec_sha256":"0f9b7259927c17179737f81a0d28a3e2f10c18c29327c5ce03c83e0018d7978f","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-06-23T03:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-06-26T14:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":86,"original_window":87,"spec_sha256":"69b9c51edc4ef03f63bd3df6c48d45aacad04efd7b3159b3a932adad0c9745b7","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-06-26T14:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-06-30T01:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":87,"original_window":88,"spec_sha256":"45a698e8949944914b4d124f2f7ea2aae037ea6fa6a11156c00293a8107898ff","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-06-30T02:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-07-03T13:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":88,"original_window":89,"spec_sha256":"cc4c3caaa60fd407091427f032b086c085a6cb73522c8e5da1763c7c48369950","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-07-03T13:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-07-07T00:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":89,"original_window":90,"spec_sha256":"4383ed0547d1f476d97f3366a10b16359b1a8eb2fcb2e53af05c990b5d9551f2","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-07-07T00:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-07-10T11:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":90,"original_window":91,"spec_sha256":"79dcd11835b57fd88fff9f780478ddcf20f4239e83c5ac461be3b77b7dfe7f82","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-07-10T12:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-07-13T23:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":91,"original_window":92,"spec_sha256":"3d0b4af6c0d15899cf7099cf0a0893ae61b762962f0df7fb3f2c33f3b5391db5","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-07-13T23:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-07-17T10:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":92,"original_window":93,"spec_sha256":"3c463d3eae5c4622339cdf2afdd68a6da0e3df4e4469f2e7a7bb894ac0cd4a69","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-07-17T10:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-07-20T21:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":93,"original_window":94,"spec_sha256":"5d3d57682269a97fd0de3343c4ca70340272e9805bedf475d9ca962195c94f9b","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-07-20T22:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-07-24T09:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":94,"original_window":95,"spec_sha256":"51c01103866a0c64b27d8b1334731533da875e78dd366ce36c746e45b6966b12","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-07-24T09:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-07-27T20:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":95,"original_window":96,"spec_sha256":"85a522eb5b593573c9732e81e2e9a102db71395ce246ed2594f3c6b9eaecf261","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-07-27T20:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-07-31T07:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":96,"original_window":97,"spec_sha256":"0e72dcd6a781053488c5415b682695a4ea68e1f96da44e10584e43a55d4d9e01","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-07-31T08:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-08-03T19:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":97,"original_window":98,"spec_sha256":"a80e4d54e93a7fac185254cae64676d3a68b753c0f992c88911a9f722477c0c4","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-08-03T19:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-08-07T06:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":98,"original_window":99,"spec_sha256":"67aad4898ed99c24ce38f63e5d60ed219a404c0525aa88b27680adb8f2752f36","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-08-07T06:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-08-10T17:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":99,"original_window":100,"spec_sha256":"8ccfe8c9d0b05f951ac55b643010b1d16026095f4b39e55e71c5ff390955dcc6","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-08-10T18:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-08-14T05:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":100,"original_window":101,"spec_sha256":"90493cad05406ee6d957d13c65ea16fdecd46fc03fa0ec57e4e3d82c15a8cc83","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-08-14T05:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-08-17T16:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":101,"original_window":102,"spec_sha256":"c60801b3abb5d6222784c4fcc6e523e9dc0011a1d97d8e131802bf8ece3f344d","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-08-17T16:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-08-21T03:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":102,"original_window":103,"spec_sha256":"474e549ce73cfce80a4803f3d2dbb345275f9ac30c83fbec61fb60d64ee3c959","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-08-21T04:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-08-24T15:19:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":103,"original_window":104,"spec_sha256":"b1b4367c3778e6d18fd8c1bf1e39d3fa877182da59cd2f977d439e83438622d4","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-08-24T15:20:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-08-28T02:39:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":1000,"original_index":104,"original_window":105,"spec_sha256":"7b8f9a1c79f6da5b164270e9a2dfe15af17da0ec61db487be686eadffc7bd754","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-08-28T02:40:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-08-31T13:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}},{"maximum_candles":120,"original_index":105,"original_window":106,"spec_sha256":"29bd3ae26c794fdf51622ec01f421a51c495c8d9dff1a73a9f834ad2a3faa114","specification":{"host":"api-fxtrade.oanda.com","method":"GET","params":{"from":"2025-08-31T14:00:00+00:00","granularity":"M5","includeFirst":"true","price":"MBA","smooth":"false","to":"2025-08-31T23:59:59+00:00"},"path":"/v3/instruments/EUR_USD/candles"}}],"windows_sha256":"23dcc32492985500e377e631de40cc6b91d896129b9678dbd32370e78604326f"}
+diff --git a/data/research/trading_intelligence_v2/reports/v28d/V28D_TEST_RESULTS.md b/data/research/trading_intelligence_v2/reports/v28d/V28D_TEST_RESULTS.md
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/reports/v28d/V28D_TEST_RESULTS.md
+@@ -0,0 +1,27 @@
++# V2.8D tests
++
++**285 focused tests passed; zero failures, errors or skips.** Final local source seal: `9511b6a2d834510080f73275da3d64b8951185e0a841487723c56df2a18434d4`.
++Native Windows/Python 3.13; stdlib isolated audit-barrier runners, synthetic credentials and loopback HTTPS only.
++
++- research: 21 passed; log SHA-256 `0f52ce5985ebe785ce0ab9664272f60570b2077cf5d436e0cbfe93e221b17510`.
++- diagnostics: 25 passed; log SHA-256 `8bd32e48dc16e3f21366f593be63838161b960eade457cff9af278f4f0639b4b`.
++- bounded: 48 passed; log SHA-256 `8af028e580bb9c1c30289bb09c90221a34d25e223c7f2905ce2b543fbb1139e7`.
++- security: 67 passed; log SHA-256 `ba650979ac0e030a80bd4ff91c60333dcca003968a2779eb238491fafe29b711`.
++- isolation: 46 passed; log SHA-256 `b8cf997798eac53a5a5a8596c23881c718c52a59f3eefed87a86da3e2cfb66b1`.
++- v28: 24 passed; log SHA-256 `ecda2460a877393ce2c4467aa2609c2352e16a68eeb90d442901f94e9d228a76`.
++- v28a: 24 passed; log SHA-256 `d7a6f782273e3a42487409c680613eac23e143b8df8a8804dd7d7ca858e38162`.
++- v28b: 30 passed; log SHA-256 `c2d746c27340ee436672b30f6b26378cbb2006df5dad54bc87b81551d4836bba`.
++
++Research tests cover all 39 identities and actual OUTCOME_UNKNOWN parent semantics, exact prefix, source/session/manifest/right/hash corruption, duplicate/ordering/range checks inherited from the unchanged importer, ambiguity preservation and independence refusal. The 66 remaining specifications are byte-identical in canonical request encoding to original windows 41â€“106, with no reserved/unknown entries admitted.
++
++The 25 diagnostic tests cover actual local connect refusal and typed connect timeout, stubbed DNS refusal with no external socket, TLS verification rejection, HTTP 403, delayed headers/body, truncation, bad candle schema, synthetic archive failure, unexpected worker exit, per-window/aggregate watchdogs, transmission termination, corrupt accounting, lock loss, unknown exception/secret-response redaction, tampered diagnostic hashes, interrupted publication, actual independent-process diagnostic reopening and refusal to overwrite a partial derivative commit.
++
++Deadline races report the observed watchdog deadline and last stage when the worker is fenced before it can emit a typed timeout. Tests accept that distinction rather than inventing a network cause. Every failure path keeps claimed/spent evidence, at most one HTTP attempt in failure fixtures, no automatic retry and refusal on a second invocation. No existing safety test was weakened or skipped.
++
++Existing 48 bounded, 67 restricted-network and 46 native isolation regressions verify one token for 106 exact synthetic requests, immutable catalogue/source and budgets, existing actual-file-open/junction/hardlink/ACL isolation, process fencing, no broker writes and no operational imports. Existing importer/pilot/year tests retain rights, provenance, complete-parent and independence gates.
++
++Real archive checks are additional to the 285 tests: all 126 consumed-session files matched pre-investigation SHA-256/size/mtime snapshots, all 39 raw/validated/manifest sets were revalidated, the new gzip derivative was atomically committed in a unique protected directory and a fresh process remerged original inputs and proved identical records/hashes. The archived previous pilot/September/merged/legacy evidence is rechecked separately. No original records are repaired or overwritten.
++
++Commands use v26d_run.py with --native-v28d-diagnostic-tests, --native-bounded-tests, --native-v26g-tests, --native-rollover-tests; v28d_research_run.py; and v28_run.py/v28a_run.py/v28b_run.py with their fixed selectors. Logs remain in task scratch outside Git. The CI workflow parses and adds only synthetic/offline steps; GitHub CI has not run for these unpublished changes.
++
++Physical media that cannot accept writes cannot guarantee a final diagnostic file. Claimed/pending authority remains spent; no alternate storage or retry bypass is introduced. The interrupted-publication test explicitly verifies this fail-closed limitation.
+diff --git a/data/research/trading_intelligence_v2/session_namespace.py b/data/research/trading_intelligence_v2/session_namespace.py
+--- a/data/research/trading_intelligence_v2/session_namespace.py
++++ b/data/research/trading_intelligence_v2/session_namespace.py
+@@ -71,7 +71,7 @@
+                         archive.put('request.json',encoded(request_metadata(archive,source)))
+                     else:
+                         from .bounded_acquisition import metadata,budget_guard
+-                        archive.publication_guard=lambda relative,value:budget_guard(archive,len(value),accounting=relative in ('journal.json','result.json'))
++                        archive.publication_guard=lambda relative,value:budget_guard(archive,len(value),accounting=relative in ('journal.json','result.json','diagnostic.json'))
+                         archive.put('rights_scope.json',encoded(_bounded_rights))
+                         archive.put('request.json',encoded(metadata(archive,source)))
+                 with Archive(root,synthetic=synthetic) as archive:require_prepared(archive,source)
+diff --git a/data/research/trading_intelligence_v2/test_v28d_diagnostics.py b/data/research/trading_intelligence_v2/test_v28d_diagnostics.py
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/test_v28d_diagnostics.py
+@@ -0,0 +1,138 @@
++"""Synthetic native/loopback failures only; no credential loader or LIVE issuer."""
++import json,os,sys,time,ssl,socket,copy,subprocess,importlib.util
++from pathlib import Path
++from unittest.mock import patch
++if __name__=='__main__':
++    _p=Path(__file__).resolve().parent
++    _s=importlib.util.spec_from_file_location('tiv2',_p/'__init__.py',submodule_search_locations=[str(_p)])
++    _m=importlib.util.module_from_spec(_s);sys.modules['tiv2']=_m;_s.loader.exec_module(_m);__package__='tiv2'
++from . import test_v28c as previous
++from . import failure_diagnostics as d,oneshot_network as network
++from . import bounded_acquisition as b
++from .oneshot_archive import Refused,Archive
++from .oneshot_bridge import SyntheticCredentialProvider
++from .oanda_history_manifest import encoded,decode,digest
++previous.legacy.NATIVE=globals().get('NATIVE',False)
++
++class Diagnostics(previous.Bounded):
++    def checked(self,ar,cap,reason=None,stage=None):
++        value=d.read_verified(ar)
++        if reason:self.assertEqual(value['reason'],reason,value)
++        if stage:self.assertEqual(value['stage'],stage,value)
++        self.assertFalse(value['retry_allowed']);self.assertEqual(value['outcome'],'UNKNOWN_NO_RETRY')
++        result=decode(ar.read('result.json'));self.assertEqual(result['diagnostic_sha256'],digest(ar.read('diagnostic.json')))
++        with Archive(ar.root,synthetic=True) as reopened:self.assertEqual(d.read_verified(reopened),value)
++        for name in ('diagnostic.json','result.json'):
++            body=ar.read(name);self.assertNotIn(self.secret.encode(),body);self.assertLess(len(body),2048)
++        return value
++    def test_diag_independent_process_restart(self):
++        _,ar,cap,_=self.failure(scenario='invalid_schema',expected_requests=1);value=self.checked(ar,cap)
++        exe=getattr(sys,'_base_executable',sys.executable);command=[exe,'-I','-S','-B',str(Path(__file__).resolve()),'--fixture-diagnostic-probe']
++        process=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,env={'SystemRoot':r'C:\Windows'} if os.name=='nt' else {},close_fds=True)
++        out,err=process.communicate(encoded(dict(root=str(ar.root))),timeout=10);self.assertEqual(process.returncode,0,err.decode())
++        self.assertEqual(decode(out),dict(reason=value['reason'],stage=value['stage'],sha256=digest(ar.read('diagnostic.json'))))
++    def test_diag_parent_exception_secret_not_persisted(self):
++        _,ar,cap=self.new()
++        with self.server() as server,patch.object(SyntheticCredentialProvider,'credential',side_effect=RuntimeError(self.secret+' Authorization: SECRET')):
++            result=self.run_bounded(ar,cap,server);self.assertNotEqual(result['kind'],'DONE');self.assertEqual(server.requests,[])
++        self.checked(ar,cap,'UNKNOWN_FAILURE','TOKEN')
++        for path in ar.root.rglob('*'):
++            if path.is_file():self.assertNotIn(self.secret.encode(),path.read_bytes())
++    def test_diag_interrupted_publication_stays_spent(self):
++        _,ar,cap=self.new()
++        def interrupted(name):
++            if name=='diagnostic.json':raise OSError('SYNTHETIC_INTERRUPTED_PUBLICATION')
++        ar.after_pending=interrupted
++        with self.server('invalid_schema') as server:
++            result=self.run_bounded(ar,cap,server);self.assertNotEqual(result['kind'],'DONE');self.assertEqual(len(server.requests),1)
++            self.assertRaises(Refused,self.run_bounded,ar,cap,server)
++        self.assertTrue(ar.path('diagnostic.json.pending').exists());self.assertFalse(ar.path('diagnostic.json').exists());self.assertTrue(ar.path('grant.claimed.json').exists())
++        self.assertRaises((Refused,FileNotFoundError),d.read_verified,ar)
++    def test_diag_global_lock_loss(self):
++        from .session_namespace import acquisition_lock
++        _,ar,cap=self.new()
++        @previous.contextlib.contextmanager
++        def lost(archive):
++            with acquisition_lock(archive) as lease:
++                class Proxy:
++                    @property
++                    def closed(self):return archive.path('worker.claimed.json').exists()
++                    def fileno(self):return lease.fileno()
++                yield Proxy()
++        with self.server() as server,patch('tiv2.session_namespace.acquisition_lock',lost):
++            result=self.run_bounded(ar,cap,server);self.assertNotEqual(result['kind'],'DONE');self.assertEqual(server.requests,[])
++        self.checked(ar,cap,'GLOBAL_LOCK_LOST')
++    def test_diag_atomic_derivative_manifest_interruption(self):
++        ar=self.fixture(authorised=False);ar.path('research_outputs').mkdir();ar.path('research_outputs/partial').mkdir()
++        ar.put('research_outputs/partial/candles.json.gz',b'SYNTHETIC_DATASET')
++        def interrupted(name):
++            if name.endswith('manifest.json'):raise OSError('SYNTHETIC_POWER_LOSS')
++        ar.after_pending=interrupted
++        self.assertRaises(OSError,ar.put,'research_outputs/partial/manifest.json',encoded(dict(synthetic=True)))
++        self.assertFalse(ar.path('research_outputs/partial/manifest.json').exists());self.assertTrue(ar.path('research_outputs/partial/manifest.json.pending').exists())
++        self.assertRaises(Refused,ar.put,'research_outputs/partial/candles.json.gz',b'OVERWRITE_FORBIDDEN')
++    def test_diag_connect_refused(self):_,ar,cap,_=self.failure(scenario='connection_refused',expected_requests=0);self.checked(ar,cap,'CONNECT_REFUSED','CONNECT')
++    def test_diag_connect_timeout(self):_,ar,cap,_=self.failure(fault='connect_timeout',expected_requests=0);self.checked(ar,cap,'CONNECT_TIMEOUT','CONNECT')
++    def test_diag_http_rejected(self):_,ar,cap,_=self.failure(scenario='http_403',expected_requests=1);self.checked(ar,cap,'HTTP_STATUS_REJECTED','HTTP')
++    def test_diag_delayed_headers(self):
++        _,ar,cap,_=self.failure(scenario='delayed_headers',limits=dict(request=3,session=900,spacing=.001),expected_requests=1)
++        self.assertIn(self.checked(ar,cap)['reason'],('RESPONSE_HEADERS_TIMEOUT','WORKER_DEADLINE_EXCEEDED'));self.assertEqual(d.read_verified(ar)['stage'],'HEADERS')
++    def test_diag_slow_body(self):
++        _,ar,cap,_=self.failure(scenario='slow_body',limits=dict(request=3,session=900,spacing=.001),expected_requests=1)
++        self.assertIn(self.checked(ar,cap)['reason'],('RESPONSE_BODY_TIMEOUT','WORKER_DEADLINE_EXCEEDED'));self.assertEqual(d.read_verified(ar)['stage'],'BODY')
++    def test_diag_truncated(self):_,ar,cap,_=self.failure(scenario='incomplete_body',expected_requests=1);self.checked(ar,cap,'RESPONSE_TRUNCATED','BODY')
++    def test_diag_schema(self):_,ar,cap,_=self.failure(scenario='invalid_schema',expected_requests=1);self.checked(ar,cap,'RESPONSE_SCHEMA_INVALID','VALIDATION')
++    def test_diag_archive_failure(self):_,ar,cap,_=self.failure(fault='archive_write_failure',expected_requests=1);self.checked(ar,cap,'ARCHIVE_PUBLICATION_FAILED','ARCHIVE')
++    def test_diag_worker_crash(self):_,ar,cap,_=self.failure(fault='crash_after_response',expected_requests=1);self.checked(ar,cap,'WORKER_CRASHED')
++    def test_diag_worker_deadline(self):_,ar,cap,_=self.failure(fault='stall_after_response',limits=dict(request=3,session=900,spacing=.001),expected_requests=1);self.checked(ar,cap,'WORKER_DEADLINE_EXCEEDED','BODY')
++    def test_diag_tls_failure(self):
++        _,ar,cap=self.new()
++        with self.server() as server:
++            result=b.run(ar,cap,SyntheticCredentialProvider(self.secret),https_fixture=server.binding('untrusted'))
++            self.assertNotEqual(result['kind'],'DONE');self.assertTrue(result['worker_exited']);self.assertEqual(server.requests,[])
++        self.checked(ar,cap,'TLS_FAILURE','TLS')
++    def test_diag_parent_session_deadline(self):
++        _,ar,cap=self.new(limits=dict(session=2,spacing=1))
++        with self.server() as server:result=self.run_bounded(ar,cap,server)
++        self.assertNotEqual(result['kind'],'DONE');self.assertTrue(result['worker_exited']);self.checked(ar,cap,'SESSION_DEADLINE_EXCEEDED')
++    def test_diag_termination_during_transmission(self):
++        _,ar,cap,_=self.failure(fault='crash_during_transmission');self.checked(ar,cap,'WORKER_CRASHED')
++    def test_diag_hash_tamper_rejected(self):
++        _,ar,cap,_=self.failure(scenario='invalid_schema',expected_requests=1);value=self.checked(ar,cap);value['reason']='UNKNOWN_FAILURE';ar.put('diagnostic.json',encoded(value),replace=True);self.assertRaises(Refused,d.read_verified,ar)
++    def test_diag_unknown_exception_redacted(self):
++        f=d.classify(RuntimeError(self.secret+' Authorization account identifier'), 'BODY');self.assertEqual((f.reason,f.stage),('UNKNOWN_FAILURE','BODY'));self.assertNotIn(self.secret,str(f));self.assertRaises(Refused,d.record,{'session':'0'*32,'source':'a'*64,'catalogue':'b'*64},self.secret,'BODY',0)
++    def test_diag_dns_refusal_without_socket(self):
++        context=d.Context()
++        with patch.object(network.authority,'require_role',return_value=None),patch.object(network.socket,'getaddrinfo',side_effect=socket.gaierror('SYNTHETIC_DNS_SECRET')):
++            conn=network._LiveConnection(object(),time.monotonic()+10,diagnostic=context)
++            with self.assertRaises(d.Failure) as caught:conn.connect()
++            self.assertEqual((caught.exception.reason,caught.exception.stage),('DNS_FAILURE','DNS'))
++    def test_diag_mapping_source_and_accounting(self):
++        self.assertEqual(d.classify(Refused('APPROVED_SOURCE_SEAL_REQUIRED'),'RESERVATION').reason,'SOURCE_BINDING_INVALID')
++        self.assertEqual(d.classify(Refused('REQUEST_BUDGET_INCONSISTENT'),'ACCOUNTING').reason,'ACCOUNTING_INCONSISTENT')
++        self.assertEqual(d.classify(Refused('GLOBAL_LOCK_LOST'),'SUPERVISION').reason,'GLOBAL_LOCK_LOST')
++    def test_diag_failed_accounting_still_has_durable_diagnostic(self):
++        _,ar,cap=self.new();original=b.claim_window
++        def corrupt(*args):
++            result=original(*args);state=decode(ar.read('journal.json'));state['attempts']=999;ar.put('journal.json',encoded(state),replace=True);raise Refused('REQUEST_BUDGET_INCONSISTENT')
++        with self.server() as server,patch.object(b,'claim_window',corrupt):
++            result=self.run_bounded(ar,cap,server);self.assertNotEqual(result['kind'],'DONE');self.assertTrue(result['worker_exited']);self.assertEqual(server.requests,[])
++        self.checked(ar,cap,'ACCOUNTING_INCONSISTENT','ACCOUNTING');self.assertTrue(ar.path('grant.claimed.json').exists());self.assertRaises(Refused,b.verify,cap)
++    def test_diag_no_live_authority_expansion(self):
++        _,ar,cap=self.new();cap['mode']='LIVE';self.assertRaises(Refused,b.verify,cap);self.assertEqual(b.LIMITS,dict(startup=15,token=120,request=15,session=1800,spacing=1,bytes=268435456,attempts=106));self.assertEqual(b.spec(0)['path'],'/v3/instruments/EUR_USD/candles')
++    def test_diag_secret_response_no_persistence(self):
++        _,ar,cap,_=self.failure(scenario='credential_echo',expected_requests=1);self.checked(ar,cap)
++        for path in ar.root.rglob('*'):
++            if path.is_file():self.assertNotIn(self.secret.encode(),path.read_bytes())
++
++for _name in dir(previous.Bounded):
++    if _name.startswith('test_'):setattr(Diagnostics,_name,None)
++
++if __name__=='__main__':
++    from .oneshot_archive import FIXTURES,NATIVE_FIXTURES
++    if sys.argv[1:]!=['--fixture-diagnostic-probe']:raise SystemExit('FIXTURE_PROBE_ONLY')
++    value=decode(sys.stdin.buffer.readline(4097));root=Path(value['root']).absolute()
++    if set(value)!={'root'} or not any(root.is_relative_to(p) for p in (FIXTURES,NATIVE_FIXTURES)):raise SystemExit('FIXTURE_ROOT_REQUIRED')
++    with Archive(root,synthetic=True) as ar:
++        diagnostic=d.read_verified(ar)
++        print(json.dumps(dict(reason=diagnostic['reason'],stage=diagnostic['stage'],sha256=digest(ar.read('diagnostic.json')))))
+diff --git a/data/research/trading_intelligence_v2/test_v28d_research.py b/data/research/trading_intelligence_v2/test_v28d_research.py
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/test_v28d_research.py
+@@ -0,0 +1,56 @@
++"""Invented byte bundles; no real authority, credentials or filesystem archive."""
++import copy,unittest
++from . import partial_history as p
++from .core import timestamp,ResearchRejected
++from .history_fixtures import payload
++from .oanda_history_manifest import encoded,decode,digest,validated
++from .bounded_acquisition import spec,LIMITS,CATALOGUE
++
++
++def fixture():
++    rights=dict(provider='OANDA',provider_identity_url='https://www.oanda.com/',terms_url='https://www.oanda.com/terms/',terms_evidence='SYNTHETIC TEST ONLY',rights_reviewed=True,scope_reviewed=True,permitted_use='offline_research_and_derived_results',permitted_scope='PRIVATE_LOCAL_106_WINDOWS',public_distribution_allowed=False,catalogue_sha256=p.CATALOGUE,source_seal=p.SOURCE,proposal_id=p.SESSION)
++    rb=encoded(rights);identity={'invented':p.SESSION};request=encoded(dict(kind='BOUNDED_106',session=p.SESSION,source=p.SOURCE,catalogue=p.CATALOGUE,limits=LIMITS,identity=identity,rights=digest(rb),authorises_execution=False))
++    grant=encoded(dict(version=4,mode='LIVE',synthetic_not_executable=True,session=p.SESSION,source=p.SOURCE,catalogue=p.CATALOGUE,identity=digest(encoded(identity)),rights=digest(rb),limits=LIMITS))
++    windows=[];bundles=[]
++    for i in range(106):
++        s=spec(i);state='COMPLETED' if i<39 else 'UNKNOWN' if i==39 else 'NEVER';w=dict(index=i,spec=digest(encoded(s)),state=state,http_attempts=1 if i<40 else 0)
++        if i<39:
++            start=timestamp(s['params']['from']);end=timestamp(s['params']['to'])+1;raw=encoded(payload(start=start,count=1));rows,validation=validated(raw,'EUR_USD',start,end,1800000000);derivative=encoded(rows)
++            manifest=encoded(dict(index=i,session=p.SESSION,source=p.SOURCE,catalogue=p.CATALOGUE,spec_sha256=w['spec'],identity=digest(encoded(identity)),request_sha256=digest(request),synthetic=False,instrument='EUR_USD',granularity='M5',start=start,end=end,retrieved=1800000000,raw='raw/v26c_year_'+str(i).zfill(3)+'.json',validated='validated/v26c_year_'+str(i).zfill(3)+'.json',raw_sha256=digest(raw),validated_sha256=digest(derivative),validation=validation,observed_complete_count=1))
++            w['manifest_sha256']=digest(manifest);review=dict(rights,provenance_verified=True,previously_examined=True,manifest_sha256=digest(manifest));bundles.append(dict(manifest=manifest,raw=raw,validated=derivative,review=review))
++        windows.append(w)
++    journal=encoded(dict(session=p.SESSION,source=p.SOURCE,catalogue=p.CATALOGUE,state='OUTCOME_UNKNOWN',attempts=40,next=39,windows=windows))
++    result=encoded(dict(session=p.SESSION,source=p.SOURCE,catalogue=p.CATALOGUE,kind='OUTCOME_UNKNOWN',attempts=40,completed=39,worker_exited=True,grant_sha256=digest(grant)))
++    return [request,grant,journal,result,rb,tuple(bundles)]
++
++
++class PartialTests(unittest.TestCase):
++    def setUp(self):self.args=fixture()
++    def merge(self):return p.merge_partial(*self.args)
++    def test_all_39_identities_and_count(self):
++        r=self.merge();self.assertEqual(r['count'],39);self.assertEqual([x['index'] for x in r['source_batches']],list(range(39)));self.assertEqual(r['source_acquisition_status'],'PARTIAL_OUTCOME_UNKNOWN')
++    def test_gap_and_ambiguous_window_preserved(self):
++        r=self.merge();self.assertTrue(r['missing_intervals']);self.assertEqual(r['missing_window_40']['state'],'OUTCOME_UNKNOWN');self.assertFalse(r['missing_window_40']['retry_allowed'])
++    def test_independence_not_claimed(self):
++        r=self.merge();self.assertFalse(r['strategy_evaluation_permitted']);self.assertFalse(r['authorises_execution']);self.assertIn('UNVERIFIED',r['independence'])
++    def test_exact_prefix_required(self):self.args[-1]=self.args[-1][:-1];self.assertRaises(ResearchRejected,self.merge)
++    def test_wrong_session(self):v=decode(self.args[0]);v['session']='0'*32;self.args[0]=encoded(v);self.assertRaises(ResearchRejected,self.merge)
++    def test_wrong_source(self):v=decode(self.args[0]);v['source']='0'*64;self.args[0]=encoded(v);self.assertRaises(ResearchRejected,self.merge)
++    def test_consumed_not_reclassified_done(self):v=decode(self.args[2]);v['state']='SESSION_CONSUMED';self.args[2]=encoded(v);self.assertRaises(ResearchRejected,self.merge)
++    def test_ambiguous_not_reclassified_failed(self):v=decode(self.args[2]);v['windows'][39]['state']='FAILED';self.args[2]=encoded(v);self.assertRaises(ResearchRejected,self.merge)
++    def test_no_second_attempt(self):v=decode(self.args[2]);v['windows'][3]['http_attempts']=2;self.args[2]=encoded(v);self.assertRaises(ResearchRejected,self.merge)
++    def test_foreign_manifest(self):b=list(self.args[-1]);b[0]=b[1];self.args[-1]=tuple(b);self.assertRaises(ResearchRejected,self.merge)
++    def test_raw_corruption(self):b=list(self.args[-1]);b[0]=dict(b[0],raw=b'{}');self.args[-1]=tuple(b);self.assertRaises(ResearchRejected,self.merge)
++    def test_derivative_corruption(self):b=list(self.args[-1]);b[0]=dict(b[0],validated=b'[]');self.args[-1]=tuple(b);self.assertRaises(ResearchRejected,self.merge)
++    def test_rights_cannot_be_removed(self):b=list(self.args[-1]);b[0]=dict(b[0],review=dict(b[0]['review'],rights_reviewed=False));self.args[-1]=tuple(b);self.assertRaises(ResearchRejected,self.merge)
++    def test_rights_manifest_binding(self):b=list(self.args[-1]);b[0]=dict(b[0],review=dict(b[0]['review'],manifest_sha256='0'*64));self.args[-1]=tuple(b);self.assertRaises(ResearchRejected,self.merge)
++    def test_worker_exit_required(self):v=decode(self.args[3]);v['worker_exited']=False;self.args[3]=encoded(v);self.assertRaises(ResearchRejected,self.merge)
++    def test_remaining_exact_66(self):
++        r=p.remaining_catalogue(CATALOGUE.read_bytes(),self.args[2]);self.assertEqual([w['original_window'] for w in r['windows']],list(range(41,107)));self.assertEqual(r['request_count'],66);self.assertFalse(r['authorises_execution']);self.assertFalse(r['activation_supported']);self.assertTrue(r['stop_on_failure']);self.assertFalse(r['automatic_resume']);self.assertFalse(r['overwriting_existing_artifacts'])
++    def test_remaining_specs_exact(self):
++        r=p.remaining_catalogue(CATALOGUE.read_bytes(),self.args[2]);self.assertTrue(all(encoded(w['specification'])==encoded(spec(w['original_index'])) for w in r['windows']))
++    def test_remaining_no_attempted_overlap(self):
++        r=p.remaining_catalogue(CATALOGUE.read_bytes(),self.args[2]);self.assertEqual(r['start'],'2025-01-17T21:20:00Z');self.assertEqual(r['window_40']['state'],'OUTCOME_UNKNOWN');self.assertFalse(r['window_40']['retry_allowed'])
++    def test_remaining_tamper_refused(self):self.assertRaises(ResearchRejected,p.remaining_catalogue,b'{}',self.args[2])
++    def test_remaining_attempted_entry_refused(self):v=decode(self.args[2]);v['windows'][40]['state']='RESERVED';self.assertRaises(ResearchRejected,p.remaining_catalogue,CATALOGUE.read_bytes(),encoded(v))
++    def test_deterministic(self):self.assertEqual(encoded(self.merge()),encoded(self.merge()))
+diff --git a/data/research/trading_intelligence_v2/v26d_run.py b/data/research/trading_intelligence_v2/v26d_run.py
+--- a/data/research/trading_intelligence_v2/v26d_run.py
++++ b/data/research/trading_intelligence_v2/v26d_run.py
+@@ -27,6 +27,10 @@
+ import urllib.parse
+ import uuid
+ 
++DIAGNOSTIC_V28D=sys.argv[1:] in (['--v28d-diagnostic-tests'],['--native-v28d-diagnostic-tests'])
++if DIAGNOSTIC_V28D:sys.argv[1]='--native-bounded-tests' if sys.argv[1]=='--native-v28d-diagnostic-tests' else '--bounded-tests'
++RESEARCH_V28D=sys.argv[1:]==['--v28d-research-tests']
++if RESEARCH_V28D:sys.argv[1]='--bounded-tests'
+ BOUNDED_GUARDS=sys.argv[1:]==['--native-bounded-guard-tests']
+ if BOUNDED_GUARDS:sys.argv[1]='--native-bounded-tests'
+ BOUNDED_TEST=sys.argv[1:] in (['--bounded-tests'],['--native-bounded-tests'])
+@@ -86,6 +90,10 @@
+     if event=='subprocess.Popen':
+         executable,argv,cwd,env=args
+         worker=[sys.executable,'-I','-S','-B',str(WORKER),'--worker']+([PILOT_FLAG] if PILOT_FLAG is not None else [])
++        if DIAGNOSTIC_V28D:
++            exe=getattr(sys,'_base_executable',sys.executable)
++            probe=[exe,'-I','-S','-B',str(PACKAGE/'test_v28d_diagnostics.py'),'--fixture-diagnostic-probe']
++            if executable in (None,exe) and argv in (probe,subprocess.list2cmdline(probe)) and env==({'SystemRoot':r'C:\Windows'} if os.name=='nt' else {}):return
+         if BOUNDED_TEST:
+             probe=[getattr(sys,'_base_executable',sys.executable),'-I','-S','-B',str(PACKAGE/'test_v28c.py'),'--fixture-lock-probe']
+             if executable in (None,probe[0]) and argv in (probe,subprocess.list2cmdline(probe)) and env=={'SystemRoot':r'C:\Windows'}:return
+@@ -141,7 +149,7 @@
+ 
+ 
+ sys.addaudithook(audit)
+-test_name='test_v28c' if BOUNDED_TEST else 'test_v28a_native' if PILOT_TEST else 'test_v27_rollover' if ROLLOVER else 'test_v27_activation' if ACTIVATION else 'test_v27' if V27 else 'test_v26g' if V26G else 'test_v26e' if V26E else 'test_v26d'
++test_name='test_v28d_diagnostics' if DIAGNOSTIC_V28D else 'test_v28d_research' if RESEARCH_V28D else 'test_v28c' if BOUNDED_TEST else 'test_v28a_native' if PILOT_TEST else 'test_v27_rollover' if ROLLOVER else 'test_v27_activation' if ACTIVATION else 'test_v27' if V27 else 'test_v26g' if V26G else 'test_v26e' if V26E else 'test_v26d'
+ spec=importlib.util.spec_from_file_location('tiv2.'+test_name,PACKAGE/(test_name+'.py'))
+ tests=importlib.util.module_from_spec(spec);sys.modules[spec.name]=tests;tests.NATIVE=NATIVE
+ spec.loader.exec_module(tests)
+diff --git a/data/research/trading_intelligence_v2/v28d_research_run.py b/data/research/trading_intelligence_v2/v28d_research_run.py
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/v28d_research_run.py
+@@ -0,0 +1,9 @@
++"""Fixed offline research tests under the existing loopback/OS audit barrier."""
++import importlib.util,sys
++from pathlib import Path
++p=Path(__file__).resolve().parent
++# Reuse the existing runner and its barriers, without editing acquisition entrypoints.
++s=importlib.util.spec_from_file_location('_runner',p/'v26d_run.py')
++# A fixed in-process selector is added by v26d_run; never accepts arbitrary modules.
++sys.argv=[str(p/'v26d_run.py'),'--v28d-research-tests']
++m=importlib.util.module_from_spec(s);s.loader.exec_module(m)

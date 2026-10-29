@@ -64,7 +64,7 @@ def select_address(records):
 
 
 class _LiveConnection(http.client.HTTPSConnection):
-    def __init__(self,reservation,deadline,policy=None):
+    def __init__(self,reservation,deadline,policy=None,diagnostic=None):
         authority.require_role(reservation,'network')
         if policy is not None and type(policy) is not LiveSocketPolicy:raise Refused('NETWORK_POLICY_REQUIRED')
         if authority.admitted(reservation):
@@ -79,6 +79,7 @@ class _LiveConnection(http.client.HTTPSConnection):
         if type(reservation) is dict and reservation.get('version')==4:
             from .bounded_acquisition import request_for
             self._spec=request_for(reservation)
+        self._diagnostic=diagnostic
         self._reservation=reservation;self._deadline=deadline;self._connected=False;self._request_sent=False
         super().__init__(HOST,port=PORT,timeout=remaining(deadline),context=ssl.create_default_context())
     def connect(self):
@@ -89,16 +90,30 @@ class _LiveConnection(http.client.HTTPSConnection):
         # the one validated address; no proxy, alternate host or reconnect.
         remaining(self._deadline)
         self._policy.resolving=True
+        if self._diagnostic is not None:self._diagnostic.set('DNS')
         try:records=socket.getaddrinfo(HOST,PORT,socket.AF_UNSPEC,socket.SOCK_STREAM,socket.IPPROTO_TCP)
+        except socket.gaierror:
+            if self._diagnostic is not None:
+                from .failure_diagnostics import Failure
+                raise Failure('DNS_FAILURE','DNS') from None
+            raise
         finally:self._policy.resolving=False
         family,address=select_address(records)
         self._policy.family=family;self._policy.address=address
         sock=socket.socket(family,socket.SOCK_STREAM,socket.IPPROTO_TCP)
         try:
+            if self._diagnostic is not None:self._diagnostic.set('CONNECT')
             sock.settimeout(remaining(self._deadline));sock.connect(address)
             sock.settimeout(remaining(self._deadline))
+            if self._diagnostic is not None:self._diagnostic.set('TLS')
             self.sock=self._context.wrap_socket(sock,server_hostname=HOST)
-        except BaseException:sock.close();raise
+            if self._diagnostic is not None:self._diagnostic.set('TRANSMIT')
+        except BaseException as error:
+            sock.close()
+            if self._diagnostic is not None:
+                from .failure_diagnostics import classify
+                raise classify(error,self._diagnostic.stage) from None
+            raise
 
     def request(self,method,url,body=None,headers=None,*,encode_chunked=False):
         from urllib.parse import urlencode
@@ -114,7 +129,7 @@ class _LiveConnection(http.client.HTTPSConnection):
         return super().request(method,url,body=body,headers=headers,encode_chunked=False)
 
 
-def _exchange(connection,secret,deadline,request,*,reservation=None):
+def _exchange(connection,secret,deadline,request,*,reservation=None,diagnostic=None):
     """Single transport attempt shared by real implementation and fixture path."""
     def check(value):
         if type(reservation) is dict and reservation.get('version')==4:
@@ -127,13 +142,23 @@ def _exchange(connection,secret,deadline,request,*,reservation=None):
         nonlocal used
         if used:raise Refused('SECOND_REQUEST_REFUSED')
         used=True;check(dict(method=method,host=host,path=path,params=params));remaining(deadline)
-        try:return _exchange_get(connection,host,path,params,secret,deadline)
-        except OSError as error:raise Refused('WIRE_REFUSED') from error
+        try:return _exchange_get(connection,host,path,params,secret,deadline,_diagnostics=diagnostic)
+        except Exception as error:
+            if diagnostic is not None:
+                from .failure_diagnostics import classify
+                raise classify(error,diagnostic.stage) from None
+            if isinstance(error,OSError):raise Refused('WIRE_REFUSED') from error
+            raise
         finally:connection.close()
-    return CandleTransport(environment='live',sender=sender,attempts=1).request(**request)
+    try:return CandleTransport(environment='live',sender=sender,attempts=1).request(**request)
+    except Exception as error:
+        if diagnostic is not None:
+            from .failure_diagnostics import classify
+            raise classify(error,diagnostic.stage) from None
+        raise
 
 
-def fetch_live(*,reservation,token,deadline,_policy=None):
+def fetch_live(*,reservation,token,deadline,_policy=None,_diagnostic=None):
     authority.require_role(reservation,'network')
     from .oneshot_credentials import validate_token
     secret=validate_token(token)
@@ -143,11 +168,15 @@ def fetch_live(*,reservation,token,deadline,_policy=None):
         request=request_for(reservation)
     else:request_guard(**request)
     remaining(deadline)
-    try:return _exchange(_LiveConnection(reservation,deadline,_policy),secret,deadline,request,reservation=reservation)
-    except Exception:raise Refused('LIVE_TRANSPORT_REFUSED') from None
+    try:return _exchange(_LiveConnection(reservation,deadline,_policy,_diagnostic),secret,deadline,request,reservation=reservation,diagnostic=_diagnostic)
+    except Exception as error:
+        if _diagnostic is not None:
+            from .failure_diagnostics import classify
+            failure=classify(error,_diagnostic.stage);failure.legacy_kind='Refused';raise failure from None
+        raise Refused('LIVE_TRANSPORT_REFUSED') from None
 
 
-def fetch_synthetic(binding,secret,deadline,checkpoint=lambda phase:None,*,request=None,_bounded=None):
+def fetch_synthetic(binding,secret,deadline,checkpoint=lambda phase:None,*,request=None,_bounded=None,_diagnostic=None):
     """Fixture only: cannot select another host or accept a real credential."""
     from .oneshot_https_fixture import validate_binding
     from .oneshot_bridge import validate_synthetic
@@ -171,9 +200,17 @@ def fetch_synthetic(binding,secret,deadline,checkpoint=lambda phase:None,*,reque
             if self._tunnel_host:raise Refused('TUNNEL_REFUSED')
             sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
             try:
+                if _diagnostic is not None:_diagnostic.set('CONNECT')
                 sock.settimeout(remaining(deadline));sock.connect(('127.0.0.1',binding['port']))
+                if _diagnostic is not None:_diagnostic.set('TLS')
                 self.sock=context.wrap_socket(sock,server_hostname=hostname)
-            except BaseException:sock.close();raise
+                if _diagnostic is not None:_diagnostic.set('TRANSMIT')
+            except BaseException as error:
+                sock.close()
+                if _diagnostic is not None:
+                    from .failure_diagnostics import classify
+                    raise classify(error,_diagnostic.stage) from None
+                raise
     connection=LoopbackConnection('127.0.0.1',port=binding['port'],timeout=remaining(deadline),context=context)
-    try:return _exchange(connection,secret,deadline,value,reservation=_bounded)
+    try:return _exchange(connection,secret,deadline,value,reservation=_bounded,diagnostic=_diagnostic)
     except OSError as error:raise Refused('FIXTURE_WIRE_REFUSED') from error

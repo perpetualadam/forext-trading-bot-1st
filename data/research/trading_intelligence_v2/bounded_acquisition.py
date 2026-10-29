@@ -162,7 +162,7 @@ def ledger(ar,cap):
         if i<value['next'] and w['state']!='COMPLETED':raise Refused('PREDECESSOR_NOT_COMPLETED')
         if i>value['next'] and w['state']!='NEVER':raise Refused('OUT_OF_ORDER_WINDOW')
     if value['attempts']!=spent or value['next']!=completed:raise Refused('REQUEST_BUDGET_INCONSISTENT')
-    if any(ar.path(n+'.pending').exists() for n in ('grant.json','grant.claimed.json','journal.json','worker.claimed.json','acquisition.json','result.json')):raise Refused('AMBIGUOUS_PUBLICATION')
+    if any(ar.path(n+'.pending').exists() for n in ('grant.json','grant.claimed.json','journal.json','worker.claimed.json','acquisition.json','result.json','diagnostic.json')):raise Refused('AMBIGUOUS_PUBLICATION')
     return value
 
 
@@ -277,7 +277,7 @@ def claim_window(ar,cap,index,worker_pid):
 def worker_main(packet,emit,scope):
     start=packet(4096);cap=start['reservation'];fixture=cap.get('mode')=='OFFLINE_TEST';fault=start.get('fault','')
     if cap.get('version')!=4 or (fault and not fixture):raise Refused('BOUNDED_WORKER_ENTRY_REFUSED')
-    allowed={'','crash_before_dispatch','crash_during_dispatch','crash_after_response','stall_after_response','invalid_schema','credential_echo'}
+    allowed={'','crash_before_dispatch','crash_during_dispatch','crash_after_response','stall_after_response','invalid_schema','credential_echo','archive_write_failure','crash_during_transmission','connect_timeout'}
     if fault not in allowed:raise Refused('FIXTURE_FAULT_REFUSED')
     root=Path(cap['root']).absolute();scope.configure_session_reads(root)
     if str(root)!=start['root']:raise Refused('BOUNDED_ROOT_REFUSED')
@@ -287,7 +287,9 @@ def worker_main(packet,emit,scope):
         from .oneshot_https_fixture import validate_binding
         validate_binding(start['https_fixture']);scope.LOOPBACK_PORT=start['https_fixture']['port']
     elif 'https_fixture' in start:raise Refused('LIVE_CANNOT_USE_FIXTURE')
-    secret=None
+    secret=None;diagnostic_stage='TOKEN'
+    from .failure_diagnostics import Context,classify
+    context=Context(lambda stage:emit(dict(kind='STAGE',stage=stage,index=index)))
     with Archive(root,synthetic=fixture,pin=start['pin']) as ar,ar.locked():
         ar.put('worker.claimed.json',encoded(dict(session=cap['session'],source=cap['source'],pid=os.getpid(),parent=os.getppid(),credential_deadline=time.monotonic()+cap['limits']['token'])))
         state=ledger(ar,cap);state['state']='ACTIVE';ar.put('journal.json',encoded(state),replace=True);emit({'kind':'RESERVED'})
@@ -313,22 +315,29 @@ def worker_main(packet,emit,scope):
                 if state['next']!=index or w['state']!='RESERVED' or w['worker']!=os.getpid():raise Refused('DURABLE_WINDOW_RESERVATION_REQUIRED')
                 if fault=='crash_before_dispatch':os._exit(123)
                 if last_started is not None and time.monotonic()-last_started<cap['limits']['spacing']:raise Refused('RATE_LIMIT_REFUSED')
+                diagnostic_stage='ACCOUNTING'
                 state['windows'][index].update(state='ATTEMPTED',http_attempts=1,dispatched=time.monotonic())
                 ar.put('journal.json',encoded(state),replace=True);last_started=state['windows'][index]['dispatched'];emit({'kind':'WINDOW_STARTED','index':index})
                 request=spec(index);guard(cap,request);deadline=w['deadline']-min(1,cap['limits']['request']/3)
                 if fault=='crash_during_dispatch':os._exit(123)
                 if fixture:
                     from .oneshot_network import fetch_synthetic
-                    raw=fetch_synthetic(start['https_fixture'],secret,deadline,request=request,_bounded=cap)
+                    if fault=='connect_timeout':
+                        from .failure_diagnostics import Failure
+                        raise Failure('CONNECT_TIMEOUT','CONNECT')
+                    def checkpoint(stage):
+                        if fault=='crash_during_transmission' and stage=='during_dispatch':os._exit(123)
+                    raw=fetch_synthetic(start['https_fixture'],secret,deadline,checkpoint=checkpoint,request=request,_bounded=cap,_diagnostic=context)
                 else:
                     from .oneshot_network import LiveSocketPolicy,fetch_live
                     scope.LIVE_POLICY=LiveSocketPolicy(cap)
-                    raw=fetch_live(reservation=cap,token=secret,deadline=deadline,_policy=scope.LIVE_POLICY)
+                    raw=fetch_live(reservation=cap,token=secret,deadline=deadline,_policy=scope.LIVE_POLICY,_diagnostic=context)
                 # Pace from response completion, conservatively guaranteeing spacing
                 # between actual requests even when pre-dispatch validation varies.
                 last_started=time.monotonic()
                 if fault=='crash_after_response':os._exit(123)
                 if fault=='stall_after_response':threading.Event().wait()
+                diagnostic_stage='VALIDATION';context.set('VALIDATION')
                 if fault=='invalid_schema':raw=b'{}'
                 if fault=='credential_echo':raw=secret.encode()
                 if secret.encode() in raw:raise Refused('CREDENTIAL_RESPONSE_REFUSED')
@@ -338,7 +347,10 @@ def worker_main(packet,emit,scope):
                 guard(cap,request)
                 from .oneshot_response import publish_candles
                 name='v26c_year_'+str(index).zfill(3)
+                diagnostic_stage='ARCHIVE';context.set('ARCHIVE')
+                if fault=='archive_write_failure':raise OSError('SYNTHETIC_ARCHIVE_FAILURE')
                 publish_candles(ar,raw,name=name,start=begin,end=end,retrieved=retrieved,synthetic=fixture,_bounded=(cap,index))
+                diagnostic_stage='ACCOUNTING';context.set('ACCOUNTING')
                 state=ledger(ar,cap)
                 if time.monotonic()>=w['deadline']-min(1,cap['limits']['request']/3):raise Refused('WINDOW_DEADLINE')
                 state['windows'][index].update(state='COMPLETED',manifest_sha256=digest(ar.read('manifests/'+name+'.json')),finished=time.monotonic())
@@ -348,7 +360,8 @@ def worker_main(packet,emit,scope):
         except BaseException as error:
             # Fixed, redacted classification only; raw/token/exception text never
             # enters a durable failure record or the parent protocol.
-            emit({'kind':'REFUSED','cause':type(error).__name__})
+            failure=classify(error,context.stage if context.stage!='UNKNOWN' else diagnostic_stage)
+            emit({'kind':'REFUSED','cause':failure.legacy_kind,'reason':failure.reason,'stage':failure.stage})
             raise
         finally:secret=None
 
@@ -360,6 +373,7 @@ def run(ar,cap,provider,*,https_fixture=None,fault=''):
     from .direct_history import TerminalCredentialProvider
     from .oneshot_credentials import validate_token
     from .session_namespace import acquisition_lock,block_unfenced
+    from .failure_diagnostics import REASONS,STAGES,classify,record
     verify(cap)
     fixture=cap['mode']=='OFFLINE_TEST'
     if os.getpid()!=cap['parent'] or (fixture and type(provider) is not SyntheticCredentialProvider) or (not fixture and (type(provider) is not TerminalCredentialProvider or https_fixture is not None or fault)):
@@ -368,6 +382,7 @@ def run(ar,cap,provider,*,https_fixture=None,fault=''):
         from .oneshot_https_fixture import validate_binding
         validate_binding(https_fixture)
     process=job=None;messages=queue.Queue();result={'kind':'OUTCOME_UNKNOWN'};claimed=False;token_sent=False
+    reason='UNKNOWN_FAILURE';last_stage='STARTUP';active_index=None;aggregate_deadline=None
     deadline=cap['started']+cap['limits']['startup'];work_deadline=deadline-min(1,cap['limits']['startup']/3)
     with acquisition_lock(ar) as lease:
         def check_lock():
@@ -397,39 +412,52 @@ def run(ar,cap,provider,*,https_fixture=None,fault=''):
                 check_lock()
                 try:message=messages.get(timeout=min(.02,max(.001,work_deadline-time.monotonic())))
                 except queue.Empty:
-                    if process.poll() is not None:break
+                    if process.poll() is not None:reason='WORKER_CRASHED';break
                     continue
                 kind=message.get('kind')
+                if kind=='STAGE':
+                    if message.get('stage') not in STAGES or type(message.get('index')) is not int or message['index']!=active_index:raise Refused('BOUNDED_WORKER_PROTOCOL_REFUSED')
+                    last_stage=message['stage'];continue
                 if kind=='RESERVED':
                     if token_sent:raise Refused('DUPLICATE_TOKEN_REQUEST')
                     role(cap,'credential',worker_pid=process.pid);worker=decode(ar.read('worker.claimed.json'))
+                    last_stage='TOKEN'
                     deadline=worker['credential_deadline'];work_deadline=deadline
                     token=provider.credential() if fixture else provider.credential(cap,deadline=deadline)
                     validate_token(token)
                     if time.monotonic()>=deadline:raise Refused('TOKEN_ENTRY_TIMEOUT')
                     role(cap,'credential',worker_pid=process.pid)
-                    started=time.monotonic();deadline=started+cap['limits']['session'];work_deadline=deadline-1
+                    started=time.monotonic();deadline=started+cap['limits']['session'];aggregate_deadline=deadline;work_deadline=deadline-1
                     ar.put('acquisition.json',encoded(dict(session=cap['session'],source=cap['source'],parent=os.getpid(),worker=process.pid,started=started,deadline=deadline)))
                     send(dict(credential=token),1024);token=None;token_sent=True
                 elif kind=='NEED_WINDOW':
                     if not token_sent:raise Refused('TOKEN_NOT_ENTERED')
-                    w=claim_window(ar,cap,message.get('index'),process.pid)
+                    last_stage='RESERVATION';active_index=message.get('index')
+                    w=claim_window(ar,cap,active_index,process.pid)
                     deadline=min(w['deadline'],phase(ar,cap)['deadline']);work_deadline=deadline-min(1,cap['limits']['request']/3)
                     send(dict(reserved=message['index']))
                 elif kind=='WINDOW_STARTED':
                     if message.get('index')!=ledger(ar,cap)['next']:raise Refused('WINDOW_INDEX_CHANGED')
                 elif kind=='WINDOW_DONE':
+                    last_stage='ACCOUNTING'
                     verify(cap);verify_completed(ar,cap,message.get('index'));phase(ar,cap)
                     if time.monotonic()>=work_deadline:raise Refused('WINDOW_DEADLINE')
                     send(dict(continue_after=message['index']))
-                    deadline=phase(ar,cap)['deadline'];work_deadline=deadline-1
+                    deadline=phase(ar,cap)['deadline'];work_deadline=deadline-1;active_index=None
                 elif kind=='DONE':
                     state=ledger(ar,cap)
                     if state['next']!=106 or state['attempts']!=106 or message.get('completed')!=106:raise Refused('INCOMPLETE_CATALOGUE')
                     result={'kind':'DONE','completed':106};break
-                elif kind=='REFUSED':result={'kind':'FAILED' if message.get('cause')=='ResearchRejected' else 'OUTCOME_UNKNOWN'};break
+                elif kind=='REFUSED':
+                    result={'kind':'FAILED' if message.get('cause')=='ResearchRejected' else 'OUTCOME_UNKNOWN'}
+                    reason=message.get('reason') if message.get('reason') in REASONS else 'UNKNOWN_FAILURE'
+                    last_stage=message.get('stage') if message.get('stage') in STAGES else last_stage
+                    break
                 else:raise Refused('BOUNDED_WORKER_PROTOCOL_REFUSED')
+            if result['kind']!='DONE' and reason=='UNKNOWN_FAILURE' and time.monotonic()>=work_deadline:
+                reason='SESSION_DEADLINE_EXCEEDED' if aggregate_deadline is not None and work_deadline>=aggregate_deadline-1 else 'WORKER_DEADLINE_EXCEEDED' if token_sent else 'STARTUP_DEADLINE_EXCEEDED'
         except BaseException as error:
+            failure=classify(error,last_stage);reason=failure.reason
             result={'kind':'TOKEN_ENTRY_TIMEOUT' if type(error) is Refused and str(error)=='TOKEN_ENTRY_TIMEOUT' else 'OUTCOME_UNKNOWN'}
             if result['kind']=='TOKEN_ENTRY_TIMEOUT':
                 # No acquisition starts after input expires. A separate one-second
@@ -452,13 +480,37 @@ def run(ar,cap,provider,*,https_fixture=None,fault=''):
                 for pipe in (process.stdin,process.stdout) if process.poll() is not None else ():
                     if pipe:pipe.close()
             result['worker_exited']=process is None or process.poll() is not None
-            if time.monotonic()>deadline:result['kind']='DEADLINE_OVERRUN'
+            if time.monotonic()>deadline:
+                result['kind']='DEADLINE_OVERRUN'
+                if reason=='UNKNOWN_FAILURE':reason='WORKER_DEADLINE_EXCEEDED'
             if claimed:
                 if not result['worker_exited'] or result['kind']=='FENCING_UNCONFIRMED':block_unfenced(ar,cap)
-                state=ledger(ar,cap)
-                if state['next']<106 and state['windows'][state['next']]['state'] in ('RESERVED','ATTEMPTED'):
-                    state['windows'][state['next']]['state']='FAILED' if result['kind']=='FAILED' else 'UNKNOWN'
-                state['state']='SESSION_CONSUMED' if result['kind']=='DONE' else 'OUTCOME_UNKNOWN'
-                ar.put('journal.json',encoded(state),replace=True)
-                ar.put('result.json',encoded(dict(version=1,session=cap['session'],source=cap['source'],catalogue=CATALOGUE_HASH,kind=result['kind'],attempts=state['attempts'],completed=state['next'],worker_exited=result['worker_exited'],grant_sha256=digest(ar.read('grant.claimed.json')))))
+                if result['kind']=='FENCING_UNCONFIRMED' or not result['worker_exited']:reason='FENCING_UNCONFIRMED';last_stage='CLEANUP'
+                state=None
+                try:state=ledger(ar,cap)
+                except Exception:
+                    reason='ACCOUNTING_INCONSISTENT';last_stage='ACCOUNTING'
+                    if result['kind']=='DONE':result['kind']='OUTCOME_UNKNOWN'
+                if state is not None:
+                    if state['next']<106 and state['windows'][state['next']]['state'] in ('RESERVED','ATTEMPTED'):
+                        state['windows'][state['next']]['state']='FAILED' if result['kind']=='FAILED' else 'UNKNOWN'
+                    state['state']='SESSION_CONSUMED' if result['kind']=='DONE' else 'OUTCOME_UNKNOWN'
+                    try:ar.put('journal.json',encoded(state),replace=True)
+                    except Exception:
+                        reason='ARCHIVE_PUBLICATION_FAILED';last_stage='ARCHIVE'
+                        if result['kind']=='DONE':result['kind']='OUTCOME_UNKNOWN'
+                summary=dict(version=1,session=cap['session'],source=cap['source'],catalogue=CATALOGUE_HASH,kind=result['kind'],attempts=state['attempts'] if state else None,completed=state['next'] if state else None,worker_exited=result['worker_exited'],grant_sha256=digest(ar.read('grant.claimed.json')))
+                if result['kind']!='DONE':
+                    index=active_index if type(active_index) is int and 0<=active_index<106 else None
+                    summary['failure_reason']=reason;summary['failure_stage']=last_stage
+                    try:summary['diagnostic_sha256']=ar.put('diagnostic.json',encoded(record(cap,reason,last_stage,index)))
+                    except Exception:summary['diagnostic_publication']='FAILED_NO_FALLBACK'
+                try:ar.put('result.json',encoded(summary))
+                except Exception:
+                    if result['kind']=='DONE':result['kind']='OUTCOME_UNKNOWN'
+                    if not ar.path('diagnostic.json').exists() and not ar.path('diagnostic.json.pending').exists():
+                        try:ar.put('diagnostic.json',encoded(record(cap,'ARCHIVE_PUBLICATION_FAILED','ARCHIVE',active_index if type(active_index) is int and 0<=active_index<106 else None)))
+                        except Exception:pass
+                    # A claimed grant/pending evidence remains spent even when
+                    # the device cannot durably accept final diagnostic writes.
     return result

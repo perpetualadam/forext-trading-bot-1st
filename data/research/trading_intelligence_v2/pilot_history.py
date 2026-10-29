@@ -75,7 +75,7 @@ def merge_window_bundles(source, windows, bundles, *, start, end, classification
             raise ResearchRejected('merge_plan_boundary_refused')
     if type(bundles) is not tuple or len(bundles) != len(windows):
         raise ResearchRejected('three_completed_pilot_batches_required' if len(windows)==3 else 'all_completed_planned_batches_required')
-    records, reports, seen = [], [], set()
+    imported_batches = []
     for window, bundle in zip(windows, bundles):
         request, journal, result = (decode(bundle[k]) for k in ('request', 'journal', 'result'))
         if (request.get('session') != window.session or request.get('source') != source or
@@ -93,6 +93,18 @@ def merge_window_bundles(source, windows, bundles, *, start, end, classification
             raise ResearchRejected('pilot_cross_session_authority_refused')
         imported = import_bundle(bundle['request'], bundle['manifest'], bundle['raw'],
                                  bundle['validated'], review=bundle['review'], independent_required=False)
+        imported_batches.append(imported)
+    return merge_imported_batches(windows, tuple(imported_batches), start=start, end=end, classification=classification)
+
+
+def merge_imported_batches(windows, imported_batches, *, start, end, classification):
+    """Combine already provenance-checked importer results; never grant authority."""
+    if len(windows)!=len(imported_batches) or not windows or windows[0].start!=start or windows[-1].end!=end:
+        raise ResearchRejected('merge_plan_coverage_refused')
+    if any(w.start%300 or w.end%300 or not 0<w.end-w.start<=300000 or i and windows[i-1].end!=w.start for i,w in enumerate(windows)):
+        raise ResearchRejected('merge_plan_boundary_refused')
+    records, reports, seen = [], [], set()
+    for window, imported in zip(windows, imported_batches):
         for row in imported['records']:
             t = timestamp(row['time'])
             if t in seen:

@@ -74,7 +74,7 @@ class Archive:
             if self.session_id is not None and self.path('request.json').exists():
                 if decode(self.read('request.json')).get('kind')=='BOUNDED_106':
                     from .bounded_acquisition import budget_guard
-                    self.publication_guard=lambda relative,value:budget_guard(self,len(value),accounting=relative in ('journal.json','result.json'))
+                    self.publication_guard=lambda relative,value:budget_guard(self,len(value),accounting=relative in ('journal.json','result.json','diagnostic.json'))
         except BaseException:self.close();raise
 
     def _session_identity(self,pin):

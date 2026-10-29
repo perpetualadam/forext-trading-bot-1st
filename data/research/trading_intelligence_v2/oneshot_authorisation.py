@@ -28,12 +28,12 @@ SOURCE_FILES=('__init__.py','oneshot_authorisation.py','oneshot.py','oneshot_wor
     'oneshot_https_fixture.py','oneshot_response.py','oanda_existing_readonly.py',
     'oanda_history_transport.py','oanda_history_manifest.py','core.py',
     'history_fixtures.py','historical_manifest.py','confirmation_input.py','token_input.py','session_namespace.py','request_profile.py',
-    'bounded_acquisition.py','bounded_history_entry.py','historical_sources.py','oanda_research_import.py',
+    'bounded_acquisition.py','bounded_history_entry.py','historical_sources.py','oanda_research_import.py','failure_diagnostics.py',
     'reports/v28b/V28B_REQUEST_WINDOWS.json')
 RIGHTS_PHRASE='I CONFIRM ACCOUNT ENTITLEMENT AND PRIVATE RESEARCH RETENTION'
 ENDPOINT_PHRASE='I ACCEPT ONE NON-ACCOUNT ENDPOINT CONNECTIVITY CHECK'
 FIELDS={'version','mode','root','session','spec','source','identity','issued','expires','parent','conditions','started'}
-SESSION_FILES=('journal.json','grant.json','grant.claimed.json','worker.claimed.json','acquisition.json','result.json')
+SESSION_FILES=('journal.json','grant.json','grant.claimed.json','worker.claimed.json','acquisition.json','result.json','diagnostic.json')
 PREPARATION_SECONDS=15
 TOKEN_SECONDS=120
 ACQUISITION_SECONDS=15

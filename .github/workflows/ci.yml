@@ -330,3 +330,7 @@ jobs:
           python-version: "3.12"
       - name: Verify finite catalogue with synthetic credentials and loopback HTTPS
         run: python -I -S -B data/research/trading_intelligence_v2/v26d_run.py --bounded-tests
+      - name: Verify V28D credential-safe bounded failure diagnostics
+        run: python -I -S -B data/research/trading_intelligence_v2/v26d_run.py --v28d-diagnostic-tests
+      - name: Verify V28D offline partial merge and remaining catalogue
+        run: python -I -S -B data/research/trading_intelligence_v2/v28d_research_run.py

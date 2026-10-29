@@ -141,7 +141,7 @@ class CandleTransport:
             if connection is not None: connection.close()
 
 
-def _exchange_get(connection,host,path,params,token,deadline):
+def _exchange_get(connection,host,path,params,token,deadline,*,_diagnostics=None):
     """Shared wire exchange; no connection factory/host override in the public API.
 
     Production constructs its normal verified connection above. Only the separate
@@ -150,13 +150,18 @@ def _exchange_get(connection,host,path,params,token,deadline):
     from urllib.parse import urlencode
     approved_request('GET',host,path,params)
     if time.monotonic()>=deadline:raise TimeoutError()
+    if _diagnostics is not None:_diagnostics.set('TRANSMIT')
     connection.request('GET',path+'?'+urlencode(params),headers={
         'Authorization':'Bearer '+token,'Accept-Datetime-Format':'RFC3339',
         'Accept':'application/json','Accept-Encoding':'identity'})
+    if _diagnostics is not None:_diagnostics.set('HEADERS')
     response=connection.getresponse()
-    if response.status!=200:return Response(response.status,b'',response.getheader('Retry-After'))
+    if response.status!=200:
+        if _diagnostics is not None:_diagnostics.set('HTTP')
+        return Response(response.status,b'',response.getheader('Retry-After'))
     length=getattr(response,'length',None) # existing injected response protocol need not expose framing state
     if length is not None and length>MAX_BODY:raise ResearchRejected('BODY_SIZE_REFUSED')
+    if _diagnostics is not None:_diagnostics.set('BODY')
     chunks=[];size=0
     while True:
         remaining=deadline-time.monotonic()

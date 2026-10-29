@@ -71,7 +71,7 @@ def prepare_session(base,session_id,source,*,synthetic=False,_bounded_rights=Non
                         archive.put('request.json',encoded(request_metadata(archive,source)))
                     else:
                         from .bounded_acquisition import metadata,budget_guard
-                        archive.publication_guard=lambda relative,value:budget_guard(archive,len(value),accounting=relative in ('journal.json','result.json'))
+                        archive.publication_guard=lambda relative,value:budget_guard(archive,len(value),accounting=relative in ('journal.json','result.json','diagnostic.json'))
                         archive.put('rights_scope.json',encoded(_bounded_rights))
                         archive.put('request.json',encoded(metadata(archive,source)))
                 with Archive(root,synthetic=synthetic) as archive:require_prepared(archive,source)
