@@ -27,6 +27,14 @@ import unittest.mock
 import urllib.parse
 import uuid
 
+PILOT_TEST=sys.argv[1:2]==['--native-pilot-tests']
+if PILOT_TEST:
+    if len(sys.argv)!=3 or sys.argv[2] not in ('--pilot-window=1','--pilot-window=2','--pilot-window=3'):
+        raise SystemExit('FIXED_PILOT_TEST_SELECTOR_REQUIRED')
+    PILOT_FLAG=sys.argv.pop()
+    sys.argv[1]='--native-rollover-tests'
+else:PILOT_FLAG=None
+
 if sys.argv[1:] not in (['--tests'],['--native-tests'],['--v26e-tests'],['--native-v26e-tests'],['--v26g-tests'],['--native-v26g-tests'],['--v27-tests'],['--native-v27-tests'],['--activation-tests'],['--native-activation-tests'],['--rollover-tests'],['--native-rollover-tests']):
     raise SystemExit('usage: v26d_run.py --tests | --native-tests | --v26e-tests | --native-v26e-tests | --v26g-tests | --native-v26g-tests | --v27-tests | --native-v27-tests')
 ROLLOVER=sys.argv[1:] in (['--rollover-tests'],['--native-rollover-tests'])
@@ -42,6 +50,7 @@ for p in (PACKAGE/'outputs',PACKAGE/'outputs/v26c',BASE):
     if p.is_symlink() or getattr(p,'is_junction',lambda:False)() or p.resolve()!=p:raise SystemExit('UNSAFE_FIXTURE_ROOT')
     p.mkdir(exist_ok=True)
 os.environ.clear()
+if PILOT_FLAG is not None:sys.argv.append(PILOT_FLAG)
 spec=importlib.util.spec_from_file_location('tiv2',PACKAGE/'__init__.py',submodule_search_locations=[str(PACKAGE)])
 module=importlib.util.module_from_spec(spec);sys.modules['tiv2']=module;spec.loader.exec_module(module)
 if os.name=='nt':
@@ -72,14 +81,14 @@ def audit(event,args):
     if event in {'os.system','os.exec','os.spawn','os.fork','os.startfile'}:raise PermissionError('V26D_EXEC_REFUSED')
     if event=='subprocess.Popen':
         executable,argv,cwd,env=args
-        worker=[sys.executable,'-I','-S','-B',str(WORKER),'--worker']
+        worker=[sys.executable,'-I','-S','-B',str(WORKER),'--worker']+([PILOT_FLAG] if PILOT_FLAG is not None else [])
         if ACTIVATION:
             base_exe=getattr(sys,'_base_executable',sys.executable)
             probe=[base_exe,'-I','-S','-B',str(PACKAGE/'test_v27_rollover.py'),'--fixture-open-probe']
             if ROLLOVER and executable in (None,base_exe) and argv in (probe,subprocess.list2cmdline(probe)):
                 if env!=({'SystemRoot':r'C:\Windows'} if os.name=='nt' else {}):raise PermissionError('V26D_SUBPROCESS_ENV_REFUSED')
                 return
-            direct=[base_exe,'-I','-S','-B',str(WORKER),'--worker']
+            direct=[base_exe,'-I','-S','-B',str(WORKER),'--worker']+([PILOT_FLAG] if PILOT_FLAG is not None else [])
             if executable in (None,base_exe) and argv in (direct,subprocess.list2cmdline(direct)):
                 if env!=({'SystemRoot':r'C:\Windows'} if os.name=='nt' else {}):raise PermissionError('V26D_SUBPROCESS_ENV_REFUSED')
                 return
@@ -120,7 +129,7 @@ def audit(event,args):
 
 
 sys.addaudithook(audit)
-test_name='test_v27_rollover' if ROLLOVER else 'test_v27_activation' if ACTIVATION else 'test_v27' if V27 else 'test_v26g' if V26G else 'test_v26e' if V26E else 'test_v26d'
+test_name='test_v28a_native' if PILOT_TEST else 'test_v27_rollover' if ROLLOVER else 'test_v27_activation' if ACTIVATION else 'test_v27' if V27 else 'test_v26g' if V26G else 'test_v26e' if V26E else 'test_v26d'
 spec=importlib.util.spec_from_file_location('tiv2.'+test_name,PACKAGE/(test_name+'.py'))
 tests=importlib.util.module_from_spec(spec);sys.modules[spec.name]=tests;tests.NATIVE=NATIVE
 spec.loader.exec_module(tests)

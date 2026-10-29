@@ -17,9 +17,8 @@ import time
 from .oneshot_archive import Archive,Refused
 from .oanda_history_manifest import encoded,digest,decode
 
-SPEC={'method':'GET','host':'api-fxtrade.oanda.com','path':'/v3/instruments/EUR_USD/candles',
-      'params':{'from':'2026-09-02T10:00:00Z','to':'2026-09-02T10:49:59Z',
-                'granularity':'M5','price':'MBA','smooth':'false','includeFirst':'true'}}
+from .request_profile import active_specification, arguments as profile_arguments
+SPEC=active_specification()
 SPEC_HASH=digest(encoded(SPEC))
 WORKER=Path(__file__).with_name('oneshot_worker.py').resolve()
 STATES={'NOT_AUTHORISED','AUTHORISED_NOT_CONSUMED','REQUEST_RESERVED','REQUEST_ATTEMPTED',
@@ -190,7 +189,7 @@ def run_once(root,*,synthetic_secret,seconds=15.0,fault='',pin=None,
         # Windows venv redirectors introduce an intermediate PID. Admitted
         # sessions need the direct trusted interpreter for exact worker binding.
         worker_exe=getattr(sys,'_base_executable',sys.executable) if live and os.name=='nt' else sys.executable
-        process=subprocess.Popen([worker_exe,'-I','-S','-B',str(WORKER),'--worker'],
+        process=subprocess.Popen([worker_exe,'-I','-S','-B',str(WORKER),'--worker',*profile_arguments()],
             stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,
             env=child_env,start_new_session=os.name!='nt',close_fds=True)
         if os.name=='nt':

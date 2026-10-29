@@ -100,12 +100,13 @@ def packet():
 
 def main():
     global LOOPBACK_PORT,LIVE_POLICY,LIVE_APPROVED,LIVE_ROOT,ACTIVE_ROOT,SESSION_READS
-    if sys.argv[1:]!=['--worker']:raise ValueError()
     os.environ.clear()
     if os.name=='nt':os.environ['SystemRoot']=r'C:\Windows'
     # Windows primitives are bound before audit, only kernel32/advapi32 are used.
     spec=importlib.util.spec_from_file_location('tiv2',PACKAGE/'__init__.py',submodule_search_locations=[str(PACKAGE)])
     module=importlib.util.module_from_spec(spec);sys.modules['tiv2']=module;spec.loader.exec_module(module)
+    from tiv2.request_profile import arguments as profile_arguments
+    if sys.argv[1:]!=['--worker',*profile_arguments()]:raise ValueError()
     if os.name=='nt':
         from tiv2 import oneshot_windows
     sys.addaudithook(audit)

@@ -19,13 +19,15 @@ from .confirmation_input import read_confirmation
 DISABLED='AUTHENTICATED_EXECUTION_DISABLED'
 PACKAGE=Path(__file__).resolve().parent
 SEAL=PACKAGE/'reports/v27_activation/source_seal.json'
-PREPARATION=PACKAGE/'reports/v27_activation/next_request_preparation.json'
+from .request_profile import SELECTED, request_id as profile_request_id, specification
+PREPARATION=PACKAGE/('reports/v27_activation/next_request_preparation.json' if SELECTED is None else
+    'reports/v27_activation/pilot_request_preparation_'+str(SELECTED+1)+'.json')
 SOURCE_FILES=('__init__.py','oneshot_authorisation.py','oneshot.py','oneshot_worker.py',
     'direct_history.py','historical_session_entry.py','oneshot_credentials.py',
     'oneshot_network.py','oneshot_archive.py','oneshot_windows.py','oneshot_bridge.py',
     'oneshot_https_fixture.py','oneshot_response.py','oanda_existing_readonly.py',
     'oanda_history_transport.py','oanda_history_manifest.py','core.py',
-    'history_fixtures.py','historical_manifest.py','confirmation_input.py','token_input.py','session_namespace.py')
+    'history_fixtures.py','historical_manifest.py','confirmation_input.py','token_input.py','session_namespace.py','request_profile.py')
 RIGHTS_PHRASE='I CONFIRM ACCOUNT ENTITLEMENT AND PRIVATE RESEARCH RETENTION'
 ENDPOINT_PHRASE='I ACCEPT ONE NON-ACCOUNT ENDPOINT CONNECTIVITY CHECK'
 FIELDS={'version','mode','root','session','spec','source','identity','issued','expires','parent','conditions','started'}
@@ -41,7 +43,7 @@ def source_seal():
     try:
         value=decode(SEAL.read_bytes())
         if (type(value) is not dict or set(value)!={'version','baseline','spec','sources','authorises_execution'} or
-            type(value['version']) is not int or value['version']!=1 or value['authorises_execution'] is not False or value['spec']!=SPEC_HASH or
+            type(value['version']) is not int or value['version']!=1 or value['authorises_execution'] is not False or value['spec']!=digest(encoded(specification())) or
             not re.fullmatch('[0-9a-f]{40}',value['baseline']) or set(value['sources'])!=set(SOURCE_FILES)):
             raise ValueError()
         for name in SOURCE_FILES:
@@ -52,7 +54,9 @@ def source_seal():
 
 def prepared_request_nonce(source):
     """Non-authorising proposal metadata; never a permit or reservation."""
-    if not PREPARATION.exists():return uuid.uuid4().hex
+    if not PREPARATION.exists():
+        if profile_request_id() is not None:raise Refused('PILOT_PREPARATION_REQUIRED')
+        return uuid.uuid4().hex
     try:
         proposal=decode(PREPARATION.read_bytes())
         if (set(proposal)!={'version','request_id','source','spec','authorises_execution'} or
@@ -60,6 +64,7 @@ def prepared_request_nonce(source):
             proposal['authorises_execution'] is not False or proposal['source']!=source or
             proposal['spec']!=SPEC_HASH or type(proposal['request_id']) is not str or
             not re.fullmatch('[0-9a-f]{32}',proposal['request_id'])):raise ValueError()
+        if profile_request_id() is not None and proposal['request_id']!=profile_request_id():raise ValueError()
         return proposal['request_id']
     except Exception:raise Refused('REQUEST_PREPARATION_REFUSED') from None
 
@@ -83,6 +88,8 @@ def _shape(cap):
         type(cap['issued']) not in (int,float) or type(cap['expires']) not in (int,float) or
         cap['expires']-cap['issued']!=LIFETIME_SECONDS or not cap['issued']<=time.time()<cap['expires']):
         raise Refused('SESSION_SCOPE_OR_EXPIRY_REFUSED')
+    if cap['mode']=='LIVE' and profile_request_id() is not None and cap['session']!=profile_request_id():
+        raise Refused('PILOT_SESSION_BINDING_REFUSED')
     expected='OPERATOR_ATTESTED_LIMITED_RESEARCH_RETENTION_AND_ENDPOINT_UNCERTAINTY' if cap['mode']=='LIVE' else 'SYNTHETIC_TEST_ONLY'
     from .session_namespace import session_root
     namespaced=Path(cap['root']).parent.name=='sessions'
@@ -223,6 +230,7 @@ def _issue(archive,mode,*,started=None,confirmation=None):
         raise Refused('GRANT_SCOPE_REFUSED')
     if mode=='LIVE' and (archive.session_id is None or archive.namespace_base!=Path(APPROVED)):
         raise Refused('APPROVED_SESSION_ROOT_REQUIRED')
+    if mode=='LIVE':require_pilot_predecessors()
     with Archive(archive.root,synthetic=mode=='OFFLINE_TEST',pin=archive.identity):pass
     _unused(archive);now=time.time();started=time.monotonic() if started is None else started
     source=source_seal()
@@ -238,6 +246,8 @@ def _issue(archive,mode,*,started=None,confirmation=None):
             raise Refused('TERMINAL_CONFIRMATION_REQUIRED')
         session=proof[4]
         if session!=archive.session_id:raise Refused('SESSION_CONFIRMATION_BINDING_REFUSED')
+    if mode=='LIVE' and profile_request_id() is not None and session!=profile_request_id():
+        raise Refused('PILOT_SESSION_BINDING_REFUSED')
     cap=dict(version=3 if archive.session_id is not None else 2,mode=mode,root=str(archive.root),session=session,spec=SPEC_HASH,
         source=source,identity=digest(encoded(archive.identity)),issued=now,expires=now+LIFETIME_SECONDS,parent=os.getpid(),started=started,
         conditions='OPERATOR_ATTESTED_LIMITED_RESEARCH_RETENTION_AND_ENDPOINT_UNCERTAINTY' if mode=='LIVE' else 'SYNTHETIC_TEST_ONLY')
@@ -253,9 +263,57 @@ def issue_offline_fixture(archive):
     with archive.locked():return _issue(archive,'OFFLINE_TEST')
 
 
+def require_pilot_predecessors():
+    """Read-only parent admission check. Never pass sibling authority to worker.
+
+    Every earlier fixed window must be durably successful under this same seal.
+    Missing, refused, crashed or ambiguous results stop progression, not retry.
+    A successful result still cannot supply the new terminal confirmation.
+    """
+    if SELECTED is None or SELECTED == 0:return
+    from .request_profile import PILOT_IDS
+    from .session_namespace import session_root
+    for index in range(SELECTED):
+        previous=PILOT_IDS[index]
+        with Archive(session_root(APPROVED,previous)) as archive:
+            if any(archive.path(n+'.pending').exists() for n in SESSION_FILES):
+                raise Refused('PILOT_PREDECESSOR_AMBIGUOUS')
+            result=decode(archive.read('result.json'))
+            state=decode(archive.read('journal.json'))
+            spec=digest(encoded(specification(index)))
+            if (result.get('kind')!='DONE' or result.get('session')!=previous or
+                    result.get('source')!=source_seal() or result.get('spec')!=spec or
+                    result.get('attempts')!=1 or result.get('worker_exited') is not True or
+                    result.get('journal_state')!='SESSION_CONSUMED' or
+                    state.get('session')!=previous or state.get('state')!='SESSION_CONSUMED' or
+                    state.get('spec')!=spec or state.get('attempts')!=1 or
+                    archive.path('grant.json').exists() or
+                    result.get('grant_sha256')!=digest(archive.read('grant.claimed.json'))):
+                raise Refused('PILOT_PREDECESSOR_NOT_SUCCESSFUL')
+            request=decode(archive.read('request.json'))
+            grant=decode(archive.read('grant.claimed.json'))
+            identity=digest(encoded(archive.identity))
+            if (request.get('session')!=previous or request.get('source')!=source_seal() or
+                    request.get('spec')!=specification(index) or request.get('identity')!=archive.identity or
+                    grant.get('session')!=previous or grant.get('mode')!='LIVE' or
+                    grant.get('source')!=source_seal() or grant.get('spec')!=spec or
+                    grant.get('root')!=str(archive.root) or grant.get('identity')!=identity or
+                    state.get('identity')!=identity):
+                raise Refused('PILOT_PREDECESSOR_BINDING_REFUSED')
+            receipt=decode(archive.read('manifests/v26c_https.json'))
+            if (receipt.get('synthetic') is not False or receipt.get('session')!=previous or
+                    receipt.get('request_sha256')!=digest(archive.read('request.json')) or
+                    receipt.get('raw_sha256')!=digest(archive.read('raw/v26c_https.json')) or
+                    receipt.get('validated_sha256')!=digest(archive.read('validated/v26c_https.json')) or
+                    any(archive.path(n+'.pending').exists() for n in
+                        ('raw/v26c_https.json','validated/v26c_https.json','manifests/v26c_https.json'))):
+                raise Refused('PILOT_PREDECESSOR_ARCHIVE_REFUSED')
+
+
 def issue_live_interactively():
     """Never called by tests or during implementation; no noninteractive writer."""
     if os.name!='nt' or not sys.stdin.isatty() or not sys.stdout.isatty():raise Refused(DISABLED)
+    require_pilot_predecessors()
     source=source_seal()
     request_id=prepared_request_nonce(source)
     from .session_namespace import session_root,require_prepared

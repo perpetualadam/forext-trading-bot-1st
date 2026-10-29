@@ -66,7 +66,8 @@ def run_approved_session(reservation):
 
 
 def launch(argv=None):
-    if list(sys.argv[1:] if argv is None else argv):
+    from .request_profile import arguments as profile_arguments
+    if list(sys.argv[1:] if argv is None else argv)!=profile_arguments():
         print('NO_ARGUMENTS_ALLOWED');return 2
     try:
         # Grant creation is interactive, exact-scope and refuses existing state.

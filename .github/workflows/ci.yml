@@ -285,3 +285,18 @@ jobs:
           python-version: "3.12"
       - name: Verify offline provenance-aware OANDA research import
         run: python -I -S -B data/research/trading_intelligence_v2/v28_run.py --v28-tests
+
+  trading-intelligence-v28a-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify offline three-window pilot and completed-batch reconciliation
+        run: python -I -S -B data/research/trading_intelligence_v2/v28a_run.py --v28a-tests
