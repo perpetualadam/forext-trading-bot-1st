@@ -34,7 +34,7 @@ def safe_parts(relative):
 class Archive:
     def __init__(self,root,*,synthetic=False,pin=None,_bind_session=False):
         self.root=Path(root).absolute();self.synthetic=synthetic;self.handles=[]
-        self.session_id=None;self.namespace_base=None
+        self.session_id=None;self.namespace_base=None;self.publication_guard=None
         try:
             if self.root.parent.name=='sessions':
                 if not re.fullmatch('[0-9a-f]{32}',self.root.name):raise Refused('SESSION_ID_REFUSED')
@@ -71,6 +71,10 @@ class Archive:
                 self.identity={'owner':owner,'directories':identities}
                 actual=decode(self.read('manifests/v26c_archive_binding.json'))
                 if actual!={'version':1,'identity':self.identity}:raise Refused('IDENTITY_CHANGED')
+            if self.session_id is not None and self.path('request.json').exists():
+                if decode(self.read('request.json')).get('kind')=='BOUNDED_106':
+                    from .bounded_acquisition import budget_guard
+                    self.publication_guard=lambda relative,value:budget_guard(self,len(value),accounting=relative in ('journal.json','result.json'))
         except BaseException:self.close();raise
 
     def _session_identity(self,pin):
@@ -142,6 +146,7 @@ class Archive:
                 finally:os.close(fd)
 
     def put(self,relative,value,*,replace=False):
+        if self.publication_guard is not None:self.publication_guard(relative,value)
         target=self.path(relative)
         if target.exists() and not replace:raise Refused('IMMUTABLE_FILE_EXISTS')
         pending=relative+'.pending';tmp=self.path(pending)
@@ -169,7 +174,7 @@ class Archive:
                 import fcntl
                 try:fcntl.flock(stream,fcntl.LOCK_EX|fcntl.LOCK_NB)
                 except OSError:raise Refused('BUSY') from None
-            try:yield
+            try:yield stream
             finally:
                 stream.seek(0)
                 if os.name=='nt':msvcrt.locking(stream.fileno(),msvcrt.LK_UNLCK,1)

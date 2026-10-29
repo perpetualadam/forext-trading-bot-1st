@@ -27,7 +27,9 @@ SOURCE_FILES=('__init__.py','oneshot_authorisation.py','oneshot.py','oneshot_wor
     'oneshot_network.py','oneshot_archive.py','oneshot_windows.py','oneshot_bridge.py',
     'oneshot_https_fixture.py','oneshot_response.py','oanda_existing_readonly.py',
     'oanda_history_transport.py','oanda_history_manifest.py','core.py',
-    'history_fixtures.py','historical_manifest.py','confirmation_input.py','token_input.py','session_namespace.py','request_profile.py')
+    'history_fixtures.py','historical_manifest.py','confirmation_input.py','token_input.py','session_namespace.py','request_profile.py',
+    'bounded_acquisition.py','bounded_history_entry.py','historical_sources.py','oanda_research_import.py',
+    'reports/v28b/V28B_REQUEST_WINDOWS.json')
 RIGHTS_PHRASE='I CONFIRM ACCOUNT ENTITLEMENT AND PRIVATE RESEARCH RETENTION'
 ENDPOINT_PHRASE='I ACCEPT ONE NON-ACCOUNT ENDPOINT CONNECTIVITY CHECK'
 FIELDS={'version','mode','root','session','spec','source','identity','issued','expires','parent','conditions','started'}
@@ -159,12 +161,18 @@ def _verify_reservation(value):
 
 
 def require_live_reservation(value):
+    if type(value) is dict and value.get('version')==4:
+        from .bounded_acquisition import verify
+        return verify(value)
     try:return _verify_reservation(value)
     except Refused:raise
     except Exception:raise Refused('SESSION_STATE_UNAVAILABLE') from None
 
 
 def require_role(cap,purpose,*,worker_pid=None):
+    if type(cap) is dict and cap.get('version')==4:
+        from .bounded_acquisition import role
+        return role(cap,purpose,worker_pid=worker_pid)
     require_live_reservation(cap)
     if admitted(cap):
         context={'reservation':cap,'purpose':purpose}

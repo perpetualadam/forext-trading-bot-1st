@@ -1,0 +1,1405 @@
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -315,3 +315,18 @@
+           python-version: "3.12"
+       - name: Verify non-authorising year plan and offline merger
+         run: python -I -S -B data/research/trading_intelligence_v2/v28b_run.py --v28b-tests
++
++  trading-intelligence-v28c-bounded:
++    runs-on: ubuntu-latest
++    timeout-minutes: 20
++    permissions:
++      contents: read
++    steps:
++      - uses: actions/checkout@v4
++        with:
++          persist-credentials: false
++      - uses: actions/setup-python@v5
++        with:
++          python-version: "3.12"
++      - name: Verify finite catalogue with synthetic credentials and loopback HTTPS
++        run: python -I -S -B data/research/trading_intelligence_v2/v26d_run.py --bounded-tests
+diff --git a/data/research/trading_intelligence_v2/bounded_acquisition.py b/data/research/trading_intelligence_v2/bounded_acquisition.py
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/bounded_acquisition.py
+@@ -0,0 +1,464 @@
++"""Finite branch of the existing one-shot supervisor/worker and journal model.
++
++No transport, credential loader or archive implementation lives here. One fixed
++catalogue, one grant, one worker, one token input; every reservation is spent.
++"""
++import copy
++import math
++import os
++from pathlib import Path
++import queue
++import re
++import shutil
++import signal
++import subprocess
++import sys
++import threading
++import time
++from .oneshot_archive import Archive,APPROVED,Refused
++from .oanda_history_manifest import encoded,decode,digest,validated
++from .core import timestamp
++from .oanda_history_transport import rate_delay
++
++PACKAGE=Path(__file__).resolve().parent
++CATALOGUE=PACKAGE/'reports/v28b/V28B_REQUEST_WINDOWS.json'
++CATALOGUE_HASH='2d5f5b38efb65a0cffd5f63ad38a7da62344d653bdba84dad9438cf1eac96bf9'
++LIMITS=dict(startup=15,token=120,request=15,session=1800,spacing=1,bytes=256*1024*1024,attempts=106)
++FIELDS={'version','mode','root','session','source','catalogue','identity','parent','issued','expires','started','rights','limits'}
++_SPEC_BYTES=None
++_SPEC_HASHES=None
++STATES={'NEVER','RESERVED','ATTEMPTED','COMPLETED','FAILED','UNKNOWN'}
++
++
++def catalogue():
++    global _SPEC_BYTES,_SPEC_HASHES
++    raw=CATALOGUE.read_bytes().replace(b'\r\n',b'\n')
++    if digest(raw)!=CATALOGUE_HASH:raise Refused('CATALOGUE_CHANGED')
++    value=decode(raw);windows=value['windows']
++    if len(windows)!=106 or value['calendar_slots']!=105120:raise Refused('CATALOGUE_SCOPE_REFUSED')
++    _SPEC_BYTES=tuple(encoded(w['specification']) for w in windows)
++    _SPEC_HASHES=tuple(digest(x) for x in _SPEC_BYTES)
++    return windows
++
++
++def spec(index):
++    if type(index) is not int or not 0<=index<106:raise Refused('CATALOGUE_INDEX_REFUSED')
++    if _SPEC_BYTES is None:catalogue()
++    return decode(_SPEC_BYTES[index])
++
++
++def marker(index):
++    if type(index) is not int or not 0<=index<106:raise Refused('CATALOGUE_INDEX_REFUSED')
++    return 'temporary_batches/v28c_'+CATALOGUE_HASH+'_'+str(index)+'.json'
++
++
++def budget_guard(ar,extra,*,accounting=False):
++    if type(extra) is not int or extra<0:raise Refused('DISK_BUDGET_REFUSED')
++    total=0
++    for p in ar.root.rglob('*'):
++        if p.is_file():total+=ar.path(p.relative_to(ar.root).as_posix()).stat().st_size
++    if ar.namespace_base is not None:
++        with Archive(ar.namespace_base,synthetic=ar.synthetic) as parent:
++            for i in range(106):
++                p=parent.path(marker(i))
++                if p.exists():total+=p.stat().st_size
++    if total+extra>LIMITS['bytes']-(0 if accounting else 1024*1024):raise Refused('DISK_BUDGET_EXHAUSTED')
++    if shutil.disk_usage(ar.root).free<extra+65536:raise Refused('DISK_SPACE_EXHAUSTED')
++    return total
++
++
++def metadata(ar,source):
++    return dict(version=2,kind='BOUNDED_106',session=ar.session_id,identity=ar.identity,
++                source=source,catalogue=CATALOGUE_HASH,rights=digest(ar.read('rights_scope.json')),
++                limits=LIMITS,authorises_execution=False)
++
++
++def require_prepared(ar,source):
++    if ar.session_id is None or decode(ar.read('request.json'))!=metadata(ar,source):raise Refused('BOUNDED_PREPARATION_REFUSED')
++    if any(ar.path(n+'.pending').exists() for n in ('request.json','rights_scope.json','session_binding.json')):raise Refused('AMBIGUOUS_PREPARATION')
++
++
++def rights(ar):
++    from .historical_sources import permission
++    r=decode(ar.read('rights_scope.json'));permission(r)
++    if (r.get('provider')!='OANDA' or r.get('catalogue_sha256')!=CATALOGUE_HASH or
++        r.get('scope_reviewed') is not True or r.get('permitted_scope')!='PRIVATE_LOCAL_106_WINDOWS' or
++        r.get('public_distribution_allowed') is not False):raise Refused('BOUNDED_RIGHTS_SCOPE_REQUIRED')
++    return r
++
++
++def preflight(ar):
++    from .oneshot_authorisation import source_seal,_unused
++    require_prepared(ar,source_seal());rights(ar);_unused(ar)
++    from .session_namespace import acquisition_lock
++    with acquisition_lock(ar):pass
++    if shutil.disk_usage(ar.root).free<LIMITS['bytes']:raise Refused('DISK_SPACE_EXHAUSTED')
++    with Archive(ar.namespace_base,synthetic=ar.synthetic) as parent:
++        for i in range(106):
++            if parent.path(marker(i)).exists() or parent.path(marker(i)+'.pending').exists():raise Refused('CATALOGUE_WINDOW_ALREADY_SPENT')
++    return True
++
++
++def confirmation(ar):
++    from .oneshot_authorisation import source_seal
++    return 'CONFIRM 106 HISTORICAL EUR_USD GETS '+ar.session_id+' '+CATALOGUE_HASH+' '+source_seal()
++
++
++def issue(ar,*,_fixture=False,fixture_limits=None,_proof=None):
++    from . import oneshot_authorisation as a
++    if _fixture:
++        if not ar.synthetic:raise Refused('SYNTHETIC_ARCHIVE_REQUIRED')
++    elif _proof not in a._CONFIRMATIONS:raise Refused('TERMINAL_CONFIRMATION_REQUIRED')
++    if not _fixture and (ar.synthetic or ar.namespace_base!=Path(APPROVED)):raise Refused('APPROVED_ROOT_REQUIRED')
++    preflight(ar);now=time.time();started=time.monotonic();limits=dict(LIMITS)
++    if _fixture and fixture_limits:
++        if set(fixture_limits)-{'startup','token','request','session','spacing'}:raise Refused('FIXTURE_LIMITS_REFUSED')
++        limits.update(fixture_limits)
++    if not _fixture:
++        proof=a._CONFIRMATIONS.pop(_proof,None)
++        if proof!=(a.source_seal(),ar.session_id,CATALOGUE_HASH,106,os.getpid(),digest(encoded(ar.identity)),digest(ar.read('rights_scope.json'))):raise Refused('BOUNDED_CONFIRMATION_REFUSED')
++    cap=dict(version=4,mode='OFFLINE_TEST' if _fixture else 'LIVE',root=str(ar.root),session=ar.session_id,
++             source=a.source_seal(),catalogue=CATALOGUE_HASH,identity=digest(encoded(ar.identity)),parent=os.getpid(),
++             issued=now,expires=now+limits['startup']+limits['token']+limits['session'],started=started,
++             rights=digest(ar.read('rights_scope.json')),limits=limits)
++    ar.put('grant.json',encoded(cap))
++    ar.put('journal.json',encoded(dict(version=3,session=ar.session_id,source=cap['source'],catalogue=CATALOGUE_HASH,
++        state='AUTHORISED_NOT_CONSUMED',attempts=0,next=0,windows=[dict(index=i,spec=digest(encoded(spec(i))),state='NEVER',http_attempts=0) for i in range(106)])))
++    return cap
++
++
++def issue_interactively(ar):
++    from . import oneshot_authorisation as a
++    if os.name!='nt' or not sys.stdin.isatty() or not sys.stdout.isatty():raise Refused('INTERACTIVE_TERMINAL_REQUIRED')
++    preflight(ar);approved_source=a.source_seal();approved_rights=digest(ar.read('rights_scope.json'));approved_identity=digest(encoded(ar.identity))
++    phrase=confirmation(ar)
++    print('106 fixed EUR_USD M5/MBA GETs; one token entry; 256 MiB; 1800-second finite acquisition deadline.')
++    print('2024-09-01T00:00:00Z to 2025-09-01T00:00:00Z exclusive. No retry/resume. No trading.')
++    print('Rights: '+a.RIGHTS_PHRASE);print('Endpoint: '+a.ENDPOINT_PHRASE);print('Confirmation: '+phrase)
++    if input('Rights attestation: ')!=a.RIGHTS_PHRASE:raise Refused('DATA_USE_CONDITIONS_NOT_CONFIRMED')
++    if input('Endpoint acknowledgement: ')!=a.ENDPOINT_PHRASE:raise Refused('ENDPOINT_CONDITIONS_NOT_CONFIRMED')
++    a.read_confirmation(phrase)
++    if a.source_seal()!=approved_source or digest(ar.read('rights_scope.json'))!=approved_rights or digest(encoded(ar.identity))!=approved_identity:raise Refused('STALE_BOUNDED_APPROVAL')
++    proof=os.urandom(16).hex();a._CONFIRMATIONS[proof]=(approved_source,ar.session_id,CATALOGUE_HASH,106,os.getpid(),approved_identity,approved_rights)
++    try:
++        with ar.locked():return issue(ar,_proof=proof)
++    finally:a._CONFIRMATIONS.pop(proof,None)
++
++
++def ledger(ar,cap):
++    if _SPEC_BYTES is None:catalogue()
++    value=decode(ar.read('journal.json'))
++    if (set(value)!={'version','session','source','catalogue','state','attempts','next','windows'} or
++        value['version']!=3 or value['session']!=cap['session'] or value['source']!=cap['source'] or
++        value['catalogue']!=CATALOGUE_HASH or type(value['attempts']) is not int or not 0<=value['attempts']<=106 or
++        type(value['next']) is not int or not 0<=value['next']<=106 or len(value['windows'])!=106):raise Refused('BOUNDED_JOURNAL_REFUSED')
++    spent=completed=0
++    for i,w in enumerate(value['windows']):
++        if (type(w.get('index')) is not int or w.get('index')!=i or w.get('spec')!=_SPEC_HASHES[i] or w.get('state') not in STATES or
++            type(w.get('http_attempts')) is not int or w['http_attempts'] not in (0,1)):raise Refused('WINDOW_STATE_REFUSED')
++        if w['state'] in ('NEVER','RESERVED') and w['http_attempts']!=0 or w['state']=='COMPLETED' and w['http_attempts']!=1:raise Refused('WINDOW_ATTEMPT_INCONSISTENT')
++        if w['state']!='NEVER':spent+=1
++        if w['state']=='COMPLETED':completed+=1
++        if i<value['next'] and w['state']!='COMPLETED':raise Refused('PREDECESSOR_NOT_COMPLETED')
++        if i>value['next'] and w['state']!='NEVER':raise Refused('OUT_OF_ORDER_WINDOW')
++    if value['attempts']!=spent or value['next']!=completed:raise Refused('REQUEST_BUDGET_INCONSISTENT')
++    if any(ar.path(n+'.pending').exists() for n in ('grant.json','grant.claimed.json','journal.json','worker.claimed.json','acquisition.json','result.json')):raise Refused('AMBIGUOUS_PUBLICATION')
++    return value
++
++
++def verify(cap):
++    from .oneshot_authorisation import source_seal
++    if (type(cap) is not dict or set(cap)!=FIELDS or cap['version']!=4 or cap['mode'] not in ('LIVE','OFFLINE_TEST') or
++        cap['catalogue']!=CATALOGUE_HASH or cap['source']!=source_seal() or
++        type(cap['session']) is not str or not re.fullmatch('[0-9a-f]{32}',cap['session']) or
++        type(cap['parent']) is not int or cap['parent']<=0 or type(cap['limits']) is not dict or set(cap['limits'])!=set(LIMITS)):
++        raise Refused('BOUNDED_GRANT_REFUSED')
++    limits=cap['limits']
++    if any(type(v) not in (int,float) or not math.isfinite(v) or v<=0 for v in limits.values()):raise Refused('BOUNDED_LIMITS_REFUSED')
++    if (limits['attempts']!=106 or limits['bytes']!=LIMITS['bytes'] or cap['mode']=='LIVE' and limits!=LIMITS or
++        any(limits[k]>LIMITS[k] for k in LIMITS)):raise Refused('BOUNDED_LIMITS_REFUSED')
++    lifetime=limits['startup']+limits['token']+limits['session']
++    if (any(type(cap[k]) not in (int,float) or not math.isfinite(cap[k]) for k in ('started','issued','expires')) or
++        cap['expires']-cap['issued']!=lifetime or not cap['issued']<=time.time()<cap['expires'] or
++        not 0<=time.monotonic()-cap['started']<=lifetime):raise Refused('BOUNDED_SESSION_EXPIRED')
++    if cap['mode']=='LIVE' and cap['root']!=str(Path(APPROVED)/'sessions'/cap['session']):raise Refused('BOUNDED_ROOT_REFUSED')
++    with Archive(cap['root'],synthetic=cap['mode']=='OFFLINE_TEST') as ar:
++        require_prepared(ar,cap['source']);rights(ar)
++        if cap['session']!=ar.session_id:raise Refused('BOUNDED_SESSION_SUBSTITUTED')
++        if cap['identity']!=digest(encoded(ar.identity)) or cap['rights']!=digest(ar.read('rights_scope.json')):raise Refused('BOUNDED_IDENTITY_CHANGED')
++        claimed=ar.path('grant.claimed.json').exists()
++        if decode(ar.read('grant.claimed.json' if claimed else 'grant.json'))!=cap:raise Refused('BOUNDED_GRANT_SUBSTITUTED')
++        state=ledger(ar,cap)
++        if state['state'] not in ('AUTHORISED_NOT_CONSUMED','REQUEST_RESERVED','ACTIVE'):raise Refused('BOUNDED_SESSION_CONSUMED')
++        if (state['state']=='AUTHORISED_NOT_CONSUMED')==claimed:raise Refused('AMBIGUOUS_GRANT_STATE')
++        if state['state']!='ACTIVE' and time.monotonic()>=cap['started']+limits['startup']:raise Refused('PREPARATION_DEADLINE_EXHAUSTED')
++    return cap
++
++
++def role(cap,purpose,*,worker_pid=None):
++    verify(cap)
++    with Archive(cap['root'],synthetic=cap['mode']=='OFFLINE_TEST') as ar:
++        state=ledger(ar,cap)
++        if purpose=='preflight':return cap
++        if purpose=='worker_claim':
++            if state['state']!='REQUEST_RESERVED' or os.getppid()!=cap['parent'] or ar.path('worker.claimed.json').exists():raise Refused('BOUNDED_WORKER_CLAIM_REFUSED')
++            return cap
++        worker=decode(ar.read('worker.claimed.json'))
++        if worker.get('session')!=cap['session'] or worker.get('source')!=cap['source'] or worker.get('parent')!=cap['parent'] or type(worker.get('pid')) is not int:raise Refused('BOUNDED_WORKER_REFUSED')
++        token_deadline=worker.get('credential_deadline')
++        if type(token_deadline) not in (int,float) or not math.isfinite(token_deadline) or not cap['started']+cap['limits']['token']<=token_deadline<=cap['started']+cap['limits']['startup']+cap['limits']['token']:raise Refused('TOKEN_DEADLINE_BINDING_REFUSED')
++        if purpose=='credential':
++            if os.getpid()!=cap['parent'] or worker_pid not in (None,worker['pid']) or ar.path('acquisition.json').exists() or time.monotonic()>=worker['credential_deadline']:raise Refused('TOKEN_ENTRY_TIMEOUT')
++            return cap
++        if purpose not in ('network','fixture_dispatch') or worker['pid']!=os.getpid() or worker['parent']!=os.getppid():raise Refused('BOUNDED_PROCESS_REFUSED')
++        if purpose=='network' and cap['mode']!='LIVE' or purpose=='fixture_dispatch' and cap['mode']!='OFFLINE_TEST':raise Refused('FIXTURE_CANNOT_AUTHORISE_LIVE')
++        phase(ar,cap)
++        index=state['next']
++        if index>=106 or state['windows'][index]['state']!='ATTEMPTED' or state['windows'][index]['http_attempts']!=1:raise Refused('DURABLE_WINDOW_RESERVATION_REQUIRED')
++        w=state['windows'][index]
++        if (w.get('worker')!=worker['pid'] or any(type(w.get(k)) not in (int,float) or not math.isfinite(w[k]) for k in ('started','deadline','dispatched')) or
++            w['deadline']!=min(w['started']+cap['limits']['request'],phase(ar,cap)['deadline']) or
++            not w['started']<=w['dispatched']<w['deadline'] or time.monotonic()>=w['deadline']-min(1,cap['limits']['request']/3)):raise Refused('WINDOW_DEADLINE')
++    return cap
++
++
++def request_for(cap):
++    role(cap,'network' if cap['mode']=='LIVE' else 'fixture_dispatch')
++    with Archive(cap['root'],synthetic=cap['mode']=='OFFLINE_TEST') as ar:return spec(ledger(ar,cap)['next'])
++
++
++def network_key(cap):
++    request_for(cap)
++    with Archive(cap['root'],synthetic=cap['mode']=='OFFLINE_TEST') as ar:return (cap['session'],ledger(ar,cap)['next'])
++
++
++def guard(cap,request):
++    if encoded(request)!=encoded(request_for(cap)):raise Refused('BOUNDED_EXACT_REQUEST_REQUIRED')
++    return True
++
++
++def phase(ar,cap):
++    p=decode(ar.read('acquisition.json'));worker=decode(ar.read('worker.claimed.json'))
++    if (set(p)!={'session','source','parent','worker','started','deadline'} or
++        any(type(p[k]) not in (int,float) or not math.isfinite(p[k]) for k in ('started','deadline')) or
++        p['session']!=cap['session'] or p['source']!=cap['source'] or p['parent']!=cap['parent'] or p['worker']!=worker['pid'] or
++        not cap['started']<=p['started']<=time.monotonic() or p['started']>=worker['credential_deadline'] or
++        p['deadline']!=p['started']+cap['limits']['session'] or time.monotonic()>=p['deadline']-1):raise Refused('BOUNDED_SESSION_DEADLINE')
++    return p
++
++
++def verify_completed(ar,cap,index):
++    state=ledger(ar,cap);w=state['windows'][index]
++    if w['state']!='COMPLETED' or w['http_attempts']!=1:raise Refused('WINDOW_NOT_COMPLETED')
++    name='v26c_year_'+str(index).zfill(3);r=decode(ar.read('manifests/'+name+'.json'))
++    if (r.get('raw')!='raw/'+name+'.json' or r.get('validated')!='validated/'+name+'.json' or r.get('index')!=index or r.get('session')!=cap['session'] or r.get('source')!=cap['source'] or r.get('catalogue')!=CATALOGUE_HASH or
++        r.get('synthetic')!=(cap['mode']=='OFFLINE_TEST') or r.get('request_sha256')!=digest(ar.read('request.json')) or r.get('identity')!=cap['identity'] or r.get('start')!=timestamp(spec(index)['params']['from']) or r.get('end')!=timestamp(spec(index)['params']['to'])+1 or r.get('spec_sha256')!=digest(encoded(spec(index))) or r.get('raw_sha256')!=digest(ar.read(r['raw'])) or
++        r.get('validated_sha256')!=digest(ar.read(r['validated'])) or w.get('manifest_sha256')!=digest(ar.read('manifests/'+name+'.json'))):raise Refused('COMPLETED_WINDOW_CORRUPTED')
++    return r
++
++
++def claim_window(ar,cap,index,worker_pid):
++    verify(cap);phase(ar,cap);state=ledger(ar,cap)
++    if os.getpid()!=cap['parent'] or state['state']!='ACTIVE' or state['next']!=index or state['attempts']>=106 or state['windows'][index]['state']!='NEVER':raise Refused('WINDOW_ALREADY_SPENT_OR_BUDGET_EXHAUSTED')
++    for previous in range(index):verify_completed(ar,cap,previous)
++    with Archive(ar.namespace_base,synthetic=ar.synthetic) as parent:
++        for previous in range(index):
++            if parent.path(marker(previous)+'.pending').exists() or digest(parent.read(marker(previous)))!=state['windows'][previous].get('marker_sha256'):raise Refused('SPENT_MARKER_CORRUPTED')
++    started=time.monotonic();value=encoded(dict(session=cap['session'],catalogue=CATALOGUE_HASH,index=index,spec=digest(encoded(spec(index))),state='RESERVED'))
++    with Archive(ar.namespace_base,synthetic=ar.synthetic) as parent:
++        if parent.path(marker(index)).exists() or parent.path(marker(index)+'.pending').exists():raise Refused('CATALOGUE_WINDOW_ALREADY_SPENT')
++        parent.publication_guard=lambda relative,data:budget_guard(ar,len(data))
++        marker_sha=parent.put(marker(index),value)
++    state['windows'][index].update(state='RESERVED',worker=worker_pid,started=started,deadline=min(started+cap['limits']['request'],phase(ar,cap)['deadline']),marker_sha256=marker_sha)
++    state['attempts']+=1;ar.put('journal.json',encoded(state),replace=True)
++    return state['windows'][index]
++
++
++def worker_main(packet,emit,scope):
++    start=packet(4096);cap=start['reservation'];fixture=cap.get('mode')=='OFFLINE_TEST';fault=start.get('fault','')
++    if cap.get('version')!=4 or (fault and not fixture):raise Refused('BOUNDED_WORKER_ENTRY_REFUSED')
++    allowed={'','crash_before_dispatch','crash_during_dispatch','crash_after_response','stall_after_response','invalid_schema','credential_echo'}
++    if fault not in allowed:raise Refused('FIXTURE_FAULT_REFUSED')
++    root=Path(cap['root']).absolute();scope.configure_session_reads(root)
++    if str(root)!=start['root']:raise Refused('BOUNDED_ROOT_REFUSED')
++    verify(cap);role(cap,'worker_claim')
++    scope.ACTIVE_ROOT=root;scope.LIVE_APPROVED=not fixture
++    if fixture:
++        from .oneshot_https_fixture import validate_binding
++        validate_binding(start['https_fixture']);scope.LOOPBACK_PORT=start['https_fixture']['port']
++    elif 'https_fixture' in start:raise Refused('LIVE_CANNOT_USE_FIXTURE')
++    secret=None
++    with Archive(root,synthetic=fixture,pin=start['pin']) as ar,ar.locked():
++        ar.put('worker.claimed.json',encoded(dict(session=cap['session'],source=cap['source'],pid=os.getpid(),parent=os.getppid(),credential_deadline=time.monotonic()+cap['limits']['token'])))
++        state=ledger(ar,cap);state['state']='ACTIVE';ar.put('journal.json',encoded(state),replace=True);emit({'kind':'RESERVED'})
++        try:
++            secret=packet(1024)['credential']
++            from .oneshot_credentials import validate_token
++            validate_token(secret)
++            if fixture:
++                from .oneshot_bridge import validate_synthetic
++                validate_synthetic(secret)
++            phase(ar,cap);last_started=None
++            for index in range(106):
++                p=phase(ar,cap)
++                if last_started is not None:
++                    wait=rate_delay(last_started+cap['limits']['spacing'])
++                    # Same conservative pacing as CandleTransport; wait is part
++                    # of the finite session and never extends either deadline.
++                    if time.monotonic()+wait>=p['deadline']-1:raise Refused('BOUNDED_SESSION_DEADLINE')
++                    threading.Event().wait(wait)
++                emit({'kind':'NEED_WINDOW','index':index})
++                if packet()!=dict(reserved=index):raise Refused('WINDOW_RESERVATION_ACK_REFUSED')
++                state=ledger(ar,cap);w=state['windows'][index]
++                if state['next']!=index or w['state']!='RESERVED' or w['worker']!=os.getpid():raise Refused('DURABLE_WINDOW_RESERVATION_REQUIRED')
++                if fault=='crash_before_dispatch':os._exit(123)
++                if last_started is not None and time.monotonic()-last_started<cap['limits']['spacing']:raise Refused('RATE_LIMIT_REFUSED')
++                state['windows'][index].update(state='ATTEMPTED',http_attempts=1,dispatched=time.monotonic())
++                ar.put('journal.json',encoded(state),replace=True);last_started=state['windows'][index]['dispatched'];emit({'kind':'WINDOW_STARTED','index':index})
++                request=spec(index);guard(cap,request);deadline=w['deadline']-min(1,cap['limits']['request']/3)
++                if fault=='crash_during_dispatch':os._exit(123)
++                if fixture:
++                    from .oneshot_network import fetch_synthetic
++                    raw=fetch_synthetic(start['https_fixture'],secret,deadline,request=request,_bounded=cap)
++                else:
++                    from .oneshot_network import LiveSocketPolicy,fetch_live
++                    scope.LIVE_POLICY=LiveSocketPolicy(cap)
++                    raw=fetch_live(reservation=cap,token=secret,deadline=deadline,_policy=scope.LIVE_POLICY)
++                # Pace from response completion, conservatively guaranteeing spacing
++                # between actual requests even when pre-dispatch validation varies.
++                last_started=time.monotonic()
++                if fault=='crash_after_response':os._exit(123)
++                if fault=='stall_after_response':threading.Event().wait()
++                if fault=='invalid_schema':raw=b'{}'
++                if fault=='credential_echo':raw=secret.encode()
++                if secret.encode() in raw:raise Refused('CREDENTIAL_RESPONSE_REFUSED')
++                begin=timestamp(request['params']['from']);end=timestamp(request['params']['to'])+1;retrieved=time.time()
++                rows,report=validated(raw,'EUR_USD',begin,end,retrieved)
++                if not rows or report['incomplete']:raise Refused('EMPTY_OR_INCOMPLETE_BATCH_REFUSED')
++                guard(cap,request)
++                from .oneshot_response import publish_candles
++                name='v26c_year_'+str(index).zfill(3)
++                publish_candles(ar,raw,name=name,start=begin,end=end,retrieved=retrieved,synthetic=fixture,_bounded=(cap,index))
++                state=ledger(ar,cap)
++                if time.monotonic()>=w['deadline']-min(1,cap['limits']['request']/3):raise Refused('WINDOW_DEADLINE')
++                state['windows'][index].update(state='COMPLETED',manifest_sha256=digest(ar.read('manifests/'+name+'.json')),finished=time.monotonic())
++                state['next']=index+1;ar.put('journal.json',encoded(state),replace=True);emit({'kind':'WINDOW_DONE','index':index})
++                if packet()!=dict(continue_after=index):raise Refused('WINDOW_CONTINUATION_REFUSED')
++            phase(ar,cap);emit({'kind':'DONE','completed':106})
++        except BaseException as error:
++            # Fixed, redacted classification only; raw/token/exception text never
++            # enters a durable failure record or the parent protocol.
++            emit({'kind':'REFUSED','cause':type(error).__name__})
++            raise
++        finally:secret=None
++
++
++def run(ar,cap,provider,*,https_fixture=None,fault=''):
++    """Finite mode of the existing supervisor. No HTTP code or credential cache."""
++    from .oneshot import WORKER,_readlines
++    from .oneshot_bridge import SyntheticCredentialProvider
++    from .direct_history import TerminalCredentialProvider
++    from .oneshot_credentials import validate_token
++    from .session_namespace import acquisition_lock,block_unfenced
++    verify(cap)
++    fixture=cap['mode']=='OFFLINE_TEST'
++    if os.getpid()!=cap['parent'] or (fixture and type(provider) is not SyntheticCredentialProvider) or (not fixture and (type(provider) is not TerminalCredentialProvider or https_fixture is not None or fault)):
++        raise Refused('BOUNDED_PROVIDER_REFUSED')
++    if fixture:
++        from .oneshot_https_fixture import validate_binding
++        validate_binding(https_fixture)
++    process=job=None;messages=queue.Queue();result={'kind':'OUTCOME_UNKNOWN'};claimed=False;token_sent=False
++    deadline=cap['started']+cap['limits']['startup'];work_deadline=deadline-min(1,cap['limits']['startup']/3)
++    with acquisition_lock(ar) as lease:
++        def check_lock():
++            parent=ar.namespace_base/'historical_acquisition.lock'
++            if lease is None or lease.closed or (os.fstat(lease.fileno()).st_dev,os.fstat(lease.fileno()).st_ino)!=(parent.stat().st_dev,parent.stat().st_ino):raise Refused('GLOBAL_LOCK_LOST')
++        try:
++            check_lock()
++            with ar.locked():
++                state=ledger(ar,cap)
++                if state['state']!='AUTHORISED_NOT_CONSUMED' or ar.path('grant.claimed.json').exists():raise Refused('BOUNDED_SESSION_CONSUMED')
++                ar.rename('grant.json','grant.claimed.json');claimed=True;state['state']='REQUEST_RESERVED';ar.put('journal.json',encoded(state),replace=True)
++            exe=getattr(sys,'_base_executable',sys.executable) if os.name=='nt' else sys.executable
++            process=subprocess.Popen([exe,'-I','-S','-B',str(WORKER),'--bounded-worker'],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,
++                                     env={'SystemRoot':r'C:\Windows'} if os.name=='nt' else {},start_new_session=os.name!='nt',close_fds=True)
++            if os.name=='nt':
++                from .oneshot_windows import Job
++                job=Job(process)
++            threading.Thread(target=_readlines,args=(process.stdout,messages),daemon=True).start()
++            def send(value,limit=4096):
++                body=encoded(value)
++                if len(body)>limit:raise Refused('BOUNDED_PACKET_TOO_LARGE')
++                process.stdin.write(body);process.stdin.flush()
++            startup=dict(root=str(ar.root),pin=ar.identity,reservation=cap,fault=fault)
++            if fixture:startup['https_fixture']=https_fixture
++            send(startup)
++            while time.monotonic()<work_deadline:
++                check_lock()
++                try:message=messages.get(timeout=min(.02,max(.001,work_deadline-time.monotonic())))
++                except queue.Empty:
++                    if process.poll() is not None:break
++                    continue
++                kind=message.get('kind')
++                if kind=='RESERVED':
++                    if token_sent:raise Refused('DUPLICATE_TOKEN_REQUEST')
++                    role(cap,'credential',worker_pid=process.pid);worker=decode(ar.read('worker.claimed.json'))
++                    deadline=worker['credential_deadline'];work_deadline=deadline
++                    token=provider.credential() if fixture else provider.credential(cap,deadline=deadline)
++                    validate_token(token)
++                    if time.monotonic()>=deadline:raise Refused('TOKEN_ENTRY_TIMEOUT')
++                    role(cap,'credential',worker_pid=process.pid)
++                    started=time.monotonic();deadline=started+cap['limits']['session'];work_deadline=deadline-1
++                    ar.put('acquisition.json',encoded(dict(session=cap['session'],source=cap['source'],parent=os.getpid(),worker=process.pid,started=started,deadline=deadline)))
++                    send(dict(credential=token),1024);token=None;token_sent=True
++                elif kind=='NEED_WINDOW':
++                    if not token_sent:raise Refused('TOKEN_NOT_ENTERED')
++                    w=claim_window(ar,cap,message.get('index'),process.pid)
++                    deadline=min(w['deadline'],phase(ar,cap)['deadline']);work_deadline=deadline-min(1,cap['limits']['request']/3)
++                    send(dict(reserved=message['index']))
++                elif kind=='WINDOW_STARTED':
++                    if message.get('index')!=ledger(ar,cap)['next']:raise Refused('WINDOW_INDEX_CHANGED')
++                elif kind=='WINDOW_DONE':
++                    verify(cap);verify_completed(ar,cap,message.get('index'));phase(ar,cap)
++                    if time.monotonic()>=work_deadline:raise Refused('WINDOW_DEADLINE')
++                    send(dict(continue_after=message['index']))
++                    deadline=phase(ar,cap)['deadline'];work_deadline=deadline-1
++                elif kind=='DONE':
++                    state=ledger(ar,cap)
++                    if state['next']!=106 or state['attempts']!=106 or message.get('completed')!=106:raise Refused('INCOMPLETE_CATALOGUE')
++                    result={'kind':'DONE','completed':106};break
++                elif kind=='REFUSED':result={'kind':'FAILED' if message.get('cause')=='ResearchRejected' else 'OUTCOME_UNKNOWN'};break
++                else:raise Refused('BOUNDED_WORKER_PROTOCOL_REFUSED')
++        except BaseException as error:
++            result={'kind':'TOKEN_ENTRY_TIMEOUT' if type(error) is Refused and str(error)=='TOKEN_ENTRY_TIMEOUT' else 'OUTCOME_UNKNOWN'}
++            if result['kind']=='TOKEN_ENTRY_TIMEOUT':
++                # No acquisition starts after input expires. A separate one-second
++                # fencing allowance preserves the input refusal classification.
++                deadline=time.monotonic()+1
++        finally:
++            token=None
++            if process is not None:
++                if job is not None:
++                    try:job.kill()
++                    except Exception:result={'kind':'FENCING_UNCONFIRMED'}
++                    finally:job.close()
++                elif process.poll() is None:
++                    if os.name=='nt':process.kill()
++                    else:
++                        try:os.killpg(process.pid,signal.SIGKILL)
++                        except ProcessLookupError:pass
++                try:process.wait(timeout=max(.001,deadline-time.monotonic()))
++                except subprocess.TimeoutExpired:result={'kind':'FENCING_UNCONFIRMED'}
++                for pipe in (process.stdin,process.stdout) if process.poll() is not None else ():
++                    if pipe:pipe.close()
++            result['worker_exited']=process is None or process.poll() is not None
++            if time.monotonic()>deadline:result['kind']='DEADLINE_OVERRUN'
++            if claimed:
++                if not result['worker_exited'] or result['kind']=='FENCING_UNCONFIRMED':block_unfenced(ar,cap)
++                state=ledger(ar,cap)
++                if state['next']<106 and state['windows'][state['next']]['state'] in ('RESERVED','ATTEMPTED'):
++                    state['windows'][state['next']]['state']='FAILED' if result['kind']=='FAILED' else 'UNKNOWN'
++                state['state']='SESSION_CONSUMED' if result['kind']=='DONE' else 'OUTCOME_UNKNOWN'
++                ar.put('journal.json',encoded(state),replace=True)
++                ar.put('result.json',encoded(dict(version=1,session=cap['session'],source=cap['source'],catalogue=CATALOGUE_HASH,kind=result['kind'],attempts=state['attempts'],completed=state['next'],worker_exited=result['worker_exited'],grant_sha256=digest(ar.read('grant.claimed.json')))))
++    return result
+diff --git a/data/research/trading_intelligence_v2/bounded_history_entry.py b/data/research/trading_intelligence_v2/bounded_history_entry.py
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/bounded_history_entry.py
+@@ -0,0 +1,29 @@
++"""Thin terminal entry to the existing bounded worker branch; never run by tests."""
++import importlib.util
++from pathlib import Path
++import sys
++
++def launch():
++    if sys.argv[1:]:raise SystemExit('NO_ARGUMENTS_ALLOWED')
++    package=Path(__file__).resolve().parent
++    if 'tiv2' not in sys.modules:
++        spec=importlib.util.spec_from_file_location('tiv2',package/'__init__.py',submodule_search_locations=[str(package)])
++        module=importlib.util.module_from_spec(spec);sys.modules['tiv2']=module;spec.loader.exec_module(module)
++    from tiv2.bounded_acquisition import run,issue_interactively,CATALOGUE_HASH
++    from tiv2.oneshot_authorisation import source_seal
++    from tiv2.oneshot_archive import Archive,APPROVED,Refused
++    from tiv2.direct_history import TerminalCredentialProvider
++    from tiv2.oanda_history_manifest import decode
++    proposal=decode((package/'reports/v28c/acquisition_preparation.json').read_bytes())
++    if (set(proposal)!={'version','session','source','catalogue','authorises_execution'} or proposal['version']!=1 or
++        proposal['authorises_execution'] is not False or proposal['source']!=source_seal() or proposal['catalogue']!=CATALOGUE_HASH):raise Refused('BOUNDED_PROPOSAL_REFUSED')
++    with Archive(Path(APPROVED)/'sessions'/proposal['session']) as archive:
++        cap=issue_interactively(archive)
++        result=run(archive,cap,TerminalCredentialProvider())
++    print('Historical acquisition: '+result['kind'])
++    return 0 if result['kind']=='DONE' else 2
++
++if __name__=='__main__':
++    try:raise SystemExit(launch())
++    except (KeyboardInterrupt,Exception):
++        print('BOUNDED_HISTORICAL_SESSION_REFUSED');raise SystemExit(2)
+diff --git a/data/research/trading_intelligence_v2/https_test_server.py b/data/research/trading_intelligence_v2/https_test_server.py
+--- a/data/research/trading_intelligence_v2/https_test_server.py
++++ b/data/research/trading_intelligence_v2/https_test_server.py
+@@ -5,6 +5,7 @@
+ import ssl
+ import subprocess
+ import threading
++import time
+ from urllib.parse import parse_qsl,urlsplit
+ from .oneshot import SPEC
+ from .oneshot_archive import FIXTURES,Refused
+@@ -35,12 +36,12 @@
+ 
+ 
+ class LocalHTTPS:
+-    def __init__(self,cert,key,*,scenario='valid',secret):
++    def __init__(self,cert,key,*,scenario='valid',secret,catalogue=None):
+         self.context=ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER);self.context.load_cert_chain(cert,key)
+         self.cert=Path(cert).read_text(encoding='ascii');self.scenario=scenario;self.secret=secret
+         self.stop=threading.Event();self.phase=threading.Event();self.ready=threading.Event()
+-        self.connections=0;self.requests=[];self.errors=[];self.listener=None;self.active=None
+-        self.port=None;self.thread=None
++        self.connections=0;self.requests=[];self.request_times=[];self.errors=[];self.listener=None;self.active=None
++        self.port=None;self.thread=None;self.catalogue=catalogue
+ 
+     def __enter__(self):
+         self.listener=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+@@ -74,14 +75,16 @@
+                 lines=raw.decode('ascii').split('\r\n');method,target,_=lines[0].split(' ')
+                 headers=dict(line.split(': ',1) for line in lines[1:] if ': ' in line)
+                 parsed=urlsplit(target);params=dict(parse_qsl(parsed.query,strict_parsing=True))
+-                valid=method=='GET' and parsed.path==SPEC['path'] and params==SPEC['params']
++                expected=SPEC if self.catalogue is None else self.catalogue[len(self.requests)]
++                valid=method=='GET' and parsed.path==expected['path'] and params==expected['params']
+                 auth=headers.get('Authorization')=='Bearer '+self.secret
++                self.request_times.append(time.monotonic())
+                 self.requests.append({'method':method,'path':parsed.path,'scope_valid':valid,'auth_matches':auth})
+                 if not valid or not auth:raise ValueError()
+                 self.phase.set()
+                 if self.scenario=='delayed_headers':self.stop.wait(10);continue
+-                begin=timestamp(SPEC['params']['from'])
+-                obj=payload(start=begin,count=9 if self.scenario=='nine' else 10)
++                begin=timestamp(expected['params']['from'])
++                obj=payload(start=begin,count=1 if self.catalogue is not None else 9 if self.scenario=='nine' else 10)
+                 if self.scenario=='invalid_schema':obj['instrument']='GBP_USD'
+                 if self.scenario=='incomplete_candles':obj['candles'][-1]['complete']=False
+                 if self.scenario=='credential_echo':obj['echo']=self.secret
+diff --git a/data/research/trading_intelligence_v2/oanda_history_transport.py b/data/research/trading_intelligence_v2/oanda_history_transport.py
+--- a/data/research/trading_intelligence_v2/oanda_history_transport.py
++++ b/data/research/trading_intelligence_v2/oanda_history_transport.py
+@@ -25,6 +25,10 @@
+     if start%300 or end%300!=299 or not 0<end-start<5000*300:
+         raise ResearchRejected('RANGE_REFUSED')
+     return True
++
++
++def rate_delay(next_request,clock=time.monotonic):
++    return max(0,next_request-clock())
+ 
+ 
+ @dataclass(frozen=True)
+@@ -87,7 +91,7 @@
+             if pair not in a.instruments or not a.start<=timestamp(params['from'])<timestamp(params['to'])<a.end:
+                 raise ResearchRejected('OUTSIDE_APPROVED_RETRIEVAL_SCOPE')
+         for attempt in range(self.attempts):
+-            self.pause(max(0,self.next_request-self.clock()))
++            self.pause(rate_delay(self.next_request,self.clock))
+             self.next_request=self.clock()+1.0  # One request and new connection per second.
+             try:
+                 response=self.sender(method,host,path,dict(params))
+diff --git a/data/research/trading_intelligence_v2/oanda_research_import.py b/data/research/trading_intelligence_v2/oanda_research_import.py
+--- a/data/research/trading_intelligence_v2/oanda_research_import.py
++++ b/data/research/trading_intelligence_v2/oanda_research_import.py
+@@ -28,6 +28,18 @@
+         raise ResearchRejected('reviewed_manifest_hash_required')
+     request, manifest = decode(request_bytes), decode(manifest_bytes)
+     spec = request.get('spec', {})
++    if request.get('kind')=='BOUNDED_106':
++        from .bounded_acquisition import CATALOGUE_HASH,LIMITS,spec as fixed_spec,catalogue
++        catalogue()
++        index=manifest.get('index')
++        if (type(index) is not int or not 0<=index<106 or request.get('catalogue')!=CATALOGUE_HASH or
++                request.get('limits')!=LIMITS or request.get('authorises_execution') is not False or
++                manifest.get('catalogue')!=CATALOGUE_HASH or manifest.get('source')!=request.get('source') or
++                type(request.get('source')) is not str or not re.fullmatch('[0-9a-f]{64}',request['source'])):
++            raise ResearchRejected('bounded_catalogue_binding_refused')
++        spec=fixed_spec(index)
++        if manifest.get('spec_sha256')!=digest(encoded(spec)):
++            raise ResearchRejected('bounded_request_hash_refused')
+     pair = manifest.get('instrument')
+     if (type(request.get('session')) is not str or not re.fullmatch('[0-9a-f]{32}', request['session']) or
+             type(request.get('identity')) is not dict or not request['identity']):
+diff --git a/data/research/trading_intelligence_v2/oneshot_archive.py b/data/research/trading_intelligence_v2/oneshot_archive.py
+--- a/data/research/trading_intelligence_v2/oneshot_archive.py
++++ b/data/research/trading_intelligence_v2/oneshot_archive.py
+@@ -34,7 +34,7 @@
+ class Archive:
+     def __init__(self,root,*,synthetic=False,pin=None,_bind_session=False):
+         self.root=Path(root).absolute();self.synthetic=synthetic;self.handles=[]
+-        self.session_id=None;self.namespace_base=None
++        self.session_id=None;self.namespace_base=None;self.publication_guard=None
+         try:
+             if self.root.parent.name=='sessions':
+                 if not re.fullmatch('[0-9a-f]{32}',self.root.name):raise Refused('SESSION_ID_REFUSED')
+@@ -71,6 +71,10 @@
+                 self.identity={'owner':owner,'directories':identities}
+                 actual=decode(self.read('manifests/v26c_archive_binding.json'))
+                 if actual!={'version':1,'identity':self.identity}:raise Refused('IDENTITY_CHANGED')
++            if self.session_id is not None and self.path('request.json').exists():
++                if decode(self.read('request.json')).get('kind')=='BOUNDED_106':
++                    from .bounded_acquisition import budget_guard
++                    self.publication_guard=lambda relative,value:budget_guard(self,len(value),accounting=relative in ('journal.json','result.json'))
+         except BaseException:self.close();raise
+ 
+     def _session_identity(self,pin):
+@@ -142,6 +146,7 @@
+                 finally:os.close(fd)
+ 
+     def put(self,relative,value,*,replace=False):
++        if self.publication_guard is not None:self.publication_guard(relative,value)
+         target=self.path(relative)
+         if target.exists() and not replace:raise Refused('IMMUTABLE_FILE_EXISTS')
+         pending=relative+'.pending';tmp=self.path(pending)
+@@ -169,7 +174,7 @@
+                 import fcntl
+                 try:fcntl.flock(stream,fcntl.LOCK_EX|fcntl.LOCK_NB)
+                 except OSError:raise Refused('BUSY') from None
+-            try:yield
++            try:yield stream
+             finally:
+                 stream.seek(0)
+                 if os.name=='nt':msvcrt.locking(stream.fileno(),msvcrt.LK_UNLCK,1)
+diff --git a/data/research/trading_intelligence_v2/oneshot_authorisation.py b/data/research/trading_intelligence_v2/oneshot_authorisation.py
+--- a/data/research/trading_intelligence_v2/oneshot_authorisation.py
++++ b/data/research/trading_intelligence_v2/oneshot_authorisation.py
+@@ -27,7 +27,9 @@
+     'oneshot_network.py','oneshot_archive.py','oneshot_windows.py','oneshot_bridge.py',
+     'oneshot_https_fixture.py','oneshot_response.py','oanda_existing_readonly.py',
+     'oanda_history_transport.py','oanda_history_manifest.py','core.py',
+-    'history_fixtures.py','historical_manifest.py','confirmation_input.py','token_input.py','session_namespace.py','request_profile.py')
++    'history_fixtures.py','historical_manifest.py','confirmation_input.py','token_input.py','session_namespace.py','request_profile.py',
++    'bounded_acquisition.py','bounded_history_entry.py','historical_sources.py','oanda_research_import.py',
++    'reports/v28b/V28B_REQUEST_WINDOWS.json')
+ RIGHTS_PHRASE='I CONFIRM ACCOUNT ENTITLEMENT AND PRIVATE RESEARCH RETENTION'
+ ENDPOINT_PHRASE='I ACCEPT ONE NON-ACCOUNT ENDPOINT CONNECTIVITY CHECK'
+ FIELDS={'version','mode','root','session','spec','source','identity','issued','expires','parent','conditions','started'}
+@@ -159,12 +161,18 @@
+ 
+ 
+ def require_live_reservation(value):
++    if type(value) is dict and value.get('version')==4:
++        from .bounded_acquisition import verify
++        return verify(value)
+     try:return _verify_reservation(value)
+     except Refused:raise
+     except Exception:raise Refused('SESSION_STATE_UNAVAILABLE') from None
+ 
+ 
+ def require_role(cap,purpose,*,worker_pid=None):
++    if type(cap) is dict and cap.get('version')==4:
++        from .bounded_acquisition import role
++        return role(cap,purpose,worker_pid=worker_pid)
+     require_live_reservation(cap)
+     if admitted(cap):
+         context={'reservation':cap,'purpose':purpose}
+diff --git a/data/research/trading_intelligence_v2/oneshot_network.py b/data/research/trading_intelligence_v2/oneshot_network.py
+--- a/data/research/trading_intelligence_v2/oneshot_network.py
++++ b/data/research/trading_intelligence_v2/oneshot_network.py
+@@ -68,9 +68,17 @@
+         authority.require_role(reservation,'network')
+         if policy is not None and type(policy) is not LiveSocketPolicy:raise Refused('NETWORK_POLICY_REQUIRED')
+         if authority.admitted(reservation):
+-            if reservation['session'] in _DISPATCHED:raise Refused('SECOND_REQUEST_REFUSED')
+-            _DISPATCHED.add(reservation['session'])
++            key=reservation['session']
++            if type(reservation) is dict and reservation.get('version')==4:
++                from .bounded_acquisition import network_key
++                key=network_key(reservation)
++            if key in _DISPATCHED:raise Refused('SECOND_REQUEST_REFUSED')
++            _DISPATCHED.add(key)
+         self._policy=policy if policy is not None else LiveSocketPolicy(reservation)
++        self._spec=SPEC
++        if type(reservation) is dict and reservation.get('version')==4:
++            from .bounded_acquisition import request_for
++            self._spec=request_for(reservation)
+         self._reservation=reservation;self._deadline=deadline;self._connected=False;self._request_sent=False
+         super().__init__(HOST,port=PORT,timeout=remaining(deadline),context=ssl.create_default_context())
+     def connect(self):
+@@ -97,7 +105,7 @@
+         from .oneshot_credentials import validate_token
+         authority.require_role(self._reservation,'network')
+         expected={'Authorization','Accept-Datetime-Format','Accept','Accept-Encoding'}
+-        if (self._request_sent or method!='GET' or url!=SPEC['path']+'?'+urlencode(SPEC['params']) or
++        if (self._request_sent or method!='GET' or url!=self._spec['path']+'?'+urlencode(self._spec['params']) or
+             body is not None or encode_chunked or type(headers) is not dict or set(headers)!=expected or
+             headers['Accept-Datetime-Format']!='RFC3339' or headers['Accept']!='application/json' or
+             headers['Accept-Encoding']!='identity' or type(headers['Authorization']) is not str or not headers['Authorization'].startswith('Bearer ')):
+@@ -106,14 +114,19 @@
+         return super().request(method,url,body=body,headers=headers,encode_chunked=False)
+ 
+ 
+-def _exchange(connection,secret,deadline,request):
++def _exchange(connection,secret,deadline,request,*,reservation=None):
+     """Single transport attempt shared by real implementation and fixture path."""
+-    request_guard(**request)
++    def check(value):
++        if type(reservation) is dict and reservation.get('version')==4:
++            from .bounded_acquisition import guard
++            return guard(reservation,value)
++        return request_guard(**value)
++    check(request)
+     used=False
+     def sender(method,host,path,params):
+         nonlocal used
+         if used:raise Refused('SECOND_REQUEST_REFUSED')
+-        used=True;request_guard(method,host,path,params);remaining(deadline)
++        used=True;check(dict(method=method,host=host,path=path,params=params));remaining(deadline)
+         try:return _exchange_get(connection,host,path,params,secret,deadline)
+         except OSError as error:raise Refused('WIRE_REFUSED') from error
+         finally:connection.close()
+@@ -124,12 +137,17 @@
+     authority.require_role(reservation,'network')
+     from .oneshot_credentials import validate_token
+     secret=validate_token(token)
+-    request_guard(**SPEC);remaining(deadline)
+-    try:return _exchange(_LiveConnection(reservation,deadline,_policy),secret,deadline,SPEC)
++    request=SPEC
++    if type(reservation) is dict and reservation.get('version')==4:
++        from .bounded_acquisition import request_for
++        request=request_for(reservation)
++    else:request_guard(**request)
++    remaining(deadline)
++    try:return _exchange(_LiveConnection(reservation,deadline,_policy),secret,deadline,request,reservation=reservation)
+     except Exception:raise Refused('LIVE_TRANSPORT_REFUSED') from None
+ 
+ 
+-def fetch_synthetic(binding,secret,deadline,checkpoint=lambda phase:None,*,request=None):
++def fetch_synthetic(binding,secret,deadline,checkpoint=lambda phase:None,*,request=None,_bounded=None):
+     """Fixture only: cannot select another host or accept a real credential."""
+     from .oneshot_https_fixture import validate_binding
+     from .oneshot_bridge import validate_synthetic
+@@ -137,7 +155,11 @@
+     try:
+         value=decode(encoded(SPEC if request is None else request))
+         if type(value) is not dict or set(value)!={'method','host','path','params'}:raise ValueError()
+-        request_guard(**value)
++        if _bounded is None:request_guard(**value)
++        else:
++            if _bounded.get('mode')!='OFFLINE_TEST':raise Refused('FIXTURE_ONLY')
++            from .bounded_acquisition import guard
++            guard(_bounded,value)
+     except (TypeError,ValueError,OverflowError,Refused):raise Refused('EXACT_REQUEST_REQUIRED') from None
+     remaining(deadline)
+     context=ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+@@ -153,5 +175,5 @@
+                 self.sock=context.wrap_socket(sock,server_hostname=hostname)
+             except BaseException:sock.close();raise
+     connection=LoopbackConnection('127.0.0.1',port=binding['port'],timeout=remaining(deadline),context=context)
+-    try:return _exchange(connection,secret,deadline,value)
++    try:return _exchange(connection,secret,deadline,value,reservation=_bounded)
+     except OSError as error:raise Refused('FIXTURE_WIRE_REFUSED') from error
+diff --git a/data/research/trading_intelligence_v2/oneshot_response.py b/data/research/trading_intelligence_v2/oneshot_response.py
+--- a/data/research/trading_intelligence_v2/oneshot_response.py
++++ b/data/research/trading_intelligence_v2/oneshot_response.py
+@@ -4,7 +4,7 @@
+ from .oanda_history_manifest import encoded,validated
+ 
+ 
+-def publish_candles(archive,raw,*,name,start,end,retrieved,synthetic):
++def publish_candles(archive,raw,*,name,start,end,retrieved,synthetic,_bounded=None):
+     """No HTTP, credential access, missing-candle repair or retry.
+ 
+     Commit manifest is published last. A partial set is not a complete dataset.
+@@ -27,5 +27,11 @@
+         from .oanda_history_manifest import digest
+         receipt.update(session=archive.session_id,identity=digest(encoded(archive.identity)),
+                        request_sha256=digest(archive.read('request.json')))
++    if _bounded is not None:
++        cap,index=_bounded
++        from .bounded_acquisition import guard,spec,CATALOGUE_HASH
++        guard(cap,spec(index))
++        from .oanda_history_manifest import digest
++        receipt.update(catalogue=CATALOGUE_HASH,index=index,spec_sha256=digest(encoded(spec(index))),source=cap['source'])
+     archive.put('manifests/'+name+'.json',encoded(receipt))
+     return receipt
+diff --git a/data/research/trading_intelligence_v2/oneshot_worker.py b/data/research/trading_intelligence_v2/oneshot_worker.py
+--- a/data/research/trading_intelligence_v2/oneshot_worker.py
++++ b/data/research/trading_intelligence_v2/oneshot_worker.py
+@@ -26,7 +26,7 @@
+ LIVE_ROOT=Path(r'C:\TradingResearchData\OANDA')
+ ACTIVE_ROOT=None
+ SESSION_FILES=('grant.json','grant.claimed.json','journal.json','worker.claimed.json',
+-               'acquisition.json','result.json','session_binding.json','request.json')
++               'acquisition.json','result.json','session_binding.json','request.json','rights_scope.json')
+ SESSION_READS=frozenset()
+ SOURCE_SEAL=PACKAGE/'reports/v27_activation/source_seal.json'
+ 
+@@ -46,7 +46,7 @@
+     # Code/cache and the standard library are runtime resources, not archive
+     # state. The two exact JSON exceptions are non-authorising identity/review
+     # metadata. Package outputs, reports and proposals are otherwise denied.
+-    return (path in (BINDING,SOURCE_SEAL) or path.is_relative_to(STDLIB) or
++    return (path in (BINDING,SOURCE_SEAL,PACKAGE/'reports/v28b/V28B_REQUEST_WINDOWS.json') or path.is_relative_to(STDLIB) or
+             path.parent==PACKAGE and path.suffix=='.py' or
+             path.parent==PACKAGE/'__pycache__' and path.suffix=='.pyc')
+ 
+@@ -92,9 +92,9 @@
+ def emit(value):sys.stdout.write(json.dumps(value,separators=(',',':'))+'\n');sys.stdout.flush()
+ 
+ 
+-def packet():
+-    raw=sys.stdin.buffer.readline(2049)
+-    if len(raw)>2048:raise ValueError()
++def packet(limit=2048):
++    raw=sys.stdin.buffer.readline(limit+1)
++    if len(raw)>limit:raise ValueError()
+     return json.loads(raw)
+ 
+ 
+@@ -106,10 +106,13 @@
+     spec=importlib.util.spec_from_file_location('tiv2',PACKAGE/'__init__.py',submodule_search_locations=[str(PACKAGE)])
+     module=importlib.util.module_from_spec(spec);sys.modules['tiv2']=module;spec.loader.exec_module(module)
+     from tiv2.request_profile import arguments as profile_arguments
+-    if sys.argv[1:]!=['--worker',*profile_arguments()]:raise ValueError()
++    if sys.argv[1:] not in (['--worker',*profile_arguments()],['--bounded-worker']):raise ValueError()
+     if os.name=='nt':
+         from tiv2 import oneshot_windows
+     sys.addaudithook(audit)
++    if sys.argv[1:]==['--bounded-worker']:
++        from tiv2.bounded_acquisition import worker_main
++        return worker_main(packet,emit,sys.modules[__name__])
+     from tiv2.oneshot import reserve,claim_reserved_worker,transition,request_guard,SPEC,FAULTS
+     from tiv2.oneshot_archive import Archive
+     from tiv2.history_fixtures import payload
+diff --git a/data/research/trading_intelligence_v2/reports/v27_activation/source_seal.json b/data/research/trading_intelligence_v2/reports/v27_activation/source_seal.json
+--- a/data/research/trading_intelligence_v2/reports/v27_activation/source_seal.json
++++ b/data/research/trading_intelligence_v2/reports/v27_activation/source_seal.json
+@@ -1 +1,36 @@
+-{"authorises_execution":false,"baseline":"95c061bb2411b064be50bd77d058a7b1a665db69","sources":{"__init__.py":"32ef654908553b1ca0e2db5de347884e36e7a8af67a2a07c5db7ef5c5e5f76f2","confirmation_input.py":"6da5262b5139f06d17fe5b199383d3427740e778d0797363b05c3028ffdc4310","core.py":"20b19e35c75c9bf07c7fe34ff8df9bb99637eb78d2e37cf23493b072641bd82d","direct_history.py":"091a85dd2ee3339ac2683934b19010603ca1b060d9db4126a8280372ee90e8a1","historical_manifest.py":"9f09f9148de3eea87239cc474fc9ab2d9f25018d290f9c54e7552a13042d4501","historical_session_entry.py":"f5d09ff21a763a4da2dfc142511f79a8759784d4977a9885be474786ec36e16a","history_fixtures.py":"af0d04cfcc4a4c09484fbb5ba4e795e94f1c7d4725338ed69f38f78b8a807425","oanda_existing_readonly.py":"27f03a4320514e9a70b9726cb1f42ac33f1b11a79ddd18b644b98cd8f9ff3590","oanda_history_manifest.py":"c657612d72bdbeaf94ae808150190043379fc5daca56b4fccd25cf6e78139749","oanda_history_transport.py":"8b4c6bd7330e00379eb8b167d696b2dd918140cd59a257a7524cddfcde7fb973","oneshot.py":"db954c4ca4b63c9a9865dd1c70f514baf48070d3145a2e36eb7b72a8e4feb538","oneshot_archive.py":"15884abfedbb29cc1c5cdc4e734876e5759a48e6c13ca7756935479ac96fb6b2","oneshot_authorisation.py":"1fd954776691fac5418920aadf17705b5fcc08525ab572ee66d85f66186104d5","oneshot_bridge.py":"c23643cd3022346e9f422fdc2cc34d1b73b623b8e24ca22111324930bff9eab6","oneshot_credentials.py":"0d90920a10b5ff99b6670bff4dddca171e097de7b1102544cbf22041f78c90a6","oneshot_https_fixture.py":"054ce2bf18cfd88d46e849e71b78b22ed135b459618855de1d7bd6292c19b7b1","oneshot_network.py":"f33853de7383aaf6947b5208126c9dc1e0c81f476e737a5c8ded0193eca2b58e","oneshot_response.py":"aa0621f27acb5fc2ff198920bacb222437d271862b888fe9b4aba68c253d472b","oneshot_windows.py":"b77b84017de5de7dc7919252a71725ad80f843668ce52d3dc4eea3c90177c892","oneshot_worker.py":"ae25d5167ba93ee86d06bc3a979a5f8fc12647d2545716636ba00fba31af79b7","request_profile.py":"da9a886ea4e0053e7e76fcca5af6f85c26c46fc5f790fe1675fd275b2a8162d1","session_namespace.py":"4b62e81f12bfc94dc9646c5508fd0d083619c3c3812f81625e6b216359c86757","token_input.py":"5b57157d7d80a34a15f041e89fd71855f58871394ffb797af2ba0af3388c54ff"},"spec":"001d36b1a63e8c71c0dfb5977ded513eaa0ba450d96b2bdd0120d84e5241d229","version":1}
++{
++  "authorises_execution": false,
++  "baseline": "52568b3e2a69c36296f7b3fe2fc502b9c5a290eb",
++  "sources": {
++    "__init__.py": "32ef654908553b1ca0e2db5de347884e36e7a8af67a2a07c5db7ef5c5e5f76f2",
++    "oneshot_authorisation.py": "9258beb74359a259adfd360b80afbd8f6d29c1b7cc0d20b52dc2fb30f47a195b",
++    "oneshot.py": "db954c4ca4b63c9a9865dd1c70f514baf48070d3145a2e36eb7b72a8e4feb538",
++    "oneshot_worker.py": "97504dc9ff73addaeefb30606ea84689f6ae5dafd9f9dbe6bb15ece10cdd7bbb",
++    "direct_history.py": "091a85dd2ee3339ac2683934b19010603ca1b060d9db4126a8280372ee90e8a1",
++    "historical_session_entry.py": "f5d09ff21a763a4da2dfc142511f79a8759784d4977a9885be474786ec36e16a",
++    "oneshot_credentials.py": "0d90920a10b5ff99b6670bff4dddca171e097de7b1102544cbf22041f78c90a6",
++    "oneshot_network.py": "5a68f6f95bde36d7d3be1e535426bd95a7c257a0d975a4830433be3da447a819",
++    "oneshot_archive.py": "a35377336b25f0e13865fb7ed17f62cb4e5d593781619c82d5636cd7442eab33",
++    "oneshot_windows.py": "b77b84017de5de7dc7919252a71725ad80f843668ce52d3dc4eea3c90177c892",
++    "oneshot_bridge.py": "c23643cd3022346e9f422fdc2cc34d1b73b623b8e24ca22111324930bff9eab6",
++    "oneshot_https_fixture.py": "054ce2bf18cfd88d46e849e71b78b22ed135b459618855de1d7bd6292c19b7b1",
++    "oneshot_response.py": "9be0cdb8f12352e7574b1f779f5c6ea4486435f4797174cc9928921a1394df4f",
++    "oanda_existing_readonly.py": "27f03a4320514e9a70b9726cb1f42ac33f1b11a79ddd18b644b98cd8f9ff3590",
++    "oanda_history_transport.py": "baf7229c77ffe278587da78dffb8fe3251586c60680333a0a97d88fb115b5c45",
++    "oanda_history_manifest.py": "c657612d72bdbeaf94ae808150190043379fc5daca56b4fccd25cf6e78139749",
++    "core.py": "20b19e35c75c9bf07c7fe34ff8df9bb99637eb78d2e37cf23493b072641bd82d",
++    "history_fixtures.py": "af0d04cfcc4a4c09484fbb5ba4e795e94f1c7d4725338ed69f38f78b8a807425",
++    "historical_manifest.py": "9f09f9148de3eea87239cc474fc9ab2d9f25018d290f9c54e7552a13042d4501",
++    "confirmation_input.py": "6da5262b5139f06d17fe5b199383d3427740e778d0797363b05c3028ffdc4310",
++    "token_input.py": "5b57157d7d80a34a15f041e89fd71855f58871394ffb797af2ba0af3388c54ff",
++    "session_namespace.py": "263e0b89c083d9e0ccff4c8e60ba7e52450a4d83cb692a71ddd810f1e2f482ae",
++    "request_profile.py": "da9a886ea4e0053e7e76fcca5af6f85c26c46fc5f790fe1675fd275b2a8162d1",
++    "bounded_acquisition.py": "d1a4e1473bb8b1fcfca9beb3b8d2ec9393caa928222f149149cb9bf9367df167",
++    "bounded_history_entry.py": "88f03c193474eec23aea0b05595aa65ad5545c17778ef4bf9cf0f67914fb9c64",
++    "historical_sources.py": "c7d6f22a77a96dcf5314bbe21a725ae600170cc8dc56d064aeaf320ef16fa602",
++    "oanda_research_import.py": "addd2fdede6d9977c82a3b257ec36255fc2a85eb0f8caf683774b5e46df0a223",
++    "reports/v28b/V28B_REQUEST_WINDOWS.json": "2d5f5b38efb65a0cffd5f63ad38a7da62344d653bdba84dad9438cf1eac96bf9"
++  },
++  "spec": "001d36b1a63e8c71c0dfb5977ded513eaa0ba450d96b2bdd0120d84e5241d229",
++  "version": 1
++}
+diff --git a/data/research/trading_intelligence_v2/session_namespace.py b/data/research/trading_intelligence_v2/session_namespace.py
+--- a/data/research/trading_intelligence_v2/session_namespace.py
++++ b/data/research/trading_intelligence_v2/session_namespace.py
+@@ -24,6 +24,9 @@
+ 
+ def require_prepared(archive,source):
+     if archive.session_id is None:raise Refused('SESSION_REQUIRED')
++    if decode(archive.read('request.json')).get('kind')=='BOUNDED_106':
++        from .bounded_acquisition import require_prepared as check
++        return check(archive,source)
+     if encoded(decode(archive.read('request.json')))!=encoded(request_metadata(archive,source)):raise Refused('SESSION_REQUEST_BINDING_REFUSED')
+     if archive.path('request.json.pending').exists() or archive.path('session_binding.json.pending').exists():
+         raise Refused('AMBIGUOUS_SESSION_PREPARATION')
+@@ -39,7 +42,7 @@
+         finally:win.K.CloseHandle(h)
+ 
+ 
+-def prepare_session(base,session_id,source,*,synthetic=False):
++def prepare_session(base,session_id,source,*,synthetic=False,_bounded_rights=None):
+     """Create binding and immutable proposal only. No grant/journal or reset."""
+     root=session_root(base,session_id)
+     from .oneshot_authorisation import source_seal
+@@ -64,7 +67,13 @@
+                 for name in PARTS:_checked_directory(root/name,create=True)
+                 with Archive(root,synthetic=synthetic,_bind_session=True) as archive:
+                     archive.put('session_binding.json',encoded(dict(version=1,session=session_id,identity=archive.identity)))
+-                    archive.put('request.json',encoded(request_metadata(archive,source)))
++                    if _bounded_rights is None:
++                        archive.put('request.json',encoded(request_metadata(archive,source)))
++                    else:
++                        from .bounded_acquisition import metadata,budget_guard
++                        archive.publication_guard=lambda relative,value:budget_guard(archive,len(value),accounting=relative in ('journal.json','result.json'))
++                        archive.put('rights_scope.json',encoded(_bounded_rights))
++                        archive.put('request.json',encoded(metadata(archive,source)))
+                 with Archive(root,synthetic=synthetic) as archive:require_prepared(archive,source)
+             finally:
+                 if root_handle is not None:win.K.CloseHandle(root_handle)
+@@ -79,14 +88,14 @@
+     if archive.session_id is None:raise Refused('SESSION_REQUIRED')
+     with Archive(archive.namespace_base,synthetic=archive.synthetic) as parent:
+         guard=parent.locked('historical_acquisition.lock')
+-        try:guard.__enter__()
++        try:lease=guard.__enter__()
+         except Refused as error:
+             if str(error)=='BUSY':raise Refused('GLOBAL_ACQUISITION_BUSY') from None
+             raise
+         try:
+             if parent.path('historical_acquisition.blocked.json').exists() or parent.path('historical_acquisition.blocked.json.pending').exists():
+                 raise Refused('GLOBAL_FENCING_UNCONFIRMED')
+-            yield
++            yield lease
+         finally:guard.__exit__(None,None,None)
+ 
+ 
+diff --git a/data/research/trading_intelligence_v2/test_v28c.py b/data/research/trading_intelligence_v2/test_v28c.py
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/test_v28c.py
+@@ -0,0 +1,259 @@
++"""Bounded mode: invented credentials/candles and loopback TLS only."""
++import copy
++import contextlib
++import sys
++import os
++import subprocess
++import importlib.util
++import threading
++import time
++import uuid
++import unittest
++from unittest.mock import patch
++from pathlib import Path
++if __name__=='__main__':
++    _p=Path(__file__).resolve().parent
++    _s=importlib.util.spec_from_file_location('tiv2',_p/'__init__.py',submodule_search_locations=[str(_p)])
++    _m=importlib.util.module_from_spec(_s);sys.modules['tiv2']=_m;_s.loader.exec_module(_m);__package__='tiv2'
++from . import test_v26d as legacy
++from . import bounded_acquisition as b
++from . import oneshot_authorisation as a
++from .oneshot_archive import Archive,Refused
++from .session_namespace import prepare_session,acquisition_lock
++from .oneshot_bridge import SyntheticCredentialProvider
++from .https_test_server import LocalHTTPS
++from .oanda_history_manifest import encoded,decode,digest
++from .core import timestamp,ResearchRejected
++legacy.NATIVE=globals().get('NATIVE',False)
++
++
++def review():
++    return dict(provider='OANDA',provider_identity_url='https://www.oanda.com/',terms_url='https://www.oanda.com/terms/',
++        terms_evidence='SYNTHETIC FIXTURE ONLY',rights_reviewed=True,permitted_use='offline_research_and_derived_results',
++        catalogue_sha256=b.CATALOGUE_HASH,scope_reviewed=True,permitted_scope='PRIVATE_LOCAL_106_WINDOWS',public_distribution_allowed=False)
++
++
++class Catalogue(unittest.TestCase):
++    def test_106_exact(self):self.assertEqual(len(b.catalogue()),106)
++    def test_hash(self):self.assertEqual(digest(b.CATALOGUE.read_bytes().replace(b'\r\n',b'\n')),b.CATALOGUE_HASH)
++    def test_slots(self):self.assertEqual([w['maximum_candles'] for w in b.catalogue()],[1000]*105+[120])
++    def test_contiguous(self):
++        windows=[b.spec(i) for i in range(106)]
++        self.assertEqual(timestamp(windows[0]['params']['from']),timestamp('2024-09-01T00:00:00Z'))
++        self.assertEqual(timestamp(windows[-1]['params']['to'])+1,timestamp('2025-09-01T00:00:00Z'))
++        self.assertTrue(all(timestamp(x['params']['to'])+1==timestamp(y['params']['from']) for x,y in zip(windows,windows[1:])))
++    def test_no_extra_indices(self):
++        for i in (-1,106,True,'0'):self.assertRaises(Refused,b.spec,i)
++    def test_immutable_copy(self):
++        s=b.spec(0);s['path']='/v3/orders';self.assertEqual(b.spec(0)['path'],'/v3/instruments/EUR_USD/candles')
++    def test_exact_get_only(self):
++        for i in range(106):
++            s=b.spec(i);self.assertEqual((s['method'],s['host'],s['path']),('GET','api-fxtrade.oanda.com','/v3/instruments/EUR_USD/candles'))
++            self.assertEqual(set(s['params']),{'from','to','price','granularity','smooth','includeFirst'})
++            self.assertEqual([s['params'][k] for k in ('price','granularity','smooth','includeFirst')],['MBA','M5','false','true'])
++    def test_catalogue_mismatch(self):
++        with patch.object(Path,'read_bytes',return_value=b'{}'):self.assertRaises(Refused,b.catalogue)
++    def test_rate_limiter(self):
++        self.assertEqual(b.rate_delay(10,lambda:9),1);self.assertEqual(b.rate_delay(10,lambda:11),0)
++    def test_no_operational_imports(self):
++        for name in ('bounded_acquisition.py','bounded_history_entry.py'):
++            text=(b.PACKAGE/name).read_text();self.assertNotIn('import forex_bot',text);self.assertNotIn('load_dotenv',text)
++
++
++class Bounded(legacy.HTTPSLifecycle):
++    # Only the finite-mode tests below. Inherited legacy tests run separately.
++    def new(self,base=None,limits=None):
++        base=base or self.fixture(authorised=False)
++        if not base.path('temporary_batches').exists():base.path('temporary_batches').mkdir()
++        root=prepare_session(base.root,uuid.uuid4().hex,a.source_seal(),synthetic=True,_bounded_rights=review())
++        ar=Archive(root,synthetic=True);self.addCleanup(ar.close)
++        cap=b.issue(ar,_fixture=True,fixture_limits=limits or dict(session=900,spacing=.001))
++        return base,ar,cap
++    def run_bounded(self,ar,cap,server,**kw):
++        return b.run(ar,cap,SyntheticCredentialProvider(self.secret),https_fixture=server.binding(),**kw)
++    def server(self,scenario='valid'):
++        return LocalHTTPS(self.cert,self.key,scenario=scenario,secret=self.secret,catalogue=tuple(b.spec(i) for i in range(106)))
++    def failure(self,*,fault='',scenario='valid',limits=None,expected_requests=None):
++        base,ar,cap=self.new(limits=limits)
++        with self.server(scenario) as server:
++            result=self.run_bounded(ar,cap,server,fault=fault)
++            self.assertNotEqual(result['kind'],'DONE',result);self.assertTrue(result['worker_exited'],result)
++            self.assertLessEqual(len(server.requests),1)
++            if expected_requests is not None:self.assertEqual(len(server.requests),expected_requests,result)
++            state=b.ledger(ar,cap);self.assertEqual(state['state'],'OUTCOME_UNKNOWN');self.assertLessEqual(state['attempts'],1)
++            before=len(server.requests);self.assertRaises(Refused,self.run_bounded,ar,cap,server)
++            self.assertEqual(before,len(server.requests));self.assertRaises(Refused,b.preflight,ar)
++            self.assertTrue(ar.path('grant.claimed.json').exists())
++        return base,ar,cap,result
++    def test_bounded_all_106_one_token_and_import_rejection(self):
++        base,ar,cap=self.new()
++        calls=[];original=SyntheticCredentialProvider.credential
++        def credential(provider):calls.append(1);return original(provider)
++        with self.server() as server,patch.object(SyntheticCredentialProvider,'credential',credential):
++            result=self.run_bounded(ar,cap,server)
++            self.assertEqual(result['kind'],'DONE',result);self.assertEqual(calls,[1]);self.assertTrue(result['worker_exited'])
++            self.assertEqual(len(server.requests),106);self.assertTrue(all(r['scope_valid'] and r['auth_matches'] for r in server.requests))
++        state=b.ledger(ar,cap);self.assertEqual((state['attempts'],state['next'],state['state']),(106,106,'SESSION_CONSUMED'))
++        for i in range(106):
++            r=b.verify_completed(ar,cap,i);self.assertEqual(r['observed_complete_count'],1)
++            self.assertEqual(state['windows'][i]['http_attempts'],1);self.assertTrue(base.path(b.marker(i)).exists())
++        for p in ar.root.rglob('*'):
++            if p.is_file():self.assertNotIn(self.secret.encode(),p.read_bytes())
++        self.assertRaises(Refused,b.verify,cap)
++        # A new identity cannot reuse any spent catalogue entry.
++        root=prepare_session(base.root,uuid.uuid4().hex,a.source_seal(),synthetic=True,_bounded_rights=review())
++        with Archive(root,synthetic=True) as other:self.assertRaises(Refused,b.issue,other,_fixture=True)
++        from .oanda_research_import import import_bundle
++        r=b.verify_completed(ar,cap,0);rb=ar.read('manifests/v26c_year_000.json');rev=review();rev.update(provenance_verified=True,manifest_sha256=digest(rb))
++        self.assertRaises(ResearchRejected,import_bundle,ar.read('request.json'),rb,ar.read(r['raw']),ar.read(r['validated']),review=rev,independent_required=False)
++    def test_bounded_slow_token_entry_receives_fresh_acquisition_clock(self):
++        _,ar,cap=self.new(limits=dict(token=4,session=2,spacing=1))
++        def token(_):time.sleep(1);return self.secret
++        with self.server() as server,patch.object(SyntheticCredentialProvider,'credential',token):
++            result=self.run_bounded(ar,cap,server,fault='crash_after_response')
++            self.assertTrue(result['worker_exited']);self.assertEqual(len(server.requests),1)
++        phase=decode(ar.read('acquisition.json'));worker=decode(ar.read('worker.claimed.json'))
++        self.assertGreaterEqual(phase['started']-(worker['credential_deadline']-4),1)
++        self.assertEqual(phase['deadline']-phase['started'],2)
++    def test_bounded_parent_hash_verification_stops_progression(self):
++        _,ar,cap=self.new()
++        with self.server() as server,patch.object(b,'verify_completed',side_effect=Refused('SYNTHETIC_CORRUPTED_RECEIPT')):
++            result=self.run_bounded(ar,cap,server)
++            self.assertNotEqual(result['kind'],'DONE');self.assertTrue(result['worker_exited']);self.assertEqual(len(server.requests),1)
++        self.assertEqual(b.ledger(ar,cap)['attempts'],1);self.assertRaises(Refused,b.verify,cap)
++    def test_bounded_actual_one_second_pacing(self):
++        _,ar,cap=self.new(limits=dict(session=900,spacing=1))
++        original=b.verify_completed
++        with self.server() as server:
++            def verified(*args):
++                result=original(*args);server.scenario='http_500';return result
++            with patch.object(b,'verify_completed',verified):result=self.run_bounded(ar,cap,server)
++            self.assertNotEqual(result['kind'],'DONE');self.assertTrue(result['worker_exited'])
++            self.assertEqual(len(server.requests),2);self.assertGreaterEqual(server.request_times[1]-server.request_times[0],1)
++        self.assertEqual(b.ledger(ar,cap)['attempts'],2)
++    def test_bounded_lost_global_lease_fences_before_token(self):
++        _,ar,cap=self.new();original=acquisition_lock
++        @contextlib.contextmanager
++        def lost(archive):
++            with original(archive) as lease:
++                class Proxy:
++                    @property
++                    def closed(self):return archive.path('worker.claimed.json').exists()
++                    def fileno(self):return lease.fileno()
++                yield Proxy()
++        with self.server() as server,patch('tiv2.session_namespace.acquisition_lock',lost),patch.object(SyntheticCredentialProvider,'credential',side_effect=AssertionError('NO_TOKEN_AFTER_LOCK_LOSS')):
++            result=self.run_bounded(ar,cap,server)
++            self.assertNotEqual(result['kind'],'DONE');self.assertTrue(result['worker_exited']);self.assertEqual(server.requests,[])
++        self.assertEqual(b.ledger(ar,cap)['state'],'OUTCOME_UNKNOWN');self.assertRaises(Refused,b.verify,cap)
++    def test_bounded_two_process_global_lock(self):
++        _,ar,_=self.new();exe=getattr(sys,'_base_executable',sys.executable)
++        command=[exe,'-I','-S','-B',str(Path(__file__).resolve()),'--fixture-lock-probe']
++        def probe():
++            p=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,env={'SystemRoot':r'C:\Windows'},close_fds=True)
++            out,err=p.communicate(encoded({'root':str(ar.root)}),timeout=10)
++            self.assertEqual(p.returncode,0,err.decode());return out.strip()
++        with acquisition_lock(ar):self.assertEqual(probe(),b'BUSY')
++        self.assertEqual(probe(),b'ACQUIRED')
++    def test_bounded_competing_session_preserves_unused_authority(self):
++        base,first,c1=self.new();_,second,c2=self.new(base)
++        entered=threading.Event();release=threading.Event();results=[]
++        def token(_):entered.set();release.wait(10);return self.secret
++        with self.server() as server,patch.object(SyntheticCredentialProvider,'credential',token):
++            thread=threading.Thread(target=lambda:results.append(self.run_bounded(first,c1,server,fault='crash_before_dispatch')));thread.start()
++            try:
++                self.assertTrue(entered.wait(10));self.assertRaisesRegex(Refused,'GLOBAL_ACQUISITION_BUSY',self.run_bounded,second,c2,server)
++                self.assertTrue(second.path('grant.json').exists());self.assertEqual(b.ledger(second,c2)['attempts'],0)
++            finally:release.set();thread.join(20)
++            self.assertFalse(thread.is_alive());self.assertEqual(server.requests,[]);self.assertTrue(results[0]['worker_exited'])
++    def test_bounded_import_adapter_with_independently_reviewed_fixture(self):
++        # Invented byte bundle, never a protected execution record or real data.
++        from .test_v28b import fixture,SOURCE
++        from .year_history import plan
++        from .oanda_research_import import import_bundle
++        x=fixture(plan(SOURCE)[0]);request=decode(x['request']);request.pop('spec');request.update(kind='BOUNDED_106',catalogue=b.CATALOGUE_HASH,limits=b.LIMITS,authorises_execution=False)
++        req=encoded(request);manifest=decode(x['manifest']);manifest.update(index=0,catalogue=b.CATALOGUE_HASH,source=SOURCE,spec_sha256=digest(encoded(b.spec(0))),request_sha256=digest(req))
++        mb=encoded(manifest);rev=x['review'];rev['manifest_sha256']=digest(mb)
++        imported=import_bundle(req,mb,x['raw'],x['validated'],review=rev,independent_required=False)
++        self.assertEqual(len(imported['records']),1);self.assertFalse(imported['strategy_evaluation_permitted'])
++        rev['manifest_sha256']='0'*64;self.assertRaises(ResearchRejected,import_bundle,req,mb,x['raw'],x['validated'],review=rev,independent_required=False)
++    def test_bounded_crash_before_dispatch(self):self.failure(fault='crash_before_dispatch',expected_requests=0)
++    def test_bounded_crash_during_dispatch(self):self.failure(fault='crash_during_dispatch',expected_requests=0)
++    def test_bounded_crash_after_response(self):self.failure(fault='crash_after_response',expected_requests=1)
++    def test_bounded_http_timeout(self):self.failure(scenario='delayed_headers',limits=dict(request=3,session=900,spacing=.001),expected_requests=1)
++    def test_bounded_deadline_cleanup(self):self.failure(fault='stall_after_response',limits=dict(request=3,session=900,spacing=.001),expected_requests=1)
++    def test_bounded_invalid_schema(self):self.failure(scenario='invalid_schema',expected_requests=1)
++    def test_bounded_incomplete_refuses(self):self.failure(scenario='incomplete_candles',expected_requests=1)
++    def test_bounded_redirect_no_follow(self):self.failure(scenario='redirect',expected_requests=1)
++    def test_bounded_http_failure_no_retry(self):self.failure(scenario='http_429',expected_requests=1)
++    def test_bounded_secret_echo_refused(self):
++        _,ar,_,_=self.failure(scenario='credential_echo',expected_requests=1)
++        for p in ar.root.rglob('*'):
++            if p.is_file():self.assertNotIn(self.secret.encode(),p.read_bytes())
++    def test_bounded_token_timeout_no_dispatch(self):
++        _,ar,cap=self.new(limits=dict(token=1,session=900,spacing=.001))
++        with self.server() as server,patch.object(SyntheticCredentialProvider,'credential',side_effect=lambda:(time.sleep(1.1) or self.secret)):
++            r=self.run_bounded(ar,cap,server);self.assertEqual(r['kind'],'TOKEN_ENTRY_TIMEOUT',r);self.assertEqual(server.requests,[])
++        self.assertEqual(b.ledger(ar,cap)['attempts'],0);self.assertRaises(Refused,b.verify,cap)
++    def test_bounded_session_deadline(self):
++        _,ar,cap=self.new(limits=dict(session=2,spacing=1))
++        with self.server() as server:
++            started=time.monotonic();r=self.run_bounded(ar,cap,server);self.assertNotEqual(r['kind'],'DONE');self.assertTrue(r['worker_exited']);self.assertLess(time.monotonic()-started,17);self.assertLessEqual(len(server.requests),1)
++    def test_bounded_source_mismatch(self):
++        _,_,cap=self.new();cap['source']='0'*64;self.assertRaises(Refused,b.verify,cap)
++    def test_bounded_cap_catalogue_mismatch(self):
++        _,_,cap=self.new();cap['catalogue']='0'*64;self.assertRaises(Refused,b.verify,cap)
++    def test_bounded_invalid_budget(self):
++        _,_,cap=self.new();cap['limits']['attempts']=107;self.assertRaises(Refused,b.verify,cap)
++    def test_bounded_identity_mismatch(self):
++        _,_,cap=self.new();cap['identity']='0'*64;self.assertRaises(Refused,b.verify,cap)
++    def test_bounded_no_noninteractive_live_issuer(self):
++        _,ar,_=self.new();self.assertRaises(Refused,b.issue,ar)
++    def test_bounded_scope_rights_required(self):
++        _,ar,_=self.new();r=review();r['scope_reviewed']=False;ar.put('rights_scope.json',encoded(r),replace=True);self.assertRaises(Refused,b.rights,ar)
++    def test_bounded_disk_space(self):
++        _,ar,_=self.new()
++        with patch.object(b.shutil,'disk_usage',return_value=type('Usage',(),{'free':0})()):self.assertRaises(Refused,b.budget_guard,ar,1)
++    def test_bounded_256mib_peak_quota(self):
++        _,ar,_=self.new();p=ar.path('raw/synthetic_quota.bin')
++        with p.open('wb') as f:f.truncate(b.LIMITS['bytes'])
++        self.assertRaises(Refused,b.budget_guard,ar,1)
++    def test_bounded_reserved_marker_blocks_new_identity(self):
++        base,ar,_=self.new();base.put(b.marker(0),encoded({'synthetic':'spent'}));self.assertRaises(Refused,b.preflight,ar)
++    def test_bounded_pending_marker_blocks(self):
++        base,ar,_=self.new();base.put(b.marker(0)+'.pending',b'{}');self.assertRaises(Refused,b.preflight,ar)
++    def test_bounded_journal_budget_inconsistency(self):
++        _,ar,cap=self.new();s=b.ledger(ar,cap);s['attempts']=1;ar.put('journal.json',encoded(s),replace=True);self.assertRaises(Refused,b.ledger,ar,cap)
++    def test_bounded_journal_out_of_order(self):
++        _,ar,cap=self.new();s=b.ledger(ar,cap);s['windows'][1]['state']='RESERVED';s['attempts']=1;ar.put('journal.json',encoded(s),replace=True);self.assertRaises(Refused,b.ledger,ar,cap)
++    def test_bounded_namespace_grant_substitution(self):
++        base,_,cap=self.new();_,other,c2=self.new(base);other.put('grant.json',encoded(cap),replace=True);self.assertRaises(Refused,b.verify,c2)
++    def test_bounded_exact_confirmation(self):
++        _,ar,cap=self.new();phrase=b.confirmation(ar)
++        self.assertEqual(phrase,'CONFIRM 106 HISTORICAL EUR_USD GETS '+cap['session']+' '+b.CATALOGUE_HASH+' '+cap['source'])
++    def test_bounded_only_protected_or_fixture_roots(self):
++        self.assertRaises(Refused,Archive,b.PACKAGE,synthetic=False)
++    def test_bounded_phase_cannot_start_before_reservation(self):
++        _,ar,cap=self.new();self.assertRaises((Refused,FileNotFoundError),b.role,cap,'network')
++    def test_bounded_duplicate_window_refused(self):
++        _,ar,cap=self.new();self.assertRaises((Refused,FileNotFoundError),b.claim_window,ar,cap,0,123)
++    def test_bounded_budget_reserves_accounting_room(self):
++        _,ar,_=self.new();p=ar.path('raw/synthetic_quota.bin')
++        with p.open('wb') as f:f.truncate(b.LIMITS['bytes']-900000)
++        self.assertRaises(Refused,b.budget_guard,ar,1)
++        self.assertGreater(b.budget_guard(ar,1024,accounting=True),0)
++
++# The inherited suites are executed under their own selectors, avoiding duplicate runs.
++for _name in list(vars(legacy.HTTPSLifecycle)):
++    if _name.startswith('test_') and not _name.startswith('test_bounded_'):setattr(Bounded,_name,None)
++
++if __name__=='__main__':
++    from .oneshot_archive import FIXTURES,NATIVE_FIXTURES
++    if sys.argv[1:]!=['--fixture-lock-probe']:raise SystemExit('SYNTHETIC_PROBE_ONLY')
++    value=decode(sys.stdin.buffer.readline(4097));root=Path(value['root']).absolute()
++    if set(value)!={'root'} or not any(root.is_relative_to(p) for p in (FIXTURES,NATIVE_FIXTURES)):raise SystemExit('SYNTHETIC_ROOT_REQUIRED')
++    with Archive(root,synthetic=True) as ar:
++        try:
++            with acquisition_lock(ar):print('ACQUIRED')
++        except Refused as error:
++            if str(error)!='GLOBAL_ACQUISITION_BUSY':raise
++            print('BUSY')
+diff --git a/data/research/trading_intelligence_v2/v26d_run.py b/data/research/trading_intelligence_v2/v26d_run.py
+--- a/data/research/trading_intelligence_v2/v26d_run.py
++++ b/data/research/trading_intelligence_v2/v26d_run.py
+@@ -27,6 +27,10 @@
+ import urllib.parse
+ import uuid
+ 
++BOUNDED_GUARDS=sys.argv[1:]==['--native-bounded-guard-tests']
++if BOUNDED_GUARDS:sys.argv[1]='--native-bounded-tests'
++BOUNDED_TEST=sys.argv[1:] in (['--bounded-tests'],['--native-bounded-tests'])
++if BOUNDED_TEST:sys.argv[1]='--native-rollover-tests' if sys.argv[1]=='--native-bounded-tests' else '--rollover-tests'
+ PILOT_TEST=sys.argv[1:2]==['--native-pilot-tests']
+ if PILOT_TEST:
+     if len(sys.argv)!=3 or sys.argv[2] not in ('--pilot-window=1','--pilot-window=2','--pilot-window=3'):
+@@ -82,6 +86,14 @@
+     if event=='subprocess.Popen':
+         executable,argv,cwd,env=args
+         worker=[sys.executable,'-I','-S','-B',str(WORKER),'--worker']+([PILOT_FLAG] if PILOT_FLAG is not None else [])
++        if BOUNDED_TEST:
++            probe=[getattr(sys,'_base_executable',sys.executable),'-I','-S','-B',str(PACKAGE/'test_v28c.py'),'--fixture-lock-probe']
++            if executable in (None,probe[0]) and argv in (probe,subprocess.list2cmdline(probe)) and env=={'SystemRoot':r'C:\Windows'}:return
++            for exe in (sys.executable,getattr(sys,'_base_executable',sys.executable)):
++                command=[exe,'-I','-S','-B',str(WORKER),'--bounded-worker']
++                if executable in (None,exe) and argv in (command,subprocess.list2cmdline(command)):
++                    if env!=({'SystemRoot':r'C:\Windows'} if os.name=='nt' else {}):raise PermissionError('V26D_SUBPROCESS_ENV_REFUSED')
++                    return
+         if ACTIVATION:
+             base_exe=getattr(sys,'_base_executable',sys.executable)
+             probe=[base_exe,'-I','-S','-B',str(PACKAGE/'test_v27_rollover.py'),'--fixture-open-probe']
+@@ -129,10 +141,11 @@
+ 
+ 
+ sys.addaudithook(audit)
+-test_name='test_v28a_native' if PILOT_TEST else 'test_v27_rollover' if ROLLOVER else 'test_v27_activation' if ACTIVATION else 'test_v27' if V27 else 'test_v26g' if V26G else 'test_v26e' if V26E else 'test_v26d'
++test_name='test_v28c' if BOUNDED_TEST else 'test_v28a_native' if PILOT_TEST else 'test_v27_rollover' if ROLLOVER else 'test_v27_activation' if ACTIVATION else 'test_v27' if V27 else 'test_v26g' if V26G else 'test_v26e' if V26E else 'test_v26d'
+ spec=importlib.util.spec_from_file_location('tiv2.'+test_name,PACKAGE/(test_name+'.py'))
+ tests=importlib.util.module_from_spec(spec);sys.modules[spec.name]=tests;tests.NATIVE=NATIVE
+ spec.loader.exec_module(tests)
+-result=unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromModule(tests))
++suite=(unittest.TestSuite(tests.Bounded(name) for name in ('test_bounded_actual_one_second_pacing','test_bounded_lost_global_lease_fences_before_token')) if BOUNDED_GUARDS else unittest.defaultTestLoader.loadTestsFromModule(tests))
++result=unittest.TextTestRunner(verbosity=2).run(suite)
+ print(f'RESULT tests={result.testsRun} failures={len(result.failures)} errors={len(result.errors)} skips={len(result.skipped)}')
+ raise SystemExit(not result.wasSuccessful())
+diff --git a/data/research/trading_intelligence_v2/reports/v28c/V28C_ACQUISITION_APPROVAL.md b/data/research/trading_intelligence_v2/reports/v28c/V28C_ACQUISITION_APPROVAL.md
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/reports/v28c/V28C_ACQUISITION_APPROVAL.md
+@@ -0,0 +1,28 @@
++# V2.8C approval preparation — NOT authority
++
++Current authorised real attempts: **0**. No executable grant or real preparation file exists. Do not run the following frontend as part of implementation/testing.
++
++Next action: review V28C_SOURCE.diff and V28C_SHA256.json and separately approve the exact publication scope. Do not commit/push automatically. After publication and CI verification, separately review expanded year-scope rights/capacity, prepare a new non-authorising session namespace/proposal bound to the published seal, and obtain explicit approval for the entire catalogue. None of these later stages is authorised by this report.
++
++Proposed future terminal command (refuses until those preparations exist):
++
++```powershell
++python -I -S -B "C:\Users\Brian\OneDrive\Desktop\Forext Trading Bot 1st\data\research\trading_intelligence_v2\bounded_history_entry.py"
++```
++
++Required rights attestation, verbatim:
++`I CONFIRM ACCOUNT ENTITLEMENT AND PRIVATE RESEARCH RETENTION`
++
++Required existing endpoint acknowledgement, verbatim:
++`I ACCEPT ONE NON-ACCOUNT ENDPOINT CONNECTIVITY CHECK`
++
++The frontend additionally displays the entire 106-window scope; the inherited endpoint phrase does not itself authorise 106 requests.
++
++Final confirmation template (no real session ID has been prepared):
++`CONFIRM 106 HISTORICAL EUR_USD GETS <new-session-id> 2d5f5b38efb65a0cffd5f63ad38a7da62344d653bdba84dad9438cf1eac96bf9 9a8b0960f0beefe7fb7fbd116cfa320bdfe6b18a2414c936b370a8c3c58445f2`
++
++The exact phrase must be regenerated after any source publication change. It binds the full new session ID, catalogue SHA-256, source seal and maximum 106 attempts. LIVE host api-fxtrade.oanda.com; GET /v3/instruments/EUR_USD/candles; M5/MBA, smooth=false, includeFirst=true, count omitted; exact fixed from/to values only. Coverage [2024-09-01T00:00:00Z, 2025-09-01T00:00:00Z). Archive only C:\TradingResearchData\OANDA. No retries/resume or trading. Approval of publication never creates acquisition authority.
++
++Proposed fixed limits: 15/120/15 s startup/token/per-window, 1,800 s whole acquisition, minimum 1 s pacing, 256 MiB, maximum 106 attempts. An ambiguous or failed entry stops everything and stays spent. A new process does not gain permission to repeat the catalogue.
++
++PRODUCTION TRADING REMAINS NO-GO.
+diff --git a/data/research/trading_intelligence_v2/reports/v28c/V28C_FINAL_DECISION.md b/data/research/trading_intelligence_v2/reports/v28c/V28C_FINAL_DECISION.md
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/reports/v28c/V28C_FINAL_DECISION.md
+@@ -0,0 +1,22 @@
++# V2.8C final decision
++
++**TIV28C_BOUNDED_ACQUISITION_VERIFIED_OFFLINE**
++
++1. One separately authorised session can execute all 106 fixed requests with one token entry: demonstrated against local synthetic HTTPS.
++2. The unchanged catalogue is hash-checked and source-sealed; real authority additionally binds a fresh parent namespace, directory identity and rights hash.
++3. A reserved/crashed/ambiguous window cannot be repeated automatically. Immutable spent markers survive process exit. This catalogue cannot resume after any reservation; a reviewed remaining-scope catalogue and new approval/token would be required.
++4. Maximum 106 budget reservations, each index at most once, are durably enforced before dispatch. Ambiguous reservations count against the budget even if HTTP was not observed.
++5. 256 MiB peak artifact cap (including pending files/markers), publication free-space checks and conservative one-second rate pacing are implemented; 1 MiB is reserved for accounting.
++6. A failed/unknown request, validation/hash/accounting/storage/lock/source/deadline failure, crash or interrupt ends the acquisition; no skip/retry/fallback.
++7. Original consumed/pilot evidence and the saved 1,440-candle research bundle remain unchanged; legacy OUTCOME_UNKNOWN is preserved. The enabled scheduler remains Ready, last result 0; its three pre-existing changed files are excluded.
++8. Real credentials are terminal-only and memory-only, sent once by anonymous pipe, never persisted or loaded from production configuration. Python heap zeroisation is not claimed.
++9. Only fixed candle GETs are exposed. No order/trade/position-close route or operational bot startup is added. R.56, frozen policies and operational trading files are unchanged.
++10. 239 focused tests passed (48 bounded: 46 full-suite plus two additional guard checks, 67 restricted transport, 46 native isolation, 24 importer, 24 pilot, 30 yearly plan), with zero final failures/errors/skips.
++11. Proposed scope: 15 implementation/test/CI/source-seal files, five reports, one exact diff and one manifest (22 files). See V28C_SHA256.json for every path and hash; old local proposals, scheduler edits and protected market/session data are excluded.
++12. All 22 files require separate publication approval. Nothing is staged, committed or pushed; main remains 52568b3e2a69c36296f7b3fe2fc502b9c5a290eb. No new GitHub CI result is claimed.
++13. A real 106-request session requires separate explicit acquisition approval, published source binding, expanded catalogue-specific rights evidence, protected capacity/identity/global-lock checks, a newly prepared non-authorising identity and exact terminal attestations. Pilot rights are not silently expanded. No real year namespace, executable grant or preparation file was created.
++14. Exact next action: review V28C_SOURCE.diff, the SHA-256 manifest and approval report; approve publication separately if acceptable. Do not activate acquisition. After any future publication, verify CI and prepare a newly source-bound proposal under separate authority.
++
++No holdout independence, profitability, real connectivity or acquisition completeness is established by synthetic tests. Existing importer rights/independence gates and unverified market-gap classifications remain. Acquisition does not authorise research optimisation or production trading.
++
++**PRODUCTION TRADING REMAINS NO-GO.**
+diff --git a/data/research/trading_intelligence_v2/reports/v28c/V28C_IMPLEMENTATION.md b/data/research/trading_intelligence_v2/reports/v28c/V28C_IMPLEMENTATION.md
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/reports/v28c/V28C_IMPLEMENTATION.md
+@@ -0,0 +1,17 @@
++# V2.8C implementation
++
++Local implementation only. Baseline main: `52568b3e2a69c36296f7b3fe2fc502b9c5a290eb`.
++Source seal: `9a8b0960f0beefe7fb7fbd116cfa320bdfe6b18a2414c936b370a8c3c58445f2`.
++Catalogue SHA-256 (LF-normalised): `2d5f5b38efb65a0cffd5f63ad38a7da62344d653bdba84dad9438cf1eac96bf9`.
++
++The existing supervisor/worker entry, protected Archive, journal.json, Windows Job fencing, terminal provider, credential pipe, restricted HTTPS exchange, CandleTransport rate-delay helper and strict candle publisher are reused. bounded_acquisition.py adds the finite branch; bounded_history_entry.py is a thin terminal frontend. No new HTTP client, credential cache, archive or database is introduced.
++
++One source/identity/rights-bound version-4 grant admits one parent namespace and one persistent worker. The terminal token is read once after durable overall reservation and sent once through the existing anonymous pipe. The worker must ask the parent to reserve each exact catalogue index, charges an immutable spent marker before dispatch, publishes raw/validated files and a manifest, and waits for parent verification before advancing. Never/reserved/attempted/completed/failed/unknown are distinct. Counts are budget reservations, including ambiguous pre-dispatch reservations; they do not imply every reserved request reached HTTP.
++
++The 106 unchanged specifications cover [2024-09-01, 2025-09-01): 105 windows of 1,000 M5 slots and one of 120; 105,120 calendar slots. No count parameter, host/date override, skip, retry, redirect, pagination or fallback. The old catalogue's proposal IDs, destinations and source are reference-only, non-authorising planning metadata. Runtime artifacts are independently named raw/validated/manifests/v26c_year_NNN.json inside the one approved parent namespace; none of the 106 old proposals is activated.
++
++Startup/reservation: 15 s. Hidden token input: 120 s. Each reservation through request/validation/publication/verification/cleanup: 15 s. Whole acquisition after token validation: 1,800 s, including waits and cleanup; no extension. One second is reserved for fencing. Token refusal has a separate one-second fencing allowance and cannot start acquisition. Rate spacing is at least one second after the preceding response completes, using the existing rate-delay helper.
++
++Peak new-artifact bytes, including pending replacements and catalogue spent markers, are capped at 256 MiB. Ordinary publication leaves 1 MiB for accounting; journal/result publication can use the reserved portion. Free disk space is checked before execution and every publication. No deletion/fallback creates capacity.
++
++The existing research importer recognises catalogue-bound per-window receipts and retains all original rights/hash/provenance/independence checks. Synthetic execution artifacts remain ineligible for real research provenance. No strategy evaluation or automatic dataset import occurs. Existing single-session/pilot behavior remains selected by its original entry path.
+diff --git a/data/research/trading_intelligence_v2/reports/v28c/V28C_SECURITY_AND_AUTHORITY.md b/data/research/trading_intelligence_v2/reports/v28c/V28C_SECURITY_AND_AUTHORITY.md
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/reports/v28c/V28C_SECURITY_AND_AUTHORITY.md
+@@ -0,0 +1,17 @@
++# V2.8C security and authority
++
++Implementation/offline verification is authorised; publication and real acquisition are not. No real credential read, LIVE grant, network execution or real year namespace is created. The frontend refuses without a separately prepared non-authorising proposal, protected namespace, expanded rights evidence and exact interactive attestations.
++
++A grant binds full source seal, exact catalogue hash, session and directory identities, parent PID, rights hash, expiry and fixed limits. LIVE fixtures/shortened limits are rejected. Approval proof also binds these values and cannot be reused after mutation. Catalogues and proposals alone confer no authority.
++
++Global acquisition_lock spans startup, token entry, all windows and worker fencing. Its open handle/identity is checked throughout parent supervision. The existing global blocked marker prevents another session if fencing cannot be confirmed. The existing worker audit permits its own namespace only plus exact non-sensitive binding/source/catalogue metadata, code and standard library. Legacy/sibling grant, journal, claim and result reads/writes are not added. Existing NTFS ownership, ACL, pinning, junction/hardlink and atomic-publication checks are retained.
++
++Every window has a source/request-bound ledger entry and a no-clobber catalogue-wide spent marker durably published before the child can dispatch. Parent acknowledgement is mandatory. Earlier completed receipts/data and spent-marker hashes are rechecked before progression. A crash/timeout/uncertain reservation remains spent; another identity cannot automatically repeat it. No token or resumable credential is persisted. A restart after any spent entry requires a NEW, separately reviewed remaining-scope catalogue and fresh approval/token; this fixed full-catalogue implementation deliberately refuses automatic resumption.
++
++Only the exact EUR_USD candle GET can enter the transport. Per-request LiveSocketPolicy, fixed DNS/SNI, public-address validation, certificate verification, one connection and in-memory duplicate-dispatch guards remain. The production trading loop and R.56 are never imported or modified. Credentials are excluded from argv/environment/files and response echoes are refused before publication. Memory-only is not a claim of cryptographic Python heap zeroisation; process fencing ends worker retention.
++
++Filesystem/OS stalls or hardware that ignores flushes cannot be proven bounded by synthetic tests. Failure to publish final accounting remains fail-closed through claimed authority, pending files/spent markers and manual review; it never authorises retry. The owning OS user/administrator remains outside this isolation threat model, as in the existing archive design.
++
++Previous pilot archives and merged dataset are read-only reverified. Legacy journal, claimed grant and worker claim retain their exact known SHA-256 values. Legacy state remains REQUEST_ATTEMPTED, conservatively classified OUTCOME_UNKNOWN; it is not reset or reclassified as unused.
++
++Rights reviewed for the three pilot manifests are NOT expanded to the year. Real preparation requires a separate catalogue-bound private-local-research review and fresh per-manifest provenance evidence after acquisition. Retrieval permission does not establish independent holdout status, publication permission or unrestricted retention. Weekend/holiday gaps stay unverified without independent evidence.
+diff --git a/data/research/trading_intelligence_v2/reports/v28c/V28C_TEST_RESULTS.md b/data/research/trading_intelligence_v2/reports/v28c/V28C_TEST_RESULTS.md
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/reports/v28c/V28C_TEST_RESULTS.md
+@@ -0,0 +1,35 @@
++# V2.8C offline tests
++
++2026-10-29, native Windows, Python 3.13, isolated stdlib runners. Final source seal `9a8b0960f0beefe7fb7fbd116cfa320bdfe6b18a2414c936b370a8c3c58445f2`.
++
++**239 tests passed; zero final failures/errors/skips.** No OANDA connection, real credential or LIVE grant. Test logs are retained outside Git in the task scratch directory.
++
++- bounded guard additions: 2 passed; log SHA-256 `86574e8afeb34bd639a57017cac16298b7be870a198ec8859ddbf31ae5b6b71e`.
++- bounded: 46 passed; log SHA-256 `4e72ab416fb4c47a3ee27c67f329c06070fe1ba911709417b5adb83fe9a9707a`.
++- restricted_transport: 67 passed; log SHA-256 `1e45270c77578e5e4ddc7011dc10f3060ffd76ba937fcf8f424638ebc2a6c4a7`.
++- native_isolation: 46 passed; log SHA-256 `eb796f858215e2127921abc94697af94925e3d461e0a5cb84f3873f8361784c6`.
++- research_import: 24 passed; log SHA-256 `203a3f7f44efe4adf104f5f48a95a547dc8d06299fd32b652607aa607617784c`.
++- pilot_merge: 24 passed; log SHA-256 `06926e632fea02a49ecf4e4af77944e0e758b8a8ffc29aec2df583e6f09f5aa4`.
++- year_plan: 30 passed; log SHA-256 `675e22fe5677dd2fb188dc94b0a93d8cd25bd58735f43fb88f7e0e33299e1d55`.
++
++The full bounded integration test completed exactly 106 local HTTPS requests, one credential-provider call, 106 completed journal windows with one charged HTTP attempt apiece, validated per-window hashes and 106 immutable spent markers. All synthetic tokens were absent from persisted session files. A new session identity could not issue authority for that spent catalogue. Synthetic artifacts were refused by the real-provenance importer.
++
++Coverage of the requested 30 categories:
++
++- 1â€“4: exact 106 windows/hash, 105,120 slots, contiguous boundaries, no extra indices, immutable spec copies and fixed GET host/path/parameters.
++- 5â€“9: one token entry; no persistence; ordered durable ledger; budget/identity/marker inconsistency refusal; duplicate/spent/pending reservations cannot replay.
++- 10â€“11: existing global lock, competing controllers and an actual independent subprocess lock probe; native security tests also race actual workers/controllers.
++- 12â€“17: crashes before dispatch, during dispatch and after response; delayed HTTP/cleanup; consumed unknown outcome; second invocation refused and no retry.
++- 18â€“20: source-seal mismatch, catalogue/hash mismatch, invalid budget/identity/copy grant and noninteractive LIVE issuance refusal.
++- 21â€“22: protected/native archive checks; disk-space failure; actual 256 MiB fixture quota refusal, pending/replacement peak accounting and reserved accounting headroom.
++- 23â€“25: actual one-second request spacing, loss of global lease with fencing before token entry, existing rate-delay helper, finite session and request deadlines, slow token entry with a fresh acquisition clock, token timeout without dispatch, immediate stop on bad schema/incomplete/redirect/HTTP 429 and failed parent verification.
++- 26â€“27: actual legacy/sibling open/write/substitution probes, junction/hardlink/native ACL regressions; original pilot bytes/modification timestamps, hashes, merged dataset and legacy consumed evidence reverified read-only.
++- 28â€“30: fixed GET scope and broker-write rejection; operational import barriers/static checks; existing importer acceptance of an independently reviewed invented bounded-format bundle, rejection of synthetic execution provenance, unchanged research rights/hash/independence regressions.
++
++Commands: `python -I -S -B data/research/trading_intelligence_v2/v26d_run.py` with `--native-bounded-tests`, `--native-bounded-guard-tests`, `--native-v26g-tests`, `--native-rollover-tests`; and v28_run.py/v28a_run.py/v28b_run.py with their corresponding test selectors.
++
++The initial shortened 300-second fixture run stopped before 106 windows and exposed a token-timeout classification bug. A later compatibility regression exposed three dictionary-assumption errors; one synthetic run was intentionally stopped and its worker fencing confirmed before resealing. These were corrected without relaxing LIVE limits or existing tests. The final complete bounded run used a 900-second OFFLINE_TEST fixture limit (LIVE remains 1,800) and took 453.911 seconds for all 46 tests. Prior interrupted fixtures were not reset/reused.
++
++CI YAML parses; the new Ubuntu bounded synthetic job is configured but has not run on GitHub because publication is not authorised. Native Windows ACL/fencing evidence comes from the local tests; no claim of real OANDA connectivity or acquisition success follows from these fixtures.
++
++After the full run, two additional tests instrumented the existing local server with request timestamps and verified global-lease loss. Only the test fixture/test runner/test module changed; sealed production code remained identical. Both additions passed separately; the default CI selector includes all 48 bounded tests. No existing test was skipped or weakened.

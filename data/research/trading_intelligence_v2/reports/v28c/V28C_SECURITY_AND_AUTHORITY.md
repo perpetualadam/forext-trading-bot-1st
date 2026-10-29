@@ -1,0 +1,17 @@
+# V2.8C security and authority
+
+Implementation/offline verification is authorised; publication and real acquisition are not. No real credential read, LIVE grant, network execution or real year namespace is created. The frontend refuses without a separately prepared non-authorising proposal, protected namespace, expanded rights evidence and exact interactive attestations.
+
+A grant binds full source seal, exact catalogue hash, session and directory identities, parent PID, rights hash, expiry and fixed limits. LIVE fixtures/shortened limits are rejected. Approval proof also binds these values and cannot be reused after mutation. Catalogues and proposals alone confer no authority.
+
+Global acquisition_lock spans startup, token entry, all windows and worker fencing. Its open handle/identity is checked throughout parent supervision. The existing global blocked marker prevents another session if fencing cannot be confirmed. The existing worker audit permits its own namespace only plus exact non-sensitive binding/source/catalogue metadata, code and standard library. Legacy/sibling grant, journal, claim and result reads/writes are not added. Existing NTFS ownership, ACL, pinning, junction/hardlink and atomic-publication checks are retained.
+
+Every window has a source/request-bound ledger entry and a no-clobber catalogue-wide spent marker durably published before the child can dispatch. Parent acknowledgement is mandatory. Earlier completed receipts/data and spent-marker hashes are rechecked before progression. A crash/timeout/uncertain reservation remains spent; another identity cannot automatically repeat it. No token or resumable credential is persisted. A restart after any spent entry requires a NEW, separately reviewed remaining-scope catalogue and fresh approval/token; this fixed full-catalogue implementation deliberately refuses automatic resumption.
+
+Only the exact EUR_USD candle GET can enter the transport. Per-request LiveSocketPolicy, fixed DNS/SNI, public-address validation, certificate verification, one connection and in-memory duplicate-dispatch guards remain. The production trading loop and R.56 are never imported or modified. Credentials are excluded from argv/environment/files and response echoes are refused before publication. Memory-only is not a claim of cryptographic Python heap zeroisation; process fencing ends worker retention.
+
+Filesystem/OS stalls or hardware that ignores flushes cannot be proven bounded by synthetic tests. Failure to publish final accounting remains fail-closed through claimed authority, pending files/spent markers and manual review; it never authorises retry. The owning OS user/administrator remains outside this isolation threat model, as in the existing archive design.
+
+Previous pilot archives and merged dataset are read-only reverified. Legacy journal, claimed grant and worker claim retain their exact known SHA-256 values. Legacy state remains REQUEST_ATTEMPTED, conservatively classified OUTCOME_UNKNOWN; it is not reset or reclassified as unused.
+
+Rights reviewed for the three pilot manifests are NOT expanded to the year. Real preparation requires a separate catalogue-bound private-local-research review and fresh per-manifest provenance evidence after acquisition. Retrieval permission does not establish independent holdout status, publication permission or unrestricted retention. Weekend/holiday gaps stay unverified without independent evidence.

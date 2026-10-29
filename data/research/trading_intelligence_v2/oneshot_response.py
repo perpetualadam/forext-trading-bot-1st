@@ -4,7 +4,7 @@ from .oneshot_archive import Refused
 from .oanda_history_manifest import encoded,validated
 
 
-def publish_candles(archive,raw,*,name,start,end,retrieved,synthetic):
+def publish_candles(archive,raw,*,name,start,end,retrieved,synthetic,_bounded=None):
     """No HTTP, credential access, missing-candle repair or retry.
 
     Commit manifest is published last. A partial set is not a complete dataset.
@@ -27,5 +27,11 @@ def publish_candles(archive,raw,*,name,start,end,retrieved,synthetic):
         from .oanda_history_manifest import digest
         receipt.update(session=archive.session_id,identity=digest(encoded(archive.identity)),
                        request_sha256=digest(archive.read('request.json')))
+    if _bounded is not None:
+        cap,index=_bounded
+        from .bounded_acquisition import guard,spec,CATALOGUE_HASH
+        guard(cap,spec(index))
+        from .oanda_history_manifest import digest
+        receipt.update(catalogue=CATALOGUE_HASH,index=index,spec_sha256=digest(encoded(spec(index))),source=cap['source'])
     archive.put('manifests/'+name+'.json',encoded(receipt))
     return receipt

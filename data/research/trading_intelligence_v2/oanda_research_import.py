@@ -28,6 +28,18 @@ def import_bundle(request_bytes, manifest_bytes, raw, derivative, *, review,
         raise ResearchRejected('reviewed_manifest_hash_required')
     request, manifest = decode(request_bytes), decode(manifest_bytes)
     spec = request.get('spec', {})
+    if request.get('kind')=='BOUNDED_106':
+        from .bounded_acquisition import CATALOGUE_HASH,LIMITS,spec as fixed_spec,catalogue
+        catalogue()
+        index=manifest.get('index')
+        if (type(index) is not int or not 0<=index<106 or request.get('catalogue')!=CATALOGUE_HASH or
+                request.get('limits')!=LIMITS or request.get('authorises_execution') is not False or
+                manifest.get('catalogue')!=CATALOGUE_HASH or manifest.get('source')!=request.get('source') or
+                type(request.get('source')) is not str or not re.fullmatch('[0-9a-f]{64}',request['source'])):
+            raise ResearchRejected('bounded_catalogue_binding_refused')
+        spec=fixed_spec(index)
+        if manifest.get('spec_sha256')!=digest(encoded(spec)):
+            raise ResearchRejected('bounded_request_hash_refused')
     pair = manifest.get('instrument')
     if (type(request.get('session')) is not str or not re.fullmatch('[0-9a-f]{32}', request['session']) or
             type(request.get('identity')) is not dict or not request['identity']):

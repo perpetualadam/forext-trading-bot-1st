@@ -68,9 +68,17 @@ class _LiveConnection(http.client.HTTPSConnection):
         authority.require_role(reservation,'network')
         if policy is not None and type(policy) is not LiveSocketPolicy:raise Refused('NETWORK_POLICY_REQUIRED')
         if authority.admitted(reservation):
-            if reservation['session'] in _DISPATCHED:raise Refused('SECOND_REQUEST_REFUSED')
-            _DISPATCHED.add(reservation['session'])
+            key=reservation['session']
+            if type(reservation) is dict and reservation.get('version')==4:
+                from .bounded_acquisition import network_key
+                key=network_key(reservation)
+            if key in _DISPATCHED:raise Refused('SECOND_REQUEST_REFUSED')
+            _DISPATCHED.add(key)
         self._policy=policy if policy is not None else LiveSocketPolicy(reservation)
+        self._spec=SPEC
+        if type(reservation) is dict and reservation.get('version')==4:
+            from .bounded_acquisition import request_for
+            self._spec=request_for(reservation)
         self._reservation=reservation;self._deadline=deadline;self._connected=False;self._request_sent=False
         super().__init__(HOST,port=PORT,timeout=remaining(deadline),context=ssl.create_default_context())
     def connect(self):
@@ -97,7 +105,7 @@ class _LiveConnection(http.client.HTTPSConnection):
         from .oneshot_credentials import validate_token
         authority.require_role(self._reservation,'network')
         expected={'Authorization','Accept-Datetime-Format','Accept','Accept-Encoding'}
-        if (self._request_sent or method!='GET' or url!=SPEC['path']+'?'+urlencode(SPEC['params']) or
+        if (self._request_sent or method!='GET' or url!=self._spec['path']+'?'+urlencode(self._spec['params']) or
             body is not None or encode_chunked or type(headers) is not dict or set(headers)!=expected or
             headers['Accept-Datetime-Format']!='RFC3339' or headers['Accept']!='application/json' or
             headers['Accept-Encoding']!='identity' or type(headers['Authorization']) is not str or not headers['Authorization'].startswith('Bearer ')):
@@ -106,14 +114,19 @@ class _LiveConnection(http.client.HTTPSConnection):
         return super().request(method,url,body=body,headers=headers,encode_chunked=False)
 
 
-def _exchange(connection,secret,deadline,request):
+def _exchange(connection,secret,deadline,request,*,reservation=None):
     """Single transport attempt shared by real implementation and fixture path."""
-    request_guard(**request)
+    def check(value):
+        if type(reservation) is dict and reservation.get('version')==4:
+            from .bounded_acquisition import guard
+            return guard(reservation,value)
+        return request_guard(**value)
+    check(request)
     used=False
     def sender(method,host,path,params):
         nonlocal used
         if used:raise Refused('SECOND_REQUEST_REFUSED')
-        used=True;request_guard(method,host,path,params);remaining(deadline)
+        used=True;check(dict(method=method,host=host,path=path,params=params));remaining(deadline)
         try:return _exchange_get(connection,host,path,params,secret,deadline)
         except OSError as error:raise Refused('WIRE_REFUSED') from error
         finally:connection.close()
@@ -124,12 +137,17 @@ def fetch_live(*,reservation,token,deadline,_policy=None):
     authority.require_role(reservation,'network')
     from .oneshot_credentials import validate_token
     secret=validate_token(token)
-    request_guard(**SPEC);remaining(deadline)
-    try:return _exchange(_LiveConnection(reservation,deadline,_policy),secret,deadline,SPEC)
+    request=SPEC
+    if type(reservation) is dict and reservation.get('version')==4:
+        from .bounded_acquisition import request_for
+        request=request_for(reservation)
+    else:request_guard(**request)
+    remaining(deadline)
+    try:return _exchange(_LiveConnection(reservation,deadline,_policy),secret,deadline,request,reservation=reservation)
     except Exception:raise Refused('LIVE_TRANSPORT_REFUSED') from None
 
 
-def fetch_synthetic(binding,secret,deadline,checkpoint=lambda phase:None,*,request=None):
+def fetch_synthetic(binding,secret,deadline,checkpoint=lambda phase:None,*,request=None,_bounded=None):
     """Fixture only: cannot select another host or accept a real credential."""
     from .oneshot_https_fixture import validate_binding
     from .oneshot_bridge import validate_synthetic
@@ -137,7 +155,11 @@ def fetch_synthetic(binding,secret,deadline,checkpoint=lambda phase:None,*,reque
     try:
         value=decode(encoded(SPEC if request is None else request))
         if type(value) is not dict or set(value)!={'method','host','path','params'}:raise ValueError()
-        request_guard(**value)
+        if _bounded is None:request_guard(**value)
+        else:
+            if _bounded.get('mode')!='OFFLINE_TEST':raise Refused('FIXTURE_ONLY')
+            from .bounded_acquisition import guard
+            guard(_bounded,value)
     except (TypeError,ValueError,OverflowError,Refused):raise Refused('EXACT_REQUEST_REQUIRED') from None
     remaining(deadline)
     context=ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
@@ -153,5 +175,5 @@ def fetch_synthetic(binding,secret,deadline,checkpoint=lambda phase:None,*,reque
                 self.sock=context.wrap_socket(sock,server_hostname=hostname)
             except BaseException:sock.close();raise
     connection=LoopbackConnection('127.0.0.1',port=binding['port'],timeout=remaining(deadline),context=context)
-    try:return _exchange(connection,secret,deadline,value)
+    try:return _exchange(connection,secret,deadline,value,reservation=_bounded)
     except OSError as error:raise Refused('FIXTURE_WIRE_REFUSED') from error

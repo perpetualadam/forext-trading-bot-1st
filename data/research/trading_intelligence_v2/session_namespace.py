@@ -24,6 +24,9 @@ def request_metadata(archive,source):
 
 def require_prepared(archive,source):
     if archive.session_id is None:raise Refused('SESSION_REQUIRED')
+    if decode(archive.read('request.json')).get('kind')=='BOUNDED_106':
+        from .bounded_acquisition import require_prepared as check
+        return check(archive,source)
     if encoded(decode(archive.read('request.json')))!=encoded(request_metadata(archive,source)):raise Refused('SESSION_REQUEST_BINDING_REFUSED')
     if archive.path('request.json.pending').exists() or archive.path('session_binding.json.pending').exists():
         raise Refused('AMBIGUOUS_SESSION_PREPARATION')
@@ -39,7 +42,7 @@ def _checked_directory(path,*,create):
         finally:win.K.CloseHandle(h)
 
 
-def prepare_session(base,session_id,source,*,synthetic=False):
+def prepare_session(base,session_id,source,*,synthetic=False,_bounded_rights=None):
     """Create binding and immutable proposal only. No grant/journal or reset."""
     root=session_root(base,session_id)
     from .oneshot_authorisation import source_seal
@@ -64,7 +67,13 @@ def prepare_session(base,session_id,source,*,synthetic=False):
                 for name in PARTS:_checked_directory(root/name,create=True)
                 with Archive(root,synthetic=synthetic,_bind_session=True) as archive:
                     archive.put('session_binding.json',encoded(dict(version=1,session=session_id,identity=archive.identity)))
-                    archive.put('request.json',encoded(request_metadata(archive,source)))
+                    if _bounded_rights is None:
+                        archive.put('request.json',encoded(request_metadata(archive,source)))
+                    else:
+                        from .bounded_acquisition import metadata,budget_guard
+                        archive.publication_guard=lambda relative,value:budget_guard(archive,len(value),accounting=relative in ('journal.json','result.json'))
+                        archive.put('rights_scope.json',encoded(_bounded_rights))
+                        archive.put('request.json',encoded(metadata(archive,source)))
                 with Archive(root,synthetic=synthetic) as archive:require_prepared(archive,source)
             finally:
                 if root_handle is not None:win.K.CloseHandle(root_handle)
@@ -79,14 +88,14 @@ def acquisition_lock(archive):
     if archive.session_id is None:raise Refused('SESSION_REQUIRED')
     with Archive(archive.namespace_base,synthetic=archive.synthetic) as parent:
         guard=parent.locked('historical_acquisition.lock')
-        try:guard.__enter__()
+        try:lease=guard.__enter__()
         except Refused as error:
             if str(error)=='BUSY':raise Refused('GLOBAL_ACQUISITION_BUSY') from None
             raise
         try:
             if parent.path('historical_acquisition.blocked.json').exists() or parent.path('historical_acquisition.blocked.json.pending').exists():
                 raise Refused('GLOBAL_FENCING_UNCONFIRMED')
-            yield
+            yield lease
         finally:guard.__exit__(None,None,None)
 
 

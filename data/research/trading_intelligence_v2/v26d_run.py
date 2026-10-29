@@ -27,6 +27,10 @@ import unittest.mock
 import urllib.parse
 import uuid
 
+BOUNDED_GUARDS=sys.argv[1:]==['--native-bounded-guard-tests']
+if BOUNDED_GUARDS:sys.argv[1]='--native-bounded-tests'
+BOUNDED_TEST=sys.argv[1:] in (['--bounded-tests'],['--native-bounded-tests'])
+if BOUNDED_TEST:sys.argv[1]='--native-rollover-tests' if sys.argv[1]=='--native-bounded-tests' else '--rollover-tests'
 PILOT_TEST=sys.argv[1:2]==['--native-pilot-tests']
 if PILOT_TEST:
     if len(sys.argv)!=3 or sys.argv[2] not in ('--pilot-window=1','--pilot-window=2','--pilot-window=3'):
@@ -82,6 +86,14 @@ def audit(event,args):
     if event=='subprocess.Popen':
         executable,argv,cwd,env=args
         worker=[sys.executable,'-I','-S','-B',str(WORKER),'--worker']+([PILOT_FLAG] if PILOT_FLAG is not None else [])
+        if BOUNDED_TEST:
+            probe=[getattr(sys,'_base_executable',sys.executable),'-I','-S','-B',str(PACKAGE/'test_v28c.py'),'--fixture-lock-probe']
+            if executable in (None,probe[0]) and argv in (probe,subprocess.list2cmdline(probe)) and env=={'SystemRoot':r'C:\Windows'}:return
+            for exe in (sys.executable,getattr(sys,'_base_executable',sys.executable)):
+                command=[exe,'-I','-S','-B',str(WORKER),'--bounded-worker']
+                if executable in (None,exe) and argv in (command,subprocess.list2cmdline(command)):
+                    if env!=({'SystemRoot':r'C:\Windows'} if os.name=='nt' else {}):raise PermissionError('V26D_SUBPROCESS_ENV_REFUSED')
+                    return
         if ACTIVATION:
             base_exe=getattr(sys,'_base_executable',sys.executable)
             probe=[base_exe,'-I','-S','-B',str(PACKAGE/'test_v27_rollover.py'),'--fixture-open-probe']
@@ -129,10 +141,11 @@ def audit(event,args):
 
 
 sys.addaudithook(audit)
-test_name='test_v28a_native' if PILOT_TEST else 'test_v27_rollover' if ROLLOVER else 'test_v27_activation' if ACTIVATION else 'test_v27' if V27 else 'test_v26g' if V26G else 'test_v26e' if V26E else 'test_v26d'
+test_name='test_v28c' if BOUNDED_TEST else 'test_v28a_native' if PILOT_TEST else 'test_v27_rollover' if ROLLOVER else 'test_v27_activation' if ACTIVATION else 'test_v27' if V27 else 'test_v26g' if V26G else 'test_v26e' if V26E else 'test_v26d'
 spec=importlib.util.spec_from_file_location('tiv2.'+test_name,PACKAGE/(test_name+'.py'))
 tests=importlib.util.module_from_spec(spec);sys.modules[spec.name]=tests;tests.NATIVE=NATIVE
 spec.loader.exec_module(tests)
-result=unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromModule(tests))
+suite=(unittest.TestSuite(tests.Bounded(name) for name in ('test_bounded_actual_one_second_pacing','test_bounded_lost_global_lease_fences_before_token')) if BOUNDED_GUARDS else unittest.defaultTestLoader.loadTestsFromModule(tests))
+result=unittest.TextTestRunner(verbosity=2).run(suite)
 print(f'RESULT tests={result.testsRun} failures={len(result.failures)} errors={len(result.errors)} skips={len(result.skipped)}')
 raise SystemExit(not result.wasSuccessful())

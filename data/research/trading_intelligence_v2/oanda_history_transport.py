@@ -27,6 +27,10 @@ def approved_request(method,host,path,params):
     return True
 
 
+def rate_delay(next_request,clock=time.monotonic):
+    return max(0,next_request-clock())
+
+
 @dataclass(frozen=True)
 class Approval:
     environment: str
@@ -87,7 +91,7 @@ class CandleTransport:
             if pair not in a.instruments or not a.start<=timestamp(params['from'])<timestamp(params['to'])<a.end:
                 raise ResearchRejected('OUTSIDE_APPROVED_RETRIEVAL_SCOPE')
         for attempt in range(self.attempts):
-            self.pause(max(0,self.next_request-self.clock()))
+            self.pause(rate_delay(self.next_request,self.clock))
             self.next_request=self.clock()+1.0  # One request and new connection per second.
             try:
                 response=self.sender(method,host,path,dict(params))

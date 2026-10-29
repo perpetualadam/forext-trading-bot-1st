@@ -5,6 +5,7 @@ import socket
 import ssl
 import subprocess
 import threading
+import time
 from urllib.parse import parse_qsl,urlsplit
 from .oneshot import SPEC
 from .oneshot_archive import FIXTURES,Refused
@@ -35,12 +36,12 @@ def certificate(directory):
 
 
 class LocalHTTPS:
-    def __init__(self,cert,key,*,scenario='valid',secret):
+    def __init__(self,cert,key,*,scenario='valid',secret,catalogue=None):
         self.context=ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER);self.context.load_cert_chain(cert,key)
         self.cert=Path(cert).read_text(encoding='ascii');self.scenario=scenario;self.secret=secret
         self.stop=threading.Event();self.phase=threading.Event();self.ready=threading.Event()
-        self.connections=0;self.requests=[];self.errors=[];self.listener=None;self.active=None
-        self.port=None;self.thread=None
+        self.connections=0;self.requests=[];self.request_times=[];self.errors=[];self.listener=None;self.active=None
+        self.port=None;self.thread=None;self.catalogue=catalogue
 
     def __enter__(self):
         self.listener=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -74,14 +75,16 @@ class LocalHTTPS:
                 lines=raw.decode('ascii').split('\r\n');method,target,_=lines[0].split(' ')
                 headers=dict(line.split(': ',1) for line in lines[1:] if ': ' in line)
                 parsed=urlsplit(target);params=dict(parse_qsl(parsed.query,strict_parsing=True))
-                valid=method=='GET' and parsed.path==SPEC['path'] and params==SPEC['params']
+                expected=SPEC if self.catalogue is None else self.catalogue[len(self.requests)]
+                valid=method=='GET' and parsed.path==expected['path'] and params==expected['params']
                 auth=headers.get('Authorization')=='Bearer '+self.secret
+                self.request_times.append(time.monotonic())
                 self.requests.append({'method':method,'path':parsed.path,'scope_valid':valid,'auth_matches':auth})
                 if not valid or not auth:raise ValueError()
                 self.phase.set()
                 if self.scenario=='delayed_headers':self.stop.wait(10);continue
-                begin=timestamp(SPEC['params']['from'])
-                obj=payload(start=begin,count=9 if self.scenario=='nine' else 10)
+                begin=timestamp(expected['params']['from'])
+                obj=payload(start=begin,count=1 if self.catalogue is not None else 9 if self.scenario=='nine' else 10)
                 if self.scenario=='invalid_schema':obj['instrument']='GBP_USD'
                 if self.scenario=='incomplete_candles':obj['candles'][-1]['complete']=False
                 if self.scenario=='credential_echo':obj['echo']=self.secret

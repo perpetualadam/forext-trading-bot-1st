@@ -315,3 +315,18 @@ jobs:
           python-version: "3.12"
       - name: Verify non-authorising year plan and offline merger
         run: python -I -S -B data/research/trading_intelligence_v2/v28b_run.py --v28b-tests
+
+  trading-intelligence-v28c-bounded:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify finite catalogue with synthetic credentials and loopback HTTPS
+        run: python -I -S -B data/research/trading_intelligence_v2/v26d_run.py --bounded-tests

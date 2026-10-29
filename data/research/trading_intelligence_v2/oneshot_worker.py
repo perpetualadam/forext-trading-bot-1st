@@ -26,7 +26,7 @@ LIVE_APPROVED=False
 LIVE_ROOT=Path(r'C:\TradingResearchData\OANDA')
 ACTIVE_ROOT=None
 SESSION_FILES=('grant.json','grant.claimed.json','journal.json','worker.claimed.json',
-               'acquisition.json','result.json','session_binding.json','request.json')
+               'acquisition.json','result.json','session_binding.json','request.json','rights_scope.json')
 SESSION_READS=frozenset()
 SOURCE_SEAL=PACKAGE/'reports/v27_activation/source_seal.json'
 
@@ -46,7 +46,7 @@ def shared_read(path):
     # Code/cache and the standard library are runtime resources, not archive
     # state. The two exact JSON exceptions are non-authorising identity/review
     # metadata. Package outputs, reports and proposals are otherwise denied.
-    return (path in (BINDING,SOURCE_SEAL) or path.is_relative_to(STDLIB) or
+    return (path in (BINDING,SOURCE_SEAL,PACKAGE/'reports/v28b/V28B_REQUEST_WINDOWS.json') or path.is_relative_to(STDLIB) or
             path.parent==PACKAGE and path.suffix=='.py' or
             path.parent==PACKAGE/'__pycache__' and path.suffix=='.pyc')
 
@@ -92,9 +92,9 @@ def audit(event,args):
 def emit(value):sys.stdout.write(json.dumps(value,separators=(',',':'))+'\n');sys.stdout.flush()
 
 
-def packet():
-    raw=sys.stdin.buffer.readline(2049)
-    if len(raw)>2048:raise ValueError()
+def packet(limit=2048):
+    raw=sys.stdin.buffer.readline(limit+1)
+    if len(raw)>limit:raise ValueError()
     return json.loads(raw)
 
 
@@ -106,10 +106,13 @@ def main():
     spec=importlib.util.spec_from_file_location('tiv2',PACKAGE/'__init__.py',submodule_search_locations=[str(PACKAGE)])
     module=importlib.util.module_from_spec(spec);sys.modules['tiv2']=module;spec.loader.exec_module(module)
     from tiv2.request_profile import arguments as profile_arguments
-    if sys.argv[1:]!=['--worker',*profile_arguments()]:raise ValueError()
+    if sys.argv[1:] not in (['--worker',*profile_arguments()],['--bounded-worker']):raise ValueError()
     if os.name=='nt':
         from tiv2 import oneshot_windows
     sys.addaudithook(audit)
+    if sys.argv[1:]==['--bounded-worker']:
+        from tiv2.bounded_acquisition import worker_main
+        return worker_main(packet,emit,sys.modules[__name__])
     from tiv2.oneshot import reserve,claim_reserved_worker,transition,request_guard,SPEC,FAULTS
     from tiv2.oneshot_archive import Archive
     from tiv2.history_fixtures import payload
