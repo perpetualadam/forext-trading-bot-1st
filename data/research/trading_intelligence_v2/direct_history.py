@@ -58,7 +58,8 @@ def run_approved_session(reservation):
     else:
         authority.require_live_reservation(reservation)
         read_confirmation(CONFIRMATION)
-    result=run_once(APPROVED,synthetic_secret=None,seconds=15.0,
+    root=reservation['root'] if authority.admitted(reservation) else APPROVED
+    result=run_once(root,synthetic_secret=None,seconds=15.0,
         _credential_provider=TerminalCredentialProvider(),_live_reservation=reservation)
     print('Historical session: '+result['kind'],flush=True)
     return result

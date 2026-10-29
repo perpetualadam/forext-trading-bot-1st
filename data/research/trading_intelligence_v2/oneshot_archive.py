@@ -32,9 +32,14 @@ def safe_parts(relative):
 
 
 class Archive:
-    def __init__(self,root,*,synthetic=False,pin=None):
+    def __init__(self,root,*,synthetic=False,pin=None,_bind_session=False):
         self.root=Path(root).absolute();self.synthetic=synthetic;self.handles=[]
+        self.session_id=None;self.namespace_base=None
         try:
+            if self.root.parent.name=='sessions':
+                if not re.fullmatch('[0-9a-f]{32}',self.root.name):raise Refused('SESSION_ID_REFUSED')
+                self.session_id=self.root.name;self.namespace_base=self.root.parent.parent
+            if _bind_session and self.session_id is None:raise Refused('SESSION_REQUIRED')
             if synthetic:
                 portable=self.root==FIXTURES or self.root.is_relative_to(FIXTURES)
                 native=os.name=='nt' and self.root.is_relative_to(NATIVE_FIXTURES)
@@ -45,11 +50,16 @@ class Archive:
                     from . import oneshot_windows as win
                     for path in (NATIVE_FIXTURES,self.root):
                         h,_=win.identity_handle(path);self.handles.append(h);win.acl(path,win.current_sid())
-            elif os.name!='nt' or str(self.root)!=APPROVED:raise Refused('APPROVED_ROOT_REQUIRED')
+            elif os.name!='nt' or (str(self.root)!=APPROVED and self.namespace_base!=Path(APPROVED)):
+                raise Refused('APPROVED_ROOT_REQUIRED')
             for path in [*reversed(self.root.parents),self.root]:
                 if path.is_symlink() or getattr(path,'is_junction',lambda:False)():raise Refused('REPARSE_REFUSED')
                 if not path.is_dir():raise Refused('ARCHIVE_MISSING')
-            if synthetic:
+            if self.session_id is not None:
+                self._session_identity(pin)
+                if not _bind_session and encoded(decode(self.read('session_binding.json')))!=encoded({'version':1,'session':self.session_id,'identity':self.identity}):
+                    raise Refused('IDENTITY_CHANGED')
+            elif synthetic:
                 self.identity=[self.root.stat().st_dev,self.root.stat().st_ino]
                 if pin is not None and pin!=self.identity:raise Refused('IDENTITY_CHANGED')
             else:
@@ -62,6 +72,24 @@ class Archive:
                 actual=decode(self.read('manifests/v26c_archive_binding.json'))
                 if actual!={'version':1,'identity':self.identity}:raise Refused('IDENTITY_CHANGED')
         except BaseException:self.close();raise
+
+    def _session_identity(self,pin):
+        base=Archive(self.namespace_base,synthetic=self.synthetic)
+        try:
+            self.handles.extend(base.handles);base.handles=[]
+            paths=[self.root.parent,self.root,*[self.root/p for p in PARTS]]
+            identities={}
+            for index,path in enumerate(paths):
+                if path.is_symlink() or getattr(path,'is_junction',lambda:False)() or not path.is_dir():
+                    raise Refused('SESSION_DIRECTORY_REFUSED')
+                if os.name=='nt':
+                    from . import oneshot_windows as win
+                    h,identity=win.identity_handle(path);self.handles.append(h);win.acl(path,win.current_sid())
+                else:identity=[path.stat().st_dev,path.stat().st_ino]
+                identities[str(index)]=identity
+            self.identity={'archive':base.identity,'session':self.session_id,'directories':identities}
+            if pin is not None and pin!=self.identity:raise Refused('IDENTITY_CHANGED')
+        finally:base.close()
 
     def close(self):
         if self.handles:
@@ -77,6 +105,9 @@ class Archive:
         for item in [path,*list(path.parents)[:len(path.relative_to(self.root).parts)]]:
             if item.is_symlink() or getattr(item,'is_junction',lambda:False)():raise Refused('REPARSE_REFUSED')
             if item.exists() and item.is_file() and item.stat().st_nlink!=1:raise Refused('HARDLINK_REFUSED')
+            if self.session_id is not None and os.name=='nt' and item.exists() and item.is_file():
+                from . import oneshot_windows as win
+                win.acl(item,win.current_sid())
         if not path.resolve().is_relative_to(self.root):raise Refused('PATH_ESCAPE')
         return path
 
@@ -122,8 +153,9 @@ class Archive:
         return digest(value)
 
     @contextlib.contextmanager
-    def locked(self):
-        path=self.path('writer.lock')
+    def locked(self,name='writer.lock'):
+        if name not in ('writer.lock','historical_acquisition.lock'):raise Refused('LOCK_NAME_REFUSED')
+        path=self.path(name)
         # The lock file is structural, never evidence of unused authorisation.
         with path.open('a+b') as stream:
             stream.seek(0,2)

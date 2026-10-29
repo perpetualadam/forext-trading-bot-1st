@@ -47,7 +47,7 @@ class IntegratedHTTPS(previous.ExistingClientHTTPS):
 class RestrictedBridge(unittest.TestCase):
     def test_real_supervisor_reserves_before_any_worker_start_with_memory_stubs(self):
         from . import oneshot
-        events=[];archive=MagicMock();receipt=object()
+        events=[];archive=MagicMock();archive.session_id=None;receipt=object()
         archive.close.side_effect=lambda:events.append('closed')
         def reserved(a,**kwargs):
             self.assertIs(a,archive);self.assertIs(kwargs['_live_reservation'],receipt)
@@ -70,7 +70,7 @@ class RestrictedBridge(unittest.TestCase):
         from .oneshot import claim_reserved_worker,SPEC_HASH
         from .oanda_history_manifest import encoded,decode
         class MemoryArchive:
-            synthetic=False;identity=['SYNTHETIC_MEMORY_ONLY']
+            synthetic=False;identity=['SYNTHETIC_MEMORY_ONLY'];session_id=None
             def __init__(self):
                 self.data={'journal.json':encoded({'version':1,'state':'REQUEST_RESERVED','attempts':0,'spec':SPEC_HASH}),
                            'grant.claimed.json':encoded({'synthetic_memory_only':True})}

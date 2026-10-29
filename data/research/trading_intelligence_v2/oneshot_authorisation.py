@@ -25,11 +25,11 @@ SOURCE_FILES=('__init__.py','oneshot_authorisation.py','oneshot.py','oneshot_wor
     'oneshot_network.py','oneshot_archive.py','oneshot_windows.py','oneshot_bridge.py',
     'oneshot_https_fixture.py','oneshot_response.py','oanda_existing_readonly.py',
     'oanda_history_transport.py','oanda_history_manifest.py','core.py',
-    'history_fixtures.py','historical_manifest.py','confirmation_input.py','token_input.py')
+    'history_fixtures.py','historical_manifest.py','confirmation_input.py','token_input.py','session_namespace.py')
 RIGHTS_PHRASE='I CONFIRM ACCOUNT ENTITLEMENT AND PRIVATE RESEARCH RETENTION'
 ENDPOINT_PHRASE='I ACCEPT ONE NON-ACCOUNT ENDPOINT CONNECTIVITY CHECK'
 FIELDS={'version','mode','root','session','spec','source','identity','issued','expires','parent','conditions','started'}
-SESSION_FILES=('journal.json','grant.json','grant.claimed.json','worker.claimed.json','acquisition.json')
+SESSION_FILES=('journal.json','grant.json','grant.claimed.json','worker.claimed.json','acquisition.json','result.json')
 PREPARATION_SECONDS=15
 TOKEN_SECONDS=120
 ACQUISITION_SECONDS=15
@@ -73,7 +73,7 @@ def admitted(value):
 
 
 def _shape(cap):
-    if not admitted(cap) or set(cap)!=FIELDS or type(cap['version']) is not int or cap['version']!=2 or cap['spec']!=SPEC_HASH:
+    if not admitted(cap) or set(cap)!=FIELDS or type(cap['version']) is not int or cap['version'] not in (2,3) or cap['spec']!=SPEC_HASH:
         raise Refused(DISABLED)
     if (any(type(cap[k]) is not str or not re.fullmatch('[0-9a-f]{64}',cap[k]) for k in ('source','identity')) or
         type(cap['session']) is not str or not re.fullmatch('[0-9a-f]{32}',cap['session']) or
@@ -84,7 +84,12 @@ def _shape(cap):
         cap['expires']-cap['issued']!=LIFETIME_SECONDS or not cap['issued']<=time.time()<cap['expires']):
         raise Refused('SESSION_SCOPE_OR_EXPIRY_REFUSED')
     expected='OPERATOR_ATTESTED_LIMITED_RESEARCH_RETENTION_AND_ENDPOINT_UNCERTAINTY' if cap['mode']=='LIVE' else 'SYNTHETIC_TEST_ONLY'
-    if cap['conditions']!=expected or cap['mode']=='LIVE' and (os.name!='nt' or cap['root']!=APPROVED):
+    from .session_namespace import session_root
+    namespaced=Path(cap['root']).parent.name=='sessions'
+    if namespaced and (cap['version']!=3 or Path(cap['root']).name!=cap['session']):raise Refused('SESSION_SCOPE_REFUSED')
+    if cap['version']==3 and not namespaced:raise Refused('SESSION_SCOPE_REFUSED')
+    if cap['conditions']!=expected or cap['mode']=='LIVE' and (os.name!='nt' or cap['version']!=3 or
+            cap['root']!=str(session_root(APPROVED,cap['session']))):
         raise Refused('SESSION_SCOPE_REFUSED')
     if cap['source']!=source_seal():raise Refused('SOURCE_REVISION_CHANGED')
 
@@ -100,6 +105,9 @@ def _verify_reservation(value):
         raise Refused('SESSION_CONTEXT_REFUSED')
     from .oneshot import journal
     with Archive(cap['root'],synthetic=cap['mode']=='OFFLINE_TEST') as archive:
+        if archive.session_id is not None:
+            from .session_namespace import require_prepared
+            require_prepared(archive,cap['source'])
         if digest(encoded(archive.identity))!=cap['identity']:raise Refused('IDENTITY_CHANGED')
         claimed=archive.path('grant.claimed.json').exists()
         stored=decode(archive.read('grant.claimed.json' if claimed else 'grant.json'))
@@ -213,11 +221,15 @@ def _issue(archive,mode,*,started=None,confirmation=None):
         raise Refused('TERMINAL_CONFIRMATION_REQUIRED')
     if type(archive) is not Archive or archive.synthetic!=(mode=='OFFLINE_TEST') or mode not in ('LIVE','OFFLINE_TEST'):
         raise Refused('GRANT_SCOPE_REFUSED')
-    if mode=='LIVE' and str(archive.root)!=APPROVED:raise Refused('APPROVED_ROOT_REQUIRED')
+    if mode=='LIVE' and (archive.session_id is None or archive.namespace_base!=Path(APPROVED)):
+        raise Refused('APPROVED_SESSION_ROOT_REQUIRED')
     with Archive(archive.root,synthetic=mode=='OFFLINE_TEST',pin=archive.identity):pass
     _unused(archive);now=time.time();started=time.monotonic() if started is None else started
     source=source_seal()
-    session=uuid.uuid4().hex
+    session=archive.session_id or uuid.uuid4().hex
+    if archive.session_id is not None:
+        from .session_namespace import require_prepared
+        require_prepared(archive,source)
     if mode=='LIVE':
         proof=_CONFIRMATIONS.pop(confirmation,None)
         if (type(proof) is not tuple or len(proof)!=5 or
@@ -225,11 +237,13 @@ def _issue(archive,mode,*,started=None,confirmation=None):
             type(proof[4]) is not str or not re.fullmatch('[0-9a-f]{32}',proof[4])):
             raise Refused('TERMINAL_CONFIRMATION_REQUIRED')
         session=proof[4]
-    cap=dict(version=2,mode=mode,root=str(archive.root),session=session,spec=SPEC_HASH,
+        if session!=archive.session_id:raise Refused('SESSION_CONFIRMATION_BINDING_REFUSED')
+    cap=dict(version=3 if archive.session_id is not None else 2,mode=mode,root=str(archive.root),session=session,spec=SPEC_HASH,
         source=source,identity=digest(encoded(archive.identity)),issued=now,expires=now+LIFETIME_SECONDS,parent=os.getpid(),started=started,
         conditions='OPERATOR_ATTESTED_LIMITED_RESEARCH_RETENTION_AND_ENDPOINT_UNCERTAINTY' if mode=='LIVE' else 'SYNTHETIC_TEST_ONLY')
     archive.put('grant.json',encoded(cap))
-    archive.put('journal.json',encoded(dict(version=1,state='AUTHORISED_NOT_CONSUMED',spec=SPEC_HASH,attempts=0)))
+    from .oneshot import journal_value
+    archive.put('journal.json',encoded(journal_value(archive,'AUTHORISED_NOT_CONSUMED',0)))
     return cap
 
 
@@ -243,8 +257,10 @@ def issue_live_interactively():
     """Never called by tests or during implementation; no noninteractive writer."""
     if os.name!='nt' or not sys.stdin.isatty() or not sys.stdout.isatty():raise Refused(DISABLED)
     source=source_seal()
-    with Archive(APPROVED) as archive:_unused(archive);identity=archive.identity
     request_id=prepared_request_nonce(source)
+    from .session_namespace import session_root,require_prepared
+    root=session_root(APPROVED,request_id)
+    with Archive(root) as archive:require_prepared(archive,source);_unused(archive);identity=archive.identity
     expected=confirmation_phrase(source,request_id)
     print('Endpoint support and account-specific retention are NOT independently verified.')
     print('Confirm only if your applicable account terms permit this request and local retention.')
@@ -261,7 +277,7 @@ def issue_live_interactively():
     confirmation=uuid.uuid4().hex
     _CONFIRMATIONS[confirmation]=(source,digest(encoded(identity)),os.getpid(),started,request_id)
     try:
-        with Archive(APPROVED,pin=identity) as archive,archive.locked():
+        with Archive(root,pin=identity) as archive,archive.locked():
             return _issue(archive,'LIVE',started=started,confirmation=confirmation)
     finally:_CONFIRMATIONS.pop(confirmation,None)
 

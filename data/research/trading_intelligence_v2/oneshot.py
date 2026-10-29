@@ -35,16 +35,25 @@ def request_guard(method,host,path,params,*,headers=None,proxy=None):
 
 def initialise(archive):
     """Only an unapproved session; no code here creates a permission grant."""
-    archive.put('journal.json',encoded({'version':1,'state':'NOT_AUTHORISED','spec':SPEC_HASH,'attempts':0}))
+    archive.put('journal.json',encoded(journal_value(archive,'NOT_AUTHORISED',0)))
+
+
+def journal_value(archive,state,attempts):
+    value={'version':1,'state':state,'spec':SPEC_HASH,'attempts':attempts}
+    if archive.session_id is not None:value.update(version=2,session=archive.session_id,identity=digest(encoded(archive.identity)))
+    return value
 
 
 def journal(archive):
     value=decode(archive.read('journal.json'))
-    if (type(value) is not dict or set(value)!={'version','state','spec','attempts'} or
-        type(value['version']) is not int or value['version']!=1 or value['spec']!=SPEC_HASH or
+    expected={'version','state','spec','attempts'}|({'session','identity'} if archive.session_id is not None else set())
+    if (type(value) is not dict or set(value)!=expected or
+        type(value['version']) is not int or value['version']!=(2 if archive.session_id is not None else 1) or value['spec']!=SPEC_HASH or
         not isinstance(value['state'],str) or value['state'] not in STATES or
         type(value['attempts']) is not int or value['attempts'] not in (0,1)):
         raise Refused('INVALID_JOURNAL')
+    if archive.session_id is not None and (value['session']!=archive.session_id or value['identity']!=digest(encoded(archive.identity))):
+        raise Refused('CROSS_SESSION_JOURNAL_REFUSED')
     return value
 
 
@@ -56,7 +65,7 @@ def transition(archive,state,attempts):
     previous=journal(archive)
     if type(attempts) is not int or allowed.get(previous['state'])!=(state,attempts):
         raise Refused('STATE_TRANSITION_REFUSED')
-    archive.put('journal.json',encoded({'version':1,'state':state,'spec':SPEC_HASH,'attempts':attempts}),replace=True)
+    archive.put('journal.json',encoded(journal_value(archive,state,attempts)),replace=True)
 
 
 def reserve(archive,checkpoint=lambda phase:None,*,_live_reservation=None):
@@ -161,13 +170,19 @@ def run_once(root,*,synthetic_secret,seconds=15.0,fault='',pin=None,
     if fault not in FAULTS:raise Refused('UNKNOWN_FIXTURE_FAULT')
     deadline=started+(15 if phased else seconds);work_deadline=deadline-min(1.0,seconds/3)
     acquisition_started=None
-    process=None;job=None;native_archive=None;messages=queue.Queue();result={'kind':'OUTCOME_UNKNOWN'}
+    process=None;job=None;native_archive=None;global_guard=None;reservation_owned=False;messages=queue.Queue();result={'kind':'OUTCOME_UNKNOWN'}
     try:
         if live:
             # No worker exists until the exact native archive has durably claimed
             # the grant. Retain identity handles through the entire fenced run.
             native_archive=Archive(root,synthetic=fixture_live,pin=pin)
-            with native_archive.locked():reserve(native_archive,_live_reservation=_live_reservation)
+            if native_archive.session_id is not None:
+                from .session_namespace import acquisition_lock
+                global_guard=acquisition_lock(native_archive)
+                global_guard.__enter__()
+            with native_archive.locked():
+                reservation_owned=native_archive.session_id is not None and journal(native_archive)['state']=='AUTHORISED_NOT_CONSUMED' and not native_archive.path('grant.claimed.json').exists()
+                reserve(native_archive,_live_reservation=_live_reservation)
             if time.monotonic()>=work_deadline:raise Refused('PREPARATION_DEADLINE_EXHAUSTED')
         # Winsock needs the OS bootstrap directory even in an otherwise empty
         # Windows child environment. No parent variables or credentials copied.
@@ -231,7 +246,8 @@ def run_once(root,*,synthetic_secret,seconds=15.0,fault='',pin=None,
                 result=message;break
             else:break
     except Exception as error:
-        result={'kind':'TOKEN_ENTRY_TIMEOUT' if phased and type(error) is Refused and str(error)=='TOKEN_ENTRY_TIMEOUT' else 'OUTCOME_UNKNOWN',
+        result={'kind':('GLOBAL_ACQUISITION_BUSY' if type(error) is Refused and str(error)=='GLOBAL_ACQUISITION_BUSY' else
+                       'TOKEN_ENTRY_TIMEOUT' if phased and type(error) is Refused and str(error)=='TOKEN_ENTRY_TIMEOUT' else 'OUTCOME_UNKNOWN'),
                 'local_error':type(error).__name__}
     finally:
         if process is not None:
@@ -252,11 +268,22 @@ def run_once(root,*,synthetic_secret,seconds=15.0,fault='',pin=None,
                 if pipe:
                     try:pipe.close()
                     except OSError:pass
-        if native_archive is not None:native_archive.close()
         elapsed=time.monotonic()-(acquisition_started if acquisition_started is not None else started)
         result={**result,'worker_pid':process.pid if process else None,
                 'worker_exited':process is None or process.poll() is not None,
                 'elapsed':elapsed,'total_elapsed':time.monotonic()-started}
+        if time.monotonic()>deadline:result['kind']='DEADLINE_OVERRUN'
+        try:
+            if reservation_owned and native_archive is not None and native_archive.session_id is not None and native_archive.path('grant.claimed.json').exists():
+                from .session_namespace import publish_result,block_unfenced
+                if not result['worker_exited'] or result['kind']=='FENCING_UNCONFIRMED':block_unfenced(native_archive,_live_reservation)
+                publish_result(native_archive,_live_reservation,result)
+        except Exception:result['kind']='OUTCOME_UNKNOWN'
+        finally:
+            if global_guard is not None:global_guard.__exit__(None,None,None)
+            if native_archive is not None:native_archive.close()
+        result['elapsed']=time.monotonic()-(acquisition_started if acquisition_started is not None else started)
+        result['total_elapsed']=time.monotonic()-started
         if time.monotonic()>deadline:result['kind']='DEADLINE_OVERRUN'
     return result
 

@@ -24,7 +24,39 @@ LOOPBACK_PORT=None
 LIVE_POLICY=None
 LIVE_APPROVED=False
 LIVE_ROOT=Path(r'C:\TradingResearchData\OANDA')
-SESSION_READS={LIVE_ROOT/name for name in ('grant.json','grant.claimed.json','journal.json','worker.claimed.json','acquisition.json')}
+ACTIVE_ROOT=None
+SESSION_FILES=('grant.json','grant.claimed.json','journal.json','worker.claimed.json',
+               'acquisition.json','result.json','session_binding.json','request.json')
+SESSION_READS=frozenset()
+SOURCE_SEAL=PACKAGE/'reports/v27_activation/source_seal.json'
+
+
+def configure_session_reads(root):
+    """Replace the bootstrap scope; never inherit a previous namespace's files.
+
+    Full archive, source and role validation still precedes ACTIVE_ROOT/writes.
+    Explicit legacy operation uses exactly that legacy root, with no siblings.
+    """
+    global SESSION_READS
+    root=Path(root).absolute()
+    SESSION_READS=frozenset(root/name for name in SESSION_FILES)
+
+
+def shared_read(path):
+    # Code/cache and the standard library are runtime resources, not archive
+    # state. The two exact JSON exceptions are non-authorising identity/review
+    # metadata. Package outputs, reports and proposals are otherwise denied.
+    return (path in (BINDING,SOURCE_SEAL) or path.is_relative_to(STDLIB) or
+            path.parent==PACKAGE and path.suffix=='.py' or
+            path.parent==PACKAGE/'__pycache__' and path.suffix=='.pyc')
+
+
+def own_path(path):
+    if ACTIVE_ROOT is None or not path.is_relative_to(ACTIVE_ROOT):return False
+    relative=path.relative_to(ACTIVE_ROOT)
+    # A legacy root contains the new container physically, but never owns its
+    # sessions. Legacy operation retains its own state/results only.
+    return not relative.parts or relative.parts[0]!='sessions'
 
 
 def audit(event,args):
@@ -44,13 +76,16 @@ def audit(event,args):
         path=Path(name).resolve();write=flags&(os.O_WRONLY|os.O_RDWR|os.O_CREAT|os.O_TRUNC|os.O_APPEND)
         if path.name.lower().startswith('.env') or path.suffix in {'.db','.sqlite','.permit','.consumed'}:
             raise PermissionError('WORKER_STATE_REFUSED')
-        if write and not (LIVE_APPROVED and path.is_relative_to(LIVE_ROOT)) and not any(path.is_relative_to(p) for p in (FIXTURES,NATIVE_FIXTURES)):
+        allowed_write=own_path(path)
+        if path.is_file() and path.stat().st_nlink!=1:
+            raise PermissionError('WORKER_HARDLINK_REFUSED')
+        if write and not allowed_write:
             raise PermissionError('WORKER_WRITE_REFUSED')
-        if not write and not (LIVE_APPROVED and path.is_relative_to(LIVE_ROOT)) and path not in SESSION_READS and path!=BINDING and not any(path.is_relative_to(p) for p in (STDLIB,PACKAGE,NATIVE_FIXTURES)):
+        if not write and not allowed_write and path not in SESSION_READS and not shared_read(path):
             raise PermissionError('WORKER_READ_REFUSED')
     if event in {'os.rename','os.remove','os.mkdir','os.rmdir','os.link','os.symlink','os.chmod','os.truncate'}:
         for name in args[:2] if event in {'os.rename','os.link','os.symlink'} else args[:1]:
-            if not (LIVE_APPROVED and Path(name).resolve().is_relative_to(LIVE_ROOT)) and not any(Path(name).resolve().is_relative_to(p) for p in (FIXTURES,NATIVE_FIXTURES)):
+            if not own_path(Path(name).resolve()):
                 raise PermissionError('WORKER_MUTATION_REFUSED')
 
 
@@ -64,7 +99,7 @@ def packet():
 
 
 def main():
-    global LOOPBACK_PORT,LIVE_POLICY,LIVE_APPROVED
+    global LOOPBACK_PORT,LIVE_POLICY,LIVE_APPROVED,LIVE_ROOT,ACTIVE_ROOT,SESSION_READS
     if sys.argv[1:]!=['--worker']:raise ValueError()
     os.environ.clear()
     if os.name=='nt':os.environ['SystemRoot']=r'C:\Windows'
@@ -85,6 +120,15 @@ def main():
     start=packet();fault=start['fault']
     live='live_reservation' in start
     fixture_live=live and type(start['live_reservation']) is dict and start['live_reservation'].get('mode')=='OFFLINE_TEST'
+    requested_root=Path(start['root']).absolute()
+    configure_session_reads(requested_root)
+    if live:
+        if str(requested_root)!=start['live_reservation']['root']:raise ValueError()
+    if live and requested_root.parent.name=='sessions':
+        from tiv2.session_namespace import session_root
+        cap=start['live_reservation']
+        if requested_root!=session_root(requested_root.parent.parent,cap['session']) or str(requested_root)!=cap['root']:raise ValueError()
+        if not fixture_live and requested_root.parent.parent!=LIVE_ROOT:raise ValueError()
     if live:
         from tiv2.oneshot_authorisation import require_live_reservation
         require_live_reservation(start['live_reservation'])
@@ -93,6 +137,10 @@ def main():
             from tiv2.oneshot_https_fixture import validate_binding
             validate_binding(start['https_fixture'])
         elif 'https_fixture' in start:raise ValueError()
+    if not live and not (requested_root==FIXTURES or requested_root.is_relative_to(FIXTURES) or requested_root.is_relative_to(NATIVE_FIXTURES)):
+        raise ValueError()
+    ACTIVE_ROOT=requested_root
+    if live and not fixture_live:LIVE_ROOT=requested_root
     if fault not in FAULTS:raise ValueError()
     def checkpoint(phase):
         if fault=='crash_'+phase:os._exit(123)

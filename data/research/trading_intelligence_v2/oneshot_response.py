@@ -23,5 +23,9 @@ def publish_candles(archive,raw,*,name,start,end,retrieved,synthetic):
              'raw':raw_path,'raw_sha256':raw_hash,'validated':rows_path,
              'validated_sha256':rows_hash,'observed_complete_count':len(rows),
              'validation':report,'start':start,'end':end,'retrieved':retrieved}
+    if archive.session_id is not None:
+        from .oanda_history_manifest import digest
+        receipt.update(session=archive.session_id,identity=digest(encoded(archive.identity)),
+                       request_sha256=digest(archive.read('request.json')))
     archive.put('manifests/'+name+'.json',encoded(receipt))
     return receipt

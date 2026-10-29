@@ -317,6 +317,7 @@ class AdmissionGuards(unittest.TestCase):
         for answers,error in cases:
             output=TTY()
             with patch.object(authority,'Archive',return_value=archive),patch.object(authority,'_issue',side_effect=AssertionError('NO_GRANT')), \
+                 patch('tiv2.session_namespace.require_prepared',return_value=None), \
                  patch.object(authority,'prepared_request_nonce',return_value=request_id), \
                  patch.object(authority.sys,'stdin',TTY()),patch.object(authority.sys,'stdout',output), \
                  patch('builtins.input',side_effect=answers):
@@ -329,12 +330,17 @@ class AdmissionGuards(unittest.TestCase):
             self.assertEqual(authority._CONFIRMATIONS[kwargs['confirmation']][-1],request_id)
             return sentinel
         with patch.object(authority,'Archive',return_value=archive),patch.object(authority,'_issue',side_effect=issue_memory) as issue, \
+             patch('tiv2.session_namespace.require_prepared',return_value=None), \
              patch.object(authority,'prepared_request_nonce',return_value=request_id), \
              patch.object(authority.sys,'stdin',TTY()),patch.object(authority.sys,'stdout',TTY()), \
              patch('builtins.input',side_effect=[authority.RIGHTS_PHRASE,authority.ENDPOINT_PHRASE,expected]):
             self.assertIs(authority.issue_live_interactively(),sentinel)
             self.assertEqual(issue.call_args.args,(archive,'LIVE'))
             self.assertLessEqual(issue.call_args.kwargs['started'],time.monotonic())
+        used_confirmation=issue.call_args.kwargs['confirmation']
+        self.assertNotIn(used_confirmation,authority._CONFIRMATIONS)
+        with self.assertRaisesRegex(Refused,'TERMINAL_CONFIRMATION_REQUIRED'):
+            authority._issue(object(),'LIVE',confirmation=used_confirmation)
 
     def test_no_noninteractive_issuer_or_normal_credential_access(self):
         with patch.object(authority.sys,'stdin',io.StringIO()),patch('builtins.input',side_effect=AssertionError('NO_INPUT')), \
