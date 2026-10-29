@@ -1,0 +1,3095 @@
+{
+  "version": "V28B_OFFLINE_PLAN_1",
+  "start": "2024-09-01T00:00:00+00:00",
+  "end_exclusive": "2025-09-01T00:00:00+00:00",
+  "request_count": 106,
+  "calendar_slots": 105120,
+  "maximum_future_attempts_after_separate_approval": 106,
+  "currently_authorised_attempts": 0,
+  "live_scope_supported": false,
+  "retries": 0,
+  "redirects": false,
+  "proxies": false,
+  "pagination": false,
+  "fallback": false,
+  "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+  "source_seal_role": "Existing pilot implementation reference; LIVE catalogue does not include these windows",
+  "authorises_execution": false,
+  "windows_sha256": "b7d10131b60aa04cf3c4ae18fb9dd4dee797bb68d0c1046deca874aa0f36e187",
+  "windows": [
+    {
+      "number": 1,
+      "start": "2024-09-01T00:00:00+00:00",
+      "end_exclusive": "2024-09-04T11:20:00+00:00",
+      "request_id": "7fdca051b58a58749a4782a6d18d7383",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-09-01T00:00:00+00:00",
+          "to": "2024-09-04T11:19:59+00:00"
+        }
+      },
+      "spec_sha256": "b056ac80b3ee81b8393e7eeb5943550570c053dfabb0f29a482bfd3baa5dcd0a",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\7fdca051b58a58749a4782a6d18d7383",
+      "predecessor": null,
+      "predecessor_requirement": "Fresh separate approval",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 2,
+      "start": "2024-09-04T11:20:00+00:00",
+      "end_exclusive": "2024-09-07T22:40:00+00:00",
+      "request_id": "2f68ebd171c65a52a2ef93b29451bea7",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-09-04T11:20:00+00:00",
+          "to": "2024-09-07T22:39:59+00:00"
+        }
+      },
+      "spec_sha256": "cc559a18b72cdc0ec4b0bad6866c3dfcc4eaff3e3df50c94e32016d5c46619ae",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\2f68ebd171c65a52a2ef93b29451bea7",
+      "predecessor": "7fdca051b58a58749a4782a6d18d7383",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 3,
+      "start": "2024-09-07T22:40:00+00:00",
+      "end_exclusive": "2024-09-11T10:00:00+00:00",
+      "request_id": "2baba7cc92a95ffa92d7eb16eb8edd92",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-09-07T22:40:00+00:00",
+          "to": "2024-09-11T09:59:59+00:00"
+        }
+      },
+      "spec_sha256": "8011e502a5b2368e540437a96a1e5ac9b58da3af4f466f738c6ce8bc7f04c601",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\2baba7cc92a95ffa92d7eb16eb8edd92",
+      "predecessor": "2f68ebd171c65a52a2ef93b29451bea7",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 4,
+      "start": "2024-09-11T10:00:00+00:00",
+      "end_exclusive": "2024-09-14T21:20:00+00:00",
+      "request_id": "8bf1973d7731550fa18ff15184091a53",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-09-11T10:00:00+00:00",
+          "to": "2024-09-14T21:19:59+00:00"
+        }
+      },
+      "spec_sha256": "86629265ab654e4c4bf3c6f3e94b0c4c73eff46b65f82ba54903aa66304e6083",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\8bf1973d7731550fa18ff15184091a53",
+      "predecessor": "2baba7cc92a95ffa92d7eb16eb8edd92",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 5,
+      "start": "2024-09-14T21:20:00+00:00",
+      "end_exclusive": "2024-09-18T08:40:00+00:00",
+      "request_id": "0c84085ee5a757eba8921c13434ab5d1",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-09-14T21:20:00+00:00",
+          "to": "2024-09-18T08:39:59+00:00"
+        }
+      },
+      "spec_sha256": "159b6df28d1a9e7ca5ea1720c417735775b84952a6e537ac16bb672651697453",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\0c84085ee5a757eba8921c13434ab5d1",
+      "predecessor": "8bf1973d7731550fa18ff15184091a53",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 6,
+      "start": "2024-09-18T08:40:00+00:00",
+      "end_exclusive": "2024-09-21T20:00:00+00:00",
+      "request_id": "344eab8cf55057308f53b9e3b555494f",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-09-18T08:40:00+00:00",
+          "to": "2024-09-21T19:59:59+00:00"
+        }
+      },
+      "spec_sha256": "01f00102f710fbeaba5cd8b432d7e3284454269c4a9c93d6b52c35897f34d7ed",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\344eab8cf55057308f53b9e3b555494f",
+      "predecessor": "0c84085ee5a757eba8921c13434ab5d1",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 7,
+      "start": "2024-09-21T20:00:00+00:00",
+      "end_exclusive": "2024-09-25T07:20:00+00:00",
+      "request_id": "545834c0d47a55049e573c28a8e29c43",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-09-21T20:00:00+00:00",
+          "to": "2024-09-25T07:19:59+00:00"
+        }
+      },
+      "spec_sha256": "255c00b4e4d2a6dba4fde0164797b10da4955b70f411dc11395de92eab6a97c9",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\545834c0d47a55049e573c28a8e29c43",
+      "predecessor": "344eab8cf55057308f53b9e3b555494f",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 8,
+      "start": "2024-09-25T07:20:00+00:00",
+      "end_exclusive": "2024-09-28T18:40:00+00:00",
+      "request_id": "a728659018bd58609e11a38a618d81ce",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-09-25T07:20:00+00:00",
+          "to": "2024-09-28T18:39:59+00:00"
+        }
+      },
+      "spec_sha256": "1c08849ec5e7f1de99a6f58a23f46868454c897637c48314b60a7df9d9dfb16f",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\a728659018bd58609e11a38a618d81ce",
+      "predecessor": "545834c0d47a55049e573c28a8e29c43",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 9,
+      "start": "2024-09-28T18:40:00+00:00",
+      "end_exclusive": "2024-10-02T06:00:00+00:00",
+      "request_id": "4afaafa53de45f0c9b38bb046f1606a4",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-09-28T18:40:00+00:00",
+          "to": "2024-10-02T05:59:59+00:00"
+        }
+      },
+      "spec_sha256": "2b0d5602b1ef3532ff254f3fa9f607dac7a2f7b60797cff386faceecfa0a1c29",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\4afaafa53de45f0c9b38bb046f1606a4",
+      "predecessor": "a728659018bd58609e11a38a618d81ce",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 10,
+      "start": "2024-10-02T06:00:00+00:00",
+      "end_exclusive": "2024-10-05T17:20:00+00:00",
+      "request_id": "ffad13b8d68f5ebd937fd1074f07c3b8",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-10-02T06:00:00+00:00",
+          "to": "2024-10-05T17:19:59+00:00"
+        }
+      },
+      "spec_sha256": "33993e8fbf1671d6a85b80e71974982f079ff402c01423d1a06a70217cff0799",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\ffad13b8d68f5ebd937fd1074f07c3b8",
+      "predecessor": "4afaafa53de45f0c9b38bb046f1606a4",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 11,
+      "start": "2024-10-05T17:20:00+00:00",
+      "end_exclusive": "2024-10-09T04:40:00+00:00",
+      "request_id": "17e009594f5b51feab7750015b6406b2",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-10-05T17:20:00+00:00",
+          "to": "2024-10-09T04:39:59+00:00"
+        }
+      },
+      "spec_sha256": "5b787a59689b11203ebb0be3b7263fbe9ffbfc3b09b31079d076d2a7d68ce5f5",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\17e009594f5b51feab7750015b6406b2",
+      "predecessor": "ffad13b8d68f5ebd937fd1074f07c3b8",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 12,
+      "start": "2024-10-09T04:40:00+00:00",
+      "end_exclusive": "2024-10-12T16:00:00+00:00",
+      "request_id": "80532ce7e5ee573b903ff72fe0c9d07a",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-10-09T04:40:00+00:00",
+          "to": "2024-10-12T15:59:59+00:00"
+        }
+      },
+      "spec_sha256": "1d66c3e9deed6e47fce970b5beb3186e41c55bc8431612804846e65bf55f8109",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\80532ce7e5ee573b903ff72fe0c9d07a",
+      "predecessor": "17e009594f5b51feab7750015b6406b2",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 13,
+      "start": "2024-10-12T16:00:00+00:00",
+      "end_exclusive": "2024-10-16T03:20:00+00:00",
+      "request_id": "8aef8fca5ba65c4cbc81dcce839a8aff",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-10-12T16:00:00+00:00",
+          "to": "2024-10-16T03:19:59+00:00"
+        }
+      },
+      "spec_sha256": "f15337d93e2d349be46d391d867ff19fbaeb4f4dda6dc12ec8a9809c4b6e751d",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\8aef8fca5ba65c4cbc81dcce839a8aff",
+      "predecessor": "80532ce7e5ee573b903ff72fe0c9d07a",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 14,
+      "start": "2024-10-16T03:20:00+00:00",
+      "end_exclusive": "2024-10-19T14:40:00+00:00",
+      "request_id": "4c73b09293685f06862ca4553e3c4bb9",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-10-16T03:20:00+00:00",
+          "to": "2024-10-19T14:39:59+00:00"
+        }
+      },
+      "spec_sha256": "75d35af0126222cfa0a4de4e2bfe2a9264d24662ba00804b26d446133d176b42",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\4c73b09293685f06862ca4553e3c4bb9",
+      "predecessor": "8aef8fca5ba65c4cbc81dcce839a8aff",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 15,
+      "start": "2024-10-19T14:40:00+00:00",
+      "end_exclusive": "2024-10-23T02:00:00+00:00",
+      "request_id": "b4ce5a3b3ad45a8e8651d1d898cfe85a",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-10-19T14:40:00+00:00",
+          "to": "2024-10-23T01:59:59+00:00"
+        }
+      },
+      "spec_sha256": "91536c21dc667a3b0e6b020c52f0fadf5298db59ba5921dbaad703442b8eca15",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\b4ce5a3b3ad45a8e8651d1d898cfe85a",
+      "predecessor": "4c73b09293685f06862ca4553e3c4bb9",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 16,
+      "start": "2024-10-23T02:00:00+00:00",
+      "end_exclusive": "2024-10-26T13:20:00+00:00",
+      "request_id": "0a515b41fe3f528da25899c03aded0b5",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-10-23T02:00:00+00:00",
+          "to": "2024-10-26T13:19:59+00:00"
+        }
+      },
+      "spec_sha256": "5f278b4c9a2065cd7b010b2b77b76168c23f9571dbd5d8c2d37596c2e92b39ed",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\0a515b41fe3f528da25899c03aded0b5",
+      "predecessor": "b4ce5a3b3ad45a8e8651d1d898cfe85a",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 17,
+      "start": "2024-10-26T13:20:00+00:00",
+      "end_exclusive": "2024-10-30T00:40:00+00:00",
+      "request_id": "f9fbc1babbd95da390c51dbdb8f014fe",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-10-26T13:20:00+00:00",
+          "to": "2024-10-30T00:39:59+00:00"
+        }
+      },
+      "spec_sha256": "ff7d358c250ac58bc5ed4079e046e53471e7b145075e81d9a29e44e9464651b2",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\f9fbc1babbd95da390c51dbdb8f014fe",
+      "predecessor": "0a515b41fe3f528da25899c03aded0b5",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 18,
+      "start": "2024-10-30T00:40:00+00:00",
+      "end_exclusive": "2024-11-02T12:00:00+00:00",
+      "request_id": "0b0d7ad03e1753dd87b86002056061d9",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-10-30T00:40:00+00:00",
+          "to": "2024-11-02T11:59:59+00:00"
+        }
+      },
+      "spec_sha256": "9154671a5b16a76657aa8cfff18a6281ada3cd0fa6e07badd8470e1287f24649",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\0b0d7ad03e1753dd87b86002056061d9",
+      "predecessor": "f9fbc1babbd95da390c51dbdb8f014fe",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 19,
+      "start": "2024-11-02T12:00:00+00:00",
+      "end_exclusive": "2024-11-05T23:20:00+00:00",
+      "request_id": "637d81d652a35675982db8022b59a2f0",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-11-02T12:00:00+00:00",
+          "to": "2024-11-05T23:19:59+00:00"
+        }
+      },
+      "spec_sha256": "42345fdcd79e55289903de8ec0cfd84bd46a219030b18e8f1ed4b20cc7096afd",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\637d81d652a35675982db8022b59a2f0",
+      "predecessor": "0b0d7ad03e1753dd87b86002056061d9",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 20,
+      "start": "2024-11-05T23:20:00+00:00",
+      "end_exclusive": "2024-11-09T10:40:00+00:00",
+      "request_id": "ccc12196acb45566ac9852b1118c0a6d",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-11-05T23:20:00+00:00",
+          "to": "2024-11-09T10:39:59+00:00"
+        }
+      },
+      "spec_sha256": "ab92fbf1fca8ca7e2d8e25eabecf8ab7a45085ba9b17278a6a3555a32acfa5a4",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\ccc12196acb45566ac9852b1118c0a6d",
+      "predecessor": "637d81d652a35675982db8022b59a2f0",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 21,
+      "start": "2024-11-09T10:40:00+00:00",
+      "end_exclusive": "2024-11-12T22:00:00+00:00",
+      "request_id": "e155f90114af5b6390493967ee1d8ab6",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-11-09T10:40:00+00:00",
+          "to": "2024-11-12T21:59:59+00:00"
+        }
+      },
+      "spec_sha256": "1a767f04d966714554f53b02784d6b72445a91936373a0a4edc5a41e917d88f5",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\e155f90114af5b6390493967ee1d8ab6",
+      "predecessor": "ccc12196acb45566ac9852b1118c0a6d",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 22,
+      "start": "2024-11-12T22:00:00+00:00",
+      "end_exclusive": "2024-11-16T09:20:00+00:00",
+      "request_id": "3dda5e035ce5591fa2af522cfeea2496",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-11-12T22:00:00+00:00",
+          "to": "2024-11-16T09:19:59+00:00"
+        }
+      },
+      "spec_sha256": "cc247cd12751f30d8e1d4d91b6d85830520245cf1a9dc2bf7d76ebafcbce7df4",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\3dda5e035ce5591fa2af522cfeea2496",
+      "predecessor": "e155f90114af5b6390493967ee1d8ab6",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 23,
+      "start": "2024-11-16T09:20:00+00:00",
+      "end_exclusive": "2024-11-19T20:40:00+00:00",
+      "request_id": "35e91badeb335ead8b3fa2fe6554658d",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-11-16T09:20:00+00:00",
+          "to": "2024-11-19T20:39:59+00:00"
+        }
+      },
+      "spec_sha256": "77b712ad250d715b6cf721aea310a4cfef198a3f51bb0975ad861fb27732bb5a",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\35e91badeb335ead8b3fa2fe6554658d",
+      "predecessor": "3dda5e035ce5591fa2af522cfeea2496",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 24,
+      "start": "2024-11-19T20:40:00+00:00",
+      "end_exclusive": "2024-11-23T08:00:00+00:00",
+      "request_id": "6dde5233dca155c49453dac4f7553592",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-11-19T20:40:00+00:00",
+          "to": "2024-11-23T07:59:59+00:00"
+        }
+      },
+      "spec_sha256": "27fbc7b2358a15b84f2a2e0d894fd7fb5a395d48254a8745d521e5a4e113d79d",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\6dde5233dca155c49453dac4f7553592",
+      "predecessor": "35e91badeb335ead8b3fa2fe6554658d",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 25,
+      "start": "2024-11-23T08:00:00+00:00",
+      "end_exclusive": "2024-11-26T19:20:00+00:00",
+      "request_id": "49b77c5a7de35e55b940c097ea252af9",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-11-23T08:00:00+00:00",
+          "to": "2024-11-26T19:19:59+00:00"
+        }
+      },
+      "spec_sha256": "9c6df75d6001610d42aded28c30f4026af1f48e624251ae91aeae8358487ad01",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\49b77c5a7de35e55b940c097ea252af9",
+      "predecessor": "6dde5233dca155c49453dac4f7553592",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 26,
+      "start": "2024-11-26T19:20:00+00:00",
+      "end_exclusive": "2024-11-30T06:40:00+00:00",
+      "request_id": "b896701dbfc85fa69d298aa2508ed0e2",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-11-26T19:20:00+00:00",
+          "to": "2024-11-30T06:39:59+00:00"
+        }
+      },
+      "spec_sha256": "6259e692392daeee33e15518144e9952aac3c30ae3539c43ddbc13cb0841cac2",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\b896701dbfc85fa69d298aa2508ed0e2",
+      "predecessor": "49b77c5a7de35e55b940c097ea252af9",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 27,
+      "start": "2024-11-30T06:40:00+00:00",
+      "end_exclusive": "2024-12-03T18:00:00+00:00",
+      "request_id": "e0c0689a8bd25d07b696e9fff3566895",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-11-30T06:40:00+00:00",
+          "to": "2024-12-03T17:59:59+00:00"
+        }
+      },
+      "spec_sha256": "4e9636b2cbc1060c2a67adbdef46122e0342d87aadb9e8c83e8537240d3fe0eb",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\e0c0689a8bd25d07b696e9fff3566895",
+      "predecessor": "b896701dbfc85fa69d298aa2508ed0e2",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 28,
+      "start": "2024-12-03T18:00:00+00:00",
+      "end_exclusive": "2024-12-07T05:20:00+00:00",
+      "request_id": "f8ac9705cda858ffadcf51665ccc66c6",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-12-03T18:00:00+00:00",
+          "to": "2024-12-07T05:19:59+00:00"
+        }
+      },
+      "spec_sha256": "8b79001f4a70dfea79ec3215234207c1c5c759a5b5fe04598fe895bc2abad0ff",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\f8ac9705cda858ffadcf51665ccc66c6",
+      "predecessor": "e0c0689a8bd25d07b696e9fff3566895",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 29,
+      "start": "2024-12-07T05:20:00+00:00",
+      "end_exclusive": "2024-12-10T16:40:00+00:00",
+      "request_id": "ebf7163701d05d17b39080b22f5089cb",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-12-07T05:20:00+00:00",
+          "to": "2024-12-10T16:39:59+00:00"
+        }
+      },
+      "spec_sha256": "6cf6fd9c6486363c74d433239eb6da0e4b5a9ff648114696f82e53d19571cd42",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\ebf7163701d05d17b39080b22f5089cb",
+      "predecessor": "f8ac9705cda858ffadcf51665ccc66c6",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 30,
+      "start": "2024-12-10T16:40:00+00:00",
+      "end_exclusive": "2024-12-14T04:00:00+00:00",
+      "request_id": "26627968f5c75cd6a1d4cfc1c6b4b467",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-12-10T16:40:00+00:00",
+          "to": "2024-12-14T03:59:59+00:00"
+        }
+      },
+      "spec_sha256": "a12eb188285bb7b43bb2290f1f4f195bb9d880c0efb1a890b1df443dac67dc91",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\26627968f5c75cd6a1d4cfc1c6b4b467",
+      "predecessor": "ebf7163701d05d17b39080b22f5089cb",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 31,
+      "start": "2024-12-14T04:00:00+00:00",
+      "end_exclusive": "2024-12-17T15:20:00+00:00",
+      "request_id": "839a3e65942d54d78b0c080859104074",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-12-14T04:00:00+00:00",
+          "to": "2024-12-17T15:19:59+00:00"
+        }
+      },
+      "spec_sha256": "f5c8726a1d657d061227903d166690cbd2a5c81d39b3f97f9485677b720eeb83",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\839a3e65942d54d78b0c080859104074",
+      "predecessor": "26627968f5c75cd6a1d4cfc1c6b4b467",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 32,
+      "start": "2024-12-17T15:20:00+00:00",
+      "end_exclusive": "2024-12-21T02:40:00+00:00",
+      "request_id": "8b0ef79518c05bad96759e6c7a3363af",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-12-17T15:20:00+00:00",
+          "to": "2024-12-21T02:39:59+00:00"
+        }
+      },
+      "spec_sha256": "642562349a2787cd6595978216e2cde874a189298f938c034a82f97cf7036ebb",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\8b0ef79518c05bad96759e6c7a3363af",
+      "predecessor": "839a3e65942d54d78b0c080859104074",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 33,
+      "start": "2024-12-21T02:40:00+00:00",
+      "end_exclusive": "2024-12-24T14:00:00+00:00",
+      "request_id": "9a1bd4c7b6d357f0a719e78773e2a546",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-12-21T02:40:00+00:00",
+          "to": "2024-12-24T13:59:59+00:00"
+        }
+      },
+      "spec_sha256": "3f5597bc4813d39365a7be290e0507702a6074ec80856c21c23182336d4e8520",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\9a1bd4c7b6d357f0a719e78773e2a546",
+      "predecessor": "8b0ef79518c05bad96759e6c7a3363af",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 34,
+      "start": "2024-12-24T14:00:00+00:00",
+      "end_exclusive": "2024-12-28T01:20:00+00:00",
+      "request_id": "418cb21fb21a5f7ca5f092be05d8930e",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-12-24T14:00:00+00:00",
+          "to": "2024-12-28T01:19:59+00:00"
+        }
+      },
+      "spec_sha256": "4a65b86cb5fda9d4de613709668021549c8bf06cc27e87734d5176d748f63d79",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\418cb21fb21a5f7ca5f092be05d8930e",
+      "predecessor": "9a1bd4c7b6d357f0a719e78773e2a546",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 35,
+      "start": "2024-12-28T01:20:00+00:00",
+      "end_exclusive": "2024-12-31T12:40:00+00:00",
+      "request_id": "929d86d15a405cd7aa9a3e65b6c15294",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-12-28T01:20:00+00:00",
+          "to": "2024-12-31T12:39:59+00:00"
+        }
+      },
+      "spec_sha256": "84789f4b6a80d61d6de2c1f426a6ca9be9583e385035015162106cfefaa4a649",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\929d86d15a405cd7aa9a3e65b6c15294",
+      "predecessor": "418cb21fb21a5f7ca5f092be05d8930e",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 36,
+      "start": "2024-12-31T12:40:00+00:00",
+      "end_exclusive": "2025-01-04T00:00:00+00:00",
+      "request_id": "cab0ebb146665dddbd86bdce6628ed0a",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2024-12-31T12:40:00+00:00",
+          "to": "2025-01-03T23:59:59+00:00"
+        }
+      },
+      "spec_sha256": "4c1e68fa68623be15cba74b7a0d3d4674e188fd610582ab15b0e9a1d217fc537",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\cab0ebb146665dddbd86bdce6628ed0a",
+      "predecessor": "929d86d15a405cd7aa9a3e65b6c15294",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 37,
+      "start": "2025-01-04T00:00:00+00:00",
+      "end_exclusive": "2025-01-07T11:20:00+00:00",
+      "request_id": "6ec257fc2fd859d9ad554c55d830bbfb",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-01-04T00:00:00+00:00",
+          "to": "2025-01-07T11:19:59+00:00"
+        }
+      },
+      "spec_sha256": "73b041def27b59d659ebe45c6cb5e97d363b2b7e4de66d37cfebbf101dbc57cb",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\6ec257fc2fd859d9ad554c55d830bbfb",
+      "predecessor": "cab0ebb146665dddbd86bdce6628ed0a",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 38,
+      "start": "2025-01-07T11:20:00+00:00",
+      "end_exclusive": "2025-01-10T22:40:00+00:00",
+      "request_id": "72e835298a0355e3aa6530d164c534db",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-01-07T11:20:00+00:00",
+          "to": "2025-01-10T22:39:59+00:00"
+        }
+      },
+      "spec_sha256": "3957a805a92513fee26710227c175f6d70597f3cc2b369eff414ab356203b933",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\72e835298a0355e3aa6530d164c534db",
+      "predecessor": "6ec257fc2fd859d9ad554c55d830bbfb",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 39,
+      "start": "2025-01-10T22:40:00+00:00",
+      "end_exclusive": "2025-01-14T10:00:00+00:00",
+      "request_id": "dbe2e557aab05164a609af0d6eee8197",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-01-10T22:40:00+00:00",
+          "to": "2025-01-14T09:59:59+00:00"
+        }
+      },
+      "spec_sha256": "773e7c26dd246e67244dc0f8f61eb717f31c3627ff32e16f0ec59107501dc84d",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\dbe2e557aab05164a609af0d6eee8197",
+      "predecessor": "72e835298a0355e3aa6530d164c534db",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 40,
+      "start": "2025-01-14T10:00:00+00:00",
+      "end_exclusive": "2025-01-17T21:20:00+00:00",
+      "request_id": "cd53fcde2505534b92bf99a4aeb56994",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-01-14T10:00:00+00:00",
+          "to": "2025-01-17T21:19:59+00:00"
+        }
+      },
+      "spec_sha256": "a6c0588f92f58b24281fc49076bbb87e00349bcd0ccc2555cef0883dfb37ad5a",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\cd53fcde2505534b92bf99a4aeb56994",
+      "predecessor": "dbe2e557aab05164a609af0d6eee8197",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 41,
+      "start": "2025-01-17T21:20:00+00:00",
+      "end_exclusive": "2025-01-21T08:40:00+00:00",
+      "request_id": "5369baf7133356e1a6843b1abc419e4e",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-01-17T21:20:00+00:00",
+          "to": "2025-01-21T08:39:59+00:00"
+        }
+      },
+      "spec_sha256": "e43b5d701beb7612dec42c843e576bf4621d94a1c5890e75e95b5e82bd338856",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\5369baf7133356e1a6843b1abc419e4e",
+      "predecessor": "cd53fcde2505534b92bf99a4aeb56994",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 42,
+      "start": "2025-01-21T08:40:00+00:00",
+      "end_exclusive": "2025-01-24T20:00:00+00:00",
+      "request_id": "5918c3536a12534a8ded9df7053f8131",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-01-21T08:40:00+00:00",
+          "to": "2025-01-24T19:59:59+00:00"
+        }
+      },
+      "spec_sha256": "1b2b53b91e6788181d05c460c607049e269f15bfcb0531c31c02b3a8c23ebd6f",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\5918c3536a12534a8ded9df7053f8131",
+      "predecessor": "5369baf7133356e1a6843b1abc419e4e",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 43,
+      "start": "2025-01-24T20:00:00+00:00",
+      "end_exclusive": "2025-01-28T07:20:00+00:00",
+      "request_id": "3ecaf9238078501087508841d819913f",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-01-24T20:00:00+00:00",
+          "to": "2025-01-28T07:19:59+00:00"
+        }
+      },
+      "spec_sha256": "68ae25d77c2fd6a6b235b33b0f87064cf6ad404a6dae3aae2966f1e50f2a0e8c",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\3ecaf9238078501087508841d819913f",
+      "predecessor": "5918c3536a12534a8ded9df7053f8131",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 44,
+      "start": "2025-01-28T07:20:00+00:00",
+      "end_exclusive": "2025-01-31T18:40:00+00:00",
+      "request_id": "127c30beff565ecea710220847fa6ccb",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-01-28T07:20:00+00:00",
+          "to": "2025-01-31T18:39:59+00:00"
+        }
+      },
+      "spec_sha256": "c188e4865fc2b2410425a0982f1ca44cde8599b34ffc79271ded595036226dbe",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\127c30beff565ecea710220847fa6ccb",
+      "predecessor": "3ecaf9238078501087508841d819913f",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 45,
+      "start": "2025-01-31T18:40:00+00:00",
+      "end_exclusive": "2025-02-04T06:00:00+00:00",
+      "request_id": "e4eb7cc920aa5c3ab695e2873c46f9cd",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-01-31T18:40:00+00:00",
+          "to": "2025-02-04T05:59:59+00:00"
+        }
+      },
+      "spec_sha256": "f76f6c4128dd65b22b898fc0715e9bf0aea0e17ba1abbfa2c8d881f858c41964",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\e4eb7cc920aa5c3ab695e2873c46f9cd",
+      "predecessor": "127c30beff565ecea710220847fa6ccb",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 46,
+      "start": "2025-02-04T06:00:00+00:00",
+      "end_exclusive": "2025-02-07T17:20:00+00:00",
+      "request_id": "d90b69e5a86055cfbb39026edcf864a4",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-02-04T06:00:00+00:00",
+          "to": "2025-02-07T17:19:59+00:00"
+        }
+      },
+      "spec_sha256": "3d68fb8efa8b76bebaea5495e6f0f2920e03093346bcf91deb921a8fb53ce294",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\d90b69e5a86055cfbb39026edcf864a4",
+      "predecessor": "e4eb7cc920aa5c3ab695e2873c46f9cd",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 47,
+      "start": "2025-02-07T17:20:00+00:00",
+      "end_exclusive": "2025-02-11T04:40:00+00:00",
+      "request_id": "f6c193de3deb5da5a8c660482662b01b",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-02-07T17:20:00+00:00",
+          "to": "2025-02-11T04:39:59+00:00"
+        }
+      },
+      "spec_sha256": "033be9730e780882c7ebc59d516b35176872b3aaf9a9d93aa1d60cad90e28ea8",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\f6c193de3deb5da5a8c660482662b01b",
+      "predecessor": "d90b69e5a86055cfbb39026edcf864a4",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 48,
+      "start": "2025-02-11T04:40:00+00:00",
+      "end_exclusive": "2025-02-14T16:00:00+00:00",
+      "request_id": "8de86e0f91f65560a87000ba8af74c78",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-02-11T04:40:00+00:00",
+          "to": "2025-02-14T15:59:59+00:00"
+        }
+      },
+      "spec_sha256": "5d8191da57ae65f60e0ee67a2cbb9eeda167d4b21917fd70dd9a13ab3b844be5",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\8de86e0f91f65560a87000ba8af74c78",
+      "predecessor": "f6c193de3deb5da5a8c660482662b01b",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 49,
+      "start": "2025-02-14T16:00:00+00:00",
+      "end_exclusive": "2025-02-18T03:20:00+00:00",
+      "request_id": "42a8978ec9f05a509505e37606ac5ca2",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-02-14T16:00:00+00:00",
+          "to": "2025-02-18T03:19:59+00:00"
+        }
+      },
+      "spec_sha256": "e45726d5b6219890ea7cc71ef8e843e9f6b362a7bb4582fac8b98a5eea566354",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\42a8978ec9f05a509505e37606ac5ca2",
+      "predecessor": "8de86e0f91f65560a87000ba8af74c78",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 50,
+      "start": "2025-02-18T03:20:00+00:00",
+      "end_exclusive": "2025-02-21T14:40:00+00:00",
+      "request_id": "cf6222fc89a659f2aebcb8305903b95d",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-02-18T03:20:00+00:00",
+          "to": "2025-02-21T14:39:59+00:00"
+        }
+      },
+      "spec_sha256": "ec4eb2d644a09078e7d79af178e2da4b96a35cdb393dc0a049b54eb63296103d",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\cf6222fc89a659f2aebcb8305903b95d",
+      "predecessor": "42a8978ec9f05a509505e37606ac5ca2",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 51,
+      "start": "2025-02-21T14:40:00+00:00",
+      "end_exclusive": "2025-02-25T02:00:00+00:00",
+      "request_id": "d6c2e901cfd85f2a8bb888add6475ffb",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-02-21T14:40:00+00:00",
+          "to": "2025-02-25T01:59:59+00:00"
+        }
+      },
+      "spec_sha256": "15049b11e38c678cefaa6ff1ff434965882dc13e0cccea01b684d90ec9555c4a",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\d6c2e901cfd85f2a8bb888add6475ffb",
+      "predecessor": "cf6222fc89a659f2aebcb8305903b95d",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 52,
+      "start": "2025-02-25T02:00:00+00:00",
+      "end_exclusive": "2025-02-28T13:20:00+00:00",
+      "request_id": "116e5bfb64d355289aa3085878a078fd",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-02-25T02:00:00+00:00",
+          "to": "2025-02-28T13:19:59+00:00"
+        }
+      },
+      "spec_sha256": "84c7e6455fa830f25b3a2cd64b237fa346478c9428758b125ea72272dd179b41",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\116e5bfb64d355289aa3085878a078fd",
+      "predecessor": "d6c2e901cfd85f2a8bb888add6475ffb",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 53,
+      "start": "2025-02-28T13:20:00+00:00",
+      "end_exclusive": "2025-03-04T00:40:00+00:00",
+      "request_id": "d852afc473fc564aaadd29f3e567996d",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-02-28T13:20:00+00:00",
+          "to": "2025-03-04T00:39:59+00:00"
+        }
+      },
+      "spec_sha256": "148d6a9d122d11fc508a1ee302380b62e1f2aac4fd8ac93ead745901501c4b90",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\d852afc473fc564aaadd29f3e567996d",
+      "predecessor": "116e5bfb64d355289aa3085878a078fd",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 54,
+      "start": "2025-03-04T00:40:00+00:00",
+      "end_exclusive": "2025-03-07T12:00:00+00:00",
+      "request_id": "8264bf2934f7505cb89807949fa8f03e",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-03-04T00:40:00+00:00",
+          "to": "2025-03-07T11:59:59+00:00"
+        }
+      },
+      "spec_sha256": "3cf9fef0889ec445a96fab4f649c9e6b9b7fe7f3ef8e31a31fcd009c225933c7",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\8264bf2934f7505cb89807949fa8f03e",
+      "predecessor": "d852afc473fc564aaadd29f3e567996d",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 55,
+      "start": "2025-03-07T12:00:00+00:00",
+      "end_exclusive": "2025-03-10T23:20:00+00:00",
+      "request_id": "ba8ea09114005e34a9ec150cbcfd2b7a",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-03-07T12:00:00+00:00",
+          "to": "2025-03-10T23:19:59+00:00"
+        }
+      },
+      "spec_sha256": "13ad477987f9f8134a8f3bd39eef15565a12920aced27d54bb7484da4bed4e97",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\ba8ea09114005e34a9ec150cbcfd2b7a",
+      "predecessor": "8264bf2934f7505cb89807949fa8f03e",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 56,
+      "start": "2025-03-10T23:20:00+00:00",
+      "end_exclusive": "2025-03-14T10:40:00+00:00",
+      "request_id": "c5fa1174ad675cc08a309bb3e87d6e97",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-03-10T23:20:00+00:00",
+          "to": "2025-03-14T10:39:59+00:00"
+        }
+      },
+      "spec_sha256": "c8a542c0c6af9c297a4f1c1cace2c3310e407d4507826b63c676de8fdbb7b48c",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\c5fa1174ad675cc08a309bb3e87d6e97",
+      "predecessor": "ba8ea09114005e34a9ec150cbcfd2b7a",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 57,
+      "start": "2025-03-14T10:40:00+00:00",
+      "end_exclusive": "2025-03-17T22:00:00+00:00",
+      "request_id": "5f7d119c6ee8561cbc284e6ccf8f280a",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-03-14T10:40:00+00:00",
+          "to": "2025-03-17T21:59:59+00:00"
+        }
+      },
+      "spec_sha256": "256fc81fb8f790ba5fe5f6e1f59e86279b665e108842c8298e8830b5702d7b90",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\5f7d119c6ee8561cbc284e6ccf8f280a",
+      "predecessor": "c5fa1174ad675cc08a309bb3e87d6e97",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 58,
+      "start": "2025-03-17T22:00:00+00:00",
+      "end_exclusive": "2025-03-21T09:20:00+00:00",
+      "request_id": "75bfa60aad215aaa9715d87ca21287a3",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-03-17T22:00:00+00:00",
+          "to": "2025-03-21T09:19:59+00:00"
+        }
+      },
+      "spec_sha256": "6748ab9944edb69fe0add3b948f842f3980c5c3187272b6d0ccb4d036592b957",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\75bfa60aad215aaa9715d87ca21287a3",
+      "predecessor": "5f7d119c6ee8561cbc284e6ccf8f280a",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 59,
+      "start": "2025-03-21T09:20:00+00:00",
+      "end_exclusive": "2025-03-24T20:40:00+00:00",
+      "request_id": "78eabd84fe1f58529d129947958f22dd",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-03-21T09:20:00+00:00",
+          "to": "2025-03-24T20:39:59+00:00"
+        }
+      },
+      "spec_sha256": "1ddf11d47cffdeed6a66794531280795fa31f6e1c2203f99a19b3ab09f0a8b43",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\78eabd84fe1f58529d129947958f22dd",
+      "predecessor": "75bfa60aad215aaa9715d87ca21287a3",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 60,
+      "start": "2025-03-24T20:40:00+00:00",
+      "end_exclusive": "2025-03-28T08:00:00+00:00",
+      "request_id": "b8f6b9cd2ffe54b0bc715fcd54d13c9d",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-03-24T20:40:00+00:00",
+          "to": "2025-03-28T07:59:59+00:00"
+        }
+      },
+      "spec_sha256": "26585474b492c96cb0a62e2af625d86c2d8d46dfeb88d8781738dcca54c3f2ae",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\b8f6b9cd2ffe54b0bc715fcd54d13c9d",
+      "predecessor": "78eabd84fe1f58529d129947958f22dd",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 61,
+      "start": "2025-03-28T08:00:00+00:00",
+      "end_exclusive": "2025-03-31T19:20:00+00:00",
+      "request_id": "3dc97560fca15295b4383aa19b689ef1",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-03-28T08:00:00+00:00",
+          "to": "2025-03-31T19:19:59+00:00"
+        }
+      },
+      "spec_sha256": "0b187b5a73f70911428fc282020a5d164945e69c6fb58d952e862829c9e4a754",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\3dc97560fca15295b4383aa19b689ef1",
+      "predecessor": "b8f6b9cd2ffe54b0bc715fcd54d13c9d",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 62,
+      "start": "2025-03-31T19:20:00+00:00",
+      "end_exclusive": "2025-04-04T06:40:00+00:00",
+      "request_id": "25b947c6f45855ed8124dc6978032f00",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-03-31T19:20:00+00:00",
+          "to": "2025-04-04T06:39:59+00:00"
+        }
+      },
+      "spec_sha256": "84fd6d664aea4721db9e6fc3077aaaae1e75421745798a1bd7b06d7449566600",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\25b947c6f45855ed8124dc6978032f00",
+      "predecessor": "3dc97560fca15295b4383aa19b689ef1",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 63,
+      "start": "2025-04-04T06:40:00+00:00",
+      "end_exclusive": "2025-04-07T18:00:00+00:00",
+      "request_id": "cfe08ec9d4d054ef959432461a202681",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-04-04T06:40:00+00:00",
+          "to": "2025-04-07T17:59:59+00:00"
+        }
+      },
+      "spec_sha256": "f7705e40cd0a737b24f5b5ac557731db8c72711301d0ee4e614ddeb65d53f4cd",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\cfe08ec9d4d054ef959432461a202681",
+      "predecessor": "25b947c6f45855ed8124dc6978032f00",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 64,
+      "start": "2025-04-07T18:00:00+00:00",
+      "end_exclusive": "2025-04-11T05:20:00+00:00",
+      "request_id": "7e474fcfbd3c5930b0430814be44a612",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-04-07T18:00:00+00:00",
+          "to": "2025-04-11T05:19:59+00:00"
+        }
+      },
+      "spec_sha256": "b4dcb4cf408c73ea3673e3418fea11cbea582ddce8598fed9b52a286fabfee70",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\7e474fcfbd3c5930b0430814be44a612",
+      "predecessor": "cfe08ec9d4d054ef959432461a202681",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 65,
+      "start": "2025-04-11T05:20:00+00:00",
+      "end_exclusive": "2025-04-14T16:40:00+00:00",
+      "request_id": "b20f13096f60530cb17dacb40cceface",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-04-11T05:20:00+00:00",
+          "to": "2025-04-14T16:39:59+00:00"
+        }
+      },
+      "spec_sha256": "391d8e0cc7cdd02ba35fd1d799479a489172aa7e80d4bf1bed84dd16ce05ee93",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\b20f13096f60530cb17dacb40cceface",
+      "predecessor": "7e474fcfbd3c5930b0430814be44a612",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 66,
+      "start": "2025-04-14T16:40:00+00:00",
+      "end_exclusive": "2025-04-18T04:00:00+00:00",
+      "request_id": "30aa12b989805745a10186358d2532ab",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-04-14T16:40:00+00:00",
+          "to": "2025-04-18T03:59:59+00:00"
+        }
+      },
+      "spec_sha256": "8726be2954d9ac61fc095e267c87c3f3cc0e7b117147a6be2356ace49235aa91",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\30aa12b989805745a10186358d2532ab",
+      "predecessor": "b20f13096f60530cb17dacb40cceface",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 67,
+      "start": "2025-04-18T04:00:00+00:00",
+      "end_exclusive": "2025-04-21T15:20:00+00:00",
+      "request_id": "721b3b7933725e3da1cf776af621ed3f",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-04-18T04:00:00+00:00",
+          "to": "2025-04-21T15:19:59+00:00"
+        }
+      },
+      "spec_sha256": "81b4a50f95afed04785d12052f9da8b61b3f2c83eb131e40248ec91812ea329a",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\721b3b7933725e3da1cf776af621ed3f",
+      "predecessor": "30aa12b989805745a10186358d2532ab",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 68,
+      "start": "2025-04-21T15:20:00+00:00",
+      "end_exclusive": "2025-04-25T02:40:00+00:00",
+      "request_id": "b9f8f587fdcd5bc3a4190f6175227e9e",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-04-21T15:20:00+00:00",
+          "to": "2025-04-25T02:39:59+00:00"
+        }
+      },
+      "spec_sha256": "9b60755c8ea06ef1f8d7ed9c99ae801e440678ec0b1c65c151392acc82258a18",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\b9f8f587fdcd5bc3a4190f6175227e9e",
+      "predecessor": "721b3b7933725e3da1cf776af621ed3f",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 69,
+      "start": "2025-04-25T02:40:00+00:00",
+      "end_exclusive": "2025-04-28T14:00:00+00:00",
+      "request_id": "189657be15d7505fba9ba50c5391fc00",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-04-25T02:40:00+00:00",
+          "to": "2025-04-28T13:59:59+00:00"
+        }
+      },
+      "spec_sha256": "614a36e6044a91d187bc0937a0ee27fdc645b4275de84b318f5b7b660263bcf5",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\189657be15d7505fba9ba50c5391fc00",
+      "predecessor": "b9f8f587fdcd5bc3a4190f6175227e9e",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 70,
+      "start": "2025-04-28T14:00:00+00:00",
+      "end_exclusive": "2025-05-02T01:20:00+00:00",
+      "request_id": "67267b8023995868bca6a03a45cef957",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-04-28T14:00:00+00:00",
+          "to": "2025-05-02T01:19:59+00:00"
+        }
+      },
+      "spec_sha256": "20c8ce188f60fb8a638a57e1ad7ae4d9186c6ccd35e178189edacb730dceaaa1",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\67267b8023995868bca6a03a45cef957",
+      "predecessor": "189657be15d7505fba9ba50c5391fc00",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 71,
+      "start": "2025-05-02T01:20:00+00:00",
+      "end_exclusive": "2025-05-05T12:40:00+00:00",
+      "request_id": "26dce6cbc575576387614c034000e97c",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-05-02T01:20:00+00:00",
+          "to": "2025-05-05T12:39:59+00:00"
+        }
+      },
+      "spec_sha256": "4412ba95701d9fb350614b554dc27391056baf4e7910b6db53f4a4ce691280c0",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\26dce6cbc575576387614c034000e97c",
+      "predecessor": "67267b8023995868bca6a03a45cef957",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 72,
+      "start": "2025-05-05T12:40:00+00:00",
+      "end_exclusive": "2025-05-09T00:00:00+00:00",
+      "request_id": "e877e01a49ea5e0497ae114a07910762",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-05-05T12:40:00+00:00",
+          "to": "2025-05-08T23:59:59+00:00"
+        }
+      },
+      "spec_sha256": "93bd45a0007a2bc596dc3f48317b3ca5908cd9e07dcbfc612eceb92e2b6b0d7d",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\e877e01a49ea5e0497ae114a07910762",
+      "predecessor": "26dce6cbc575576387614c034000e97c",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 73,
+      "start": "2025-05-09T00:00:00+00:00",
+      "end_exclusive": "2025-05-12T11:20:00+00:00",
+      "request_id": "779cfa42c7415bfa809c7d066334c0da",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-05-09T00:00:00+00:00",
+          "to": "2025-05-12T11:19:59+00:00"
+        }
+      },
+      "spec_sha256": "f8f6026fc8b37436642345183c1fe7aa628d23cb23251d071f4bae2622a88f85",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\779cfa42c7415bfa809c7d066334c0da",
+      "predecessor": "e877e01a49ea5e0497ae114a07910762",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 74,
+      "start": "2025-05-12T11:20:00+00:00",
+      "end_exclusive": "2025-05-15T22:40:00+00:00",
+      "request_id": "0e238282fb83593bb2089ccb71c6edd4",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-05-12T11:20:00+00:00",
+          "to": "2025-05-15T22:39:59+00:00"
+        }
+      },
+      "spec_sha256": "14576ac88c14b56b2cddaadc59925fa1354d2893fc0ee14073fef605c6acfe32",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\0e238282fb83593bb2089ccb71c6edd4",
+      "predecessor": "779cfa42c7415bfa809c7d066334c0da",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 75,
+      "start": "2025-05-15T22:40:00+00:00",
+      "end_exclusive": "2025-05-19T10:00:00+00:00",
+      "request_id": "028f0b04b57f59d681b7f48251877476",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-05-15T22:40:00+00:00",
+          "to": "2025-05-19T09:59:59+00:00"
+        }
+      },
+      "spec_sha256": "39677685ce7c3b0d65246fafe3f6f1d537ba6d571e1e928eb6de202ddbcc7caf",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\028f0b04b57f59d681b7f48251877476",
+      "predecessor": "0e238282fb83593bb2089ccb71c6edd4",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 76,
+      "start": "2025-05-19T10:00:00+00:00",
+      "end_exclusive": "2025-05-22T21:20:00+00:00",
+      "request_id": "caa30cd39f8157fabffb24fbb18cc4d1",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-05-19T10:00:00+00:00",
+          "to": "2025-05-22T21:19:59+00:00"
+        }
+      },
+      "spec_sha256": "2928b086795a5a5d750ea760ee6abef35c2ec44e87e7dccb4dd111b0a35af779",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\caa30cd39f8157fabffb24fbb18cc4d1",
+      "predecessor": "028f0b04b57f59d681b7f48251877476",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 77,
+      "start": "2025-05-22T21:20:00+00:00",
+      "end_exclusive": "2025-05-26T08:40:00+00:00",
+      "request_id": "ab3c2c0e970751ce9f8a2bfed245dcc0",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-05-22T21:20:00+00:00",
+          "to": "2025-05-26T08:39:59+00:00"
+        }
+      },
+      "spec_sha256": "c4c619d638aefc2218f5769d8335d52781b2b47daeab42ba8a7b05f27e8c3b4b",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\ab3c2c0e970751ce9f8a2bfed245dcc0",
+      "predecessor": "caa30cd39f8157fabffb24fbb18cc4d1",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 78,
+      "start": "2025-05-26T08:40:00+00:00",
+      "end_exclusive": "2025-05-29T20:00:00+00:00",
+      "request_id": "b85e4b7ff4a45eb48ce4cfbe55a42678",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-05-26T08:40:00+00:00",
+          "to": "2025-05-29T19:59:59+00:00"
+        }
+      },
+      "spec_sha256": "78ac38566880b79a69a14d14e3f4cc027a0b12269edc4e19df123a02f0d7c05c",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\b85e4b7ff4a45eb48ce4cfbe55a42678",
+      "predecessor": "ab3c2c0e970751ce9f8a2bfed245dcc0",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 79,
+      "start": "2025-05-29T20:00:00+00:00",
+      "end_exclusive": "2025-06-02T07:20:00+00:00",
+      "request_id": "5f831a21ae3f51d39c437dc9be70222e",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-05-29T20:00:00+00:00",
+          "to": "2025-06-02T07:19:59+00:00"
+        }
+      },
+      "spec_sha256": "1515c7321fd4f88c85eafc8fe2618a9a11ef4cf4f2b60bd68f6b79a75cde42c8",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\5f831a21ae3f51d39c437dc9be70222e",
+      "predecessor": "b85e4b7ff4a45eb48ce4cfbe55a42678",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 80,
+      "start": "2025-06-02T07:20:00+00:00",
+      "end_exclusive": "2025-06-05T18:40:00+00:00",
+      "request_id": "04b524d2fcaf5ab6a7f983dc7d0fb021",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-06-02T07:20:00+00:00",
+          "to": "2025-06-05T18:39:59+00:00"
+        }
+      },
+      "spec_sha256": "42ed7aabfa991c5879e9bb4ccad7a1f3c7e8e417cabe7d78fbfcb0f30e9f00df",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\04b524d2fcaf5ab6a7f983dc7d0fb021",
+      "predecessor": "5f831a21ae3f51d39c437dc9be70222e",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 81,
+      "start": "2025-06-05T18:40:00+00:00",
+      "end_exclusive": "2025-06-09T06:00:00+00:00",
+      "request_id": "e5390891e3125527a256116954a4b1ee",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-06-05T18:40:00+00:00",
+          "to": "2025-06-09T05:59:59+00:00"
+        }
+      },
+      "spec_sha256": "2516502796db4207659a8bb6d44683f2dec1f9da3e77181e7cf829a4942a9c68",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\e5390891e3125527a256116954a4b1ee",
+      "predecessor": "04b524d2fcaf5ab6a7f983dc7d0fb021",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 82,
+      "start": "2025-06-09T06:00:00+00:00",
+      "end_exclusive": "2025-06-12T17:20:00+00:00",
+      "request_id": "2afad6aa0e965ad9b29ccf834a4c5107",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-06-09T06:00:00+00:00",
+          "to": "2025-06-12T17:19:59+00:00"
+        }
+      },
+      "spec_sha256": "4f6e3a77a21db83b95014f5f6eed35bcbb0d50396e574f570fbe51e79ca034f8",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\2afad6aa0e965ad9b29ccf834a4c5107",
+      "predecessor": "e5390891e3125527a256116954a4b1ee",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 83,
+      "start": "2025-06-12T17:20:00+00:00",
+      "end_exclusive": "2025-06-16T04:40:00+00:00",
+      "request_id": "8c304a3929c854dea23d5a6e36c98052",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-06-12T17:20:00+00:00",
+          "to": "2025-06-16T04:39:59+00:00"
+        }
+      },
+      "spec_sha256": "c15a52a9a7499c88c64af6bbd2826078afcb5f868c08a40ac73893d0683a9d71",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\8c304a3929c854dea23d5a6e36c98052",
+      "predecessor": "2afad6aa0e965ad9b29ccf834a4c5107",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 84,
+      "start": "2025-06-16T04:40:00+00:00",
+      "end_exclusive": "2025-06-19T16:00:00+00:00",
+      "request_id": "4aa80bc19cb15f35905493d624ccf3ec",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-06-16T04:40:00+00:00",
+          "to": "2025-06-19T15:59:59+00:00"
+        }
+      },
+      "spec_sha256": "4b702322392ee0973c45e54b9b63210280201be77a90c0081fd01227c6b572de",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\4aa80bc19cb15f35905493d624ccf3ec",
+      "predecessor": "8c304a3929c854dea23d5a6e36c98052",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 85,
+      "start": "2025-06-19T16:00:00+00:00",
+      "end_exclusive": "2025-06-23T03:20:00+00:00",
+      "request_id": "a1bac742d7c65902afce4a6435804714",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-06-19T16:00:00+00:00",
+          "to": "2025-06-23T03:19:59+00:00"
+        }
+      },
+      "spec_sha256": "f9e905083ab883ac1f77203c1063e7179c8ec78d0d23e1ef73e48268249c4fa7",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\a1bac742d7c65902afce4a6435804714",
+      "predecessor": "4aa80bc19cb15f35905493d624ccf3ec",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 86,
+      "start": "2025-06-23T03:20:00+00:00",
+      "end_exclusive": "2025-06-26T14:40:00+00:00",
+      "request_id": "39361de4edd95d839f220540e4770b31",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-06-23T03:20:00+00:00",
+          "to": "2025-06-26T14:39:59+00:00"
+        }
+      },
+      "spec_sha256": "0f9b7259927c17179737f81a0d28a3e2f10c18c29327c5ce03c83e0018d7978f",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\39361de4edd95d839f220540e4770b31",
+      "predecessor": "a1bac742d7c65902afce4a6435804714",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 87,
+      "start": "2025-06-26T14:40:00+00:00",
+      "end_exclusive": "2025-06-30T02:00:00+00:00",
+      "request_id": "60510192c0525cfbbe78f6ae7fb0ae8c",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-06-26T14:40:00+00:00",
+          "to": "2025-06-30T01:59:59+00:00"
+        }
+      },
+      "spec_sha256": "69b9c51edc4ef03f63bd3df6c48d45aacad04efd7b3159b3a932adad0c9745b7",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\60510192c0525cfbbe78f6ae7fb0ae8c",
+      "predecessor": "39361de4edd95d839f220540e4770b31",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 88,
+      "start": "2025-06-30T02:00:00+00:00",
+      "end_exclusive": "2025-07-03T13:20:00+00:00",
+      "request_id": "103be3db9a655f8c957c602e2268d4c8",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-06-30T02:00:00+00:00",
+          "to": "2025-07-03T13:19:59+00:00"
+        }
+      },
+      "spec_sha256": "45a698e8949944914b4d124f2f7ea2aae037ea6fa6a11156c00293a8107898ff",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\103be3db9a655f8c957c602e2268d4c8",
+      "predecessor": "60510192c0525cfbbe78f6ae7fb0ae8c",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 89,
+      "start": "2025-07-03T13:20:00+00:00",
+      "end_exclusive": "2025-07-07T00:40:00+00:00",
+      "request_id": "6e461d1ffc5c5a13ba9274458f4af261",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-07-03T13:20:00+00:00",
+          "to": "2025-07-07T00:39:59+00:00"
+        }
+      },
+      "spec_sha256": "cc4c3caaa60fd407091427f032b086c085a6cb73522c8e5da1763c7c48369950",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\6e461d1ffc5c5a13ba9274458f4af261",
+      "predecessor": "103be3db9a655f8c957c602e2268d4c8",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 90,
+      "start": "2025-07-07T00:40:00+00:00",
+      "end_exclusive": "2025-07-10T12:00:00+00:00",
+      "request_id": "915e160f7a5d5312890d26f71e79f1cd",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-07-07T00:40:00+00:00",
+          "to": "2025-07-10T11:59:59+00:00"
+        }
+      },
+      "spec_sha256": "4383ed0547d1f476d97f3366a10b16359b1a8eb2fcb2e53af05c990b5d9551f2",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\915e160f7a5d5312890d26f71e79f1cd",
+      "predecessor": "6e461d1ffc5c5a13ba9274458f4af261",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 91,
+      "start": "2025-07-10T12:00:00+00:00",
+      "end_exclusive": "2025-07-13T23:20:00+00:00",
+      "request_id": "80306b9650f152279cff267a796c09c0",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-07-10T12:00:00+00:00",
+          "to": "2025-07-13T23:19:59+00:00"
+        }
+      },
+      "spec_sha256": "79dcd11835b57fd88fff9f780478ddcf20f4239e83c5ac461be3b77b7dfe7f82",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\80306b9650f152279cff267a796c09c0",
+      "predecessor": "915e160f7a5d5312890d26f71e79f1cd",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 92,
+      "start": "2025-07-13T23:20:00+00:00",
+      "end_exclusive": "2025-07-17T10:40:00+00:00",
+      "request_id": "1d3eda6a50f059089ff8b02952d61e8c",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-07-13T23:20:00+00:00",
+          "to": "2025-07-17T10:39:59+00:00"
+        }
+      },
+      "spec_sha256": "3d0b4af6c0d15899cf7099cf0a0893ae61b762962f0df7fb3f2c33f3b5391db5",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\1d3eda6a50f059089ff8b02952d61e8c",
+      "predecessor": "80306b9650f152279cff267a796c09c0",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 93,
+      "start": "2025-07-17T10:40:00+00:00",
+      "end_exclusive": "2025-07-20T22:00:00+00:00",
+      "request_id": "87bf7acaabf45cfc841d596fe5fe3cc4",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-07-17T10:40:00+00:00",
+          "to": "2025-07-20T21:59:59+00:00"
+        }
+      },
+      "spec_sha256": "3c463d3eae5c4622339cdf2afdd68a6da0e3df4e4469f2e7a7bb894ac0cd4a69",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\87bf7acaabf45cfc841d596fe5fe3cc4",
+      "predecessor": "1d3eda6a50f059089ff8b02952d61e8c",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 94,
+      "start": "2025-07-20T22:00:00+00:00",
+      "end_exclusive": "2025-07-24T09:20:00+00:00",
+      "request_id": "e632a900bcc85a798b7020a15130041a",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-07-20T22:00:00+00:00",
+          "to": "2025-07-24T09:19:59+00:00"
+        }
+      },
+      "spec_sha256": "5d3d57682269a97fd0de3343c4ca70340272e9805bedf475d9ca962195c94f9b",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\e632a900bcc85a798b7020a15130041a",
+      "predecessor": "87bf7acaabf45cfc841d596fe5fe3cc4",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 95,
+      "start": "2025-07-24T09:20:00+00:00",
+      "end_exclusive": "2025-07-27T20:40:00+00:00",
+      "request_id": "2ad9ae757ce95d7abc103dfb7c6ff107",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-07-24T09:20:00+00:00",
+          "to": "2025-07-27T20:39:59+00:00"
+        }
+      },
+      "spec_sha256": "51c01103866a0c64b27d8b1334731533da875e78dd366ce36c746e45b6966b12",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\2ad9ae757ce95d7abc103dfb7c6ff107",
+      "predecessor": "e632a900bcc85a798b7020a15130041a",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 96,
+      "start": "2025-07-27T20:40:00+00:00",
+      "end_exclusive": "2025-07-31T08:00:00+00:00",
+      "request_id": "add3eda2265b5695843c9a46de07f5f9",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-07-27T20:40:00+00:00",
+          "to": "2025-07-31T07:59:59+00:00"
+        }
+      },
+      "spec_sha256": "85a522eb5b593573c9732e81e2e9a102db71395ce246ed2594f3c6b9eaecf261",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\add3eda2265b5695843c9a46de07f5f9",
+      "predecessor": "2ad9ae757ce95d7abc103dfb7c6ff107",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 97,
+      "start": "2025-07-31T08:00:00+00:00",
+      "end_exclusive": "2025-08-03T19:20:00+00:00",
+      "request_id": "e5a7b4bf306d528693ce545b53f7c7fb",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-07-31T08:00:00+00:00",
+          "to": "2025-08-03T19:19:59+00:00"
+        }
+      },
+      "spec_sha256": "0e72dcd6a781053488c5415b682695a4ea68e1f96da44e10584e43a55d4d9e01",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\e5a7b4bf306d528693ce545b53f7c7fb",
+      "predecessor": "add3eda2265b5695843c9a46de07f5f9",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 98,
+      "start": "2025-08-03T19:20:00+00:00",
+      "end_exclusive": "2025-08-07T06:40:00+00:00",
+      "request_id": "da1f51c6f50151e3a86a9d9925d1e4ff",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-08-03T19:20:00+00:00",
+          "to": "2025-08-07T06:39:59+00:00"
+        }
+      },
+      "spec_sha256": "a80e4d54e93a7fac185254cae64676d3a68b753c0f992c88911a9f722477c0c4",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\da1f51c6f50151e3a86a9d9925d1e4ff",
+      "predecessor": "e5a7b4bf306d528693ce545b53f7c7fb",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 99,
+      "start": "2025-08-07T06:40:00+00:00",
+      "end_exclusive": "2025-08-10T18:00:00+00:00",
+      "request_id": "9657b38d2c485a0fa665627dc277ecbe",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-08-07T06:40:00+00:00",
+          "to": "2025-08-10T17:59:59+00:00"
+        }
+      },
+      "spec_sha256": "67aad4898ed99c24ce38f63e5d60ed219a404c0525aa88b27680adb8f2752f36",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\9657b38d2c485a0fa665627dc277ecbe",
+      "predecessor": "da1f51c6f50151e3a86a9d9925d1e4ff",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 100,
+      "start": "2025-08-10T18:00:00+00:00",
+      "end_exclusive": "2025-08-14T05:20:00+00:00",
+      "request_id": "2295d6a6a3745cc894c4db397b821c93",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-08-10T18:00:00+00:00",
+          "to": "2025-08-14T05:19:59+00:00"
+        }
+      },
+      "spec_sha256": "8ccfe8c9d0b05f951ac55b643010b1d16026095f4b39e55e71c5ff390955dcc6",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\2295d6a6a3745cc894c4db397b821c93",
+      "predecessor": "9657b38d2c485a0fa665627dc277ecbe",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 101,
+      "start": "2025-08-14T05:20:00+00:00",
+      "end_exclusive": "2025-08-17T16:40:00+00:00",
+      "request_id": "44a5e7297efc5da9b7e3ba5159d9299d",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-08-14T05:20:00+00:00",
+          "to": "2025-08-17T16:39:59+00:00"
+        }
+      },
+      "spec_sha256": "90493cad05406ee6d957d13c65ea16fdecd46fc03fa0ec57e4e3d82c15a8cc83",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\44a5e7297efc5da9b7e3ba5159d9299d",
+      "predecessor": "2295d6a6a3745cc894c4db397b821c93",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 102,
+      "start": "2025-08-17T16:40:00+00:00",
+      "end_exclusive": "2025-08-21T04:00:00+00:00",
+      "request_id": "fa048502771c5aaa9d1b0621be9baf7a",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-08-17T16:40:00+00:00",
+          "to": "2025-08-21T03:59:59+00:00"
+        }
+      },
+      "spec_sha256": "c60801b3abb5d6222784c4fcc6e523e9dc0011a1d97d8e131802bf8ece3f344d",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\fa048502771c5aaa9d1b0621be9baf7a",
+      "predecessor": "44a5e7297efc5da9b7e3ba5159d9299d",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 103,
+      "start": "2025-08-21T04:00:00+00:00",
+      "end_exclusive": "2025-08-24T15:20:00+00:00",
+      "request_id": "739c56afd9945de780ea812084737382",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-08-21T04:00:00+00:00",
+          "to": "2025-08-24T15:19:59+00:00"
+        }
+      },
+      "spec_sha256": "474e549ce73cfce80a4803f3d2dbb345275f9ac30c83fbec61fb60d64ee3c959",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\739c56afd9945de780ea812084737382",
+      "predecessor": "fa048502771c5aaa9d1b0621be9baf7a",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 104,
+      "start": "2025-08-24T15:20:00+00:00",
+      "end_exclusive": "2025-08-28T02:40:00+00:00",
+      "request_id": "4ae6d6a4df765c0395e13abb9ff1cd06",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-08-24T15:20:00+00:00",
+          "to": "2025-08-28T02:39:59+00:00"
+        }
+      },
+      "spec_sha256": "b1b4367c3778e6d18fd8c1bf1e39d3fa877182da59cd2f977d439e83438622d4",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\4ae6d6a4df765c0395e13abb9ff1cd06",
+      "predecessor": "739c56afd9945de780ea812084737382",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 105,
+      "start": "2025-08-28T02:40:00+00:00",
+      "end_exclusive": "2025-08-31T14:00:00+00:00",
+      "request_id": "5c4d0bc0c3f65de79548a47f13adcd44",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-08-28T02:40:00+00:00",
+          "to": "2025-08-31T13:59:59+00:00"
+        }
+      },
+      "spec_sha256": "7b8f9a1c79f6da5b164270e9a2dfe15af17da0ec61db487be686eadffc7bd754",
+      "maximum_candles": 1000,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\5c4d0bc0c3f65de79548a47f13adcd44",
+      "predecessor": "4ae6d6a4df765c0395e13abb9ff1cd06",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    },
+    {
+      "number": 106,
+      "start": "2025-08-31T14:00:00+00:00",
+      "end_exclusive": "2025-09-01T00:00:00+00:00",
+      "request_id": "71fe4b5e7f9b5422b035e337a5cae190",
+      "instrument": "EUR_USD",
+      "specification": {
+        "method": "GET",
+        "host": "api-fxtrade.oanda.com",
+        "path": "/v3/instruments/EUR_USD/candles",
+        "params": {
+          "granularity": "M5",
+          "price": "MBA",
+          "smooth": "false",
+          "includeFirst": "true",
+          "from": "2025-08-31T14:00:00+00:00",
+          "to": "2025-08-31T23:59:59+00:00"
+        }
+      },
+      "spec_sha256": "29bd3ae26c794fdf51622ec01f421a51c495c8d9dff1a73a9f834ad2a3faa114",
+      "maximum_candles": 120,
+      "source_seal": "34939a3db7ccd4dbb1b851ac6fb96c0ceba0b054b60dc65bd58f3248f2fd68d6",
+      "source_seal_role": "REFERENCE_ONLY_NOT_LIVE_AUTHORITY",
+      "archive_destination": "C:\\TradingResearchData\\OANDA\\sessions\\71fe4b5e7f9b5422b035e337a5cae190",
+      "predecessor": "5c4d0bc0c3f65de79548a47f13adcd44",
+      "predecessor_requirement": "All preceding planned sessions DONE, consumed, one attempt, worker exited, hashes/source/identity verified; fresh separate approval still required",
+      "completion_state": "PLANNED_NOT_AUTHORISED",
+      "authorises_execution": false
+    }
+  ]
+}

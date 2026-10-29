@@ -54,9 +54,27 @@ def merge_completed(source, bundles):
     bytes and a separately reviewed V2.8 rights/provenance record. Use existing
     protected Archive readers to obtain bytes; this function never opens files.
     """
-    windows = plan(source)
-    if type(bundles) is not tuple or len(bundles) != 3:
-        raise ResearchRejected('three_completed_pilot_batches_required')
+    return merge_window_bundles(source, plan(source), bundles, start=START, end=END,
+                                classification='PILOT_ONLY_NOT_INDEPENDENT_EVALUATION')
+
+
+def merge_window_bundles(source, windows, bundles, *, start, end, classification):
+    """Offline reuse for a fixed caller-reviewed plan; never grants authority.
+
+    Existing rights/provenance import and durable DONE/single-use checks remain
+    mandatory for every batch. Unknown coverage is reported, never repaired.
+    """
+    if not windows or windows[0].start != start or windows[-1].end != end:
+        raise ResearchRejected('merge_plan_coverage_refused')
+    if len({w.session for w in windows}) != len(windows):
+        raise ResearchRejected('merge_plan_duplicate_session')
+    for i, w in enumerate(windows):
+        if (w.source != source or w.start % 300 or w.end % 300 or
+                not 0 < w.end-w.start <= 1000*300 or
+                i and windows[i-1].end != w.start):
+            raise ResearchRejected('merge_plan_boundary_refused')
+    if type(bundles) is not tuple or len(bundles) != len(windows):
+        raise ResearchRejected('three_completed_pilot_batches_required' if len(windows)==3 else 'all_completed_planned_batches_required')
     records, reports, seen = [], [], set()
     for window, bundle in zip(windows, bundles):
         request, journal, result = (decode(bundle[k]) for k in ('request', 'journal', 'result'))
@@ -87,15 +105,15 @@ def merge_completed(source, bundles):
     # Record every missing run, including edges and cross-batch gaps. Do not
     # infer a holiday or a forex session calendar from the weekday alone.
     gaps, begin = [], None
-    for t in range(START, END + 300, 300):
-        missing = t < END and t not in seen
+    for t in range(start, end + 300, 300):
+        missing = t < end and t not in seen
         if missing and begin is None:
             begin = t
         if not missing and begin is not None:
             gaps.append(dict(start=iso(begin), end=iso(t), missing_candles=(t - begin) // 300,
                              kind='MISSING_SESSION_OR_CLOSURE_NOT_ESTABLISHED'))
             begin = None
-    return dict(records=records, count=len(records), expected_calendar_slots=2016,
+    return dict(records=records, count=len(records), expected_calendar_slots=(end-start)//300,
                 missing_intervals=gaps, batch_validation=reports,
-                independence='PILOT_ONLY_NOT_INDEPENDENT_EVALUATION',
+                independence=classification,
                 strategy_evaluation_permitted=False, authorises_execution=False)
