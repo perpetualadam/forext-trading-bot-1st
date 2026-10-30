@@ -42,6 +42,7 @@ class LocalHTTPS:
         self.stop=threading.Event();self.phase=threading.Event();self.ready=threading.Event()
         self.connections=0;self.requests=[];self.request_times=[];self.errors=[];self.listener=None;self.active=None
         self.port=None;self.thread=None;self.catalogue=catalogue
+        self.header_phase=None # Optional closed fixture barrier, never transport code.
 
     def __enter__(self):
         self.listener=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -81,8 +82,14 @@ class LocalHTTPS:
                 self.request_times.append(time.monotonic())
                 self.requests.append({'method':method,'path':parsed.path,'scope_valid':valid,'auth_matches':auth})
                 if not valid or not auth:raise ValueError()
+                # requests counts parsed request headers, not TCP connections or
+                # a journal ATTEMPTED flag. The barrier follows authentication.
+                if self.scenario=='delayed_headers' and self.header_phase is not None:
+                    try:self.header_phase()
+                    except Exception:
+                        self.errors.append('HEADER_PHASE_REFUSED');raise ValueError()
                 self.phase.set()
-                if self.scenario=='delayed_headers':self.stop.wait(10);continue
+                if self.scenario=='delayed_headers':self.stop.wait();continue
                 begin=timestamp(expected['params']['from'])
                 obj=payload(start=begin,count=1 if self.catalogue is not None else 9 if self.scenario=='nine' else 10)
                 if self.scenario=='invalid_schema':obj['instrument']='GBP_USD'

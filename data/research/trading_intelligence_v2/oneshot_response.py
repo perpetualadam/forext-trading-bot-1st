@@ -29,9 +29,11 @@ def publish_candles(archive,raw,*,name,start,end,retrieved,synthetic,_bounded=No
                        request_sha256=digest(archive.read('request.json')))
     if _bounded is not None:
         cap,index=_bounded
-        from .bounded_acquisition import guard,spec,CATALOGUE_HASH
-        guard(cap,spec(index))
+        from .bounded_acquisition import guard,spec,profile,CATALOGUE_HASH
+        guard(cap,spec(index,cap['catalogue']))
         from .oanda_history_manifest import digest
-        receipt.update(catalogue=CATALOGUE_HASH,index=index,spec_sha256=digest(encoded(spec(index))),source=cap['source'])
+        receipt.update(catalogue=cap['catalogue'],index=index,spec_sha256=digest(encoded(spec(index,cap['catalogue']))),source=cap['source'])
+        p=profile(cap['catalogue'])
+        if p['offset']:receipt.update(original_index=index+p['offset'],original_window=index+p['offset']+1,parent_catalogue=CATALOGUE_HASH)
     archive.put('manifests/'+name+'.json',encoded(receipt))
     return receipt

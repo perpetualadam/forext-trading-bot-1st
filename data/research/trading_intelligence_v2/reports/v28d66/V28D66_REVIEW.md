@@ -1,0 +1,11 @@
+# V2.8D66 refreshed publication review
+
+Baseline `2f07be5f66f64538a53e1593b16edac6242c8658`. Exact proposed scope: 28 files in V28D66_SHA256.json. This replaces the previous 23-file review; no publication has occurred.
+
+The remaining compatibility implementation remains exactly original windows 41-106, excluding ambiguous window 40. Immutable catalogue `b663097a02d007a6ff055946ae1c602fe9e16c33b3f9284e17a3b5ac187dc768`; production source seal `6ea343adb926647424dfffd8ecf77679b9d442b7e4391c2aff7c539580cc6525`. Limits, one-token handling, single-use authority, durable reservation, protected archive, global lock, one-second pacing, 66-attempt cap, 1,800-second aggregate budget, 256 MiB cap and no-retry/no-resume behaviour are unchanged. No arbitrary parameters or trading endpoints are admitted.
+
+The delayed-header correction affects exactly six test/fixture files. It establishes actual parsed HTTPS request receipt plus durable reservation before starting a real header-wait clock. Its counter, timeout and no-retry assertions remain intact. Production code and source seal are byte-identical to the prior reviewed candidate. See V28D66_HEADERS_INVESTIGATION.md for evidence and limitations; the earlier timing investigation is retained as historical evidence, superseded by this review for current scope/results.
+
+Windows 352/352 (original 346 plus six), Linux 140/140 (original 134 plus six), plus eight delayed-header target repetitions per platform passed. All 39 original batches, the 27,213-candle derivative and consumed evidence remain unchanged. Window 40 remains OUTCOME_UNKNOWN. No real grant or authenticated request was created.
+
+V28D66_HEADERS_CORRECTION.diff is the exact delta from the preceding 23-file implementation. V28D66_SOURCE.diff is the complete baseline publication diff, excluding itself and its manifest to avoid cycles. The external receipt hashes all 28 files including the manifest. Earlier timing correction artifacts remain byte-for-byte unchanged. Runtime selector, proposals, credentials, authority records, raw/derived market data and three unrelated scheduler modifications are excluded. No staging/commit/push; no new GitHub Actions run. Renewed Git publication approval is required. Acquisition remains separately gated. Production NO-GO.

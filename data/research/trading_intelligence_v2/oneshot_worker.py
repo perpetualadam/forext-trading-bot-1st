@@ -46,7 +46,7 @@ def shared_read(path):
     # Code/cache and the standard library are runtime resources, not archive
     # state. The two exact JSON exceptions are non-authorising identity/review
     # metadata. Package outputs, reports and proposals are otherwise denied.
-    return (path in (BINDING,SOURCE_SEAL,PACKAGE/'reports/v28b/V28B_REQUEST_WINDOWS.json') or path.is_relative_to(STDLIB) or
+    return (path in (BINDING,SOURCE_SEAL,PACKAGE/'reports/v28b/V28B_REQUEST_WINDOWS.json',PACKAGE/'reports/v28d/V28D_REMAINING_CATALOGUE.json') or path.is_relative_to(STDLIB) or
             path.parent==PACKAGE and path.suffix=='.py' or
             path.parent==PACKAGE/'__pycache__' and path.suffix=='.pyc')
 

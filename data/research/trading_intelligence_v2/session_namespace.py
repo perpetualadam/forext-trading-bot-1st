@@ -24,7 +24,7 @@ def request_metadata(archive,source):
 
 def require_prepared(archive,source):
     if archive.session_id is None:raise Refused('SESSION_REQUIRED')
-    if decode(archive.read('request.json')).get('kind')=='BOUNDED_106':
+    if decode(archive.read('request.json')).get('kind') in ('BOUNDED_106','BOUNDED_66'):
         from .bounded_acquisition import require_prepared as check
         return check(archive,source)
     if encoded(decode(archive.read('request.json')))!=encoded(request_metadata(archive,source)):raise Refused('SESSION_REQUEST_BINDING_REFUSED')
@@ -42,11 +42,16 @@ def _checked_directory(path,*,create):
         finally:win.K.CloseHandle(h)
 
 
-def prepare_session(base,session_id,source,*,synthetic=False,_bounded_rights=None):
+def prepare_session(base,session_id,source,*,synthetic=False,_bounded_rights=None,_bounded_catalogue=None):
     """Create binding and immutable proposal only. No grant/journal or reset."""
     root=session_root(base,session_id)
     from .oneshot_authorisation import source_seal
     if source!=source_seal():raise Refused('SOURCE_REVISION_CHANGED')
+    if _bounded_catalogue is not None and _bounded_rights is None:raise Refused('BOUNDED_RIGHTS_SCOPE_REQUIRED')
+    if _bounded_rights is not None:
+        from .bounded_acquisition import profile,CATALOGUE_HASH,catalogue
+        selected=profile(CATALOGUE_HASH if _bounded_catalogue is None else _bounded_catalogue)['hash']
+        catalogue(selected)
     with Archive(base,synthetic=synthetic) as parent:
         if parent.session_id is not None:raise Refused('NESTED_SESSION_REFUSED')
         container=parent.path('sessions')
@@ -71,9 +76,9 @@ def prepare_session(base,session_id,source,*,synthetic=False,_bounded_rights=Non
                         archive.put('request.json',encoded(request_metadata(archive,source)))
                     else:
                         from .bounded_acquisition import metadata,budget_guard
-                        archive.publication_guard=lambda relative,value:budget_guard(archive,len(value),accounting=relative in ('journal.json','result.json','diagnostic.json'))
+                        archive.publication_guard=lambda relative,value:budget_guard(archive,len(value),accounting=relative in ('journal.json','result.json','diagnostic.json'),catalogue_hash=selected)
                         archive.put('rights_scope.json',encoded(_bounded_rights))
-                        archive.put('request.json',encoded(metadata(archive,source)))
+                        archive.put('request.json',encoded(metadata(archive,source,selected)))
                 with Archive(root,synthetic=synthetic) as archive:require_prepared(archive,source)
             finally:
                 if root_handle is not None:win.K.CloseHandle(root_handle)

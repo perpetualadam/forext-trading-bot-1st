@@ -29,7 +29,7 @@ SOURCE_FILES=('__init__.py','oneshot_authorisation.py','oneshot.py','oneshot_wor
     'oanda_history_transport.py','oanda_history_manifest.py','core.py',
     'history_fixtures.py','historical_manifest.py','confirmation_input.py','token_input.py','session_namespace.py','request_profile.py',
     'bounded_acquisition.py','bounded_history_entry.py','historical_sources.py','oanda_research_import.py','failure_diagnostics.py',
-    'reports/v28b/V28B_REQUEST_WINDOWS.json')
+    'reports/v28b/V28B_REQUEST_WINDOWS.json','reports/v28d/V28D_REMAINING_CATALOGUE.json')
 RIGHTS_PHRASE='I CONFIRM ACCOUNT ENTITLEMENT AND PRIVATE RESEARCH RETENTION'
 ENDPOINT_PHRASE='I ACCEPT ONE NON-ACCOUNT ENDPOINT CONNECTIVITY CHECK'
 FIELDS={'version','mode','root','session','spec','source','identity','issued','expires','parent','conditions','started'}

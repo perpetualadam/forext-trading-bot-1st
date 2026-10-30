@@ -1,0 +1,3616 @@
+{
+  "catalogue_sha256": "b663097a02d007a6ff055946ae1c602fe9e16c33b3f9284e17a3b5ac187dc768",
+  "controlled_expiry_not_a_natural_reproduction": {
+    "log": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-controlled-expiry.txt",
+    "runs": [
+      {
+        "acquisition.json": {
+          "deadline": 567305.245771,
+          "started": 566405.245771
+        },
+        "cap_started": 566404.2650084,
+        "diagnostic.json": {
+          "outcome": "UNKNOWN_NO_RETRY",
+          "reason": "WORKER_DEADLINE_EXCEEDED",
+          "retry_allowed": false,
+          "stage": "RESERVATION",
+          "window_index": 0
+        },
+        "events": [
+          {
+            "event": "RUN_ENTER",
+            "t": 566404.4083073
+          },
+          {
+            "event": "WORKER_PACKET",
+            "kind": "RESERVED",
+            "t": 566405.0654735
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "NEED_WINDOW",
+            "t": 566405.323856
+          },
+          {
+            "event": "CLAIM_ENTER",
+            "t": 566405.323896
+          },
+          {
+            "event": "CLAIM_EXIT",
+            "t": 566405.5592787
+          },
+          {
+            "deadline": 566408.4086124,
+            "event": "CONTROLLED_SETUP_EXPIRY",
+            "t": 566405.5592828
+          },
+          {
+            "event": "RUN_EXIT",
+            "t": 566405.8785006
+          }
+        ],
+        "journal": {
+          "attempts": 1,
+          "first": {
+            "deadline": 566408.4086124,
+            "http_attempts": 0,
+            "started": 566405.4086124,
+            "state": "UNKNOWN"
+          },
+          "next": 0,
+          "state": "OUTCOME_UNKNOWN"
+        },
+        "limits": {
+          "attempts": 66,
+          "bytes": 268435456,
+          "request": 3,
+          "session": 900,
+          "spacing": 0.001,
+          "startup": 15,
+          "token": 120
+        },
+        "mode": "OFFLINE_TEST",
+        "result": {
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "result.json": {
+          "attempts": 1,
+          "completed": 0,
+          "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+          "failure_stage": "RESERVATION",
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+        "worker.claimed.json": {
+          "credential_deadline": 566524.9365675
+        }
+      }
+    ],
+    "servers": [
+      {
+        "connections": 0,
+        "errors": [],
+        "events": [
+          {
+            "event": "SERVER_ENTER",
+            "t": 566404.4071799
+          },
+          {
+            "event": "SERVER_EXIT_ENTER",
+            "t": 566405.8926345
+          }
+        ],
+        "phase_set": false,
+        "request_count": 0,
+        "t": 566405.892823,
+        "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+        "thread_alive": false
+      }
+    ],
+    "sha256": "5306d48eb40b62f4c1951d639b7c349e2585bbebe2ead89e9204a048cfd8384a"
+  },
+  "final_windows_and_linux": [
+    {
+      "log": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-final-native-isolated-1.txt",
+      "runs": [
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566919.5464486
+            },
+            {
+              "event": "WORKER_PACKET",
+              "kind": "RESERVED",
+              "t": 566920.3431553
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "NEED_WINDOW",
+              "t": 566920.6013429
+            },
+            {
+              "event": "CLAIM_ENTER",
+              "t": 566920.6013832
+            },
+            {
+              "event": "CLAIM_EXIT",
+              "t": 566920.8189277
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "WINDOW_STARTED",
+              "t": 566920.8968441
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566921.3869026
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "CONNECT",
+              "t": 566921.3870991
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TLS",
+              "t": 566921.3875211
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566921.3931366
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "HEADERS",
+              "t": 566921.3931966
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566923.6270554
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": {
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        },
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566923.6476633
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566923.7144388
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": null,
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        }
+      ],
+      "servers": [
+        {
+          "connections": 1,
+          "errors": [],
+          "events": [
+            {
+              "event": "SERVER_ENTER",
+              "t": 566919.5453861
+            },
+            {
+              "event": "TLS_ENTER",
+              "t": 566921.3876176
+            },
+            {
+              "event": "TLS_COMPLETE",
+              "t": 566921.3932117
+            },
+            {
+              "auth_matches": true,
+              "event": "RECEIVED_REQUEST_HEADERS",
+              "scope_valid": true,
+              "t": 566921.3935381
+            },
+            {
+              "event": "SERVER_EXIT_ENTER",
+              "t": 566923.7694793
+            }
+          ],
+          "phase_set": true,
+          "request_count": 1,
+          "t": 566923.7697405,
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "thread_alive": false
+        }
+      ],
+      "sha256": "3951323af289fbcbad987d53de04bbd829e8e753ad6db48dfef5a5a4e3d02af2"
+    },
+    {
+      "log": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-final-native-isolated-2.txt",
+      "runs": [
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566924.8448745
+            },
+            {
+              "event": "WORKER_PACKET",
+              "kind": "RESERVED",
+              "t": 566925.6595812
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "NEED_WINDOW",
+              "t": 566925.9109894
+            },
+            {
+              "event": "CLAIM_ENTER",
+              "t": 566925.9110334
+            },
+            {
+              "event": "CLAIM_EXIT",
+              "t": 566926.1317735
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "WINDOW_STARTED",
+              "t": 566926.2071153
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566926.6988385
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "CONNECT",
+              "t": 566926.6990088
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TLS",
+              "t": 566926.6994942
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566926.7050844
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "HEADERS",
+              "t": 566926.7051463
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566928.9313741
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": {
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        },
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566928.9516792
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566929.0196587
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": null,
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        }
+      ],
+      "servers": [
+        {
+          "connections": 1,
+          "errors": [],
+          "events": [
+            {
+              "event": "SERVER_ENTER",
+              "t": 566924.8437137
+            },
+            {
+              "event": "TLS_ENTER",
+              "t": 566926.6995899
+            },
+            {
+              "event": "TLS_COMPLETE",
+              "t": 566926.7051929
+            },
+            {
+              "auth_matches": true,
+              "event": "RECEIVED_REQUEST_HEADERS",
+              "scope_valid": true,
+              "t": 566926.7054674
+            },
+            {
+              "event": "SERVER_EXIT_ENTER",
+              "t": 566929.0745134
+            }
+          ],
+          "phase_set": true,
+          "request_count": 1,
+          "t": 566929.0747889,
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "thread_alive": false
+        }
+      ],
+      "sha256": "fdb0bf35bd2c043a77f05d639b3a1a4a2266a3f86cbc6d47e581960b71b10617"
+    },
+    {
+      "log": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-final-native-isolated-3.txt",
+      "runs": [
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "RESPONSE_HEADERS_TIMEOUT",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566930.1583467
+            },
+            {
+              "event": "WORKER_PACKET",
+              "kind": "RESERVED",
+              "t": 566930.9730566
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "NEED_WINDOW",
+              "t": 566931.2314241
+            },
+            {
+              "event": "CLAIM_ENTER",
+              "t": 566931.2314601
+            },
+            {
+              "event": "CLAIM_EXIT",
+              "t": 566931.4537017
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "WINDOW_STARTED",
+              "t": 566931.5324384
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566932.0246318
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "CONNECT",
+              "t": 566932.0248098
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TLS",
+              "t": 566932.025255
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566932.0307726
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "HEADERS",
+              "t": 566932.0308361
+            },
+            {
+              "cause": "Other",
+              "event": "WORKER_PACKET",
+              "kind": "REFUSED",
+              "reason": "RESPONSE_HEADERS_TIMEOUT",
+              "stage": "HEADERS",
+              "t": 566934.0334266
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566934.2502214
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": {
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "RESPONSE_HEADERS_TIMEOUT",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        },
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "RESPONSE_HEADERS_TIMEOUT",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566934.2708848
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566934.3403312
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": null,
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "RESPONSE_HEADERS_TIMEOUT",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        }
+      ],
+      "servers": [
+        {
+          "connections": 1,
+          "errors": [],
+          "events": [
+            {
+              "event": "SERVER_ENTER",
+              "t": 566930.1571593
+            },
+            {
+              "event": "TLS_ENTER",
+              "t": 566932.0253558
+            },
+            {
+              "event": "TLS_COMPLETE",
+              "t": 566932.0309008
+            },
+            {
+              "auth_matches": true,
+              "event": "RECEIVED_REQUEST_HEADERS",
+              "scope_valid": true,
+              "t": 566932.0311968
+            },
+            {
+              "event": "SERVER_EXIT_ENTER",
+              "t": 566934.3942075
+            }
+          ],
+          "phase_set": true,
+          "request_count": 1,
+          "t": 566934.3945767,
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "thread_alive": false
+        }
+      ],
+      "sha256": "0b15b202feaa71185ae01400d437ba0017ccb82771fe519bc1963e732c8066dd"
+    },
+    {
+      "log": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-final-native-isolated-4.txt",
+      "runs": [
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "RESPONSE_HEADERS_TIMEOUT",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566935.5781947
+            },
+            {
+              "event": "WORKER_PACKET",
+              "kind": "RESERVED",
+              "t": 566936.5016044
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "NEED_WINDOW",
+              "t": 566936.7791813
+            },
+            {
+              "event": "CLAIM_ENTER",
+              "t": 566936.7792256
+            },
+            {
+              "event": "CLAIM_EXIT",
+              "t": 566937.0063857
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "WINDOW_STARTED",
+              "t": 566937.0860842
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566937.6402813
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "CONNECT",
+              "t": 566937.6404625
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TLS",
+              "t": 566937.6474005
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566937.6535264
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "HEADERS",
+              "t": 566937.6535946
+            },
+            {
+              "cause": "Other",
+              "event": "WORKER_PACKET",
+              "kind": "REFUSED",
+              "reason": "RESPONSE_HEADERS_TIMEOUT",
+              "stage": "HEADERS",
+              "t": 566939.6550107
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566939.8784396
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": {
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "RESPONSE_HEADERS_TIMEOUT",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        },
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "RESPONSE_HEADERS_TIMEOUT",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566939.8992196
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566939.9656533
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": null,
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "RESPONSE_HEADERS_TIMEOUT",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        }
+      ],
+      "servers": [
+        {
+          "connections": 1,
+          "errors": [],
+          "events": [
+            {
+              "event": "SERVER_ENTER",
+              "t": 566935.576997
+            },
+            {
+              "event": "TLS_ENTER",
+              "t": 566937.6409906
+            },
+            {
+              "event": "TLS_COMPLETE",
+              "t": 566937.6536427
+            },
+            {
+              "auth_matches": true,
+              "event": "RECEIVED_REQUEST_HEADERS",
+              "scope_valid": true,
+              "t": 566937.6539684
+            },
+            {
+              "event": "SERVER_EXIT_ENTER",
+              "t": 566940.0217141
+            }
+          ],
+          "phase_set": true,
+          "request_count": 1,
+          "t": 566940.0220917,
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "thread_alive": false
+        }
+      ],
+      "sha256": "3e12aabde84352731c23f058a39412790706d4f7400cad58ec78c29a492b1648"
+    },
+    {
+      "log": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-final-native-isolated-5.txt",
+      "runs": [
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566941.1138006
+            },
+            {
+              "event": "WORKER_PACKET",
+              "kind": "RESERVED",
+              "t": 566941.9254843
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "NEED_WINDOW",
+              "t": 566942.2392246
+            },
+            {
+              "event": "CLAIM_ENTER",
+              "t": 566942.2392855
+            },
+            {
+              "event": "CLAIM_EXIT",
+              "t": 566942.4983319
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "WINDOW_STARTED",
+              "t": 566942.5806297
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566943.3071712
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "CONNECT",
+              "t": 566943.3075048
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TLS",
+              "t": 566943.3249392
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566943.3385938
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "HEADERS",
+              "t": 566943.3387124
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566945.6056522
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": {
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        },
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566945.6319249
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566945.7158265
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": null,
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        }
+      ],
+      "servers": [
+        {
+          "connections": 1,
+          "errors": [],
+          "events": [
+            {
+              "event": "SERVER_ENTER",
+              "t": 566941.1126469
+            },
+            {
+              "event": "TLS_ENTER",
+              "t": 566943.3082438
+            },
+            {
+              "event": "TLS_COMPLETE",
+              "t": 566943.3387441
+            },
+            {
+              "auth_matches": true,
+              "event": "RECEIVED_REQUEST_HEADERS",
+              "scope_valid": true,
+              "t": 566943.3393168
+            },
+            {
+              "event": "SERVER_EXIT_ENTER",
+              "t": 566945.7814707
+            }
+          ],
+          "phase_set": true,
+          "request_count": 1,
+          "t": 566945.7817565,
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "thread_alive": false
+        }
+      ],
+      "sha256": "9b7e6443558a2e179733b089c18935cb6804f0deae293de40380ef38879e15ca"
+    },
+    {
+      "log": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\linux-evidence-tiv2-v28d66-headers-final-20261030\\headers-isolated-1.txt",
+      "runs": [
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 2443.251377489
+            },
+            {
+              "event": "WORKER_PACKET",
+              "kind": "RESERVED",
+              "t": 2443.562745737
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "NEED_WINDOW",
+              "t": 2443.641565025
+            },
+            {
+              "event": "CLAIM_ENTER",
+              "t": 2443.641646366
+            },
+            {
+              "event": "CLAIM_EXIT",
+              "t": 2443.724493012
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "WINDOW_STARTED",
+              "t": 2443.755495908
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 2443.881327236
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "CONNECT",
+              "t": 2443.881595556
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TLS",
+              "t": 2443.881972161
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 2443.884839299
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "HEADERS",
+              "t": 2443.884897976
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 2446.032728899
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": {
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        },
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 2446.039173409
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 2446.059294791
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": null,
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        }
+      ],
+      "servers": [
+        {
+          "connections": 1,
+          "errors": [],
+          "events": [
+            {
+              "event": "SERVER_ENTER",
+              "t": 2443.250600164
+            },
+            {
+              "event": "TLS_ENTER",
+              "t": 2443.881876243
+            },
+            {
+              "event": "TLS_COMPLETE",
+              "t": 2443.88494946
+            },
+            {
+              "auth_matches": true,
+              "event": "RECEIVED_REQUEST_HEADERS",
+              "scope_valid": true,
+              "t": 2443.885281724
+            },
+            {
+              "event": "SERVER_EXIT_ENTER",
+              "t": 2446.077392741
+            }
+          ],
+          "phase_set": true,
+          "request_count": 1,
+          "t": 2446.077678547,
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "thread_alive": false
+        }
+      ],
+      "sha256": "6df2cfd099acadb98e15e79e03aee87953a1714c679cba1dfa039fd4866596ed"
+    },
+    {
+      "log": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\linux-evidence-tiv2-v28d66-headers-final-20261030\\headers-isolated-2.txt",
+      "runs": [
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 2446.604091921
+            },
+            {
+              "event": "WORKER_PACKET",
+              "kind": "RESERVED",
+              "t": 2446.954835996
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "NEED_WINDOW",
+              "t": 2447.047908221
+            },
+            {
+              "event": "CLAIM_ENTER",
+              "t": 2447.047977334
+            },
+            {
+              "event": "CLAIM_EXIT",
+              "t": 2447.160215425
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "WINDOW_STARTED",
+              "t": 2447.200573124
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 2447.323683163
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "CONNECT",
+              "t": 2447.323834563
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TLS",
+              "t": 2447.324248369
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 2447.327011274
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "HEADERS",
+              "t": 2447.32707028
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 2449.42131603
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": {
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        },
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 2449.427589306
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 2449.446704384
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": null,
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        }
+      ],
+      "servers": [
+        {
+          "connections": 1,
+          "errors": [],
+          "events": [
+            {
+              "event": "SERVER_ENTER",
+              "t": 2446.603426075
+            },
+            {
+              "event": "TLS_ENTER",
+              "t": 2447.324189827
+            },
+            {
+              "event": "TLS_COMPLETE",
+              "t": 2447.327264326
+            },
+            {
+              "auth_matches": true,
+              "event": "RECEIVED_REQUEST_HEADERS",
+              "scope_valid": true,
+              "t": 2447.32754248
+            },
+            {
+              "event": "SERVER_EXIT_ENTER",
+              "t": 2449.464732158
+            }
+          ],
+          "phase_set": true,
+          "request_count": 1,
+          "t": 2449.464902475,
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "thread_alive": false
+        }
+      ],
+      "sha256": "1202500b2bda3aec50f2f4fe50a3deb5cb3ec43c016da4daf87d51a4b68329aa"
+    },
+    {
+      "log": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\linux-evidence-tiv2-v28d66-headers-final-20261030\\headers-isolated-3.txt",
+      "runs": [
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 2449.906532222
+            },
+            {
+              "event": "WORKER_PACKET",
+              "kind": "RESERVED",
+              "t": 2450.184519093
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "NEED_WINDOW",
+              "t": 2450.255712077
+            },
+            {
+              "event": "CLAIM_ENTER",
+              "t": 2450.255775874
+            },
+            {
+              "event": "CLAIM_EXIT",
+              "t": 2450.327907958
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "WINDOW_STARTED",
+              "t": 2450.355755522
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 2450.468889737
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "CONNECT",
+              "t": 2450.469039638
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TLS",
+              "t": 2450.469424886
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 2450.471744759
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "HEADERS",
+              "t": 2450.471795136
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 2452.61879245
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": {
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        },
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 2452.625378876
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 2452.644990381
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": null,
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        }
+      ],
+      "servers": [
+        {
+          "connections": 1,
+          "errors": [],
+          "events": [
+            {
+              "event": "SERVER_ENTER",
+              "t": 2449.905997643
+            },
+            {
+              "event": "TLS_ENTER",
+              "t": 2450.469311046
+            },
+            {
+              "event": "TLS_COMPLETE",
+              "t": 2450.472137043
+            },
+            {
+              "auth_matches": true,
+              "event": "RECEIVED_REQUEST_HEADERS",
+              "scope_valid": true,
+              "t": 2450.472419357
+            },
+            {
+              "event": "SERVER_EXIT_ENTER",
+              "t": 2452.663456316
+            }
+          ],
+          "phase_set": true,
+          "request_count": 1,
+          "t": 2452.663639246,
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "thread_alive": false
+        }
+      ],
+      "sha256": "200f50058e2b853b30894f1b3c743dcde6bd07074956ef5fb8623068b8888fda"
+    },
+    {
+      "log": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\linux-evidence-tiv2-v28d66-headers-final-20261030\\headers-isolated-4.txt",
+      "runs": [
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 2453.189157538
+            },
+            {
+              "event": "WORKER_PACKET",
+              "kind": "RESERVED",
+              "t": 2453.539880265
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "NEED_WINDOW",
+              "t": 2453.639244752
+            },
+            {
+              "event": "CLAIM_ENTER",
+              "t": 2453.639320171
+            },
+            {
+              "event": "CLAIM_EXIT",
+              "t": 2453.759044613
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "WINDOW_STARTED",
+              "t": 2453.806694085
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 2453.957272938
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "CONNECT",
+              "t": 2453.957451279
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TLS",
+              "t": 2453.957907484
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 2453.960700196
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "HEADERS",
+              "t": 2453.960754064
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 2456.056961847
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": {
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        },
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 2456.063263238
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 2456.082775211
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": null,
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        }
+      ],
+      "servers": [
+        {
+          "connections": 1,
+          "errors": [],
+          "events": [
+            {
+              "event": "SERVER_ENTER",
+              "t": 2453.188508438
+            },
+            {
+              "event": "TLS_ENTER",
+              "t": 2453.957809331
+            },
+            {
+              "event": "TLS_COMPLETE",
+              "t": 2453.960816723
+            },
+            {
+              "auth_matches": true,
+              "event": "RECEIVED_REQUEST_HEADERS",
+              "scope_valid": true,
+              "t": 2453.961207051
+            },
+            {
+              "event": "SERVER_EXIT_ENTER",
+              "t": 2456.100968176
+            }
+          ],
+          "phase_set": true,
+          "request_count": 1,
+          "t": 2456.101149329,
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "thread_alive": false
+        }
+      ],
+      "sha256": "b3f693b6a95dc3fcd9ba89bb18eaa3b33b35f6c06576325706b43d79e8ba44c1"
+    },
+    {
+      "log": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\linux-evidence-tiv2-v28d66-headers-final-20261030\\headers-isolated-5.txt",
+      "runs": [
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "RESPONSE_HEADERS_TIMEOUT",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 2456.62848363
+            },
+            {
+              "event": "WORKER_PACKET",
+              "kind": "RESERVED",
+              "t": 2456.998925209
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "NEED_WINDOW",
+              "t": 2457.104527345
+            },
+            {
+              "event": "CLAIM_ENTER",
+              "t": 2457.104596372
+            },
+            {
+              "event": "CLAIM_EXIT",
+              "t": 2457.22844565
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "WINDOW_STARTED",
+              "t": 2457.27281082
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 2457.396322848
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "CONNECT",
+              "t": 2457.396499531
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TLS",
+              "t": 2457.397028187
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 2457.399810885
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "HEADERS",
+              "t": 2457.399870657
+            },
+            {
+              "cause": "Other",
+              "event": "WORKER_PACKET",
+              "kind": "REFUSED",
+              "reason": "RESPONSE_HEADERS_TIMEOUT",
+              "stage": "HEADERS",
+              "t": 2459.400582925
+            },
+            {
+              "event": "WORKER_PACKET",
+              "kind": "INVALID_WORKER_MESSAGE",
+              "t": 2459.400767456
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 2459.506916245
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": {
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "RESPONSE_HEADERS_TIMEOUT",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        },
+        {
+          "acquisition.json": {
+            "deadline": 900,
+            "started": 0
+          },
+          "cap_started": 0,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "RESPONSE_HEADERS_TIMEOUT",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 2459.513625234
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 2459.535213968
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 3,
+              "dispatched": 0,
+              "http_attempts": 1,
+              "started": 0,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": null,
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "RESPONSE_HEADERS_TIMEOUT",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 120
+          }
+        }
+      ],
+      "servers": [
+        {
+          "connections": 1,
+          "errors": [],
+          "events": [
+            {
+              "event": "SERVER_ENTER",
+              "t": 2456.62781609
+            },
+            {
+              "event": "TLS_ENTER",
+              "t": 2457.396903551
+            },
+            {
+              "event": "TLS_COMPLETE",
+              "t": 2457.399946614
+            },
+            {
+              "auth_matches": true,
+              "event": "RECEIVED_REQUEST_HEADERS",
+              "scope_valid": true,
+              "t": 2457.400393067
+            },
+            {
+              "event": "SERVER_EXIT_ENTER",
+              "t": 2459.556165572
+            }
+          ],
+          "phase_set": true,
+          "request_count": 1,
+          "t": 2459.556355924,
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "thread_alive": false
+        }
+      ],
+      "sha256": "61c391fd8d2880be8ee9465481572d6eb361076c76dc6644957afa565a19d838"
+    }
+  ],
+  "no_credentials_headers_or_bodies": true,
+  "prior_failure_metadata": [
+    {
+      "created_ns": 1793320626020698800,
+      "first": {
+        "deadline": 564501.5114213,
+        "dispatched": 564498.8685288,
+        "http_attempts": 1,
+        "started": 564498.5114213,
+        "state": "UNKNOWN"
+      },
+      "fixture": "C:\\TradingResearchData\\OANDA\\research_outputs\\v26c_synthetic_sessions\\v26d_case_2c660bdc5850480f81f1844838eff945\\sessions\\fa74a42599ac4680a3e01f5773f5c1ef",
+      "grant_sha256": "d33296d81f386e461e8a43adffd092600eb2399a6b6e57ccda8b92cfd68fcaad",
+      "phase": {
+        "deadline": 565398.1284699,
+        "started": 564498.1284699
+      },
+      "result": {
+        "attempts": 1,
+        "completed": 0,
+        "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+        "failure_stage": "RESERVATION",
+        "kind": "OUTCOME_UNKNOWN",
+        "worker_exited": true
+      },
+      "result_sha256": "eb5f89d3c7a1c0de49c157d6102e701f9796dffd5fcc1b5a76db3ee0c355aa60"
+    }
+  ],
+  "production_source_seal": "6ea343adb926647424dfffd8ecf77679b9d442b7e4391c2aff7c539580cc6525",
+  "synthetic_only": true,
+  "unchanged_before": [
+    {
+      "log": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-isolated-1.txt",
+      "runs": [
+        {
+          "acquisition.json": {
+            "deadline": 566962.7008119,
+            "started": 566062.7008119
+          },
+          "cap_started": 566061.6883476,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566061.8240399
+            },
+            {
+              "event": "WORKER_PACKET",
+              "kind": "RESERVED",
+              "t": 566062.5156947
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "NEED_WINDOW",
+              "t": 566062.7702171
+            },
+            {
+              "event": "CLAIM_ENTER",
+              "t": 566062.7702557
+            },
+            {
+              "event": "CLAIM_EXIT",
+              "t": 566062.9910167
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "WINDOW_STARTED",
+              "t": 566063.0660971
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566063.5744716
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "CONNECT",
+              "t": 566063.5754211
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TLS",
+              "t": 566063.5759285
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566063.5816593
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "HEADERS",
+              "t": 566063.5817172
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566065.069423
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 566065.8509574,
+              "dispatched": 566063.0017511,
+              "http_attempts": 1,
+              "started": 566062.8509574,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": {
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 566182.3794095
+          }
+        },
+        {
+          "acquisition.json": {
+            "deadline": 566962.7008119,
+            "started": 566062.7008119
+          },
+          "cap_started": 566061.6883476,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566065.0928424
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566065.1614451
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 566065.8509574,
+              "dispatched": 566063.0017511,
+              "http_attempts": 1,
+              "started": 566062.8509574,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": null,
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 566182.3794095
+          }
+        }
+      ],
+      "servers": [
+        {
+          "connections": 1,
+          "errors": [],
+          "events": [
+            {
+              "event": "SERVER_ENTER",
+              "t": 566061.822861
+            },
+            {
+              "event": "TLS_ENTER",
+              "t": 566063.5760337
+            },
+            {
+              "event": "TLS_COMPLETE",
+              "t": 566063.5818491
+            },
+            {
+              "auth_matches": true,
+              "event": "RECEIVED_REQUEST_HEADERS",
+              "scope_valid": true,
+              "t": 566063.5821639
+            },
+            {
+              "event": "SERVER_EXIT_ENTER",
+              "t": 566065.2186732
+            }
+          ],
+          "phase_set": true,
+          "request_count": 1,
+          "t": 566065.2189534,
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "thread_alive": false
+        }
+      ],
+      "sha256": "6bf0a5dd555bda12449d2e619527948b8da47b15329d9367ae412142371b83c7"
+    },
+    {
+      "log": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-isolated-2.txt",
+      "runs": [
+        {
+          "acquisition.json": {
+            "deadline": 566967.4575597,
+            "started": 566067.4575597
+          },
+          "cap_started": 566066.357789,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566066.5129943
+            },
+            {
+              "event": "WORKER_PACKET",
+              "kind": "RESERVED",
+              "t": 566067.2472126
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "NEED_WINDOW",
+              "t": 566067.5319365
+            },
+            {
+              "event": "CLAIM_ENTER",
+              "t": 566067.5319869
+            },
+            {
+              "event": "CLAIM_EXIT",
+              "t": 566067.7523869
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "WINDOW_STARTED",
+              "t": 566067.8252175
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566068.3253734
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "CONNECT",
+              "t": 566068.3261928
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TLS",
+              "t": 566068.3266149
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566068.3321809
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "HEADERS",
+              "t": 566068.3322491
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566069.8493657
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 566070.6210412,
+              "dispatched": 566067.7635662,
+              "http_attempts": 1,
+              "started": 566067.6210412,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": {
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 566187.1065269
+          }
+        },
+        {
+          "acquisition.json": {
+            "deadline": 566967.4575597,
+            "started": 566067.4575597
+          },
+          "cap_started": 566066.357789,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566069.8714023
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566069.9403133
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 566070.6210412,
+              "dispatched": 566067.7635662,
+              "http_attempts": 1,
+              "started": 566067.6210412,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": null,
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 566187.1065269
+          }
+        }
+      ],
+      "servers": [
+        {
+          "connections": 1,
+          "errors": [],
+          "events": [
+            {
+              "event": "SERVER_ENTER",
+              "t": 566066.5117579
+            },
+            {
+              "event": "TLS_ENTER",
+              "t": 566068.3267152
+            },
+            {
+              "event": "TLS_COMPLETE",
+              "t": 566068.3322748
+            },
+            {
+              "auth_matches": true,
+              "event": "RECEIVED_REQUEST_HEADERS",
+              "scope_valid": true,
+              "t": 566068.3325191
+            },
+            {
+              "event": "SERVER_EXIT_ENTER",
+              "t": 566069.9966168
+            }
+          ],
+          "phase_set": true,
+          "request_count": 1,
+          "t": 566069.9968826,
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "thread_alive": false
+        }
+      ],
+      "sha256": "62a6851a54e49928cf5e1c0ecc6a9a6a3c71d6e681c24825e044fc842e6e46bd"
+    },
+    {
+      "log": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-isolated-3.txt",
+      "runs": [
+        {
+          "acquisition.json": {
+            "deadline": 566972.0614894,
+            "started": 566072.0614894
+          },
+          "cap_started": 566071.0262658,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566071.1963577
+            },
+            {
+              "event": "WORKER_PACKET",
+              "kind": "RESERVED",
+              "t": 566071.8756922
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "NEED_WINDOW",
+              "t": 566072.1325272
+            },
+            {
+              "event": "CLAIM_ENTER",
+              "t": 566072.1325703
+            },
+            {
+              "event": "CLAIM_EXIT",
+              "t": 566072.3570428
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "WINDOW_STARTED",
+              "t": 566072.4340978
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566072.9481234
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "CONNECT",
+              "t": 566072.9489724
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TLS",
+              "t": 566072.9494379
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566072.9550516
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "HEADERS",
+              "t": 566072.9551258
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566074.4872946
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 566075.2126213,
+              "dispatched": 566072.3679944,
+              "http_attempts": 1,
+              "started": 566072.2126213,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": {
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 566191.7488184
+          }
+        },
+        {
+          "acquisition.json": {
+            "deadline": 566972.0614894,
+            "started": 566072.0614894
+          },
+          "cap_started": 566071.0262658,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566074.5154271
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566074.6051758
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 566075.2126213,
+              "dispatched": 566072.3679944,
+              "http_attempts": 1,
+              "started": 566072.2126213,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": null,
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 566191.7488184
+          }
+        }
+      ],
+      "servers": [
+        {
+          "connections": 1,
+          "errors": [],
+          "events": [
+            {
+              "event": "SERVER_ENTER",
+              "t": 566071.1950453
+            },
+            {
+              "event": "TLS_ENTER",
+              "t": 566072.9495246
+            },
+            {
+              "event": "TLS_COMPLETE",
+              "t": 566072.9552912
+            },
+            {
+              "auth_matches": true,
+              "event": "RECEIVED_REQUEST_HEADERS",
+              "scope_valid": true,
+              "t": 566072.955654
+            },
+            {
+              "event": "SERVER_EXIT_ENTER",
+              "t": 566074.6737705
+            }
+          ],
+          "phase_set": true,
+          "request_count": 1,
+          "t": 566074.6740692,
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "thread_alive": false
+        }
+      ],
+      "sha256": "9fc36706d3509300fe1922bbc173ffffce0d723f0121f12521eb292dbe03e9cd"
+    },
+    {
+      "log": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-isolated-4.txt",
+      "runs": [
+        {
+          "acquisition.json": {
+            "deadline": 566976.821832,
+            "started": 566076.821832
+          },
+          "cap_started": 566075.7446104,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566075.9079266
+            },
+            {
+              "event": "WORKER_PACKET",
+              "kind": "RESERVED",
+              "t": 566076.6322598
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "NEED_WINDOW",
+              "t": 566076.8932383
+            },
+            {
+              "event": "CLAIM_ENTER",
+              "t": 566076.8932846
+            },
+            {
+              "event": "CLAIM_EXIT",
+              "t": 566077.11996
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "WINDOW_STARTED",
+              "t": 566077.1977588
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566077.7048135
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "CONNECT",
+              "t": 566077.7056025
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TLS",
+              "t": 566077.7060174
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566077.7116277
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "HEADERS",
+              "t": 566077.7117057
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566079.1892473
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 566079.9749672,
+              "dispatched": 566077.1317557,
+              "http_attempts": 1,
+              "started": 566076.9749672,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": {
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 566196.4933726
+          }
+        },
+        {
+          "acquisition.json": {
+            "deadline": 566976.821832,
+            "started": 566076.821832
+          },
+          "cap_started": 566075.7446104,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566079.2108029
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566079.2800005
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 566079.9749672,
+              "dispatched": 566077.1317557,
+              "http_attempts": 1,
+              "started": 566076.9749672,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": null,
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 566196.4933726
+          }
+        }
+      ],
+      "servers": [
+        {
+          "connections": 1,
+          "errors": [],
+          "events": [
+            {
+              "event": "SERVER_ENTER",
+              "t": 566075.9068105
+            },
+            {
+              "event": "TLS_ENTER",
+              "t": 566077.7061034
+            },
+            {
+              "event": "TLS_COMPLETE",
+              "t": 566077.7117298
+            },
+            {
+              "auth_matches": true,
+              "event": "RECEIVED_REQUEST_HEADERS",
+              "scope_valid": true,
+              "t": 566077.7120229
+            },
+            {
+              "event": "SERVER_EXIT_ENTER",
+              "t": 566079.335556
+            }
+          ],
+          "phase_set": true,
+          "request_count": 1,
+          "t": 566079.3358397,
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "thread_alive": false
+        }
+      ],
+      "sha256": "c32ee4bab22217755f6d077c8f2ee1967ed7f36c0735ea94d969a23f03c201fe"
+    },
+    {
+      "log": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-isolated-5.txt",
+      "runs": [
+        {
+          "acquisition.json": {
+            "deadline": 566981.6974012,
+            "started": 566081.6974012
+          },
+          "cap_started": 566080.4691283,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566080.6230782
+            },
+            {
+              "event": "WORKER_PACKET",
+              "kind": "RESERVED",
+              "t": 566081.4909009
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "NEED_WINDOW",
+              "t": 566081.7731495
+            },
+            {
+              "event": "CLAIM_ENTER",
+              "t": 566081.7732017
+            },
+            {
+              "event": "CLAIM_EXIT",
+              "t": 566082.0067869
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "WINDOW_STARTED",
+              "t": 566082.0878136
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566082.7947021
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "CONNECT",
+              "t": 566082.7955675
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TLS",
+              "t": 566082.7960872
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "TRANSMIT",
+              "t": 566082.8038483
+            },
+            {
+              "event": "WORKER_PACKET",
+              "index": 0,
+              "kind": "STAGE",
+              "stage": "HEADERS",
+              "t": 566082.8039596
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566084.1718318
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 566084.8667856,
+              "dispatched": 566082.019633,
+              "http_attempts": 1,
+              "started": 566081.8667856,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": {
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 566201.3331495
+          }
+        },
+        {
+          "acquisition.json": {
+            "deadline": 566981.6974012,
+            "started": 566081.6974012
+          },
+          "cap_started": 566080.4691283,
+          "diagnostic.json": {
+            "outcome": "UNKNOWN_NO_RETRY",
+            "reason": "WORKER_DEADLINE_EXCEEDED",
+            "retry_allowed": false,
+            "stage": "HEADERS",
+            "window_index": 0
+          },
+          "events": [
+            {
+              "event": "RUN_ENTER",
+              "t": 566084.2015745
+            },
+            {
+              "event": "RUN_EXIT",
+              "t": 566084.2934155
+            }
+          ],
+          "journal": {
+            "attempts": 1,
+            "first": {
+              "deadline": 566084.8667856,
+              "dispatched": 566082.019633,
+              "http_attempts": 1,
+              "started": 566081.8667856,
+              "state": "UNKNOWN"
+            },
+            "next": 0,
+            "state": "OUTCOME_UNKNOWN"
+          },
+          "limits": {
+            "attempts": 66,
+            "bytes": 268435456,
+            "request": 3,
+            "session": 900,
+            "spacing": 0.001,
+            "startup": 15,
+            "token": 120
+          },
+          "mode": "OFFLINE_TEST",
+          "result": null,
+          "result.json": {
+            "attempts": 1,
+            "completed": 0,
+            "failure_reason": "WORKER_DEADLINE_EXCEEDED",
+            "failure_stage": "HEADERS",
+            "kind": "OUTCOME_UNKNOWN",
+            "worker_exited": true
+          },
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "worker.claimed.json": {
+            "credential_deadline": 566201.3331495
+          }
+        }
+      ],
+      "servers": [
+        {
+          "connections": 1,
+          "errors": [],
+          "events": [
+            {
+              "event": "SERVER_ENTER",
+              "t": 566080.6212001
+            },
+            {
+              "event": "TLS_ENTER",
+              "t": 566082.7962315
+            },
+            {
+              "event": "TLS_COMPLETE",
+              "t": 566082.8039873
+            },
+            {
+              "auth_matches": true,
+              "event": "RECEIVED_REQUEST_HEADERS",
+              "scope_valid": true,
+              "t": 566082.8042951
+            },
+            {
+              "event": "SERVER_EXIT_ENTER",
+              "t": 566084.3690989
+            }
+          ],
+          "phase_set": true,
+          "request_count": 1,
+          "t": 566084.3694232,
+          "test": "tiv2.test_v28d_remaining.Remaining.test_diag_delayed_headers",
+          "thread_alive": false
+        }
+      ],
+      "sha256": "af1108fe22fa2b402e83f4bf709834ca96f4577363ff62db185028c3246c9a00"
+    }
+  ],
+  "unchanged_before_log_receipts": [
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-isolated-1.txt",
+      "sha256": "6bf0a5dd555bda12449d2e619527948b8da47b15329d9367ae412142371b83c7",
+      "tests": 1
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-isolated-2.txt",
+      "sha256": "62a6851a54e49928cf5e1c0ecc6a9a6a3c71d6e681c24825e044fc842e6e46bd",
+      "tests": 1
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-isolated-3.txt",
+      "sha256": "9fc36706d3509300fe1922bbc173ffffce0d723f0121f12521eb292dbe03e9cd",
+      "tests": 1
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-isolated-4.txt",
+      "sha256": "c32ee4bab22217755f6d077c8f2ee1967ed7f36c0735ea94d969a23f03c201fe",
+      "tests": 1
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-isolated-5.txt",
+      "sha256": "af1108fe22fa2b402e83f4bf709834ca96f4577363ff62db185028c3246c9a00",
+      "tests": 1
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-order-1.txt",
+      "sha256": "4307968195ed9655eba2060a303f56ff78f6a755e11ecf703549da54d7d81f50",
+      "tests": 5
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-order-2.txt",
+      "sha256": "1ac14ab1eaf926c22b9ccaf95f52e64cb447c0beaff2759212d6179247542161",
+      "tests": 5
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-order-3.txt",
+      "sha256": "b2ea63b3bc01aa06af767c811ae0c08087f09587298bd968b3c5760e3c7c5e15",
+      "tests": 5
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-concurrent-1.txt",
+      "sha256": "32681a00249589bc5ac24f387263065066f8da82ddb30238d34492e555a727fc",
+      "tests": 1
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-concurrent-2.txt",
+      "sha256": "52209404f938e34d8cf85de06c9fbd3f49fd0e20680bd4df0e298a59619835d1",
+      "tests": 1
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-concurrent-3.txt",
+      "sha256": "cf1e69a567d8d9aa68b3a74e75ec32105979e2d0671d20bafcbfd2c638870c9e",
+      "tests": 1
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-concurrent-4.txt",
+      "sha256": "5821fed0fbdeac392b6d81171d10d6af065202ca5b99d11a62af73c5dc3dd942",
+      "tests": 1
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\headers-before-concurrent-5.txt",
+      "sha256": "0d01a84d90ad893b2631fe4d38d12b6c687f47ca3ff7030996c9a0c1f73c4e88",
+      "tests": 1
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\linux-evidence-tiv2-v28d66-headers-before-20261030\\headers-isolated-1.txt",
+      "sha256": "03471d94be02889a26f817ed622b57c4b289b5ba13ab6081c2fc4ee30ae21966",
+      "tests": 1
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\linux-evidence-tiv2-v28d66-headers-before-20261030\\headers-isolated-2.txt",
+      "sha256": "436063d428eed771d4314496f0a80d1a152719cd8fbe7d0c695561ebd3d424bb",
+      "tests": 1
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\linux-evidence-tiv2-v28d66-headers-before-20261030\\headers-isolated-3.txt",
+      "sha256": "aef59ebfc7d6dc7296cb780636a191f27e7045f5a6d40807783a150b940e7024",
+      "tests": 1
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\linux-evidence-tiv2-v28d66-headers-before-20261030\\headers-isolated-4.txt",
+      "sha256": "c0406b6832148556cd40ffaba0f3df47f2bc5bcee1ff1b83354cd34880274dba",
+      "tests": 1
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\linux-evidence-tiv2-v28d66-headers-before-20261030\\headers-isolated-5.txt",
+      "sha256": "1facc6fd1cc0a08ae90a30e9feff72f1bb0188bd255c16cb581d7d3bca83065d",
+      "tests": 1
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\linux-evidence-tiv2-v28d66-headers-before-20261030\\headers-order-1.txt",
+      "sha256": "25651bed760eb81827a179273a9b27a3dd6b8f36d45a95b0b2344b0435a2d7ea",
+      "tests": 5
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\linux-evidence-tiv2-v28d66-headers-before-20261030\\headers-order-2.txt",
+      "sha256": "cad780178aae701b148167e8dca8e4602fed0c4c6553c548514415551e78d736",
+      "tests": 5
+    },
+    {
+      "path": "C:\\Users\\Brian\\.codex\\visualizations\\2026\\10\\27\\01a17f54-5073-7601-9996-6db0edab2ab8\\linux-evidence-tiv2-v28d66-headers-before-20261030\\headers-order-3.txt",
+      "sha256": "5c28ec73f0fdc7571819e452acfe3f8a4e243cde9b6a848cd5d3b993aeed3d39",
+      "tests": 5
+    }
+  ],
+  "version": 1
+}

@@ -1,0 +1,246 @@
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -336,3 +336,5 @@
+         run: python -I -S -B data/research/trading_intelligence_v2/v28d_research_run.py
+       - name: Verify immutable 66-window compatibility with synthetic HTTPS
+         run: python -I -S -B data/research/trading_intelligence_v2/v26d_run.py --remaining-tests
++      - name: Verify deterministic clock fixture isolation and fail-closed expiry
++        run: python -I -S -B data/research/trading_intelligence_v2/v26d_run.py --timing-tests
+diff --git a/data/research/trading_intelligence_v2/test_v28c.py b/data/research/trading_intelligence_v2/test_v28c.py
+--- a/data/research/trading_intelligence_v2/test_v28c.py
++++ b/data/research/trading_intelligence_v2/test_v28c.py
+@@ -107,14 +107,16 @@
+         r=b.verify_completed(ar,cap,0);rb=ar.read('manifests/v26c_year_000.json');rev=review();rev.update(provenance_verified=True,manifest_sha256=digest(rb))
+         self.assertRaises(ResearchRejected,import_bundle,ar.read('request.json'),rb,ar.read(r['raw']),ar.read(r['validated']),review=rev,independent_required=False)
+     def test_bounded_slow_token_entry_receives_fresh_acquisition_clock(self):
+-        _,ar,cap=self.new(limits=dict(token=4,session=2,spacing=1))
+-        def token(_):time.sleep(1);return self.secret
+-        with self.server() as server,patch.object(SyntheticCredentialProvider,'credential',token):
+-            result=self.run_bounded(ar,cap,server,fault='crash_after_response')
+-            self.assertTrue(result['worker_exited']);self.assertEqual(len(server.requests),1)
+-        phase=decode(ar.read('acquisition.json'));worker=decode(ar.read('worker.claimed.json'))
+-        self.assertGreaterEqual(phase['started']-(worker['credential_deadline']-4),1)
+-        self.assertEqual(phase['deadline']-phase['started'],2)
++        from .timing_test_fixture import deterministic_input_clock
++        with deterministic_input_clock() as clock:
++            _,ar,cap=self.new(limits=dict(token=4,session=2,spacing=1))
++            def token(_):clock.advance(1);return self.secret
++            with self.server() as server,patch.object(SyntheticCredentialProvider,'credential',token):
++                result=self.run_bounded(ar,cap,server,fault='crash_after_response')
++                self.assertTrue(result['worker_exited']);self.assertEqual(len(server.requests),1)
++            phase=decode(ar.read('acquisition.json'));worker=decode(ar.read('worker.claimed.json'))
++            self.assertGreaterEqual(phase['started']-(worker['credential_deadline']-4),1)
++            self.assertEqual(phase['deadline']-phase['started'],2)
+     def test_bounded_parent_hash_verification_stops_progression(self):
+         _,ar,cap=self.new()
+         with self.server() as server,patch.object(b,'verify_completed',side_effect=Refused('SYNTHETIC_CORRUPTED_RECEIPT')):
+diff --git a/data/research/trading_intelligence_v2/test_v28d_timing.py b/data/research/trading_intelligence_v2/test_v28d_timing.py
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/test_v28d_timing.py
+@@ -0,0 +1,73 @@
++"""Closed deterministic fixture and unchanged fail-closed acquisition rules."""
++import copy
++import os
++import subprocess
++import sys
++import time
++from unittest.mock import patch
++from . import test_v28c as previous
++from . import bounded_acquisition as b,oneshot
++from .oneshot_archive import Refused
++from .oneshot_bridge import SyntheticCredentialProvider
++from .oanda_history_manifest import encoded,decode
++from .timing_test_fixture import FixtureClock,deterministic_input_clock,WALL_LIMIT,LIFETIME
++previous.legacy.NATIVE=globals().get('NATIVE',False)
++
++
++class TimingFixture(previous.Bounded):
++    def test_clock_advancement_and_real_wall_watchdog(self):
++        wall=[100.];clock=FixtureClock(100.,_wall=lambda:wall[0])
++        clock.advance(1);self.assertEqual(clock.monotonic(),101.)
++        self.assertRaises(ValueError,clock.advance,-1)
++        self.assertRaises(ValueError,clock.synchronize,100.)
++        wall[0]+=WALL_LIMIT
++        self.assertGreater(clock.monotonic()-clock.start,LIFETIME)
++    def refused_bootstrap(self,cap):
++        exe=getattr(sys,'_base_executable',sys.executable)
++        cmd=[exe,'-I','-S','-B',str(b.PACKAGE/'timing_test_worker.py'),'--bounded-worker']
++        packet=dict(root=cap['root'],reservation=cap,fault='crash_after_response',https_fixture={})
++        p=subprocess.Popen(cmd,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,env={'SystemRoot':r'C:\Windows'} if os.name=='nt' else {},close_fds=True)
++        out,err=p.communicate(encoded(packet),timeout=5)
++        self.assertEqual(p.returncode,2);self.assertEqual(out.strip(),b'TIMING_FIXTURE_REFUSED');self.assertEqual(err,b'')
++    def test_live_bootstrap_refuses_before_credential_entry(self):
++        _,ar,cap=self.new(limits=dict(token=4,session=2,spacing=1));bad=copy.deepcopy(cap);bad['mode']='LIVE'
++        self.refused_bootstrap(bad)
++        self.assertFalse(ar.path('worker.claimed.json').exists());self.assertEqual(b.ledger(ar,cap)['attempts'],0)
++    def test_non_fixture_root_refuses_before_archive_access(self):
++        _,ar,cap=self.new(limits=dict(token=4,session=2,spacing=1));bad=copy.deepcopy(cap);bad['root']=str(b.PACKAGE)
++        self.refused_bootstrap(bad)
++        self.assertFalse(ar.path('worker.claimed.json').exists())
++    def test_token_expiry_still_consumes_without_dispatch_or_retry(self):
++        with deterministic_input_clock() as clock:
++            _,ar,cap=self.new(limits=dict(token=4,session=2,spacing=1))
++            def expired(_):clock.advance(4);return self.secret
++            with self.server() as server,patch.object(SyntheticCredentialProvider,'credential',expired):
++                result=self.run_bounded(ar,cap,server,fault='crash_after_response')
++                self.assertEqual(result['kind'],'TOKEN_ENTRY_TIMEOUT');self.assertEqual(server.requests,[])
++                self.assertRaises(Refused,self.run_bounded,ar,cap,server,fault='crash_after_response')
++            self.assertFalse(ar.path('acquisition.json').exists())
++            self.assertEqual(b.ledger(ar,cap)['state'],'OUTCOME_UNKNOWN')
++            self.assertTrue(ar.path('grant.claimed.json').exists())
++    def test_oracle_detects_budget_started_before_input_completed(self):
++        with deterministic_input_clock() as clock:
++            _,ar,cap=self.new(limits=dict(token=4,session=2,spacing=1));original=ar.put
++            def early(name,raw,**kw):
++                if name=='acquisition.json':
++                    v=decode(raw);v['started']-=1;v['deadline']-=1;raw=encoded(v)
++                return original(name,raw,**kw)
++            def token(_):clock.advance(1);return self.secret
++            with self.server() as server,patch.object(ar,'put',early),patch.object(SyntheticCredentialProvider,'credential',token):
++                self.run_bounded(ar,cap,server,fault='crash_after_response');self.assertEqual(server.requests,[])
++            phase=decode(ar.read('acquisition.json'));worker=decode(ar.read('worker.claimed.json'))
++            self.assertLess(phase['started']-(worker['credential_deadline']-4),1)
++            self.assertRaises(Refused,b.verify,cap)
++    def test_fixture_scope_restores_real_clock_and_original_worker(self):
++        real=time.monotonic;worker=oneshot.WORKER
++        with deterministic_input_clock() as clock:
++            self.assertEqual(time.monotonic(),clock.start)
++            self.assertEqual(oneshot.WORKER.name,'timing_test_worker.py')
++        self.assertIs(time.monotonic,real);self.assertEqual(oneshot.WORKER,worker)
++
++
++for _name in dir(previous.Bounded):
++    if _name.startswith('test_'):setattr(TimingFixture,_name,None)
+diff --git a/data/research/trading_intelligence_v2/timing_test_fixture.py b/data/research/trading_intelligence_v2/timing_test_fixture.py
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/timing_test_fixture.py
+@@ -0,0 +1,44 @@
++"""Deterministic clock for one OFFLINE_TEST timing oracle, never LIVE code.
++
++The original 4-second input and 2-second acquisition limits remain unchanged.
++Native filesystem scheduling is not a logical clock. Real sockets keep their
++timeouts, and a 15-second wall watchdog expires the entire fixture fail-closed.
++All real-clock deadline/crash/integration tests run without this fixture.
++"""
++import contextlib
++import math
++from pathlib import Path
++import time
++from unittest.mock import patch
++
++REAL_MONOTONIC=time.monotonic
++WALL_LIMIT=15
++LIFETIME=15+4+2
++
++
++class FixtureClock:
++    def __init__(self,start=None,*,_wall=REAL_MONOTONIC):
++        self.wall=_wall;self.wall_start=_wall()
++        # Integer logical epoch keeps the exact 1/2/4-second oracle independent
++        # of host uptime and binary exponent-boundary subtraction rounding.
++        self.start=0 if start is None else start
++        if type(self.start) not in (int,float) or not math.isfinite(self.start):raise ValueError('FIXTURE_CLOCK_REFUSED')
++        self.value=self.start
++    def monotonic(self):
++        elapsed=self.wall()-self.wall_start
++        if elapsed>=WALL_LIMIT:return self.start+LIFETIME+1+elapsed
++        return self.value
++    def advance(self,seconds):
++        if type(seconds) not in (int,float) or not math.isfinite(seconds) or seconds<0:raise ValueError('FIXTURE_CLOCK_REFUSED')
++        self.value+=seconds
++    def synchronize(self,value):
++        if type(value) not in (int,float) or not math.isfinite(value) or not self.value<=value<=self.start+4:raise ValueError('FIXTURE_CLOCK_REFUSED')
++        self.value=value
++
++
++@contextlib.contextmanager
++def deterministic_input_clock():
++    from . import oneshot
++    clock=FixtureClock()
++    with patch.object(time,'monotonic',clock.monotonic),patch.object(oneshot,'WORKER',Path(__file__).with_name('timing_test_worker.py')):
++        yield clock
+diff --git a/data/research/trading_intelligence_v2/timing_test_worker.py b/data/research/trading_intelligence_v2/timing_test_worker.py
+new file mode 100644
+--- /dev/null
++++ b/data/research/trading_intelligence_v2/timing_test_worker.py
+@@ -0,0 +1,46 @@
++"""Closed synthetic clock bootstrap. LIVE authority and non-fixture roots refuse."""
++import importlib.util
++import sys
++from pathlib import Path
++import time
++
++
++def main():
++    if sys.argv[1:]!=['--bounded-worker']:raise ValueError('FIXTURE_ONLY')
++    package=Path(__file__).resolve().parent
++    spec=importlib.util.spec_from_file_location('tiv2',package/'__init__.py',submodule_search_locations=[str(package)])
++    module=importlib.util.module_from_spec(spec);sys.modules['tiv2']=module;spec.loader.exec_module(module)
++    from tiv2 import oneshot_worker as worker
++    from tiv2.oneshot_archive import Archive,FIXTURES,NATIVE_FIXTURES
++    from tiv2.oanda_history_manifest import decode
++    from tiv2.timing_test_fixture import FixtureClock
++    startup=worker.packet(4096);cap=startup['reservation'];root=Path(cap['root']).absolute()
++    expected=dict(startup=15,token=4,request=15,session=2,spacing=1,bytes=268435456,attempts=106)
++    if (cap.get('mode')!='OFFLINE_TEST' or cap.get('version')!=4 or cap.get('limits')!=expected or
++        cap.get('catalogue')!='2d5f5b38efb65a0cffd5f63ad38a7da62344d653bdba84dad9438cf1eac96bf9' or
++        startup.get('fault')!='crash_after_response' or 'https_fixture' not in startup or
++        not any(root.is_relative_to(base) for base in (FIXTURES,NATIVE_FIXTURES))):raise ValueError('FIXTURE_ONLY')
++    # Only after the closed fixture gate: no credential packet has been read.
++    clock=FixtureClock(cap['started']);time.monotonic=clock.monotonic
++    original_packet=worker.packet;first=True;received=False
++    def packet(limit=2048):
++        nonlocal first,received
++        if first:first=False;return startup
++        value=original_packet(limit)
++        if 'credential' in value:
++            if received:raise ValueError('FIXTURE_ONLY')
++            received=True
++            with Archive(root,synthetic=True) as ar:phase=decode(ar.read('acquisition.json'))
++            if phase.get('source')!=cap['source'] or phase.get('session')!=cap['session'] or phase['deadline']-phase['started']!=2:raise ValueError('FIXTURE_ONLY')
++            clock.synchronize(phase['started'])
++        return value
++    worker.packet=packet
++    # Original audit, grant/role verification, durable reservation, synthetic
++    # token validation, loopback-only sockets and one attempt remain in force.
++    worker.main()
++
++
++if __name__=='__main__':
++    try:main()
++    except (Exception,KeyboardInterrupt):
++        print('TIMING_FIXTURE_REFUSED');raise SystemExit(2)
+diff --git a/data/research/trading_intelligence_v2/v26d_run.py b/data/research/trading_intelligence_v2/v26d_run.py
+--- a/data/research/trading_intelligence_v2/v26d_run.py
++++ b/data/research/trading_intelligence_v2/v26d_run.py
+@@ -27,6 +27,8 @@
+ import urllib.parse
+ import uuid
+ 
++TIMING_V28D=sys.argv[1:] in (['--timing-tests'],['--native-timing-tests'])
++if TIMING_V28D:sys.argv[1]='--native-bounded-tests' if sys.argv[1]=='--native-timing-tests' else '--bounded-tests'
+ REMAINING_V28D=sys.argv[1:] in (['--remaining-tests'],['--native-remaining-tests'])
+ if REMAINING_V28D:sys.argv[1]='--native-bounded-tests' if sys.argv[1]=='--native-remaining-tests' else '--bounded-tests'
+ DIAGNOSTIC_V28D=sys.argv[1:] in (['--v28d-diagnostic-tests'],['--native-v28d-diagnostic-tests'])
+@@ -97,6 +99,9 @@
+             probe=[exe,'-I','-S','-B',str(PACKAGE/'test_v28d_diagnostics.py'),'--fixture-diagnostic-probe']
+             if executable in (None,exe) and argv in (probe,subprocess.list2cmdline(probe)) and env==({'SystemRoot':r'C:\Windows'} if os.name=='nt' else {}):return
+         if BOUNDED_TEST:
++            exe=getattr(sys,'_base_executable',sys.executable)
++            timing=[exe,'-I','-S','-B',str(PACKAGE/'timing_test_worker.py'),'--bounded-worker']
++            if executable in (None,exe) and argv in (timing,subprocess.list2cmdline(timing)) and env==({'SystemRoot':r'C:\Windows'} if os.name=='nt' else {}):return
+             probe=[getattr(sys,'_base_executable',sys.executable),'-I','-S','-B',str(PACKAGE/'test_v28c.py'),'--fixture-lock-probe']
+             if executable in (None,probe[0]) and argv in (probe,subprocess.list2cmdline(probe)) and env=={'SystemRoot':r'C:\Windows'}:return
+             for exe in (sys.executable,getattr(sys,'_base_executable',sys.executable)):
+@@ -151,7 +156,7 @@
+ 
+ 
+ sys.addaudithook(audit)
+-test_name='test_v28d_remaining' if REMAINING_V28D else 'test_v28d_diagnostics' if DIAGNOSTIC_V28D else 'test_v28d_research' if RESEARCH_V28D else 'test_v28c' if BOUNDED_TEST else 'test_v28a_native' if PILOT_TEST else 'test_v27_rollover' if ROLLOVER else 'test_v27_activation' if ACTIVATION else 'test_v27' if V27 else 'test_v26g' if V26G else 'test_v26e' if V26E else 'test_v26d'
++test_name='test_v28d_timing' if TIMING_V28D else 'test_v28d_remaining' if REMAINING_V28D else 'test_v28d_diagnostics' if DIAGNOSTIC_V28D else 'test_v28d_research' if RESEARCH_V28D else 'test_v28c' if BOUNDED_TEST else 'test_v28a_native' if PILOT_TEST else 'test_v27_rollover' if ROLLOVER else 'test_v27_activation' if ACTIVATION else 'test_v27' if V27 else 'test_v26g' if V26G else 'test_v26e' if V26E else 'test_v26d'
+ spec=importlib.util.spec_from_file_location('tiv2.'+test_name,PACKAGE/(test_name+'.py'))
+ tests=importlib.util.module_from_spec(spec);sys.modules[spec.name]=tests;tests.NATIVE=NATIVE
+ spec.loader.exec_module(tests)

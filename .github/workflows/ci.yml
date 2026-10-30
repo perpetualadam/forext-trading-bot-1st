@@ -334,3 +334,7 @@ jobs:
         run: python -I -S -B data/research/trading_intelligence_v2/v26d_run.py --v28d-diagnostic-tests
       - name: Verify V28D offline partial merge and remaining catalogue
         run: python -I -S -B data/research/trading_intelligence_v2/v28d_research_run.py
+      - name: Verify immutable 66-window compatibility with synthetic HTTPS
+        run: python -I -S -B data/research/trading_intelligence_v2/v26d_run.py --remaining-tests
+      - name: Verify deterministic clock fixture isolation and fail-closed expiry
+        run: python -I -S -B data/research/trading_intelligence_v2/v26d_run.py --timing-tests

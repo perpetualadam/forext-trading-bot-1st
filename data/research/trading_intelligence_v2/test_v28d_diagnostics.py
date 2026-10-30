@@ -75,8 +75,11 @@ class Diagnostics(previous.Bounded):
     def test_diag_connect_timeout(self):_,ar,cap,_=self.failure(fault='connect_timeout',expected_requests=0);self.checked(ar,cap,'CONNECT_TIMEOUT','CONNECT')
     def test_diag_http_rejected(self):_,ar,cap,_=self.failure(scenario='http_403',expected_requests=1);self.checked(ar,cap,'HTTP_STATUS_REJECTED','HTTP')
     def test_diag_delayed_headers(self):
-        _,ar,cap,_=self.failure(scenario='delayed_headers',limits=dict(request=3,session=900,spacing=.001),expected_requests=1)
-        self.assertIn(self.checked(ar,cap)['reason'],('RESPONSE_HEADERS_TIMEOUT','WORKER_DEADLINE_EXCEEDED'));self.assertEqual(d.read_verified(ar)['stage'],'HEADERS')
+        from .timing_test_fixture import synchronized_header_wait
+        with synchronized_header_wait() as phase:
+            _,ar,cap,_=self.failure(scenario='delayed_headers',limits=dict(request=3,session=900,spacing=.001),expected_requests=1,phase_fixture=phase)
+            self.assertTrue(phase.entered)
+            self.assertIn(self.checked(ar,cap)['reason'],('RESPONSE_HEADERS_TIMEOUT','WORKER_DEADLINE_EXCEEDED'));self.assertEqual(d.read_verified(ar)['stage'],'HEADERS')
     def test_diag_slow_body(self):
         _,ar,cap,_=self.failure(scenario='slow_body',limits=dict(request=3,session=900,spacing=.001),expected_requests=1)
         self.assertIn(self.checked(ar,cap)['reason'],('RESPONSE_BODY_TIMEOUT','WORKER_DEADLINE_EXCEEDED'));self.assertEqual(d.read_verified(ar)['stage'],'BODY')

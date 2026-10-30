@@ -1,0 +1,272 @@
+{
+  "version": 3,
+  "baseline": "2f07be5f66f64538a53e1593b16edac6242c8658",
+  "local_source_seal": "6ea343adb926647424dfffd8ecf77679b9d442b7e4391c2aff7c539580cc6525",
+  "source_seal_changed_by_timing_correction": false,
+  "remaining_catalogue_sha256": "b663097a02d007a6ff055946ae1c602fe9e16c33b3f9284e17a3b5ac187dc768",
+  "remaining_catalogue_git_lf_sha256": "7027daa2660507d61b47e53be4619d7254eb8991e717ffbfe277300678a26592",
+  "remaining_windows_sha256": "23dcc32492985500e377e631de40cc6b91d896129b9678dbd32370e78604326f",
+  "scope": [
+    ".github/workflows/ci.yml",
+    "data/research/trading_intelligence_v2/bounded_acquisition.py",
+    "data/research/trading_intelligence_v2/bounded_history_entry.py",
+    "data/research/trading_intelligence_v2/failure_diagnostics.py",
+    "data/research/trading_intelligence_v2/https_test_server.py",
+    "data/research/trading_intelligence_v2/oneshot_archive.py",
+    "data/research/trading_intelligence_v2/oneshot_authorisation.py",
+    "data/research/trading_intelligence_v2/oneshot_response.py",
+    "data/research/trading_intelligence_v2/oneshot_worker.py",
+    "data/research/trading_intelligence_v2/reports/v27_activation/source_seal.json",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_HEADERS_CORRECTION.diff",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_HEADERS_INVESTIGATION.md",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_HEADERS_TRACES.json",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_REVIEW.md",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_SHA256.json",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_SOURCE.diff",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_TEST_RESULTS.md",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_TIMING_CORRECTION.diff",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_TIMING_INVESTIGATION.md",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_TIMING_TRACES.json",
+    "data/research/trading_intelligence_v2/session_namespace.py",
+    "data/research/trading_intelligence_v2/test_v28c.py",
+    "data/research/trading_intelligence_v2/test_v28d_diagnostics.py",
+    "data/research/trading_intelligence_v2/test_v28d_remaining.py",
+    "data/research/trading_intelligence_v2/test_v28d_timing.py",
+    "data/research/trading_intelligence_v2/timing_test_fixture.py",
+    "data/research/trading_intelligence_v2/timing_test_worker.py",
+    "data/research/trading_intelligence_v2/v26d_run.py"
+  ],
+  "implementation_paths": [
+    ".github/workflows/ci.yml",
+    "data/research/trading_intelligence_v2/bounded_acquisition.py",
+    "data/research/trading_intelligence_v2/bounded_history_entry.py",
+    "data/research/trading_intelligence_v2/failure_diagnostics.py",
+    "data/research/trading_intelligence_v2/https_test_server.py",
+    "data/research/trading_intelligence_v2/oneshot_archive.py",
+    "data/research/trading_intelligence_v2/oneshot_authorisation.py",
+    "data/research/trading_intelligence_v2/oneshot_response.py",
+    "data/research/trading_intelligence_v2/oneshot_worker.py",
+    "data/research/trading_intelligence_v2/reports/v27_activation/source_seal.json",
+    "data/research/trading_intelligence_v2/session_namespace.py",
+    "data/research/trading_intelligence_v2/test_v28c.py",
+    "data/research/trading_intelligence_v2/test_v28d_diagnostics.py",
+    "data/research/trading_intelligence_v2/test_v28d_remaining.py",
+    "data/research/trading_intelligence_v2/test_v28d_timing.py",
+    "data/research/trading_intelligence_v2/timing_test_fixture.py",
+    "data/research/trading_intelligence_v2/timing_test_worker.py",
+    "data/research/trading_intelligence_v2/v26d_run.py"
+  ],
+  "report_paths": [
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_HEADERS_CORRECTION.diff",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_HEADERS_INVESTIGATION.md",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_HEADERS_TRACES.json",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_REVIEW.md",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_SHA256.json",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_SOURCE.diff",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_TEST_RESULTS.md",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_TIMING_CORRECTION.diff",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_TIMING_INVESTIGATION.md",
+    "data/research/trading_intelligence_v2/reports/v28d66/V28D66_TIMING_TRACES.json"
+  ],
+  "timing_correction_paths": [
+    ".github/workflows/ci.yml",
+    "data/research/trading_intelligence_v2/test_v28c.py",
+    "data/research/trading_intelligence_v2/test_v28d_timing.py",
+    "data/research/trading_intelligence_v2/timing_test_fixture.py",
+    "data/research/trading_intelligence_v2/timing_test_worker.py",
+    "data/research/trading_intelligence_v2/v26d_run.py"
+  ],
+  "previous_review_manifest_sha256": "804e529cfe2a996d8a680af88626d6237af433af7dadd0e23022cbf93b04a271",
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "working_tree_sha256": "9570c2c088a93e52de9a4b1a863eb364784c3a794feed0da890e0cfd7d3e71fc",
+      "git_lf_sha256": "9a2e4aa07823502adec56d1e28029550cdca21862c4a7fb14675c3a7dcf0d150",
+      "bytes": 11304
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/bounded_acquisition.py",
+      "working_tree_sha256": "54d721cd29881b9cef6d964af70023c8bda457a3b507b55b11d84487e7298e14",
+      "git_lf_sha256": "1344a906d66e140e6f95f62e980b39475e0f6caf8a9fa1b502f008a1812e7527",
+      "bytes": 40644
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/bounded_history_entry.py",
+      "working_tree_sha256": "34565cf4f33c257fe858981e088a0b0514c4858d2981204cec7e2b347b2c5a08",
+      "git_lf_sha256": "d78db71152f30afdee30ee6287fd81c2292d2143399b618e0cb148ade7ce6d93",
+      "bytes": 1482
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/failure_diagnostics.py",
+      "working_tree_sha256": "efbc46fd9021730c3d632cffdee38b392dcd0697081ed12109c10f447b6b8339",
+      "git_lf_sha256": "5bfb0fe13449c8b76646ad981e93d1e6de9165541e9d61baea1019b55913b1fd",
+      "bytes": 5484
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/https_test_server.py",
+      "working_tree_sha256": "da5200aac7e984c254d3eae34118204d7f2e8e090c46c1188b552cca357ba4a3",
+      "git_lf_sha256": "9f4294bd968165ed3a28d778bf185c38e69b51abf0fe68b550a19c8257cc12c3",
+      "bytes": 7098
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/oneshot_archive.py",
+      "working_tree_sha256": "2fc37ddf3ba883aa6d6fb3cc6fdacb4d9d2fb9071682d44511ddea15bb9889f8",
+      "git_lf_sha256": "fe814dbffb508ff716b854f85ed1738c19c2de9c43ab75a9a960870ad21a728a",
+      "bytes": 10984
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/oneshot_authorisation.py",
+      "working_tree_sha256": "e5c9d5138d4d9e144bed21cbbf7d88de100e97d376d51747725739d334aa4a9f",
+      "git_lf_sha256": "fd07c44ce651a40823660f118d9849f23f580d96dedafcc583c94601d3a86eee",
+      "bytes": 22498
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/oneshot_response.py",
+      "working_tree_sha256": "22221b4ab6e837e2cbf2627f30297f3be480141796673bb0a70c51d43555eb0c",
+      "git_lf_sha256": "5f76d3b0515803afc18db8cdbf340f4a8fd43a83bc93ac010d0c8ba0a968a303",
+      "bytes": 2425
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/oneshot_worker.py",
+      "working_tree_sha256": "3de501be1d97cb82848b18351fec4123e5f49f7c13dfdde294d5217ad5da0a4f",
+      "git_lf_sha256": "689f00fadf7a3bf4e8516227c69fca70d58755f63f8d636112d0e389f4e7e8d1",
+      "bytes": 13352
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/reports/v27_activation/source_seal.json",
+      "working_tree_sha256": "06798c11adcbdb4e9530527d639d2afda3dfed529c2dba960869a271143e0e48",
+      "git_lf_sha256": "3e40847c31c59d075ef5db4d63d34b09e56751ccd03b8cae2202f91c0ee8926d",
+      "bytes": 3158
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/reports/v28d66/V28D66_HEADERS_CORRECTION.diff",
+      "working_tree_sha256": "0a0173dc8b566d2e220ed70bab2f98dbcb935eb8090d811ad92653aecbb8cf53",
+      "git_lf_sha256": "0a0173dc8b566d2e220ed70bab2f98dbcb935eb8090d811ad92653aecbb8cf53",
+      "bytes": 16115
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/reports/v28d66/V28D66_HEADERS_INVESTIGATION.md",
+      "working_tree_sha256": "2b910e298dc39809cdaa3490db897c475bf57af89af50a75e96cbabebef51c21",
+      "git_lf_sha256": "4b3fb7aa12a683ace6236ac0ba65887465a593cb4e7f83a68db923cf6fe433ea",
+      "bytes": 6016
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/reports/v28d66/V28D66_HEADERS_TRACES.json",
+      "working_tree_sha256": "eeb160c6a1e130f9519c40321453b7a90e344b72225b8a49ea15100f64083415",
+      "git_lf_sha256": "697e8a6de1a7957bb537a0be37812b8d8f5d08949443930adbc2f8933e4bdc3e",
+      "bytes": 109212
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/reports/v28d66/V28D66_REVIEW.md",
+      "working_tree_sha256": "45790a8d49a244d7f7586cdd590f195d74ac4beb63fad6a1fff9617ac8535e80",
+      "git_lf_sha256": "011eb1927099301df93e3fbc40875e58172404d20040b7ab0c38a4127df7bcf3",
+      "bytes": 2298
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/reports/v28d66/V28D66_SOURCE.diff",
+      "working_tree_sha256": "89ef5d30a95733cbf3c3f449730ddce4109e6c9f761f2993c09ba9a3fce6060e",
+      "git_lf_sha256": "89ef5d30a95733cbf3c3f449730ddce4109e6c9f761f2993c09ba9a3fce6060e",
+      "bytes": 327574
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/reports/v28d66/V28D66_TEST_RESULTS.md",
+      "working_tree_sha256": "f5bc4611d941e91cafe91c48a1ff3e5391e46700ef9a42d848327a44d206782c",
+      "git_lf_sha256": "ad1e5e31a1212a9227f51cff6abf52f9dd76b8feb30fa7d2eaf4e3c0ba7d3efb",
+      "bytes": 5401
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/reports/v28d66/V28D66_TIMING_CORRECTION.diff",
+      "working_tree_sha256": "3b9b13ac79e830cbbdd772eaeb60d18f744ff4082b6220327e438593ea8f1929",
+      "git_lf_sha256": "3b9b13ac79e830cbbdd772eaeb60d18f744ff4082b6220327e438593ea8f1929",
+      "bytes": 15609
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/reports/v28d66/V28D66_TIMING_INVESTIGATION.md",
+      "working_tree_sha256": "ee9bd06870d62d9e4df001d7440edde4389e67aa242c827c5042d49622f2008c",
+      "git_lf_sha256": "397ff3d81d46e575e83a2aaa6f26ce733e8981a318a6462e0f9680d3e7b2875f",
+      "bytes": 5996
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/reports/v28d66/V28D66_TIMING_TRACES.json",
+      "working_tree_sha256": "b9859e1ff6625ad2c5f18879071a0309a54c6b601d756b5ec94846c357b028cb",
+      "git_lf_sha256": "87f590ba495406a75a60e459b68ff47f84f9b1a6246bf17c41fd80d4d41c3d8f",
+      "bytes": 74914
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/session_namespace.py",
+      "working_tree_sha256": "57e02da247012096c8ccaea143959aead51927ea45515e43321e63126c2bebdc",
+      "git_lf_sha256": "2104ae36dc3b153c381854cf8c6ea8da6c6fc45079d3c2f05f561c85a82c5bc4",
+      "bytes": 7072
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/test_v28c.py",
+      "working_tree_sha256": "941f9d415bb2d2293bc4fe20ee8e048a0318307af63b77f1b84e9202e08c91eb",
+      "git_lf_sha256": "49fecbb2a867d896178f815672a8dddde780275cf6c1f428edfc577ae556a49e",
+      "bytes": 19623
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/test_v28d_diagnostics.py",
+      "working_tree_sha256": "24fbf8932b8dfedf27939c7333edb193b4bfe90d9ee0660e4e7a6a2935a23fe6",
+      "git_lf_sha256": "c987850f6d7fac6158b36a7cf30e082954b01708512785107f4ebb8f3de4957d",
+      "bytes": 12109
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/test_v28d_remaining.py",
+      "working_tree_sha256": "f7c012a98e56ce9b55d6365a92f1f7aa71a8a1738d50d7f3f904f5a1fba4275c",
+      "git_lf_sha256": "f7c012a98e56ce9b55d6365a92f1f7aa71a8a1738d50d7f3f904f5a1fba4275c",
+      "bytes": 15072
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/test_v28d_timing.py",
+      "working_tree_sha256": "726ac736cb6e27909ac5ef6a663a7812a61e9d092ae3ba1b1acc23810b354281",
+      "git_lf_sha256": "726ac736cb6e27909ac5ef6a663a7812a61e9d092ae3ba1b1acc23810b354281",
+      "bytes": 7968
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/timing_test_fixture.py",
+      "working_tree_sha256": "7d0d8c1bd58244dc3312a191ee784f33851db7fbd5f50a5feff60ffd9861804d",
+      "git_lf_sha256": "7d0d8c1bd58244dc3312a191ee784f33851db7fbd5f50a5feff60ffd9861804d",
+      "bytes": 4684
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/timing_test_worker.py",
+      "working_tree_sha256": "9c8b358f38614f9b7ca6a879e2425463395415223d282840e3becc87c2e98930",
+      "git_lf_sha256": "9c8b358f38614f9b7ca6a879e2425463395415223d282840e3becc87c2e98930",
+      "bytes": 3151
+    },
+    {
+      "path": "data/research/trading_intelligence_v2/v26d_run.py",
+      "working_tree_sha256": "8010b465b596c14fbd044672589b5bcde2c1ca112aff3dd6f5415214bcf362c6",
+      "git_lf_sha256": "dd7a9581ba5855af9003cae801afccc5b90cb809bc13e373668fadbda9afd59e",
+      "bytes": 11486
+    }
+  ],
+  "windows_original_focused_tests": 346,
+  "linux_supported_tests": 140,
+  "original_timing_assertions_identical": true,
+  "production_source_bytes_unchanged_from_previous_review": true,
+  "authorises_execution": false,
+  "publication_approved": false,
+  "committed_or_pushed": false,
+  "excluded_existing_tracked_changes": [
+    "data/research/macro/consensus_pit/prospective/events/events.json",
+    "data/research/macro/consensus_pit/prospective/manifests/event_state.json",
+    "data/research/macro/consensus_pit/prospective/scheduler/operator_attention.jsonl"
+  ],
+  "excluded_runtime_selector": "data/research/trading_intelligence_v2/reports/v28c/acquisition_preparation.json",
+  "self_hash_note": "External v28d66-headers-reviewed-sha256.json hashes all 28 files including this manifest.",
+  "headers_correction_paths": [
+    "data/research/trading_intelligence_v2/https_test_server.py",
+    "data/research/trading_intelligence_v2/test_v28c.py",
+    "data/research/trading_intelligence_v2/test_v28d_diagnostics.py",
+    "data/research/trading_intelligence_v2/test_v28d_timing.py",
+    "data/research/trading_intelligence_v2/timing_test_fixture.py",
+    "data/research/trading_intelligence_v2/timing_test_worker.py"
+  ],
+  "new_header_fixture_tests": 6,
+  "windows_focused_tests": 352,
+  "linux_original_supported_tests": 134,
+  "delayed_header_target_repetitions_per_platform": 8,
+  "delayed_header_original_assertions_retained": true,
+  "source_seal_changed_by_headers_correction": false
+}

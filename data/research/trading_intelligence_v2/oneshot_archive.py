@@ -72,7 +72,7 @@ class Archive:
                 actual=decode(self.read('manifests/v26c_archive_binding.json'))
                 if actual!={'version':1,'identity':self.identity}:raise Refused('IDENTITY_CHANGED')
             if self.session_id is not None and self.path('request.json').exists():
-                if decode(self.read('request.json')).get('kind')=='BOUNDED_106':
+                if decode(self.read('request.json')).get('kind') in ('BOUNDED_106','BOUNDED_66'):
                     from .bounded_acquisition import budget_guard
                     self.publication_guard=lambda relative,value:budget_guard(self,len(value),accounting=relative in ('journal.json','result.json','diagnostic.json'))
         except BaseException:self.close();raise

@@ -25,83 +25,147 @@ CATALOGUE=PACKAGE/'reports/v28b/V28B_REQUEST_WINDOWS.json'
 CATALOGUE_HASH='2d5f5b38efb65a0cffd5f63ad38a7da62344d653bdba84dad9438cf1eac96bf9'
 LIMITS=dict(startup=15,token=120,request=15,session=1800,spacing=1,bytes=256*1024*1024,attempts=106)
 FIELDS={'version','mode','root','session','source','catalogue','identity','parent','issued','expires','started','rights','limits'}
-_SPEC_BYTES=None
-_SPEC_HASHES=None
+REMAINING_CATALOGUE=PACKAGE/'reports/v28d/V28D_REMAINING_CATALOGUE.json'
+REMAINING_HASH='b663097a02d007a6ff055946ae1c602fe9e16c33b3f9284e17a3b5ac187dc768'
+_SPECS={}
 STATES={'NEVER','RESERVED','ATTEMPTED','COMPLETED','FAILED','UNKNOWN'}
 
 
-def catalogue():
-    global _SPEC_BYTES,_SPEC_HASHES
-    raw=CATALOGUE.read_bytes().replace(b'\r\n',b'\n')
-    if digest(raw)!=CATALOGUE_HASH:raise Refused('CATALOGUE_CHANGED')
+def profile(catalogue_hash=CATALOGUE_HASH):
+    """Two immutable reviewed profiles; no caller-supplied paths or limits."""
+    if catalogue_hash==CATALOGUE_HASH:
+        return dict(hash=CATALOGUE_HASH,path=CATALOGUE,count=106,offset=0,slots=105120,kind='BOUNDED_106',scope='PRIVATE_LOCAL_106_WINDOWS',start='2024-09-01T00:00:00Z')
+    if catalogue_hash==REMAINING_HASH:
+        return dict(hash=REMAINING_HASH,path=REMAINING_CATALOGUE,count=66,offset=40,slots=65120,kind='BOUNDED_66',scope='PRIVATE_LOCAL_66_WINDOWS',start='2025-01-17T21:20:00Z')
+    raise Refused('CATALOGUE_SCOPE_REFUSED')
+
+
+def archive_profile(ar):return profile(decode(ar.read('request.json')).get('catalogue'))
+
+
+def limits_for(catalogue_hash):return dict(LIMITS,attempts=profile(catalogue_hash)['count'])
+
+
+def catalogue_identity(raw,catalogue_hash):
+    profile(catalogue_hash)
+    # The reviewed remaining receipt hashes CRLF; Git stores LF. Accept only
+    # that newline representation difference, never JSON reserialization.
+    raw=raw.replace(b'\r\n',b'\n')
+    if catalogue_hash==REMAINING_HASH:raw=raw.replace(b'\n',b'\r\n')
+    return digest(raw)
+
+
+def catalogue(catalogue_hash=CATALOGUE_HASH):
+    p=profile(catalogue_hash)
+    raw=p['path'].read_bytes().replace(b'\r\n',b'\n')
+    if catalogue_identity(raw,p['hash'])!=p['hash']:raise Refused('CATALOGUE_CHANGED')
     value=decode(raw);windows=value['windows']
-    if len(windows)!=106 or value['calendar_slots']!=105120:raise Refused('CATALOGUE_SCOPE_REFUSED')
-    _SPEC_BYTES=tuple(encoded(w['specification']) for w in windows)
-    _SPEC_HASHES=tuple(digest(x) for x in _SPEC_BYTES)
+    if len(windows)!=p['count'] or sum(w['maximum_candles'] for w in windows)!=p['slots']:raise Refused('CATALOGUE_SCOPE_REFUSED')
+    if p['offset']:
+        original=catalogue(CATALOGUE_HASH)
+        for i,w in enumerate(windows):
+            j=i+p['offset']
+            if (w['original_index']!=j or w['original_window']!=j+1 or
+                w['specification']!=original[j]['specification'] or w['maximum_candles']!=original[j]['maximum_candles'] or
+                w['spec_sha256']!=digest(encoded(original[j]['specification']))):raise Refused('CATALOGUE_PROVENANCE_REFUSED')
+    _SPECS[p['hash']]=tuple(encoded(w['specification']) for w in windows)
     return windows
 
 
-def spec(index):
-    if type(index) is not int or not 0<=index<106:raise Refused('CATALOGUE_INDEX_REFUSED')
-    if _SPEC_BYTES is None:catalogue()
-    return decode(_SPEC_BYTES[index])
+def spec(index,catalogue_hash=CATALOGUE_HASH):
+    if type(index) is not int or not 0<=index<profile(catalogue_hash)['count']:raise Refused('CATALOGUE_INDEX_REFUSED')
+    if catalogue_hash not in _SPECS:catalogue(catalogue_hash)
+    return decode(_SPECS[catalogue_hash][index])
 
 
-def marker(index):
-    if type(index) is not int or not 0<=index<106:raise Refused('CATALOGUE_INDEX_REFUSED')
-    return 'temporary_batches/v28c_'+CATALOGUE_HASH+'_'+str(index)+'.json'
+def marker(index,catalogue_hash=CATALOGUE_HASH):
+    p=profile(catalogue_hash)
+    if type(index) is not int or not 0<=index<p['count']:raise Refused('CATALOGUE_INDEX_REFUSED')
+    return 'temporary_batches/v28c_'+p['hash']+'_'+str(index+p['offset'])+'.json'
 
 
-def budget_guard(ar,extra,*,accounting=False):
+def spent_markers(index,catalogue_hash):
+    p=profile(catalogue_hash)
+    return (marker(index,catalogue_hash),)+( (marker(index+p['offset']),) if p['offset'] else () )
+
+
+def batch_name(index,catalogue_hash):
+    spec(index,catalogue_hash) # Reject invalid indices, including bool/negative.
+    return 'v26c_year_'+str(index+profile(catalogue_hash)['offset']).zfill(3)
+
+
+def budget_guard(ar,extra,*,accounting=False,catalogue_hash=None):
+    p=profile(catalogue_hash) if catalogue_hash is not None else archive_profile(ar)
     if type(extra) is not int or extra<0:raise Refused('DISK_BUDGET_REFUSED')
     total=0
-    for p in ar.root.rglob('*'):
-        if p.is_file():total+=ar.path(p.relative_to(ar.root).as_posix()).stat().st_size
+    for path in ar.root.rglob('*'):
+        if path.is_file():total+=ar.path(path.relative_to(ar.root).as_posix()).stat().st_size
     if ar.namespace_base is not None:
         with Archive(ar.namespace_base,synthetic=ar.synthetic) as parent:
-            for i in range(106):
-                p=parent.path(marker(i))
-                if p.exists():total+=p.stat().st_size
+            for i in range(p['count']):
+                path=parent.path(marker(i,p['hash']))
+                if path.exists():total+=path.stat().st_size
     if total+extra>LIMITS['bytes']-(0 if accounting else 1024*1024):raise Refused('DISK_BUDGET_EXHAUSTED')
     if shutil.disk_usage(ar.root).free<extra+65536:raise Refused('DISK_SPACE_EXHAUSTED')
     return total
 
 
-def metadata(ar,source):
-    return dict(version=2,kind='BOUNDED_106',session=ar.session_id,identity=ar.identity,
-                source=source,catalogue=CATALOGUE_HASH,rights=digest(ar.read('rights_scope.json')),
-                limits=LIMITS,authorises_execution=False)
+def metadata(ar,source,catalogue_hash=CATALOGUE_HASH):
+    # Preparation validates the catalogue once; admission source_seal() hashes
+    # both immutable catalogues before this comparison on every verification.
+    p=profile(catalogue_hash)
+    return dict(version=2,kind=p['kind'],session=ar.session_id,identity=ar.identity,
+                source=source,catalogue=p['hash'],rights=digest(ar.read('rights_scope.json')),
+                limits=limits_for(p['hash']),authorises_execution=False)
 
 
 def require_prepared(ar,source):
-    if ar.session_id is None or decode(ar.read('request.json'))!=metadata(ar,source):raise Refused('BOUNDED_PREPARATION_REFUSED')
+    if ar.session_id is None or decode(ar.read('request.json'))!=metadata(ar,source,archive_profile(ar)['hash']):raise Refused('BOUNDED_PREPARATION_REFUSED')
     if any(ar.path(n+'.pending').exists() for n in ('request.json','rights_scope.json','session_binding.json')):raise Refused('AMBIGUOUS_PREPARATION')
 
 
 def rights(ar):
     from .historical_sources import permission
+    p=archive_profile(ar)
     r=decode(ar.read('rights_scope.json'));permission(r)
-    if (r.get('provider')!='OANDA' or r.get('catalogue_sha256')!=CATALOGUE_HASH or
-        r.get('scope_reviewed') is not True or r.get('permitted_scope')!='PRIVATE_LOCAL_106_WINDOWS' or
+    if (r.get('provider')!='OANDA' or r.get('catalogue_sha256')!=p['hash'] or
+        r.get('scope_reviewed') is not True or r.get('permitted_scope')!=p['scope'] or
         r.get('public_distribution_allowed') is not False):raise Refused('BOUNDED_RIGHTS_SCOPE_REQUIRED')
+    if p['offset']:
+        from .oneshot_authorisation import source_seal
+        if r.get('source_seal')!=source_seal() or r.get('proposal_id')!=ar.session_id:raise Refused('BOUNDED_RIGHTS_BINDING_REQUIRED')
     return r
 
 
 def preflight(ar):
     from .oneshot_authorisation import source_seal,_unused
     require_prepared(ar,source_seal());rights(ar);_unused(ar)
+    p=archive_profile(ar)
     from .session_namespace import acquisition_lock
     with acquisition_lock(ar):pass
     if shutil.disk_usage(ar.root).free<LIMITS['bytes']:raise Refused('DISK_SPACE_EXHAUSTED')
     with Archive(ar.namespace_base,synthetic=ar.synthetic) as parent:
-        for i in range(106):
-            if parent.path(marker(i)).exists() or parent.path(marker(i)+'.pending').exists():raise Refused('CATALOGUE_WINDOW_ALREADY_SPENT')
+        for i in range(p['count']):
+            for name in spent_markers(i,p['hash']):
+                if parent.path(name).exists() or parent.path(name+'.pending').exists():raise Refused('CATALOGUE_WINDOW_ALREADY_SPENT')
     return True
 
 
 def confirmation(ar):
     from .oneshot_authorisation import source_seal
-    return 'CONFIRM 106 HISTORICAL EUR_USD GETS '+ar.session_id+' '+CATALOGUE_HASH+' '+source_seal()
+    p=archive_profile(ar)
+    return 'CONFIRM '+str(p['count'])+' HISTORICAL EUR_USD GETS '+ar.session_id+' '+p['hash']+' '+source_seal()
+
+
+def validate_selector(proposal):
+    """Validate non-authorising frontend metadata; never create admission state."""
+    from .oneshot_authorisation import source_seal
+    if (type(proposal) is not dict or set(proposal)!={'version','session','source','catalogue','authorises_execution'} or
+        type(proposal['version']) is not int or proposal['version']!=1 or proposal['authorises_execution'] is not False or
+        type(proposal['session']) is not str or not re.fullmatch('[0-9a-f]{32}',proposal['session']) or
+        proposal['source']!=source_seal()):raise Refused('BOUNDED_PROPOSAL_REFUSED')
+    catalogue(proposal['catalogue'])
+    return proposal
 
 
 def issue(ar,*,_fixture=False,fixture_limits=None,_proof=None):
@@ -110,20 +174,20 @@ def issue(ar,*,_fixture=False,fixture_limits=None,_proof=None):
         if not ar.synthetic:raise Refused('SYNTHETIC_ARCHIVE_REQUIRED')
     elif _proof not in a._CONFIRMATIONS:raise Refused('TERMINAL_CONFIRMATION_REQUIRED')
     if not _fixture and (ar.synthetic or ar.namespace_base!=Path(APPROVED)):raise Refused('APPROVED_ROOT_REQUIRED')
-    preflight(ar);now=time.time();started=time.monotonic();limits=dict(LIMITS)
+    preflight(ar);p=archive_profile(ar);now=time.time();started=time.monotonic();limits=limits_for(p['hash'])
     if _fixture and fixture_limits:
         if set(fixture_limits)-{'startup','token','request','session','spacing'}:raise Refused('FIXTURE_LIMITS_REFUSED')
         limits.update(fixture_limits)
     if not _fixture:
         proof=a._CONFIRMATIONS.pop(_proof,None)
-        if proof!=(a.source_seal(),ar.session_id,CATALOGUE_HASH,106,os.getpid(),digest(encoded(ar.identity)),digest(ar.read('rights_scope.json'))):raise Refused('BOUNDED_CONFIRMATION_REFUSED')
+        if proof!=(a.source_seal(),ar.session_id,p['hash'],p['count'],os.getpid(),digest(encoded(ar.identity)),digest(ar.read('rights_scope.json'))):raise Refused('BOUNDED_CONFIRMATION_REFUSED')
     cap=dict(version=4,mode='OFFLINE_TEST' if _fixture else 'LIVE',root=str(ar.root),session=ar.session_id,
-             source=a.source_seal(),catalogue=CATALOGUE_HASH,identity=digest(encoded(ar.identity)),parent=os.getpid(),
+             source=a.source_seal(),catalogue=p['hash'],identity=digest(encoded(ar.identity)),parent=os.getpid(),
              issued=now,expires=now+limits['startup']+limits['token']+limits['session'],started=started,
              rights=digest(ar.read('rights_scope.json')),limits=limits)
     ar.put('grant.json',encoded(cap))
-    ar.put('journal.json',encoded(dict(version=3,session=ar.session_id,source=cap['source'],catalogue=CATALOGUE_HASH,
-        state='AUTHORISED_NOT_CONSUMED',attempts=0,next=0,windows=[dict(index=i,spec=digest(encoded(spec(i))),state='NEVER',http_attempts=0) for i in range(106)])))
+    ar.put('journal.json',encoded(dict(version=3,session=ar.session_id,source=cap['source'],catalogue=p['hash'],
+        state='AUTHORISED_NOT_CONSUMED',attempts=0,next=0,windows=[dict(index=i,spec=digest(encoded(spec(i,p['hash']))),state='NEVER',http_attempts=0) for i in range(p['count'])])))
     return cap
 
 
@@ -131,30 +195,31 @@ def issue_interactively(ar):
     from . import oneshot_authorisation as a
     if os.name!='nt' or not sys.stdin.isatty() or not sys.stdout.isatty():raise Refused('INTERACTIVE_TERMINAL_REQUIRED')
     preflight(ar);approved_source=a.source_seal();approved_rights=digest(ar.read('rights_scope.json'));approved_identity=digest(encoded(ar.identity))
-    phrase=confirmation(ar)
-    print('106 fixed EUR_USD M5/MBA GETs; one token entry; 256 MiB; 1800-second finite acquisition deadline.')
-    print('2024-09-01T00:00:00Z to 2025-09-01T00:00:00Z exclusive. No retry/resume. No trading.')
+    p=archive_profile(ar);phrase=confirmation(ar)
+    print(str(p['count'])+' fixed EUR_USD M5/MBA GETs; one token entry; 256 MiB; 1800-second finite acquisition deadline.')
+    print(p['start']+' to 2025-09-01T00:00:00Z exclusive. No retry/resume. No trading.')
     print('Rights: '+a.RIGHTS_PHRASE);print('Endpoint: '+a.ENDPOINT_PHRASE);print('Confirmation: '+phrase)
     if input('Rights attestation: ')!=a.RIGHTS_PHRASE:raise Refused('DATA_USE_CONDITIONS_NOT_CONFIRMED')
     if input('Endpoint acknowledgement: ')!=a.ENDPOINT_PHRASE:raise Refused('ENDPOINT_CONDITIONS_NOT_CONFIRMED')
     a.read_confirmation(phrase)
     if a.source_seal()!=approved_source or digest(ar.read('rights_scope.json'))!=approved_rights or digest(encoded(ar.identity))!=approved_identity:raise Refused('STALE_BOUNDED_APPROVAL')
-    proof=os.urandom(16).hex();a._CONFIRMATIONS[proof]=(approved_source,ar.session_id,CATALOGUE_HASH,106,os.getpid(),approved_identity,approved_rights)
+    proof=os.urandom(16).hex();a._CONFIRMATIONS[proof]=(approved_source,ar.session_id,p['hash'],p['count'],os.getpid(),approved_identity,approved_rights)
     try:
         with ar.locked():return issue(ar,_proof=proof)
     finally:a._CONFIRMATIONS.pop(proof,None)
 
 
 def ledger(ar,cap):
-    if _SPEC_BYTES is None:catalogue()
+    p=profile(cap['catalogue'])
+    if p['hash'] not in _SPECS:catalogue(p['hash'])
     value=decode(ar.read('journal.json'))
     if (set(value)!={'version','session','source','catalogue','state','attempts','next','windows'} or
         value['version']!=3 or value['session']!=cap['session'] or value['source']!=cap['source'] or
-        value['catalogue']!=CATALOGUE_HASH or type(value['attempts']) is not int or not 0<=value['attempts']<=106 or
-        type(value['next']) is not int or not 0<=value['next']<=106 or len(value['windows'])!=106):raise Refused('BOUNDED_JOURNAL_REFUSED')
+        value['catalogue']!=p['hash'] or type(value['attempts']) is not int or not 0<=value['attempts']<=p['count'] or
+        type(value['next']) is not int or not 0<=value['next']<=p['count'] or len(value['windows'])!=p['count']):raise Refused('BOUNDED_JOURNAL_REFUSED')
     spent=completed=0
     for i,w in enumerate(value['windows']):
-        if (type(w.get('index')) is not int or w.get('index')!=i or w.get('spec')!=_SPEC_HASHES[i] or w.get('state') not in STATES or
+        if (type(w.get('index')) is not int or w.get('index')!=i or w.get('spec')!=digest(_SPECS[p['hash']][i]) or w.get('state') not in STATES or
             type(w.get('http_attempts')) is not int or w['http_attempts'] not in (0,1)):raise Refused('WINDOW_STATE_REFUSED')
         if w['state'] in ('NEVER','RESERVED') and w['http_attempts']!=0 or w['state']=='COMPLETED' and w['http_attempts']!=1:raise Refused('WINDOW_ATTEMPT_INCONSISTENT')
         if w['state']!='NEVER':spent+=1
@@ -168,21 +233,24 @@ def ledger(ar,cap):
 
 def verify(cap):
     from .oneshot_authorisation import source_seal
+    if type(cap) is not dict or set(cap)!=FIELDS:raise Refused('BOUNDED_GRANT_REFUSED')
+    p=profile(cap['catalogue']);expected=limits_for(p['hash'])
     if (type(cap) is not dict or set(cap)!=FIELDS or cap['version']!=4 or cap['mode'] not in ('LIVE','OFFLINE_TEST') or
-        cap['catalogue']!=CATALOGUE_HASH or cap['source']!=source_seal() or
+        cap['source']!=source_seal() or
         type(cap['session']) is not str or not re.fullmatch('[0-9a-f]{32}',cap['session']) or
         type(cap['parent']) is not int or cap['parent']<=0 or type(cap['limits']) is not dict or set(cap['limits'])!=set(LIMITS)):
         raise Refused('BOUNDED_GRANT_REFUSED')
     limits=cap['limits']
     if any(type(v) not in (int,float) or not math.isfinite(v) or v<=0 for v in limits.values()):raise Refused('BOUNDED_LIMITS_REFUSED')
-    if (limits['attempts']!=106 or limits['bytes']!=LIMITS['bytes'] or cap['mode']=='LIVE' and limits!=LIMITS or
-        any(limits[k]>LIMITS[k] for k in LIMITS)):raise Refused('BOUNDED_LIMITS_REFUSED')
+    if (type(limits['attempts']) is not int or limits['attempts']!=p['count'] or limits['bytes']!=expected['bytes'] or cap['mode']=='LIVE' and limits!=expected or
+        any(limits[k]>expected[k] for k in expected)):raise Refused('BOUNDED_LIMITS_REFUSED')
     lifetime=limits['startup']+limits['token']+limits['session']
     if (any(type(cap[k]) not in (int,float) or not math.isfinite(cap[k]) for k in ('started','issued','expires')) or
         cap['expires']-cap['issued']!=lifetime or not cap['issued']<=time.time()<cap['expires'] or
         not 0<=time.monotonic()-cap['started']<=lifetime):raise Refused('BOUNDED_SESSION_EXPIRED')
     if cap['mode']=='LIVE' and cap['root']!=str(Path(APPROVED)/'sessions'/cap['session']):raise Refused('BOUNDED_ROOT_REFUSED')
     with Archive(cap['root'],synthetic=cap['mode']=='OFFLINE_TEST') as ar:
+        if archive_profile(ar)['hash']!=p['hash']:raise Refused('BOUNDED_CATALOGUE_SUBSTITUTED')
         require_prepared(ar,cap['source']);rights(ar)
         if cap['session']!=ar.session_id:raise Refused('BOUNDED_SESSION_SUBSTITUTED')
         if cap['identity']!=digest(encoded(ar.identity)) or cap['rights']!=digest(ar.read('rights_scope.json')):raise Refused('BOUNDED_IDENTITY_CHANGED')
@@ -214,7 +282,7 @@ def role(cap,purpose,*,worker_pid=None):
         if purpose=='network' and cap['mode']!='LIVE' or purpose=='fixture_dispatch' and cap['mode']!='OFFLINE_TEST':raise Refused('FIXTURE_CANNOT_AUTHORISE_LIVE')
         phase(ar,cap)
         index=state['next']
-        if index>=106 or state['windows'][index]['state']!='ATTEMPTED' or state['windows'][index]['http_attempts']!=1:raise Refused('DURABLE_WINDOW_RESERVATION_REQUIRED')
+        if index>=profile(cap['catalogue'])['count'] or state['windows'][index]['state']!='ATTEMPTED' or state['windows'][index]['http_attempts']!=1:raise Refused('DURABLE_WINDOW_RESERVATION_REQUIRED')
         w=state['windows'][index]
         if (w.get('worker')!=worker['pid'] or any(type(w.get(k)) not in (int,float) or not math.isfinite(w[k]) for k in ('started','deadline','dispatched')) or
             w['deadline']!=min(w['started']+cap['limits']['request'],phase(ar,cap)['deadline']) or
@@ -224,7 +292,7 @@ def role(cap,purpose,*,worker_pid=None):
 
 def request_for(cap):
     role(cap,'network' if cap['mode']=='LIVE' else 'fixture_dispatch')
-    with Archive(cap['root'],synthetic=cap['mode']=='OFFLINE_TEST') as ar:return spec(ledger(ar,cap)['next'])
+    with Archive(cap['root'],synthetic=cap['mode']=='OFFLINE_TEST') as ar:return spec(ledger(ar,cap)['next'],cap['catalogue'])
 
 
 def network_key(cap):
@@ -248,27 +316,31 @@ def phase(ar,cap):
 
 
 def verify_completed(ar,cap,index):
+    p=profile(cap['catalogue']);request=spec(index,p['hash'])
     state=ledger(ar,cap);w=state['windows'][index]
     if w['state']!='COMPLETED' or w['http_attempts']!=1:raise Refused('WINDOW_NOT_COMPLETED')
-    name='v26c_year_'+str(index).zfill(3);r=decode(ar.read('manifests/'+name+'.json'))
-    if (r.get('raw')!='raw/'+name+'.json' or r.get('validated')!='validated/'+name+'.json' or r.get('index')!=index or r.get('session')!=cap['session'] or r.get('source')!=cap['source'] or r.get('catalogue')!=CATALOGUE_HASH or
-        r.get('synthetic')!=(cap['mode']=='OFFLINE_TEST') or r.get('request_sha256')!=digest(ar.read('request.json')) or r.get('identity')!=cap['identity'] or r.get('start')!=timestamp(spec(index)['params']['from']) or r.get('end')!=timestamp(spec(index)['params']['to'])+1 or r.get('spec_sha256')!=digest(encoded(spec(index))) or r.get('raw_sha256')!=digest(ar.read(r['raw'])) or
+    name=batch_name(index,p['hash']);r=decode(ar.read('manifests/'+name+'.json'))
+    if (r.get('raw')!='raw/'+name+'.json' or r.get('validated')!='validated/'+name+'.json' or r.get('index')!=index or r.get('session')!=cap['session'] or r.get('source')!=cap['source'] or r.get('catalogue')!=p['hash'] or
+        r.get('synthetic')!=(cap['mode']=='OFFLINE_TEST') or r.get('request_sha256')!=digest(ar.read('request.json')) or r.get('identity')!=cap['identity'] or r.get('start')!=timestamp(request['params']['from']) or r.get('end')!=timestamp(request['params']['to'])+1 or r.get('spec_sha256')!=digest(encoded(request)) or r.get('raw_sha256')!=digest(ar.read(r['raw'])) or
         r.get('validated_sha256')!=digest(ar.read(r['validated'])) or w.get('manifest_sha256')!=digest(ar.read('manifests/'+name+'.json'))):raise Refused('COMPLETED_WINDOW_CORRUPTED')
+    if p['offset'] and (r.get('original_index')!=index+p['offset'] or r.get('original_window')!=index+p['offset']+1 or r.get('parent_catalogue')!=CATALOGUE_HASH):raise Refused('COMPLETED_PROVENANCE_CORRUPTED')
     return r
 
 
 def claim_window(ar,cap,index,worker_pid):
+    p=profile(cap['catalogue']);spec(index,p['hash'])
     verify(cap);phase(ar,cap);state=ledger(ar,cap)
-    if os.getpid()!=cap['parent'] or state['state']!='ACTIVE' or state['next']!=index or state['attempts']>=106 or state['windows'][index]['state']!='NEVER':raise Refused('WINDOW_ALREADY_SPENT_OR_BUDGET_EXHAUSTED')
+    if os.getpid()!=cap['parent'] or state['state']!='ACTIVE' or state['next']!=index or state['attempts']>=p['count'] or state['windows'][index]['state']!='NEVER':raise Refused('WINDOW_ALREADY_SPENT_OR_BUDGET_EXHAUSTED')
     for previous in range(index):verify_completed(ar,cap,previous)
     with Archive(ar.namespace_base,synthetic=ar.synthetic) as parent:
         for previous in range(index):
-            if parent.path(marker(previous)+'.pending').exists() or digest(parent.read(marker(previous)))!=state['windows'][previous].get('marker_sha256'):raise Refused('SPENT_MARKER_CORRUPTED')
-    started=time.monotonic();value=encoded(dict(session=cap['session'],catalogue=CATALOGUE_HASH,index=index,spec=digest(encoded(spec(index))),state='RESERVED'))
+            if parent.path(marker(previous,p['hash'])+'.pending').exists() or digest(parent.read(marker(previous,p['hash'])))!=state['windows'][previous].get('marker_sha256'):raise Refused('SPENT_MARKER_CORRUPTED')
+    started=time.monotonic();value=encoded(dict(session=cap['session'],catalogue=p['hash'],index=index,spec=digest(encoded(spec(index,p['hash']))),state='RESERVED'))
     with Archive(ar.namespace_base,synthetic=ar.synthetic) as parent:
-        if parent.path(marker(index)).exists() or parent.path(marker(index)+'.pending').exists():raise Refused('CATALOGUE_WINDOW_ALREADY_SPENT')
+        for name in spent_markers(index,p['hash']):
+            if parent.path(name).exists() or parent.path(name+'.pending').exists():raise Refused('CATALOGUE_WINDOW_ALREADY_SPENT')
         parent.publication_guard=lambda relative,data:budget_guard(ar,len(data))
-        marker_sha=parent.put(marker(index),value)
+        marker_sha=parent.put(marker(index,p['hash']),value)
     state['windows'][index].update(state='RESERVED',worker=worker_pid,started=started,deadline=min(started+cap['limits']['request'],phase(ar,cap)['deadline']),marker_sha256=marker_sha)
     state['attempts']+=1;ar.put('journal.json',encoded(state),replace=True)
     return state['windows'][index]
@@ -281,7 +353,7 @@ def worker_main(packet,emit,scope):
     if fault not in allowed:raise Refused('FIXTURE_FAULT_REFUSED')
     root=Path(cap['root']).absolute();scope.configure_session_reads(root)
     if str(root)!=start['root']:raise Refused('BOUNDED_ROOT_REFUSED')
-    verify(cap);role(cap,'worker_claim')
+    verify(cap);role(cap,'worker_claim');count=profile(cap['catalogue'])['count']
     scope.ACTIVE_ROOT=root;scope.LIVE_APPROVED=not fixture
     if fixture:
         from .oneshot_https_fixture import validate_binding
@@ -301,7 +373,7 @@ def worker_main(packet,emit,scope):
                 from .oneshot_bridge import validate_synthetic
                 validate_synthetic(secret)
             phase(ar,cap);last_started=None
-            for index in range(106):
+            for index in range(count):
                 p=phase(ar,cap)
                 if last_started is not None:
                     wait=rate_delay(last_started+cap['limits']['spacing'])
@@ -318,7 +390,7 @@ def worker_main(packet,emit,scope):
                 diagnostic_stage='ACCOUNTING'
                 state['windows'][index].update(state='ATTEMPTED',http_attempts=1,dispatched=time.monotonic())
                 ar.put('journal.json',encoded(state),replace=True);last_started=state['windows'][index]['dispatched'];emit({'kind':'WINDOW_STARTED','index':index})
-                request=spec(index);guard(cap,request);deadline=w['deadline']-min(1,cap['limits']['request']/3)
+                request=spec(index,cap['catalogue']);guard(cap,request);deadline=w['deadline']-min(1,cap['limits']['request']/3)
                 if fault=='crash_during_dispatch':os._exit(123)
                 if fixture:
                     from .oneshot_network import fetch_synthetic
@@ -346,7 +418,7 @@ def worker_main(packet,emit,scope):
                 if not rows or report['incomplete']:raise Refused('EMPTY_OR_INCOMPLETE_BATCH_REFUSED')
                 guard(cap,request)
                 from .oneshot_response import publish_candles
-                name='v26c_year_'+str(index).zfill(3)
+                name=batch_name(index,cap['catalogue'])
                 diagnostic_stage='ARCHIVE';context.set('ARCHIVE')
                 if fault=='archive_write_failure':raise OSError('SYNTHETIC_ARCHIVE_FAILURE')
                 publish_candles(ar,raw,name=name,start=begin,end=end,retrieved=retrieved,synthetic=fixture,_bounded=(cap,index))
@@ -356,7 +428,7 @@ def worker_main(packet,emit,scope):
                 state['windows'][index].update(state='COMPLETED',manifest_sha256=digest(ar.read('manifests/'+name+'.json')),finished=time.monotonic())
                 state['next']=index+1;ar.put('journal.json',encoded(state),replace=True);emit({'kind':'WINDOW_DONE','index':index})
                 if packet()!=dict(continue_after=index):raise Refused('WINDOW_CONTINUATION_REFUSED')
-            phase(ar,cap);emit({'kind':'DONE','completed':106})
+            phase(ar,cap);emit({'kind':'DONE','completed':count})
         except BaseException as error:
             # Fixed, redacted classification only; raw/token/exception text never
             # enters a durable failure record or the parent protocol.
@@ -375,6 +447,7 @@ def run(ar,cap,provider,*,https_fixture=None,fault=''):
     from .session_namespace import acquisition_lock,block_unfenced
     from .failure_diagnostics import REASONS,STAGES,classify,record
     verify(cap)
+    count=profile(cap['catalogue'])['count']
     fixture=cap['mode']=='OFFLINE_TEST'
     if os.getpid()!=cap['parent'] or (fixture and type(provider) is not SyntheticCredentialProvider) or (not fixture and (type(provider) is not TerminalCredentialProvider or https_fixture is not None or fault)):
         raise Refused('BOUNDED_PROVIDER_REFUSED')
@@ -446,8 +519,8 @@ def run(ar,cap,provider,*,https_fixture=None,fault=''):
                     deadline=phase(ar,cap)['deadline'];work_deadline=deadline-1;active_index=None
                 elif kind=='DONE':
                     state=ledger(ar,cap)
-                    if state['next']!=106 or state['attempts']!=106 or message.get('completed')!=106:raise Refused('INCOMPLETE_CATALOGUE')
-                    result={'kind':'DONE','completed':106};break
+                    if state['next']!=count or state['attempts']!=count or message.get('completed')!=count:raise Refused('INCOMPLETE_CATALOGUE')
+                    result={'kind':'DONE','completed':count};break
                 elif kind=='REFUSED':
                     result={'kind':'FAILED' if message.get('cause')=='ResearchRejected' else 'OUTCOME_UNKNOWN'}
                     reason=message.get('reason') if message.get('reason') in REASONS else 'UNKNOWN_FAILURE'
@@ -492,16 +565,16 @@ def run(ar,cap,provider,*,https_fixture=None,fault=''):
                     reason='ACCOUNTING_INCONSISTENT';last_stage='ACCOUNTING'
                     if result['kind']=='DONE':result['kind']='OUTCOME_UNKNOWN'
                 if state is not None:
-                    if state['next']<106 and state['windows'][state['next']]['state'] in ('RESERVED','ATTEMPTED'):
+                    if state['next']<count and state['windows'][state['next']]['state'] in ('RESERVED','ATTEMPTED'):
                         state['windows'][state['next']]['state']='FAILED' if result['kind']=='FAILED' else 'UNKNOWN'
                     state['state']='SESSION_CONSUMED' if result['kind']=='DONE' else 'OUTCOME_UNKNOWN'
                     try:ar.put('journal.json',encoded(state),replace=True)
                     except Exception:
                         reason='ARCHIVE_PUBLICATION_FAILED';last_stage='ARCHIVE'
                         if result['kind']=='DONE':result['kind']='OUTCOME_UNKNOWN'
-                summary=dict(version=1,session=cap['session'],source=cap['source'],catalogue=CATALOGUE_HASH,kind=result['kind'],attempts=state['attempts'] if state else None,completed=state['next'] if state else None,worker_exited=result['worker_exited'],grant_sha256=digest(ar.read('grant.claimed.json')))
+                summary=dict(version=1,session=cap['session'],source=cap['source'],catalogue=cap['catalogue'],kind=result['kind'],attempts=state['attempts'] if state else None,completed=state['next'] if state else None,worker_exited=result['worker_exited'],grant_sha256=digest(ar.read('grant.claimed.json')))
                 if result['kind']!='DONE':
-                    index=active_index if type(active_index) is int and 0<=active_index<106 else None
+                    index=active_index if type(active_index) is int and 0<=active_index<count else None
                     summary['failure_reason']=reason;summary['failure_stage']=last_stage
                     try:summary['diagnostic_sha256']=ar.put('diagnostic.json',encoded(record(cap,reason,last_stage,index)))
                     except Exception:summary['diagnostic_publication']='FAILED_NO_FALLBACK'
@@ -509,7 +582,7 @@ def run(ar,cap,provider,*,https_fixture=None,fault=''):
                 except Exception:
                     if result['kind']=='DONE':result['kind']='OUTCOME_UNKNOWN'
                     if not ar.path('diagnostic.json').exists() and not ar.path('diagnostic.json.pending').exists():
-                        try:ar.put('diagnostic.json',encoded(record(cap,'ARCHIVE_PUBLICATION_FAILED','ARCHIVE',active_index if type(active_index) is int and 0<=active_index<106 else None)))
+                        try:ar.put('diagnostic.json',encoded(record(cap,'ARCHIVE_PUBLICATION_FAILED','ARCHIVE',active_index if type(active_index) is int and 0<=active_index<count else None)))
                         except Exception:pass
                     # A claimed grant/pending evidence remains spent even when
                     # the device cannot durably accept final diagnostic writes.

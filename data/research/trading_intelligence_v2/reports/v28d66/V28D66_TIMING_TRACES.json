@@ -1,0 +1,2846 @@
+{
+  "before": {
+    "label": "UNCHANGED_BEFORE_REAL_MONOTONIC",
+    "log_sha256": "f5f15daf6dfa55a3378aae25edfe71e774421ee451788e4c619aa23c9854ceec",
+    "server_observations": [],
+    "traces": [
+      {
+        "acquisition.json": {
+          "deadline": 560408.7750792,
+          "started": 560406.7750792
+        },
+        "cap_started": 560404.2912441,
+        "diagnostic.json": {
+          "outcome": "UNKNOWN_NO_RETRY",
+          "reason": "SESSION_DEADLINE_EXCEEDED",
+          "retry_allowed": false,
+          "stage": "RESERVATION",
+          "window_index": 0
+        },
+        "events": [
+          {
+            "event": "RUN_ENTER",
+            "t": 560404.5204252
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560404.5284847
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560404.5948416
+          },
+          {
+            "event": "WORKER_PACKET",
+            "kind": "RESERVED",
+            "t": 560405.3988081
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560405.3988777
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560405.4831797
+          },
+          {
+            "event": "TOKEN_CALL_ENTER",
+            "t": 560405.5256855
+          },
+          {
+            "event": "TOKEN_CALL_EXIT",
+            "t": 560406.526269
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560406.5265132
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560406.6921655
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "NEED_WINDOW",
+            "t": 560407.0339191
+          },
+          {
+            "event": "CLAIM_ENTER",
+            "t": 560407.0340049
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560407.0340709
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560407.2212502
+          },
+          {
+            "event": "CLAIM_EXIT",
+            "t": 560407.747161
+          },
+          {
+            "event": "RUN_EXIT",
+            "t": 560408.3552864
+          }
+        ],
+        "journal": {
+          "attempts": 1,
+          "first": {
+            "deadline": 560408.7750792,
+            "http_attempts": 0,
+            "started": 560407.2816131,
+            "state": "UNKNOWN"
+          },
+          "next": 0,
+          "state": "OUTCOME_UNKNOWN"
+        },
+        "limits": {
+          "attempts": 106,
+          "bytes": 268435456,
+          "request": 15,
+          "session": 2,
+          "spacing": 1,
+          "startup": 15,
+          "token": 4
+        },
+        "mode": "OFFLINE_TEST",
+        "result": {
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "result.json": {
+          "attempts": 1,
+          "completed": 0,
+          "failure_reason": "SESSION_DEADLINE_EXCEEDED",
+          "failure_stage": "RESERVATION",
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "run_started": 560404.5203928,
+        "worker.claimed.json": {
+          "credential_deadline": 560409.1856911
+        }
+      },
+      {
+        "acquisition.json": {
+          "deadline": 560413.3434049,
+          "started": 560411.3434049
+        },
+        "cap_started": 560409.2371898,
+        "diagnostic.json": {
+          "outcome": "UNKNOWN_NO_RETRY",
+          "reason": "WORKER_CRASHED",
+          "retry_allowed": false,
+          "stage": "BODY",
+          "window_index": 0
+        },
+        "events": [
+          {
+            "event": "RUN_ENTER",
+            "t": 560409.4362622
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560409.4362976
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560409.5032699
+          },
+          {
+            "event": "WORKER_PACKET",
+            "kind": "RESERVED",
+            "t": 560410.1535863
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560410.1536403
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560410.2167072
+          },
+          {
+            "event": "TOKEN_CALL_ENTER",
+            "t": 560410.2492246
+          },
+          {
+            "event": "TOKEN_CALL_EXIT",
+            "t": 560411.2493444
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560411.2493921
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560411.3146752
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "NEED_WINDOW",
+            "t": 560411.4465259
+          },
+          {
+            "event": "CLAIM_ENTER",
+            "t": 560411.4465758
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560411.4466127
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560411.5133279
+          },
+          {
+            "event": "CLAIM_EXIT",
+            "t": 560411.7136593
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "WINDOW_STARTED",
+            "t": 560411.8072259
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "TRANSMIT",
+            "t": 560412.3128895
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "CONNECT",
+            "t": 560412.3137044
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "TLS",
+            "t": 560412.3141115
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "TRANSMIT",
+            "t": 560412.3200352
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "HEADERS",
+            "t": 560412.3201609
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "BODY",
+            "t": 560412.3212146
+          },
+          {
+            "event": "RUN_EXIT",
+            "t": 560412.6203837
+          }
+        ],
+        "journal": {
+          "attempts": 1,
+          "first": {
+            "deadline": 560413.3434049,
+            "dispatched": 560411.7261261,
+            "http_attempts": 1,
+            "started": 560411.5304486,
+            "state": "UNKNOWN"
+          },
+          "next": 0,
+          "state": "OUTCOME_UNKNOWN"
+        },
+        "limits": {
+          "attempts": 106,
+          "bytes": 268435456,
+          "request": 15,
+          "session": 2,
+          "spacing": 1,
+          "startup": 15,
+          "token": 4
+        },
+        "mode": "OFFLINE_TEST",
+        "result": {
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "result.json": {
+          "attempts": 1,
+          "completed": 0,
+          "failure_reason": "WORKER_CRASHED",
+          "failure_stage": "BODY",
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "run_started": 560409.4362339,
+        "worker.claimed.json": {
+          "credential_deadline": 560413.9785228
+        }
+      },
+      {
+        "acquisition.json": {
+          "deadline": 560417.168836,
+          "started": 560415.168836
+        },
+        "cap_started": 560413.0997706,
+        "diagnostic.json": {
+          "outcome": "UNKNOWN_NO_RETRY",
+          "reason": "WORKER_CRASHED",
+          "retry_allowed": false,
+          "stage": "BODY",
+          "window_index": 0
+        },
+        "events": [
+          {
+            "event": "RUN_ENTER",
+            "t": 560413.2855044
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560413.2855421
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560413.3504371
+          },
+          {
+            "event": "WORKER_PACKET",
+            "kind": "RESERVED",
+            "t": 560413.9795819
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560413.97963
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560414.0454651
+          },
+          {
+            "event": "TOKEN_CALL_ENTER",
+            "t": 560414.0768275
+          },
+          {
+            "event": "TOKEN_CALL_EXIT",
+            "t": 560415.0770159
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560415.0770581
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560415.1411661
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "NEED_WINDOW",
+            "t": 560415.2689032
+          },
+          {
+            "event": "CLAIM_ENTER",
+            "t": 560415.2689442
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560415.2689745
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560415.3337968
+          },
+          {
+            "event": "CLAIM_EXIT",
+            "t": 560415.542382
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "WINDOW_STARTED",
+            "t": 560415.6399406
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "TRANSMIT",
+            "t": 560416.1348815
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "CONNECT",
+            "t": 560416.1356371
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "TLS",
+            "t": 560416.1361004
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "TRANSMIT",
+            "t": 560416.142169
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "HEADERS",
+            "t": 560416.1422476
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "BODY",
+            "t": 560416.1428128
+          },
+          {
+            "event": "RUN_EXIT",
+            "t": 560416.4483889
+          }
+        ],
+        "journal": {
+          "attempts": 1,
+          "first": {
+            "deadline": 560417.168836,
+            "dispatched": 560415.5550988,
+            "http_attempts": 1,
+            "started": 560415.3502799,
+            "state": "UNKNOWN"
+          },
+          "next": 0,
+          "state": "OUTCOME_UNKNOWN"
+        },
+        "limits": {
+          "attempts": 106,
+          "bytes": 268435456,
+          "request": 15,
+          "session": 2,
+          "spacing": 1,
+          "startup": 15,
+          "token": 4
+        },
+        "mode": "OFFLINE_TEST",
+        "result": {
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "result.json": {
+          "attempts": 1,
+          "completed": 0,
+          "failure_reason": "WORKER_CRASHED",
+          "failure_stage": "BODY",
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "run_started": 560413.285478,
+        "worker.claimed.json": {
+          "credential_deadline": 560417.8134031
+        }
+      },
+      {
+        "acquisition.json": {
+          "deadline": 560421.0311139,
+          "started": 560419.0311139
+        },
+        "cap_started": 560416.9366565,
+        "diagnostic.json": {
+          "outcome": "UNKNOWN_NO_RETRY",
+          "reason": "WORKER_CRASHED",
+          "retry_allowed": false,
+          "stage": "BODY",
+          "window_index": 0
+        },
+        "events": [
+          {
+            "event": "RUN_ENTER",
+            "t": 560417.1289111
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560417.1289727
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560417.1937545
+          },
+          {
+            "event": "WORKER_PACKET",
+            "kind": "RESERVED",
+            "t": 560417.8439835
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560417.8440275
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560417.9069842
+          },
+          {
+            "event": "TOKEN_CALL_ENTER",
+            "t": 560417.9377025
+          },
+          {
+            "event": "TOKEN_CALL_EXIT",
+            "t": 560418.9379959
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560418.9380533
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560419.0021278
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "NEED_WINDOW",
+            "t": 560419.1308439
+          },
+          {
+            "event": "CLAIM_ENTER",
+            "t": 560419.1308828
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560419.1309149
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560419.1938523
+          },
+          {
+            "event": "CLAIM_EXIT",
+            "t": 560419.3963544
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "WINDOW_STARTED",
+            "t": 560419.492649
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "TRANSMIT",
+            "t": 560419.9859051
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "CONNECT",
+            "t": 560419.9866554
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "TLS",
+            "t": 560419.9870935
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "TRANSMIT",
+            "t": 560419.9931603
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "HEADERS",
+            "t": 560419.9932356
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "BODY",
+            "t": 560419.9938283
+          },
+          {
+            "event": "RUN_EXIT",
+            "t": 560420.2900702
+          }
+        ],
+        "journal": {
+          "attempts": 1,
+          "first": {
+            "deadline": 560421.0311139,
+            "dispatched": 560419.4090583,
+            "http_attempts": 1,
+            "started": 560419.2112233,
+            "state": "UNKNOWN"
+          },
+          "next": 0,
+          "state": "OUTCOME_UNKNOWN"
+        },
+        "limits": {
+          "attempts": 106,
+          "bytes": 268435456,
+          "request": 15,
+          "session": 2,
+          "spacing": 1,
+          "startup": 15,
+          "token": 4
+        },
+        "mode": "OFFLINE_TEST",
+        "result": {
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "result.json": {
+          "attempts": 1,
+          "completed": 0,
+          "failure_reason": "WORKER_CRASHED",
+          "failure_stage": "BODY",
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "run_started": 560417.1288605,
+        "worker.claimed.json": {
+          "credential_deadline": 560421.6602146
+        }
+      },
+      {
+        "acquisition.json": {
+          "deadline": 560424.8862387,
+          "started": 560422.8862387
+        },
+        "cap_started": 560420.7678035,
+        "diagnostic.json": {
+          "outcome": "UNKNOWN_NO_RETRY",
+          "reason": "WORKER_CRASHED",
+          "retry_allowed": false,
+          "stage": "BODY",
+          "window_index": 0
+        },
+        "events": [
+          {
+            "event": "RUN_ENTER",
+            "t": 560420.9557238
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560420.9557594
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560421.0277176
+          },
+          {
+            "event": "WORKER_PACKET",
+            "kind": "RESERVED",
+            "t": 560421.6895521
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560421.6895925
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560421.7546515
+          },
+          {
+            "event": "TOKEN_CALL_ENTER",
+            "t": 560421.785057
+          },
+          {
+            "event": "TOKEN_CALL_EXIT",
+            "t": 560422.78518
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560422.7852093
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560422.8561545
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "NEED_WINDOW",
+            "t": 560422.9818162
+          },
+          {
+            "event": "CLAIM_ENTER",
+            "t": 560422.9818521
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "t": 560422.9818798
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "t": 560423.0425372
+          },
+          {
+            "event": "CLAIM_EXIT",
+            "t": 560423.2364785
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "WINDOW_STARTED",
+            "t": 560423.3291075
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "TRANSMIT",
+            "t": 560423.7951544
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "CONNECT",
+            "t": 560423.7959861
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "TLS",
+            "t": 560423.7964396
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "TRANSMIT",
+            "t": 560423.8029641
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "HEADERS",
+            "t": 560423.8030441
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "stage": "BODY",
+            "t": 560423.8036022
+          },
+          {
+            "event": "RUN_EXIT",
+            "t": 560424.0989086
+          }
+        ],
+        "journal": {
+          "attempts": 1,
+          "first": {
+            "deadline": 560424.8862387,
+            "dispatched": 560423.247997,
+            "http_attempts": 1,
+            "started": 560423.0582626,
+            "state": "UNKNOWN"
+          },
+          "next": 0,
+          "state": "OUTCOME_UNKNOWN"
+        },
+        "limits": {
+          "attempts": 106,
+          "bytes": 268435456,
+          "request": 15,
+          "session": 2,
+          "spacing": 1,
+          "startup": 15,
+          "token": 4
+        },
+        "mode": "OFFLINE_TEST",
+        "result": {
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "result.json": {
+          "attempts": 1,
+          "completed": 0,
+          "failure_reason": "WORKER_CRASHED",
+          "failure_stage": "BODY",
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "run_started": 560420.9556975,
+        "worker.claimed.json": {
+          "credential_deadline": 560425.5032929
+        }
+      }
+    ]
+  },
+  "catalogue_sha256": "b663097a02d007a6ff055946ae1c602fe9e16c33b3f9284e17a3b5ac187dc768",
+  "linux_after": {
+    "label": "FINAL_LINUX_DETERMINISTIC_INTEGER_CLOCK",
+    "log_sha256": "e8a65ca7c778eb8b5c09075e4bb8951ffab185ca3af6cc55b3525e234d5acc79",
+    "server_observations": [
+      {
+        "connections": 1,
+        "errors": [],
+        "logical_request_times": [
+          1
+        ],
+        "phase_set": true,
+        "real_t": 884.090437893,
+        "request_count": 1
+      },
+      {
+        "connections": 1,
+        "errors": [],
+        "logical_request_times": [
+          1
+        ],
+        "phase_set": true,
+        "real_t": 885.246009246,
+        "request_count": 1
+      },
+      {
+        "connections": 1,
+        "errors": [],
+        "logical_request_times": [
+          1
+        ],
+        "phase_set": true,
+        "real_t": 886.233316809,
+        "request_count": 1
+      },
+      {
+        "connections": 1,
+        "errors": [],
+        "logical_request_times": [
+          1
+        ],
+        "phase_set": true,
+        "real_t": 887.246330415,
+        "request_count": 1
+      },
+      {
+        "connections": 1,
+        "errors": [],
+        "logical_request_times": [
+          1
+        ],
+        "phase_set": true,
+        "real_t": 888.242946029,
+        "request_count": 1
+      }
+    ],
+    "traces": [
+      {
+        "acquisition.json": {
+          "deadline": 3,
+          "started": 1
+        },
+        "cap_started": 0,
+        "diagnostic.json": {
+          "outcome": "UNKNOWN_NO_RETRY",
+          "reason": "WORKER_CRASHED",
+          "retry_allowed": false,
+          "stage": "BODY",
+          "window_index": 0
+        },
+        "events": [
+          {
+            "event": "RUN_ENTER",
+            "logical_t": 0,
+            "t": 883.171108085
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 883.175568148
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 883.188747343
+          },
+          {
+            "event": "WORKER_PACKET",
+            "kind": "RESERVED",
+            "logical_t": 0,
+            "t": 883.516678302
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 883.516748105
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 883.530369243
+          },
+          {
+            "event": "TOKEN_CALL_ENTER",
+            "logical_t": 0,
+            "t": 883.535046176
+          },
+          {
+            "event": "TOKEN_CALL_EXIT",
+            "logical_t": 1,
+            "t": 883.535052226
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 883.535139096
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 883.548842307
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "NEED_WINDOW",
+            "logical_t": 1,
+            "t": 883.610852733
+          },
+          {
+            "event": "CLAIM_ENTER",
+            "logical_t": 1,
+            "t": 883.610915145
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 883.610942479
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 883.624776451
+          },
+          {
+            "event": "CLAIM_EXIT",
+            "logical_t": 1,
+            "t": 883.73805701
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "WINDOW_STARTED",
+            "logical_t": 1,
+            "t": 883.796051529
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 883.886661255
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "CONNECT",
+            "t": 883.8868239
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TLS",
+            "t": 883.886965151
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 883.889366279
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "HEADERS",
+            "t": 883.889419936
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "BODY",
+            "t": 883.890161123
+          },
+          {
+            "event": "RUN_EXIT",
+            "logical_t": 1,
+            "t": 884.08332314
+          }
+        ],
+        "journal": {
+          "attempts": 1,
+          "first": {
+            "deadline": 3,
+            "dispatched": 1,
+            "http_attempts": 1,
+            "started": 1,
+            "state": "UNKNOWN"
+          },
+          "next": 0,
+          "state": "OUTCOME_UNKNOWN"
+        },
+        "limits": {
+          "attempts": 106,
+          "bytes": 268435456,
+          "request": 15,
+          "session": 2,
+          "spacing": 1,
+          "startup": 15,
+          "token": 4
+        },
+        "mode": "OFFLINE_TEST",
+        "result": {
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "result.json": {
+          "attempts": 1,
+          "completed": 0,
+          "failure_reason": "WORKER_CRASHED",
+          "failure_stage": "BODY",
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "run_started": 883.171086,
+        "worker.claimed.json": {
+          "credential_deadline": 4
+        }
+      },
+      {
+        "acquisition.json": {
+          "deadline": 3,
+          "started": 1
+        },
+        "cap_started": 0,
+        "diagnostic.json": {
+          "outcome": "UNKNOWN_NO_RETRY",
+          "reason": "WORKER_CRASHED",
+          "retry_allowed": false,
+          "stage": "BODY",
+          "window_index": 0
+        },
+        "events": [
+          {
+            "event": "RUN_ENTER",
+            "logical_t": 0,
+            "t": 884.449153811
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 884.449204524
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 884.467031167
+          },
+          {
+            "event": "WORKER_PACKET",
+            "kind": "RESERVED",
+            "logical_t": 0,
+            "t": 884.758148532
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 884.758206787
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 884.770769761
+          },
+          {
+            "event": "TOKEN_CALL_ENTER",
+            "logical_t": 0,
+            "t": 884.775507704
+          },
+          {
+            "event": "TOKEN_CALL_EXIT",
+            "logical_t": 1,
+            "t": 884.775514024
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 884.775520875
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 884.788333531
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "NEED_WINDOW",
+            "logical_t": 1,
+            "t": 884.828959993
+          },
+          {
+            "event": "CLAIM_ENTER",
+            "logical_t": 1,
+            "t": 884.829018198
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 884.829040174
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 884.841794854
+          },
+          {
+            "event": "CLAIM_EXIT",
+            "logical_t": 1,
+            "t": 884.911913796
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "WINDOW_STARTED",
+            "logical_t": 1,
+            "t": 884.948673338
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 885.042203531
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "CONNECT",
+            "t": 885.042345756
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TLS",
+            "t": 885.042627577
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 885.044862797
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "HEADERS",
+            "t": 885.044914743
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "BODY",
+            "t": 885.045649041
+          },
+          {
+            "event": "RUN_EXIT",
+            "logical_t": 1,
+            "t": 885.166831371
+          }
+        ],
+        "journal": {
+          "attempts": 1,
+          "first": {
+            "deadline": 3,
+            "dispatched": 1,
+            "http_attempts": 1,
+            "started": 1,
+            "state": "UNKNOWN"
+          },
+          "next": 0,
+          "state": "OUTCOME_UNKNOWN"
+        },
+        "limits": {
+          "attempts": 106,
+          "bytes": 268435456,
+          "request": 15,
+          "session": 2,
+          "spacing": 1,
+          "startup": 15,
+          "token": 4
+        },
+        "mode": "OFFLINE_TEST",
+        "result": {
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "result.json": {
+          "attempts": 1,
+          "completed": 0,
+          "failure_reason": "WORKER_CRASHED",
+          "failure_stage": "BODY",
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "run_started": 884.449120667,
+        "worker.claimed.json": {
+          "credential_deadline": 4
+        }
+      },
+      {
+        "acquisition.json": {
+          "deadline": 3,
+          "started": 1
+        },
+        "cap_started": 0,
+        "diagnostic.json": {
+          "outcome": "UNKNOWN_NO_RETRY",
+          "reason": "WORKER_CRASHED",
+          "retry_allowed": false,
+          "stage": "BODY",
+          "window_index": 0
+        },
+        "events": [
+          {
+            "event": "RUN_ENTER",
+            "logical_t": 0,
+            "t": 885.478314338
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 885.478347683
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 885.491261086
+          },
+          {
+            "event": "WORKER_PACKET",
+            "kind": "RESERVED",
+            "logical_t": 0,
+            "t": 885.741947129
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 885.742003031
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 885.754862575
+          },
+          {
+            "event": "TOKEN_CALL_ENTER",
+            "logical_t": 0,
+            "t": 885.759458529
+          },
+          {
+            "event": "TOKEN_CALL_EXIT",
+            "logical_t": 1,
+            "t": 885.759462746
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 885.759468025
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 885.772784461
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "NEED_WINDOW",
+            "logical_t": 1,
+            "t": 885.813450284
+          },
+          {
+            "event": "CLAIM_ENTER",
+            "logical_t": 1,
+            "t": 885.813507439
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 885.813530407
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 885.826691023
+          },
+          {
+            "event": "CLAIM_EXIT",
+            "logical_t": 1,
+            "t": 885.8936948
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "WINDOW_STARTED",
+            "logical_t": 1,
+            "t": 885.931790453
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 886.029213807
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "CONNECT",
+            "t": 886.029339807
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TLS",
+            "t": 886.029654772
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 886.032276203
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "HEADERS",
+            "t": 886.032355265
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "BODY",
+            "t": 886.03303578
+          },
+          {
+            "event": "RUN_EXIT",
+            "logical_t": 1,
+            "t": 886.158819423
+          }
+        ],
+        "journal": {
+          "attempts": 1,
+          "first": {
+            "deadline": 3,
+            "dispatched": 1,
+            "http_attempts": 1,
+            "started": 1,
+            "state": "UNKNOWN"
+          },
+          "next": 0,
+          "state": "OUTCOME_UNKNOWN"
+        },
+        "limits": {
+          "attempts": 106,
+          "bytes": 268435456,
+          "request": 15,
+          "session": 2,
+          "spacing": 1,
+          "startup": 15,
+          "token": 4
+        },
+        "mode": "OFFLINE_TEST",
+        "result": {
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "result.json": {
+          "attempts": 1,
+          "completed": 0,
+          "failure_reason": "WORKER_CRASHED",
+          "failure_stage": "BODY",
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "run_started": 885.478293664,
+        "worker.claimed.json": {
+          "credential_deadline": 4
+        }
+      },
+      {
+        "acquisition.json": {
+          "deadline": 3,
+          "started": 1
+        },
+        "cap_started": 0,
+        "diagnostic.json": {
+          "outcome": "UNKNOWN_NO_RETRY",
+          "reason": "WORKER_CRASHED",
+          "retry_allowed": false,
+          "stage": "BODY",
+          "window_index": 0
+        },
+        "events": [
+          {
+            "event": "RUN_ENTER",
+            "logical_t": 0,
+            "t": 886.475772592
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 886.475814031
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 886.488493415
+          },
+          {
+            "event": "WORKER_PACKET",
+            "kind": "RESERVED",
+            "logical_t": 0,
+            "t": 886.744573789
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 886.744670151
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 886.7588894
+          },
+          {
+            "event": "TOKEN_CALL_ENTER",
+            "logical_t": 0,
+            "t": 886.76376748
+          },
+          {
+            "event": "TOKEN_CALL_EXIT",
+            "logical_t": 1,
+            "t": 886.763771186
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 886.763776325
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 886.778007305
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "NEED_WINDOW",
+            "logical_t": 1,
+            "t": 886.82119762
+          },
+          {
+            "event": "CLAIM_ENTER",
+            "logical_t": 1,
+            "t": 886.821268921
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 886.821298821
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 886.835435643
+          },
+          {
+            "event": "CLAIM_EXIT",
+            "logical_t": 1,
+            "t": 886.907804362
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "WINDOW_STARTED",
+            "logical_t": 1,
+            "t": 886.945811007
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 887.04217515
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "CONNECT",
+            "t": 887.04238315
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TLS",
+            "t": 887.042639386
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 887.04509528
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "HEADERS",
+            "t": 887.04516101
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "BODY",
+            "t": 887.04582925
+          },
+          {
+            "event": "RUN_EXIT",
+            "logical_t": 1,
+            "t": 887.167998096
+          }
+        ],
+        "journal": {
+          "attempts": 1,
+          "first": {
+            "deadline": 3,
+            "dispatched": 1,
+            "http_attempts": 1,
+            "started": 1,
+            "state": "UNKNOWN"
+          },
+          "next": 0,
+          "state": "OUTCOME_UNKNOWN"
+        },
+        "limits": {
+          "attempts": 106,
+          "bytes": 268435456,
+          "request": 15,
+          "session": 2,
+          "spacing": 1,
+          "startup": 15,
+          "token": 4
+        },
+        "mode": "OFFLINE_TEST",
+        "result": {
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "result.json": {
+          "attempts": 1,
+          "completed": 0,
+          "failure_reason": "WORKER_CRASHED",
+          "failure_stage": "BODY",
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "run_started": 886.47574708,
+        "worker.claimed.json": {
+          "credential_deadline": 4
+        }
+      },
+      {
+        "acquisition.json": {
+          "deadline": 3,
+          "started": 1
+        },
+        "cap_started": 0,
+        "diagnostic.json": {
+          "outcome": "UNKNOWN_NO_RETRY",
+          "reason": "WORKER_CRASHED",
+          "retry_allowed": false,
+          "stage": "BODY",
+          "window_index": 0
+        },
+        "events": [
+          {
+            "event": "RUN_ENTER",
+            "logical_t": 0,
+            "t": 887.476274329
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 887.476313795
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 887.489580843
+          },
+          {
+            "event": "WORKER_PACKET",
+            "kind": "RESERVED",
+            "logical_t": 0,
+            "t": 887.756288334
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 887.756348505
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 887.769365991
+          },
+          {
+            "event": "TOKEN_CALL_ENTER",
+            "logical_t": 0,
+            "t": 887.774077648
+          },
+          {
+            "event": "TOKEN_CALL_EXIT",
+            "logical_t": 1,
+            "t": 887.774081504
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 887.774086733
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 887.787406101
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "NEED_WINDOW",
+            "logical_t": 1,
+            "t": 887.829073906
+          },
+          {
+            "event": "CLAIM_ENTER",
+            "logical_t": 1,
+            "t": 887.829135109
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 887.829160132
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 887.842279129
+          },
+          {
+            "event": "CLAIM_EXIT",
+            "logical_t": 1,
+            "t": 887.909940428
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "WINDOW_STARTED",
+            "logical_t": 1,
+            "t": 887.946659529
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 888.039062448
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "CONNECT",
+            "t": 888.039225595
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TLS",
+            "t": 888.039491161
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 888.041746369
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "HEADERS",
+            "t": 888.041803616
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "BODY",
+            "t": 888.042387532
+          },
+          {
+            "event": "RUN_EXIT",
+            "logical_t": 1,
+            "t": 888.165093579
+          }
+        ],
+        "journal": {
+          "attempts": 1,
+          "first": {
+            "deadline": 3,
+            "dispatched": 1,
+            "http_attempts": 1,
+            "started": 1,
+            "state": "UNKNOWN"
+          },
+          "next": 0,
+          "state": "OUTCOME_UNKNOWN"
+        },
+        "limits": {
+          "attempts": 106,
+          "bytes": 268435456,
+          "request": 15,
+          "session": 2,
+          "spacing": 1,
+          "startup": 15,
+          "token": 4
+        },
+        "mode": "OFFLINE_TEST",
+        "result": {
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "result.json": {
+          "attempts": 1,
+          "completed": 0,
+          "failure_reason": "WORKER_CRASHED",
+          "failure_stage": "BODY",
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "run_started": 887.476249167,
+        "worker.claimed.json": {
+          "credential_deadline": 4
+        }
+      }
+    ]
+  },
+  "no_credentials_headers_bodies_or_exception_text": true,
+  "production_source_seal": "6ea343adb926647424dfffd8ecf77679b9d442b7e4391c2aff7c539580cc6525",
+  "synthetic_only": true,
+  "version": 1,
+  "windows_after": {
+    "label": "FINAL_WINDOWS_DETERMINISTIC_INTEGER_CLOCK",
+    "log_sha256": "b92deac249a1a1a3cb1d70a73b82e021103a0c8abda70a6be6a0ed17dfa9f94a",
+    "server_observations": [
+      {
+        "connections": 1,
+        "errors": [],
+        "logical_request_times": [
+          1
+        ],
+        "phase_set": true,
+        "real_t": 562353.5461458,
+        "request_count": 1
+      },
+      {
+        "connections": 1,
+        "errors": [],
+        "logical_request_times": [
+          1
+        ],
+        "phase_set": true,
+        "real_t": 562359.7257962,
+        "request_count": 1
+      },
+      {
+        "connections": 1,
+        "errors": [],
+        "logical_request_times": [
+          1
+        ],
+        "phase_set": true,
+        "real_t": 562365.6518004,
+        "request_count": 1
+      },
+      {
+        "connections": 1,
+        "errors": [],
+        "logical_request_times": [
+          1
+        ],
+        "phase_set": true,
+        "real_t": 562370.2575921,
+        "request_count": 1
+      },
+      {
+        "connections": 1,
+        "errors": [],
+        "logical_request_times": [
+          1
+        ],
+        "phase_set": true,
+        "real_t": 562375.0672664,
+        "request_count": 1
+      }
+    ],
+    "traces": [
+      {
+        "acquisition.json": {
+          "deadline": 3,
+          "started": 1
+        },
+        "cap_started": 0,
+        "diagnostic.json": {
+          "outcome": "UNKNOWN_NO_RETRY",
+          "reason": "WORKER_CRASHED",
+          "retry_allowed": false,
+          "stage": "BODY",
+          "window_index": 0
+        },
+        "events": [
+          {
+            "event": "RUN_ENTER",
+            "logical_t": 0,
+            "t": 562347.4467502
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 562347.4615072
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 562347.5777393
+          },
+          {
+            "event": "WORKER_PACKET",
+            "kind": "RESERVED",
+            "logical_t": 0,
+            "t": 562349.3449153
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 562349.3450132
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 562349.4835911
+          },
+          {
+            "event": "TOKEN_CALL_ENTER",
+            "logical_t": 0,
+            "t": 562349.5632405
+          },
+          {
+            "event": "TOKEN_CALL_EXIT",
+            "logical_t": 1,
+            "t": 562349.5632588
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 562349.5634534
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 562349.7208274
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "NEED_WINDOW",
+            "logical_t": 1,
+            "t": 562350.0869472
+          },
+          {
+            "event": "CLAIM_ENTER",
+            "logical_t": 1,
+            "t": 562350.0870525
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 562350.0871353
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 562350.2618109
+          },
+          {
+            "event": "CLAIM_EXIT",
+            "logical_t": 1,
+            "t": 562350.7781416
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "WINDOW_STARTED",
+            "logical_t": 1,
+            "t": 562351.0536266
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 562352.5821829
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "CONNECT",
+            "t": 562352.582934
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TLS",
+            "t": 562352.5841181
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 562352.5992059
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "HEADERS",
+            "t": 562352.5994017
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "BODY",
+            "t": 562352.6011521
+          },
+          {
+            "event": "RUN_EXIT",
+            "logical_t": 1,
+            "t": 562353.4949221
+          }
+        ],
+        "journal": {
+          "attempts": 1,
+          "first": {
+            "deadline": 3,
+            "dispatched": 1,
+            "http_attempts": 1,
+            "started": 1,
+            "state": "UNKNOWN"
+          },
+          "next": 0,
+          "state": "OUTCOME_UNKNOWN"
+        },
+        "limits": {
+          "attempts": 106,
+          "bytes": 268435456,
+          "request": 15,
+          "session": 2,
+          "spacing": 1,
+          "startup": 15,
+          "token": 4
+        },
+        "mode": "OFFLINE_TEST",
+        "result": {
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "result.json": {
+          "attempts": 1,
+          "completed": 0,
+          "failure_reason": "WORKER_CRASHED",
+          "failure_stage": "BODY",
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "run_started": 562347.4467099,
+        "worker.claimed.json": {
+          "credential_deadline": 4
+        }
+      },
+      {
+        "acquisition.json": {
+          "deadline": 3,
+          "started": 1
+        },
+        "cap_started": 0,
+        "diagnostic.json": {
+          "outcome": "UNKNOWN_NO_RETRY",
+          "reason": "WORKER_CRASHED",
+          "retry_allowed": false,
+          "stage": "BODY",
+          "window_index": 0
+        },
+        "events": [
+          {
+            "event": "RUN_ENTER",
+            "logical_t": 0,
+            "t": 562355.429894
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 562355.4299724
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 562355.5628179
+          },
+          {
+            "event": "WORKER_PACKET",
+            "kind": "RESERVED",
+            "logical_t": 0,
+            "t": 562356.9258239
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 562356.9258927
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 562357.0512216
+          },
+          {
+            "event": "TOKEN_CALL_ENTER",
+            "logical_t": 0,
+            "t": 562357.1108769
+          },
+          {
+            "event": "TOKEN_CALL_EXIT",
+            "logical_t": 1,
+            "t": 562357.1108937
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 562357.1109129
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 562357.2516784
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "NEED_WINDOW",
+            "logical_t": 1,
+            "t": 562357.5531167
+          },
+          {
+            "event": "CLAIM_ENTER",
+            "logical_t": 1,
+            "t": 562357.5531805
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 562357.5532318
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 562357.6611234
+          },
+          {
+            "event": "CLAIM_EXIT",
+            "logical_t": 1,
+            "t": 562357.9980813
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "WINDOW_STARTED",
+            "logical_t": 1,
+            "t": 562358.1553379
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 562359.0554644
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "CONNECT",
+            "t": 562359.0558582
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TLS",
+            "t": 562359.0565802
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 562359.0679093
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "HEADERS",
+            "t": 562359.0680774
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "BODY",
+            "t": 562359.0688851
+          },
+          {
+            "event": "RUN_EXIT",
+            "logical_t": 1,
+            "t": 562359.6644067
+          }
+        ],
+        "journal": {
+          "attempts": 1,
+          "first": {
+            "deadline": 3,
+            "dispatched": 1,
+            "http_attempts": 1,
+            "started": 1,
+            "state": "UNKNOWN"
+          },
+          "next": 0,
+          "state": "OUTCOME_UNKNOWN"
+        },
+        "limits": {
+          "attempts": 106,
+          "bytes": 268435456,
+          "request": 15,
+          "session": 2,
+          "spacing": 1,
+          "startup": 15,
+          "token": 4
+        },
+        "mode": "OFFLINE_TEST",
+        "result": {
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "result.json": {
+          "attempts": 1,
+          "completed": 0,
+          "failure_reason": "WORKER_CRASHED",
+          "failure_stage": "BODY",
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "run_started": 562355.4298456,
+        "worker.claimed.json": {
+          "credential_deadline": 4
+        }
+      },
+      {
+        "acquisition.json": {
+          "deadline": 3,
+          "started": 1
+        },
+        "cap_started": 0,
+        "diagnostic.json": {
+          "outcome": "UNKNOWN_NO_RETRY",
+          "reason": "WORKER_CRASHED",
+          "retry_allowed": false,
+          "stage": "BODY",
+          "window_index": 0
+        },
+        "events": [
+          {
+            "event": "RUN_ENTER",
+            "logical_t": 0,
+            "t": 562361.514899
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 562361.5149867
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 562361.6534004
+          },
+          {
+            "event": "WORKER_PACKET",
+            "kind": "RESERVED",
+            "logical_t": 0,
+            "t": 562362.9539505
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 562362.9540288
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 562363.0628984
+          },
+          {
+            "event": "TOKEN_CALL_ENTER",
+            "logical_t": 0,
+            "t": 562363.1176631
+          },
+          {
+            "event": "TOKEN_CALL_EXIT",
+            "logical_t": 1,
+            "t": 562363.1176731
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 562363.1176854
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 562363.2254325
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "NEED_WINDOW",
+            "logical_t": 1,
+            "t": 562363.5505818
+          },
+          {
+            "event": "CLAIM_ENTER",
+            "logical_t": 1,
+            "t": 562363.5506584
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 562363.550722
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 562363.6888411
+          },
+          {
+            "event": "CLAIM_EXIT",
+            "logical_t": 1,
+            "t": 562364.0940981
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "WINDOW_STARTED",
+            "logical_t": 1,
+            "t": 562364.2262615
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 562365.0517991
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "CONNECT",
+            "t": 562365.0521408
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TLS",
+            "t": 562365.0528811
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 562365.0627899
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "HEADERS",
+            "t": 562365.0632541
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "BODY",
+            "t": 562365.0636969
+          },
+          {
+            "event": "RUN_EXIT",
+            "logical_t": 1,
+            "t": 562365.6201408
+          }
+        ],
+        "journal": {
+          "attempts": 1,
+          "first": {
+            "deadline": 3,
+            "dispatched": 1,
+            "http_attempts": 1,
+            "started": 1,
+            "state": "UNKNOWN"
+          },
+          "next": 0,
+          "state": "OUTCOME_UNKNOWN"
+        },
+        "limits": {
+          "attempts": 106,
+          "bytes": 268435456,
+          "request": 15,
+          "session": 2,
+          "spacing": 1,
+          "startup": 15,
+          "token": 4
+        },
+        "mode": "OFFLINE_TEST",
+        "result": {
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "result.json": {
+          "attempts": 1,
+          "completed": 0,
+          "failure_reason": "WORKER_CRASHED",
+          "failure_stage": "BODY",
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "run_started": 562361.5148421,
+        "worker.claimed.json": {
+          "credential_deadline": 4
+        }
+      },
+      {
+        "acquisition.json": {
+          "deadline": 3,
+          "started": 1
+        },
+        "cap_started": 0,
+        "diagnostic.json": {
+          "outcome": "UNKNOWN_NO_RETRY",
+          "reason": "WORKER_CRASHED",
+          "retry_allowed": false,
+          "stage": "BODY",
+          "window_index": 0
+        },
+        "events": [
+          {
+            "event": "RUN_ENTER",
+            "logical_t": 0,
+            "t": 562366.732776
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 562366.7328436
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 562366.8121672
+          },
+          {
+            "event": "WORKER_PACKET",
+            "kind": "RESERVED",
+            "logical_t": 0,
+            "t": 562368.0017905
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 562368.0018598
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 562368.100589
+          },
+          {
+            "event": "TOKEN_CALL_ENTER",
+            "logical_t": 0,
+            "t": 562368.1531991
+          },
+          {
+            "event": "TOKEN_CALL_EXIT",
+            "logical_t": 1,
+            "t": 562368.1532085
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 562368.1532194
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 562368.2571908
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "NEED_WINDOW",
+            "logical_t": 1,
+            "t": 562368.5219288
+          },
+          {
+            "event": "CLAIM_ENTER",
+            "logical_t": 1,
+            "t": 562368.5220061
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 562368.5220585
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 562368.6403767
+          },
+          {
+            "event": "CLAIM_EXIT",
+            "logical_t": 1,
+            "t": 562369.0414628
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "WINDOW_STARTED",
+            "logical_t": 1,
+            "t": 562369.1685058
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 562369.8158923
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "CONNECT",
+            "t": 562369.8160996
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TLS",
+            "t": 562369.8166318
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 562369.8241909
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "HEADERS",
+            "t": 562369.8243102
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "BODY",
+            "t": 562369.8248986
+          },
+          {
+            "event": "RUN_EXIT",
+            "logical_t": 1,
+            "t": 562370.2263717
+          }
+        ],
+        "journal": {
+          "attempts": 1,
+          "first": {
+            "deadline": 3,
+            "dispatched": 1,
+            "http_attempts": 1,
+            "started": 1,
+            "state": "UNKNOWN"
+          },
+          "next": 0,
+          "state": "OUTCOME_UNKNOWN"
+        },
+        "limits": {
+          "attempts": 106,
+          "bytes": 268435456,
+          "request": 15,
+          "session": 2,
+          "spacing": 1,
+          "startup": 15,
+          "token": 4
+        },
+        "mode": "OFFLINE_TEST",
+        "result": {
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "result.json": {
+          "attempts": 1,
+          "completed": 0,
+          "failure_reason": "WORKER_CRASHED",
+          "failure_stage": "BODY",
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "run_started": 562366.7327306,
+        "worker.claimed.json": {
+          "credential_deadline": 4
+        }
+      },
+      {
+        "acquisition.json": {
+          "deadline": 3,
+          "started": 1
+        },
+        "cap_started": 0,
+        "diagnostic.json": {
+          "outcome": "UNKNOWN_NO_RETRY",
+          "reason": "WORKER_CRASHED",
+          "retry_allowed": false,
+          "stage": "BODY",
+          "window_index": 0
+        },
+        "events": [
+          {
+            "event": "RUN_ENTER",
+            "logical_t": 0,
+            "t": 562371.392325
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 562371.3923904
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 562371.4902182
+          },
+          {
+            "event": "WORKER_PACKET",
+            "kind": "RESERVED",
+            "logical_t": 0,
+            "t": 562372.6817133
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 0,
+            "t": 562372.6817721
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 0,
+            "t": 562372.7958607
+          },
+          {
+            "event": "TOKEN_CALL_ENTER",
+            "logical_t": 0,
+            "t": 562372.8541158
+          },
+          {
+            "event": "TOKEN_CALL_EXIT",
+            "logical_t": 1,
+            "t": 562372.8541279
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 562372.8541416
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 562372.9700268
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "NEED_WINDOW",
+            "logical_t": 1,
+            "t": 562373.2570349
+          },
+          {
+            "event": "CLAIM_ENTER",
+            "logical_t": 1,
+            "t": 562373.2570941
+          },
+          {
+            "event": "PARENT_VERIFY_ENTER",
+            "logical_t": 1,
+            "t": 562373.2571436
+          },
+          {
+            "event": "PARENT_VERIFY_EXIT",
+            "logical_t": 1,
+            "t": 562373.3536778
+          },
+          {
+            "event": "CLAIM_EXIT",
+            "logical_t": 1,
+            "t": 562373.7329259
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "WINDOW_STARTED",
+            "logical_t": 1,
+            "t": 562373.8687212
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 562374.5037879
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "CONNECT",
+            "t": 562374.5040835
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TLS",
+            "t": 562374.5047622
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "TRANSMIT",
+            "t": 562374.5136672
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "HEADERS",
+            "t": 562374.5137747
+          },
+          {
+            "event": "WORKER_PACKET",
+            "index": 0,
+            "kind": "STAGE",
+            "logical_t": 1,
+            "stage": "BODY",
+            "t": 562374.5146012
+          },
+          {
+            "event": "RUN_EXIT",
+            "logical_t": 1,
+            "t": 562375.0381661
+          }
+        ],
+        "journal": {
+          "attempts": 1,
+          "first": {
+            "deadline": 3,
+            "dispatched": 1,
+            "http_attempts": 1,
+            "started": 1,
+            "state": "UNKNOWN"
+          },
+          "next": 0,
+          "state": "OUTCOME_UNKNOWN"
+        },
+        "limits": {
+          "attempts": 106,
+          "bytes": 268435456,
+          "request": 15,
+          "session": 2,
+          "spacing": 1,
+          "startup": 15,
+          "token": 4
+        },
+        "mode": "OFFLINE_TEST",
+        "result": {
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "result.json": {
+          "attempts": 1,
+          "completed": 0,
+          "failure_reason": "WORKER_CRASHED",
+          "failure_stage": "BODY",
+          "kind": "OUTCOME_UNKNOWN",
+          "worker_exited": true
+        },
+        "run_started": 562371.3922839,
+        "worker.claimed.json": {
+          "credential_deadline": 4
+        }
+      }
+    ]
+  }
+}

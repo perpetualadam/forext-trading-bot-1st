@@ -53,9 +53,11 @@ class Context:
 
 
 def record(cap,reason,stage,index):
+    from .bounded_acquisition import profile
+    count=profile(cap.get('catalogue'))['count']
     if (type(cap.get('session')) is not str or not re.fullmatch('[0-9a-f]{32}',cap['session']) or
         any(type(cap.get(k)) is not str or not re.fullmatch('[0-9a-f]{64}',cap[k]) for k in ('source','catalogue'))):raise Refused('DIAGNOSTIC_BINDING_REFUSED')
-    if reason not in REASONS or stage not in STAGES or index is not None and (type(index) is not int or not 0<=index<106):
+    if reason not in REASONS or stage not in STAGES or index is not None and (type(index) is not int or not 0<=index<count):
         raise Refused('DIAGNOSTIC_METADATA_REFUSED')
     return dict(version=1,session=cap['session'],source=cap['source'],catalogue=cap['catalogue'],reason=reason,stage=stage,window_index=index,outcome='UNKNOWN_NO_RETRY',retry_allowed=False)
 

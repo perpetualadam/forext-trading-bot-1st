@@ -73,9 +73,11 @@ class Bounded(legacy.HTTPSLifecycle):
         return b.run(ar,cap,SyntheticCredentialProvider(self.secret),https_fixture=server.binding(),**kw)
     def server(self,scenario='valid'):
         return LocalHTTPS(self.cert,self.key,scenario=scenario,secret=self.secret,catalogue=tuple(b.spec(i) for i in range(106)))
-    def failure(self,*,fault='',scenario='valid',limits=None,expected_requests=None):
+    def failure(self,*,fault='',scenario='valid',limits=None,expected_requests=None,phase_fixture=None):
         base,ar,cap=self.new(limits=limits)
-        with self.server(scenario) as server:
+        server=self.server(scenario)
+        if phase_fixture is not None:phase_fixture.bind(ar,server)
+        with server:
             result=self.run_bounded(ar,cap,server,fault=fault)
             self.assertNotEqual(result['kind'],'DONE',result);self.assertTrue(result['worker_exited'],result)
             self.assertLessEqual(len(server.requests),1)
@@ -107,14 +109,16 @@ class Bounded(legacy.HTTPSLifecycle):
         r=b.verify_completed(ar,cap,0);rb=ar.read('manifests/v26c_year_000.json');rev=review();rev.update(provenance_verified=True,manifest_sha256=digest(rb))
         self.assertRaises(ResearchRejected,import_bundle,ar.read('request.json'),rb,ar.read(r['raw']),ar.read(r['validated']),review=rev,independent_required=False)
     def test_bounded_slow_token_entry_receives_fresh_acquisition_clock(self):
-        _,ar,cap=self.new(limits=dict(token=4,session=2,spacing=1))
-        def token(_):time.sleep(1);return self.secret
-        with self.server() as server,patch.object(SyntheticCredentialProvider,'credential',token):
-            result=self.run_bounded(ar,cap,server,fault='crash_after_response')
-            self.assertTrue(result['worker_exited']);self.assertEqual(len(server.requests),1)
-        phase=decode(ar.read('acquisition.json'));worker=decode(ar.read('worker.claimed.json'))
-        self.assertGreaterEqual(phase['started']-(worker['credential_deadline']-4),1)
-        self.assertEqual(phase['deadline']-phase['started'],2)
+        from .timing_test_fixture import deterministic_input_clock
+        with deterministic_input_clock() as clock:
+            _,ar,cap=self.new(limits=dict(token=4,session=2,spacing=1))
+            def token(_):clock.advance(1);return self.secret
+            with self.server() as server,patch.object(SyntheticCredentialProvider,'credential',token):
+                result=self.run_bounded(ar,cap,server,fault='crash_after_response')
+                self.assertTrue(result['worker_exited']);self.assertEqual(len(server.requests),1)
+            phase=decode(ar.read('acquisition.json'));worker=decode(ar.read('worker.claimed.json'))
+            self.assertGreaterEqual(phase['started']-(worker['credential_deadline']-4),1)
+            self.assertEqual(phase['deadline']-phase['started'],2)
     def test_bounded_parent_hash_verification_stops_progression(self):
         _,ar,cap=self.new()
         with self.server() as server,patch.object(b,'verify_completed',side_effect=Refused('SYNTHETIC_CORRUPTED_RECEIPT')):
